@@ -72,7 +72,9 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@prisma/engines",
-      "prisma"
+      "esbuild",
+      "prisma",
+      "unrs-resolver"
     ]
   },
   "jest": {

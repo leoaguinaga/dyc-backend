@@ -1,7 +1,3 @@
--- AlterTable
-ALTER TABLE "cotizaciones" DROP COLUMN "adelantoPorcentaje",
-DROP COLUMN "saldoPorcentaje";
-
 -- CreateTable
 CREATE TABLE "cotizacion_condiciones_pago" (
     "id" TEXT NOT NULL,
