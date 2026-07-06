@@ -161,9 +161,9 @@ export class CotizacionesService {
     });
     if (!cotizacion)
       throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
-    if (cotizacion.estado !== 'pendiente') {
+    if (cotizacion.estado !== 'pendiente' && cotizacion.estado !== 'sin_respuesta') {
       throw new BadRequestException(
-        'Solo se pueden registrar respuestas en cotizaciones pendientes',
+        'Solo se pueden registrar respuestas en cotizaciones pendientes o marcadas como sin respuesta',
       );
     }
 
@@ -264,6 +264,28 @@ export class CotizacionesService {
 
     return this.prisma.cotizacion.findUnique({
       where: { id: cotizacionId },
+      include: {
+        proveedor: { select: { id: true, razonSocial: true, ruc: true } },
+        items: true,
+      },
+    });
+  }
+
+  async marcarSinRespuesta(cotizacionId: string) {
+    const cotizacion = await this.prisma.cotizacion.findUnique({
+      where: { id: cotizacionId },
+    });
+    if (!cotizacion)
+      throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
+    if (cotizacion.estado !== 'pendiente') {
+      throw new BadRequestException(
+        'Solo se pueden marcar como "sin respuesta" las cotizaciones pendientes',
+      );
+    }
+
+    return this.prisma.cotizacion.update({
+      where: { id: cotizacionId },
+      data: { estado: 'sin_respuesta' },
       include: {
         proveedor: { select: { id: true, razonSocial: true, ruc: true } },
         items: true,

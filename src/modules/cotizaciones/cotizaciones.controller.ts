@@ -72,6 +72,12 @@ export class CotizacionesController {
     return this.cotizacionesService.aprobarCotizacion(cotizacionId);
   }
 
+  @Patch('cotizaciones/:cotizacionId/sin-respuesta')
+  @Roles('administrador', 'logistica')
+  markSinRespuesta(@Param('cotizacionId') cotizacionId: string) {
+    return this.cotizacionesService.marcarSinRespuesta(cotizacionId);
+  }
+
   @Patch(':id/adjudicar')
   @Roles('administrador', 'logistica')
   adjudicar(@Param('id') id: string, @Body() dto: AdjudicarSolicitudDto) {

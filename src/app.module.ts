@@ -16,6 +16,8 @@ import { CotizacionesModule } from './modules/cotizaciones/cotizaciones.module.j
 import { RequerimientosModule } from './modules/requerimientos/requerimientos.module.js';
 import { OrdenesCompraModule } from './modules/ordenes-compra/ordenes-compra.module.js';
 import { PagosModule } from './modules/pagos/pagos.module.js';
+import { ReportesModule } from './modules/reportes/reportes.module.js';
+import { DashboardModule } from './modules/dashboard/dashboard.module.js';
 import { AuthGuard } from './shared/guards/auth.guard.js';
 import { RolesGuard } from './shared/guards/roles.guard.js';
 
@@ -37,6 +39,8 @@ import { RolesGuard } from './shared/guards/roles.guard.js';
     RequerimientosModule,
     OrdenesCompraModule,
     PagosModule,
+    ReportesModule,
+    DashboardModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

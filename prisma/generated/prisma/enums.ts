@@ -124,7 +124,8 @@ export const EstadoCotizacion = {
   pendiente: 'pendiente',
   recibida: 'recibida',
   aprobada: 'aprobada',
-  rechazada: 'rechazada'
+  rechazada: 'rechazada',
+  sin_respuesta: 'sin_respuesta'
 } as const
 
 export type EstadoCotizacion = (typeof EstadoCotizacion)[keyof typeof EstadoCotizacion]

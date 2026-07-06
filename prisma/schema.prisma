@@ -97,6 +97,7 @@ enum EstadoCotizacion {
   recibida
   aprobada
   rechazada
+  sin_respuesta
 }
 
 enum EstadoOrdenCompra {
