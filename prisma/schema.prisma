@@ -1,0 +1,676 @@
+generator client {
+  provider = "prisma-client"
+  output   = "generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum Role {
+  supervisor
+  supervisor_civil
+  supervisor_electrico
+  pdr
+  ing_civil
+  ing_electrico
+  jefe_sig
+  logistica
+  gerencia
+  administrador
+}
+
+enum TipoRequerimiento {
+  electrico
+  civil
+  seguridad
+  administrativo
+}
+
+enum EstadoProyecto {
+  planificacion
+  ejecucion
+  cierre
+  liquidada
+}
+
+enum AmbitoGeografico {
+  local
+  nacional
+  internacional
+}
+
+enum CumplimientoHito {
+  si
+  no
+  programado
+}
+
+enum UnidadMedida {
+  und
+  kg
+  m
+  m2
+  m3
+  l
+  gal
+  bolsa
+  caja
+  rollo
+  par
+  juego
+}
+
+enum TipoAlmacen {
+  fijo
+  temporal
+}
+
+enum TipoItem {
+  consumible
+  activo
+}
+
+enum EstadoRequerimiento {
+  borrador
+  enviado
+  aprobado
+  observado
+}
+
+enum EstadoSolicitud {
+  borrador
+  enviada
+  cotizada
+  seleccionada
+  aprobada_solicitante
+  aprobada_gerencia
+  cancelada
+}
+
+enum EstadoCotizacion {
+  pendiente
+  recibida
+  aprobada
+  rechazada
+}
+
+enum EstadoOrdenCompra {
+  borrador
+  emitida
+  recibida_parcial
+  recibida
+  cancelada
+}
+
+enum EstadoPago {
+  pendiente
+  pagado
+  cancelado
+}
+
+enum TipoBeneficiario {
+  proveedor
+  trabajador
+}
+
+// ---------------------------------------------------------------------------
+// Auth — tablas requeridas por better-auth (nombres y campos exactos)
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String   @id
+  name          String
+  email         String   @unique
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime
+  updatedAt     DateTime
+
+  role Role @default(supervisor)
+
+  sessions                Session[]
+  accounts                Account[]
+  trabajador              Trabajador?
+  proyectosComoSupervisor ProyectoSupervisor[]
+  requerimientos          Requerimiento[]          @relation("RequerimientosCreadosPor")
+  requerimientoHistorial  RequerimientoHistorial[] @relation("RequerimientoHistorialActor")
+  ordenesCompra           OrdenCompra[]        @relation("OrdenesCompraCreadosPor")
+  pagosRegistrados        Pago[]               @relation("PagosRegistradosPor")
+  pagosEjecutados         Pago[]               @relation("PagosEjecutadosPor")
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("accounts")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String    @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verifications")
+}
+
+// ---------------------------------------------------------------------------
+// Clientes
+// ---------------------------------------------------------------------------
+
+model Cliente {
+  id              String   @id @default(cuid())
+  razonSocial     String
+  nombreComercial String?
+  ruc             String?  @unique
+  direccion       String?
+  activo          Boolean  @default(true)
+  creadoEn        DateTime @default(now())
+  actualizadoEn   DateTime @updatedAt
+
+  proyectos Proyecto[]
+  contactos ContactoCliente[]
+
+  @@map("clientes")
+}
+
+model ContactoCliente {
+  id            String   @id @default(cuid())
+  nombre        String
+  cargo         String?
+  email         String?
+  telefono      String?
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  clienteId String
+  cliente   Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  proyectosComoCoordinador Proyecto[]
+
+  @@map("contactos_clientes")
+}
+
+// ---------------------------------------------------------------------------
+// Proyectos
+// ---------------------------------------------------------------------------
+
+model Proyecto {
+  id     String  @id @default(cuid())
+  codigo String? @unique
+
+  nombre    String
+  ciudad    String?
+  direccion String?
+  comuna    String?
+
+  ambitoGeografico AmbitoGeografico @default(local)
+
+  // Proyecto padre (para subproyectos)
+  parentId     String?
+  parent       Proyecto?  @relation("Subproyectos", fields: [parentId], references: [id])
+  subproyectos Proyecto[] @relation("Subproyectos")
+
+  // Cliente
+  clienteId String?
+  cliente   Cliente? @relation(fields: [clienteId], references: [id])
+
+  // Personas
+  coordinadorClienteId String?
+  coordinadorCliente   ContactoCliente? @relation(fields: [coordinadorClienteId], references: [id], onDelete: SetNull)
+  coordinadorEmpresaId String?
+  coordinadorEmpresa   Trabajador?      @relation("ProyectoCoordinadorEmpresa", fields: [coordinadorEmpresaId], references: [id])
+  ejecutorId           String?
+  ejecutor             Trabajador?      @relation("ProyectoEjecutor", fields: [ejecutorId], references: [id])
+  prevencionistaId     String?
+  prevencionista       Trabajador?      @relation("ProyectoPrevencionista", fields: [prevencionistaId], references: [id])
+
+  // Fechas programadas
+  fechaInicio DateTime?
+  fechaFin    DateTime?
+
+  // Fechas reales
+  fechaInicioReal DateTime?
+  fechaFinReal    DateTime?
+  notaInicioReal  String?
+
+  estado        EstadoProyecto @default(planificacion)
+  creadaEn      DateTime       @default(now())
+  actualizadaEn DateTime       @updatedAt
+
+  supervisores   ProyectoSupervisor[]
+  trabajadores   ProyectoTrabajador[]
+  hitos          Hito[]
+  requerimientos Requerimiento[]
+  solicitudes    SolicitudCotizacion[]
+  ordenesCompra  OrdenCompra[]
+
+  @@map("proyectos")
+}
+
+model ProyectoSupervisor {
+  proyectoId String
+  userId     String
+  asignadoEn DateTime @default(now())
+
+  proyecto Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([proyectoId, userId])
+  @@map("proyectos_supervisores")
+}
+
+// ---------------------------------------------------------------------------
+// Hitos
+// ---------------------------------------------------------------------------
+
+model Hito {
+  id              String           @id @default(cuid())
+  proyectoId      String
+  proyecto        Proyecto         @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  nombre          String
+  fechaProgramada DateTime
+  evidencia       String?
+  cumplimiento    CumplimientoHito @default(programado)
+  responsableId   String
+  responsable     Trabajador       @relation(fields: [responsableId], references: [id])
+  notas           String?
+  creadoEn        DateTime         @default(now())
+  actualizadoEn   DateTime         @updatedAt
+
+  @@map("hitos")
+}
+
+// ---------------------------------------------------------------------------
+// Trabajadores
+// ---------------------------------------------------------------------------
+
+model Trabajador {
+  id            String   @id @default(cuid())
+  nombre        String
+  dni           String   @unique
+  cargo         String?
+  telefono      String?
+  email         String?
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  userId String? @unique
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  proyectos                   ProyectoTrabajador[]
+  proyectosComoEjecutor       Proyecto[]           @relation("ProyectoEjecutor")
+  proyectosComoCoordinador    Proyecto[]           @relation("ProyectoCoordinadorEmpresa")
+  proyectosComoPrevencionista Proyecto[]           @relation("ProyectoPrevencionista")
+  hitos                       Hito[]
+
+  @@map("trabajadores")
+}
+
+model ProyectoTrabajador {
+  id           String    @id @default(cuid())
+  proyectoId   String
+  trabajadorId String
+  fechaIngreso DateTime
+  fechaSalida  DateTime?
+
+  proyecto   Proyecto   @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  trabajador Trabajador @relation(fields: [trabajadorId], references: [id], onDelete: Cascade)
+
+  @@unique([proyectoId, trabajadorId])
+  @@map("proyectos_trabajadores")
+}
+
+// ---------------------------------------------------------------------------
+// Proveedores
+// ---------------------------------------------------------------------------
+
+model Proveedor {
+  id            String   @id @default(cuid())
+  razonSocial   String
+  ruc           String   @unique
+  direccion     String?
+  rubro         String?
+  categoria     String?
+  banco         String?
+  numeroCuenta  String?
+  moneda        String?
+  condicionPago String?
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  contactos         ContactoProveedor[]
+  cotizaciones      Cotizacion[]
+  catalogoProductos CatalogoProductoProveedor[]
+  ordenesCompra     OrdenCompra[]
+
+  @@map("proveedores")
+}
+
+model ContactoProveedor {
+  id            String   @id @default(cuid())
+  nombre        String
+  cargo         String?
+  email         String?
+  telefono      String?
+  activo        Boolean  @default(true)
+  esPrincipal   Boolean  @default(false)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  proveedorId String
+  proveedor   Proveedor @relation(fields: [proveedorId], references: [id], onDelete: Cascade)
+
+  @@map("contactos_proveedores")
+}
+
+// ---------------------------------------------------------------------------
+// Catálogo de productos por proveedor
+// ---------------------------------------------------------------------------
+
+model CatalogoProductoProveedor {
+  id            String       @id @default(cuid())
+  proveedorId   String
+  proveedor     Proveedor    @relation(fields: [proveedorId], references: [id], onDelete: Cascade)
+  descripcion   String
+  precioRef     Decimal      @db.Decimal(12, 2)
+  unidad        UnidadMedida @default(und)
+  vigente       Boolean      @default(true)
+  nota          String?
+  creadoEn      DateTime     @default(now())
+  actualizadoEn DateTime     @updatedAt
+
+  @@map("catalogo_productos_proveedor")
+}
+
+// ---------------------------------------------------------------------------
+// Requerimientos
+// ---------------------------------------------------------------------------
+
+model Requerimiento {
+  id                    String              @id @default(cuid())
+  codigo                String              @unique
+  nombre                String
+  proyectoId            String
+  proyecto              Proyecto            @relation(fields: [proyectoId], references: [id])
+  creadoPorId           String
+  creadoPor             User                @relation("RequerimientosCreadosPor", fields: [creadoPorId], references: [id])
+  estado                EstadoRequerimiento @default(borrador)
+  tipo                  TipoRequerimiento   @default(civil)
+  urgente               Boolean             @default(false)
+  nota                  String?
+  notaRevision          String?
+  fechaEntregaRequerida DateTime?
+  creadoEn              DateTime            @default(now())
+  actualizadoEn         DateTime            @updatedAt
+
+  items       RequerimientoItem[]
+  solicitudes SolicitudCotizacion[]
+  historial   RequerimientoHistorial[]
+
+  @@map("requerimientos")
+}
+
+model RequerimientoItem {
+  id              String        @id @default(cuid())
+  requerimientoId String
+  requerimiento   Requerimiento @relation(fields: [requerimientoId], references: [id], onDelete: Cascade)
+  descripcion     String
+  cantidad        Decimal       @db.Decimal(12, 2)
+  unidad          UnidadMedida  @default(und)
+  nota            String?
+
+  @@map("requerimiento_items")
+}
+
+model RequerimientoHistorial {
+  id              String              @id @default(cuid())
+  requerimientoId String
+  requerimiento   Requerimiento       @relation(fields: [requerimientoId], references: [id], onDelete: Cascade)
+  estado          EstadoRequerimiento
+  nota            String?
+  actorId         String?
+  actor           User?               @relation("RequerimientoHistorialActor", fields: [actorId], references: [id])
+  actorRole       Role?
+  creadoEn        DateTime            @default(now())
+
+  @@map("requerimiento_historial")
+}
+
+// ---------------------------------------------------------------------------
+// Inventario
+// ---------------------------------------------------------------------------
+
+model ItemInventario {
+  id            String       @id @default(cuid())
+  codigo        String       @unique
+  nombre        String
+  descripcion   String?
+  unidad        UnidadMedida @default(und)
+  categoria     String?
+  tipo          TipoItem     @default(consumible)
+  notas         String?      @db.Text
+  activo        Boolean      @default(true)
+  creadoEn      DateTime     @default(now())
+  actualizadoEn DateTime     @updatedAt
+
+  solicitudItems  SolicitudItem[]
+  cotizacionItems CotizacionItem[]
+
+  @@map("items_inventario")
+}
+
+// ---------------------------------------------------------------------------
+// Almacenes
+// ---------------------------------------------------------------------------
+
+model Almacen {
+  id       String      @id @default(cuid())
+  nombre   String
+  tipo     TipoAlmacen
+  ciudad   String?
+  notas    String?     @db.Text
+  activo   Boolean     @default(true)
+  creadoEn DateTime    @default(now())
+
+  @@map("almacenes")
+}
+
+// ---------------------------------------------------------------------------
+// Cotizaciones
+// ---------------------------------------------------------------------------
+
+model SolicitudCotizacion {
+  id              String          @id @default(cuid())
+  codigo          String          @unique
+  proyectoId      String?
+  proyecto        Proyecto?       @relation(fields: [proyectoId], references: [id])
+  requerimientoId String?
+  requerimiento   Requerimiento?  @relation(fields: [requerimientoId], references: [id])
+  estado          EstadoSolicitud @default(borrador)
+  nota            String?
+  creadoEn        DateTime        @default(now())
+  actualizadoEn   DateTime        @updatedAt
+
+  items        SolicitudItem[]
+  cotizaciones Cotizacion[]
+  ordenes      OrdenCompra[]
+
+  @@map("solicitudes_cotizacion")
+}
+
+model SolicitudItem {
+  id               String              @id @default(cuid())
+  solicitudId      String
+  solicitud        SolicitudCotizacion @relation(fields: [solicitudId], references: [id], onDelete: Cascade)
+  descripcion      String
+  unidad           UnidadMedida        @default(und)
+  itemInventarioId String?
+  item             ItemInventario?     @relation(fields: [itemInventarioId], references: [id])
+  cantidadTotal    Decimal             @db.Decimal(12, 2)
+  cantidadAlmacen  Decimal             @default(0) @db.Decimal(12, 2)
+  cantidadCompra   Decimal             @db.Decimal(12, 2)
+
+  cotizacionItems CotizacionItem[]
+
+  @@map("solicitud_items")
+}
+
+model Cotizacion {
+  id                  String              @id @default(cuid())
+  solicitudId         String
+  solicitud           SolicitudCotizacion @relation(fields: [solicitudId], references: [id], onDelete: Cascade)
+  proveedorId         String
+  proveedor           Proveedor           @relation(fields: [proveedorId], references: [id])
+  estado              EstadoCotizacion    @default(pendiente)
+  fechaRecibida       DateTime?
+  fechaEntrega        DateTime?
+  validezDias         Int?
+  condicionesServicio String?
+  condicionPago       String?
+  nota                String?
+  creadoEn            DateTime            @default(now())
+  actualizadoEn       DateTime            @updatedAt
+
+  items CotizacionItem[]
+
+  @@map("cotizaciones")
+}
+
+model CotizacionItem {
+  id                   String          @id @default(cuid())
+  cotizacionId         String
+  cotizacion           Cotizacion      @relation(fields: [cotizacionId], references: [id], onDelete: Cascade)
+  descripcionProveedor String
+  itemInventarioId     String?
+  item                 ItemInventario? @relation(fields: [itemInventarioId], references: [id])
+  solicitudItemId      String?
+  solicitudItem        SolicitudItem?  @relation(fields: [solicitudItemId], references: [id])
+  precioUnit           Decimal         @db.Decimal(12, 2)
+  cantidad             Decimal         @db.Decimal(12, 2)
+  unidad               UnidadMedida
+  seleccionado         Boolean         @default(false)
+
+  @@map("cotizacion_items")
+}
+
+// ---------------------------------------------------------------------------
+// Órdenes de compra
+// ---------------------------------------------------------------------------
+
+model OrdenCompra {
+  id                        String              @id @default(cuid())
+  numero                    String              @unique
+  nombre                    String?
+  solicitudId               String
+  solicitud                 SolicitudCotizacion @relation(fields: [solicitudId], references: [id])
+  proveedorId               String
+  proveedor                 Proveedor           @relation(fields: [proveedorId], references: [id])
+  proyectoId                String
+  proyecto                  Proyecto            @relation(fields: [proyectoId], references: [id])
+  estado                    EstadoOrdenCompra   @default(borrador)
+  fechaEmision              DateTime?
+  fechaEntrega              DateTime?
+  montoTotal                Decimal             @default(0) @db.Decimal(12, 2)
+  nota                      String?
+  lugarEntrega              String?
+  adelantoPorcentaje        Decimal?            @db.Decimal(5, 2)
+  saldoPorcentaje           Decimal?            @db.Decimal(5, 2)
+  detraccionPorcentaje      Decimal?            @db.Decimal(5, 2)
+  tipoCambio                Decimal?            @db.Decimal(8, 4)
+  contactoProveedorNombre   String?
+  contactoProveedorTelefono String?
+  condicionPago             String?
+  referencia                String?
+  concepto                  String?
+  tiempoEntrega             String?
+  contactoDycNombre         String?
+  contactoDycArea           String?
+  contactoDycCelular        String?
+  contactoDycTelefono       String?
+  creadoPorId               String
+  creadoPor                 User                @relation("OrdenesCompraCreadosPor", fields: [creadoPorId], references: [id])
+  creadoEn                  DateTime            @default(now())
+  actualizadoEn             DateTime            @updatedAt
+
+  items OrdenCompraItem[]
+  pagos Pago[]
+
+  @@map("ordenes_compra")
+}
+
+model Pago {
+  id                String           @id @default(cuid())
+  ordenCompraId     String
+  ordenCompra       OrdenCompra      @relation(fields: [ordenCompraId], references: [id], onDelete: Cascade)
+  tipoBeneficiario  TipoBeneficiario @default(proveedor)
+  monto             Decimal          @db.Decimal(12, 2)
+  porcentaje        Decimal          @db.Decimal(5, 2)
+  fechaProgramada   DateTime
+  fechaPagoReal     DateTime?
+  estado            EstadoPago       @default(pendiente)
+  metodoPago        String?
+  numeroOperacion   String?
+  nota              String?
+  registradoPorId   String
+  registradoPor     User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
+  pagadoPorId       String?
+  pagadoPor         User?            @relation("PagosEjecutadosPor", fields: [pagadoPorId], references: [id])
+  creadoEn          DateTime         @default(now())
+  actualizadoEn     DateTime         @updatedAt
+
+  @@map("pagos")
+}
+
+model OrdenCompraItem {
+  id             String       @id @default(cuid())
+  ordenId        String
+  orden          OrdenCompra  @relation(fields: [ordenId], references: [id], onDelete: Cascade)
+  codigo         String?
+  descripcion    String
+  cantidad       Decimal      @db.Decimal(12, 2)
+  unidad         UnidadMedida @default(und)
+  precioUnitario Decimal      @db.Decimal(12, 2)
+  precioTotal    Decimal      @db.Decimal(12, 2)
+
+  @@map("orden_compra_items")
+}
