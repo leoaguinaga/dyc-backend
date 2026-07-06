@@ -74,6 +74,7 @@ export const ModelName = {
   SolicitudItem: 'SolicitudItem',
   Cotizacion: 'Cotizacion',
   CotizacionItem: 'CotizacionItem',
+  CotizacionCondicionPago: 'CotizacionCondicionPago',
   OrdenCompra: 'OrdenCompra',
   Pago: 'Pago',
   OrdenCompraItem: 'OrdenCompraItem'
@@ -445,6 +446,16 @@ export const CotizacionItemScalarFieldEnum = {
 } as const
 
 export type CotizacionItemScalarFieldEnum = (typeof CotizacionItemScalarFieldEnum)[keyof typeof CotizacionItemScalarFieldEnum]
+
+
+export const CotizacionCondicionPagoScalarFieldEnum = {
+  id: 'id',
+  cotizacionId: 'cotizacionId',
+  porcentaje: 'porcentaje',
+  fecha: 'fecha'
+} as const
+
+export type CotizacionCondicionPagoScalarFieldEnum = (typeof CotizacionCondicionPagoScalarFieldEnum)[keyof typeof CotizacionCondicionPagoScalarFieldEnum]
 
 
 export const OrdenCompraScalarFieldEnum = {

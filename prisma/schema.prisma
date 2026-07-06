@@ -571,7 +571,8 @@ model Cotizacion {
   creadoEn            DateTime            @default(now())
   actualizadoEn       DateTime            @updatedAt
 
-  items CotizacionItem[]
+  items          CotizacionItem[]
+  condicionesPago CotizacionCondicionPago[]
 
   @@map("cotizaciones")
 }
@@ -591,6 +592,16 @@ model CotizacionItem {
   seleccionado         Boolean         @default(false)
 
   @@map("cotizacion_items")
+}
+
+model CotizacionCondicionPago {
+  id           String     @id @default(cuid())
+  cotizacionId String
+  cotizacion   Cotizacion @relation(fields: [cotizacionId], references: [id], onDelete: Cascade)
+  porcentaje   Decimal    @db.Decimal(5, 2)
+  fecha        DateTime
+
+  @@map("cotizacion_condiciones_pago")
 }
 
 // ---------------------------------------------------------------------------

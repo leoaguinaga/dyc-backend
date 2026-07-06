@@ -157,6 +157,11 @@ export type Cotizacion = Prisma.CotizacionModel
  */
 export type CotizacionItem = Prisma.CotizacionItemModel
 /**
+ * Model CotizacionCondicionPago
+ * 
+ */
+export type CotizacionCondicionPago = Prisma.CotizacionCondicionPagoModel
+/**
  * Model OrdenCompra
  * 
  */

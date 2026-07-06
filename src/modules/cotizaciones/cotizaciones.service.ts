@@ -29,6 +29,7 @@ const SOLICITUD_INCLUDE = {
           item: { select: { id: true, codigo: true, nombre: true } },
         },
       },
+      condicionesPago: true,
     },
   },
 } as const;
@@ -166,6 +167,12 @@ export class CotizacionesService {
       );
     }
 
+    const sumaPorcentajes = dto.condicionesPago.reduce((s, c) => s + c.porcentaje, 0);
+    if (Math.abs(sumaPorcentajes - 100) > 0.01)
+      throw new BadRequestException(
+        `Las condiciones de pago deben sumar 100% (actual: ${sumaPorcentajes.toFixed(2)}%)`,
+      );
+
     const updated = await this.prisma.cotizacion.update({
       where: { id: cotizacionId },
       data: {
@@ -187,10 +194,18 @@ export class CotizacionesService {
             unidad: item.unidad,
           })),
         },
+        condicionesPago: {
+          deleteMany: {},
+          create: dto.condicionesPago.map((cp) => ({
+            porcentaje: cp.porcentaje,
+            fecha: new Date(cp.fecha),
+          })),
+        },
       },
       include: {
         proveedor: { select: { id: true, razonSocial: true, ruc: true } },
         items: { include: { item: { select: { id: true, nombre: true } } } },
+        condicionesPago: true,
       },
     });
 

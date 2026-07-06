@@ -407,6 +407,7 @@ export const ModelName = {
   SolicitudItem: 'SolicitudItem',
   Cotizacion: 'Cotizacion',
   CotizacionItem: 'CotizacionItem',
+  CotizacionCondicionPago: 'CotizacionCondicionPago',
   OrdenCompra: 'OrdenCompra',
   Pago: 'Pago',
   OrdenCompraItem: 'OrdenCompraItem'
@@ -425,7 +426,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "ordenCompra" | "pago" | "ordenCompraItem"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2131,6 +2132,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CotizacionCondicionPago: {
+      payload: Prisma.$CotizacionCondicionPagoPayload<ExtArgs>
+      fields: Prisma.CotizacionCondicionPagoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CotizacionCondicionPagoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CotizacionCondicionPagoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>
+        }
+        findFirst: {
+          args: Prisma.CotizacionCondicionPagoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CotizacionCondicionPagoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>
+        }
+        findMany: {
+          args: Prisma.CotizacionCondicionPagoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>[]
+        }
+        create: {
+          args: Prisma.CotizacionCondicionPagoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>
+        }
+        createMany: {
+          args: Prisma.CotizacionCondicionPagoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CotizacionCondicionPagoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>[]
+        }
+        delete: {
+          args: Prisma.CotizacionCondicionPagoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>
+        }
+        update: {
+          args: Prisma.CotizacionCondicionPagoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CotizacionCondicionPagoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CotizacionCondicionPagoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CotizacionCondicionPagoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>[]
+        }
+        upsert: {
+          args: Prisma.CotizacionCondicionPagoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionCondicionPagoPayload>
+        }
+        aggregate: {
+          args: Prisma.CotizacionCondicionPagoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCotizacionCondicionPago>
+        }
+        groupBy: {
+          args: Prisma.CotizacionCondicionPagoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CotizacionCondicionPagoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CotizacionCondicionPagoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CotizacionCondicionPagoCountAggregateOutputType> | number
+        }
+      }
+    }
     OrdenCompra: {
       payload: Prisma.$OrdenCompraPayload<ExtArgs>
       fields: Prisma.OrdenCompraFieldRefs
@@ -2744,6 +2819,16 @@ export const CotizacionItemScalarFieldEnum = {
 export type CotizacionItemScalarFieldEnum = (typeof CotizacionItemScalarFieldEnum)[keyof typeof CotizacionItemScalarFieldEnum]
 
 
+export const CotizacionCondicionPagoScalarFieldEnum = {
+  id: 'id',
+  cotizacionId: 'cotizacionId',
+  porcentaje: 'porcentaje',
+  fecha: 'fecha'
+} as const
+
+export type CotizacionCondicionPagoScalarFieldEnum = (typeof CotizacionCondicionPagoScalarFieldEnum)[keyof typeof CotizacionCondicionPagoScalarFieldEnum]
+
+
 export const OrdenCompraScalarFieldEnum = {
   id: 'id',
   numero: 'numero',
@@ -3249,6 +3334,7 @@ export type GlobalOmitConfig = {
   solicitudItem?: Prisma.SolicitudItemOmit
   cotizacion?: Prisma.CotizacionOmit
   cotizacionItem?: Prisma.CotizacionItemOmit
+  cotizacionCondicionPago?: Prisma.CotizacionCondicionPagoOmit
   ordenCompra?: Prisma.OrdenCompraOmit
   pago?: Prisma.PagoOmit
   ordenCompraItem?: Prisma.OrdenCompraItemOmit

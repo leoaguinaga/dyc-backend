@@ -5,8 +5,6 @@ import { PrismaService } from '../../prisma/prisma.service.js';
 
 @Injectable()
 export class AuthService {
-  // Tipo inferido directamente de betterAuth para evitar incompatibilidades genéricas
-
   readonly auth: any;
 
   constructor(private prisma: PrismaService) {
@@ -18,6 +16,16 @@ export class AuthService {
         updateAge: 60 * 60 * 24,
       },
       trustedOrigins: [process.env.FRONTEND_URL ?? 'http://localhost:3000'],
+      advanced: {
+        crossSubDomainCookies: {
+          enabled: true,
+          domain: process.env.COOKIE_DOMAIN ?? undefined,
+        },
+        defaultCookieAttributes: {
+          secure: true,
+          sameSite: 'none',
+        },
+      },
       user: {
         additionalFields: {
           role: {

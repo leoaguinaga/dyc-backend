@@ -1,11 +1,14 @@
 import {
   IsArray,
+  IsDateString,
   IsEnum,
   IsInt,
   IsNumber,
   IsOptional,
   IsPositive,
   IsString,
+  Max,
+  Min,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -59,6 +62,16 @@ export class CreateCotizacionDto {
   nota?: string;
 }
 
+export class CondicionPagoDto {
+  @IsNumber()
+  @Min(0.01)
+  @Max(100)
+  porcentaje: number;
+
+  @IsDateString()
+  fecha: string;
+}
+
 export class ReceiveCotizacionDto {
   @IsOptional()
   @IsString()
@@ -72,6 +85,11 @@ export class ReceiveCotizacionDto {
   @IsOptional()
   @IsString()
   condicionesServicio?: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CondicionPagoDto)
+  condicionesPago: CondicionPagoDto[];
 
   @IsOptional()
   @IsString()

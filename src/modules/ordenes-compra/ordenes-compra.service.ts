@@ -98,6 +98,7 @@ export class OrdenesCompraService {
           include: {
             items: true,
             proveedor: { select: { id: true, condicionPago: true } },
+            condicionesPago: true,
           },
         },
         requerimiento: { select: { proyectoId: true, nombre: true } },
@@ -114,7 +115,13 @@ export class OrdenesCompraService {
 
     // ── Split award: agrupar ítems seleccionados por proveedor ──────────────
     type Cotizacion = (typeof solicitud.cotizaciones)[0];
-    const byProveedor = new Map<string, { proveedorId: string; items: Cotizacion['items']; condicionPago?: string | null }>();
+    type Grupo = {
+      proveedorId: string;
+      items: Cotizacion['items'];
+      condicionPago?: string | null;
+      condicionesPago: Cotizacion['condicionesPago'];
+    };
+    const byProveedor = new Map<string, Grupo>();
     for (const cot of solicitud.cotizaciones) {
       const selected = cot.items.filter((i) => i.seleccionado);
       if (selected.length === 0) continue;
@@ -123,6 +130,7 @@ export class OrdenesCompraService {
           proveedorId: cot.proveedorId,
           items: [],
           condicionPago: cot.condicionPago ?? cot.proveedor.condicionPago,
+          condicionesPago: cot.condicionesPago,
         });
       }
       byProveedor.get(cot.proveedorId)!.items.push(...selected);
@@ -137,6 +145,7 @@ export class OrdenesCompraService {
         proveedorId: ganadora.proveedorId,
         items: ganadora.items,
         condicionPago: ganadora.condicionPago ?? ganadora.proveedor.condicionPago,
+        condicionesPago: ganadora.condicionesPago,
       });
     }
 
@@ -181,6 +190,14 @@ export class OrdenesCompraService {
                 unidad: item.unidad,
                 precioUnitario: item.precioUnit,
                 precioTotal: Number(item.precioUnit) * Number(item.cantidad),
+              })),
+            },
+            pagos: {
+              create: grupo.condicionesPago.map((cp) => ({
+                porcentaje: cp.porcentaje,
+                monto: (monto * Number(cp.porcentaje)) / 100,
+                fechaProgramada: cp.fecha,
+                registradoPorId: userId,
               })),
             },
           },
