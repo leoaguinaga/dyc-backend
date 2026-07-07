@@ -33,13 +33,13 @@ export class ProveedoresController {
   }
 
   @Post()
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   create(@Body() dto: CreateProveedorDto) {
     return this.proveedoresService.create(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   update(@Param('id') id: string, @Body() dto: UpdateProveedorDto) {
     return this.proveedoresService.update(id, dto);
   }
@@ -52,13 +52,13 @@ export class ProveedoresController {
   }
 
   @Post(':id/contactos')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   createContacto(@Param('id') id: string, @Body() dto: CreateContactoProveedorDto) {
     return this.proveedoresService.createContacto(id, dto);
   }
 
   @Patch(':id/contactos/:contactoId')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   updateContacto(
     @Param('id') id: string,
     @Param('contactoId') contactoId: string,
@@ -68,7 +68,7 @@ export class ProveedoresController {
   }
 
   @Patch(':id/contactos/:contactoId/principal')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   setPrincipalContacto(
     @Param('id') id: string,
     @Param('contactoId') contactoId: string,

@@ -7,6 +7,7 @@ import { CreateContactoDto } from './dto/create-contacto.dto.js';
 import { UpdateContactoDto } from './dto/update-contacto.dto.js';
 
 @Controller('clientes')
+@Roles('administrador', 'logistica', 'gerencia')
 export class ClientesController {
   constructor(private clientesService: ClientesService) {}
 
@@ -21,13 +22,13 @@ export class ClientesController {
   }
 
   @Post()
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   create(@Body() dto: CreateClienteDto) {
     return this.clientesService.create(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   update(@Param('id') id: string, @Body() dto: UpdateClienteDto) {
     return this.clientesService.update(id, dto);
   }
@@ -40,13 +41,13 @@ export class ClientesController {
   }
 
   @Post(':id/contactos')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   createContacto(@Param('id') id: string, @Body() dto: CreateContactoDto) {
     return this.clientesService.createContacto(id, dto);
   }
 
   @Patch(':id/contactos/:contactoId')
-  @Roles('administrador')
+  @Roles('administrador', 'logistica')
   updateContacto(
     @Param('id') id: string,
     @Param('contactoId') contactoId: string,
