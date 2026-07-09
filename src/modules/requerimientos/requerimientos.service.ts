@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   ForbiddenException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -10,6 +11,8 @@ import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import type { EstadoRequerimiento, Role, TipoRequerimiento } from '../../prisma/types.js';
+import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
+import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 
 // Roles that can only see their own requerimientos
 const RESTRICTED_ROLES: Role[] = [
@@ -47,7 +50,7 @@ const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
 const INCLUDE_BASE = {
   proyecto: { select: { id: true, codigo: true, nombre: true } },
   creadoPor: { select: { id: true, name: true, email: true, role: true } },
-  items: true,
+  items: { include: { archivos: true } },
   historial: {
     include: { actor: { select: { id: true, name: true, role: true } } },
     orderBy: { creadoEn: 'asc' as const },
@@ -57,7 +60,18 @@ const INCLUDE_BASE = {
 
 @Injectable()
 export class RequerimientosService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
+  ) {}
+
+  subirArchivo(file: Express.Multer.File) {
+    return this.storage.save({
+      buffer: file.buffer,
+      originalName: file.originalname,
+      mimeType: file.mimetype,
+    });
+  }
 
   findAll(
     query: QueryRequerimientoDto,
@@ -122,6 +136,7 @@ export class RequerimientosService {
             cantidad: i.cantidad,
             unidad: i.unidad ?? 'und',
             nota: i.nota,
+            archivos: { create: i.archivos?.map((a) => ({ nombre: a.nombre, url: a.url })) ?? [] },
           })),
         },
       },
@@ -154,6 +169,7 @@ export class RequerimientosService {
                   cantidad: i.cantidad,
                   unidad: i.unidad ?? 'und',
                   nota: i.nota,
+                  archivos: { create: i.archivos?.map((a) => ({ nombre: a.nombre, url: a.url })) ?? [] },
                 })),
               }
             : undefined,

@@ -28,6 +28,14 @@ export class CreateTrabajadorDto {
   email?: string;
 
   @IsOptional()
+  @IsString()
+  banco?: string;
+
+  @IsOptional()
+  @IsString()
+  numeroCuenta?: string;
+
+  @IsOptional()
   @IsBoolean()
   activo?: boolean;
 

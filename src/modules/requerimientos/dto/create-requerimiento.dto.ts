@@ -12,6 +12,14 @@ import {
 import { Type } from 'class-transformer';
 import { TipoRequerimiento, UnidadMedida } from '../../../prisma/types.js';
 
+export class CreateRequerimientoItemArchivoDto {
+  @IsString()
+  nombre: string;
+
+  @IsString()
+  url: string;
+}
+
 export class CreateRequerimientoItemDto {
   @IsString()
   descripcion: string;
@@ -27,6 +35,12 @@ export class CreateRequerimientoItemDto {
   @IsOptional()
   @IsString()
   nota?: string;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateRequerimientoItemArchivoDto)
+  archivos?: CreateRequerimientoItemArchivoDto[];
 }
 
 export class CreateRequerimientoDto {

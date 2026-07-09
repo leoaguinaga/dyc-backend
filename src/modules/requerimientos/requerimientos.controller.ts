@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -7,7 +8,10 @@ import {
   Post,
   Query,
   Req,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import type { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { RequerimientosService } from './requerimientos.service.js';
@@ -15,6 +19,8 @@ import { CreateRequerimientoDto } from './dto/create-requerimiento.dto.js';
 import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
+
+const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 
 @Controller('requerimientos')
 @Roles(
@@ -38,6 +44,24 @@ export class RequerimientosController {
   @Post()
   create(@Body() dto: CreateRequerimientoDto, @Req() req: Request) {
     return this.service.create(dto, req.user!.id, req.user!.role);
+  }
+
+  @Post('archivos')
+  @UseInterceptors(
+    FileInterceptor('archivo', {
+      limits: { fileSize: MAX_ARCHIVO_BYTES },
+      fileFilter: (_req, file, cb) => {
+        if (file.mimetype !== 'application/pdf') {
+          cb(new BadRequestException('Solo se permiten archivos PDF'), false);
+          return;
+        }
+        cb(null, true);
+      },
+    }),
+  )
+  subirArchivo(@UploadedFile() file?: Express.Multer.File) {
+    if (!file) throw new BadRequestException('Debes adjuntar un archivo PDF');
+    return this.service.subirArchivo(file);
   }
 
   @Patch(':id')

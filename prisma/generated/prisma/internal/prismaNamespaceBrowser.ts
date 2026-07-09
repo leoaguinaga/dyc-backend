@@ -67,6 +67,7 @@ export const ModelName = {
   CatalogoProductoProveedor: 'CatalogoProductoProveedor',
   Requerimiento: 'Requerimiento',
   RequerimientoItem: 'RequerimientoItem',
+  RequerimientoItemArchivo: 'RequerimientoItemArchivo',
   RequerimientoHistorial: 'RequerimientoHistorial',
   ItemInventario: 'ItemInventario',
   Almacen: 'Almacen',
@@ -243,6 +244,8 @@ export const TrabajadorScalarFieldEnum = {
   cargo: 'cargo',
   telefono: 'telefono',
   email: 'email',
+  banco: 'banco',
+  numeroCuenta: 'numeroCuenta',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn',
@@ -342,6 +345,17 @@ export const RequerimientoItemScalarFieldEnum = {
 } as const
 
 export type RequerimientoItemScalarFieldEnum = (typeof RequerimientoItemScalarFieldEnum)[keyof typeof RequerimientoItemScalarFieldEnum]
+
+
+export const RequerimientoItemArchivoScalarFieldEnum = {
+  id: 'id',
+  requerimientoItemId: 'requerimientoItemId',
+  nombre: 'nombre',
+  url: 'url',
+  creadoEn: 'creadoEn'
+} as const
+
+export type RequerimientoItemArchivoScalarFieldEnum = (typeof RequerimientoItemArchivoScalarFieldEnum)[keyof typeof RequerimientoItemArchivoScalarFieldEnum]
 
 
 export const RequerimientoHistorialScalarFieldEnum = {

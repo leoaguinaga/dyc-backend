@@ -31,6 +31,8 @@ export type TrabajadorMinAggregateOutputType = {
   cargo: string | null
   telefono: string | null
   email: string | null
+  banco: string | null
+  numeroCuenta: string | null
   activo: boolean | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -44,6 +46,8 @@ export type TrabajadorMaxAggregateOutputType = {
   cargo: string | null
   telefono: string | null
   email: string | null
+  banco: string | null
+  numeroCuenta: string | null
   activo: boolean | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -57,6 +61,8 @@ export type TrabajadorCountAggregateOutputType = {
   cargo: number
   telefono: number
   email: number
+  banco: number
+  numeroCuenta: number
   activo: number
   creadoEn: number
   actualizadoEn: number
@@ -72,6 +78,8 @@ export type TrabajadorMinAggregateInputType = {
   cargo?: true
   telefono?: true
   email?: true
+  banco?: true
+  numeroCuenta?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -85,6 +93,8 @@ export type TrabajadorMaxAggregateInputType = {
   cargo?: true
   telefono?: true
   email?: true
+  banco?: true
+  numeroCuenta?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -98,6 +108,8 @@ export type TrabajadorCountAggregateInputType = {
   cargo?: true
   telefono?: true
   email?: true
+  banco?: true
+  numeroCuenta?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -184,6 +196,8 @@ export type TrabajadorGroupByOutputType = {
   cargo: string | null
   telefono: string | null
   email: string | null
+  banco: string | null
+  numeroCuenta: string | null
   activo: boolean
   creadoEn: Date
   actualizadoEn: Date
@@ -218,6 +232,8 @@ export type TrabajadorWhereInput = {
   cargo?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   telefono?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   email?: Prisma.StringNullableFilter<"Trabajador"> | string | null
+  banco?: Prisma.StringNullableFilter<"Trabajador"> | string | null
+  numeroCuenta?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   activo?: Prisma.BoolFilter<"Trabajador"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
@@ -237,6 +253,8 @@ export type TrabajadorOrderByWithRelationInput = {
   cargo?: Prisma.SortOrderInput | Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  banco?: Prisma.SortOrderInput | Prisma.SortOrder
+  numeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -260,6 +278,8 @@ export type TrabajadorWhereUniqueInput = Prisma.AtLeast<{
   cargo?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   telefono?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   email?: Prisma.StringNullableFilter<"Trabajador"> | string | null
+  banco?: Prisma.StringNullableFilter<"Trabajador"> | string | null
+  numeroCuenta?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   activo?: Prisma.BoolFilter<"Trabajador"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
@@ -278,6 +298,8 @@ export type TrabajadorOrderByWithAggregationInput = {
   cargo?: Prisma.SortOrderInput | Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  banco?: Prisma.SortOrderInput | Prisma.SortOrder
+  numeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -297,6 +319,8 @@ export type TrabajadorScalarWhereWithAggregatesInput = {
   cargo?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
   telefono?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
+  banco?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
+  numeroCuenta?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
   activo?: Prisma.BoolWithAggregatesFilter<"Trabajador"> | boolean
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Trabajador"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Trabajador"> | Date | string
@@ -310,6 +334,8 @@ export type TrabajadorCreateInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -328,6 +354,8 @@ export type TrabajadorUncheckedCreateInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -346,6 +374,8 @@ export type TrabajadorUpdateInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -364,6 +394,8 @@ export type TrabajadorUncheckedUpdateInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -382,6 +414,8 @@ export type TrabajadorCreateManyInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -395,6 +429,8 @@ export type TrabajadorUpdateManyMutationInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -407,6 +443,8 @@ export type TrabajadorUncheckedUpdateManyInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -430,6 +468,8 @@ export type TrabajadorCountOrderByAggregateInput = {
   cargo?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  banco?: Prisma.SortOrder
+  numeroCuenta?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -443,6 +483,8 @@ export type TrabajadorMaxOrderByAggregateInput = {
   cargo?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  banco?: Prisma.SortOrder
+  numeroCuenta?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -456,6 +498,8 @@ export type TrabajadorMinOrderByAggregateInput = {
   cargo?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  banco?: Prisma.SortOrder
+  numeroCuenta?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -577,6 +621,8 @@ export type TrabajadorCreateWithoutUserInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -594,6 +640,8 @@ export type TrabajadorUncheckedCreateWithoutUserInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -627,6 +675,8 @@ export type TrabajadorUpdateWithoutUserInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -644,6 +694,8 @@ export type TrabajadorUncheckedUpdateWithoutUserInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -661,6 +713,8 @@ export type TrabajadorCreateWithoutProyectosComoCoordinadorInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -678,6 +732,8 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoCoordinadorInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -700,6 +756,8 @@ export type TrabajadorCreateWithoutProyectosComoEjecutorInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -717,6 +775,8 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoEjecutorInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -739,6 +799,8 @@ export type TrabajadorCreateWithoutProyectosComoPrevencionistaInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -756,6 +818,8 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoPrevencionistaInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -789,6 +853,8 @@ export type TrabajadorUpdateWithoutProyectosComoCoordinadorInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -806,6 +872,8 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoCoordinadorInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -834,6 +902,8 @@ export type TrabajadorUpdateWithoutProyectosComoEjecutorInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -851,6 +921,8 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoEjecutorInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -879,6 +951,8 @@ export type TrabajadorUpdateWithoutProyectosComoPrevencionistaInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -896,6 +970,8 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoPrevencionistaInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -913,6 +989,8 @@ export type TrabajadorCreateWithoutHitosInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -930,6 +1008,8 @@ export type TrabajadorUncheckedCreateWithoutHitosInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -963,6 +1043,8 @@ export type TrabajadorUpdateWithoutHitosInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -980,6 +1062,8 @@ export type TrabajadorUncheckedUpdateWithoutHitosInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -997,6 +1081,8 @@ export type TrabajadorCreateWithoutProyectosInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1014,6 +1100,8 @@ export type TrabajadorUncheckedCreateWithoutProyectosInput = {
   cargo?: string | null
   telefono?: string | null
   email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1047,6 +1135,8 @@ export type TrabajadorUpdateWithoutProyectosInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1064,6 +1154,8 @@ export type TrabajadorUncheckedUpdateWithoutProyectosInput = {
   cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1148,6 +1240,8 @@ export type TrabajadorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   cargo?: boolean
   telefono?: boolean
   email?: boolean
+  banco?: boolean
+  numeroCuenta?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -1168,6 +1262,8 @@ export type TrabajadorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   cargo?: boolean
   telefono?: boolean
   email?: boolean
+  banco?: boolean
+  numeroCuenta?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -1182,6 +1278,8 @@ export type TrabajadorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   cargo?: boolean
   telefono?: boolean
   email?: boolean
+  banco?: boolean
+  numeroCuenta?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -1196,13 +1294,15 @@ export type TrabajadorSelectScalar = {
   cargo?: boolean
   telefono?: boolean
   email?: boolean
+  banco?: boolean
+  numeroCuenta?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   userId?: boolean
 }
 
-export type TrabajadorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "dni" | "cargo" | "telefono" | "email" | "activo" | "creadoEn" | "actualizadoEn" | "userId", ExtArgs["result"]["trabajador"]>
+export type TrabajadorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "dni" | "cargo" | "telefono" | "email" | "banco" | "numeroCuenta" | "activo" | "creadoEn" | "actualizadoEn" | "userId", ExtArgs["result"]["trabajador"]>
 export type TrabajadorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.Trabajador$userArgs<ExtArgs>
   proyectos?: boolean | Prisma.Trabajador$proyectosArgs<ExtArgs>
@@ -1236,6 +1336,8 @@ export type $TrabajadorPayload<ExtArgs extends runtime.Types.Extensions.Internal
     cargo: string | null
     telefono: string | null
     email: string | null
+    banco: string | null
+    numeroCuenta: string | null
     activo: boolean
     creadoEn: Date
     actualizadoEn: Date
@@ -1675,6 +1777,8 @@ export interface TrabajadorFieldRefs {
   readonly cargo: Prisma.FieldRef<"Trabajador", 'String'>
   readonly telefono: Prisma.FieldRef<"Trabajador", 'String'>
   readonly email: Prisma.FieldRef<"Trabajador", 'String'>
+  readonly banco: Prisma.FieldRef<"Trabajador", 'String'>
+  readonly numeroCuenta: Prisma.FieldRef<"Trabajador", 'String'>
   readonly activo: Prisma.FieldRef<"Trabajador", 'Boolean'>
   readonly creadoEn: Prisma.FieldRef<"Trabajador", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"Trabajador", 'DateTime'>

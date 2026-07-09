@@ -400,6 +400,7 @@ export const ModelName = {
   CatalogoProductoProveedor: 'CatalogoProductoProveedor',
   Requerimiento: 'Requerimiento',
   RequerimientoItem: 'RequerimientoItem',
+  RequerimientoItemArchivo: 'RequerimientoItemArchivo',
   RequerimientoHistorial: 'RequerimientoHistorial',
   ItemInventario: 'ItemInventario',
   Almacen: 'Almacen',
@@ -426,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1614,6 +1615,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RequerimientoItemArchivo: {
+      payload: Prisma.$RequerimientoItemArchivoPayload<ExtArgs>
+      fields: Prisma.RequerimientoItemArchivoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RequerimientoItemArchivoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RequerimientoItemArchivoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>
+        }
+        findFirst: {
+          args: Prisma.RequerimientoItemArchivoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RequerimientoItemArchivoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>
+        }
+        findMany: {
+          args: Prisma.RequerimientoItemArchivoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>[]
+        }
+        create: {
+          args: Prisma.RequerimientoItemArchivoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>
+        }
+        createMany: {
+          args: Prisma.RequerimientoItemArchivoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RequerimientoItemArchivoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>[]
+        }
+        delete: {
+          args: Prisma.RequerimientoItemArchivoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>
+        }
+        update: {
+          args: Prisma.RequerimientoItemArchivoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>
+        }
+        deleteMany: {
+          args: Prisma.RequerimientoItemArchivoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RequerimientoItemArchivoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RequerimientoItemArchivoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>[]
+        }
+        upsert: {
+          args: Prisma.RequerimientoItemArchivoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RequerimientoItemArchivoPayload>
+        }
+        aggregate: {
+          args: Prisma.RequerimientoItemArchivoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRequerimientoItemArchivo>
+        }
+        groupBy: {
+          args: Prisma.RequerimientoItemArchivoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RequerimientoItemArchivoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RequerimientoItemArchivoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RequerimientoItemArchivoCountAggregateOutputType> | number
+        }
+      }
+    }
     RequerimientoHistorial: {
       payload: Prisma.$RequerimientoHistorialPayload<ExtArgs>
       fields: Prisma.RequerimientoHistorialFieldRefs
@@ -2614,6 +2689,8 @@ export const TrabajadorScalarFieldEnum = {
   cargo: 'cargo',
   telefono: 'telefono',
   email: 'email',
+  banco: 'banco',
+  numeroCuenta: 'numeroCuenta',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn',
@@ -2713,6 +2790,17 @@ export const RequerimientoItemScalarFieldEnum = {
 } as const
 
 export type RequerimientoItemScalarFieldEnum = (typeof RequerimientoItemScalarFieldEnum)[keyof typeof RequerimientoItemScalarFieldEnum]
+
+
+export const RequerimientoItemArchivoScalarFieldEnum = {
+  id: 'id',
+  requerimientoItemId: 'requerimientoItemId',
+  nombre: 'nombre',
+  url: 'url',
+  creadoEn: 'creadoEn'
+} as const
+
+export type RequerimientoItemArchivoScalarFieldEnum = (typeof RequerimientoItemArchivoScalarFieldEnum)[keyof typeof RequerimientoItemArchivoScalarFieldEnum]
 
 
 export const RequerimientoHistorialScalarFieldEnum = {
@@ -3327,6 +3415,7 @@ export type GlobalOmitConfig = {
   catalogoProductoProveedor?: Prisma.CatalogoProductoProveedorOmit
   requerimiento?: Prisma.RequerimientoOmit
   requerimientoItem?: Prisma.RequerimientoItemOmit
+  requerimientoItemArchivo?: Prisma.RequerimientoItemArchivoOmit
   requerimientoHistorial?: Prisma.RequerimientoHistorialOmit
   itemInventario?: Prisma.ItemInventarioOmit
   almacen?: Prisma.AlmacenOmit

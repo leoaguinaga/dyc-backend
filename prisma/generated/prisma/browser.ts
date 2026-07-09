@@ -98,6 +98,11 @@ export type Requerimiento = Prisma.RequerimientoModel
  */
 export type RequerimientoItem = Prisma.RequerimientoItemModel
 /**
+ * Model RequerimientoItemArchivo
+ * 
+ */
+export type RequerimientoItemArchivo = Prisma.RequerimientoItemArchivoModel
+/**
  * Model RequerimientoHistorial
  * 
  */

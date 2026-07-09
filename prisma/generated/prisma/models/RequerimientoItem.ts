@@ -225,6 +225,7 @@ export type RequerimientoItemWhereInput = {
   unidad?: Prisma.EnumUnidadMedidaFilter<"RequerimientoItem"> | $Enums.UnidadMedida
   nota?: Prisma.StringNullableFilter<"RequerimientoItem"> | string | null
   requerimiento?: Prisma.XOR<Prisma.RequerimientoScalarRelationFilter, Prisma.RequerimientoWhereInput>
+  archivos?: Prisma.RequerimientoItemArchivoListRelationFilter
 }
 
 export type RequerimientoItemOrderByWithRelationInput = {
@@ -235,6 +236,7 @@ export type RequerimientoItemOrderByWithRelationInput = {
   unidad?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   requerimiento?: Prisma.RequerimientoOrderByWithRelationInput
+  archivos?: Prisma.RequerimientoItemArchivoOrderByRelationAggregateInput
 }
 
 export type RequerimientoItemWhereUniqueInput = Prisma.AtLeast<{
@@ -248,6 +250,7 @@ export type RequerimientoItemWhereUniqueInput = Prisma.AtLeast<{
   unidad?: Prisma.EnumUnidadMedidaFilter<"RequerimientoItem"> | $Enums.UnidadMedida
   nota?: Prisma.StringNullableFilter<"RequerimientoItem"> | string | null
   requerimiento?: Prisma.XOR<Prisma.RequerimientoScalarRelationFilter, Prisma.RequerimientoWhereInput>
+  archivos?: Prisma.RequerimientoItemArchivoListRelationFilter
 }, "id">
 
 export type RequerimientoItemOrderByWithAggregationInput = {
@@ -283,6 +286,7 @@ export type RequerimientoItemCreateInput = {
   unidad?: $Enums.UnidadMedida
   nota?: string | null
   requerimiento: Prisma.RequerimientoCreateNestedOneWithoutItemsInput
+  archivos?: Prisma.RequerimientoItemArchivoCreateNestedManyWithoutRequerimientoItemInput
 }
 
 export type RequerimientoItemUncheckedCreateInput = {
@@ -292,6 +296,7 @@ export type RequerimientoItemUncheckedCreateInput = {
   cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   unidad?: $Enums.UnidadMedida
   nota?: string | null
+  archivos?: Prisma.RequerimientoItemArchivoUncheckedCreateNestedManyWithoutRequerimientoItemInput
 }
 
 export type RequerimientoItemUpdateInput = {
@@ -301,6 +306,7 @@ export type RequerimientoItemUpdateInput = {
   unidad?: Prisma.EnumUnidadMedidaFieldUpdateOperationsInput | $Enums.UnidadMedida
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requerimiento?: Prisma.RequerimientoUpdateOneRequiredWithoutItemsNestedInput
+  archivos?: Prisma.RequerimientoItemArchivoUpdateManyWithoutRequerimientoItemNestedInput
 }
 
 export type RequerimientoItemUncheckedUpdateInput = {
@@ -310,6 +316,7 @@ export type RequerimientoItemUncheckedUpdateInput = {
   cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unidad?: Prisma.EnumUnidadMedidaFieldUpdateOperationsInput | $Enums.UnidadMedida
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivos?: Prisma.RequerimientoItemArchivoUncheckedUpdateManyWithoutRequerimientoItemNestedInput
 }
 
 export type RequerimientoItemCreateManyInput = {
@@ -383,6 +390,11 @@ export type RequerimientoItemSumOrderByAggregateInput = {
   cantidad?: Prisma.SortOrder
 }
 
+export type RequerimientoItemScalarRelationFilter = {
+  is?: Prisma.RequerimientoItemWhereInput
+  isNot?: Prisma.RequerimientoItemWhereInput
+}
+
 export type RequerimientoItemCreateNestedManyWithoutRequerimientoInput = {
   create?: Prisma.XOR<Prisma.RequerimientoItemCreateWithoutRequerimientoInput, Prisma.RequerimientoItemUncheckedCreateWithoutRequerimientoInput> | Prisma.RequerimientoItemCreateWithoutRequerimientoInput[] | Prisma.RequerimientoItemUncheckedCreateWithoutRequerimientoInput[]
   connectOrCreate?: Prisma.RequerimientoItemCreateOrConnectWithoutRequerimientoInput | Prisma.RequerimientoItemCreateOrConnectWithoutRequerimientoInput[]
@@ -425,12 +437,27 @@ export type RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput 
   deleteMany?: Prisma.RequerimientoItemScalarWhereInput | Prisma.RequerimientoItemScalarWhereInput[]
 }
 
+export type RequerimientoItemCreateNestedOneWithoutArchivosInput = {
+  create?: Prisma.XOR<Prisma.RequerimientoItemCreateWithoutArchivosInput, Prisma.RequerimientoItemUncheckedCreateWithoutArchivosInput>
+  connectOrCreate?: Prisma.RequerimientoItemCreateOrConnectWithoutArchivosInput
+  connect?: Prisma.RequerimientoItemWhereUniqueInput
+}
+
+export type RequerimientoItemUpdateOneRequiredWithoutArchivosNestedInput = {
+  create?: Prisma.XOR<Prisma.RequerimientoItemCreateWithoutArchivosInput, Prisma.RequerimientoItemUncheckedCreateWithoutArchivosInput>
+  connectOrCreate?: Prisma.RequerimientoItemCreateOrConnectWithoutArchivosInput
+  upsert?: Prisma.RequerimientoItemUpsertWithoutArchivosInput
+  connect?: Prisma.RequerimientoItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RequerimientoItemUpdateToOneWithWhereWithoutArchivosInput, Prisma.RequerimientoItemUpdateWithoutArchivosInput>, Prisma.RequerimientoItemUncheckedUpdateWithoutArchivosInput>
+}
+
 export type RequerimientoItemCreateWithoutRequerimientoInput = {
   id?: string
   descripcion: string
   cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   unidad?: $Enums.UnidadMedida
   nota?: string | null
+  archivos?: Prisma.RequerimientoItemArchivoCreateNestedManyWithoutRequerimientoItemInput
 }
 
 export type RequerimientoItemUncheckedCreateWithoutRequerimientoInput = {
@@ -439,6 +466,7 @@ export type RequerimientoItemUncheckedCreateWithoutRequerimientoInput = {
   cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   unidad?: $Enums.UnidadMedida
   nota?: string | null
+  archivos?: Prisma.RequerimientoItemArchivoUncheckedCreateNestedManyWithoutRequerimientoItemInput
 }
 
 export type RequerimientoItemCreateOrConnectWithoutRequerimientoInput = {
@@ -479,6 +507,58 @@ export type RequerimientoItemScalarWhereInput = {
   nota?: Prisma.StringNullableFilter<"RequerimientoItem"> | string | null
 }
 
+export type RequerimientoItemCreateWithoutArchivosInput = {
+  id?: string
+  descripcion: string
+  cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unidad?: $Enums.UnidadMedida
+  nota?: string | null
+  requerimiento: Prisma.RequerimientoCreateNestedOneWithoutItemsInput
+}
+
+export type RequerimientoItemUncheckedCreateWithoutArchivosInput = {
+  id?: string
+  requerimientoId: string
+  descripcion: string
+  cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unidad?: $Enums.UnidadMedida
+  nota?: string | null
+}
+
+export type RequerimientoItemCreateOrConnectWithoutArchivosInput = {
+  where: Prisma.RequerimientoItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.RequerimientoItemCreateWithoutArchivosInput, Prisma.RequerimientoItemUncheckedCreateWithoutArchivosInput>
+}
+
+export type RequerimientoItemUpsertWithoutArchivosInput = {
+  update: Prisma.XOR<Prisma.RequerimientoItemUpdateWithoutArchivosInput, Prisma.RequerimientoItemUncheckedUpdateWithoutArchivosInput>
+  create: Prisma.XOR<Prisma.RequerimientoItemCreateWithoutArchivosInput, Prisma.RequerimientoItemUncheckedCreateWithoutArchivosInput>
+  where?: Prisma.RequerimientoItemWhereInput
+}
+
+export type RequerimientoItemUpdateToOneWithWhereWithoutArchivosInput = {
+  where?: Prisma.RequerimientoItemWhereInput
+  data: Prisma.XOR<Prisma.RequerimientoItemUpdateWithoutArchivosInput, Prisma.RequerimientoItemUncheckedUpdateWithoutArchivosInput>
+}
+
+export type RequerimientoItemUpdateWithoutArchivosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.StringFieldUpdateOperationsInput | string
+  cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unidad?: Prisma.EnumUnidadMedidaFieldUpdateOperationsInput | $Enums.UnidadMedida
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requerimiento?: Prisma.RequerimientoUpdateOneRequiredWithoutItemsNestedInput
+}
+
+export type RequerimientoItemUncheckedUpdateWithoutArchivosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  requerimientoId?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.StringFieldUpdateOperationsInput | string
+  cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unidad?: Prisma.EnumUnidadMedidaFieldUpdateOperationsInput | $Enums.UnidadMedida
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 export type RequerimientoItemCreateManyRequerimientoInput = {
   id?: string
   descripcion: string
@@ -493,6 +573,7 @@ export type RequerimientoItemUpdateWithoutRequerimientoInput = {
   cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unidad?: Prisma.EnumUnidadMedidaFieldUpdateOperationsInput | $Enums.UnidadMedida
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivos?: Prisma.RequerimientoItemArchivoUpdateManyWithoutRequerimientoItemNestedInput
 }
 
 export type RequerimientoItemUncheckedUpdateWithoutRequerimientoInput = {
@@ -501,6 +582,7 @@ export type RequerimientoItemUncheckedUpdateWithoutRequerimientoInput = {
   cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unidad?: Prisma.EnumUnidadMedidaFieldUpdateOperationsInput | $Enums.UnidadMedida
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivos?: Prisma.RequerimientoItemArchivoUncheckedUpdateManyWithoutRequerimientoItemNestedInput
 }
 
 export type RequerimientoItemUncheckedUpdateManyWithoutRequerimientoInput = {
@@ -512,6 +594,35 @@ export type RequerimientoItemUncheckedUpdateManyWithoutRequerimientoInput = {
 }
 
 
+/**
+ * Count Type RequerimientoItemCountOutputType
+ */
+
+export type RequerimientoItemCountOutputType = {
+  archivos: number
+}
+
+export type RequerimientoItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  archivos?: boolean | RequerimientoItemCountOutputTypeCountArchivosArgs
+}
+
+/**
+ * RequerimientoItemCountOutputType without action
+ */
+export type RequerimientoItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequerimientoItemCountOutputType
+   */
+  select?: Prisma.RequerimientoItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RequerimientoItemCountOutputType without action
+ */
+export type RequerimientoItemCountOutputTypeCountArchivosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RequerimientoItemArchivoWhereInput
+}
+
 
 export type RequerimientoItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -521,6 +632,8 @@ export type RequerimientoItemSelect<ExtArgs extends runtime.Types.Extensions.Int
   unidad?: boolean
   nota?: boolean
   requerimiento?: boolean | Prisma.RequerimientoDefaultArgs<ExtArgs>
+  archivos?: boolean | Prisma.RequerimientoItem$archivosArgs<ExtArgs>
+  _count?: boolean | Prisma.RequerimientoItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["requerimientoItem"]>
 
 export type RequerimientoItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -555,6 +668,8 @@ export type RequerimientoItemSelectScalar = {
 export type RequerimientoItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "requerimientoId" | "descripcion" | "cantidad" | "unidad" | "nota", ExtArgs["result"]["requerimientoItem"]>
 export type RequerimientoItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   requerimiento?: boolean | Prisma.RequerimientoDefaultArgs<ExtArgs>
+  archivos?: boolean | Prisma.RequerimientoItem$archivosArgs<ExtArgs>
+  _count?: boolean | Prisma.RequerimientoItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RequerimientoItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   requerimiento?: boolean | Prisma.RequerimientoDefaultArgs<ExtArgs>
@@ -567,6 +682,7 @@ export type $RequerimientoItemPayload<ExtArgs extends runtime.Types.Extensions.I
   name: "RequerimientoItem"
   objects: {
     requerimiento: Prisma.$RequerimientoPayload<ExtArgs>
+    archivos: Prisma.$RequerimientoItemArchivoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -970,6 +1086,7 @@ readonly fields: RequerimientoItemFieldRefs;
 export interface Prisma__RequerimientoItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   requerimiento<T extends Prisma.RequerimientoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequerimientoDefaultArgs<ExtArgs>>): Prisma.Prisma__RequerimientoClient<runtime.Types.Result.GetResult<Prisma.$RequerimientoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  archivos<T extends Prisma.RequerimientoItem$archivosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequerimientoItem$archivosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequerimientoItemArchivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1403,6 +1520,30 @@ export type RequerimientoItemDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many RequerimientoItems to delete.
    */
   limit?: number
+}
+
+/**
+ * RequerimientoItem.archivos
+ */
+export type RequerimientoItem$archivosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequerimientoItemArchivo
+   */
+  select?: Prisma.RequerimientoItemArchivoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequerimientoItemArchivo
+   */
+  omit?: Prisma.RequerimientoItemArchivoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequerimientoItemArchivoInclude<ExtArgs> | null
+  where?: Prisma.RequerimientoItemArchivoWhereInput
+  orderBy?: Prisma.RequerimientoItemArchivoOrderByWithRelationInput | Prisma.RequerimientoItemArchivoOrderByWithRelationInput[]
+  cursor?: Prisma.RequerimientoItemArchivoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RequerimientoItemArchivoScalarFieldEnum | Prisma.RequerimientoItemArchivoScalarFieldEnum[]
 }
 
 /**
