@@ -119,6 +119,17 @@ enum TipoBeneficiario {
   trabajador
 }
 
+enum TipoNotificacion {
+  pago_por_vencer
+  pago_vencido
+  requerimiento_creado
+  requerimiento_aprobado
+  requerimiento_observado
+  cotizacion_recibida
+  solicitud_lista_adjudicar
+  orden_compra_generada
+}
+
 // ---------------------------------------------------------------------------
 // Auth — tablas requeridas por better-auth (nombres y campos exactos)
 // ---------------------------------------------------------------------------
@@ -143,6 +154,7 @@ model User {
   ordenesCompra           OrdenCompra[]        @relation("OrdenesCompraCreadosPor")
   pagosRegistrados        Pago[]               @relation("PagosRegistradosPor")
   pagosEjecutados         Pago[]               @relation("PagosEjecutadosPor")
+  notificaciones          Notificacion[]
 
   @@map("users")
 }
@@ -369,7 +381,7 @@ model ProyectoTrabajador {
 model Proveedor {
   id            String   @id @default(cuid())
   razonSocial   String
-  ruc           String   @unique
+  ruc           String?  @unique
   direccion     String?
   rubro         String?
   categoria     String?
@@ -582,6 +594,7 @@ model Cotizacion {
   validezDias         Int?
   condicionesServicio String?
   condicionPago       String?
+  incluyeIgv          Boolean             @default(false)
   nota                String?
   creadoEn            DateTime            @default(now())
   actualizadoEn       DateTime            @updatedAt
@@ -642,6 +655,7 @@ model OrdenCompra {
   adelantoPorcentaje        Decimal?            @db.Decimal(5, 2)
   saldoPorcentaje           Decimal?            @db.Decimal(5, 2)
   detraccionPorcentaje      Decimal?            @db.Decimal(5, 2)
+  incluyeIgv                Boolean             @default(false)
   tipoCambio                Decimal?            @db.Decimal(8, 4)
   contactoProveedorNombre   String?
   contactoProveedorTelefono String?
@@ -699,4 +713,27 @@ model OrdenCompraItem {
   precioTotal    Decimal      @db.Decimal(12, 2)
 
   @@map("orden_compra_items")
+}
+
+// ---------------------------------------------------------------------------
+// Notificaciones
+// ---------------------------------------------------------------------------
+
+model Notificacion {
+  id           String           @id @default(cuid())
+  userId       String
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tipo         TipoNotificacion
+  titulo       String
+  mensaje      String
+  entidadTipo  String?
+  entidadId    String?
+  leida        Boolean          @default(false)
+  leidaEn      DateTime?
+  emailEnviado Boolean          @default(false)
+  creadoEn     DateTime         @default(now())
+
+  @@index([userId, leida])
+  @@index([entidadTipo, entidadId])
+  @@map("notificaciones")
 }

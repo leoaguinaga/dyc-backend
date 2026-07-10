@@ -157,3 +157,8 @@ export type Pago = Prisma.PagoModel
  * 
  */
 export type OrdenCompraItem = Prisma.OrdenCompraItemModel
+/**
+ * Model Notificacion
+ * 
+ */
+export type Notificacion = Prisma.NotificacionModel

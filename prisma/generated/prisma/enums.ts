@@ -157,3 +157,17 @@ export const TipoBeneficiario = {
 } as const
 
 export type TipoBeneficiario = (typeof TipoBeneficiario)[keyof typeof TipoBeneficiario]
+
+
+export const TipoNotificacion = {
+  pago_por_vencer: 'pago_por_vencer',
+  pago_vencido: 'pago_vencido',
+  requerimiento_creado: 'requerimiento_creado',
+  requerimiento_aprobado: 'requerimiento_aprobado',
+  requerimiento_observado: 'requerimiento_observado',
+  cotizacion_recibida: 'cotizacion_recibida',
+  solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
+  orden_compra_generada: 'orden_compra_generada'
+} as const
+
+export type TipoNotificacion = (typeof TipoNotificacion)[keyof typeof TipoNotificacion]

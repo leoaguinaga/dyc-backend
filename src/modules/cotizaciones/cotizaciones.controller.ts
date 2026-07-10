@@ -36,13 +36,13 @@ export class CotizacionesController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   create(@Body() dto: CreateSolicitudDto) {
     return this.cotizacionesService.createSolicitud(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   update(@Param('id') id: string, @Body() dto: UpdateSolicitudDto) {
     return this.cotizacionesService.updateSolicitud(id, dto);
   }
@@ -50,7 +50,7 @@ export class CotizacionesController {
   // ── Cotizaciones (anidadas bajo solicitud) ────────────────────────────────
 
   @Post(':id/cotizaciones')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   inviteProveedor(@Param('id') id: string, @Body() dto: CreateCotizacionDto) {
     return this.cotizacionesService.inviteProveedor(id, dto);
   }
@@ -58,7 +58,7 @@ export class CotizacionesController {
   // ── Cotizacion individual (estado) ────────────────────────────────────────
 
   @Patch('cotizaciones/:cotizacionId/recibir')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   receive(
     @Param('cotizacionId') cotizacionId: string,
     @Body() dto: ReceiveCotizacionDto,
@@ -73,19 +73,19 @@ export class CotizacionesController {
   }
 
   @Patch('cotizaciones/:cotizacionId/sin-respuesta')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   markSinRespuesta(@Param('cotizacionId') cotizacionId: string) {
     return this.cotizacionesService.marcarSinRespuesta(cotizacionId);
   }
 
   @Patch(':id/adjudicar')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   adjudicar(@Param('id') id: string, @Body() dto: AdjudicarSolicitudDto) {
     return this.cotizacionesService.adjudicarSolicitud(id, dto);
   }
 
   @Post(':id/aprobar-solicitante')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   aprobarSolicitante(@Param('id') id: string) {
     return this.cotizacionesService.avanzarEstadoSolicitud(id, 'aprobada_solicitante');
   }

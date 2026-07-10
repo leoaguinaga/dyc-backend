@@ -19,7 +19,7 @@ export class AlmacenesController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   create(@Body() dto: CreateAlmacenDto) {
     return this.almacenesService.create(dto);
   }

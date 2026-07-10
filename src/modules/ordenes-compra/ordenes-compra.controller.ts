@@ -35,25 +35,25 @@ export class OrdenesCompraController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   create(@Body() dto: CreateOrdenCompraDto, @Req() req: Request) {
     return this.service.create(dto, req.user!.id);
   }
 
   @Patch(':id')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   update(@Param('id') id: string, @Body() dto: UpdateOrdenCompraDto) {
     return this.service.update(id, dto);
   }
 
   @Post(':id/items')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   addItem(@Param('id') id: string, @Body() dto: CreateOrdenItemDto) {
     return this.service.addItem(id, dto);
   }
 
   @Patch(':id/items/:itemId')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   updateItem(
     @Param('id') id: string,
     @Param('itemId') itemId: string,
@@ -63,31 +63,31 @@ export class OrdenesCompraController {
   }
 
   @Delete(':id/items/:itemId')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   removeItem(@Param('id') id: string, @Param('itemId') itemId: string) {
     return this.service.removeItem(id, itemId);
   }
 
   @Post(':id/emitir')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   emitir(@Param('id') id: string) {
     return this.service.transicionEstado(id, 'emitida');
   }
 
   @Post(':id/recibir-parcial')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   recibirParcial(@Param('id') id: string) {
     return this.service.transicionEstado(id, 'recibida_parcial');
   }
 
   @Post(':id/recibir')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   recibir(@Param('id') id: string) {
     return this.service.transicionEstado(id, 'recibida');
   }
 
   @Post(':id/cancelar')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   cancelar(@Param('id') id: string) {
     return this.service.transicionEstado(id, 'cancelada');
   }

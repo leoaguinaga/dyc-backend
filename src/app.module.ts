@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ScheduleModule } from '@nestjs/schedule';
 import { APP_GUARD } from '@nestjs/core';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { AuthModule } from './modules/auth/auth.module.js';
@@ -18,6 +19,8 @@ import { OrdenesCompraModule } from './modules/ordenes-compra/ordenes-compra.mod
 import { PagosModule } from './modules/pagos/pagos.module.js';
 import { ReportesModule } from './modules/reportes/reportes.module.js';
 import { DashboardModule } from './modules/dashboard/dashboard.module.js';
+import { NotificacionesModule } from './modules/notificaciones/notificaciones.module.js';
+import { EmailModule } from './shared/email/email.module.js';
 import { AuthGuard } from './shared/guards/auth.guard.js';
 import { RolesGuard } from './shared/guards/roles.guard.js';
 
@@ -26,7 +29,9 @@ import { RolesGuard } from './shared/guards/roles.guard.js';
     ConfigModule.forRoot({ isGlobal: true }),
     ThrottlerModule.forRoot([{ ttl: 60_000, limit: 20 }]),
     EventEmitterModule.forRoot(),
+    ScheduleModule.forRoot(),
     PrismaModule,
+    EmailModule,
     AuthModule,
     UsersModule,
     ProyectosModule,
@@ -41,6 +46,7 @@ import { RolesGuard } from './shared/guards/roles.guard.js';
     PagosModule,
     ReportesModule,
     DashboardModule,
+    NotificacionesModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

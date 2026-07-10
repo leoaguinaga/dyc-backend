@@ -5,7 +5,7 @@ export class CrearAccesoDto {
   @IsEmail()
   email: string;
 
-  @IsEnum(['supervisor', 'logistica', 'gerencia', 'administrador'])
+  @IsEnum(['supervisor', 'ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador'])
   role: Role;
 
   @IsString()

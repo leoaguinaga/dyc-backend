@@ -198,7 +198,7 @@ export type ProveedorGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type ProveedorGroupByOutputType = {
   id: string
   razonSocial: string
-  ruc: string
+  ruc: string | null
   direccion: string | null
   rubro: string | null
   categoria: string | null
@@ -235,7 +235,7 @@ export type ProveedorWhereInput = {
   NOT?: Prisma.ProveedorWhereInput | Prisma.ProveedorWhereInput[]
   id?: Prisma.StringFilter<"Proveedor"> | string
   razonSocial?: Prisma.StringFilter<"Proveedor"> | string
-  ruc?: Prisma.StringFilter<"Proveedor"> | string
+  ruc?: Prisma.StringNullableFilter<"Proveedor"> | string | null
   direccion?: Prisma.StringNullableFilter<"Proveedor"> | string | null
   rubro?: Prisma.StringNullableFilter<"Proveedor"> | string | null
   categoria?: Prisma.StringNullableFilter<"Proveedor"> | string | null
@@ -255,7 +255,7 @@ export type ProveedorWhereInput = {
 export type ProveedorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   razonSocial?: Prisma.SortOrder
-  ruc?: Prisma.SortOrder
+  ruc?: Prisma.SortOrderInput | Prisma.SortOrder
   direccion?: Prisma.SortOrderInput | Prisma.SortOrder
   rubro?: Prisma.SortOrderInput | Prisma.SortOrder
   categoria?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -298,7 +298,7 @@ export type ProveedorWhereUniqueInput = Prisma.AtLeast<{
 export type ProveedorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   razonSocial?: Prisma.SortOrder
-  ruc?: Prisma.SortOrder
+  ruc?: Prisma.SortOrderInput | Prisma.SortOrder
   direccion?: Prisma.SortOrderInput | Prisma.SortOrder
   rubro?: Prisma.SortOrderInput | Prisma.SortOrder
   categoria?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -320,7 +320,7 @@ export type ProveedorScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProveedorScalarWhereWithAggregatesInput | Prisma.ProveedorScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Proveedor"> | string
   razonSocial?: Prisma.StringWithAggregatesFilter<"Proveedor"> | string
-  ruc?: Prisma.StringWithAggregatesFilter<"Proveedor"> | string
+  ruc?: Prisma.StringNullableWithAggregatesFilter<"Proveedor"> | string | null
   direccion?: Prisma.StringNullableWithAggregatesFilter<"Proveedor"> | string | null
   rubro?: Prisma.StringNullableWithAggregatesFilter<"Proveedor"> | string | null
   categoria?: Prisma.StringNullableWithAggregatesFilter<"Proveedor"> | string | null
@@ -336,7 +336,7 @@ export type ProveedorScalarWhereWithAggregatesInput = {
 export type ProveedorCreateInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -356,7 +356,7 @@ export type ProveedorCreateInput = {
 export type ProveedorUncheckedCreateInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -376,7 +376,7 @@ export type ProveedorUncheckedCreateInput = {
 export type ProveedorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -396,7 +396,7 @@ export type ProveedorUpdateInput = {
 export type ProveedorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -416,7 +416,7 @@ export type ProveedorUncheckedUpdateInput = {
 export type ProveedorCreateManyInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -432,7 +432,7 @@ export type ProveedorCreateManyInput = {
 export type ProveedorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -448,7 +448,7 @@ export type ProveedorUpdateManyMutationInput = {
 export type ProveedorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -573,7 +573,7 @@ export type ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput = {
 export type ProveedorCreateWithoutContactosInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -592,7 +592,7 @@ export type ProveedorCreateWithoutContactosInput = {
 export type ProveedorUncheckedCreateWithoutContactosInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -627,7 +627,7 @@ export type ProveedorUpdateToOneWithWhereWithoutContactosInput = {
 export type ProveedorUpdateWithoutContactosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -646,7 +646,7 @@ export type ProveedorUpdateWithoutContactosInput = {
 export type ProveedorUncheckedUpdateWithoutContactosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -665,7 +665,7 @@ export type ProveedorUncheckedUpdateWithoutContactosInput = {
 export type ProveedorCreateWithoutCatalogoProductosInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -684,7 +684,7 @@ export type ProveedorCreateWithoutCatalogoProductosInput = {
 export type ProveedorUncheckedCreateWithoutCatalogoProductosInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -719,7 +719,7 @@ export type ProveedorUpdateToOneWithWhereWithoutCatalogoProductosInput = {
 export type ProveedorUpdateWithoutCatalogoProductosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -738,7 +738,7 @@ export type ProveedorUpdateWithoutCatalogoProductosInput = {
 export type ProveedorUncheckedUpdateWithoutCatalogoProductosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -757,7 +757,7 @@ export type ProveedorUncheckedUpdateWithoutCatalogoProductosInput = {
 export type ProveedorCreateWithoutCotizacionesInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -776,7 +776,7 @@ export type ProveedorCreateWithoutCotizacionesInput = {
 export type ProveedorUncheckedCreateWithoutCotizacionesInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -811,7 +811,7 @@ export type ProveedorUpdateToOneWithWhereWithoutCotizacionesInput = {
 export type ProveedorUpdateWithoutCotizacionesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -830,7 +830,7 @@ export type ProveedorUpdateWithoutCotizacionesInput = {
 export type ProveedorUncheckedUpdateWithoutCotizacionesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -849,7 +849,7 @@ export type ProveedorUncheckedUpdateWithoutCotizacionesInput = {
 export type ProveedorCreateWithoutOrdenesCompraInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -868,7 +868,7 @@ export type ProveedorCreateWithoutOrdenesCompraInput = {
 export type ProveedorUncheckedCreateWithoutOrdenesCompraInput = {
   id?: string
   razonSocial: string
-  ruc: string
+  ruc?: string | null
   direccion?: string | null
   rubro?: string | null
   categoria?: string | null
@@ -903,7 +903,7 @@ export type ProveedorUpdateToOneWithWhereWithoutOrdenesCompraInput = {
 export type ProveedorUpdateWithoutOrdenesCompraInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -922,7 +922,7 @@ export type ProveedorUpdateWithoutOrdenesCompraInput = {
 export type ProveedorUncheckedUpdateWithoutOrdenesCompraInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   razonSocial?: Prisma.StringFieldUpdateOperationsInput | string
-  ruc?: Prisma.StringFieldUpdateOperationsInput | string
+  ruc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rubro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1087,7 +1087,7 @@ export type $ProveedorPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     razonSocial: string
-    ruc: string
+    ruc: string | null
     direccion: string | null
     rubro: string | null
     categoria: string | null

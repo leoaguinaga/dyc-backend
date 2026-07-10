@@ -34,25 +34,25 @@ export class ProyectosController {
   }
 
   @Post()
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   create(@Body() dto: CreateProyectoDto) {
     return this.proyectosService.create(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   update(@Param('id') id: string, @Body() dto: UpdateProyectoDto) {
     return this.proyectosService.update(id, dto);
   }
 
   @Post(':id/supervisores/:userId')
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   addSupervisor(@Param('id') id: string, @Param('userId') userId: string) {
     return this.proyectosService.addSupervisor(id, userId);
   }
 
   @Delete(':id/supervisores/:userId')
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   removeSupervisor(@Param('id') id: string, @Param('userId') userId: string) {
     return this.proyectosService.removeSupervisor(id, userId);
   }
@@ -65,13 +65,13 @@ export class ProyectosController {
   }
 
   @Post(':id/hitos')
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   createHito(@Param('id') id: string, @Body() dto: CreateHitoDto) {
     return this.proyectosService.createHito(id, dto);
   }
 
   @Patch(':id/hitos/:hitoId')
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   updateHito(
     @Param('id') id: string,
     @Param('hitoId') hitoId: string,
@@ -81,7 +81,7 @@ export class ProyectosController {
   }
 
   @Delete(':id/hitos/:hitoId')
-  @Roles('administrador')
+  @Roles('administrador', 'gerencia')
   deleteHito(@Param('id') id: string, @Param('hitoId') hitoId: string) {
     return this.proyectosService.deleteHito(id, hitoId);
   }

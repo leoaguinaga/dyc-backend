@@ -4,8 +4,9 @@ export class CreateProveedorDto {
   @IsString()
   razonSocial: string;
 
+  @IsOptional()
   @IsString()
-  ruc: string;
+  ruc?: string;
 
   @IsOptional()
   @IsString()

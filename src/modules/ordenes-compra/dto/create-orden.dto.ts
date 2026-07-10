@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsDateString,
   IsNumber,
   IsOptional,
@@ -46,6 +47,10 @@ export class UpdateOrdenCompraDto {
   @IsOptional()
   @IsNumber()
   detraccionPorcentaje?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  incluyeIgv?: boolean;
 
   @IsOptional()
   @IsNumber()

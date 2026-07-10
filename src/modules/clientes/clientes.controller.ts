@@ -22,13 +22,13 @@ export class ClientesController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   create(@Body() dto: CreateClienteDto) {
     return this.clientesService.create(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   update(@Param('id') id: string, @Body() dto: UpdateClienteDto) {
     return this.clientesService.update(id, dto);
   }
@@ -41,13 +41,13 @@ export class ClientesController {
   }
 
   @Post(':id/contactos')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   createContacto(@Param('id') id: string, @Body() dto: CreateContactoDto) {
     return this.clientesService.createContacto(id, dto);
   }
 
   @Patch(':id/contactos/:contactoId')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   updateContacto(
     @Param('id') id: string,
     @Param('contactoId') contactoId: string,

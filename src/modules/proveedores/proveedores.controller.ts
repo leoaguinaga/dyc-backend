@@ -18,7 +18,7 @@ import { UpdateContactoProveedorDto } from './dto/update-contacto-proveedor.dto.
 import { CreateCatalogoItemDto, UpdateCatalogoItemDto } from './dto/create-catalogo-item.dto.js';
 
 @Controller('proveedores')
-@Roles('administrador', 'logistica')
+@Roles('administrador', 'logistica', 'gerencia')
 export class ProveedoresController {
   constructor(private proveedoresService: ProveedoresService) {}
 
@@ -33,13 +33,13 @@ export class ProveedoresController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   create(@Body() dto: CreateProveedorDto) {
     return this.proveedoresService.create(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   update(@Param('id') id: string, @Body() dto: UpdateProveedorDto) {
     return this.proveedoresService.update(id, dto);
   }
@@ -52,13 +52,13 @@ export class ProveedoresController {
   }
 
   @Post(':id/contactos')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   createContacto(@Param('id') id: string, @Body() dto: CreateContactoProveedorDto) {
     return this.proveedoresService.createContacto(id, dto);
   }
 
   @Patch(':id/contactos/:contactoId')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   updateContacto(
     @Param('id') id: string,
     @Param('contactoId') contactoId: string,
@@ -68,7 +68,7 @@ export class ProveedoresController {
   }
 
   @Patch(':id/contactos/:contactoId/principal')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   setPrincipalContacto(
     @Param('id') id: string,
     @Param('contactoId') contactoId: string,
@@ -84,13 +84,13 @@ export class ProveedoresController {
   }
 
   @Post(':id/catalogo')
-  @Roles('logistica', 'administrador')
+  @Roles('logistica', 'administrador', 'gerencia')
   createCatalogoItem(@Param('id') id: string, @Body() dto: CreateCatalogoItemDto) {
     return this.proveedoresService.createCatalogoItem(id, dto);
   }
 
   @Patch(':id/catalogo/:itemId')
-  @Roles('logistica', 'administrador')
+  @Roles('logistica', 'administrador', 'gerencia')
   updateCatalogoItem(
     @Param('id') id: string,
     @Param('itemId') itemId: string,
@@ -100,7 +100,7 @@ export class ProveedoresController {
   }
 
   @Delete(':id/catalogo/:itemId')
-  @Roles('logistica', 'administrador')
+  @Roles('logistica', 'administrador', 'gerencia')
   deleteCatalogoItem(@Param('id') id: string, @Param('itemId') itemId: string) {
     return this.proveedoresService.deleteCatalogoItem(id, itemId);
   }

@@ -411,7 +411,8 @@ export const ModelName = {
   CotizacionCondicionPago: 'CotizacionCondicionPago',
   OrdenCompra: 'OrdenCompra',
   Pago: 'Pago',
-  OrdenCompraItem: 'OrdenCompraItem'
+  OrdenCompraItem: 'OrdenCompraItem',
+  Notificacion: 'Notificacion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -427,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2503,6 +2504,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Notificacion: {
+      payload: Prisma.$NotificacionPayload<ExtArgs>
+      fields: Prisma.NotificacionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NotificacionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NotificacionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>
+        }
+        findFirst: {
+          args: Prisma.NotificacionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NotificacionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>
+        }
+        findMany: {
+          args: Prisma.NotificacionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>[]
+        }
+        create: {
+          args: Prisma.NotificacionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>
+        }
+        createMany: {
+          args: Prisma.NotificacionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NotificacionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>[]
+        }
+        delete: {
+          args: Prisma.NotificacionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>
+        }
+        update: {
+          args: Prisma.NotificacionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>
+        }
+        deleteMany: {
+          args: Prisma.NotificacionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NotificacionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NotificacionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>[]
+        }
+        upsert: {
+          args: Prisma.NotificacionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacionPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificacionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotificacion>
+        }
+        groupBy: {
+          args: Prisma.NotificacionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificacionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NotificacionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificacionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2884,6 +2959,7 @@ export const CotizacionScalarFieldEnum = {
   validezDias: 'validezDias',
   condicionesServicio: 'condicionesServicio',
   condicionPago: 'condicionPago',
+  incluyeIgv: 'incluyeIgv',
   nota: 'nota',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
@@ -2933,6 +3009,7 @@ export const OrdenCompraScalarFieldEnum = {
   adelantoPorcentaje: 'adelantoPorcentaje',
   saldoPorcentaje: 'saldoPorcentaje',
   detraccionPorcentaje: 'detraccionPorcentaje',
+  incluyeIgv: 'incluyeIgv',
   tipoCambio: 'tipoCambio',
   contactoProveedorNombre: 'contactoProveedorNombre',
   contactoProveedorTelefono: 'contactoProveedorTelefono',
@@ -2985,6 +3062,23 @@ export const OrdenCompraItemScalarFieldEnum = {
 } as const
 
 export type OrdenCompraItemScalarFieldEnum = (typeof OrdenCompraItemScalarFieldEnum)[keyof typeof OrdenCompraItemScalarFieldEnum]
+
+
+export const NotificacionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tipo: 'tipo',
+  titulo: 'titulo',
+  mensaje: 'mensaje',
+  entidadTipo: 'entidadTipo',
+  entidadId: 'entidadId',
+  leida: 'leida',
+  leidaEn: 'leidaEn',
+  emailEnviado: 'emailEnviado',
+  creadoEn: 'creadoEn'
+} as const
+
+export type NotificacionScalarFieldEnum = (typeof NotificacionScalarFieldEnum)[keyof typeof NotificacionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3277,6 +3371,20 @@ export type ListEnumEstadoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'TipoNotificacion'
+ */
+export type EnumTipoNotificacionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoNotificacion'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoNotificacion[]'
+ */
+export type ListEnumTipoNotificacionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoNotificacion[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -3427,6 +3535,7 @@ export type GlobalOmitConfig = {
   ordenCompra?: Prisma.OrdenCompraOmit
   pago?: Prisma.PagoOmit
   ordenCompraItem?: Prisma.OrdenCompraItemOmit
+  notificacion?: Prisma.NotificacionOmit
 }
 
 /* Types for Logging */

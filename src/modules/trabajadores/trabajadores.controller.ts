@@ -15,7 +15,7 @@ import { AsignarProyectoDto } from './dto/asignar-proyecto.dto.js';
 import { CrearAccesoDto } from './dto/crear-acceso.dto.js';
 
 @Controller('trabajadores')
-@Roles('administrador', 'logistica')
+@Roles('administrador', 'logistica', 'gerencia')
 export class TrabajadoresController {
   constructor(private trabajadoresService: TrabajadoresService) {}
 

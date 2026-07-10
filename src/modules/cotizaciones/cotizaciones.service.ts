@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { CreateSolicitudDto } from './dto/create-solicitud.dto.js';
@@ -13,6 +14,7 @@ import {
   ReceiveCotizacionDto,
 } from './dto/create-cotizacion.dto.js';
 import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
+import { AppEvents } from '../../shared/events/events.js';
 
 const SOLICITUD_INCLUDE = {
   proyecto: { select: { id: true, nombre: true, codigo: true } },
@@ -36,7 +38,10 @@ const SOLICITUD_INCLUDE = {
 
 @Injectable()
 export class CotizacionesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private events: EventEmitter2,
+  ) {}
 
   // ── Solicitudes ──────────────────────────────────────────────────────────
 
@@ -182,6 +187,7 @@ export class CotizacionesService {
         validezDias: dto.validezDias,
         condicionesServicio: dto.condicionesServicio,
         condicionPago: dto.condicionPago,
+        incluyeIgv: dto.incluyeIgv ?? false,
         nota: dto.nota,
         items: {
           deleteMany: {},
@@ -210,10 +216,24 @@ export class CotizacionesService {
     });
 
     // Pasar solicitud a "cotizada" si al menos una cotización fue recibida
+    const yaEstabaCotizada = cotizacion.solicitud.estado === 'cotizada';
     await this.prisma.solicitudCotizacion.update({
       where: { id: cotizacion.solicitudId },
       data: { estado: 'cotizada' },
     });
+
+    this.events.emit(AppEvents.COTIZACION_RECIBIDA, {
+      solicitudId: cotizacion.solicitudId,
+      solicitudCodigo: cotizacion.solicitud.codigo,
+      proveedorNombre: updated.proveedor.razonSocial,
+    });
+    if (!yaEstabaCotizada) {
+      this.events.emit(AppEvents.COTIZACION_ESTADO_CAMBIADO, {
+        solicitudId: cotizacion.solicitudId,
+        solicitudCodigo: cotizacion.solicitud.codigo,
+        estado: 'cotizada',
+      });
+    }
 
     return updated;
   }

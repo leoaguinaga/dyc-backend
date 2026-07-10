@@ -3,10 +3,12 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { CreateOrdenCompraDto, UpdateOrdenCompraDto } from './dto/create-orden.dto.js';
 import { CreateOrdenItemDto, UpdateOrdenItemDto } from './dto/orden-item.dto.js';
 import type { EstadoOrdenCompra } from '../../../prisma/generated/prisma/enums.js';
+import { AppEvents } from '../../shared/events/events.js';
 
 const OC_INCLUDE = {
   solicitud: {
@@ -42,7 +44,10 @@ const OC_INCLUDE = {
 
 @Injectable()
 export class OrdenesCompraService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private events: EventEmitter2,
+  ) {}
 
   findAll(query: { estado?: EstadoOrdenCompra; proyectoId?: string }) {
     return this.prisma.ordenCompra.findMany({
@@ -120,6 +125,7 @@ export class OrdenesCompraService {
       items: Cotizacion['items'];
       condicionPago?: string | null;
       condicionesPago: Cotizacion['condicionesPago'];
+      incluyeIgv: boolean;
     };
     const byProveedor = new Map<string, Grupo>();
     for (const cot of solicitud.cotizaciones) {
@@ -131,6 +137,7 @@ export class OrdenesCompraService {
           items: [],
           condicionPago: cot.condicionPago ?? cot.proveedor.condicionPago,
           condicionesPago: cot.condicionesPago,
+          incluyeIgv: cot.incluyeIgv,
         });
       }
       byProveedor.get(cot.proveedorId)!.items.push(...selected);
@@ -146,7 +153,21 @@ export class OrdenesCompraService {
         items: ganadora.items,
         condicionPago: ganadora.condicionPago ?? ganadora.proveedor.condicionPago,
         condicionesPago: ganadora.condicionesPago,
+        incluyeIgv: ganadora.incluyeIgv,
       });
+    }
+
+    // Adelanto/saldo de la OC se alinean con la forma de pago que el proveedor
+    // ya registró en su respuesta: si son exactamente 2 tramos, el primero
+    // (por fecha) es el adelanto y el segundo el saldo. Con 1 o 3+ tramos no
+    // hay un mapeo 2-columnas claro, así que se deja para edición manual
+    // (el plan de pagos detallado igual queda registrado en `Pago`).
+    function derivarAdelantoSaldo(condicionesPago: Cotizacion['condicionesPago']) {
+      if (condicionesPago.length !== 2) return { adelantoPorcentaje: undefined, saldoPorcentaje: undefined };
+      const [primero, segundo] = [...condicionesPago].sort(
+        (a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime(),
+      );
+      return { adelantoPorcentaje: primero.porcentaje, saldoPorcentaje: segundo.porcentaje };
     }
 
     // Resolve lugarEntrega: explicit override > proyecto.direccion
@@ -168,6 +189,7 @@ export class OrdenesCompraService {
           (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
           0,
         );
+        const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(grupo.condicionesPago);
         return this.prisma.ordenCompra.create({
           data: {
             numero: `OC-${year}-${String(baseCount + i + 1).padStart(4, '0')}`,
@@ -177,6 +199,9 @@ export class OrdenesCompraService {
             proyectoId,
             nota: dto.nota,
             condicionPago: grupo.condicionPago,
+            incluyeIgv: grupo.incluyeIgv,
+            adelantoPorcentaje,
+            saldoPorcentaje,
             fechaEntrega: dto.fechaEntrega
               ? new Date(dto.fechaEntrega)
               : (solicitud.cotizaciones.find((c) => c.proveedorId === grupo.proveedorId)?.fechaEntrega ?? undefined),
@@ -206,6 +231,14 @@ export class OrdenesCompraService {
       }),
     );
 
+    for (const oc of ordenes) {
+      this.events.emit(AppEvents.ORDEN_COMPRA_GENERADA, {
+        ordenCompraId: oc.id,
+        numero: oc.numero,
+        proveedorNombre: oc.proveedor.razonSocial,
+      });
+    }
+
     return ordenes;
   }
 
@@ -220,6 +253,7 @@ export class OrdenesCompraService {
         adelantoPorcentaje: dto.adelantoPorcentaje,
         saldoPorcentaje: dto.saldoPorcentaje,
         detraccionPorcentaje: dto.detraccionPorcentaje,
+        incluyeIgv: dto.incluyeIgv,
         tipoCambio: dto.tipoCambio,
         contactoProveedorNombre: dto.contactoProveedorNombre,
         contactoProveedorTelefono: dto.contactoProveedorTelefono,
@@ -325,6 +359,11 @@ export class OrdenesCompraService {
     if (!permitidos.includes(nuevoEstado))
       throw new BadRequestException(
         `No se puede pasar de "${oc.estado}" a "${nuevoEstado}"`,
+      );
+
+    if (nuevoEstado === 'emitida' && !oc.proveedor.ruc)
+      throw new BadRequestException(
+        `El proveedor "${oc.proveedor.razonSocial}" no tiene RUC registrado. Actualízalo antes de emitir la orden.`,
       );
 
     return this.prisma.ordenCompra.update({

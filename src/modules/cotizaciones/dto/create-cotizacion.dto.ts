@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsBoolean,
   IsDateString,
   IsEnum,
   IsInt,
@@ -94,6 +95,10 @@ export class ReceiveCotizacionDto {
   @IsOptional()
   @IsString()
   condicionPago?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  incluyeIgv?: boolean;
 
   @IsOptional()
   @IsString()

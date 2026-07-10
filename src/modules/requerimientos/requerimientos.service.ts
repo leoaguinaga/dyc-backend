@@ -5,6 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { CreateRequerimientoDto } from './dto/create-requerimiento.dto.js';
 import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
@@ -13,6 +14,7 @@ import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import type { EstadoRequerimiento, Role, TipoRequerimiento } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
+import { AppEvents } from '../../shared/events/events.js';
 
 // Roles that can only see their own requerimientos
 const RESTRICTED_ROLES: Role[] = [
@@ -35,16 +37,16 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
   ing_electrico:       ['electrico'],
   jefe_sig:            ['seguridad'],
   logistica:           ['electrico', 'civil', 'seguridad', 'administrativo'],
-  gerencia:            [],
+  gerencia:            ['electrico', 'civil', 'seguridad', 'administrativo'],
   administrador:       ['electrico', 'civil', 'seguridad', 'administrativo'],
 };
 
 // Which roles can approve each tipo
 const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
-  civil:          ['ing_civil', 'administrador'],
-  electrico:      ['ing_electrico', 'administrador'],
-  seguridad:      ['jefe_sig', 'administrador'],
-  administrativo: ['logistica', 'administrador'],
+  civil:          ['ing_civil', 'gerencia', 'administrador'],
+  electrico:      ['ing_electrico', 'gerencia', 'administrador'],
+  seguridad:      ['jefe_sig', 'gerencia', 'administrador'],
+  administrativo: ['logistica', 'gerencia', 'administrador'],
 };
 
 const INCLUDE_BASE = {
@@ -63,6 +65,7 @@ export class RequerimientosService {
   constructor(
     private prisma: PrismaService,
     @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
+    private events: EventEmitter2,
   ) {}
 
   subirArchivo(file: Express.Multer.File) {
@@ -212,6 +215,23 @@ export class RequerimientosService {
         },
       });
       return actualizado;
+    }).then((actualizado) => {
+      if (nuevoEstado === 'enviado') {
+        this.events.emit(AppEvents.REQUERIMIENTO_CREADO, {
+          requerimientoId: id,
+          codigo: r.codigo,
+          nombre: r.nombre,
+        });
+      } else {
+        this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+          requerimientoId: id,
+          codigo: r.codigo,
+          nombre: r.nombre,
+          estado: 'aprobado',
+          creadoPorId: r.creadoPorId,
+        });
+      }
+      return actualizado;
     });
   }
 
@@ -227,7 +247,7 @@ export class RequerimientosService {
       );
     }
 
-    return this.prisma.$transaction(async (tx) => {
+    const actualizado = await this.prisma.$transaction(async (tx) => {
       const actualizado = await tx.requerimiento.update({
         where: { id },
         data: { estado: 'aprobado', notaRevision: null },
@@ -238,6 +258,14 @@ export class RequerimientosService {
       });
       return actualizado;
     });
+    this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+      requerimientoId: id,
+      codigo: r.codigo,
+      nombre: r.nombre,
+      estado: 'aprobado',
+      creadoPorId: r.creadoPorId,
+    });
+    return actualizado;
   }
 
   async observar(id: string, dto: ObservarRequerimientoDto, userId: string, userRole: Role) {
@@ -252,7 +280,7 @@ export class RequerimientosService {
       );
     }
 
-    return this.prisma.$transaction(async (tx) => {
+    const actualizado = await this.prisma.$transaction(async (tx) => {
       const actualizado = await tx.requerimiento.update({
         where: { id },
         data: { estado: 'observado', notaRevision: dto.notaRevision },
@@ -269,6 +297,14 @@ export class RequerimientosService {
       });
       return actualizado;
     });
+    this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+      requerimientoId: id,
+      codigo: r.codigo,
+      nombre: r.nombre,
+      estado: 'observado',
+      creadoPorId: r.creadoPorId,
+    });
+    return actualizado;
   }
 
   private async generateCodigo(): Promise<string> {

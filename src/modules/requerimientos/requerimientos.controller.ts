@@ -76,13 +76,13 @@ export class RequerimientosController {
 
   // Approver roles vary by tipo — the service validates the match
   @Post(':id/aprobar')
-  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador')
+  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador')
   aprobar(@Param('id') id: string, @Req() req: Request) {
     return this.service.aprobar(id, req.user!.id, req.user!.role);
   }
 
   @Post(':id/observar')
-  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador')
+  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador')
   observar(@Param('id') id: string, @Body() dto: ObservarRequerimientoDto, @Req() req: Request) {
     return this.service.observar(id, dto, req.user!.id, req.user!.role);
   }

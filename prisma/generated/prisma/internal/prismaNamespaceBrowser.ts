@@ -78,7 +78,8 @@ export const ModelName = {
   CotizacionCondicionPago: 'CotizacionCondicionPago',
   OrdenCompra: 'OrdenCompra',
   Pago: 'Pago',
-  OrdenCompraItem: 'OrdenCompraItem'
+  OrdenCompraItem: 'OrdenCompraItem',
+  Notificacion: 'Notificacion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -439,6 +440,7 @@ export const CotizacionScalarFieldEnum = {
   validezDias: 'validezDias',
   condicionesServicio: 'condicionesServicio',
   condicionPago: 'condicionPago',
+  incluyeIgv: 'incluyeIgv',
   nota: 'nota',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
@@ -488,6 +490,7 @@ export const OrdenCompraScalarFieldEnum = {
   adelantoPorcentaje: 'adelantoPorcentaje',
   saldoPorcentaje: 'saldoPorcentaje',
   detraccionPorcentaje: 'detraccionPorcentaje',
+  incluyeIgv: 'incluyeIgv',
   tipoCambio: 'tipoCambio',
   contactoProveedorNombre: 'contactoProveedorNombre',
   contactoProveedorTelefono: 'contactoProveedorTelefono',
@@ -540,6 +543,23 @@ export const OrdenCompraItemScalarFieldEnum = {
 } as const
 
 export type OrdenCompraItemScalarFieldEnum = (typeof OrdenCompraItemScalarFieldEnum)[keyof typeof OrdenCompraItemScalarFieldEnum]
+
+
+export const NotificacionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tipo: 'tipo',
+  titulo: 'titulo',
+  mensaje: 'mensaje',
+  entidadTipo: 'entidadTipo',
+  entidadId: 'entidadId',
+  leida: 'leida',
+  leidaEn: 'leidaEn',
+  emailEnviado: 'emailEnviado',
+  creadoEn: 'creadoEn'
+} as const
+
+export type NotificacionScalarFieldEnum = (typeof NotificacionScalarFieldEnum)[keyof typeof NotificacionScalarFieldEnum]
 
 
 export const SortOrder = {

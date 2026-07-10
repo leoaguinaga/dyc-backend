@@ -14,7 +14,7 @@ import { UpdateItemDto } from './dto/update-item.dto.js';
 import { QueryItemDto } from './dto/query-item.dto.js';
 
 @Controller('inventario')
-@Roles('administrador', 'logistica')
+@Roles('administrador', 'logistica', 'gerencia')
 export class InventarioController {
   constructor(private inventarioService: InventarioService) {}
 
@@ -29,13 +29,13 @@ export class InventarioController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   create(@Body() dto: CreateItemDto) {
     return this.inventarioService.create(dto);
   }
 
   @Patch(':id')
-  @Roles('administrador', 'logistica')
+  @Roles('administrador', 'logistica', 'gerencia')
   update(@Param('id') id: string, @Body() dto: UpdateItemDto) {
     return this.inventarioService.update(id, dto);
   }

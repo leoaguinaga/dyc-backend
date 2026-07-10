@@ -44,6 +44,7 @@ export type CotizacionMinAggregateOutputType = {
   validezDias: number | null
   condicionesServicio: string | null
   condicionPago: string | null
+  incluyeIgv: boolean | null
   nota: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -59,6 +60,7 @@ export type CotizacionMaxAggregateOutputType = {
   validezDias: number | null
   condicionesServicio: string | null
   condicionPago: string | null
+  incluyeIgv: boolean | null
   nota: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -74,6 +76,7 @@ export type CotizacionCountAggregateOutputType = {
   validezDias: number
   condicionesServicio: number
   condicionPago: number
+  incluyeIgv: number
   nota: number
   creadoEn: number
   actualizadoEn: number
@@ -99,6 +102,7 @@ export type CotizacionMinAggregateInputType = {
   validezDias?: true
   condicionesServicio?: true
   condicionPago?: true
+  incluyeIgv?: true
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -114,6 +118,7 @@ export type CotizacionMaxAggregateInputType = {
   validezDias?: true
   condicionesServicio?: true
   condicionPago?: true
+  incluyeIgv?: true
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -129,6 +134,7 @@ export type CotizacionCountAggregateInputType = {
   validezDias?: true
   condicionesServicio?: true
   condicionPago?: true
+  incluyeIgv?: true
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -231,6 +237,7 @@ export type CotizacionGroupByOutputType = {
   validezDias: number | null
   condicionesServicio: string | null
   condicionPago: string | null
+  incluyeIgv: boolean
   nota: string | null
   creadoEn: Date
   actualizadoEn: Date
@@ -269,6 +276,7 @@ export type CotizacionWhereInput = {
   validezDias?: Prisma.IntNullableFilter<"Cotizacion"> | number | null
   condicionesServicio?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
@@ -288,6 +296,7 @@ export type CotizacionOrderByWithRelationInput = {
   validezDias?: Prisma.SortOrderInput | Prisma.SortOrder
   condicionesServicio?: Prisma.SortOrderInput | Prisma.SortOrder
   condicionPago?: Prisma.SortOrderInput | Prisma.SortOrder
+  incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -310,6 +319,7 @@ export type CotizacionWhereUniqueInput = Prisma.AtLeast<{
   validezDias?: Prisma.IntNullableFilter<"Cotizacion"> | number | null
   condicionesServicio?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
@@ -329,6 +339,7 @@ export type CotizacionOrderByWithAggregationInput = {
   validezDias?: Prisma.SortOrderInput | Prisma.SortOrder
   condicionesServicio?: Prisma.SortOrderInput | Prisma.SortOrder
   condicionPago?: Prisma.SortOrderInput | Prisma.SortOrder
+  incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -352,6 +363,7 @@ export type CotizacionScalarWhereWithAggregatesInput = {
   validezDias?: Prisma.IntNullableWithAggregatesFilter<"Cotizacion"> | number | null
   condicionesServicio?: Prisma.StringNullableWithAggregatesFilter<"Cotizacion"> | string | null
   condicionPago?: Prisma.StringNullableWithAggregatesFilter<"Cotizacion"> | string | null
+  incluyeIgv?: Prisma.BoolWithAggregatesFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableWithAggregatesFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Cotizacion"> | Date | string
@@ -365,6 +377,7 @@ export type CotizacionCreateInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -384,6 +397,7 @@ export type CotizacionUncheckedCreateInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -399,6 +413,7 @@ export type CotizacionUpdateInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -418,6 +433,7 @@ export type CotizacionUncheckedUpdateInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -435,6 +451,7 @@ export type CotizacionCreateManyInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -448,6 +465,7 @@ export type CotizacionUpdateManyMutationInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -463,6 +481,7 @@ export type CotizacionUncheckedUpdateManyInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -488,6 +507,7 @@ export type CotizacionCountOrderByAggregateInput = {
   validezDias?: Prisma.SortOrder
   condicionesServicio?: Prisma.SortOrder
   condicionPago?: Prisma.SortOrder
+  incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -507,6 +527,7 @@ export type CotizacionMaxOrderByAggregateInput = {
   validezDias?: Prisma.SortOrder
   condicionesServicio?: Prisma.SortOrder
   condicionPago?: Prisma.SortOrder
+  incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -522,6 +543,7 @@ export type CotizacionMinOrderByAggregateInput = {
   validezDias?: Prisma.SortOrder
   condicionesServicio?: Prisma.SortOrder
   condicionPago?: Prisma.SortOrder
+  incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -668,6 +690,7 @@ export type CotizacionCreateWithoutProveedorInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -685,6 +708,7 @@ export type CotizacionUncheckedCreateWithoutProveedorInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -731,6 +755,7 @@ export type CotizacionScalarWhereInput = {
   validezDias?: Prisma.IntNullableFilter<"Cotizacion"> | number | null
   condicionesServicio?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
@@ -744,6 +769,7 @@ export type CotizacionCreateWithoutSolicitudInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -761,6 +787,7 @@ export type CotizacionUncheckedCreateWithoutSolicitudInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -802,6 +829,7 @@ export type CotizacionCreateWithoutItemsInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -820,6 +848,7 @@ export type CotizacionUncheckedCreateWithoutItemsInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -850,6 +879,7 @@ export type CotizacionUpdateWithoutItemsInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -868,6 +898,7 @@ export type CotizacionUncheckedUpdateWithoutItemsInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -882,6 +913,7 @@ export type CotizacionCreateWithoutCondicionesPagoInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -900,6 +932,7 @@ export type CotizacionUncheckedCreateWithoutCondicionesPagoInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -930,6 +963,7 @@ export type CotizacionUpdateWithoutCondicionesPagoInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -948,6 +982,7 @@ export type CotizacionUncheckedUpdateWithoutCondicionesPagoInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -963,6 +998,7 @@ export type CotizacionCreateManyProveedorInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -976,6 +1012,7 @@ export type CotizacionUpdateWithoutProveedorInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -993,6 +1030,7 @@ export type CotizacionUncheckedUpdateWithoutProveedorInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1009,6 +1047,7 @@ export type CotizacionUncheckedUpdateManyWithoutProveedorInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1023,6 +1062,7 @@ export type CotizacionCreateManySolicitudInput = {
   validezDias?: number | null
   condicionesServicio?: string | null
   condicionPago?: string | null
+  incluyeIgv?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1036,6 +1076,7 @@ export type CotizacionUpdateWithoutSolicitudInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1053,6 +1094,7 @@ export type CotizacionUncheckedUpdateWithoutSolicitudInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1069,6 +1111,7 @@ export type CotizacionUncheckedUpdateManyWithoutSolicitudInput = {
   validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1124,6 +1167,7 @@ export type CotizacionSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   validezDias?: boolean
   condicionesServicio?: boolean
   condicionPago?: boolean
+  incluyeIgv?: boolean
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -1144,6 +1188,7 @@ export type CotizacionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   validezDias?: boolean
   condicionesServicio?: boolean
   condicionPago?: boolean
+  incluyeIgv?: boolean
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -1161,6 +1206,7 @@ export type CotizacionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   validezDias?: boolean
   condicionesServicio?: boolean
   condicionPago?: boolean
+  incluyeIgv?: boolean
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -1178,12 +1224,13 @@ export type CotizacionSelectScalar = {
   validezDias?: boolean
   condicionesServicio?: boolean
   condicionPago?: boolean
+  incluyeIgv?: boolean
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type CotizacionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "solicitudId" | "proveedorId" | "estado" | "fechaRecibida" | "fechaEntrega" | "validezDias" | "condicionesServicio" | "condicionPago" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["cotizacion"]>
+export type CotizacionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "solicitudId" | "proveedorId" | "estado" | "fechaRecibida" | "fechaEntrega" | "validezDias" | "condicionesServicio" | "condicionPago" | "incluyeIgv" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["cotizacion"]>
 export type CotizacionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
@@ -1218,6 +1265,7 @@ export type $CotizacionPayload<ExtArgs extends runtime.Types.Extensions.Internal
     validezDias: number | null
     condicionesServicio: string | null
     condicionPago: string | null
+    incluyeIgv: boolean
     nota: string | null
     creadoEn: Date
     actualizadoEn: Date
@@ -1657,6 +1705,7 @@ export interface CotizacionFieldRefs {
   readonly validezDias: Prisma.FieldRef<"Cotizacion", 'Int'>
   readonly condicionesServicio: Prisma.FieldRef<"Cotizacion", 'String'>
   readonly condicionPago: Prisma.FieldRef<"Cotizacion", 'String'>
+  readonly incluyeIgv: Prisma.FieldRef<"Cotizacion", 'Boolean'>
   readonly nota: Prisma.FieldRef<"Cotizacion", 'String'>
   readonly creadoEn: Prisma.FieldRef<"Cotizacion", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"Cotizacion", 'DateTime'>
