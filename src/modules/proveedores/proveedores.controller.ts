@@ -15,7 +15,10 @@ import { UpdateProveedorDto } from './dto/update-proveedor.dto.js';
 import { QueryProveedorDto } from './dto/query-proveedor.dto.js';
 import { CreateContactoProveedorDto } from './dto/create-contacto-proveedor.dto.js';
 import { UpdateContactoProveedorDto } from './dto/update-contacto-proveedor.dto.js';
-import { CreateCatalogoItemDto, UpdateCatalogoItemDto } from './dto/create-catalogo-item.dto.js';
+import {
+  CreateCatalogoItemDto,
+  UpdateCatalogoItemDto,
+} from './dto/create-catalogo-item.dto.js';
 
 @Controller('proveedores')
 @Roles('administrador', 'logistica', 'gerencia')
@@ -53,7 +56,10 @@ export class ProveedoresController {
 
   @Post(':id/contactos')
   @Roles('administrador', 'logistica', 'gerencia')
-  createContacto(@Param('id') id: string, @Body() dto: CreateContactoProveedorDto) {
+  createContacto(
+    @Param('id') id: string,
+    @Body() dto: CreateContactoProveedorDto,
+  ) {
     return this.proveedoresService.createContacto(id, dto);
   }
 
@@ -83,9 +89,22 @@ export class ProveedoresController {
     return this.proveedoresService.findItemsSolicitados(id);
   }
 
+  @Get(':id/cotizaciones')
+  findCotizaciones(@Param('id') id: string) {
+    return this.proveedoresService.findCotizaciones(id);
+  }
+
+  @Get(':id/evaluacion')
+  evaluacion(@Param('id') id: string) {
+    return this.proveedoresService.evaluacion(id);
+  }
+
   @Post(':id/catalogo')
   @Roles('logistica', 'administrador', 'gerencia')
-  createCatalogoItem(@Param('id') id: string, @Body() dto: CreateCatalogoItemDto) {
+  createCatalogoItem(
+    @Param('id') id: string,
+    @Body() dto: CreateCatalogoItemDto,
+  ) {
     return this.proveedoresService.createCatalogoItem(id, dto);
   }
 

@@ -407,6 +407,7 @@ export const ModelName = {
   SolicitudCotizacion: 'SolicitudCotizacion',
   SolicitudItem: 'SolicitudItem',
   Cotizacion: 'Cotizacion',
+  CotizacionArchivo: 'CotizacionArchivo',
   CotizacionItem: 'CotizacionItem',
   CotizacionCondicionPago: 'CotizacionCondicionPago',
   OrdenCompra: 'OrdenCompra',
@@ -428,7 +429,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem" | "notificacion"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "proyectoTrabajador" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2134,6 +2135,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CotizacionArchivo: {
+      payload: Prisma.$CotizacionArchivoPayload<ExtArgs>
+      fields: Prisma.CotizacionArchivoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CotizacionArchivoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CotizacionArchivoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>
+        }
+        findFirst: {
+          args: Prisma.CotizacionArchivoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CotizacionArchivoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>
+        }
+        findMany: {
+          args: Prisma.CotizacionArchivoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>[]
+        }
+        create: {
+          args: Prisma.CotizacionArchivoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>
+        }
+        createMany: {
+          args: Prisma.CotizacionArchivoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CotizacionArchivoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>[]
+        }
+        delete: {
+          args: Prisma.CotizacionArchivoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>
+        }
+        update: {
+          args: Prisma.CotizacionArchivoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CotizacionArchivoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CotizacionArchivoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CotizacionArchivoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>[]
+        }
+        upsert: {
+          args: Prisma.CotizacionArchivoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CotizacionArchivoPayload>
+        }
+        aggregate: {
+          args: Prisma.CotizacionArchivoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCotizacionArchivo>
+        }
+        groupBy: {
+          args: Prisma.CotizacionArchivoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CotizacionArchivoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CotizacionArchivoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CotizacionArchivoCountAggregateOutputType> | number
+        }
+      }
+    }
     CotizacionItem: {
       payload: Prisma.$CotizacionItemPayload<ExtArgs>
       fields: Prisma.CotizacionItemFieldRefs
@@ -2625,7 +2700,8 @@ export const UserScalarFieldEnum = {
   image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  role: 'role'
+  role: 'role',
+  correoContacto: 'correoContacto'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -2968,6 +3044,17 @@ export const CotizacionScalarFieldEnum = {
 export type CotizacionScalarFieldEnum = (typeof CotizacionScalarFieldEnum)[keyof typeof CotizacionScalarFieldEnum]
 
 
+export const CotizacionArchivoScalarFieldEnum = {
+  id: 'id',
+  cotizacionId: 'cotizacionId',
+  nombre: 'nombre',
+  url: 'url',
+  creadoEn: 'creadoEn'
+} as const
+
+export type CotizacionArchivoScalarFieldEnum = (typeof CotizacionArchivoScalarFieldEnum)[keyof typeof CotizacionArchivoScalarFieldEnum]
+
+
 export const CotizacionItemScalarFieldEnum = {
   id: 'id',
   cotizacionId: 'cotizacionId',
@@ -3003,6 +3090,8 @@ export const OrdenCompraScalarFieldEnum = {
   estado: 'estado',
   fechaEmision: 'fechaEmision',
   fechaEntrega: 'fechaEntrega',
+  fechaEntregaReal: 'fechaEntregaReal',
+  calificacionCalidad: 'calificacionCalidad',
   montoTotal: 'montoTotal',
   nota: 'nota',
   lugarEntrega: 'lugarEntrega',
@@ -3530,6 +3619,7 @@ export type GlobalOmitConfig = {
   solicitudCotizacion?: Prisma.SolicitudCotizacionOmit
   solicitudItem?: Prisma.SolicitudItemOmit
   cotizacion?: Prisma.CotizacionOmit
+  cotizacionArchivo?: Prisma.CotizacionArchivoOmit
   cotizacionItem?: Prisma.CotizacionItemOmit
   cotizacionCondicionPago?: Prisma.CotizacionCondicionPagoOmit
   ordenCompra?: Prisma.OrdenCompraOmit

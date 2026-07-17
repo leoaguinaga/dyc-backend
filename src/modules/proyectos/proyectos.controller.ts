@@ -45,6 +45,12 @@ export class ProyectosController {
     return this.proyectosService.update(id, dto);
   }
 
+  @Patch(':id/cerrar')
+  @Roles('administrador', 'gerencia')
+  cerrar(@Param('id') id: string, @Req() req: AuthRequest) {
+    return this.proyectosService.cerrar(id, req.user.id);
+  }
+
   @Post(':id/supervisores/:userId')
   @Roles('administrador', 'gerencia')
   addSupervisor(@Param('id') id: string, @Param('userId') userId: string) {

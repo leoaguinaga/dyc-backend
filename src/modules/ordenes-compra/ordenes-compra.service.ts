@@ -5,8 +5,15 @@ import {
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PrismaService } from '../../prisma/prisma.service.js';
-import { CreateOrdenCompraDto, UpdateOrdenCompraDto } from './dto/create-orden.dto.js';
-import { CreateOrdenItemDto, UpdateOrdenItemDto } from './dto/orden-item.dto.js';
+import {
+  CreateOrdenCompraDto,
+  RecibirOrdenCompraDto,
+  UpdateOrdenCompraDto,
+} from './dto/create-orden.dto.js';
+import {
+  CreateOrdenItemDto,
+  UpdateOrdenItemDto,
+} from './dto/orden-item.dto.js';
 import type { EstadoOrdenCompra } from '../../../prisma/generated/prisma/enums.js';
 import { AppEvents } from '../../shared/events/events.js';
 
@@ -37,7 +44,9 @@ const OC_INCLUDE = {
       },
     },
   },
-  proyecto: { select: { id: true, codigo: true, nombre: true, direccion: true } },
+  proyecto: {
+    select: { id: true, codigo: true, nombre: true, direccion: true },
+  },
   creadoPor: { select: { id: true, name: true, email: true } },
   items: true,
 } as const;
@@ -87,7 +96,6 @@ export class OrdenesCompraService {
         select: { fechaEntrega: true },
       });
       if (cotizacion?.fechaEntrega) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (oc as any).fechaEntrega = cotizacion.fechaEntrega;
       }
     }
@@ -110,13 +118,19 @@ export class OrdenesCompraService {
       },
     });
 
-    if (!solicitud) throw new NotFoundException('Solicitud de cotización no encontrada');
+    if (!solicitud)
+      throw new NotFoundException('Solicitud de cotización no encontrada');
     if (solicitud.estado !== 'aprobada_gerencia')
-      throw new BadRequestException('Solo se puede generar una OC de solicitudes aprobadas por gerencia');
+      throw new BadRequestException(
+        'Solo se puede generar una OC de solicitudes aprobadas por gerencia',
+      );
 
-    const proyectoId = solicitud.proyectoId ?? solicitud.requerimiento?.proyectoId;
+    const proyectoId =
+      solicitud.proyectoId ?? solicitud.requerimiento?.proyectoId;
     if (!proyectoId)
-      throw new BadRequestException('No se pudo determinar el proyecto de la solicitud');
+      throw new BadRequestException(
+        'No se pudo determinar el proyecto de la solicitud',
+      );
 
     // ── Split award: agrupar ítems seleccionados por proveedor ──────────────
     type Cotizacion = (typeof solicitud.cotizaciones)[0];
@@ -145,13 +159,18 @@ export class OrdenesCompraService {
 
     // ── Fallback: cotización única aprobada (flujo anterior) ─────────────────
     if (byProveedor.size === 0) {
-      const ganadora = solicitud.cotizaciones.find((c) => c.estado === 'aprobada');
+      const ganadora = solicitud.cotizaciones.find(
+        (c) => c.estado === 'aprobada',
+      );
       if (!ganadora)
-        throw new BadRequestException('No hay ítems adjudicados ni cotización aprobada');
+        throw new BadRequestException(
+          'No hay ítems adjudicados ni cotización aprobada',
+        );
       byProveedor.set(ganadora.proveedorId, {
         proveedorId: ganadora.proveedorId,
         items: ganadora.items,
-        condicionPago: ganadora.condicionPago ?? ganadora.proveedor.condicionPago,
+        condicionPago:
+          ganadora.condicionPago ?? ganadora.proveedor.condicionPago,
         condicionesPago: ganadora.condicionesPago,
         incluyeIgv: ganadora.incluyeIgv,
       });
@@ -162,12 +181,18 @@ export class OrdenesCompraService {
     // (por fecha) es el adelanto y el segundo el saldo. Con 1 o 3+ tramos no
     // hay un mapeo 2-columnas claro, así que se deja para edición manual
     // (el plan de pagos detallado igual queda registrado en `Pago`).
-    function derivarAdelantoSaldo(condicionesPago: Cotizacion['condicionesPago']) {
-      if (condicionesPago.length !== 2) return { adelantoPorcentaje: undefined, saldoPorcentaje: undefined };
+    function derivarAdelantoSaldo(
+      condicionesPago: Cotizacion['condicionesPago'],
+    ) {
+      if (condicionesPago.length !== 2)
+        return { adelantoPorcentaje: undefined, saldoPorcentaje: undefined };
       const [primero, segundo] = [...condicionesPago].sort(
         (a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime(),
       );
-      return { adelantoPorcentaje: primero.porcentaje, saldoPorcentaje: segundo.porcentaje };
+      return {
+        adelantoPorcentaje: primero.porcentaje,
+        saldoPorcentaje: segundo.porcentaje,
+      };
     }
 
     // Resolve lugarEntrega: explicit override > proyecto.direccion
@@ -189,7 +214,9 @@ export class OrdenesCompraService {
           (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
           0,
         );
-        const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(grupo.condicionesPago);
+        const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(
+          grupo.condicionesPago,
+        );
         return this.prisma.ordenCompra.create({
           data: {
             numero: `OC-${year}-${String(baseCount + i + 1).padStart(4, '0')}`,
@@ -204,7 +231,9 @@ export class OrdenesCompraService {
             saldoPorcentaje,
             fechaEntrega: dto.fechaEntrega
               ? new Date(dto.fechaEntrega)
-              : (solicitud.cotizaciones.find((c) => c.proveedorId === grupo.proveedorId)?.fechaEntrega ?? undefined),
+              : (solicitud.cotizaciones.find(
+                  (c) => c.proveedorId === grupo.proveedorId,
+                )?.fechaEntrega ?? undefined),
             lugarEntrega,
             montoTotal: monto,
             creadoPorId: userId,
@@ -313,7 +342,8 @@ export class OrdenesCompraService {
     this.assertItemsEditable(oc.estado);
 
     const item = oc.items.find((i) => i.id === itemId);
-    if (!item) throw new NotFoundException(`Ítem ${itemId} no encontrado en esta OC`);
+    if (!item)
+      throw new NotFoundException(`Ítem ${itemId} no encontrado en esta OC`);
 
     const cantidad = dto.cantidad ?? Number(item.cantidad);
     const precioUnitario = dto.precioUnitario ?? Number(item.precioUnitario);
@@ -338,7 +368,8 @@ export class OrdenesCompraService {
     this.assertItemsEditable(oc.estado);
 
     const item = oc.items.find((i) => i.id === itemId);
-    if (!item) throw new NotFoundException(`Ítem ${itemId} no encontrado en esta OC`);
+    if (!item)
+      throw new NotFoundException(`Ítem ${itemId} no encontrado en esta OC`);
     if (oc.items.length === 1)
       throw new BadRequestException('La OC debe tener al menos un ítem');
 
@@ -347,10 +378,16 @@ export class OrdenesCompraService {
     return this.findOne(ordenId);
   }
 
-  async transicionEstado(id: string, nuevoEstado: EstadoOrdenCompra) {
-    const TRANSICIONES: Partial<Record<EstadoOrdenCompra, EstadoOrdenCompra[]>> = {
-      borrador:         ['emitida', 'cancelada'],
-      emitida:          ['recibida_parcial', 'recibida', 'cancelada'],
+  async transicionEstado(
+    id: string,
+    nuevoEstado: EstadoOrdenCompra,
+    dto?: RecibirOrdenCompraDto,
+  ) {
+    const TRANSICIONES: Partial<
+      Record<EstadoOrdenCompra, EstadoOrdenCompra[]>
+    > = {
+      borrador: ['emitida', 'cancelada'],
+      emitida: ['recibida_parcial', 'recibida', 'cancelada'],
       recibida_parcial: ['recibida', 'cancelada'],
     };
 
@@ -371,6 +408,12 @@ export class OrdenesCompraService {
       data: {
         estado: nuevoEstado,
         fechaEmision: nuevoEstado === 'emitida' ? new Date() : undefined,
+        ...(nuevoEstado === 'recibida' && {
+          fechaEntregaReal: dto?.fechaEntregaReal
+            ? new Date(dto.fechaEntregaReal)
+            : new Date(),
+          calificacionCalidad: dto?.calificacionCalidad,
+        }),
       },
       include: OC_INCLUDE,
     });

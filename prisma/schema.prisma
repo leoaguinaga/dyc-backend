@@ -128,6 +128,7 @@ enum TipoNotificacion {
   cotizacion_recibida
   solicitud_lista_adjudicar
   orden_compra_generada
+  obra_cerrada
 }
 
 // ---------------------------------------------------------------------------
@@ -143,7 +144,8 @@ model User {
   createdAt     DateTime
   updatedAt     DateTime
 
-  role Role @default(supervisor)
+  role           Role    @default(supervisor)
+  correoContacto String?
 
   sessions                Session[]
   accounts                Account[]
@@ -601,8 +603,20 @@ model Cotizacion {
 
   items          CotizacionItem[]
   condicionesPago CotizacionCondicionPago[]
+  archivos       CotizacionArchivo[]
 
   @@map("cotizaciones")
+}
+
+model CotizacionArchivo {
+  id           String     @id @default(cuid())
+  cotizacionId String
+  cotizacion   Cotizacion @relation(fields: [cotizacionId], references: [id], onDelete: Cascade)
+  nombre       String
+  url          String
+  creadoEn     DateTime   @default(now())
+
+  @@map("cotizacion_archivos")
 }
 
 model CotizacionItem {
@@ -649,6 +663,8 @@ model OrdenCompra {
   estado                    EstadoOrdenCompra   @default(borrador)
   fechaEmision              DateTime?
   fechaEntrega              DateTime?
+  fechaEntregaReal          DateTime?
+  calificacionCalidad       Int?
   montoTotal                Decimal             @default(0) @db.Decimal(12, 2)
   nota                      String?
   lugarEntrega              String?

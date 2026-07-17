@@ -3,6 +3,7 @@ import { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { UsersService } from './users.service.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
+import { ChangePasswordDto } from './dto/change-password.dto.js';
 
 @Controller('users')
 export class UsersController {
@@ -11,6 +12,15 @@ export class UsersController {
   @Get('me')
   getMe(@Req() req: Request & { user: { id: string } }) {
     return this.usersService.findOne(req.user.id);
+  }
+
+  @Patch('me/password')
+  async changeOwnPassword(
+    @Req() req: Request & { user: { id: string } },
+    @Body() dto: ChangePasswordDto,
+  ) {
+    await this.usersService.changeOwnPassword(req.user.id, dto.newPassword);
+    return { status: true };
   }
 
   @Get()

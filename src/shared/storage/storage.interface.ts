@@ -8,6 +8,7 @@ export interface StorageProvider {
     buffer: Buffer;
     originalName: string;
     mimeType: string;
+    folder?: string;
   }): Promise<StoredFile>;
 }
 

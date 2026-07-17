@@ -12,8 +12,15 @@ import {
 import type { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { OrdenesCompraService } from './ordenes-compra.service.js';
-import { CreateOrdenCompraDto, UpdateOrdenCompraDto } from './dto/create-orden.dto.js';
-import { CreateOrdenItemDto, UpdateOrdenItemDto } from './dto/orden-item.dto.js';
+import {
+  CreateOrdenCompraDto,
+  RecibirOrdenCompraDto,
+  UpdateOrdenCompraDto,
+} from './dto/create-orden.dto.js';
+import {
+  CreateOrdenItemDto,
+  UpdateOrdenItemDto,
+} from './dto/orden-item.dto.js';
 import type { EstadoOrdenCompra } from '../../../prisma/generated/prisma/enums.js';
 
 @Controller('ordenes-compra')
@@ -82,8 +89,8 @@ export class OrdenesCompraController {
 
   @Post(':id/recibir')
   @Roles('administrador', 'logistica', 'gerencia')
-  recibir(@Param('id') id: string) {
-    return this.service.transicionEstado(id, 'recibida');
+  recibir(@Param('id') id: string, @Body() dto: RecibirOrdenCompraDto) {
+    return this.service.transicionEstado(id, 'recibida', dto);
   }
 
   @Post(':id/cancelar')

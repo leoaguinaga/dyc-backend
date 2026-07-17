@@ -133,6 +133,11 @@ export type SolicitudItem = Prisma.SolicitudItemModel
  */
 export type Cotizacion = Prisma.CotizacionModel
 /**
+ * Model CotizacionArchivo
+ * 
+ */
+export type CotizacionArchivo = Prisma.CotizacionArchivoModel
+/**
  * Model CotizacionItem
  * 
  */

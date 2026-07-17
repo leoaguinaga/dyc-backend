@@ -30,7 +30,7 @@ export class NotificacionesService {
 
     const usuarios = await this.prisma.user.findMany({
       where: { id: { in: ids } },
-      select: { id: true, email: true },
+      select: { id: true, email: true, correoContacto: true },
     });
 
     await this.prisma.notificacion.createMany({
@@ -45,9 +45,12 @@ export class NotificacionesService {
     });
 
     for (const u of usuarios) {
-      void this.email
-        .send({ to: u.email, subject: input.titulo, html: `<p>${input.mensaje}</p>` })
-        .catch((err: unknown) => this.logger.error(`Error enviando email a ${u.email}: ${String(err)}`));
+      const destinatarios = [u.email, ...(u.correoContacto ? [u.correoContacto] : [])];
+      for (const to of destinatarios) {
+        void this.email
+          .send({ to, subject: input.titulo, html: `<p>${input.mensaje}</p>` })
+          .catch((err: unknown) => this.logger.error(`Error enviando email a ${to}: ${String(err)}`));
+      }
     }
   }
 

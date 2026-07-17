@@ -1,9 +1,12 @@
 import {
   IsBoolean,
   IsDateString,
+  IsInt,
   IsNumber,
   IsOptional,
   IsString,
+  Max,
+  Min,
 } from 'class-validator';
 
 export class CreateOrdenCompraDto {
@@ -95,4 +98,16 @@ export class UpdateOrdenCompraDto {
   @IsOptional()
   @IsString()
   contactoDycTelefono?: string;
+}
+
+export class RecibirOrdenCompraDto {
+  @IsOptional()
+  @IsDateString()
+  fechaEntregaReal?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  @Max(5)
+  calificacionCalidad?: number;
 }

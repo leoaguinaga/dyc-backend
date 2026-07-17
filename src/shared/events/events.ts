@@ -12,4 +12,7 @@ export const AppEvents = {
 
   // Órdenes de compra
   ORDEN_COMPRA_GENERADA: 'orden_compra.generada',
+
+  // Proyectos / obras
+  OBRA_CERRADA: 'obra.cerrada',
 } as const;

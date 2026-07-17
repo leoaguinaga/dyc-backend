@@ -3,9 +3,17 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { AppEvents } from '../../shared/events/events.js';
 import { NotificacionesService } from './notificaciones.service.js';
 
-const APROBADORES_REQUERIMIENTO = ['ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador'] as const;
+const APROBADORES_REQUERIMIENTO = [
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+  'logistica',
+  'gerencia',
+  'administrador',
+] as const;
 const GESTORES_COTIZACION = ['administrador', 'logistica', 'gerencia'] as const;
 const GESTORES_OC = ['logistica', 'gerencia', 'administrador'] as const;
+const GESTORES_OBRA = ['gerencia', 'administrador'] as const;
 
 export interface RequerimientoCreadoPayload {
   requerimientoId: string;
@@ -39,6 +47,13 @@ export interface OrdenCompraGeneradaPayload {
   proveedorNombre: string;
 }
 
+export interface ObraCerradaPayload {
+  proyectoId: string;
+  codigo: string | null;
+  nombre: string;
+  cerradoPorId: string;
+}
+
 @Injectable()
 export class NotificacionesListener {
   constructor(private service: NotificacionesService) {}
@@ -55,10 +70,18 @@ export class NotificacionesListener {
   }
 
   @OnEvent(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO)
-  async onRequerimientoEstadoCambiado(payload: RequerimientoEstadoCambiadoPayload) {
+  async onRequerimientoEstadoCambiado(
+    payload: RequerimientoEstadoCambiadoPayload,
+  ) {
     await this.service.crearParaUsuarios([payload.creadoPorId], {
-      tipo: payload.estado === 'aprobado' ? 'requerimiento_aprobado' : 'requerimiento_observado',
-      titulo: payload.estado === 'aprobado' ? 'Requerimiento aprobado' : 'Requerimiento observado',
+      tipo:
+        payload.estado === 'aprobado'
+          ? 'requerimiento_aprobado'
+          : 'requerimiento_observado',
+      titulo:
+        payload.estado === 'aprobado'
+          ? 'Requerimiento aprobado'
+          : 'Requerimiento observado',
       mensaje: `Tu requerimiento ${payload.codigo} — ${payload.nombre} fue ${payload.estado}.`,
       entidadTipo: 'Requerimiento',
       entidadId: payload.requerimientoId,
@@ -96,6 +119,17 @@ export class NotificacionesListener {
       mensaje: `Se generó la OC ${payload.numero} para ${payload.proveedorNombre}.`,
       entidadTipo: 'OrdenCompra',
       entidadId: payload.ordenCompraId,
+    });
+  }
+
+  @OnEvent(AppEvents.OBRA_CERRADA)
+  async onObraCerrada(payload: ObraCerradaPayload) {
+    await this.service.crearParaRoles([...GESTORES_OBRA], {
+      tipo: 'obra_cerrada',
+      titulo: 'Obra cerrada',
+      mensaje: `La obra ${payload.codigo ?? payload.nombre} — ${payload.nombre} fue cerrada.`,
+      entidadTipo: 'Proyecto',
+      entidadId: payload.proyectoId,
     });
   }
 }

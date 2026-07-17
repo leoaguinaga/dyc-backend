@@ -74,6 +74,7 @@ export const ModelName = {
   SolicitudCotizacion: 'SolicitudCotizacion',
   SolicitudItem: 'SolicitudItem',
   Cotizacion: 'Cotizacion',
+  CotizacionArchivo: 'CotizacionArchivo',
   CotizacionItem: 'CotizacionItem',
   CotizacionCondicionPago: 'CotizacionCondicionPago',
   OrdenCompra: 'OrdenCompra',
@@ -106,7 +107,8 @@ export const UserScalarFieldEnum = {
   image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  role: 'role'
+  role: 'role',
+  correoContacto: 'correoContacto'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -449,6 +451,17 @@ export const CotizacionScalarFieldEnum = {
 export type CotizacionScalarFieldEnum = (typeof CotizacionScalarFieldEnum)[keyof typeof CotizacionScalarFieldEnum]
 
 
+export const CotizacionArchivoScalarFieldEnum = {
+  id: 'id',
+  cotizacionId: 'cotizacionId',
+  nombre: 'nombre',
+  url: 'url',
+  creadoEn: 'creadoEn'
+} as const
+
+export type CotizacionArchivoScalarFieldEnum = (typeof CotizacionArchivoScalarFieldEnum)[keyof typeof CotizacionArchivoScalarFieldEnum]
+
+
 export const CotizacionItemScalarFieldEnum = {
   id: 'id',
   cotizacionId: 'cotizacionId',
@@ -484,6 +497,8 @@ export const OrdenCompraScalarFieldEnum = {
   estado: 'estado',
   fechaEmision: 'fechaEmision',
   fechaEntrega: 'fechaEntrega',
+  fechaEntregaReal: 'fechaEntregaReal',
+  calificacionCalidad: 'calificacionCalidad',
   montoTotal: 'montoTotal',
   nota: 'nota',
   lugarEntrega: 'lugarEntrega',

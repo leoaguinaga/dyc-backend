@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -10,17 +11,22 @@ import { CreateSolicitudDto } from './dto/create-solicitud.dto.js';
 import { UpdateSolicitudDto } from './dto/update-solicitud.dto.js';
 import {
   AdjudicarSolicitudDto,
+  AttachArchivoDto,
   CreateCotizacionDto,
   ReceiveCotizacionDto,
 } from './dto/create-cotizacion.dto.js';
 import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
 import { AppEvents } from '../../shared/events/events.js';
+import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
+import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 
 const SOLICITUD_INCLUDE = {
   proyecto: { select: { id: true, nombre: true, codigo: true } },
   items: {
     include: {
-      item: { select: { id: true, codigo: true, nombre: true, unidad: true } } satisfies object,
+      item: {
+        select: { id: true, codigo: true, nombre: true, unidad: true },
+      } satisfies object,
     },
   },
   cotizaciones: {
@@ -41,6 +47,7 @@ export class CotizacionesService {
   constructor(
     private prisma: PrismaService,
     private events: EventEmitter2,
+    @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
   ) {}
 
   // ── Solicitudes ──────────────────────────────────────────────────────────
@@ -76,7 +83,10 @@ export class CotizacionesService {
         where: { id: dto.requerimientoId },
         select: { proyectoId: true },
       });
-      if (!req) throw new NotFoundException(`Requerimiento ${dto.requerimientoId} no encontrado`);
+      if (!req)
+        throw new NotFoundException(
+          `Requerimiento ${dto.requerimientoId} no encontrado`,
+        );
       proyectoId = req.proyectoId;
     }
     if (!proyectoId)
@@ -166,13 +176,19 @@ export class CotizacionesService {
     });
     if (!cotizacion)
       throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
-    if (cotizacion.estado !== 'pendiente' && cotizacion.estado !== 'sin_respuesta') {
+    if (
+      cotizacion.estado !== 'pendiente' &&
+      cotizacion.estado !== 'sin_respuesta'
+    ) {
       throw new BadRequestException(
         'Solo se pueden registrar respuestas en cotizaciones pendientes o marcadas como sin respuesta',
       );
     }
 
-    const sumaPorcentajes = dto.condicionesPago.reduce((s, c) => s + c.porcentaje, 0);
+    const sumaPorcentajes = dto.condicionesPago.reduce(
+      (s, c) => s + c.porcentaje,
+      0,
+    );
     if (Math.abs(sumaPorcentajes - 100) > 0.01)
       throw new BadRequestException(
         `Las condiciones de pago deben sumar 100% (actual: ${sumaPorcentajes.toFixed(2)}%)`,
@@ -212,6 +228,7 @@ export class CotizacionesService {
         proveedor: { select: { id: true, razonSocial: true, ruc: true } },
         items: { include: { item: { select: { id: true, nombre: true } } } },
         condicionesPago: true,
+        archivos: true,
       },
     });
 
@@ -313,9 +330,12 @@ export class CotizacionesService {
     });
   }
 
-  async avanzarEstadoSolicitud(id: string, nuevoEstado: 'aprobada_solicitante' | 'aprobada_gerencia' | 'cancelada') {
-    const TRANSICIONES: Partial<Record<string, typeof nuevoEstado[]>> = {
-      seleccionada:       ['aprobada_solicitante', 'cancelada'],
+  async avanzarEstadoSolicitud(
+    id: string,
+    nuevoEstado: 'aprobada_solicitante' | 'aprobada_gerencia' | 'cancelada',
+  ) {
+    const TRANSICIONES: Partial<Record<string, (typeof nuevoEstado)[]>> = {
+      seleccionada: ['aprobada_solicitante', 'cancelada'],
       aprobada_solicitante: ['aprobada_gerencia', 'cancelada'],
     };
 
@@ -342,7 +362,9 @@ export class CotizacionesService {
       );
 
     const solicitudItemIds = new Set(solicitud.items.map((i) => i.id));
-    const coveredIds = new Set(dto.adjudicaciones.map((a) => a.solicitudItemId));
+    const coveredIds = new Set(
+      dto.adjudicaciones.map((a) => a.solicitudItemId),
+    );
     const uncovered = [...solicitudItemIds].filter((id) => !coveredIds.has(id));
     if (uncovered.length > 0)
       throw new BadRequestException(
@@ -367,7 +389,9 @@ export class CotizacionesService {
 
     await this.prisma.$transaction([
       this.prisma.cotizacionItem.updateMany({
-        where: { cotizacionId: { in: solicitud.cotizaciones.map((c) => c.id) } },
+        where: {
+          cotizacionId: { in: solicitud.cotizaciones.map((c) => c.id) },
+        },
         data: { seleccionado: false },
       }),
       this.prisma.cotizacionItem.updateMany({
@@ -389,6 +413,29 @@ export class CotizacionesService {
     ]);
 
     return this.findOneSolicitud(solicitudId);
+  }
+
+  // ── Archivos ─────────────────────────────────────────────────────────────
+
+  subirArchivo(file: Express.Multer.File) {
+    return this.storage.save({
+      buffer: file.buffer,
+      originalName: file.originalname,
+      mimeType: file.mimetype,
+      folder: 'cotizaciones',
+    });
+  }
+
+  async attachArchivo(cotizacionId: string, dto: AttachArchivoDto) {
+    const cotizacion = await this.prisma.cotizacion.findUnique({
+      where: { id: cotizacionId },
+    });
+    if (!cotizacion)
+      throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
+
+    return this.prisma.cotizacionArchivo.create({
+      data: { cotizacionId, nombre: dto.nombre, url: dto.url },
+    });
   }
 
   // ── Helpers ───────────────────────────────────────────────────────────────

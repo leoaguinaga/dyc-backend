@@ -6,19 +6,22 @@ import type { StorageProvider, StoredFile } from './storage.interface.js';
 
 @Injectable()
 export class LocalStorageProvider implements StorageProvider {
-  private readonly dir = join(process.cwd(), 'uploads', 'requerimientos');
-
-  constructor() {
-    mkdirSync(this.dir, { recursive: true });
-  }
+  private readonly baseDir = join(process.cwd(), 'uploads');
 
   async save(input: {
     buffer: Buffer;
     originalName: string;
     mimeType: string;
+    folder?: string;
   }): Promise<StoredFile> {
+    const folder = input.folder ?? 'requerimientos';
+    const dir = join(this.baseDir, folder);
+    mkdirSync(dir, { recursive: true });
     const filename = `${randomUUID()}.pdf`;
-    await fs.writeFile(join(this.dir, filename), input.buffer);
-    return { nombre: input.originalName, url: `/uploads/requerimientos/${filename}` };
+    await fs.writeFile(join(dir, filename), input.buffer);
+    return {
+      nombre: input.originalName,
+      url: `/uploads/${folder}/${filename}`,
+    };
   }
 }

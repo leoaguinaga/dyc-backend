@@ -27,6 +27,7 @@ export type AggregateOrdenCompra = {
 }
 
 export type OrdenCompraAvgAggregateOutputType = {
+  calificacionCalidad: number | null
   montoTotal: runtime.Decimal | null
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
@@ -35,6 +36,7 @@ export type OrdenCompraAvgAggregateOutputType = {
 }
 
 export type OrdenCompraSumAggregateOutputType = {
+  calificacionCalidad: number | null
   montoTotal: runtime.Decimal | null
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
@@ -52,6 +54,8 @@ export type OrdenCompraMinAggregateOutputType = {
   estado: $Enums.EstadoOrdenCompra | null
   fechaEmision: Date | null
   fechaEntrega: Date | null
+  fechaEntregaReal: Date | null
+  calificacionCalidad: number | null
   montoTotal: runtime.Decimal | null
   nota: string | null
   lugarEntrega: string | null
@@ -85,6 +89,8 @@ export type OrdenCompraMaxAggregateOutputType = {
   estado: $Enums.EstadoOrdenCompra | null
   fechaEmision: Date | null
   fechaEntrega: Date | null
+  fechaEntregaReal: Date | null
+  calificacionCalidad: number | null
   montoTotal: runtime.Decimal | null
   nota: string | null
   lugarEntrega: string | null
@@ -118,6 +124,8 @@ export type OrdenCompraCountAggregateOutputType = {
   estado: number
   fechaEmision: number
   fechaEntrega: number
+  fechaEntregaReal: number
+  calificacionCalidad: number
   montoTotal: number
   nota: number
   lugarEntrega: number
@@ -144,6 +152,7 @@ export type OrdenCompraCountAggregateOutputType = {
 
 
 export type OrdenCompraAvgAggregateInputType = {
+  calificacionCalidad?: true
   montoTotal?: true
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
@@ -152,6 +161,7 @@ export type OrdenCompraAvgAggregateInputType = {
 }
 
 export type OrdenCompraSumAggregateInputType = {
+  calificacionCalidad?: true
   montoTotal?: true
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
@@ -169,6 +179,8 @@ export type OrdenCompraMinAggregateInputType = {
   estado?: true
   fechaEmision?: true
   fechaEntrega?: true
+  fechaEntregaReal?: true
+  calificacionCalidad?: true
   montoTotal?: true
   nota?: true
   lugarEntrega?: true
@@ -202,6 +214,8 @@ export type OrdenCompraMaxAggregateInputType = {
   estado?: true
   fechaEmision?: true
   fechaEntrega?: true
+  fechaEntregaReal?: true
+  calificacionCalidad?: true
   montoTotal?: true
   nota?: true
   lugarEntrega?: true
@@ -235,6 +249,8 @@ export type OrdenCompraCountAggregateInputType = {
   estado?: true
   fechaEmision?: true
   fechaEntrega?: true
+  fechaEntregaReal?: true
+  calificacionCalidad?: true
   montoTotal?: true
   nota?: true
   lugarEntrega?: true
@@ -355,6 +371,8 @@ export type OrdenCompraGroupByOutputType = {
   estado: $Enums.EstadoOrdenCompra
   fechaEmision: Date | null
   fechaEntrega: Date | null
+  fechaEntregaReal: Date | null
+  calificacionCalidad: number | null
   montoTotal: runtime.Decimal
   nota: string | null
   lugarEntrega: string | null
@@ -411,6 +429,8 @@ export type OrdenCompraWhereInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   fechaEntrega?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  fechaEntregaReal?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  calificacionCalidad?: Prisma.IntNullableFilter<"OrdenCompra"> | number | null
   montoTotal?: Prisma.DecimalFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -450,6 +470,8 @@ export type OrdenCompraOrderByWithRelationInput = {
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaEntregaReal?: Prisma.SortOrderInput | Prisma.SortOrder
+  calificacionCalidad?: Prisma.SortOrderInput | Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -492,6 +514,8 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   estado?: Prisma.EnumEstadoOrdenCompraFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   fechaEntrega?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  fechaEntregaReal?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  calificacionCalidad?: Prisma.IntNullableFilter<"OrdenCompra"> | number | null
   montoTotal?: Prisma.DecimalFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -531,6 +555,8 @@ export type OrdenCompraOrderByWithAggregationInput = {
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaEntregaReal?: Prisma.SortOrderInput | Prisma.SortOrder
+  calificacionCalidad?: Prisma.SortOrderInput | Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -572,6 +598,8 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   estado?: Prisma.EnumEstadoOrdenCompraWithAggregatesFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
   fechaEntrega?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
+  fechaEntregaReal?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
+  calificacionCalidad?: Prisma.IntNullableWithAggregatesFilter<"OrdenCompra"> | number | null
   montoTotal?: Prisma.DecimalWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
@@ -602,6 +630,8 @@ export type OrdenCompraCreateInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -640,6 +670,8 @@ export type OrdenCompraUncheckedCreateInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -672,6 +704,8 @@ export type OrdenCompraUpdateInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -710,6 +744,8 @@ export type OrdenCompraUncheckedUpdateInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -745,6 +781,8 @@ export type OrdenCompraCreateManyInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -775,6 +813,8 @@ export type OrdenCompraUpdateManyMutationInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -807,6 +847,8 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -850,6 +892,8 @@ export type OrdenCompraCountOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrder
   fechaEntrega?: Prisma.SortOrder
+  fechaEntregaReal?: Prisma.SortOrder
+  calificacionCalidad?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrder
@@ -874,6 +918,7 @@ export type OrdenCompraCountOrderByAggregateInput = {
 }
 
 export type OrdenCompraAvgOrderByAggregateInput = {
+  calificacionCalidad?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
@@ -891,6 +936,8 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrder
   fechaEntrega?: Prisma.SortOrder
+  fechaEntregaReal?: Prisma.SortOrder
+  calificacionCalidad?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrder
@@ -924,6 +971,8 @@ export type OrdenCompraMinOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrder
   fechaEntrega?: Prisma.SortOrder
+  fechaEntregaReal?: Prisma.SortOrder
+  calificacionCalidad?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrder
@@ -948,6 +997,7 @@ export type OrdenCompraMinOrderByAggregateInput = {
 }
 
 export type OrdenCompraSumOrderByAggregateInput = {
+  calificacionCalidad?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
@@ -1175,6 +1225,8 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1212,6 +1264,8 @@ export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1275,6 +1329,8 @@ export type OrdenCompraScalarWhereInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   fechaEntrega?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  fechaEntregaReal?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  calificacionCalidad?: Prisma.IntNullableFilter<"OrdenCompra"> | number | null
   montoTotal?: Prisma.DecimalFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -1305,6 +1361,8 @@ export type OrdenCompraCreateWithoutProyectoInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1341,6 +1399,8 @@ export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1399,6 +1459,8 @@ export type OrdenCompraCreateWithoutProveedorInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1435,6 +1497,8 @@ export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1493,6 +1557,8 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1529,6 +1595,8 @@ export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1587,6 +1655,8 @@ export type OrdenCompraCreateWithoutPagosInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1624,6 +1694,8 @@ export type OrdenCompraUncheckedCreateWithoutPagosInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1671,6 +1743,8 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1708,6 +1782,8 @@ export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1739,6 +1815,8 @@ export type OrdenCompraCreateWithoutItemsInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1776,6 +1854,8 @@ export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1823,6 +1903,8 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1860,6 +1942,8 @@ export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1894,6 +1978,8 @@ export type OrdenCompraCreateManyCreadoPorInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1923,6 +2009,8 @@ export type OrdenCompraUpdateWithoutCreadoPorInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1960,6 +2048,8 @@ export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1994,6 +2084,8 @@ export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2025,6 +2117,8 @@ export type OrdenCompraCreateManyProyectoInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2055,6 +2149,8 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2091,6 +2187,8 @@ export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2125,6 +2223,8 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2157,6 +2257,8 @@ export type OrdenCompraCreateManyProveedorInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2187,6 +2289,8 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2223,6 +2327,8 @@ export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2257,6 +2363,8 @@ export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2289,6 +2397,8 @@ export type OrdenCompraCreateManySolicitudInput = {
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2319,6 +2429,8 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2355,6 +2467,8 @@ export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2389,6 +2503,8 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2462,6 +2578,8 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   estado?: boolean
   fechaEmision?: boolean
   fechaEntrega?: boolean
+  fechaEntregaReal?: boolean
+  calificacionCalidad?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -2502,6 +2620,8 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   estado?: boolean
   fechaEmision?: boolean
   fechaEntrega?: boolean
+  fechaEntregaReal?: boolean
+  calificacionCalidad?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -2539,6 +2659,8 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   estado?: boolean
   fechaEmision?: boolean
   fechaEntrega?: boolean
+  fechaEntregaReal?: boolean
+  calificacionCalidad?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -2576,6 +2698,8 @@ export type OrdenCompraSelectScalar = {
   estado?: boolean
   fechaEmision?: boolean
   fechaEntrega?: boolean
+  fechaEntregaReal?: boolean
+  calificacionCalidad?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -2599,7 +2723,7 @@ export type OrdenCompraSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
+export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
 export type OrdenCompraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
@@ -2642,6 +2766,8 @@ export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.Interna
     estado: $Enums.EstadoOrdenCompra
     fechaEmision: Date | null
     fechaEntrega: Date | null
+    fechaEntregaReal: Date | null
+    calificacionCalidad: number | null
     montoTotal: runtime.Decimal
     nota: string | null
     lugarEntrega: string | null
@@ -3101,6 +3227,8 @@ export interface OrdenCompraFieldRefs {
   readonly estado: Prisma.FieldRef<"OrdenCompra", 'EstadoOrdenCompra'>
   readonly fechaEmision: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
   readonly fechaEntrega: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
+  readonly fechaEntregaReal: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
+  readonly calificacionCalidad: Prisma.FieldRef<"OrdenCompra", 'Int'>
   readonly montoTotal: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly nota: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly lugarEntrega: Prisma.FieldRef<"OrdenCompra", 'String'>

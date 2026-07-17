@@ -109,3 +109,11 @@ export class ReceiveCotizacionDto {
   @Type(() => CreateCotizacionItemDto)
   items: CreateCotizacionItemDto[];
 }
+
+export class AttachArchivoDto {
+  @IsString()
+  nombre: string;
+
+  @IsString()
+  url: string;
+}

@@ -11,7 +11,11 @@ import { CreateRequerimientoDto } from './dto/create-requerimiento.dto.js';
 import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
-import type { EstadoRequerimiento, Role, TipoRequerimiento } from '../../prisma/types.js';
+import type {
+  EstadoRequerimiento,
+  Role,
+  TipoRequerimiento,
+} from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { AppEvents } from '../../shared/events/events.js';
@@ -29,28 +33,28 @@ const RESTRICTED_ROLES: Role[] = [
 
 // Which tipos a role is allowed to create
 const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
-  supervisor:          ['civil'],
-  supervisor_civil:    ['civil'],
-  supervisor_electrico:['electrico'],
-  pdr:                 ['seguridad'],
-  ing_civil:           ['civil'],
-  ing_electrico:       ['electrico'],
-  jefe_sig:            ['seguridad'],
-  logistica:           ['electrico', 'civil', 'seguridad', 'administrativo'],
-  gerencia:            ['electrico', 'civil', 'seguridad', 'administrativo'],
-  administrador:       ['electrico', 'civil', 'seguridad', 'administrativo'],
+  supervisor: ['civil'],
+  supervisor_civil: ['civil'],
+  supervisor_electrico: ['electrico'],
+  pdr: ['seguridad'],
+  ing_civil: ['civil'],
+  ing_electrico: ['electrico'],
+  jefe_sig: ['seguridad'],
+  logistica: ['electrico', 'civil', 'seguridad', 'administrativo'],
+  gerencia: ['electrico', 'civil', 'seguridad', 'administrativo'],
+  administrador: ['electrico', 'civil', 'seguridad', 'administrativo'],
 };
 
 // Which roles can approve each tipo
 const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
-  civil:          ['ing_civil', 'gerencia', 'administrador'],
-  electrico:      ['ing_electrico', 'gerencia', 'administrador'],
-  seguridad:      ['jefe_sig', 'gerencia', 'administrador'],
+  civil: ['ing_civil', 'gerencia', 'administrador'],
+  electrico: ['ing_electrico', 'gerencia', 'administrador'],
+  seguridad: ['jefe_sig', 'gerencia', 'administrador'],
   administrativo: ['logistica', 'gerencia', 'administrador'],
 };
 
 const INCLUDE_BASE = {
-  proyecto: { select: { id: true, codigo: true, nombre: true } },
+  proyecto: { select: { id: true, codigo: true, nombre: true, ciudad: true, direccion: true, comuna: true } },
   creadoPor: { select: { id: true, name: true, email: true, role: true } },
   items: { include: { archivos: true } },
   historial: {
@@ -76,11 +80,7 @@ export class RequerimientosService {
     });
   }
 
-  findAll(
-    query: QueryRequerimientoDto,
-    userId: string,
-    userRole: Role,
-  ) {
+  findAll(query: QueryRequerimientoDto, userId: string, userRole: Role) {
     const where: Record<string, unknown> = {};
 
     if (query.estado) where.estado = query.estado;
@@ -132,14 +132,20 @@ export class RequerimientosService {
         tipo: dto.tipo,
         urgente: dto.urgente ?? false,
         nota: dto.nota,
-        fechaEntregaRequerida: dto.fechaEntregaRequerida ? new Date(dto.fechaEntregaRequerida) : undefined,
+        fechaEntregaRequerida: dto.fechaEntregaRequerida
+          ? new Date(dto.fechaEntregaRequerida)
+          : undefined,
         items: {
           create: dto.items.map((i) => ({
             descripcion: i.descripcion,
             cantidad: i.cantidad,
             unidad: i.unidad ?? 'und',
             nota: i.nota,
-            archivos: { create: i.archivos?.map((a) => ({ nombre: a.nombre, url: a.url })) ?? [] },
+            archivos: {
+              create:
+                i.archivos?.map((a) => ({ nombre: a.nombre, url: a.url })) ??
+                [],
+            },
           })),
         },
       },
@@ -147,24 +153,45 @@ export class RequerimientosService {
     });
   }
 
-  async actualizar(id: string, dto: UpdateRequerimientoDto, userId: string, userRole: Role) {
+  async actualizar(
+    id: string,
+    dto: UpdateRequerimientoDto,
+    userId: string,
+    userRole: Role,
+  ) {
     const r = await this.findOne(id);
-    if (r.estado !== 'borrador' && r.estado !== 'observado')
-      throw new BadRequestException('Solo se puede editar un requerimiento en borrador u observado');
-    if (r.creadoPorId !== userId && userRole !== 'administrador')
-      throw new BadRequestException('Solo el creador puede editar este requerimiento');
+    const esCreador = r.creadoPorId === userId;
+    const esRevisor = TIPO_APPROVERS[r.tipo].includes(userRole);
+
+    const puedeEditarComoCreador =
+      (esCreador || userRole === 'administrador') &&
+      (r.estado === 'borrador' || r.estado === 'observado');
+    // El revisor puede corregir directamente mientras decide (estado "enviado"),
+    // sin tener que "observar" y esperar a que el solicitante actualice el sistema
+    // — el PDF se exporta tal cual queda en la BD, así que se necesita esta flexibilidad.
+    const puedeEditarComoRevisor = esRevisor && r.estado === 'enviado';
+
+    if (!puedeEditarComoCreador && !puedeEditarComoRevisor) {
+      throw new BadRequestException(
+        'No tienes permiso para editar este requerimiento en su estado actual',
+      );
+    }
 
     return this.prisma.$transaction(async (tx) => {
       if (dto.items) {
-        await tx.requerimientoItem.deleteMany({ where: { requerimientoId: id } });
+        await tx.requerimientoItem.deleteMany({
+          where: { requerimientoId: id },
+        });
       }
-      return tx.requerimiento.update({
+      const actualizado = await tx.requerimiento.update({
         where: { id },
         data: {
           nombre: dto.nombre,
           urgente: dto.urgente,
           nota: dto.nota,
-          fechaEntregaRequerida: dto.fechaEntregaRequerida ? new Date(dto.fechaEntregaRequerida) : undefined,
+          fechaEntregaRequerida: dto.fechaEntregaRequerida
+            ? new Date(dto.fechaEntregaRequerida)
+            : undefined,
           items: dto.items
             ? {
                 create: dto.items.map((i) => ({
@@ -172,73 +199,107 @@ export class RequerimientosService {
                   cantidad: i.cantidad,
                   unidad: i.unidad ?? 'und',
                   nota: i.nota,
-                  archivos: { create: i.archivos?.map((a) => ({ nombre: a.nombre, url: a.url })) ?? [] },
+                  archivos: {
+                    create:
+                      i.archivos?.map((a) => ({
+                        nombre: a.nombre,
+                        url: a.url,
+                      })) ?? [],
+                  },
                 })),
               }
             : undefined,
         },
         include: INCLUDE_BASE,
       });
+
+      // Deja constancia en el historial cuando quien corrige es un revisor (no el
+      // solicitante) — así queda trazado quién editó, aunque el estado no cambie.
+      if (puedeEditarComoRevisor && !esCreador) {
+        await tx.requerimientoHistorial.create({
+          data: {
+            requerimientoId: id,
+            estado: r.estado,
+            actorId: userId,
+            actorRole: userRole,
+            nota: 'Corregido por el revisor antes de emitir su decisión',
+          },
+        });
+      }
+
+      return actualizado;
     });
   }
 
   async enviar(id: string, userId: string, userRole: Role) {
     const r = await this.findOne(id);
     if (r.estado !== 'borrador' && r.estado !== 'observado')
-      throw new BadRequestException('Solo se pueden enviar requerimientos en borrador u observados');
+      throw new BadRequestException(
+        'Solo se pueden enviar requerimientos en borrador u observados',
+      );
     if (r.creadoPorId !== userId && userRole !== 'administrador')
-      throw new BadRequestException('Solo el creador puede enviar este requerimiento');
+      throw new BadRequestException(
+        'Solo el creador puede enviar este requerimiento',
+      );
     if (r.items.length === 0)
-      throw new BadRequestException('El requerimiento debe tener al menos un ítem');
+      throw new BadRequestException(
+        'El requerimiento debe tener al menos un ítem',
+      );
 
     // Auto-aprobación: si quien envía ya es aprobador de este tipo (ej. ing_civil enviando
     // un req civil, logística enviando uno administrativo), pedirle que apruebe su propio
     // requerimiento sería un re-proceso inútil.
     const autoAprueba = TIPO_APPROVERS[r.tipo].includes(userRole);
-    const nuevoEstado: EstadoRequerimiento = autoAprueba ? 'aprobado' : 'enviado';
+    const nuevoEstado: EstadoRequerimiento = autoAprueba
+      ? 'aprobado'
+      : 'enviado';
 
-    return this.prisma.$transaction(async (tx) => {
-      const actualizado = await tx.requerimiento.update({
-        where: { id },
-        data: { estado: nuevoEstado, notaRevision: null },
-        include: INCLUDE_BASE,
-      });
-      await tx.requerimientoHistorial.create({
-        data: {
-          requerimientoId: id,
-          estado: nuevoEstado,
-          actorId: userId,
-          actorRole: userRole,
-          nota: autoAprueba
-            ? 'Autoaprobado: el solicitante también es aprobador de este tipo'
-            : undefined,
-        },
-      });
-      return actualizado;
-    }).then((actualizado) => {
-      if (nuevoEstado === 'enviado') {
-        this.events.emit(AppEvents.REQUERIMIENTO_CREADO, {
-          requerimientoId: id,
-          codigo: r.codigo,
-          nombre: r.nombre,
+    return this.prisma
+      .$transaction(async (tx) => {
+        const actualizado = await tx.requerimiento.update({
+          where: { id },
+          data: { estado: nuevoEstado, notaRevision: null },
+          include: INCLUDE_BASE,
         });
-      } else {
-        this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
-          requerimientoId: id,
-          codigo: r.codigo,
-          nombre: r.nombre,
-          estado: 'aprobado',
-          creadoPorId: r.creadoPorId,
+        await tx.requerimientoHistorial.create({
+          data: {
+            requerimientoId: id,
+            estado: nuevoEstado,
+            actorId: userId,
+            actorRole: userRole,
+            nota: autoAprueba
+              ? 'Autoaprobado: el solicitante también es aprobador de este tipo'
+              : undefined,
+          },
         });
-      }
-      return actualizado;
-    });
+        return actualizado;
+      })
+      .then((actualizado) => {
+        if (nuevoEstado === 'enviado') {
+          this.events.emit(AppEvents.REQUERIMIENTO_CREADO, {
+            requerimientoId: id,
+            codigo: r.codigo,
+            nombre: r.nombre,
+          });
+        } else {
+          this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+            requerimientoId: id,
+            codigo: r.codigo,
+            nombre: r.nombre,
+            estado: 'aprobado',
+            creadoPorId: r.creadoPorId,
+          });
+        }
+        return actualizado;
+      });
   }
 
   async aprobar(id: string, userId: string, userRole: Role) {
     const r = await this.findOne(id);
     if (r.estado !== 'enviado')
-      throw new BadRequestException('Solo se pueden aprobar requerimientos enviados');
+      throw new BadRequestException(
+        'Solo se pueden aprobar requerimientos enviados',
+      );
 
     const approvers = TIPO_APPROVERS[r.tipo];
     if (!approvers.includes(userRole)) {
@@ -254,7 +315,12 @@ export class RequerimientosService {
         include: INCLUDE_BASE,
       });
       await tx.requerimientoHistorial.create({
-        data: { requerimientoId: id, estado: 'aprobado', actorId: userId, actorRole: userRole },
+        data: {
+          requerimientoId: id,
+          estado: 'aprobado',
+          actorId: userId,
+          actorRole: userRole,
+        },
       });
       return actualizado;
     });
@@ -268,10 +334,17 @@ export class RequerimientosService {
     return actualizado;
   }
 
-  async observar(id: string, dto: ObservarRequerimientoDto, userId: string, userRole: Role) {
+  async observar(
+    id: string,
+    dto: ObservarRequerimientoDto,
+    userId: string,
+    userRole: Role,
+  ) {
     const r = await this.findOne(id);
     if (r.estado !== 'enviado')
-      throw new BadRequestException('Solo se pueden observar requerimientos enviados');
+      throw new BadRequestException(
+        'Solo se pueden observar requerimientos enviados',
+      );
 
     const approvers = TIPO_APPROVERS[r.tipo];
     if (!approvers.includes(userRole)) {

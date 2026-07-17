@@ -1,18 +1,42 @@
 import {
+  BadRequestException,
   Injectable,
   NotFoundException,
   ForbiddenException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import type { Role } from '../../prisma/types.js';
 import { CreateProyectoDto } from './dto/create-proyecto.dto.js';
 import { UpdateProyectoDto } from './dto/update-proyecto.dto.js';
 import { CreateHitoDto } from './dto/create-hito.dto.js';
 import { UpdateHitoDto } from './dto/update-hito.dto.js';
+import { AppEvents } from '../../shared/events/events.js';
+
+const REQUERIMIENTO_ESTADOS_ABIERTOS = [
+  'borrador',
+  'enviado',
+  'observado',
+] as const;
+const SOLICITUD_ESTADOS_ABIERTOS = [
+  'borrador',
+  'enviada',
+  'cotizada',
+  'seleccionada',
+  'aprobada_solicitante',
+] as const;
+const OC_ESTADOS_ABIERTOS = [
+  'borrador',
+  'emitida',
+  'recibida_parcial',
+] as const;
 
 @Injectable()
 export class ProyectosService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private events: EventEmitter2,
+  ) {}
 
   private readonly includeBase = {
     cliente: { select: { id: true, razonSocial: true, nombreComercial: true } },
@@ -249,6 +273,90 @@ export class ProyectosService {
     });
     if (!hito) throw new NotFoundException(`Hito ${hitoId} no encontrado`);
     return this.prisma.hito.delete({ where: { id: hitoId } });
+  }
+
+  // ── Cierre de obra ───────────────────────────────────────────────────────
+
+  async cerrar(id: string, actorId: string) {
+    const proyecto = await this.prisma.proyecto.findUnique({ where: { id } });
+    if (!proyecto) throw new NotFoundException(`Proyecto ${id} no encontrado`);
+    if (proyecto.estado !== 'ejecucion') {
+      throw new BadRequestException(
+        `Solo se pueden cerrar obras en ejecución (estado actual: "${proyecto.estado}")`,
+      );
+    }
+
+    const [requerimientosAbiertos, solicitudesAbiertas, ordenesAbiertas] =
+      await Promise.all([
+        this.prisma.requerimiento.count({
+          where: {
+            proyectoId: id,
+            estado: { in: [...REQUERIMIENTO_ESTADOS_ABIERTOS] },
+          },
+        }),
+        this.prisma.solicitudCotizacion.count({
+          where: {
+            proyectoId: id,
+            estado: { in: [...SOLICITUD_ESTADOS_ABIERTOS] },
+          },
+        }),
+        this.prisma.ordenCompra.count({
+          where: { proyectoId: id, estado: { in: [...OC_ESTADOS_ABIERTOS] } },
+        }),
+      ]);
+
+    const motivos: string[] = [];
+    if (requerimientosAbiertos > 0)
+      motivos.push(`${requerimientosAbiertos} requerimiento(s) abierto(s)`);
+    if (solicitudesAbiertas > 0)
+      motivos.push(
+        `${solicitudesAbiertas} solicitud(es) de cotización en curso`,
+      );
+    if (ordenesAbiertas > 0)
+      motivos.push(`${ordenesAbiertas} orden(es) de compra pendiente(s)`);
+    if (motivos.length > 0) {
+      throw new BadRequestException(
+        `No se puede cerrar la obra: ${motivos.join(', ')}`,
+      );
+    }
+
+    const [proyectoActualizado, ordenesCompra, cantidadTrabajadores] =
+      await this.prisma.$transaction([
+        this.prisma.proyecto.update({
+          where: { id },
+          data: {
+            estado: 'cierre',
+            fechaFinReal: proyecto.fechaFinReal ?? new Date(),
+          },
+          include: this.includeBase,
+        }),
+        this.prisma.ordenCompra.findMany({
+          where: { proyectoId: id, estado: { not: 'cancelada' } },
+          select: { montoTotal: true },
+        }),
+        this.prisma.proyectoTrabajador.count({ where: { proyectoId: id } }),
+      ]);
+
+    const gastoTotal = ordenesCompra.reduce(
+      (sum, oc) => sum + Number(oc.montoTotal),
+      0,
+    );
+
+    this.events.emit(AppEvents.OBRA_CERRADA, {
+      proyectoId: id,
+      codigo: proyectoActualizado.codigo,
+      nombre: proyectoActualizado.nombre,
+      cerradoPorId: actorId,
+    });
+
+    return {
+      proyecto: proyectoActualizado,
+      resumen: {
+        gastoTotal,
+        cantidadOrdenesCompra: ordenesCompra.length,
+        cantidadTrabajadores,
+      },
+    };
   }
 
   private async assertExists(id: string) {
