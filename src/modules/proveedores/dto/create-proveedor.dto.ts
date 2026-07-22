@@ -12,6 +12,13 @@ export class CreateProveedorDto {
   @IsString()
   direccion?: string;
 
+  @IsString()
+  departamento: string;
+
+  @IsOptional()
+  @IsString()
+  distrito?: string;
+
   @IsOptional()
   @IsString()
   rubro?: string;

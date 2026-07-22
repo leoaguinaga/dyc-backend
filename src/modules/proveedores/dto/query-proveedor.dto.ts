@@ -7,6 +7,10 @@ export class QueryProveedorDto {
   nombre?: string;
 
   @IsOptional()
+  @IsString()
+  departamento?: string;
+
+  @IsOptional()
   @IsBoolean()
   @Transform(({ value }) => value === 'true' || value === true)
   activo?: boolean;

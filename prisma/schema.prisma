@@ -385,6 +385,8 @@ model Proveedor {
   razonSocial   String
   ruc           String?  @unique
   direccion     String?
+  departamento  String?
+  distrito      String?
   rubro         String?
   categoria     String?
   banco         String?

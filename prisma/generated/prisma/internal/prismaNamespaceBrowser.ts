@@ -274,6 +274,8 @@ export const ProveedorScalarFieldEnum = {
   razonSocial: 'razonSocial',
   ruc: 'ruc',
   direccion: 'direccion',
+  departamento: 'departamento',
+  distrito: 'distrito',
   rubro: 'rubro',
   categoria: 'categoria',
   banco: 'banco',

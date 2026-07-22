@@ -48,6 +48,17 @@ export class UsersService {
   // omite la verificación de la contraseña actual que exige better-auth's
   // changePassword — la sesión activa ya es suficiente prueba de identidad.
   async changeOwnPassword(userId: string, newPassword: string) {
+    await this.setPassword(userId, newPassword);
+  }
+
+  // Cambio de contraseña de otro usuario por un administrador (no requiere
+  // la contraseña actual, protegido por @Roles en el controller).
+  async changePassword(userId: string, newPassword: string) {
+    await this.findOne(userId);
+    await this.setPassword(userId, newPassword);
+  }
+
+  private async setPassword(userId: string, newPassword: string) {
     const ctx = await this.authService.auth.$context;
     const accounts = await ctx.internalAdapter.findAccounts(userId);
     const account = accounts.find(

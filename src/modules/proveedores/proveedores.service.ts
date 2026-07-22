@@ -18,6 +18,7 @@ export class ProveedoresService {
     return this.prisma.proveedor.findMany({
       where: {
         activo: query.activo,
+        departamento: query.departamento,
         razonSocial: query.nombre
           ? { contains: query.nombre, mode: 'insensitive' }
           : undefined,

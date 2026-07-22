@@ -40,4 +40,11 @@ export class UsersController {
   update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     return this.usersService.update(id, dto);
   }
+
+  @Patch(':id/password')
+  @Roles('administrador', 'gerencia')
+  async changePassword(@Param('id') id: string, @Body() dto: ChangePasswordDto) {
+    await this.usersService.changePassword(id, dto.newPassword);
+    return { status: true };
+  }
 }
