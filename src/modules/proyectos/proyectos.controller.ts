@@ -15,6 +15,7 @@ import { CreateProyectoDto } from './dto/create-proyecto.dto.js';
 import { UpdateProyectoDto } from './dto/update-proyecto.dto.js';
 import { CreateHitoDto } from './dto/create-hito.dto.js';
 import { UpdateHitoDto } from './dto/update-hito.dto.js';
+import { AsignarTrabajadoresDto } from './dto/asignar-trabajadores.dto.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
@@ -61,6 +62,17 @@ export class ProyectosController {
   @Roles('administrador', 'gerencia')
   removeSupervisor(@Param('id') id: string, @Param('userId') userId: string) {
     return this.proyectosService.removeSupervisor(id, userId);
+  }
+
+  // ── Trabajadores ──────────────────────────────────────────────────────────
+
+  @Post(':id/trabajadores')
+  @Roles('administrador', 'gerencia', 'logistica')
+  asignarTrabajadores(
+    @Param('id') id: string,
+    @Body() dto: AsignarTrabajadoresDto,
+  ) {
+    return this.proyectosService.asignarTrabajadores(id, dto);
   }
 
   // ── Hitos ──────────────────────────────────────────────────────────────────

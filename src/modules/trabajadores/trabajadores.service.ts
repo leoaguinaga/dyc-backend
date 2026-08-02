@@ -9,6 +9,7 @@ import { CreateTrabajadorDto } from './dto/create-trabajador.dto.js';
 import { UpdateTrabajadorDto } from './dto/update-trabajador.dto.js';
 import { AsignarProyectoDto } from './dto/asignar-proyecto.dto.js';
 import { CrearAccesoDto } from './dto/crear-acceso.dto.js';
+import { UpsertPerfilObreroDto } from './dto/upsert-perfil-obrero.dto.js';
 
 @Injectable()
 export class TrabajadoresService {
@@ -21,6 +22,7 @@ export class TrabajadoresService {
     return this.prisma.trabajador.findMany({
       include: {
         user: { select: { id: true, name: true, email: true, role: true } },
+        perfilObrero: true,
       },
       orderBy: { nombre: 'asc' },
     });
@@ -32,6 +34,7 @@ export class TrabajadoresService {
       include: {
         user: { select: { id: true, name: true, email: true, role: true } },
         proyectos: { include: { proyecto: true } },
+        perfilObrero: true,
       },
     });
     if (!t) throw new NotFoundException(`Trabajador ${id} no encontrado`);
@@ -144,6 +147,15 @@ export class TrabajadoresService {
   async desasignarProyecto(id: string, proyectoId: string) {
     return this.prisma.proyectoTrabajador.delete({
       where: { proyectoId_trabajadorId: { proyectoId, trabajadorId: id } },
+    });
+  }
+
+  async upsertPerfilObrero(id: string, dto: UpsertPerfilObreroDto) {
+    await this.assertExists(id);
+    return this.prisma.perfilObrero.upsert({
+      where: { trabajadorId: id },
+      create: { trabajadorId: id, ...dto },
+      update: dto,
     });
   }
 

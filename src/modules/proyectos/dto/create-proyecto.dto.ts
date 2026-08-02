@@ -1,4 +1,11 @@
-import { IsDateString, IsEnum, IsOptional, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsString,
+  Matches,
+} from 'class-validator';
 import { EstadoProyecto, AmbitoGeografico } from '../../../prisma/types.js';
 
 export class CreateProyectoDto {
@@ -48,6 +55,26 @@ export class CreateProyectoDto {
   @IsOptional()
   @IsString()
   prevencionistaId?: string;
+
+  @IsOptional()
+  @Matches(/^([01]\d|2[0-3]):[0-5]\d$/, {
+    message: 'jornadaInicio debe tener formato HH:mm',
+  })
+  jornadaInicio?: string;
+
+  @IsOptional()
+  @Matches(/^([01]\d|2[0-3]):[0-5]\d$/, {
+    message: 'jornadaFin debe tener formato HH:mm',
+  })
+  jornadaFin?: string;
+
+  @IsOptional()
+  @IsInt()
+  toleranciaMinutos?: number;
+
+  @IsOptional()
+  @IsInt()
+  toleranciaSalidaMinutos?: number;
 
   @IsOptional()
   @IsDateString()

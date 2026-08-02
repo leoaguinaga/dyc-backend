@@ -653,14 +653,6 @@ export type EnumEstadoCotizacionFieldUpdateOperationsInput = {
   set?: $Enums.EstadoCotizacion
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type CotizacionCreateNestedOneWithoutArchivosInput = {
   create?: Prisma.XOR<Prisma.CotizacionCreateWithoutArchivosInput, Prisma.CotizacionUncheckedCreateWithoutArchivosInput>
   connectOrCreate?: Prisma.CotizacionCreateOrConnectWithoutArchivosInput

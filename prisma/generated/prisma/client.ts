@@ -92,10 +92,40 @@ export type Hito = Prisma.HitoModel
  */
 export type Trabajador = Prisma.TrabajadorModel
 /**
+ * Model PerfilObrero
+ * 
+ */
+export type PerfilObrero = Prisma.PerfilObreroModel
+/**
  * Model ProyectoTrabajador
  * 
  */
 export type ProyectoTrabajador = Prisma.ProyectoTrabajadorModel
+/**
+ * Model Turno
+ * 
+ */
+export type Turno = Prisma.TurnoModel
+/**
+ * Model Asistencia
+ * 
+ */
+export type Asistencia = Prisma.AsistenciaModel
+/**
+ * Model RegistroVisita
+ * 
+ */
+export type RegistroVisita = Prisma.RegistroVisitaModel
+/**
+ * Model VisitaTercero
+ * 
+ */
+export type VisitaTercero = Prisma.VisitaTerceroModel
+/**
+ * Model VisitanteTercero
+ * 
+ */
+export type VisitanteTercero = Prisma.VisitanteTerceroModel
 /**
  * Model Proveedor
  * 

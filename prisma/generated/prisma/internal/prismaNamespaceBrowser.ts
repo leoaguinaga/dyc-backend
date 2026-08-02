@@ -61,7 +61,13 @@ export const ModelName = {
   ProyectoSupervisor: 'ProyectoSupervisor',
   Hito: 'Hito',
   Trabajador: 'Trabajador',
+  PerfilObrero: 'PerfilObrero',
   ProyectoTrabajador: 'ProyectoTrabajador',
+  Turno: 'Turno',
+  Asistencia: 'Asistencia',
+  RegistroVisita: 'RegistroVisita',
+  VisitaTercero: 'VisitaTercero',
+  VisitanteTercero: 'VisitanteTercero',
   Proveedor: 'Proveedor',
   ContactoProveedor: 'ContactoProveedor',
   CatalogoProductoProveedor: 'CatalogoProductoProveedor',
@@ -202,6 +208,10 @@ export const ProyectoScalarFieldEnum = {
   coordinadorEmpresaId: 'coordinadorEmpresaId',
   ejecutorId: 'ejecutorId',
   prevencionistaId: 'prevencionistaId',
+  jornadaInicio: 'jornadaInicio',
+  jornadaFin: 'jornadaFin',
+  toleranciaMinutos: 'toleranciaMinutos',
+  toleranciaSalidaMinutos: 'toleranciaSalidaMinutos',
   fechaInicio: 'fechaInicio',
   fechaFin: 'fechaFin',
   fechaInicioReal: 'fechaInicioReal',
@@ -258,6 +268,25 @@ export const TrabajadorScalarFieldEnum = {
 export type TrabajadorScalarFieldEnum = (typeof TrabajadorScalarFieldEnum)[keyof typeof TrabajadorScalarFieldEnum]
 
 
+export const PerfilObreroScalarFieldEnum = {
+  id: 'id',
+  trabajadorId: 'trabajadorId',
+  categoria: 'categoria',
+  precioHora: 'precioHora',
+  tipoSangre: 'tipoSangre',
+  contactoEmergenciaNombre: 'contactoEmergenciaNombre',
+  contactoEmergenciaTelefono: 'contactoEmergenciaTelefono',
+  direccion: 'direccion',
+  tallaUniforme: 'tallaUniforme',
+  tallaCalzado: 'tallaCalzado',
+  numeroSctr: 'numeroSctr',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PerfilObreroScalarFieldEnum = (typeof PerfilObreroScalarFieldEnum)[keyof typeof PerfilObreroScalarFieldEnum]
+
+
 export const ProyectoTrabajadorScalarFieldEnum = {
   id: 'id',
   proyectoId: 'proyectoId',
@@ -267,6 +296,89 @@ export const ProyectoTrabajadorScalarFieldEnum = {
 } as const
 
 export type ProyectoTrabajadorScalarFieldEnum = (typeof ProyectoTrabajadorScalarFieldEnum)[keyof typeof ProyectoTrabajadorScalarFieldEnum]
+
+
+export const TurnoScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  fecha: 'fecha',
+  estado: 'estado',
+  horaAperturaReal: 'horaAperturaReal',
+  horaCierreReal: 'horaCierreReal',
+  fotoUrl: 'fotoUrl',
+  fotoOmitida: 'fotoOmitida',
+  motivoFotoOmitida: 'motivoFotoOmitida',
+  abiertoPorId: 'abiertoPorId',
+  cerradoPorId: 'cerradoPorId',
+  corregidoPorId: 'corregidoPorId',
+  corregidoEn: 'corregidoEn',
+  motivoCorreccion: 'motivoCorreccion',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type TurnoScalarFieldEnum = (typeof TurnoScalarFieldEnum)[keyof typeof TurnoScalarFieldEnum]
+
+
+export const AsistenciaScalarFieldEnum = {
+  id: 'id',
+  turnoId: 'turnoId',
+  trabajadorId: 'trabajadorId',
+  estado: 'estado',
+  horaLlegadaReal: 'horaLlegadaReal',
+  justificada: 'justificada',
+  justificacion: 'justificacion',
+  salidaTempranaHora: 'salidaTempranaHora',
+  salidaTempranaMotivo: 'salidaTempranaMotivo',
+  horasNormales: 'horasNormales',
+  horasExtra: 'horasExtra',
+  pagarExtra: 'pagarExtra'
+} as const
+
+export type AsistenciaScalarFieldEnum = (typeof AsistenciaScalarFieldEnum)[keyof typeof AsistenciaScalarFieldEnum]
+
+
+export const RegistroVisitaScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  fecha: 'fecha',
+  tipo: 'tipo',
+  trabajadorId: 'trabajadorId',
+  userId: 'userId',
+  nombreLibre: 'nombreLibre',
+  motivo: 'motivo',
+  horaEntrada: 'horaEntrada',
+  horaSalida: 'horaSalida',
+  registradoPorId: 'registradoPorId',
+  creadoEn: 'creadoEn'
+} as const
+
+export type RegistroVisitaScalarFieldEnum = (typeof RegistroVisitaScalarFieldEnum)[keyof typeof RegistroVisitaScalarFieldEnum]
+
+
+export const VisitaTerceroScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  fecha: 'fecha',
+  empresaNombre: 'empresaNombre',
+  motivo: 'motivo',
+  registradoPorId: 'registradoPorId',
+  creadoEn: 'creadoEn'
+} as const
+
+export type VisitaTerceroScalarFieldEnum = (typeof VisitaTerceroScalarFieldEnum)[keyof typeof VisitaTerceroScalarFieldEnum]
+
+
+export const VisitanteTerceroScalarFieldEnum = {
+  id: 'id',
+  visitaTerceroId: 'visitaTerceroId',
+  nombre: 'nombre',
+  dni: 'dni',
+  horaEntrada: 'horaEntrada',
+  horaSalida: 'horaSalida'
+} as const
+
+export type VisitanteTerceroScalarFieldEnum = (typeof VisitanteTerceroScalarFieldEnum)[keyof typeof VisitanteTerceroScalarFieldEnum]
 
 
 export const ProveedorScalarFieldEnum = {
