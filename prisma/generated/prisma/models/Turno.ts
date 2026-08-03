@@ -29,6 +29,7 @@ export type TurnoMinAggregateOutputType = {
   proyectoId: string | null
   fecha: Date | null
   estado: $Enums.EstadoTurno | null
+  turnoConfigId: string | null
   horaAperturaReal: Date | null
   horaCierreReal: Date | null
   fotoUrl: string | null
@@ -48,6 +49,7 @@ export type TurnoMaxAggregateOutputType = {
   proyectoId: string | null
   fecha: Date | null
   estado: $Enums.EstadoTurno | null
+  turnoConfigId: string | null
   horaAperturaReal: Date | null
   horaCierreReal: Date | null
   fotoUrl: string | null
@@ -67,6 +69,7 @@ export type TurnoCountAggregateOutputType = {
   proyectoId: number
   fecha: number
   estado: number
+  turnoConfigId: number
   horaAperturaReal: number
   horaCierreReal: number
   fotoUrl: number
@@ -88,6 +91,7 @@ export type TurnoMinAggregateInputType = {
   proyectoId?: true
   fecha?: true
   estado?: true
+  turnoConfigId?: true
   horaAperturaReal?: true
   horaCierreReal?: true
   fotoUrl?: true
@@ -107,6 +111,7 @@ export type TurnoMaxAggregateInputType = {
   proyectoId?: true
   fecha?: true
   estado?: true
+  turnoConfigId?: true
   horaAperturaReal?: true
   horaCierreReal?: true
   fotoUrl?: true
@@ -126,6 +131,7 @@ export type TurnoCountAggregateInputType = {
   proyectoId?: true
   fecha?: true
   estado?: true
+  turnoConfigId?: true
   horaAperturaReal?: true
   horaCierreReal?: true
   fotoUrl?: true
@@ -218,6 +224,7 @@ export type TurnoGroupByOutputType = {
   proyectoId: string
   fecha: Date
   estado: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date
   horaCierreReal: Date | null
   fotoUrl: string | null
@@ -258,6 +265,7 @@ export type TurnoWhereInput = {
   proyectoId?: Prisma.StringFilter<"Turno"> | string
   fecha?: Prisma.DateTimeFilter<"Turno"> | Date | string
   estado?: Prisma.EnumEstadoTurnoFilter<"Turno"> | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFilter<"Turno"> | string
   horaAperturaReal?: Prisma.DateTimeFilter<"Turno"> | Date | string
   horaCierreReal?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
   fotoUrl?: Prisma.StringNullableFilter<"Turno"> | string | null
@@ -271,6 +279,7 @@ export type TurnoWhereInput = {
   creadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
+  turnoConfig?: Prisma.XOR<Prisma.TurnoConfigScalarRelationFilter, Prisma.TurnoConfigWhereInput>
   abiertoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   cerradoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   corregidoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -282,6 +291,7 @@ export type TurnoOrderByWithRelationInput = {
   proyectoId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
   horaAperturaReal?: Prisma.SortOrder
   horaCierreReal?: Prisma.SortOrderInput | Prisma.SortOrder
   fotoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -295,6 +305,7 @@ export type TurnoOrderByWithRelationInput = {
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
+  turnoConfig?: Prisma.TurnoConfigOrderByWithRelationInput
   abiertoPor?: Prisma.UserOrderByWithRelationInput
   cerradoPor?: Prisma.UserOrderByWithRelationInput
   corregidoPor?: Prisma.UserOrderByWithRelationInput
@@ -303,13 +314,14 @@ export type TurnoOrderByWithRelationInput = {
 
 export type TurnoWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  proyectoId_fecha?: Prisma.TurnoProyectoIdFechaCompoundUniqueInput
+  proyectoId_fecha_turnoConfigId?: Prisma.TurnoProyectoIdFechaTurnoConfigIdCompoundUniqueInput
   AND?: Prisma.TurnoWhereInput | Prisma.TurnoWhereInput[]
   OR?: Prisma.TurnoWhereInput[]
   NOT?: Prisma.TurnoWhereInput | Prisma.TurnoWhereInput[]
   proyectoId?: Prisma.StringFilter<"Turno"> | string
   fecha?: Prisma.DateTimeFilter<"Turno"> | Date | string
   estado?: Prisma.EnumEstadoTurnoFilter<"Turno"> | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFilter<"Turno"> | string
   horaAperturaReal?: Prisma.DateTimeFilter<"Turno"> | Date | string
   horaCierreReal?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
   fotoUrl?: Prisma.StringNullableFilter<"Turno"> | string | null
@@ -323,17 +335,19 @@ export type TurnoWhereUniqueInput = Prisma.AtLeast<{
   creadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
+  turnoConfig?: Prisma.XOR<Prisma.TurnoConfigScalarRelationFilter, Prisma.TurnoConfigWhereInput>
   abiertoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   cerradoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   corregidoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
-}, "id" | "proyectoId_fecha">
+}, "id" | "proyectoId_fecha_turnoConfigId">
 
 export type TurnoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
   horaAperturaReal?: Prisma.SortOrder
   horaCierreReal?: Prisma.SortOrderInput | Prisma.SortOrder
   fotoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -359,6 +373,7 @@ export type TurnoScalarWhereWithAggregatesInput = {
   proyectoId?: Prisma.StringWithAggregatesFilter<"Turno"> | string
   fecha?: Prisma.DateTimeWithAggregatesFilter<"Turno"> | Date | string
   estado?: Prisma.EnumEstadoTurnoWithAggregatesFilter<"Turno"> | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringWithAggregatesFilter<"Turno"> | string
   horaAperturaReal?: Prisma.DateTimeWithAggregatesFilter<"Turno"> | Date | string
   horaCierreReal?: Prisma.DateTimeNullableWithAggregatesFilter<"Turno"> | Date | string | null
   fotoUrl?: Prisma.StringNullableWithAggregatesFilter<"Turno"> | string | null
@@ -387,6 +402,7 @@ export type TurnoCreateInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
@@ -398,6 +414,7 @@ export type TurnoUncheckedCreateInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -427,6 +444,7 @@ export type TurnoUpdateInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
@@ -438,6 +456,7 @@ export type TurnoUncheckedUpdateInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -458,6 +477,7 @@ export type TurnoCreateManyInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -492,6 +512,7 @@ export type TurnoUncheckedUpdateManyInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -516,9 +537,10 @@ export type TurnoOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type TurnoProyectoIdFechaCompoundUniqueInput = {
+export type TurnoProyectoIdFechaTurnoConfigIdCompoundUniqueInput = {
   proyectoId: string
   fecha: Date | string
+  turnoConfigId: string
 }
 
 export type TurnoCountOrderByAggregateInput = {
@@ -526,6 +548,7 @@ export type TurnoCountOrderByAggregateInput = {
   proyectoId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
   horaAperturaReal?: Prisma.SortOrder
   horaCierreReal?: Prisma.SortOrder
   fotoUrl?: Prisma.SortOrder
@@ -545,6 +568,7 @@ export type TurnoMaxOrderByAggregateInput = {
   proyectoId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
   horaAperturaReal?: Prisma.SortOrder
   horaCierreReal?: Prisma.SortOrder
   fotoUrl?: Prisma.SortOrder
@@ -564,6 +588,7 @@ export type TurnoMinOrderByAggregateInput = {
   proyectoId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
   horaAperturaReal?: Prisma.SortOrder
   horaCierreReal?: Prisma.SortOrder
   fotoUrl?: Prisma.SortOrder
@@ -751,6 +776,48 @@ export type TurnoUncheckedUpdateManyWithoutProyectoNestedInput = {
   deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
 }
 
+export type TurnoCreateNestedManyWithoutTurnoConfigInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutTurnoConfigInput, Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput> | Prisma.TurnoCreateWithoutTurnoConfigInput[] | Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput | Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput[]
+  createMany?: Prisma.TurnoCreateManyTurnoConfigInputEnvelope
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+}
+
+export type TurnoUncheckedCreateNestedManyWithoutTurnoConfigInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutTurnoConfigInput, Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput> | Prisma.TurnoCreateWithoutTurnoConfigInput[] | Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput | Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput[]
+  createMany?: Prisma.TurnoCreateManyTurnoConfigInputEnvelope
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+}
+
+export type TurnoUpdateManyWithoutTurnoConfigNestedInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutTurnoConfigInput, Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput> | Prisma.TurnoCreateWithoutTurnoConfigInput[] | Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput | Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput[]
+  upsert?: Prisma.TurnoUpsertWithWhereUniqueWithoutTurnoConfigInput | Prisma.TurnoUpsertWithWhereUniqueWithoutTurnoConfigInput[]
+  createMany?: Prisma.TurnoCreateManyTurnoConfigInputEnvelope
+  set?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  disconnect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  delete?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  update?: Prisma.TurnoUpdateWithWhereUniqueWithoutTurnoConfigInput | Prisma.TurnoUpdateWithWhereUniqueWithoutTurnoConfigInput[]
+  updateMany?: Prisma.TurnoUpdateManyWithWhereWithoutTurnoConfigInput | Prisma.TurnoUpdateManyWithWhereWithoutTurnoConfigInput[]
+  deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
+}
+
+export type TurnoUncheckedUpdateManyWithoutTurnoConfigNestedInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutTurnoConfigInput, Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput> | Prisma.TurnoCreateWithoutTurnoConfigInput[] | Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput | Prisma.TurnoCreateOrConnectWithoutTurnoConfigInput[]
+  upsert?: Prisma.TurnoUpsertWithWhereUniqueWithoutTurnoConfigInput | Prisma.TurnoUpsertWithWhereUniqueWithoutTurnoConfigInput[]
+  createMany?: Prisma.TurnoCreateManyTurnoConfigInputEnvelope
+  set?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  disconnect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  delete?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  update?: Prisma.TurnoUpdateWithWhereUniqueWithoutTurnoConfigInput | Prisma.TurnoUpdateWithWhereUniqueWithoutTurnoConfigInput[]
+  updateMany?: Prisma.TurnoUpdateManyWithWhereWithoutTurnoConfigInput | Prisma.TurnoUpdateManyWithWhereWithoutTurnoConfigInput[]
+  deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
+}
+
 export type EnumEstadoTurnoFieldUpdateOperationsInput = {
   set?: $Enums.EstadoTurno
 }
@@ -783,6 +850,7 @@ export type TurnoCreateWithoutAbiertoPorInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
@@ -793,6 +861,7 @@ export type TurnoUncheckedCreateWithoutAbiertoPorInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -831,6 +900,7 @@ export type TurnoCreateWithoutCerradoPorInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
@@ -841,6 +911,7 @@ export type TurnoUncheckedCreateWithoutCerradoPorInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -879,6 +950,7 @@ export type TurnoCreateWithoutCorregidoPorInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
@@ -889,6 +961,7 @@ export type TurnoUncheckedCreateWithoutCorregidoPorInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -937,6 +1010,7 @@ export type TurnoScalarWhereInput = {
   proyectoId?: Prisma.StringFilter<"Turno"> | string
   fecha?: Prisma.DateTimeFilter<"Turno"> | Date | string
   estado?: Prisma.EnumEstadoTurnoFilter<"Turno"> | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFilter<"Turno"> | string
   horaAperturaReal?: Prisma.DateTimeFilter<"Turno"> | Date | string
   horaCierreReal?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
   fotoUrl?: Prisma.StringNullableFilter<"Turno"> | string | null
@@ -996,6 +1070,7 @@ export type TurnoCreateWithoutProyectoInput = {
   motivoCorreccion?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
@@ -1006,6 +1081,7 @@ export type TurnoUncheckedCreateWithoutProyectoInput = {
   id?: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -1047,7 +1123,7 @@ export type TurnoUpdateManyWithWhereWithoutProyectoInput = {
   data: Prisma.XOR<Prisma.TurnoUpdateManyMutationInput, Prisma.TurnoUncheckedUpdateManyWithoutProyectoInput>
 }
 
-export type TurnoCreateWithoutAsistenciasInput = {
+export type TurnoCreateWithoutTurnoConfigInput = {
   id?: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
@@ -1064,6 +1140,73 @@ export type TurnoCreateWithoutAsistenciasInput = {
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
+}
+
+export type TurnoUncheckedCreateWithoutTurnoConfigInput = {
+  id?: string
+  proyectoId: string
+  fecha: Date | string
+  estado?: $Enums.EstadoTurno
+  horaAperturaReal: Date | string
+  horaCierreReal?: Date | string | null
+  fotoUrl?: string | null
+  fotoOmitida?: boolean
+  motivoFotoOmitida?: string | null
+  abiertoPorId: string
+  cerradoPorId?: string | null
+  corregidoPorId?: string | null
+  corregidoEn?: Date | string | null
+  motivoCorreccion?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
+}
+
+export type TurnoCreateOrConnectWithoutTurnoConfigInput = {
+  where: Prisma.TurnoWhereUniqueInput
+  create: Prisma.XOR<Prisma.TurnoCreateWithoutTurnoConfigInput, Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput>
+}
+
+export type TurnoCreateManyTurnoConfigInputEnvelope = {
+  data: Prisma.TurnoCreateManyTurnoConfigInput | Prisma.TurnoCreateManyTurnoConfigInput[]
+  skipDuplicates?: boolean
+}
+
+export type TurnoUpsertWithWhereUniqueWithoutTurnoConfigInput = {
+  where: Prisma.TurnoWhereUniqueInput
+  update: Prisma.XOR<Prisma.TurnoUpdateWithoutTurnoConfigInput, Prisma.TurnoUncheckedUpdateWithoutTurnoConfigInput>
+  create: Prisma.XOR<Prisma.TurnoCreateWithoutTurnoConfigInput, Prisma.TurnoUncheckedCreateWithoutTurnoConfigInput>
+}
+
+export type TurnoUpdateWithWhereUniqueWithoutTurnoConfigInput = {
+  where: Prisma.TurnoWhereUniqueInput
+  data: Prisma.XOR<Prisma.TurnoUpdateWithoutTurnoConfigInput, Prisma.TurnoUncheckedUpdateWithoutTurnoConfigInput>
+}
+
+export type TurnoUpdateManyWithWhereWithoutTurnoConfigInput = {
+  where: Prisma.TurnoScalarWhereInput
+  data: Prisma.XOR<Prisma.TurnoUpdateManyMutationInput, Prisma.TurnoUncheckedUpdateManyWithoutTurnoConfigInput>
+}
+
+export type TurnoCreateWithoutAsistenciasInput = {
+  id?: string
+  fecha: Date | string
+  estado?: $Enums.EstadoTurno
+  horaAperturaReal: Date | string
+  horaCierreReal?: Date | string | null
+  fotoUrl?: string | null
+  fotoOmitida?: boolean
+  motivoFotoOmitida?: string | null
+  corregidoEn?: Date | string | null
+  motivoCorreccion?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
+  abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
+  cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
+  corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
 }
 
 export type TurnoUncheckedCreateWithoutAsistenciasInput = {
@@ -1071,6 +1214,7 @@ export type TurnoUncheckedCreateWithoutAsistenciasInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -1115,6 +1259,7 @@ export type TurnoUpdateWithoutAsistenciasInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
@@ -1125,6 +1270,7 @@ export type TurnoUncheckedUpdateWithoutAsistenciasInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1144,6 +1290,7 @@ export type TurnoCreateManyAbiertoPorInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -1162,6 +1309,7 @@ export type TurnoCreateManyCerradoPorInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -1180,6 +1328,7 @@ export type TurnoCreateManyCorregidoPorInput = {
   proyectoId: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -1207,6 +1356,7 @@ export type TurnoUpdateWithoutAbiertoPorInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
@@ -1217,6 +1367,7 @@ export type TurnoUncheckedUpdateWithoutAbiertoPorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1236,6 +1387,7 @@ export type TurnoUncheckedUpdateManyWithoutAbiertoPorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1263,6 +1415,7 @@ export type TurnoUpdateWithoutCerradoPorInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
@@ -1273,6 +1426,7 @@ export type TurnoUncheckedUpdateWithoutCerradoPorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1292,6 +1446,7 @@ export type TurnoUncheckedUpdateManyWithoutCerradoPorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1319,6 +1474,7 @@ export type TurnoUpdateWithoutCorregidoPorInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
@@ -1329,6 +1485,7 @@ export type TurnoUncheckedUpdateWithoutCorregidoPorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1348,6 +1505,7 @@ export type TurnoUncheckedUpdateManyWithoutCorregidoPorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1365,6 +1523,7 @@ export type TurnoCreateManyProyectoInput = {
   id?: string
   fecha: Date | string
   estado?: $Enums.EstadoTurno
+  turnoConfigId: string
   horaAperturaReal: Date | string
   horaCierreReal?: Date | string | null
   fotoUrl?: string | null
@@ -1392,6 +1551,7 @@ export type TurnoUpdateWithoutProyectoInput = {
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
@@ -1402,6 +1562,7 @@ export type TurnoUncheckedUpdateWithoutProyectoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1419,6 +1580,85 @@ export type TurnoUncheckedUpdateWithoutProyectoInput = {
 
 export type TurnoUncheckedUpdateManyWithoutProyectoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
+  horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fotoOmitida?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abiertoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  cerradoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TurnoCreateManyTurnoConfigInput = {
+  id?: string
+  proyectoId: string
+  fecha: Date | string
+  estado?: $Enums.EstadoTurno
+  horaAperturaReal: Date | string
+  horaCierreReal?: Date | string | null
+  fotoUrl?: string | null
+  fotoOmitida?: boolean
+  motivoFotoOmitida?: string | null
+  abiertoPorId: string
+  cerradoPorId?: string | null
+  corregidoPorId?: string | null
+  corregidoEn?: Date | string | null
+  motivoCorreccion?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type TurnoUpdateWithoutTurnoConfigInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fotoOmitida?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
+  cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
+  corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
+}
+
+export type TurnoUncheckedUpdateWithoutTurnoConfigInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fotoOmitida?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abiertoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  cerradoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
+}
+
+export type TurnoUncheckedUpdateManyWithoutTurnoConfigInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
   horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1471,6 +1711,7 @@ export type TurnoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   proyectoId?: boolean
   fecha?: boolean
   estado?: boolean
+  turnoConfigId?: boolean
   horaAperturaReal?: boolean
   horaCierreReal?: boolean
   fotoUrl?: boolean
@@ -1484,6 +1725,7 @@ export type TurnoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   creadoEn?: boolean
   actualizadoEn?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
@@ -1496,6 +1738,7 @@ export type TurnoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   proyectoId?: boolean
   fecha?: boolean
   estado?: boolean
+  turnoConfigId?: boolean
   horaAperturaReal?: boolean
   horaCierreReal?: boolean
   fotoUrl?: boolean
@@ -1509,6 +1752,7 @@ export type TurnoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   creadoEn?: boolean
   actualizadoEn?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
@@ -1519,6 +1763,7 @@ export type TurnoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   proyectoId?: boolean
   fecha?: boolean
   estado?: boolean
+  turnoConfigId?: boolean
   horaAperturaReal?: boolean
   horaCierreReal?: boolean
   fotoUrl?: boolean
@@ -1532,6 +1777,7 @@ export type TurnoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   creadoEn?: boolean
   actualizadoEn?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
@@ -1542,6 +1788,7 @@ export type TurnoSelectScalar = {
   proyectoId?: boolean
   fecha?: boolean
   estado?: boolean
+  turnoConfigId?: boolean
   horaAperturaReal?: boolean
   horaCierreReal?: boolean
   fotoUrl?: boolean
@@ -1556,9 +1803,10 @@ export type TurnoSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type TurnoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "fecha" | "estado" | "horaAperturaReal" | "horaCierreReal" | "fotoUrl" | "fotoOmitida" | "motivoFotoOmitida" | "abiertoPorId" | "cerradoPorId" | "corregidoPorId" | "corregidoEn" | "motivoCorreccion" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["turno"]>
+export type TurnoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "fecha" | "estado" | "turnoConfigId" | "horaAperturaReal" | "horaCierreReal" | "fotoUrl" | "fotoOmitida" | "motivoFotoOmitida" | "abiertoPorId" | "cerradoPorId" | "corregidoPorId" | "corregidoEn" | "motivoCorreccion" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["turno"]>
 export type TurnoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
@@ -1567,12 +1815,14 @@ export type TurnoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }
 export type TurnoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
 }
 export type TurnoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
@@ -1582,6 +1832,7 @@ export type $TurnoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Turno"
   objects: {
     proyecto: Prisma.$ProyectoPayload<ExtArgs>
+    turnoConfig: Prisma.$TurnoConfigPayload<ExtArgs>
     abiertoPor: Prisma.$UserPayload<ExtArgs>
     cerradoPor: Prisma.$UserPayload<ExtArgs> | null
     corregidoPor: Prisma.$UserPayload<ExtArgs> | null
@@ -1592,6 +1843,7 @@ export type $TurnoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     proyectoId: string
     fecha: Date
     estado: $Enums.EstadoTurno
+    turnoConfigId: string
     horaAperturaReal: Date
     horaCierreReal: Date | null
     fotoUrl: string | null
@@ -1999,6 +2251,7 @@ readonly fields: TurnoFieldRefs;
 export interface Prisma__TurnoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   proyecto<T extends Prisma.ProyectoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProyectoDefaultArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  turnoConfig<T extends Prisma.TurnoConfigDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TurnoConfigDefaultArgs<ExtArgs>>): Prisma.Prisma__TurnoConfigClient<runtime.Types.Result.GetResult<Prisma.$TurnoConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   abiertoPor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   cerradoPor<T extends Prisma.Turno$cerradoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Turno$cerradoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   corregidoPor<T extends Prisma.Turno$corregidoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Turno$corregidoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -2036,6 +2289,7 @@ export interface TurnoFieldRefs {
   readonly proyectoId: Prisma.FieldRef<"Turno", 'String'>
   readonly fecha: Prisma.FieldRef<"Turno", 'DateTime'>
   readonly estado: Prisma.FieldRef<"Turno", 'EstadoTurno'>
+  readonly turnoConfigId: Prisma.FieldRef<"Turno", 'String'>
   readonly horaAperturaReal: Prisma.FieldRef<"Turno", 'DateTime'>
   readonly horaCierreReal: Prisma.FieldRef<"Turno", 'DateTime'>
   readonly fotoUrl: Prisma.FieldRef<"Turno", 'String'>

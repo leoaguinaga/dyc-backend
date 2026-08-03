@@ -396,6 +396,8 @@ export type ProyectoWhereInput = {
   turnos?: Prisma.TurnoListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
   visitasTercero?: Prisma.VisitaTerceroListRelationFilter
+  planillas?: Prisma.PlanillaListRelationFilter
+  turnoConfigs?: Prisma.TurnoConfigListRelationFilter
 }
 
 export type ProyectoOrderByWithRelationInput = {
@@ -440,6 +442,8 @@ export type ProyectoOrderByWithRelationInput = {
   turnos?: Prisma.TurnoOrderByRelationAggregateInput
   registrosVisita?: Prisma.RegistroVisitaOrderByRelationAggregateInput
   visitasTercero?: Prisma.VisitaTerceroOrderByRelationAggregateInput
+  planillas?: Prisma.PlanillaOrderByRelationAggregateInput
+  turnoConfigs?: Prisma.TurnoConfigOrderByRelationAggregateInput
 }
 
 export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
@@ -487,6 +491,8 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
   turnos?: Prisma.TurnoListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
   visitasTercero?: Prisma.VisitaTerceroListRelationFilter
+  planillas?: Prisma.PlanillaListRelationFilter
+  turnoConfigs?: Prisma.TurnoConfigListRelationFilter
 }, "id" | "codigo">
 
 export type ProyectoOrderByWithAggregationInput = {
@@ -589,6 +595,8 @@ export type ProyectoCreateInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateInput = {
@@ -627,6 +635,8 @@ export type ProyectoUncheckedCreateInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUpdateInput = {
@@ -665,6 +675,8 @@ export type ProyectoUpdateInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateInput = {
@@ -703,6 +715,8 @@ export type ProyectoUncheckedUpdateInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateManyInput = {
@@ -1223,6 +1237,20 @@ export type ProyectoUpdateOneRequiredWithoutTrabajadoresNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutTrabajadoresInput, Prisma.ProyectoUpdateWithoutTrabajadoresInput>, Prisma.ProyectoUncheckedUpdateWithoutTrabajadoresInput>
 }
 
+export type ProyectoCreateNestedOneWithoutTurnoConfigsInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnoConfigsInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutTurnoConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnoConfigsInput
+  upsert?: Prisma.ProyectoUpsertWithoutTurnoConfigsInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutTurnoConfigsInput, Prisma.ProyectoUpdateWithoutTurnoConfigsInput>, Prisma.ProyectoUncheckedUpdateWithoutTurnoConfigsInput>
+}
+
 export type ProyectoCreateNestedOneWithoutTurnosInput = {
   create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnosInput, Prisma.ProyectoUncheckedCreateWithoutTurnosInput>
   connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnosInput
@@ -1263,6 +1291,20 @@ export type ProyectoUpdateOneRequiredWithoutVisitasTerceroNestedInput = {
   upsert?: Prisma.ProyectoUpsertWithoutVisitasTerceroInput
   connect?: Prisma.ProyectoWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutVisitasTerceroInput, Prisma.ProyectoUpdateWithoutVisitasTerceroInput>, Prisma.ProyectoUncheckedUpdateWithoutVisitasTerceroInput>
+}
+
+export type ProyectoCreateNestedOneWithoutPlanillasInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPlanillasInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutPlanillasNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPlanillasInput
+  upsert?: Prisma.ProyectoUpsertWithoutPlanillasInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutPlanillasInput, Prisma.ProyectoUpdateWithoutPlanillasInput>, Prisma.ProyectoUncheckedUpdateWithoutPlanillasInput>
 }
 
 export type ProyectoCreateNestedOneWithoutRequerimientosInput = {
@@ -1344,6 +1386,8 @@ export type ProyectoCreateWithoutClienteInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutClienteInput = {
@@ -1381,6 +1425,8 @@ export type ProyectoUncheckedCreateWithoutClienteInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutClienteInput = {
@@ -1475,6 +1521,8 @@ export type ProyectoCreateWithoutCoordinadorClienteInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
@@ -1512,6 +1560,8 @@ export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutCoordinadorClienteInput = {
@@ -1575,6 +1625,8 @@ export type ProyectoCreateWithoutSubproyectosInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
@@ -1612,6 +1664,8 @@ export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutSubproyectosInput = {
@@ -1654,6 +1708,8 @@ export type ProyectoCreateWithoutParentInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutParentInput = {
@@ -1691,6 +1747,8 @@ export type ProyectoUncheckedCreateWithoutParentInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutParentInput = {
@@ -1749,6 +1807,8 @@ export type ProyectoUpdateWithoutSubproyectosInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
@@ -1786,6 +1846,8 @@ export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUpsertWithWhereUniqueWithoutParentInput = {
@@ -1839,6 +1901,8 @@ export type ProyectoCreateWithoutSupervisoresInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
@@ -1876,6 +1940,8 @@ export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutSupervisoresInput = {
@@ -1929,6 +1995,8 @@ export type ProyectoUpdateWithoutSupervisoresInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
@@ -1966,6 +2034,8 @@ export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutHitosInput = {
@@ -2003,6 +2073,8 @@ export type ProyectoCreateWithoutHitosInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutHitosInput = {
@@ -2040,6 +2112,8 @@ export type ProyectoUncheckedCreateWithoutHitosInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutHitosInput = {
@@ -2093,6 +2167,8 @@ export type ProyectoUpdateWithoutHitosInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutHitosInput = {
@@ -2130,6 +2206,8 @@ export type ProyectoUncheckedUpdateWithoutHitosInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutEjecutorInput = {
@@ -2167,6 +2245,8 @@ export type ProyectoCreateWithoutEjecutorInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutEjecutorInput = {
@@ -2204,6 +2284,8 @@ export type ProyectoUncheckedCreateWithoutEjecutorInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutEjecutorInput = {
@@ -2251,6 +2333,8 @@ export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
@@ -2288,6 +2372,8 @@ export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutCoordinadorEmpresaInput = {
@@ -2335,6 +2421,8 @@ export type ProyectoCreateWithoutPrevencionistaInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
@@ -2372,6 +2460,8 @@ export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutPrevencionistaInput = {
@@ -2467,6 +2557,8 @@ export type ProyectoCreateWithoutTrabajadoresInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
@@ -2504,6 +2596,8 @@ export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutTrabajadoresInput = {
@@ -2557,6 +2651,8 @@ export type ProyectoUpdateWithoutTrabajadoresInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
@@ -2594,6 +2690,180 @@ export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutTurnoConfigsInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutTurnoConfigsInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutTurnoConfigsInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+}
+
+export type ProyectoUpsertWithoutTurnoConfigsInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedUpdateWithoutTurnoConfigsInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutTurnoConfigsInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedUpdateWithoutTurnoConfigsInput>
+}
+
+export type ProyectoUpdateWithoutTurnoConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutTurnoConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutTurnosInput = {
@@ -2631,6 +2901,8 @@ export type ProyectoCreateWithoutTurnosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutTurnosInput = {
@@ -2668,6 +2940,8 @@ export type ProyectoUncheckedCreateWithoutTurnosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutTurnosInput = {
@@ -2721,6 +2995,8 @@ export type ProyectoUpdateWithoutTurnosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutTurnosInput = {
@@ -2758,6 +3034,8 @@ export type ProyectoUncheckedUpdateWithoutTurnosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutRegistrosVisitaInput = {
@@ -2795,6 +3073,8 @@ export type ProyectoCreateWithoutRegistrosVisitaInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutRegistrosVisitaInput = {
@@ -2832,6 +3112,8 @@ export type ProyectoUncheckedCreateWithoutRegistrosVisitaInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutRegistrosVisitaInput = {
@@ -2885,6 +3167,8 @@ export type ProyectoUpdateWithoutRegistrosVisitaInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
@@ -2922,6 +3206,8 @@ export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutVisitasTerceroInput = {
@@ -2959,6 +3245,8 @@ export type ProyectoCreateWithoutVisitasTerceroInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutVisitasTerceroInput = {
@@ -2996,6 +3284,8 @@ export type ProyectoUncheckedCreateWithoutVisitasTerceroInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutVisitasTerceroInput = {
@@ -3049,6 +3339,8 @@ export type ProyectoUpdateWithoutVisitasTerceroInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
@@ -3086,6 +3378,180 @@ export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutPlanillasInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutPlanillasInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutPlanillasInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+}
+
+export type ProyectoUpsertWithoutPlanillasInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutPlanillasInput, Prisma.ProyectoUncheckedUpdateWithoutPlanillasInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutPlanillasInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutPlanillasInput, Prisma.ProyectoUncheckedUpdateWithoutPlanillasInput>
+}
+
+export type ProyectoUpdateWithoutPlanillasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutPlanillasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutRequerimientosInput = {
@@ -3123,6 +3589,8 @@ export type ProyectoCreateWithoutRequerimientosInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
@@ -3160,6 +3628,8 @@ export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutRequerimientosInput = {
@@ -3213,6 +3683,8 @@ export type ProyectoUpdateWithoutRequerimientosInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
@@ -3250,6 +3722,8 @@ export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutSolicitudesInput = {
@@ -3287,6 +3761,8 @@ export type ProyectoCreateWithoutSolicitudesInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
@@ -3324,6 +3800,8 @@ export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutSolicitudesInput = {
@@ -3377,6 +3855,8 @@ export type ProyectoUpdateWithoutSolicitudesInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
@@ -3414,6 +3894,8 @@ export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutOrdenesCompraInput = {
@@ -3451,6 +3933,8 @@ export type ProyectoCreateWithoutOrdenesCompraInput = {
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
@@ -3488,6 +3972,8 @@ export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutOrdenesCompraInput = {
@@ -3541,6 +4027,8 @@ export type ProyectoUpdateWithoutOrdenesCompraInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
@@ -3578,6 +4066,8 @@ export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateManyClienteInput = {
@@ -3642,6 +4132,8 @@ export type ProyectoUpdateWithoutClienteInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutClienteInput = {
@@ -3679,6 +4171,8 @@ export type ProyectoUncheckedUpdateWithoutClienteInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutClienteInput = {
@@ -3770,6 +4264,8 @@ export type ProyectoUpdateWithoutCoordinadorClienteInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
@@ -3807,6 +4303,8 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutCoordinadorClienteInput = {
@@ -3898,6 +4396,8 @@ export type ProyectoUpdateWithoutParentInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutParentInput = {
@@ -3935,6 +4435,8 @@ export type ProyectoUncheckedUpdateWithoutParentInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutParentInput = {
@@ -4080,6 +4582,8 @@ export type ProyectoUpdateWithoutEjecutorInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
@@ -4117,6 +4621,8 @@ export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutEjecutorInput = {
@@ -4181,6 +4687,8 @@ export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
@@ -4218,6 +4726,8 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaInput = {
@@ -4282,6 +4792,8 @@ export type ProyectoUpdateWithoutPrevencionistaInput = {
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
@@ -4319,6 +4831,8 @@ export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutPrevencionistaInput = {
@@ -4364,6 +4878,8 @@ export type ProyectoCountOutputType = {
   turnos: number
   registrosVisita: number
   visitasTercero: number
+  planillas: number
+  turnoConfigs: number
 }
 
 export type ProyectoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4377,6 +4893,8 @@ export type ProyectoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   turnos?: boolean | ProyectoCountOutputTypeCountTurnosArgs
   registrosVisita?: boolean | ProyectoCountOutputTypeCountRegistrosVisitaArgs
   visitasTercero?: boolean | ProyectoCountOutputTypeCountVisitasTerceroArgs
+  planillas?: boolean | ProyectoCountOutputTypeCountPlanillasArgs
+  turnoConfigs?: boolean | ProyectoCountOutputTypeCountTurnoConfigsArgs
 }
 
 /**
@@ -4459,6 +4977,20 @@ export type ProyectoCountOutputTypeCountVisitasTerceroArgs<ExtArgs extends runti
   where?: Prisma.VisitaTerceroWhereInput
 }
 
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountPlanillasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlanillaWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountTurnoConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoConfigWhereInput
+}
+
 
 export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4502,6 +5034,8 @@ export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   turnos?: boolean | Prisma.Proyecto$turnosArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Proyecto$registrosVisitaArgs<ExtArgs>
   visitasTercero?: boolean | Prisma.Proyecto$visitasTerceroArgs<ExtArgs>
+  planillas?: boolean | Prisma.Proyecto$planillasArgs<ExtArgs>
+  turnoConfigs?: boolean | Prisma.Proyecto$turnoConfigsArgs<ExtArgs>
   _count?: boolean | Prisma.ProyectoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["proyecto"]>
 
@@ -4619,6 +5153,8 @@ export type ProyectoInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   turnos?: boolean | Prisma.Proyecto$turnosArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Proyecto$registrosVisitaArgs<ExtArgs>
   visitasTercero?: boolean | Prisma.Proyecto$visitasTerceroArgs<ExtArgs>
+  planillas?: boolean | Prisma.Proyecto$planillasArgs<ExtArgs>
+  turnoConfigs?: boolean | Prisma.Proyecto$turnoConfigsArgs<ExtArgs>
   _count?: boolean | Prisma.ProyectoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProyectoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4657,6 +5193,8 @@ export type $ProyectoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     turnos: Prisma.$TurnoPayload<ExtArgs>[]
     registrosVisita: Prisma.$RegistroVisitaPayload<ExtArgs>[]
     visitasTercero: Prisma.$VisitaTerceroPayload<ExtArgs>[]
+    planillas: Prisma.$PlanillaPayload<ExtArgs>[]
+    turnoConfigs: Prisma.$TurnoConfigPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5094,6 +5632,8 @@ export interface Prisma__ProyectoClient<T, Null = never, ExtArgs extends runtime
   turnos<T extends Prisma.Proyecto$turnosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$turnosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrosVisita<T extends Prisma.Proyecto$registrosVisitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$registrosVisitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   visitasTercero<T extends Prisma.Proyecto$visitasTerceroArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$visitasTerceroArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitaTerceroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planillas<T extends Prisma.Proyecto$planillasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$planillasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnoConfigs<T extends Prisma.Proyecto$turnoConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$turnoConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5900,6 +6440,54 @@ export type Proyecto$visitasTerceroArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.VisitaTerceroScalarFieldEnum | Prisma.VisitaTerceroScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.planillas
+ */
+export type Proyecto$planillasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Planilla
+   */
+  select?: Prisma.PlanillaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Planilla
+   */
+  omit?: Prisma.PlanillaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanillaInclude<ExtArgs> | null
+  where?: Prisma.PlanillaWhereInput
+  orderBy?: Prisma.PlanillaOrderByWithRelationInput | Prisma.PlanillaOrderByWithRelationInput[]
+  cursor?: Prisma.PlanillaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlanillaScalarFieldEnum | Prisma.PlanillaScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.turnoConfigs
+ */
+export type Proyecto$turnoConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TurnoConfig
+   */
+  select?: Prisma.TurnoConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TurnoConfig
+   */
+  omit?: Prisma.TurnoConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoConfigInclude<ExtArgs> | null
+  where?: Prisma.TurnoConfigWhereInput
+  orderBy?: Prisma.TurnoConfigOrderByWithRelationInput | Prisma.TurnoConfigOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoConfigScalarFieldEnum | Prisma.TurnoConfigScalarFieldEnum[]
 }
 
 /**

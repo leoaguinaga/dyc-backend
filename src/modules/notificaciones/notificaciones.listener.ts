@@ -14,6 +14,7 @@ const APROBADORES_REQUERIMIENTO = [
 const GESTORES_COTIZACION = ['administrador', 'logistica', 'gerencia'] as const;
 const GESTORES_OC = ['logistica', 'gerencia', 'administrador'] as const;
 const GESTORES_OBRA = ['gerencia', 'administrador'] as const;
+const GESTORES_PLANILLA = ['gerencia', 'administrador'] as const;
 
 export interface RequerimientoCreadoPayload {
   requerimientoId: string;
@@ -52,6 +53,15 @@ export interface ObraCerradaPayload {
   codigo: string | null;
   nombre: string;
   cerradoPorId: string;
+}
+
+export interface PlanillaGeneradaPayload {
+  planillaId: string;
+  proyectoId: string;
+  proyectoNombre: string;
+  periodoInicio: string;
+  periodoFin: string;
+  totalGeneral: string;
 }
 
 @Injectable()
@@ -130,6 +140,17 @@ export class NotificacionesListener {
       mensaje: `La obra ${payload.codigo ?? payload.nombre} — ${payload.nombre} fue cerrada.`,
       entidadTipo: 'Proyecto',
       entidadId: payload.proyectoId,
+    });
+  }
+
+  @OnEvent(AppEvents.PLANILLA_GENERADA)
+  async onPlanillaGenerada(payload: PlanillaGeneradaPayload) {
+    await this.service.crearParaRoles([...GESTORES_PLANILLA], {
+      tipo: 'planilla_generada',
+      titulo: 'Planilla generada',
+      mensaje: `Se generó la planilla de ${payload.proyectoNombre} (${payload.periodoInicio} — ${payload.periodoFin}) por S/ ${payload.totalGeneral}.`,
+      entidadTipo: 'Planilla',
+      entidadId: payload.planillaId,
     });
   }
 }

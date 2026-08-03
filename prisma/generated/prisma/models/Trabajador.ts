@@ -247,6 +247,7 @@ export type TrabajadorWhereInput = {
   perfilObrero?: Prisma.XOR<Prisma.PerfilObreroNullableScalarRelationFilter, Prisma.PerfilObreroWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
+  planillaItems?: Prisma.PlanillaItemListRelationFilter
 }
 
 export type TrabajadorOrderByWithRelationInput = {
@@ -271,6 +272,7 @@ export type TrabajadorOrderByWithRelationInput = {
   perfilObrero?: Prisma.PerfilObreroOrderByWithRelationInput
   asistencias?: Prisma.AsistenciaOrderByRelationAggregateInput
   registrosVisita?: Prisma.RegistroVisitaOrderByRelationAggregateInput
+  planillaItems?: Prisma.PlanillaItemOrderByRelationAggregateInput
 }
 
 export type TrabajadorWhereUniqueInput = Prisma.AtLeast<{
@@ -298,6 +300,7 @@ export type TrabajadorWhereUniqueInput = Prisma.AtLeast<{
   perfilObrero?: Prisma.XOR<Prisma.PerfilObreroNullableScalarRelationFilter, Prisma.PerfilObreroWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
+  planillaItems?: Prisma.PlanillaItemListRelationFilter
 }, "id" | "dni" | "userId">
 
 export type TrabajadorOrderByWithAggregationInput = {
@@ -357,6 +360,7 @@ export type TrabajadorCreateInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateInput = {
@@ -380,6 +384,7 @@ export type TrabajadorUncheckedCreateInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUpdateInput = {
@@ -403,6 +408,7 @@ export type TrabajadorUpdateInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateInput = {
@@ -426,6 +432,7 @@ export type TrabajadorUncheckedUpdateInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateManyInput = {
@@ -679,6 +686,20 @@ export type TrabajadorUpdateOneWithoutRegistrosVisitaNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TrabajadorUpdateToOneWithWhereWithoutRegistrosVisitaInput, Prisma.TrabajadorUpdateWithoutRegistrosVisitaInput>, Prisma.TrabajadorUncheckedUpdateWithoutRegistrosVisitaInput>
 }
 
+export type TrabajadorCreateNestedOneWithoutPlanillaItemsInput = {
+  create?: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaItemsInput>
+  connectOrCreate?: Prisma.TrabajadorCreateOrConnectWithoutPlanillaItemsInput
+  connect?: Prisma.TrabajadorWhereUniqueInput
+}
+
+export type TrabajadorUpdateOneRequiredWithoutPlanillaItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaItemsInput>
+  connectOrCreate?: Prisma.TrabajadorCreateOrConnectWithoutPlanillaItemsInput
+  upsert?: Prisma.TrabajadorUpsertWithoutPlanillaItemsInput
+  connect?: Prisma.TrabajadorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrabajadorUpdateToOneWithWhereWithoutPlanillaItemsInput, Prisma.TrabajadorUpdateWithoutPlanillaItemsInput>, Prisma.TrabajadorUncheckedUpdateWithoutPlanillaItemsInput>
+}
+
 export type TrabajadorCreateWithoutUserInput = {
   id?: string
   nombre: string
@@ -699,6 +720,7 @@ export type TrabajadorCreateWithoutUserInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutUserInput = {
@@ -721,6 +743,7 @@ export type TrabajadorUncheckedCreateWithoutUserInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutUserInput = {
@@ -759,6 +782,7 @@ export type TrabajadorUpdateWithoutUserInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutUserInput = {
@@ -781,6 +805,7 @@ export type TrabajadorUncheckedUpdateWithoutUserInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutProyectosComoCoordinadorInput = {
@@ -803,6 +828,7 @@ export type TrabajadorCreateWithoutProyectosComoCoordinadorInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosComoCoordinadorInput = {
@@ -825,6 +851,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoCoordinadorInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosComoCoordinadorInput = {
@@ -852,6 +879,7 @@ export type TrabajadorCreateWithoutProyectosComoEjecutorInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosComoEjecutorInput = {
@@ -874,6 +902,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoEjecutorInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosComoEjecutorInput = {
@@ -901,6 +930,7 @@ export type TrabajadorCreateWithoutProyectosComoPrevencionistaInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosComoPrevencionistaInput = {
@@ -923,6 +953,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoPrevencionistaInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosComoPrevencionistaInput = {
@@ -961,6 +992,7 @@ export type TrabajadorUpdateWithoutProyectosComoCoordinadorInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosComoCoordinadorInput = {
@@ -983,6 +1015,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoCoordinadorInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUpsertWithoutProyectosComoEjecutorInput = {
@@ -1016,6 +1049,7 @@ export type TrabajadorUpdateWithoutProyectosComoEjecutorInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosComoEjecutorInput = {
@@ -1038,6 +1072,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoEjecutorInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUpsertWithoutProyectosComoPrevencionistaInput = {
@@ -1071,6 +1106,7 @@ export type TrabajadorUpdateWithoutProyectosComoPrevencionistaInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosComoPrevencionistaInput = {
@@ -1093,6 +1129,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoPrevencionistaInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutHitosInput = {
@@ -1115,6 +1152,7 @@ export type TrabajadorCreateWithoutHitosInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutHitosInput = {
@@ -1137,6 +1175,7 @@ export type TrabajadorUncheckedCreateWithoutHitosInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutHitosInput = {
@@ -1175,6 +1214,7 @@ export type TrabajadorUpdateWithoutHitosInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutHitosInput = {
@@ -1197,6 +1237,7 @@ export type TrabajadorUncheckedUpdateWithoutHitosInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutPerfilObreroInput = {
@@ -1219,6 +1260,7 @@ export type TrabajadorCreateWithoutPerfilObreroInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutPerfilObreroInput = {
@@ -1241,6 +1283,7 @@ export type TrabajadorUncheckedCreateWithoutPerfilObreroInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutPerfilObreroInput = {
@@ -1279,6 +1322,7 @@ export type TrabajadorUpdateWithoutPerfilObreroInput = {
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutPerfilObreroInput = {
@@ -1301,6 +1345,7 @@ export type TrabajadorUncheckedUpdateWithoutPerfilObreroInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutProyectosInput = {
@@ -1323,6 +1368,7 @@ export type TrabajadorCreateWithoutProyectosInput = {
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosInput = {
@@ -1345,6 +1391,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosInput = {
@@ -1383,6 +1430,7 @@ export type TrabajadorUpdateWithoutProyectosInput = {
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosInput = {
@@ -1405,6 +1453,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosInput = {
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutAsistenciasInput = {
@@ -1427,6 +1476,7 @@ export type TrabajadorCreateWithoutAsistenciasInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutAsistenciasInput = {
@@ -1449,6 +1499,7 @@ export type TrabajadorUncheckedCreateWithoutAsistenciasInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutAsistenciasInput = {
@@ -1487,6 +1538,7 @@ export type TrabajadorUpdateWithoutAsistenciasInput = {
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutAsistenciasInput = {
@@ -1509,6 +1561,7 @@ export type TrabajadorUncheckedUpdateWithoutAsistenciasInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutRegistrosVisitaInput = {
@@ -1531,6 +1584,7 @@ export type TrabajadorCreateWithoutRegistrosVisitaInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutRegistrosVisitaInput = {
@@ -1553,6 +1607,7 @@ export type TrabajadorUncheckedCreateWithoutRegistrosVisitaInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutRegistrosVisitaInput = {
@@ -1591,6 +1646,7 @@ export type TrabajadorUpdateWithoutRegistrosVisitaInput = {
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutRegistrosVisitaInput = {
@@ -1613,6 +1669,115 @@ export type TrabajadorUncheckedUpdateWithoutRegistrosVisitaInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
+}
+
+export type TrabajadorCreateWithoutPlanillaItemsInput = {
+  id?: string
+  nombre: string
+  dni: string
+  cargo?: string | null
+  telefono?: string | null
+  email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  activo?: boolean
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutTrabajadorInput
+  proyectos?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutTrabajadorInput
+  proyectosComoEjecutor?: Prisma.ProyectoCreateNestedManyWithoutEjecutorInput
+  proyectosComoCoordinador?: Prisma.ProyectoCreateNestedManyWithoutCoordinadorEmpresaInput
+  proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
+  perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+}
+
+export type TrabajadorUncheckedCreateWithoutPlanillaItemsInput = {
+  id?: string
+  nombre: string
+  dni: string
+  cargo?: string | null
+  telefono?: string | null
+  email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  activo?: boolean
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  userId?: string | null
+  proyectos?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutTrabajadorInput
+  proyectosComoEjecutor?: Prisma.ProyectoUncheckedCreateNestedManyWithoutEjecutorInput
+  proyectosComoCoordinador?: Prisma.ProyectoUncheckedCreateNestedManyWithoutCoordinadorEmpresaInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
+  perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+}
+
+export type TrabajadorCreateOrConnectWithoutPlanillaItemsInput = {
+  where: Prisma.TrabajadorWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaItemsInput>
+}
+
+export type TrabajadorUpsertWithoutPlanillaItemsInput = {
+  update: Prisma.XOR<Prisma.TrabajadorUpdateWithoutPlanillaItemsInput, Prisma.TrabajadorUncheckedUpdateWithoutPlanillaItemsInput>
+  create: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaItemsInput>
+  where?: Prisma.TrabajadorWhereInput
+}
+
+export type TrabajadorUpdateToOneWithWhereWithoutPlanillaItemsInput = {
+  where?: Prisma.TrabajadorWhereInput
+  data: Prisma.XOR<Prisma.TrabajadorUpdateWithoutPlanillaItemsInput, Prisma.TrabajadorUncheckedUpdateWithoutPlanillaItemsInput>
+}
+
+export type TrabajadorUpdateWithoutPlanillaItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  dni?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutTrabajadorNestedInput
+  proyectos?: Prisma.ProyectoTrabajadorUpdateManyWithoutTrabajadorNestedInput
+  proyectosComoEjecutor?: Prisma.ProyectoUpdateManyWithoutEjecutorNestedInput
+  proyectosComoCoordinador?: Prisma.ProyectoUpdateManyWithoutCoordinadorEmpresaNestedInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
+  perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+}
+
+export type TrabajadorUncheckedUpdateWithoutPlanillaItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  dni?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectos?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutTrabajadorNestedInput
+  proyectosComoEjecutor?: Prisma.ProyectoUncheckedUpdateManyWithoutEjecutorNestedInput
+  proyectosComoCoordinador?: Prisma.ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaNestedInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
+  perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 
@@ -1628,6 +1793,7 @@ export type TrabajadorCountOutputType = {
   hitos: number
   asistencias: number
   registrosVisita: number
+  planillaItems: number
 }
 
 export type TrabajadorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1638,6 +1804,7 @@ export type TrabajadorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   hitos?: boolean | TrabajadorCountOutputTypeCountHitosArgs
   asistencias?: boolean | TrabajadorCountOutputTypeCountAsistenciasArgs
   registrosVisita?: boolean | TrabajadorCountOutputTypeCountRegistrosVisitaArgs
+  planillaItems?: boolean | TrabajadorCountOutputTypeCountPlanillaItemsArgs
 }
 
 /**
@@ -1699,6 +1866,13 @@ export type TrabajadorCountOutputTypeCountRegistrosVisitaArgs<ExtArgs extends ru
   where?: Prisma.RegistroVisitaWhereInput
 }
 
+/**
+ * TrabajadorCountOutputType without action
+ */
+export type TrabajadorCountOutputTypeCountPlanillaItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlanillaItemWhereInput
+}
+
 
 export type TrabajadorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1722,6 +1896,7 @@ export type TrabajadorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   perfilObrero?: boolean | Prisma.Trabajador$perfilObreroArgs<ExtArgs>
   asistencias?: boolean | Prisma.Trabajador$asistenciasArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Trabajador$registrosVisitaArgs<ExtArgs>
+  planillaItems?: boolean | Prisma.Trabajador$planillaItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TrabajadorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trabajador"]>
 
@@ -1783,6 +1958,7 @@ export type TrabajadorInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   perfilObrero?: boolean | Prisma.Trabajador$perfilObreroArgs<ExtArgs>
   asistencias?: boolean | Prisma.Trabajador$asistenciasArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Trabajador$registrosVisitaArgs<ExtArgs>
+  planillaItems?: boolean | Prisma.Trabajador$planillaItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TrabajadorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TrabajadorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1804,6 +1980,7 @@ export type $TrabajadorPayload<ExtArgs extends runtime.Types.Extensions.Internal
     perfilObrero: Prisma.$PerfilObreroPayload<ExtArgs> | null
     asistencias: Prisma.$AsistenciaPayload<ExtArgs>[]
     registrosVisita: Prisma.$RegistroVisitaPayload<ExtArgs>[]
+    planillaItems: Prisma.$PlanillaItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2221,6 +2398,7 @@ export interface Prisma__TrabajadorClient<T, Null = never, ExtArgs extends runti
   perfilObrero<T extends Prisma.Trabajador$perfilObreroArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$perfilObreroArgs<ExtArgs>>): Prisma.Prisma__PerfilObreroClient<runtime.Types.Result.GetResult<Prisma.$PerfilObreroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   asistencias<T extends Prisma.Trabajador$asistenciasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$asistenciasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AsistenciaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrosVisita<T extends Prisma.Trabajador$registrosVisitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$registrosVisitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planillaItems<T extends Prisma.Trabajador$planillaItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$planillaItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2866,6 +3044,30 @@ export type Trabajador$registrosVisitaArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.RegistroVisitaScalarFieldEnum | Prisma.RegistroVisitaScalarFieldEnum[]
+}
+
+/**
+ * Trabajador.planillaItems
+ */
+export type Trabajador$planillaItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PlanillaItem
+   */
+  select?: Prisma.PlanillaItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PlanillaItem
+   */
+  omit?: Prisma.PlanillaItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanillaItemInclude<ExtArgs> | null
+  where?: Prisma.PlanillaItemWhereInput
+  orderBy?: Prisma.PlanillaItemOrderByWithRelationInput | Prisma.PlanillaItemOrderByWithRelationInput[]
+  cursor?: Prisma.PlanillaItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlanillaItemScalarFieldEnum | Prisma.PlanillaItemScalarFieldEnum[]
 }
 
 /**

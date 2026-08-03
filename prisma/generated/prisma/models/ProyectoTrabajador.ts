@@ -30,6 +30,7 @@ export type ProyectoTrabajadorMinAggregateOutputType = {
   trabajadorId: string | null
   fechaIngreso: Date | null
   fechaSalida: Date | null
+  turnoConfigId: string | null
 }
 
 export type ProyectoTrabajadorMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type ProyectoTrabajadorMaxAggregateOutputType = {
   trabajadorId: string | null
   fechaIngreso: Date | null
   fechaSalida: Date | null
+  turnoConfigId: string | null
 }
 
 export type ProyectoTrabajadorCountAggregateOutputType = {
@@ -46,6 +48,7 @@ export type ProyectoTrabajadorCountAggregateOutputType = {
   trabajadorId: number
   fechaIngreso: number
   fechaSalida: number
+  turnoConfigId: number
   _all: number
 }
 
@@ -56,6 +59,7 @@ export type ProyectoTrabajadorMinAggregateInputType = {
   trabajadorId?: true
   fechaIngreso?: true
   fechaSalida?: true
+  turnoConfigId?: true
 }
 
 export type ProyectoTrabajadorMaxAggregateInputType = {
@@ -64,6 +68,7 @@ export type ProyectoTrabajadorMaxAggregateInputType = {
   trabajadorId?: true
   fechaIngreso?: true
   fechaSalida?: true
+  turnoConfigId?: true
 }
 
 export type ProyectoTrabajadorCountAggregateInputType = {
@@ -72,6 +77,7 @@ export type ProyectoTrabajadorCountAggregateInputType = {
   trabajadorId?: true
   fechaIngreso?: true
   fechaSalida?: true
+  turnoConfigId?: true
   _all?: true
 }
 
@@ -153,6 +159,7 @@ export type ProyectoTrabajadorGroupByOutputType = {
   trabajadorId: string
   fechaIngreso: Date
   fechaSalida: Date | null
+  turnoConfigId: string | null
   _count: ProyectoTrabajadorCountAggregateOutputType | null
   _min: ProyectoTrabajadorMinAggregateOutputType | null
   _max: ProyectoTrabajadorMaxAggregateOutputType | null
@@ -182,8 +189,10 @@ export type ProyectoTrabajadorWhereInput = {
   trabajadorId?: Prisma.StringFilter<"ProyectoTrabajador"> | string
   fechaIngreso?: Prisma.DateTimeFilter<"ProyectoTrabajador"> | Date | string
   fechaSalida?: Prisma.DateTimeNullableFilter<"ProyectoTrabajador"> | Date | string | null
+  turnoConfigId?: Prisma.StringNullableFilter<"ProyectoTrabajador"> | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
   trabajador?: Prisma.XOR<Prisma.TrabajadorScalarRelationFilter, Prisma.TrabajadorWhereInput>
+  turnoConfig?: Prisma.XOR<Prisma.TurnoConfigNullableScalarRelationFilter, Prisma.TurnoConfigWhereInput> | null
 }
 
 export type ProyectoTrabajadorOrderByWithRelationInput = {
@@ -192,8 +201,10 @@ export type ProyectoTrabajadorOrderByWithRelationInput = {
   trabajadorId?: Prisma.SortOrder
   fechaIngreso?: Prisma.SortOrder
   fechaSalida?: Prisma.SortOrderInput | Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrderInput | Prisma.SortOrder
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
   trabajador?: Prisma.TrabajadorOrderByWithRelationInput
+  turnoConfig?: Prisma.TurnoConfigOrderByWithRelationInput
 }
 
 export type ProyectoTrabajadorWhereUniqueInput = Prisma.AtLeast<{
@@ -206,8 +217,10 @@ export type ProyectoTrabajadorWhereUniqueInput = Prisma.AtLeast<{
   trabajadorId?: Prisma.StringFilter<"ProyectoTrabajador"> | string
   fechaIngreso?: Prisma.DateTimeFilter<"ProyectoTrabajador"> | Date | string
   fechaSalida?: Prisma.DateTimeNullableFilter<"ProyectoTrabajador"> | Date | string | null
+  turnoConfigId?: Prisma.StringNullableFilter<"ProyectoTrabajador"> | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
   trabajador?: Prisma.XOR<Prisma.TrabajadorScalarRelationFilter, Prisma.TrabajadorWhereInput>
+  turnoConfig?: Prisma.XOR<Prisma.TurnoConfigNullableScalarRelationFilter, Prisma.TurnoConfigWhereInput> | null
 }, "id" | "proyectoId_trabajadorId">
 
 export type ProyectoTrabajadorOrderByWithAggregationInput = {
@@ -216,6 +229,7 @@ export type ProyectoTrabajadorOrderByWithAggregationInput = {
   trabajadorId?: Prisma.SortOrder
   fechaIngreso?: Prisma.SortOrder
   fechaSalida?: Prisma.SortOrderInput | Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProyectoTrabajadorCountOrderByAggregateInput
   _max?: Prisma.ProyectoTrabajadorMaxOrderByAggregateInput
   _min?: Prisma.ProyectoTrabajadorMinOrderByAggregateInput
@@ -230,6 +244,7 @@ export type ProyectoTrabajadorScalarWhereWithAggregatesInput = {
   trabajadorId?: Prisma.StringWithAggregatesFilter<"ProyectoTrabajador"> | string
   fechaIngreso?: Prisma.DateTimeWithAggregatesFilter<"ProyectoTrabajador"> | Date | string
   fechaSalida?: Prisma.DateTimeNullableWithAggregatesFilter<"ProyectoTrabajador"> | Date | string | null
+  turnoConfigId?: Prisma.StringNullableWithAggregatesFilter<"ProyectoTrabajador"> | string | null
 }
 
 export type ProyectoTrabajadorCreateInput = {
@@ -238,6 +253,7 @@ export type ProyectoTrabajadorCreateInput = {
   fechaSalida?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTrabajadoresInput
   trabajador: Prisma.TrabajadorCreateNestedOneWithoutProyectosInput
+  turnoConfig?: Prisma.TurnoConfigCreateNestedOneWithoutAsignacionesInput
 }
 
 export type ProyectoTrabajadorUncheckedCreateInput = {
@@ -246,6 +262,7 @@ export type ProyectoTrabajadorUncheckedCreateInput = {
   trabajadorId: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
+  turnoConfigId?: string | null
 }
 
 export type ProyectoTrabajadorUpdateInput = {
@@ -254,6 +271,7 @@ export type ProyectoTrabajadorUpdateInput = {
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTrabajadoresNestedInput
   trabajador?: Prisma.TrabajadorUpdateOneRequiredWithoutProyectosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneWithoutAsignacionesNestedInput
 }
 
 export type ProyectoTrabajadorUncheckedUpdateInput = {
@@ -262,6 +280,7 @@ export type ProyectoTrabajadorUncheckedUpdateInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  turnoConfigId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProyectoTrabajadorCreateManyInput = {
@@ -270,6 +289,7 @@ export type ProyectoTrabajadorCreateManyInput = {
   trabajadorId: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
+  turnoConfigId?: string | null
 }
 
 export type ProyectoTrabajadorUpdateManyMutationInput = {
@@ -284,6 +304,7 @@ export type ProyectoTrabajadorUncheckedUpdateManyInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  turnoConfigId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProyectoTrabajadorListRelationFilter = {
@@ -307,6 +328,7 @@ export type ProyectoTrabajadorCountOrderByAggregateInput = {
   trabajadorId?: Prisma.SortOrder
   fechaIngreso?: Prisma.SortOrder
   fechaSalida?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
 }
 
 export type ProyectoTrabajadorMaxOrderByAggregateInput = {
@@ -315,6 +337,7 @@ export type ProyectoTrabajadorMaxOrderByAggregateInput = {
   trabajadorId?: Prisma.SortOrder
   fechaIngreso?: Prisma.SortOrder
   fechaSalida?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
 }
 
 export type ProyectoTrabajadorMinOrderByAggregateInput = {
@@ -323,6 +346,7 @@ export type ProyectoTrabajadorMinOrderByAggregateInput = {
   trabajadorId?: Prisma.SortOrder
   fechaIngreso?: Prisma.SortOrder
   fechaSalida?: Prisma.SortOrder
+  turnoConfigId?: Prisma.SortOrder
 }
 
 export type ProyectoTrabajadorCreateNestedManyWithoutProyectoInput = {
@@ -409,11 +433,54 @@ export type ProyectoTrabajadorUncheckedUpdateManyWithoutTrabajadorNestedInput = 
   deleteMany?: Prisma.ProyectoTrabajadorScalarWhereInput | Prisma.ProyectoTrabajadorScalarWhereInput[]
 }
 
+export type ProyectoTrabajadorCreateNestedManyWithoutTurnoConfigInput = {
+  create?: Prisma.XOR<Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput> | Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput[] | Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput[]
+  createMany?: Prisma.ProyectoTrabajadorCreateManyTurnoConfigInputEnvelope
+  connect?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+}
+
+export type ProyectoTrabajadorUncheckedCreateNestedManyWithoutTurnoConfigInput = {
+  create?: Prisma.XOR<Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput> | Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput[] | Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput[]
+  createMany?: Prisma.ProyectoTrabajadorCreateManyTurnoConfigInputEnvelope
+  connect?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+}
+
+export type ProyectoTrabajadorUpdateManyWithoutTurnoConfigNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput> | Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput[] | Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput[]
+  upsert?: Prisma.ProyectoTrabajadorUpsertWithWhereUniqueWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorUpsertWithWhereUniqueWithoutTurnoConfigInput[]
+  createMany?: Prisma.ProyectoTrabajadorCreateManyTurnoConfigInputEnvelope
+  set?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  disconnect?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  delete?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  connect?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  update?: Prisma.ProyectoTrabajadorUpdateWithWhereUniqueWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorUpdateWithWhereUniqueWithoutTurnoConfigInput[]
+  updateMany?: Prisma.ProyectoTrabajadorUpdateManyWithWhereWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorUpdateManyWithWhereWithoutTurnoConfigInput[]
+  deleteMany?: Prisma.ProyectoTrabajadorScalarWhereInput | Prisma.ProyectoTrabajadorScalarWhereInput[]
+}
+
+export type ProyectoTrabajadorUncheckedUpdateManyWithoutTurnoConfigNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput> | Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput[] | Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput[]
+  connectOrCreate?: Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput[]
+  upsert?: Prisma.ProyectoTrabajadorUpsertWithWhereUniqueWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorUpsertWithWhereUniqueWithoutTurnoConfigInput[]
+  createMany?: Prisma.ProyectoTrabajadorCreateManyTurnoConfigInputEnvelope
+  set?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  disconnect?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  delete?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  connect?: Prisma.ProyectoTrabajadorWhereUniqueInput | Prisma.ProyectoTrabajadorWhereUniqueInput[]
+  update?: Prisma.ProyectoTrabajadorUpdateWithWhereUniqueWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorUpdateWithWhereUniqueWithoutTurnoConfigInput[]
+  updateMany?: Prisma.ProyectoTrabajadorUpdateManyWithWhereWithoutTurnoConfigInput | Prisma.ProyectoTrabajadorUpdateManyWithWhereWithoutTurnoConfigInput[]
+  deleteMany?: Prisma.ProyectoTrabajadorScalarWhereInput | Prisma.ProyectoTrabajadorScalarWhereInput[]
+}
+
 export type ProyectoTrabajadorCreateWithoutProyectoInput = {
   id?: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
   trabajador: Prisma.TrabajadorCreateNestedOneWithoutProyectosInput
+  turnoConfig?: Prisma.TurnoConfigCreateNestedOneWithoutAsignacionesInput
 }
 
 export type ProyectoTrabajadorUncheckedCreateWithoutProyectoInput = {
@@ -421,6 +488,7 @@ export type ProyectoTrabajadorUncheckedCreateWithoutProyectoInput = {
   trabajadorId: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
+  turnoConfigId?: string | null
 }
 
 export type ProyectoTrabajadorCreateOrConnectWithoutProyectoInput = {
@@ -458,6 +526,7 @@ export type ProyectoTrabajadorScalarWhereInput = {
   trabajadorId?: Prisma.StringFilter<"ProyectoTrabajador"> | string
   fechaIngreso?: Prisma.DateTimeFilter<"ProyectoTrabajador"> | Date | string
   fechaSalida?: Prisma.DateTimeNullableFilter<"ProyectoTrabajador"> | Date | string | null
+  turnoConfigId?: Prisma.StringNullableFilter<"ProyectoTrabajador"> | string | null
 }
 
 export type ProyectoTrabajadorCreateWithoutTrabajadorInput = {
@@ -465,6 +534,7 @@ export type ProyectoTrabajadorCreateWithoutTrabajadorInput = {
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTrabajadoresInput
+  turnoConfig?: Prisma.TurnoConfigCreateNestedOneWithoutAsignacionesInput
 }
 
 export type ProyectoTrabajadorUncheckedCreateWithoutTrabajadorInput = {
@@ -472,6 +542,7 @@ export type ProyectoTrabajadorUncheckedCreateWithoutTrabajadorInput = {
   proyectoId: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
+  turnoConfigId?: string | null
 }
 
 export type ProyectoTrabajadorCreateOrConnectWithoutTrabajadorInput = {
@@ -500,11 +571,54 @@ export type ProyectoTrabajadorUpdateManyWithWhereWithoutTrabajadorInput = {
   data: Prisma.XOR<Prisma.ProyectoTrabajadorUpdateManyMutationInput, Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutTrabajadorInput>
 }
 
+export type ProyectoTrabajadorCreateWithoutTurnoConfigInput = {
+  id?: string
+  fechaIngreso: Date | string
+  fechaSalida?: Date | string | null
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutTrabajadoresInput
+  trabajador: Prisma.TrabajadorCreateNestedOneWithoutProyectosInput
+}
+
+export type ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput = {
+  id?: string
+  proyectoId: string
+  trabajadorId: string
+  fechaIngreso: Date | string
+  fechaSalida?: Date | string | null
+}
+
+export type ProyectoTrabajadorCreateOrConnectWithoutTurnoConfigInput = {
+  where: Prisma.ProyectoTrabajadorWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput>
+}
+
+export type ProyectoTrabajadorCreateManyTurnoConfigInputEnvelope = {
+  data: Prisma.ProyectoTrabajadorCreateManyTurnoConfigInput | Prisma.ProyectoTrabajadorCreateManyTurnoConfigInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProyectoTrabajadorUpsertWithWhereUniqueWithoutTurnoConfigInput = {
+  where: Prisma.ProyectoTrabajadorWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProyectoTrabajadorUpdateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedUpdateWithoutTurnoConfigInput>
+  create: Prisma.XOR<Prisma.ProyectoTrabajadorCreateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedCreateWithoutTurnoConfigInput>
+}
+
+export type ProyectoTrabajadorUpdateWithWhereUniqueWithoutTurnoConfigInput = {
+  where: Prisma.ProyectoTrabajadorWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProyectoTrabajadorUpdateWithoutTurnoConfigInput, Prisma.ProyectoTrabajadorUncheckedUpdateWithoutTurnoConfigInput>
+}
+
+export type ProyectoTrabajadorUpdateManyWithWhereWithoutTurnoConfigInput = {
+  where: Prisma.ProyectoTrabajadorScalarWhereInput
+  data: Prisma.XOR<Prisma.ProyectoTrabajadorUpdateManyMutationInput, Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutTurnoConfigInput>
+}
+
 export type ProyectoTrabajadorCreateManyProyectoInput = {
   id?: string
   trabajadorId: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
+  turnoConfigId?: string | null
 }
 
 export type ProyectoTrabajadorUpdateWithoutProyectoInput = {
@@ -512,6 +626,7 @@ export type ProyectoTrabajadorUpdateWithoutProyectoInput = {
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   trabajador?: Prisma.TrabajadorUpdateOneRequiredWithoutProyectosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneWithoutAsignacionesNestedInput
 }
 
 export type ProyectoTrabajadorUncheckedUpdateWithoutProyectoInput = {
@@ -519,6 +634,7 @@ export type ProyectoTrabajadorUncheckedUpdateWithoutProyectoInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  turnoConfigId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoInput = {
@@ -526,6 +642,7 @@ export type ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  turnoConfigId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProyectoTrabajadorCreateManyTrabajadorInput = {
@@ -533,6 +650,7 @@ export type ProyectoTrabajadorCreateManyTrabajadorInput = {
   proyectoId: string
   fechaIngreso: Date | string
   fechaSalida?: Date | string | null
+  turnoConfigId?: string | null
 }
 
 export type ProyectoTrabajadorUpdateWithoutTrabajadorInput = {
@@ -540,6 +658,7 @@ export type ProyectoTrabajadorUpdateWithoutTrabajadorInput = {
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTrabajadoresNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneWithoutAsignacionesNestedInput
 }
 
 export type ProyectoTrabajadorUncheckedUpdateWithoutTrabajadorInput = {
@@ -547,11 +666,45 @@ export type ProyectoTrabajadorUncheckedUpdateWithoutTrabajadorInput = {
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  turnoConfigId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProyectoTrabajadorUncheckedUpdateManyWithoutTrabajadorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  turnoConfigId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type ProyectoTrabajadorCreateManyTurnoConfigInput = {
+  id?: string
+  proyectoId: string
+  trabajadorId: string
+  fechaIngreso: Date | string
+  fechaSalida?: Date | string | null
+}
+
+export type ProyectoTrabajadorUpdateWithoutTurnoConfigInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTrabajadoresNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneRequiredWithoutProyectosNestedInput
+}
+
+export type ProyectoTrabajadorUncheckedUpdateWithoutTurnoConfigInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type ProyectoTrabajadorUncheckedUpdateManyWithoutTurnoConfigInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   fechaIngreso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fechaSalida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -564,8 +717,10 @@ export type ProyectoTrabajadorSelect<ExtArgs extends runtime.Types.Extensions.In
   trabajadorId?: boolean
   fechaIngreso?: boolean
   fechaSalida?: boolean
+  turnoConfigId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>
 }, ExtArgs["result"]["proyectoTrabajador"]>
 
 export type ProyectoTrabajadorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -574,8 +729,10 @@ export type ProyectoTrabajadorSelectCreateManyAndReturn<ExtArgs extends runtime.
   trabajadorId?: boolean
   fechaIngreso?: boolean
   fechaSalida?: boolean
+  turnoConfigId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>
 }, ExtArgs["result"]["proyectoTrabajador"]>
 
 export type ProyectoTrabajadorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -584,8 +741,10 @@ export type ProyectoTrabajadorSelectUpdateManyAndReturn<ExtArgs extends runtime.
   trabajadorId?: boolean
   fechaIngreso?: boolean
   fechaSalida?: boolean
+  turnoConfigId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>
 }, ExtArgs["result"]["proyectoTrabajador"]>
 
 export type ProyectoTrabajadorSelectScalar = {
@@ -594,20 +753,24 @@ export type ProyectoTrabajadorSelectScalar = {
   trabajadorId?: boolean
   fechaIngreso?: boolean
   fechaSalida?: boolean
+  turnoConfigId?: boolean
 }
 
-export type ProyectoTrabajadorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "trabajadorId" | "fechaIngreso" | "fechaSalida", ExtArgs["result"]["proyectoTrabajador"]>
+export type ProyectoTrabajadorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "trabajadorId" | "fechaIngreso" | "fechaSalida" | "turnoConfigId", ExtArgs["result"]["proyectoTrabajador"]>
 export type ProyectoTrabajadorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>
 }
 export type ProyectoTrabajadorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>
 }
 export type ProyectoTrabajadorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
+  turnoConfig?: boolean | Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>
 }
 
 export type $ProyectoTrabajadorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -615,6 +778,7 @@ export type $ProyectoTrabajadorPayload<ExtArgs extends runtime.Types.Extensions.
   objects: {
     proyecto: Prisma.$ProyectoPayload<ExtArgs>
     trabajador: Prisma.$TrabajadorPayload<ExtArgs>
+    turnoConfig: Prisma.$TurnoConfigPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -622,6 +786,7 @@ export type $ProyectoTrabajadorPayload<ExtArgs extends runtime.Types.Extensions.
     trabajadorId: string
     fechaIngreso: Date
     fechaSalida: Date | null
+    turnoConfigId: string | null
   }, ExtArgs["result"]["proyectoTrabajador"]>
   composites: {}
 }
@@ -1018,6 +1183,7 @@ export interface Prisma__ProyectoTrabajadorClient<T, Null = never, ExtArgs exten
   readonly [Symbol.toStringTag]: "PrismaPromise"
   proyecto<T extends Prisma.ProyectoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProyectoDefaultArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   trabajador<T extends Prisma.TrabajadorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TrabajadorDefaultArgs<ExtArgs>>): Prisma.Prisma__TrabajadorClient<runtime.Types.Result.GetResult<Prisma.$TrabajadorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  turnoConfig<T extends Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProyectoTrabajador$turnoConfigArgs<ExtArgs>>): Prisma.Prisma__TurnoConfigClient<runtime.Types.Result.GetResult<Prisma.$TurnoConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1052,6 +1218,7 @@ export interface ProyectoTrabajadorFieldRefs {
   readonly trabajadorId: Prisma.FieldRef<"ProyectoTrabajador", 'String'>
   readonly fechaIngreso: Prisma.FieldRef<"ProyectoTrabajador", 'DateTime'>
   readonly fechaSalida: Prisma.FieldRef<"ProyectoTrabajador", 'DateTime'>
+  readonly turnoConfigId: Prisma.FieldRef<"ProyectoTrabajador", 'String'>
 }
     
 
@@ -1450,6 +1617,25 @@ export type ProyectoTrabajadorDeleteManyArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many ProyectoTrabajadors to delete.
    */
   limit?: number
+}
+
+/**
+ * ProyectoTrabajador.turnoConfig
+ */
+export type ProyectoTrabajador$turnoConfigArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TurnoConfig
+   */
+  select?: Prisma.TurnoConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TurnoConfig
+   */
+  omit?: Prisma.TurnoConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoConfigInclude<ExtArgs> | null
+  where?: Prisma.TurnoConfigWhereInput
 }
 
 /**

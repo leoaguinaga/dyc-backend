@@ -16,6 +16,16 @@ export interface AccesoConsolidadoItem {
   motivo: string | null;
   horaEntrada: Date | null;
   horaSalida: Date | null;
+  fecha: Date;
+  proyectoId: string;
+  proyectoNombre: string;
+}
+
+export interface ConsolidadoAccesoParams {
+  desde?: string;
+  hasta?: string;
+  proyectoId?: string;
+  tipo?: TipoPersonaAcceso;
 }
 
 @Injectable()
@@ -23,37 +33,59 @@ export class ConsolidadoAccesoService {
   constructor(private prisma: PrismaService) {}
 
   async consolidado(
-    proyectoId: string,
-    fecha?: string,
+    params: ConsolidadoAccesoParams,
   ): Promise<AccesoConsolidadoItem[]> {
-    const dia = fecha ? this.soloFecha(new Date(fecha)) : this.hoy();
+    const desdeD = params.desde
+      ? soloFechaUTC(new Date(params.desde))
+      : hoyLima();
+    const hastaD = params.hasta
+      ? soloFechaUTC(new Date(params.hasta))
+      : hoyLima();
+    const proyectoWhere = params.proyectoId
+      ? { proyectoId: params.proyectoId }
+      : {};
 
-    const [turno, visitas, terceros] = await Promise.all([
-      this.prisma.turno.findUnique({
-        where: { proyectoId_fecha: { proyectoId, fecha: dia } },
-        include: { asistencias: { include: { trabajador: true } } },
+    const [turnos, visitas, terceros] = await Promise.all([
+      this.prisma.turno.findMany({
+        where: { ...proyectoWhere, fecha: { gte: desdeD, lte: hastaD } },
+        include: {
+          asistencias: { include: { trabajador: true } },
+          proyecto: { select: { id: true, nombre: true } },
+        },
       }),
       this.prisma.registroVisita.findMany({
-        where: { proyectoId, fecha: dia },
-        include: { trabajador: true, user: true },
+        where: { ...proyectoWhere, fecha: { gte: desdeD, lte: hastaD } },
+        include: {
+          trabajador: true,
+          user: true,
+          proyecto: { select: { id: true, nombre: true } },
+        },
       }),
       this.prisma.visitaTercero.findMany({
-        where: { proyectoId, fecha: dia },
-        include: { visitantes: true },
+        where: { ...proyectoWhere, fecha: { gte: desdeD, lte: hastaD } },
+        include: {
+          visitantes: true,
+          proyecto: { select: { id: true, nombre: true } },
+        },
       }),
     ]);
 
-    const operarios: AccesoConsolidadoItem[] = (turno?.asistencias ?? [])
-      .filter((a) => a.estado !== 'falta')
-      .map((a) => ({
-        tipo: 'operario' as const,
-        nombre: a.trabajador.nombre,
-        dni: a.trabajador.dni,
-        empresa: null,
-        motivo: null,
-        horaEntrada: turno!.horaAperturaReal,
-        horaSalida: turno!.horaCierreReal,
-      }));
+    const operarios: AccesoConsolidadoItem[] = turnos.flatMap((turno) =>
+      turno.asistencias
+        .filter((a) => a.estado !== 'falta')
+        .map((a) => ({
+          tipo: 'operario' as const,
+          nombre: a.trabajador.nombre,
+          dni: a.trabajador.dni,
+          empresa: null,
+          motivo: null,
+          horaEntrada: turno.horaAperturaReal,
+          horaSalida: turno.horaCierreReal,
+          fecha: turno.fecha,
+          proyectoId: turno.proyecto.id,
+          proyectoNombre: turno.proyecto.nombre,
+        })),
+    );
 
     const staff: AccesoConsolidadoItem[] = visitas.map((v) => ({
       tipo: v.tipo,
@@ -67,6 +99,9 @@ export class ConsolidadoAccesoService {
       motivo: v.motivo,
       horaEntrada: v.horaEntrada,
       horaSalida: v.horaSalida,
+      fecha: v.fecha,
+      proyectoId: v.proyecto.id,
+      proyectoNombre: v.proyecto.nombre,
     }));
 
     const terceroItems: AccesoConsolidadoItem[] = terceros.flatMap((vt) =>
@@ -78,17 +113,15 @@ export class ConsolidadoAccesoService {
         motivo: vt.motivo,
         horaEntrada: p.horaEntrada,
         horaSalida: p.horaSalida,
+        fecha: vt.fecha,
+        proyectoId: vt.proyecto.id,
+        proyectoNombre: vt.proyecto.nombre,
       })),
     );
 
-    return [...operarios, ...staff, ...terceroItems];
-  }
+    let items = [...operarios, ...staff, ...terceroItems];
+    if (params.tipo) items = items.filter((i) => i.tipo === params.tipo);
 
-  private hoy(): Date {
-    return hoyLima();
-  }
-
-  private soloFecha(d: Date): Date {
-    return soloFechaUTC(d);
+    return items.sort((a, b) => b.fecha.getTime() - a.fecha.getTime());
   }
 }

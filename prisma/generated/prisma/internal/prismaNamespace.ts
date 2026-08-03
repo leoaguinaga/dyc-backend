@@ -396,11 +396,14 @@ export const ModelName = {
   Trabajador: 'Trabajador',
   PerfilObrero: 'PerfilObrero',
   ProyectoTrabajador: 'ProyectoTrabajador',
+  TurnoConfig: 'TurnoConfig',
   Turno: 'Turno',
   Asistencia: 'Asistencia',
   RegistroVisita: 'RegistroVisita',
   VisitaTercero: 'VisitaTercero',
   VisitanteTercero: 'VisitanteTercero',
+  Planilla: 'Planilla',
+  PlanillaItem: 'PlanillaItem',
   Proveedor: 'Proveedor',
   ContactoProveedor: 'ContactoProveedor',
   CatalogoProductoProveedor: 'CatalogoProductoProveedor',
@@ -435,7 +438,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem" | "notificacion"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1327,6 +1330,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TurnoConfig: {
+      payload: Prisma.$TurnoConfigPayload<ExtArgs>
+      fields: Prisma.TurnoConfigFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TurnoConfigFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TurnoConfigFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>
+        }
+        findFirst: {
+          args: Prisma.TurnoConfigFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TurnoConfigFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>
+        }
+        findMany: {
+          args: Prisma.TurnoConfigFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>[]
+        }
+        create: {
+          args: Prisma.TurnoConfigCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>
+        }
+        createMany: {
+          args: Prisma.TurnoConfigCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TurnoConfigCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>[]
+        }
+        delete: {
+          args: Prisma.TurnoConfigDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>
+        }
+        update: {
+          args: Prisma.TurnoConfigUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>
+        }
+        deleteMany: {
+          args: Prisma.TurnoConfigDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TurnoConfigUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TurnoConfigUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>[]
+        }
+        upsert: {
+          args: Prisma.TurnoConfigUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TurnoConfigPayload>
+        }
+        aggregate: {
+          args: Prisma.TurnoConfigAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTurnoConfig>
+        }
+        groupBy: {
+          args: Prisma.TurnoConfigGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TurnoConfigGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TurnoConfigCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TurnoConfigCountAggregateOutputType> | number
+        }
+      }
+    }
     Turno: {
       payload: Prisma.$TurnoPayload<ExtArgs>
       fields: Prisma.TurnoFieldRefs
@@ -1694,6 +1771,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.VisitanteTerceroCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.VisitanteTerceroCountAggregateOutputType> | number
+        }
+      }
+    }
+    Planilla: {
+      payload: Prisma.$PlanillaPayload<ExtArgs>
+      fields: Prisma.PlanillaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlanillaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlanillaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>
+        }
+        findFirst: {
+          args: Prisma.PlanillaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlanillaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>
+        }
+        findMany: {
+          args: Prisma.PlanillaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>[]
+        }
+        create: {
+          args: Prisma.PlanillaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>
+        }
+        createMany: {
+          args: Prisma.PlanillaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlanillaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>[]
+        }
+        delete: {
+          args: Prisma.PlanillaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>
+        }
+        update: {
+          args: Prisma.PlanillaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlanillaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlanillaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlanillaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlanillaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaPayload>
+        }
+        aggregate: {
+          args: Prisma.PlanillaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlanilla>
+        }
+        groupBy: {
+          args: Prisma.PlanillaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlanillaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaCountAggregateOutputType> | number
+        }
+      }
+    }
+    PlanillaItem: {
+      payload: Prisma.$PlanillaItemPayload<ExtArgs>
+      fields: Prisma.PlanillaItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlanillaItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlanillaItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>
+        }
+        findFirst: {
+          args: Prisma.PlanillaItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlanillaItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>
+        }
+        findMany: {
+          args: Prisma.PlanillaItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>[]
+        }
+        create: {
+          args: Prisma.PlanillaItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>
+        }
+        createMany: {
+          args: Prisma.PlanillaItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlanillaItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>[]
+        }
+        delete: {
+          args: Prisma.PlanillaItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>
+        }
+        update: {
+          args: Prisma.PlanillaItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlanillaItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlanillaItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlanillaItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlanillaItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaItemPayload>
+        }
+        aggregate: {
+          args: Prisma.PlanillaItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlanillaItem>
+        }
+        groupBy: {
+          args: Prisma.PlanillaItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlanillaItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaItemCountAggregateOutputType> | number
         }
       }
     }
@@ -3329,10 +3554,28 @@ export const ProyectoTrabajadorScalarFieldEnum = {
   proyectoId: 'proyectoId',
   trabajadorId: 'trabajadorId',
   fechaIngreso: 'fechaIngreso',
-  fechaSalida: 'fechaSalida'
+  fechaSalida: 'fechaSalida',
+  turnoConfigId: 'turnoConfigId'
 } as const
 
 export type ProyectoTrabajadorScalarFieldEnum = (typeof ProyectoTrabajadorScalarFieldEnum)[keyof typeof ProyectoTrabajadorScalarFieldEnum]
+
+
+export const TurnoConfigScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  nombre: 'nombre',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin',
+  cruzaMedianoche: 'cruzaMedianoche',
+  toleranciaMinutos: 'toleranciaMinutos',
+  toleranciaSalidaMinutos: 'toleranciaSalidaMinutos',
+  activo: 'activo',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type TurnoConfigScalarFieldEnum = (typeof TurnoConfigScalarFieldEnum)[keyof typeof TurnoConfigScalarFieldEnum]
 
 
 export const TurnoScalarFieldEnum = {
@@ -3340,6 +3583,7 @@ export const TurnoScalarFieldEnum = {
   proyectoId: 'proyectoId',
   fecha: 'fecha',
   estado: 'estado',
+  turnoConfigId: 'turnoConfigId',
   horaAperturaReal: 'horaAperturaReal',
   horaCierreReal: 'horaCierreReal',
   fotoUrl: 'fotoUrl',
@@ -3416,6 +3660,35 @@ export const VisitanteTerceroScalarFieldEnum = {
 } as const
 
 export type VisitanteTerceroScalarFieldEnum = (typeof VisitanteTerceroScalarFieldEnum)[keyof typeof VisitanteTerceroScalarFieldEnum]
+
+
+export const PlanillaScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  periodoInicio: 'periodoInicio',
+  periodoFin: 'periodoFin',
+  valorHoraExtra: 'valorHoraExtra',
+  totalGeneral: 'totalGeneral',
+  generadaPorId: 'generadaPorId',
+  generadaEn: 'generadaEn'
+} as const
+
+export type PlanillaScalarFieldEnum = (typeof PlanillaScalarFieldEnum)[keyof typeof PlanillaScalarFieldEnum]
+
+
+export const PlanillaItemScalarFieldEnum = {
+  id: 'id',
+  planillaId: 'planillaId',
+  trabajadorId: 'trabajadorId',
+  horasNormales: 'horasNormales',
+  horasExtraPagable: 'horasExtraPagable',
+  precioHora: 'precioHora',
+  montoNormal: 'montoNormal',
+  montoExtra: 'montoExtra',
+  total: 'total'
+} as const
+
+export type PlanillaItemScalarFieldEnum = (typeof PlanillaItemScalarFieldEnum)[keyof typeof PlanillaItemScalarFieldEnum]
 
 
 export const ProveedorScalarFieldEnum = {
@@ -4222,11 +4495,14 @@ export type GlobalOmitConfig = {
   trabajador?: Prisma.TrabajadorOmit
   perfilObrero?: Prisma.PerfilObreroOmit
   proyectoTrabajador?: Prisma.ProyectoTrabajadorOmit
+  turnoConfig?: Prisma.TurnoConfigOmit
   turno?: Prisma.TurnoOmit
   asistencia?: Prisma.AsistenciaOmit
   registroVisita?: Prisma.RegistroVisitaOmit
   visitaTercero?: Prisma.VisitaTerceroOmit
   visitanteTercero?: Prisma.VisitanteTerceroOmit
+  planilla?: Prisma.PlanillaOmit
+  planillaItem?: Prisma.PlanillaItemOmit
   proveedor?: Prisma.ProveedorOmit
   contactoProveedor?: Prisma.ContactoProveedorOmit
   catalogoProductoProveedor?: Prisma.CatalogoProductoProveedorOmit

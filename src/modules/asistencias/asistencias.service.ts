@@ -37,38 +37,29 @@ export class AsistenciasService {
   }
 
   async findTurnoDetalle(proyectoId: string, turnoId: string) {
-    const [turno, proyecto] = await Promise.all([
-      this.prisma.turno.findFirst({
-        where: { id: turnoId, proyectoId },
-        include: {
-          asistencias: true,
-          abiertoPor: { select: { id: true, name: true } },
-          cerradoPor: { select: { id: true, name: true } },
-          corregidoPor: { select: { id: true, name: true } },
-        },
-      }),
-      this.prisma.proyecto.findUnique({
-        where: { id: proyectoId },
-        select: {
-          jornadaInicio: true,
-          jornadaFin: true,
-          toleranciaMinutos: true,
-          toleranciaSalidaMinutos: true,
-        },
-      }),
-    ]);
+    const turno = await this.prisma.turno.findFirst({
+      where: { id: turnoId, proyectoId },
+      include: {
+        asistencias: true,
+        turnoConfig: true,
+        abiertoPor: { select: { id: true, name: true } },
+        cerradoPor: { select: { id: true, name: true } },
+        corregidoPor: { select: { id: true, name: true } },
+      },
+    });
     if (!turno) throw new NotFoundException(`Turno ${turnoId} no encontrado`);
-    if (!proyecto)
-      throw new NotFoundException(`Obra ${proyectoId} no encontrada`);
 
-    const asignados = await this.obrerosAsignados(proyectoId, turno.fecha);
+    const asignados = await this.obrerosAsignados(
+      proyectoId,
+      turno.fecha,
+      turno.turnoConfigId,
+    );
     const asistenciaPorTrabajador = new Map(
       turno.asistencias.map((a) => [a.trabajadorId, a]),
     );
 
     return {
       ...turno,
-      proyecto,
       obreros: asignados.map((pt) => ({
         trabajadorId: pt.trabajadorId,
         nombre: pt.trabajador.nombre,
@@ -80,20 +71,29 @@ export class AsistenciasService {
   }
 
   async abrirTurno(proyectoId: string, actorId: string, dto: CreateTurnoDto) {
-    const proyecto = await this.prisma.proyecto.findUnique({
-      where: { id: proyectoId },
+    const turnoConfig = await this.prisma.turnoConfig.findFirst({
+      where: { id: dto.turnoConfigId, proyectoId, activo: true },
     });
-    if (!proyecto)
-      throw new NotFoundException(`Obra ${proyectoId} no encontrada`);
+    if (!turnoConfig) {
+      throw new BadRequestException(
+        'El turno de horario indicado no existe o está inactivo para esta obra',
+      );
+    }
 
     const fecha = dto.fecha ? this.soloFecha(new Date(dto.fecha)) : this.hoy();
 
     const turnoExistente = await this.prisma.turno.findUnique({
-      where: { proyectoId_fecha: { proyectoId, fecha } },
+      where: {
+        proyectoId_fecha_turnoConfigId: {
+          proyectoId,
+          fecha,
+          turnoConfigId: turnoConfig.id,
+        },
+      },
     });
     if (turnoExistente) {
       throw new BadRequestException(
-        'Ya existe un turno para esta obra en esta fecha',
+        'Ya existe un turno abierto para esta obra, este turno de horario y esta fecha',
       );
     }
 
@@ -101,6 +101,7 @@ export class AsistenciasService {
       data: {
         proyectoId,
         fecha,
+        turnoConfigId: turnoConfig.id,
         horaAperturaReal: new Date(),
         abiertoPorId: actorId,
       },
@@ -144,7 +145,11 @@ export class AsistenciasService {
     const turno = await this.turnoAbierto(proyectoId, turnoId);
     this.assertEvidenciaResuelta(turno);
 
-    const asignados = await this.obrerosAsignados(proyectoId, turno.fecha);
+    const asignados = await this.obrerosAsignados(
+      proyectoId,
+      turno.fecha,
+      turno.turnoConfigId,
+    );
     const trabajadorIdsValidos = new Set(
       asignados.map((pt) => pt.trabajadorId),
     );
@@ -190,7 +195,7 @@ export class AsistenciasService {
 
   async previsualizarCierre(proyectoId: string, turnoId: string) {
     const turno = await this.turnoAbierto(proyectoId, turnoId);
-    const { proyecto, asistencias } = await this.datosParaCalculo(
+    const { turnoConfig, asistencias } = await this.datosParaCalculo(
       proyectoId,
       turno,
     );
@@ -205,9 +210,7 @@ export class AsistenciasService {
         a.salidaTempranaHora,
         turno.fecha,
         horaCierreReal,
-        proyecto.jornadaInicio,
-        proyecto.jornadaFin,
-        proyecto.toleranciaSalidaMinutos ?? 60,
+        turnoConfig,
       ),
     }));
 
@@ -233,7 +236,7 @@ export class AsistenciasService {
     const turno = await this.turnoAbierto(proyectoId, turnoId);
     this.assertEvidenciaResuelta(turno);
 
-    const { proyecto, asistencias } = await this.datosParaCalculo(
+    const { turnoConfig, asistencias } = await this.datosParaCalculo(
       proyectoId,
       turno,
     );
@@ -247,9 +250,7 @@ export class AsistenciasService {
         a.salidaTempranaHora,
         turno.fecha,
         horaCierreReal,
-        proyecto.jornadaInicio,
-        proyecto.jornadaFin,
-        proyecto.toleranciaSalidaMinutos ?? 60,
+        turnoConfig,
       ),
     }));
 
@@ -307,23 +308,22 @@ export class AsistenciasService {
 
   private async datosParaCalculo(
     proyectoId: string,
-    turno: { id: string; fecha: Date },
+    turno: { id: string; fecha: Date; turnoConfigId: string },
   ) {
-    const proyecto = await this.prisma.proyecto.findUnique({
-      where: { id: proyectoId },
-      select: {
-        jornadaInicio: true,
-        jornadaFin: true,
-        toleranciaSalidaMinutos: true,
-      },
+    const turnoConfig = await this.prisma.turnoConfig.findUnique({
+      where: { id: turno.turnoConfigId },
     });
-    if (!proyecto?.jornadaInicio || !proyecto.jornadaFin) {
+    if (!turnoConfig) {
       throw new BadRequestException(
-        'La obra no tiene configurada la jornada (inicio/fin) — configúrala antes de cerrar el turno',
+        'El turno no tiene un turno de horario configurado',
       );
     }
 
-    const asignados = await this.obrerosAsignados(proyectoId, turno.fecha);
+    const asignados = await this.obrerosAsignados(
+      proyectoId,
+      turno.fecha,
+      turno.turnoConfigId,
+    );
     const asistencias = await this.prisma.asistencia.findMany({
       where: { turnoId: turno.id },
       include: { trabajador: { select: { nombre: true } } },
@@ -336,14 +336,7 @@ export class AsistenciasService {
       );
     }
 
-    return {
-      proyecto: proyecto as {
-        jornadaInicio: string;
-        jornadaFin: string;
-        toleranciaSalidaMinutos: number | null;
-      },
-      asistencias,
-    };
+    return { turnoConfig, asistencias };
   }
 
   private assertEvidenciaResuelta(turno: {
@@ -368,10 +361,15 @@ export class AsistenciasService {
     return turno;
   }
 
-  private obrerosAsignados(proyectoId: string, fecha: Date) {
+  private obrerosAsignados(
+    proyectoId: string,
+    fecha: Date,
+    turnoConfigId: string,
+  ) {
     return this.prisma.proyectoTrabajador.findMany({
       where: {
         proyectoId,
+        turnoConfigId,
         fechaIngreso: { lte: fecha },
         OR: [{ fechaSalida: null }, { fechaSalida: { gte: fecha } }],
         // Asistencia es para obreros (mano de obra que cobra por hora),
@@ -391,27 +389,42 @@ export class AsistenciasService {
     salidaTempranaHora: string | null,
     turnoFecha: Date,
     horaCierreReal: Date,
-    jornadaInicio: string,
-    jornadaFin: string,
-    toleranciaSalidaMinutos: number,
+    turnoConfig: {
+      horaInicio: string;
+      horaFin: string;
+      cruzaMedianoche: boolean;
+      toleranciaSalidaMinutos: number;
+    },
   ): { horasNormales: number; horasExtra: number } {
     if (estado === 'falta') {
       return { horasNormales: 0, horasExtra: 0 };
     }
 
-    const inicioJornada = this.combinarFechaHora(turnoFecha, jornadaInicio);
-    const finJornada = this.combinarFechaHora(turnoFecha, jornadaFin);
+    const { horaInicio, horaFin, cruzaMedianoche, toleranciaSalidaMinutos } =
+      turnoConfig;
+
+    const inicioJornada = this.combinarFechaHora(turnoFecha, horaInicio, false);
+    const finJornada = this.combinarFechaHora(
+      turnoFecha,
+      horaFin,
+      cruzaMedianoche,
+    );
     const duracionJornada = this.diffHoras(inicioJornada, finJornada);
 
     const entradaEfectiva =
       estado === 'tardio' && horaLlegadaReal
-        ? this.combinarFechaHora(turnoFecha, horaLlegadaReal)
+        ? this.combinarFechaHora(
+            turnoFecha,
+            horaLlegadaReal,
+            this.esDiaSiguiente(horaLlegadaReal, horaInicio, cruzaMedianoche),
+          )
         : inicioJornada;
 
     if (salidaTempranaHora) {
       const salidaEfectiva = this.combinarFechaHora(
         turnoFecha,
         salidaTempranaHora,
+        this.esDiaSiguiente(salidaTempranaHora, horaInicio, cruzaMedianoche),
       );
       const horasNormales = Math.min(
         duracionJornada,
@@ -433,9 +446,24 @@ export class AsistenciasService {
       : { horasNormales: horasNormalesBase, horasExtra: excedente };
   }
 
-  private combinarFechaHora(fecha: Date, hhmm: string): Date {
+  // Turnos que cruzan medianoche (ej. noche 22:00–06:00): una hora "HH:mm" menor
+  // que horaInicio cae en el día calendario siguiente al de turnoFecha.
+  private esDiaSiguiente(
+    hhmm: string,
+    horaInicio: string,
+    cruzaMedianoche: boolean,
+  ): boolean {
+    return cruzaMedianoche && hhmm < horaInicio;
+  }
+
+  private combinarFechaHora(
+    fecha: Date,
+    hhmm: string,
+    diaSiguiente: boolean,
+  ): Date {
     const [horas, minutos] = hhmm.split(':').map(Number);
     const d = new Date(fecha);
+    if (diaSiguiente) d.setUTCDate(d.getUTCDate() + 1);
     d.setUTCHours(horas, minutos, 0, 0);
     return d;
   }

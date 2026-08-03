@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "seed:admin": "tsx scripts/seed-admin.ts",
+    "backfill:turno-config": "tsx scripts/backfill-turno-config.ts",
     "seed": "tsx scripts/seed.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

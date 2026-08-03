@@ -135,6 +135,7 @@ enum TipoNotificacion {
   solicitud_lista_adjudicar
   orden_compra_generada
   obra_cerrada
+  planilla_generada
 }
 
 enum EstadoTurno {
@@ -185,6 +186,7 @@ model User {
   registrosVisitaComoVisitante  RegistroVisita[]         @relation("RegistrosVisitaUsuario")
   registrosVisitaRegistradosPor RegistroVisita[]         @relation("RegistrosVisitaRegistradosPor")
   visitasTerceroRegistradas     VisitaTercero[]
+  planillasGeneradas            Planilla[]
 
   @@map("users")
 }
@@ -306,6 +308,8 @@ model Proyecto {
   prevencionista       Trabajador?      @relation("ProyectoPrevencionista", fields: [prevencionistaId], references: [id])
 
   // Jornada de asistencia — el prevencionista de riesgo es el encargado de tomarla
+  // Deprecado en favor de TurnoConfig (soporte multi-turno) — se mantiene durante la migración,
+  // ver [[project_dyc_erp_multiturno_plan]]. No usar en código nuevo.
   jornadaInicio           String? // "HH:mm"
   jornadaFin              String? // "HH:mm"
   toleranciaMinutos       Int?    @default(10) // tolerancia de tardanza al entrar
@@ -333,6 +337,8 @@ model Proyecto {
   turnos          Turno[]
   registrosVisita RegistroVisita[]
   visitasTercero  VisitaTercero[]
+  planillas       Planilla[]
+  turnoConfigs    TurnoConfig[]
 
   @@map("proyectos")
 }
@@ -398,6 +404,7 @@ model Trabajador {
   perfilObrero                PerfilObrero?
   asistencias                 Asistencia[]
   registrosVisita             RegistroVisita[]
+  planillaItems               PlanillaItem[]
 
   @@map("trabajadores")
 }
@@ -431,11 +438,44 @@ model ProyectoTrabajador {
   fechaIngreso DateTime
   fechaSalida  DateTime?
 
-  proyecto   Proyecto   @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
-  trabajador Trabajador @relation(fields: [trabajadorId], references: [id], onDelete: Cascade)
+  // Turno de horario asignado (mañana/tarde/noche) — null mientras el proyecto no tenga
+  // multi-turno configurado o no se haya asignado explícitamente.
+  turnoConfigId String?
+
+  proyecto    Proyecto     @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  trabajador  Trabajador   @relation(fields: [trabajadorId], references: [id], onDelete: Cascade)
+  turnoConfig TurnoConfig? @relation(fields: [turnoConfigId], references: [id], onDelete: SetNull)
 
   @@unique([proyectoId, trabajadorId])
   @@map("proyectos_trabajadores")
+}
+
+model TurnoConfig {
+  id         String   @id @default(cuid())
+  proyectoId String
+  proyecto   Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+
+  nombre String // "Mañana", "Tarde", "Noche"
+
+  horaInicio      String // "HH:mm"
+  horaFin         String // "HH:mm"
+  // true si horaFin < horaInicio (turno cruza medianoche, ej. noche 22:00–06:00) — persistido,
+  // no recalculado, para que el cálculo de horas no dependa de comparar strings en cada llamada.
+  cruzaMedianoche Boolean @default(false)
+
+  toleranciaMinutos       Int @default(10) // tolerancia de tardanza al entrar
+  toleranciaSalidaMinutos Int @default(60) // umbral antes de contar horas extra al salir
+
+  activo Boolean @default(true) // soft-delete: false una vez que ya tiene históricos referenciados
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  asignaciones ProyectoTrabajador[]
+  turnos       Turno[]
+
+  @@unique([proyectoId, nombre])
+  @@map("turno_configs")
 }
 
 // ---------------------------------------------------------------------------
@@ -448,6 +488,11 @@ model Turno {
   proyecto   Proyecto    @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
   fecha      DateTime    @db.Date
   estado     EstadoTurno @default(abierto)
+
+  // Turno de horario (mañana/tarde/noche) al que pertenece esta jornada-día — ver
+  // [[project_dyc_erp_multiturno_plan]]. Requerido desde que se completó el backfill.
+  turnoConfigId String
+  turnoConfig   TurnoConfig @relation(fields: [turnoConfigId], references: [id])
 
   horaAperturaReal DateTime
   horaCierreReal   DateTime?
@@ -471,7 +516,7 @@ model Turno {
 
   asistencias Asistencia[]
 
-  @@unique([proyectoId, fecha])
+  @@unique([proyectoId, fecha, turnoConfigId])
   @@map("turnos")
 }
 
@@ -563,6 +608,46 @@ model VisitanteTercero {
   horaSalida  DateTime?
 
   @@map("visitantes_tercero")
+}
+
+// Planilla generada (S4): snapshot persistido del cálculo de RF-A11, por
+// obra y periodo. Independiente de `Pago` (que sigue atado 1:1 a
+// OrdenCompra) — decisión cerrada en el diseño de Asistencias.
+model Planilla {
+  id             String   @id @default(cuid())
+  proyectoId     String
+  proyecto       Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  periodoInicio  DateTime @db.Date
+  periodoFin     DateTime @db.Date
+  valorHoraExtra Decimal  @db.Decimal(10, 2)
+  totalGeneral   Decimal  @db.Decimal(12, 2)
+
+  generadaPorId String
+  generadaPor   User     @relation(fields: [generadaPorId], references: [id])
+  generadaEn    DateTime @default(now())
+
+  items PlanillaItem[]
+
+  @@unique([proyectoId, periodoInicio, periodoFin])
+  @@map("planillas")
+}
+
+model PlanillaItem {
+  id           String     @id @default(cuid())
+  planillaId   String
+  planilla     Planilla   @relation(fields: [planillaId], references: [id], onDelete: Cascade)
+  trabajadorId String
+  trabajador   Trabajador @relation(fields: [trabajadorId], references: [id])
+
+  horasNormales     Decimal  @db.Decimal(6, 2)
+  horasExtraPagable Decimal  @db.Decimal(6, 2)
+  precioHora        Decimal? @db.Decimal(10, 2)
+  montoNormal       Decimal  @db.Decimal(12, 2)
+  montoExtra        Decimal  @db.Decimal(12, 2)
+  total             Decimal  @db.Decimal(12, 2)
+
+  @@unique([planillaId, trabajadorId])
+  @@map("planilla_items")
 }
 
 // ---------------------------------------------------------------------------

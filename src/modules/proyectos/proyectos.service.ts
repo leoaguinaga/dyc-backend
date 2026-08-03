@@ -52,10 +52,25 @@ export class ProyectosService {
     prevencionista: { select: { id: true, nombre: true, cargo: true } },
   } as const;
 
-  findAll(userId: string, userRole: Role) {
+  private async trabajadorIdDe(userId: string): Promise<string | null> {
+    const trabajador = await this.prisma.trabajador.findUnique({
+      where: { userId },
+      select: { id: true },
+    });
+    return trabajador?.id ?? null;
+  }
+
+  async findAll(userId: string, userRole: Role) {
     if (userRole === 'supervisor') {
       return this.prisma.proyecto.findMany({
         where: { supervisores: { some: { userId } } },
+        include: this.includeBase,
+      });
+    }
+    if (userRole === 'pdr') {
+      const trabajadorId = await this.trabajadorIdDe(userId);
+      return this.prisma.proyecto.findMany({
+        where: { prevencionistaId: trabajadorId ?? '__none__' },
         include: this.includeBase,
       });
     }
@@ -86,6 +101,13 @@ export class ProyectosService {
       !proyecto.supervisores.some((s) => s.userId === userId)
     ) {
       throw new ForbiddenException('No tienes acceso a este proyecto');
+    }
+
+    if (userRole === 'pdr') {
+      const trabajadorId = await this.trabajadorIdDe(userId);
+      if (!trabajadorId || proyecto.prevencionistaId !== trabajadorId) {
+        throw new ForbiddenException('No tienes acceso a este proyecto');
+      }
     }
 
     return proyecto;

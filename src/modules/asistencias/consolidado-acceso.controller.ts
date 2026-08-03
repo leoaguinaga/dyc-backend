@@ -10,6 +10,10 @@ export class ConsolidadoAccesoController {
     @Param('proyectoId') proyectoId: string,
     @Query('fecha') fecha?: string,
   ) {
-    return this.consolidadoService.consolidado(proyectoId, fecha);
+    return this.consolidadoService.consolidado({
+      proyectoId,
+      desde: fecha,
+      hasta: fecha,
+    });
   }
 }

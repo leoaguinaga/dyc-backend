@@ -78,6 +78,11 @@ export type PerfilObrero = Prisma.PerfilObreroModel
  */
 export type ProyectoTrabajador = Prisma.ProyectoTrabajadorModel
 /**
+ * Model TurnoConfig
+ * 
+ */
+export type TurnoConfig = Prisma.TurnoConfigModel
+/**
  * Model Turno
  * 
  */
@@ -102,6 +107,16 @@ export type VisitaTercero = Prisma.VisitaTerceroModel
  * 
  */
 export type VisitanteTercero = Prisma.VisitanteTerceroModel
+/**
+ * Model Planilla
+ * 
+ */
+export type Planilla = Prisma.PlanillaModel
+/**
+ * Model PlanillaItem
+ * 
+ */
+export type PlanillaItem = Prisma.PlanillaItemModel
 /**
  * Model Proveedor
  * 

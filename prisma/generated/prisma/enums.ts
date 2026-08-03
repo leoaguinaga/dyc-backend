@@ -177,7 +177,8 @@ export const TipoNotificacion = {
   cotizacion_recibida: 'cotizacion_recibida',
   solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
   orden_compra_generada: 'orden_compra_generada',
-  obra_cerrada: 'obra_cerrada'
+  obra_cerrada: 'obra_cerrada',
+  planilla_generada: 'planilla_generada'
 } as const
 
 export type TipoNotificacion = (typeof TipoNotificacion)[keyof typeof TipoNotificacion]
