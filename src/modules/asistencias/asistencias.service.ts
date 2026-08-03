@@ -29,6 +29,7 @@ export class AsistenciasService {
       where: { proyectoId },
       orderBy: { fecha: 'desc' },
       include: {
+        turnoConfig: { select: { nombre: true } },
         abiertoPor: { select: { id: true, name: true } },
         cerradoPor: { select: { id: true, name: true } },
         corregidoPor: { select: { id: true, name: true } },
