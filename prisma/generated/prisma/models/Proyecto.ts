@@ -20,8 +20,20 @@ export type ProyectoModel = runtime.Types.Result.DefaultSelection<Prisma.$Proyec
 
 export type AggregateProyecto = {
   _count: ProyectoCountAggregateOutputType | null
+  _avg: ProyectoAvgAggregateOutputType | null
+  _sum: ProyectoSumAggregateOutputType | null
   _min: ProyectoMinAggregateOutputType | null
   _max: ProyectoMaxAggregateOutputType | null
+}
+
+export type ProyectoAvgAggregateOutputType = {
+  toleranciaMinutos: number | null
+  toleranciaSalidaMinutos: number | null
+}
+
+export type ProyectoSumAggregateOutputType = {
+  toleranciaMinutos: number | null
+  toleranciaSalidaMinutos: number | null
 }
 
 export type ProyectoMinAggregateOutputType = {
@@ -38,6 +50,10 @@ export type ProyectoMinAggregateOutputType = {
   coordinadorEmpresaId: string | null
   ejecutorId: string | null
   prevencionistaId: string | null
+  jornadaInicio: string | null
+  jornadaFin: string | null
+  toleranciaMinutos: number | null
+  toleranciaSalidaMinutos: number | null
   fechaInicio: Date | null
   fechaFin: Date | null
   fechaInicioReal: Date | null
@@ -62,6 +78,10 @@ export type ProyectoMaxAggregateOutputType = {
   coordinadorEmpresaId: string | null
   ejecutorId: string | null
   prevencionistaId: string | null
+  jornadaInicio: string | null
+  jornadaFin: string | null
+  toleranciaMinutos: number | null
+  toleranciaSalidaMinutos: number | null
   fechaInicio: Date | null
   fechaFin: Date | null
   fechaInicioReal: Date | null
@@ -86,6 +106,10 @@ export type ProyectoCountAggregateOutputType = {
   coordinadorEmpresaId: number
   ejecutorId: number
   prevencionistaId: number
+  jornadaInicio: number
+  jornadaFin: number
+  toleranciaMinutos: number
+  toleranciaSalidaMinutos: number
   fechaInicio: number
   fechaFin: number
   fechaInicioReal: number
@@ -97,6 +121,16 @@ export type ProyectoCountAggregateOutputType = {
   _all: number
 }
 
+
+export type ProyectoAvgAggregateInputType = {
+  toleranciaMinutos?: true
+  toleranciaSalidaMinutos?: true
+}
+
+export type ProyectoSumAggregateInputType = {
+  toleranciaMinutos?: true
+  toleranciaSalidaMinutos?: true
+}
 
 export type ProyectoMinAggregateInputType = {
   id?: true
@@ -112,6 +146,10 @@ export type ProyectoMinAggregateInputType = {
   coordinadorEmpresaId?: true
   ejecutorId?: true
   prevencionistaId?: true
+  jornadaInicio?: true
+  jornadaFin?: true
+  toleranciaMinutos?: true
+  toleranciaSalidaMinutos?: true
   fechaInicio?: true
   fechaFin?: true
   fechaInicioReal?: true
@@ -136,6 +174,10 @@ export type ProyectoMaxAggregateInputType = {
   coordinadorEmpresaId?: true
   ejecutorId?: true
   prevencionistaId?: true
+  jornadaInicio?: true
+  jornadaFin?: true
+  toleranciaMinutos?: true
+  toleranciaSalidaMinutos?: true
   fechaInicio?: true
   fechaFin?: true
   fechaInicioReal?: true
@@ -160,6 +202,10 @@ export type ProyectoCountAggregateInputType = {
   coordinadorEmpresaId?: true
   ejecutorId?: true
   prevencionistaId?: true
+  jornadaInicio?: true
+  jornadaFin?: true
+  toleranciaMinutos?: true
+  toleranciaSalidaMinutos?: true
   fechaInicio?: true
   fechaFin?: true
   fechaInicioReal?: true
@@ -209,6 +255,18 @@ export type ProyectoAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProyectoAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProyectoSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProyectoMinAggregateInputType
@@ -239,6 +297,8 @@ export type ProyectoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: ProyectoCountAggregateInputType | true
+  _avg?: ProyectoAvgAggregateInputType
+  _sum?: ProyectoSumAggregateInputType
   _min?: ProyectoMinAggregateInputType
   _max?: ProyectoMaxAggregateInputType
 }
@@ -257,6 +317,10 @@ export type ProyectoGroupByOutputType = {
   coordinadorEmpresaId: string | null
   ejecutorId: string | null
   prevencionistaId: string | null
+  jornadaInicio: string | null
+  jornadaFin: string | null
+  toleranciaMinutos: number | null
+  toleranciaSalidaMinutos: number | null
   fechaInicio: Date | null
   fechaFin: Date | null
   fechaInicioReal: Date | null
@@ -266,6 +330,8 @@ export type ProyectoGroupByOutputType = {
   creadaEn: Date
   actualizadaEn: Date
   _count: ProyectoCountAggregateOutputType | null
+  _avg: ProyectoAvgAggregateOutputType | null
+  _sum: ProyectoSumAggregateOutputType | null
   _min: ProyectoMinAggregateOutputType | null
   _max: ProyectoMaxAggregateOutputType | null
 }
@@ -302,6 +368,10 @@ export type ProyectoWhereInput = {
   coordinadorEmpresaId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   ejecutorId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   prevencionistaId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  jornadaInicio?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  jornadaFin?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  toleranciaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
+  toleranciaSalidaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
   fechaInicio?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
@@ -323,6 +393,11 @@ export type ProyectoWhereInput = {
   requerimientos?: Prisma.RequerimientoListRelationFilter
   solicitudes?: Prisma.SolicitudCotizacionListRelationFilter
   ordenesCompra?: Prisma.OrdenCompraListRelationFilter
+  turnos?: Prisma.TurnoListRelationFilter
+  registrosVisita?: Prisma.RegistroVisitaListRelationFilter
+  visitasTercero?: Prisma.VisitaTerceroListRelationFilter
+  planillas?: Prisma.PlanillaListRelationFilter
+  turnoConfigs?: Prisma.TurnoConfigListRelationFilter
 }
 
 export type ProyectoOrderByWithRelationInput = {
@@ -339,6 +414,10 @@ export type ProyectoOrderByWithRelationInput = {
   coordinadorEmpresaId?: Prisma.SortOrderInput | Prisma.SortOrder
   ejecutorId?: Prisma.SortOrderInput | Prisma.SortOrder
   prevencionistaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  jornadaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  jornadaFin?: Prisma.SortOrderInput | Prisma.SortOrder
+  toleranciaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -360,6 +439,11 @@ export type ProyectoOrderByWithRelationInput = {
   requerimientos?: Prisma.RequerimientoOrderByRelationAggregateInput
   solicitudes?: Prisma.SolicitudCotizacionOrderByRelationAggregateInput
   ordenesCompra?: Prisma.OrdenCompraOrderByRelationAggregateInput
+  turnos?: Prisma.TurnoOrderByRelationAggregateInput
+  registrosVisita?: Prisma.RegistroVisitaOrderByRelationAggregateInput
+  visitasTercero?: Prisma.VisitaTerceroOrderByRelationAggregateInput
+  planillas?: Prisma.PlanillaOrderByRelationAggregateInput
+  turnoConfigs?: Prisma.TurnoConfigOrderByRelationAggregateInput
 }
 
 export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
@@ -379,6 +463,10 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
   coordinadorEmpresaId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   ejecutorId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   prevencionistaId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  jornadaInicio?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  jornadaFin?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  toleranciaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
+  toleranciaSalidaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
   fechaInicio?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
@@ -400,6 +488,11 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
   requerimientos?: Prisma.RequerimientoListRelationFilter
   solicitudes?: Prisma.SolicitudCotizacionListRelationFilter
   ordenesCompra?: Prisma.OrdenCompraListRelationFilter
+  turnos?: Prisma.TurnoListRelationFilter
+  registrosVisita?: Prisma.RegistroVisitaListRelationFilter
+  visitasTercero?: Prisma.VisitaTerceroListRelationFilter
+  planillas?: Prisma.PlanillaListRelationFilter
+  turnoConfigs?: Prisma.TurnoConfigListRelationFilter
 }, "id" | "codigo">
 
 export type ProyectoOrderByWithAggregationInput = {
@@ -416,6 +509,10 @@ export type ProyectoOrderByWithAggregationInput = {
   coordinadorEmpresaId?: Prisma.SortOrderInput | Prisma.SortOrder
   ejecutorId?: Prisma.SortOrderInput | Prisma.SortOrder
   prevencionistaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  jornadaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  jornadaFin?: Prisma.SortOrderInput | Prisma.SortOrder
+  toleranciaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -425,8 +522,10 @@ export type ProyectoOrderByWithAggregationInput = {
   creadaEn?: Prisma.SortOrder
   actualizadaEn?: Prisma.SortOrder
   _count?: Prisma.ProyectoCountOrderByAggregateInput
+  _avg?: Prisma.ProyectoAvgOrderByAggregateInput
   _max?: Prisma.ProyectoMaxOrderByAggregateInput
   _min?: Prisma.ProyectoMinOrderByAggregateInput
+  _sum?: Prisma.ProyectoSumOrderByAggregateInput
 }
 
 export type ProyectoScalarWhereWithAggregatesInput = {
@@ -446,6 +545,10 @@ export type ProyectoScalarWhereWithAggregatesInput = {
   coordinadorEmpresaId?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
   ejecutorId?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
   prevencionistaId?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
+  jornadaInicio?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
+  jornadaFin?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
+  toleranciaMinutos?: Prisma.IntNullableWithAggregatesFilter<"Proyecto"> | number | null
+  toleranciaSalidaMinutos?: Prisma.IntNullableWithAggregatesFilter<"Proyecto"> | number | null
   fechaInicio?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
@@ -464,6 +567,10 @@ export type ProyectoCreateInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -485,6 +592,11 @@ export type ProyectoCreateInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateInput = {
@@ -501,6 +613,10 @@ export type ProyectoUncheckedCreateInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -516,6 +632,11 @@ export type ProyectoUncheckedCreateInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUpdateInput = {
@@ -526,6 +647,10 @@ export type ProyectoUpdateInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -547,6 +672,11 @@ export type ProyectoUpdateInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateInput = {
@@ -563,6 +693,10 @@ export type ProyectoUncheckedUpdateInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -578,6 +712,11 @@ export type ProyectoUncheckedUpdateInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateManyInput = {
@@ -594,6 +733,10 @@ export type ProyectoCreateManyInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -612,6 +755,10 @@ export type ProyectoUpdateManyMutationInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -636,6 +783,10 @@ export type ProyectoUncheckedUpdateManyInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -675,6 +826,10 @@ export type ProyectoCountOrderByAggregateInput = {
   coordinadorEmpresaId?: Prisma.SortOrder
   ejecutorId?: Prisma.SortOrder
   prevencionistaId?: Prisma.SortOrder
+  jornadaInicio?: Prisma.SortOrder
+  jornadaFin?: Prisma.SortOrder
+  toleranciaMinutos?: Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrder
   fechaInicio?: Prisma.SortOrder
   fechaFin?: Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrder
@@ -683,6 +838,11 @@ export type ProyectoCountOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   creadaEn?: Prisma.SortOrder
   actualizadaEn?: Prisma.SortOrder
+}
+
+export type ProyectoAvgOrderByAggregateInput = {
+  toleranciaMinutos?: Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrder
 }
 
 export type ProyectoMaxOrderByAggregateInput = {
@@ -699,6 +859,10 @@ export type ProyectoMaxOrderByAggregateInput = {
   coordinadorEmpresaId?: Prisma.SortOrder
   ejecutorId?: Prisma.SortOrder
   prevencionistaId?: Prisma.SortOrder
+  jornadaInicio?: Prisma.SortOrder
+  jornadaFin?: Prisma.SortOrder
+  toleranciaMinutos?: Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrder
   fechaInicio?: Prisma.SortOrder
   fechaFin?: Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrder
@@ -723,6 +887,10 @@ export type ProyectoMinOrderByAggregateInput = {
   coordinadorEmpresaId?: Prisma.SortOrder
   ejecutorId?: Prisma.SortOrder
   prevencionistaId?: Prisma.SortOrder
+  jornadaInicio?: Prisma.SortOrder
+  jornadaFin?: Prisma.SortOrder
+  toleranciaMinutos?: Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrder
   fechaInicio?: Prisma.SortOrder
   fechaFin?: Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrder
@@ -731,6 +899,11 @@ export type ProyectoMinOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   creadaEn?: Prisma.SortOrder
   actualizadaEn?: Prisma.SortOrder
+}
+
+export type ProyectoSumOrderByAggregateInput = {
+  toleranciaMinutos?: Prisma.SortOrder
+  toleranciaSalidaMinutos?: Prisma.SortOrder
 }
 
 export type ProyectoScalarRelationFilter = {
@@ -844,6 +1017,14 @@ export type ProyectoUncheckedCreateNestedManyWithoutParentInput = {
 
 export type EnumAmbitoGeograficoFieldUpdateOperationsInput = {
   set?: $Enums.AmbitoGeografico
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type EnumEstadoProyectoFieldUpdateOperationsInput = {
@@ -1056,6 +1237,76 @@ export type ProyectoUpdateOneRequiredWithoutTrabajadoresNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutTrabajadoresInput, Prisma.ProyectoUpdateWithoutTrabajadoresInput>, Prisma.ProyectoUncheckedUpdateWithoutTrabajadoresInput>
 }
 
+export type ProyectoCreateNestedOneWithoutTurnoConfigsInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnoConfigsInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutTurnoConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnoConfigsInput
+  upsert?: Prisma.ProyectoUpsertWithoutTurnoConfigsInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutTurnoConfigsInput, Prisma.ProyectoUpdateWithoutTurnoConfigsInput>, Prisma.ProyectoUncheckedUpdateWithoutTurnoConfigsInput>
+}
+
+export type ProyectoCreateNestedOneWithoutTurnosInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnosInput, Prisma.ProyectoUncheckedCreateWithoutTurnosInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnosInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutTurnosNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnosInput, Prisma.ProyectoUncheckedCreateWithoutTurnosInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutTurnosInput
+  upsert?: Prisma.ProyectoUpsertWithoutTurnosInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutTurnosInput, Prisma.ProyectoUpdateWithoutTurnosInput>, Prisma.ProyectoUncheckedUpdateWithoutTurnosInput>
+}
+
+export type ProyectoCreateNestedOneWithoutRegistrosVisitaInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutRegistrosVisitaInput, Prisma.ProyectoUncheckedCreateWithoutRegistrosVisitaInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutRegistrosVisitaInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutRegistrosVisitaNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutRegistrosVisitaInput, Prisma.ProyectoUncheckedCreateWithoutRegistrosVisitaInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutRegistrosVisitaInput
+  upsert?: Prisma.ProyectoUpsertWithoutRegistrosVisitaInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutRegistrosVisitaInput, Prisma.ProyectoUpdateWithoutRegistrosVisitaInput>, Prisma.ProyectoUncheckedUpdateWithoutRegistrosVisitaInput>
+}
+
+export type ProyectoCreateNestedOneWithoutVisitasTerceroInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutVisitasTerceroInput, Prisma.ProyectoUncheckedCreateWithoutVisitasTerceroInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutVisitasTerceroInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutVisitasTerceroNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutVisitasTerceroInput, Prisma.ProyectoUncheckedCreateWithoutVisitasTerceroInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutVisitasTerceroInput
+  upsert?: Prisma.ProyectoUpsertWithoutVisitasTerceroInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutVisitasTerceroInput, Prisma.ProyectoUpdateWithoutVisitasTerceroInput>, Prisma.ProyectoUncheckedUpdateWithoutVisitasTerceroInput>
+}
+
+export type ProyectoCreateNestedOneWithoutPlanillasInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPlanillasInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneRequiredWithoutPlanillasNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPlanillasInput
+  upsert?: Prisma.ProyectoUpsertWithoutPlanillasInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutPlanillasInput, Prisma.ProyectoUpdateWithoutPlanillasInput>, Prisma.ProyectoUncheckedUpdateWithoutPlanillasInput>
+}
+
 export type ProyectoCreateNestedOneWithoutRequerimientosInput = {
   create?: Prisma.XOR<Prisma.ProyectoCreateWithoutRequerimientosInput, Prisma.ProyectoUncheckedCreateWithoutRequerimientosInput>
   connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutRequerimientosInput
@@ -1108,6 +1359,10 @@ export type ProyectoCreateWithoutClienteInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1128,6 +1383,11 @@ export type ProyectoCreateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutClienteInput = {
@@ -1143,6 +1403,10 @@ export type ProyectoUncheckedCreateWithoutClienteInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1158,6 +1422,11 @@ export type ProyectoUncheckedCreateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutClienteInput = {
@@ -1203,6 +1472,10 @@ export type ProyectoScalarWhereInput = {
   coordinadorEmpresaId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   ejecutorId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   prevencionistaId?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  jornadaInicio?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  jornadaFin?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  toleranciaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
+  toleranciaSalidaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
   fechaInicio?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
@@ -1221,6 +1494,10 @@ export type ProyectoCreateWithoutCoordinadorClienteInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1241,6 +1518,11 @@ export type ProyectoCreateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
@@ -1256,6 +1538,10 @@ export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1271,6 +1557,11 @@ export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutCoordinadorClienteInput = {
@@ -1307,6 +1598,10 @@ export type ProyectoCreateWithoutSubproyectosInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1327,6 +1622,11 @@ export type ProyectoCreateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
@@ -1343,6 +1643,10 @@ export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1357,6 +1661,11 @@ export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutSubproyectosInput = {
@@ -1372,6 +1681,10 @@ export type ProyectoCreateWithoutParentInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1392,6 +1705,11 @@ export type ProyectoCreateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutParentInput = {
@@ -1407,6 +1725,10 @@ export type ProyectoUncheckedCreateWithoutParentInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1422,6 +1744,11 @@ export type ProyectoUncheckedCreateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutParentInput = {
@@ -1453,6 +1780,10 @@ export type ProyectoUpdateWithoutSubproyectosInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1473,6 +1804,11 @@ export type ProyectoUpdateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
@@ -1489,6 +1825,10 @@ export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1503,6 +1843,11 @@ export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUpsertWithWhereUniqueWithoutParentInput = {
@@ -1529,6 +1874,10 @@ export type ProyectoCreateWithoutSupervisoresInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1549,6 +1898,11 @@ export type ProyectoCreateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
@@ -1565,6 +1919,10 @@ export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1579,6 +1937,11 @@ export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutSupervisoresInput = {
@@ -1605,6 +1968,10 @@ export type ProyectoUpdateWithoutSupervisoresInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1625,6 +1992,11 @@ export type ProyectoUpdateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
@@ -1641,6 +2013,10 @@ export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1655,6 +2031,11 @@ export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutHitosInput = {
@@ -1665,6 +2046,10 @@ export type ProyectoCreateWithoutHitosInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1685,6 +2070,11 @@ export type ProyectoCreateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutHitosInput = {
@@ -1701,6 +2091,10 @@ export type ProyectoUncheckedCreateWithoutHitosInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1715,6 +2109,11 @@ export type ProyectoUncheckedCreateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutHitosInput = {
@@ -1741,6 +2140,10 @@ export type ProyectoUpdateWithoutHitosInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1761,6 +2164,11 @@ export type ProyectoUpdateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutHitosInput = {
@@ -1777,6 +2185,10 @@ export type ProyectoUncheckedUpdateWithoutHitosInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1791,6 +2203,11 @@ export type ProyectoUncheckedUpdateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutEjecutorInput = {
@@ -1801,6 +2218,10 @@ export type ProyectoCreateWithoutEjecutorInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1821,6 +2242,11 @@ export type ProyectoCreateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutEjecutorInput = {
@@ -1836,6 +2262,10 @@ export type ProyectoUncheckedCreateWithoutEjecutorInput = {
   coordinadorClienteId?: string | null
   coordinadorEmpresaId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1851,6 +2281,11 @@ export type ProyectoUncheckedCreateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutEjecutorInput = {
@@ -1871,6 +2306,10 @@ export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1891,6 +2330,11 @@ export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
@@ -1906,6 +2350,10 @@ export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
   coordinadorClienteId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1921,6 +2369,11 @@ export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutCoordinadorEmpresaInput = {
@@ -1941,6 +2394,10 @@ export type ProyectoCreateWithoutPrevencionistaInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1961,6 +2418,11 @@ export type ProyectoCreateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
@@ -1976,6 +2438,10 @@ export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
   coordinadorClienteId?: string | null
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1991,6 +2457,11 @@ export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutPrevencionistaInput = {
@@ -2059,6 +2530,10 @@ export type ProyectoCreateWithoutTrabajadoresInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2079,6 +2554,11 @@ export type ProyectoCreateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
@@ -2095,6 +2575,10 @@ export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2109,6 +2593,11 @@ export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutTrabajadoresInput = {
@@ -2135,6 +2624,10 @@ export type ProyectoUpdateWithoutTrabajadoresInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2155,6 +2648,11 @@ export type ProyectoUpdateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
@@ -2171,6 +2669,10 @@ export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2185,6 +2687,871 @@ export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutTurnoConfigsInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutTurnoConfigsInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutTurnoConfigsInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+}
+
+export type ProyectoUpsertWithoutTurnoConfigsInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedUpdateWithoutTurnoConfigsInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedCreateWithoutTurnoConfigsInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutTurnoConfigsInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutTurnoConfigsInput, Prisma.ProyectoUncheckedUpdateWithoutTurnoConfigsInput>
+}
+
+export type ProyectoUpdateWithoutTurnoConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutTurnoConfigsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutTurnosInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutTurnosInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutTurnosInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnosInput, Prisma.ProyectoUncheckedCreateWithoutTurnosInput>
+}
+
+export type ProyectoUpsertWithoutTurnosInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutTurnosInput, Prisma.ProyectoUncheckedUpdateWithoutTurnosInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutTurnosInput, Prisma.ProyectoUncheckedCreateWithoutTurnosInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutTurnosInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutTurnosInput, Prisma.ProyectoUncheckedUpdateWithoutTurnosInput>
+}
+
+export type ProyectoUpdateWithoutTurnosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutTurnosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutRegistrosVisitaInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutRegistrosVisitaInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutRegistrosVisitaInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutRegistrosVisitaInput, Prisma.ProyectoUncheckedCreateWithoutRegistrosVisitaInput>
+}
+
+export type ProyectoUpsertWithoutRegistrosVisitaInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutRegistrosVisitaInput, Prisma.ProyectoUncheckedUpdateWithoutRegistrosVisitaInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutRegistrosVisitaInput, Prisma.ProyectoUncheckedCreateWithoutRegistrosVisitaInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutRegistrosVisitaInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutRegistrosVisitaInput, Prisma.ProyectoUncheckedUpdateWithoutRegistrosVisitaInput>
+}
+
+export type ProyectoUpdateWithoutRegistrosVisitaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutVisitasTerceroInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutVisitasTerceroInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutVisitasTerceroInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutVisitasTerceroInput, Prisma.ProyectoUncheckedCreateWithoutVisitasTerceroInput>
+}
+
+export type ProyectoUpsertWithoutVisitasTerceroInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutVisitasTerceroInput, Prisma.ProyectoUncheckedUpdateWithoutVisitasTerceroInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutVisitasTerceroInput, Prisma.ProyectoUncheckedCreateWithoutVisitasTerceroInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutVisitasTerceroInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutVisitasTerceroInput, Prisma.ProyectoUncheckedUpdateWithoutVisitasTerceroInput>
+}
+
+export type ProyectoUpdateWithoutVisitasTerceroInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutPlanillasInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutPlanillasInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutPlanillasInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+}
+
+export type ProyectoUpsertWithoutPlanillasInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutPlanillasInput, Prisma.ProyectoUncheckedUpdateWithoutPlanillasInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPlanillasInput, Prisma.ProyectoUncheckedCreateWithoutPlanillasInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutPlanillasInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutPlanillasInput, Prisma.ProyectoUncheckedUpdateWithoutPlanillasInput>
+}
+
+export type ProyectoUpdateWithoutPlanillasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutPlanillasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutRequerimientosInput = {
@@ -2195,6 +3562,10 @@ export type ProyectoCreateWithoutRequerimientosInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2215,6 +3586,11 @@ export type ProyectoCreateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
@@ -2231,6 +3607,10 @@ export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2245,6 +3625,11 @@ export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutRequerimientosInput = {
@@ -2271,6 +3656,10 @@ export type ProyectoUpdateWithoutRequerimientosInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2291,6 +3680,11 @@ export type ProyectoUpdateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
@@ -2307,6 +3701,10 @@ export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2321,6 +3719,11 @@ export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutSolicitudesInput = {
@@ -2331,6 +3734,10 @@ export type ProyectoCreateWithoutSolicitudesInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2351,6 +3758,11 @@ export type ProyectoCreateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
@@ -2367,6 +3779,10 @@ export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2381,6 +3797,11 @@ export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutSolicitudesInput = {
@@ -2407,6 +3828,10 @@ export type ProyectoUpdateWithoutSolicitudesInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2427,6 +3852,11 @@ export type ProyectoUpdateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
@@ -2443,6 +3873,10 @@ export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2457,6 +3891,11 @@ export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateWithoutOrdenesCompraInput = {
@@ -2467,6 +3906,10 @@ export type ProyectoCreateWithoutOrdenesCompraInput = {
   direccion?: string | null
   comuna?: string | null
   ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2487,6 +3930,11 @@ export type ProyectoCreateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
@@ -2503,6 +3951,10 @@ export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2517,6 +3969,11 @@ export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
 }
 
 export type ProyectoCreateOrConnectWithoutOrdenesCompraInput = {
@@ -2543,6 +4000,10 @@ export type ProyectoUpdateWithoutOrdenesCompraInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2563,6 +4024,11 @@ export type ProyectoUpdateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
@@ -2579,6 +4045,10 @@ export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2593,6 +4063,11 @@ export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoCreateManyClienteInput = {
@@ -2608,6 +4083,10 @@ export type ProyectoCreateManyClienteInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2626,6 +4105,10 @@ export type ProyectoUpdateWithoutClienteInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2646,6 +4129,11 @@ export type ProyectoUpdateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutClienteInput = {
@@ -2661,6 +4149,10 @@ export type ProyectoUncheckedUpdateWithoutClienteInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2676,6 +4168,11 @@ export type ProyectoUncheckedUpdateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutClienteInput = {
@@ -2691,6 +4188,10 @@ export type ProyectoUncheckedUpdateManyWithoutClienteInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2714,6 +4215,10 @@ export type ProyectoCreateManyCoordinadorClienteInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2732,6 +4237,10 @@ export type ProyectoUpdateWithoutCoordinadorClienteInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2752,6 +4261,11 @@ export type ProyectoUpdateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
@@ -2767,6 +4281,10 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2782,6 +4300,11 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutCoordinadorClienteInput = {
@@ -2797,6 +4320,10 @@ export type ProyectoUncheckedUpdateManyWithoutCoordinadorClienteInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2820,6 +4347,10 @@ export type ProyectoCreateManyParentInput = {
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2838,6 +4369,10 @@ export type ProyectoUpdateWithoutParentInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2858,6 +4393,11 @@ export type ProyectoUpdateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutParentInput = {
@@ -2873,6 +4413,10 @@ export type ProyectoUncheckedUpdateWithoutParentInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2888,6 +4432,11 @@ export type ProyectoUncheckedUpdateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutParentInput = {
@@ -2903,6 +4452,10 @@ export type ProyectoUncheckedUpdateManyWithoutParentInput = {
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2926,6 +4479,10 @@ export type ProyectoCreateManyEjecutorInput = {
   coordinadorClienteId?: string | null
   coordinadorEmpresaId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2949,6 +4506,10 @@ export type ProyectoCreateManyCoordinadorEmpresaInput = {
   coordinadorClienteId?: string | null
   ejecutorId?: string | null
   prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2972,6 +4533,10 @@ export type ProyectoCreateManyPrevencionistaInput = {
   coordinadorClienteId?: string | null
   coordinadorEmpresaId?: string | null
   ejecutorId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2990,6 +4555,10 @@ export type ProyectoUpdateWithoutEjecutorInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3010,6 +4579,11 @@ export type ProyectoUpdateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
@@ -3025,6 +4599,10 @@ export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
   coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3040,6 +4618,11 @@ export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutEjecutorInput = {
@@ -3055,6 +4638,10 @@ export type ProyectoUncheckedUpdateManyWithoutEjecutorInput = {
   coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3073,6 +4660,10 @@ export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3093,6 +4684,11 @@ export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
@@ -3108,6 +4704,10 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
   coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3123,6 +4723,11 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaInput = {
@@ -3138,6 +4743,10 @@ export type ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaInput = {
   coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3156,6 +4765,10 @@ export type ProyectoUpdateWithoutPrevencionistaInput = {
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3176,6 +4789,11 @@ export type ProyectoUpdateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
@@ -3191,6 +4809,10 @@ export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
   coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3206,6 +4828,11 @@ export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
 }
 
 export type ProyectoUncheckedUpdateManyWithoutPrevencionistaInput = {
@@ -3221,6 +4848,10 @@ export type ProyectoUncheckedUpdateManyWithoutPrevencionistaInput = {
   coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3244,6 +4875,11 @@ export type ProyectoCountOutputType = {
   requerimientos: number
   solicitudes: number
   ordenesCompra: number
+  turnos: number
+  registrosVisita: number
+  visitasTercero: number
+  planillas: number
+  turnoConfigs: number
 }
 
 export type ProyectoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3254,6 +4890,11 @@ export type ProyectoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   requerimientos?: boolean | ProyectoCountOutputTypeCountRequerimientosArgs
   solicitudes?: boolean | ProyectoCountOutputTypeCountSolicitudesArgs
   ordenesCompra?: boolean | ProyectoCountOutputTypeCountOrdenesCompraArgs
+  turnos?: boolean | ProyectoCountOutputTypeCountTurnosArgs
+  registrosVisita?: boolean | ProyectoCountOutputTypeCountRegistrosVisitaArgs
+  visitasTercero?: boolean | ProyectoCountOutputTypeCountVisitasTerceroArgs
+  planillas?: boolean | ProyectoCountOutputTypeCountPlanillasArgs
+  turnoConfigs?: boolean | ProyectoCountOutputTypeCountTurnoConfigsArgs
 }
 
 /**
@@ -3315,6 +4956,41 @@ export type ProyectoCountOutputTypeCountOrdenesCompraArgs<ExtArgs extends runtim
   where?: Prisma.OrdenCompraWhereInput
 }
 
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountTurnosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountRegistrosVisitaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RegistroVisitaWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountVisitasTerceroArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VisitaTerceroWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountPlanillasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlanillaWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountTurnoConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoConfigWhereInput
+}
+
 
 export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3330,6 +5006,10 @@ export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   coordinadorEmpresaId?: boolean
   ejecutorId?: boolean
   prevencionistaId?: boolean
+  jornadaInicio?: boolean
+  jornadaFin?: boolean
+  toleranciaMinutos?: boolean
+  toleranciaSalidaMinutos?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -3351,6 +5031,11 @@ export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   requerimientos?: boolean | Prisma.Proyecto$requerimientosArgs<ExtArgs>
   solicitudes?: boolean | Prisma.Proyecto$solicitudesArgs<ExtArgs>
   ordenesCompra?: boolean | Prisma.Proyecto$ordenesCompraArgs<ExtArgs>
+  turnos?: boolean | Prisma.Proyecto$turnosArgs<ExtArgs>
+  registrosVisita?: boolean | Prisma.Proyecto$registrosVisitaArgs<ExtArgs>
+  visitasTercero?: boolean | Prisma.Proyecto$visitasTerceroArgs<ExtArgs>
+  planillas?: boolean | Prisma.Proyecto$planillasArgs<ExtArgs>
+  turnoConfigs?: boolean | Prisma.Proyecto$turnoConfigsArgs<ExtArgs>
   _count?: boolean | Prisma.ProyectoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["proyecto"]>
 
@@ -3368,6 +5053,10 @@ export type ProyectoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   coordinadorEmpresaId?: boolean
   ejecutorId?: boolean
   prevencionistaId?: boolean
+  jornadaInicio?: boolean
+  jornadaFin?: boolean
+  toleranciaMinutos?: boolean
+  toleranciaSalidaMinutos?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -3398,6 +5087,10 @@ export type ProyectoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   coordinadorEmpresaId?: boolean
   ejecutorId?: boolean
   prevencionistaId?: boolean
+  jornadaInicio?: boolean
+  jornadaFin?: boolean
+  toleranciaMinutos?: boolean
+  toleranciaSalidaMinutos?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -3428,6 +5121,10 @@ export type ProyectoSelectScalar = {
   coordinadorEmpresaId?: boolean
   ejecutorId?: boolean
   prevencionistaId?: boolean
+  jornadaInicio?: boolean
+  jornadaFin?: boolean
+  toleranciaMinutos?: boolean
+  toleranciaSalidaMinutos?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -3438,7 +5135,7 @@ export type ProyectoSelectScalar = {
   actualizadaEn?: boolean
 }
 
-export type ProyectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "ciudad" | "direccion" | "comuna" | "ambitoGeografico" | "parentId" | "clienteId" | "coordinadorClienteId" | "coordinadorEmpresaId" | "ejecutorId" | "prevencionistaId" | "fechaInicio" | "fechaFin" | "fechaInicioReal" | "fechaFinReal" | "notaInicioReal" | "estado" | "creadaEn" | "actualizadaEn", ExtArgs["result"]["proyecto"]>
+export type ProyectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "ciudad" | "direccion" | "comuna" | "ambitoGeografico" | "parentId" | "clienteId" | "coordinadorClienteId" | "coordinadorEmpresaId" | "ejecutorId" | "prevencionistaId" | "jornadaInicio" | "jornadaFin" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "fechaInicio" | "fechaFin" | "fechaInicioReal" | "fechaFinReal" | "notaInicioReal" | "estado" | "creadaEn" | "actualizadaEn", ExtArgs["result"]["proyecto"]>
 export type ProyectoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.Proyecto$parentArgs<ExtArgs>
   subproyectos?: boolean | Prisma.Proyecto$subproyectosArgs<ExtArgs>
@@ -3453,6 +5150,11 @@ export type ProyectoInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   requerimientos?: boolean | Prisma.Proyecto$requerimientosArgs<ExtArgs>
   solicitudes?: boolean | Prisma.Proyecto$solicitudesArgs<ExtArgs>
   ordenesCompra?: boolean | Prisma.Proyecto$ordenesCompraArgs<ExtArgs>
+  turnos?: boolean | Prisma.Proyecto$turnosArgs<ExtArgs>
+  registrosVisita?: boolean | Prisma.Proyecto$registrosVisitaArgs<ExtArgs>
+  visitasTercero?: boolean | Prisma.Proyecto$visitasTerceroArgs<ExtArgs>
+  planillas?: boolean | Prisma.Proyecto$planillasArgs<ExtArgs>
+  turnoConfigs?: boolean | Prisma.Proyecto$turnoConfigsArgs<ExtArgs>
   _count?: boolean | Prisma.ProyectoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProyectoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3488,6 +5190,11 @@ export type $ProyectoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     requerimientos: Prisma.$RequerimientoPayload<ExtArgs>[]
     solicitudes: Prisma.$SolicitudCotizacionPayload<ExtArgs>[]
     ordenesCompra: Prisma.$OrdenCompraPayload<ExtArgs>[]
+    turnos: Prisma.$TurnoPayload<ExtArgs>[]
+    registrosVisita: Prisma.$RegistroVisitaPayload<ExtArgs>[]
+    visitasTercero: Prisma.$VisitaTerceroPayload<ExtArgs>[]
+    planillas: Prisma.$PlanillaPayload<ExtArgs>[]
+    turnoConfigs: Prisma.$TurnoConfigPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3503,6 +5210,10 @@ export type $ProyectoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     coordinadorEmpresaId: string | null
     ejecutorId: string | null
     prevencionistaId: string | null
+    jornadaInicio: string | null
+    jornadaFin: string | null
+    toleranciaMinutos: number | null
+    toleranciaSalidaMinutos: number | null
     fechaInicio: Date | null
     fechaFin: Date | null
     fechaInicioReal: Date | null
@@ -3918,6 +5629,11 @@ export interface Prisma__ProyectoClient<T, Null = never, ExtArgs extends runtime
   requerimientos<T extends Prisma.Proyecto$requerimientosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$requerimientosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequerimientoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   solicitudes<T extends Prisma.Proyecto$solicitudesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$solicitudesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ordenesCompra<T extends Prisma.Proyecto$ordenesCompraArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$ordenesCompraArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnos<T extends Prisma.Proyecto$turnosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$turnosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  registrosVisita<T extends Prisma.Proyecto$registrosVisitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$registrosVisitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  visitasTercero<T extends Prisma.Proyecto$visitasTerceroArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$visitasTerceroArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitaTerceroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planillas<T extends Prisma.Proyecto$planillasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$planillasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnoConfigs<T extends Prisma.Proyecto$turnoConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$turnoConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3960,6 +5676,10 @@ export interface ProyectoFieldRefs {
   readonly coordinadorEmpresaId: Prisma.FieldRef<"Proyecto", 'String'>
   readonly ejecutorId: Prisma.FieldRef<"Proyecto", 'String'>
   readonly prevencionistaId: Prisma.FieldRef<"Proyecto", 'String'>
+  readonly jornadaInicio: Prisma.FieldRef<"Proyecto", 'String'>
+  readonly jornadaFin: Prisma.FieldRef<"Proyecto", 'String'>
+  readonly toleranciaMinutos: Prisma.FieldRef<"Proyecto", 'Int'>
+  readonly toleranciaSalidaMinutos: Prisma.FieldRef<"Proyecto", 'Int'>
   readonly fechaInicio: Prisma.FieldRef<"Proyecto", 'DateTime'>
   readonly fechaFin: Prisma.FieldRef<"Proyecto", 'DateTime'>
   readonly fechaInicioReal: Prisma.FieldRef<"Proyecto", 'DateTime'>
@@ -4648,6 +6368,126 @@ export type Proyecto$ordenesCompraArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.OrdenCompraScalarFieldEnum | Prisma.OrdenCompraScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.turnos
+ */
+export type Proyecto$turnosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Turno
+   */
+  select?: Prisma.TurnoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Turno
+   */
+  omit?: Prisma.TurnoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoInclude<ExtArgs> | null
+  where?: Prisma.TurnoWhereInput
+  orderBy?: Prisma.TurnoOrderByWithRelationInput | Prisma.TurnoOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoScalarFieldEnum | Prisma.TurnoScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.registrosVisita
+ */
+export type Proyecto$registrosVisitaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RegistroVisita
+   */
+  select?: Prisma.RegistroVisitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RegistroVisita
+   */
+  omit?: Prisma.RegistroVisitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RegistroVisitaInclude<ExtArgs> | null
+  where?: Prisma.RegistroVisitaWhereInput
+  orderBy?: Prisma.RegistroVisitaOrderByWithRelationInput | Prisma.RegistroVisitaOrderByWithRelationInput[]
+  cursor?: Prisma.RegistroVisitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RegistroVisitaScalarFieldEnum | Prisma.RegistroVisitaScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.visitasTercero
+ */
+export type Proyecto$visitasTerceroArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VisitaTercero
+   */
+  select?: Prisma.VisitaTerceroSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VisitaTercero
+   */
+  omit?: Prisma.VisitaTerceroOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VisitaTerceroInclude<ExtArgs> | null
+  where?: Prisma.VisitaTerceroWhereInput
+  orderBy?: Prisma.VisitaTerceroOrderByWithRelationInput | Prisma.VisitaTerceroOrderByWithRelationInput[]
+  cursor?: Prisma.VisitaTerceroWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VisitaTerceroScalarFieldEnum | Prisma.VisitaTerceroScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.planillas
+ */
+export type Proyecto$planillasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Planilla
+   */
+  select?: Prisma.PlanillaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Planilla
+   */
+  omit?: Prisma.PlanillaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanillaInclude<ExtArgs> | null
+  where?: Prisma.PlanillaWhereInput
+  orderBy?: Prisma.PlanillaOrderByWithRelationInput | Prisma.PlanillaOrderByWithRelationInput[]
+  cursor?: Prisma.PlanillaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlanillaScalarFieldEnum | Prisma.PlanillaScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.turnoConfigs
+ */
+export type Proyecto$turnoConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TurnoConfig
+   */
+  select?: Prisma.TurnoConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TurnoConfig
+   */
+  omit?: Prisma.TurnoConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoConfigInclude<ExtArgs> | null
+  where?: Prisma.TurnoConfigWhereInput
+  orderBy?: Prisma.TurnoConfigOrderByWithRelationInput | Prisma.TurnoConfigOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoConfigScalarFieldEnum | Prisma.TurnoConfigScalarFieldEnum[]
 }
 
 /**

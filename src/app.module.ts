@@ -20,9 +20,11 @@ import { PagosModule } from './modules/pagos/pagos.module.js';
 import { ReportesModule } from './modules/reportes/reportes.module.js';
 import { DashboardModule } from './modules/dashboard/dashboard.module.js';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module.js';
+import { AsistenciasModule } from './modules/asistencias/asistencias.module.js';
 import { EmailModule } from './shared/email/email.module.js';
 import { AuthGuard } from './shared/guards/auth.guard.js';
 import { RolesGuard } from './shared/guards/roles.guard.js';
+import { ResponsableAsistenciaGuard } from './shared/guards/responsable-asistencia.guard.js';
 
 @Module({
   imports: [
@@ -47,10 +49,12 @@ import { RolesGuard } from './shared/guards/roles.guard.js';
     ReportesModule,
     DashboardModule,
     NotificacionesModule,
+    AsistenciasModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
     { provide: APP_GUARD, useClass: RolesGuard },
+    { provide: APP_GUARD, useClass: ResponsableAsistenciaGuard },
   ],
 })
 export class AppModule {}

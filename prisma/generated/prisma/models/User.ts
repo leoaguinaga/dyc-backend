@@ -224,6 +224,13 @@ export type UserWhereInput = {
   pagosRegistrados?: Prisma.PagoListRelationFilter
   pagosEjecutados?: Prisma.PagoListRelationFilter
   notificaciones?: Prisma.NotificacionListRelationFilter
+  turnosAbiertos?: Prisma.TurnoListRelationFilter
+  turnosCerrados?: Prisma.TurnoListRelationFilter
+  turnosCorregidos?: Prisma.TurnoListRelationFilter
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaListRelationFilter
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaListRelationFilter
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroListRelationFilter
+  planillasGeneradas?: Prisma.PlanillaListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -246,6 +253,13 @@ export type UserOrderByWithRelationInput = {
   pagosRegistrados?: Prisma.PagoOrderByRelationAggregateInput
   pagosEjecutados?: Prisma.PagoOrderByRelationAggregateInput
   notificaciones?: Prisma.NotificacionOrderByRelationAggregateInput
+  turnosAbiertos?: Prisma.TurnoOrderByRelationAggregateInput
+  turnosCerrados?: Prisma.TurnoOrderByRelationAggregateInput
+  turnosCorregidos?: Prisma.TurnoOrderByRelationAggregateInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaOrderByRelationAggregateInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaOrderByRelationAggregateInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroOrderByRelationAggregateInput
+  planillasGeneradas?: Prisma.PlanillaOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -271,6 +285,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   pagosRegistrados?: Prisma.PagoListRelationFilter
   pagosEjecutados?: Prisma.PagoListRelationFilter
   notificaciones?: Prisma.NotificacionListRelationFilter
+  turnosAbiertos?: Prisma.TurnoListRelationFilter
+  turnosCerrados?: Prisma.TurnoListRelationFilter
+  turnosCorregidos?: Prisma.TurnoListRelationFilter
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaListRelationFilter
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaListRelationFilter
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroListRelationFilter
+  planillasGeneradas?: Prisma.PlanillaListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -323,6 +344,13 @@ export type UserCreateInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -345,6 +373,13 @@ export type UserUncheckedCreateInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUpdateInput = {
@@ -367,6 +402,13 @@ export type UserUpdateInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -389,6 +431,13 @@ export type UserUncheckedUpdateInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -551,6 +600,110 @@ export type UserUpdateOneWithoutTrabajadorNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTrabajadorInput, Prisma.UserUpdateWithoutTrabajadorInput>, Prisma.UserUncheckedUpdateWithoutTrabajadorInput>
 }
 
+export type UserCreateNestedOneWithoutTurnosAbiertosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosAbiertosInput, Prisma.UserUncheckedCreateWithoutTurnosAbiertosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosAbiertosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutTurnosCerradosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosCerradosInput, Prisma.UserUncheckedCreateWithoutTurnosCerradosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosCerradosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutTurnosCorregidosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosCorregidosInput, Prisma.UserUncheckedCreateWithoutTurnosCorregidosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosCorregidosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosAbiertosInput, Prisma.UserUncheckedCreateWithoutTurnosAbiertosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosAbiertosInput
+  upsert?: Prisma.UserUpsertWithoutTurnosAbiertosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTurnosAbiertosInput, Prisma.UserUpdateWithoutTurnosAbiertosInput>, Prisma.UserUncheckedUpdateWithoutTurnosAbiertosInput>
+}
+
+export type UserUpdateOneWithoutTurnosCerradosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosCerradosInput, Prisma.UserUncheckedCreateWithoutTurnosCerradosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosCerradosInput
+  upsert?: Prisma.UserUpsertWithoutTurnosCerradosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTurnosCerradosInput, Prisma.UserUpdateWithoutTurnosCerradosInput>, Prisma.UserUncheckedUpdateWithoutTurnosCerradosInput>
+}
+
+export type UserUpdateOneWithoutTurnosCorregidosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosCorregidosInput, Prisma.UserUncheckedCreateWithoutTurnosCorregidosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosCorregidosInput
+  upsert?: Prisma.UserUpsertWithoutTurnosCorregidosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTurnosCorregidosInput, Prisma.UserUpdateWithoutTurnosCorregidosInput>, Prisma.UserUncheckedUpdateWithoutTurnosCorregidosInput>
+}
+
+export type UserCreateNestedOneWithoutRegistrosVisitaComoVisitanteInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRegistrosVisitaComoVisitanteInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutRegistrosVisitaRegistradosPorInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRegistrosVisitaRegistradosPorInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutRegistrosVisitaComoVisitanteNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRegistrosVisitaComoVisitanteInput
+  upsert?: Prisma.UserUpsertWithoutRegistrosVisitaComoVisitanteInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUpdateWithoutRegistrosVisitaComoVisitanteInput>, Prisma.UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput>
+}
+
+export type UserUpdateOneRequiredWithoutRegistrosVisitaRegistradosPorNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRegistrosVisitaRegistradosPorInput
+  upsert?: Prisma.UserUpsertWithoutRegistrosVisitaRegistradosPorInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUpdateWithoutRegistrosVisitaRegistradosPorInput>, Prisma.UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput>
+}
+
+export type UserCreateNestedOneWithoutVisitasTerceroRegistradasInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVisitasTerceroRegistradasInput, Prisma.UserUncheckedCreateWithoutVisitasTerceroRegistradasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVisitasTerceroRegistradasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutVisitasTerceroRegistradasNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVisitasTerceroRegistradasInput, Prisma.UserUncheckedCreateWithoutVisitasTerceroRegistradasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVisitasTerceroRegistradasInput
+  upsert?: Prisma.UserUpsertWithoutVisitasTerceroRegistradasInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVisitasTerceroRegistradasInput, Prisma.UserUpdateWithoutVisitasTerceroRegistradasInput>, Prisma.UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput>
+}
+
+export type UserCreateNestedOneWithoutPlanillasGeneradasInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlanillasGeneradasInput, Prisma.UserUncheckedCreateWithoutPlanillasGeneradasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlanillasGeneradasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPlanillasGeneradasNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlanillasGeneradasInput, Prisma.UserUncheckedCreateWithoutPlanillasGeneradasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlanillasGeneradasInput
+  upsert?: Prisma.UserUpsertWithoutPlanillasGeneradasInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPlanillasGeneradasInput, Prisma.UserUpdateWithoutPlanillasGeneradasInput>, Prisma.UserUncheckedUpdateWithoutPlanillasGeneradasInput>
+}
+
 export type UserCreateNestedOneWithoutRequerimientosInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRequerimientosInput, Prisma.UserUncheckedCreateWithoutRequerimientosInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRequerimientosInput
@@ -658,6 +811,13 @@ export type UserCreateWithoutSessionsInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -679,6 +839,13 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -716,6 +883,13 @@ export type UserUpdateWithoutSessionsInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -737,6 +911,13 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -758,6 +939,13 @@ export type UserCreateWithoutAccountsInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -779,6 +967,13 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -816,6 +1011,13 @@ export type UserUpdateWithoutAccountsInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -837,6 +1039,13 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutProyectosComoSupervisorInput = {
@@ -858,6 +1067,13 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
@@ -879,6 +1095,13 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutProyectosComoSupervisorInput = {
@@ -916,6 +1139,13 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
@@ -937,6 +1167,13 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutTrabajadorInput = {
@@ -958,6 +1195,13 @@ export type UserCreateWithoutTrabajadorInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutTrabajadorInput = {
@@ -979,6 +1223,13 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutTrabajadorInput = {
@@ -1016,6 +1267,13 @@ export type UserUpdateWithoutTrabajadorInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrabajadorInput = {
@@ -1037,6 +1295,909 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserCreateWithoutTurnosAbiertosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserCreateOrConnectWithoutTurnosAbiertosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosAbiertosInput, Prisma.UserUncheckedCreateWithoutTurnosAbiertosInput>
+}
+
+export type UserCreateWithoutTurnosCerradosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserUncheckedCreateWithoutTurnosCerradosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserCreateOrConnectWithoutTurnosCerradosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCerradosInput, Prisma.UserUncheckedCreateWithoutTurnosCerradosInput>
+}
+
+export type UserCreateWithoutTurnosCorregidosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserCreateOrConnectWithoutTurnosCorregidosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCorregidosInput, Prisma.UserUncheckedCreateWithoutTurnosCorregidosInput>
+}
+
+export type UserUpsertWithoutTurnosAbiertosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTurnosAbiertosInput, Prisma.UserUncheckedUpdateWithoutTurnosAbiertosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosAbiertosInput, Prisma.UserUncheckedCreateWithoutTurnosAbiertosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTurnosAbiertosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTurnosAbiertosInput, Prisma.UserUncheckedUpdateWithoutTurnosAbiertosInput>
+}
+
+export type UserUpdateWithoutTurnosAbiertosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUpsertWithoutTurnosCerradosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTurnosCerradosInput, Prisma.UserUncheckedUpdateWithoutTurnosCerradosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCerradosInput, Prisma.UserUncheckedCreateWithoutTurnosCerradosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTurnosCerradosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTurnosCerradosInput, Prisma.UserUncheckedUpdateWithoutTurnosCerradosInput>
+}
+
+export type UserUpdateWithoutTurnosCerradosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUpsertWithoutTurnosCorregidosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTurnosCorregidosInput, Prisma.UserUncheckedUpdateWithoutTurnosCorregidosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCorregidosInput, Prisma.UserUncheckedCreateWithoutTurnosCorregidosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTurnosCorregidosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTurnosCorregidosInput, Prisma.UserUncheckedUpdateWithoutTurnosCorregidosInput>
+}
+
+export type UserUpdateWithoutTurnosCorregidosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserCreateOrConnectWithoutRegistrosVisitaComoVisitanteInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput>
+}
+
+export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserCreateOrConnectWithoutRegistrosVisitaRegistradosPorInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput>
+}
+
+export type UserUpsertWithoutRegistrosVisitaComoVisitanteInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRegistrosVisitaComoVisitanteInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRegistrosVisitaComoVisitanteInput, Prisma.UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput>
+}
+
+export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUpsertWithoutRegistrosVisitaRegistradosPorInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRegistrosVisitaRegistradosPorInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRegistrosVisitaRegistradosPorInput, Prisma.UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput>
+}
+
+export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserCreateWithoutVisitasTerceroRegistradasInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+}
+
+export type UserCreateOrConnectWithoutVisitasTerceroRegistradasInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutVisitasTerceroRegistradasInput, Prisma.UserUncheckedCreateWithoutVisitasTerceroRegistradasInput>
+}
+
+export type UserUpsertWithoutVisitasTerceroRegistradasInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutVisitasTerceroRegistradasInput, Prisma.UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutVisitasTerceroRegistradasInput, Prisma.UserUncheckedCreateWithoutVisitasTerceroRegistradasInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutVisitasTerceroRegistradasInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutVisitasTerceroRegistradasInput, Prisma.UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput>
+}
+
+export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+}
+
+export type UserCreateWithoutPlanillasGeneradasInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+}
+
+export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+}
+
+export type UserCreateOrConnectWithoutPlanillasGeneradasInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPlanillasGeneradasInput, Prisma.UserUncheckedCreateWithoutPlanillasGeneradasInput>
+}
+
+export type UserUpsertWithoutPlanillasGeneradasInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPlanillasGeneradasInput, Prisma.UserUncheckedUpdateWithoutPlanillasGeneradasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPlanillasGeneradasInput, Prisma.UserUncheckedCreateWithoutPlanillasGeneradasInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPlanillasGeneradasInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPlanillasGeneradasInput, Prisma.UserUncheckedUpdateWithoutPlanillasGeneradasInput>
+}
+
+export type UserUpdateWithoutPlanillasGeneradasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientosInput = {
@@ -1058,6 +2219,13 @@ export type UserCreateWithoutRequerimientosInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosInput = {
@@ -1079,6 +2247,13 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosInput = {
@@ -1116,6 +2291,13 @@ export type UserUpdateWithoutRequerimientosInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosInput = {
@@ -1137,6 +2319,13 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientoHistorialInput = {
@@ -1158,6 +2347,13 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
@@ -1179,6 +2375,13 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientoHistorialInput = {
@@ -1216,6 +2419,13 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
@@ -1237,6 +2447,13 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutOrdenesCompraInput = {
@@ -1258,6 +2475,13 @@ export type UserCreateWithoutOrdenesCompraInput = {
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraInput = {
@@ -1279,6 +2503,13 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraInput = {
@@ -1316,6 +2547,13 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
@@ -1337,6 +2575,13 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutPagosRegistradosInput = {
@@ -1358,6 +2603,13 @@ export type UserCreateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosRegistradosInput = {
@@ -1379,6 +2631,13 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosRegistradosInput = {
@@ -1405,6 +2664,13 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
@@ -1426,6 +2692,13 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosEjecutadosInput = {
@@ -1463,6 +2736,13 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
@@ -1484,6 +2764,13 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUpsertWithoutPagosEjecutadosInput = {
@@ -1516,6 +2803,13 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
@@ -1537,6 +2831,13 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserCreateWithoutNotificacionesInput = {
@@ -1558,6 +2859,13 @@ export type UserCreateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserUncheckedCreateWithoutNotificacionesInput = {
@@ -1579,6 +2887,13 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
 }
 
 export type UserCreateOrConnectWithoutNotificacionesInput = {
@@ -1616,6 +2931,13 @@ export type UserUpdateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificacionesInput = {
@@ -1637,6 +2959,13 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
 }
 
 
@@ -1654,6 +2983,13 @@ export type UserCountOutputType = {
   pagosRegistrados: number
   pagosEjecutados: number
   notificaciones: number
+  turnosAbiertos: number
+  turnosCerrados: number
+  turnosCorregidos: number
+  registrosVisitaComoVisitante: number
+  registrosVisitaRegistradosPor: number
+  visitasTerceroRegistradas: number
+  planillasGeneradas: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1666,6 +3002,13 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   pagosRegistrados?: boolean | UserCountOutputTypeCountPagosRegistradosArgs
   pagosEjecutados?: boolean | UserCountOutputTypeCountPagosEjecutadosArgs
   notificaciones?: boolean | UserCountOutputTypeCountNotificacionesArgs
+  turnosAbiertos?: boolean | UserCountOutputTypeCountTurnosAbiertosArgs
+  turnosCerrados?: boolean | UserCountOutputTypeCountTurnosCerradosArgs
+  turnosCorregidos?: boolean | UserCountOutputTypeCountTurnosCorregidosArgs
+  registrosVisitaComoVisitante?: boolean | UserCountOutputTypeCountRegistrosVisitaComoVisitanteArgs
+  registrosVisitaRegistradosPor?: boolean | UserCountOutputTypeCountRegistrosVisitaRegistradosPorArgs
+  visitasTerceroRegistradas?: boolean | UserCountOutputTypeCountVisitasTerceroRegistradasArgs
+  planillasGeneradas?: boolean | UserCountOutputTypeCountPlanillasGeneradasArgs
 }
 
 /**
@@ -1741,6 +3084,55 @@ export type UserCountOutputTypeCountNotificacionesArgs<ExtArgs extends runtime.T
   where?: Prisma.NotificacionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTurnosAbiertosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTurnosCerradosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTurnosCorregidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRegistrosVisitaComoVisitanteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RegistroVisitaWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRegistrosVisitaRegistradosPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RegistroVisitaWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountVisitasTerceroRegistradasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VisitaTerceroWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPlanillasGeneradasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlanillaWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1762,6 +3154,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   pagosRegistrados?: boolean | Prisma.User$pagosRegistradosArgs<ExtArgs>
   pagosEjecutados?: boolean | Prisma.User$pagosEjecutadosArgs<ExtArgs>
   notificaciones?: boolean | Prisma.User$notificacionesArgs<ExtArgs>
+  turnosAbiertos?: boolean | Prisma.User$turnosAbiertosArgs<ExtArgs>
+  turnosCerrados?: boolean | Prisma.User$turnosCerradosArgs<ExtArgs>
+  turnosCorregidos?: boolean | Prisma.User$turnosCorregidosArgs<ExtArgs>
+  registrosVisitaComoVisitante?: boolean | Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs>
+  registrosVisitaRegistradosPor?: boolean | Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs>
+  visitasTerceroRegistradas?: boolean | Prisma.User$visitasTerceroRegistradasArgs<ExtArgs>
+  planillasGeneradas?: boolean | Prisma.User$planillasGeneradasArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1813,6 +3212,13 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   pagosRegistrados?: boolean | Prisma.User$pagosRegistradosArgs<ExtArgs>
   pagosEjecutados?: boolean | Prisma.User$pagosEjecutadosArgs<ExtArgs>
   notificaciones?: boolean | Prisma.User$notificacionesArgs<ExtArgs>
+  turnosAbiertos?: boolean | Prisma.User$turnosAbiertosArgs<ExtArgs>
+  turnosCerrados?: boolean | Prisma.User$turnosCerradosArgs<ExtArgs>
+  turnosCorregidos?: boolean | Prisma.User$turnosCorregidosArgs<ExtArgs>
+  registrosVisitaComoVisitante?: boolean | Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs>
+  registrosVisitaRegistradosPor?: boolean | Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs>
+  visitasTerceroRegistradas?: boolean | Prisma.User$visitasTerceroRegistradasArgs<ExtArgs>
+  planillasGeneradas?: boolean | Prisma.User$planillasGeneradasArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1831,6 +3237,13 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     pagosRegistrados: Prisma.$PagoPayload<ExtArgs>[]
     pagosEjecutados: Prisma.$PagoPayload<ExtArgs>[]
     notificaciones: Prisma.$NotificacionPayload<ExtArgs>[]
+    turnosAbiertos: Prisma.$TurnoPayload<ExtArgs>[]
+    turnosCerrados: Prisma.$TurnoPayload<ExtArgs>[]
+    turnosCorregidos: Prisma.$TurnoPayload<ExtArgs>[]
+    registrosVisitaComoVisitante: Prisma.$RegistroVisitaPayload<ExtArgs>[]
+    registrosVisitaRegistradosPor: Prisma.$RegistroVisitaPayload<ExtArgs>[]
+    visitasTerceroRegistradas: Prisma.$VisitaTerceroPayload<ExtArgs>[]
+    planillasGeneradas: Prisma.$PlanillaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2246,6 +3659,13 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   pagosRegistrados<T extends Prisma.User$pagosRegistradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosRegistradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosEjecutados<T extends Prisma.User$pagosEjecutadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosEjecutadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notificaciones<T extends Prisma.User$notificacionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificacionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnosAbiertos<T extends Prisma.User$turnosAbiertosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosAbiertosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnosCerrados<T extends Prisma.User$turnosCerradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosCerradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnosCorregidos<T extends Prisma.User$turnosCorregidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosCorregidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  registrosVisitaComoVisitante<T extends Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  registrosVisitaRegistradosPor<T extends Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  visitasTerceroRegistradas<T extends Prisma.User$visitasTerceroRegistradasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$visitasTerceroRegistradasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitaTerceroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planillasGeneradas<T extends Prisma.User$planillasGeneradasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$planillasGeneradasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2909,6 +4329,174 @@ export type User$notificacionesArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.NotificacionScalarFieldEnum | Prisma.NotificacionScalarFieldEnum[]
+}
+
+/**
+ * User.turnosAbiertos
+ */
+export type User$turnosAbiertosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Turno
+   */
+  select?: Prisma.TurnoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Turno
+   */
+  omit?: Prisma.TurnoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoInclude<ExtArgs> | null
+  where?: Prisma.TurnoWhereInput
+  orderBy?: Prisma.TurnoOrderByWithRelationInput | Prisma.TurnoOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoScalarFieldEnum | Prisma.TurnoScalarFieldEnum[]
+}
+
+/**
+ * User.turnosCerrados
+ */
+export type User$turnosCerradosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Turno
+   */
+  select?: Prisma.TurnoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Turno
+   */
+  omit?: Prisma.TurnoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoInclude<ExtArgs> | null
+  where?: Prisma.TurnoWhereInput
+  orderBy?: Prisma.TurnoOrderByWithRelationInput | Prisma.TurnoOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoScalarFieldEnum | Prisma.TurnoScalarFieldEnum[]
+}
+
+/**
+ * User.turnosCorregidos
+ */
+export type User$turnosCorregidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Turno
+   */
+  select?: Prisma.TurnoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Turno
+   */
+  omit?: Prisma.TurnoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoInclude<ExtArgs> | null
+  where?: Prisma.TurnoWhereInput
+  orderBy?: Prisma.TurnoOrderByWithRelationInput | Prisma.TurnoOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoScalarFieldEnum | Prisma.TurnoScalarFieldEnum[]
+}
+
+/**
+ * User.registrosVisitaComoVisitante
+ */
+export type User$registrosVisitaComoVisitanteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RegistroVisita
+   */
+  select?: Prisma.RegistroVisitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RegistroVisita
+   */
+  omit?: Prisma.RegistroVisitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RegistroVisitaInclude<ExtArgs> | null
+  where?: Prisma.RegistroVisitaWhereInput
+  orderBy?: Prisma.RegistroVisitaOrderByWithRelationInput | Prisma.RegistroVisitaOrderByWithRelationInput[]
+  cursor?: Prisma.RegistroVisitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RegistroVisitaScalarFieldEnum | Prisma.RegistroVisitaScalarFieldEnum[]
+}
+
+/**
+ * User.registrosVisitaRegistradosPor
+ */
+export type User$registrosVisitaRegistradosPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RegistroVisita
+   */
+  select?: Prisma.RegistroVisitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RegistroVisita
+   */
+  omit?: Prisma.RegistroVisitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RegistroVisitaInclude<ExtArgs> | null
+  where?: Prisma.RegistroVisitaWhereInput
+  orderBy?: Prisma.RegistroVisitaOrderByWithRelationInput | Prisma.RegistroVisitaOrderByWithRelationInput[]
+  cursor?: Prisma.RegistroVisitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RegistroVisitaScalarFieldEnum | Prisma.RegistroVisitaScalarFieldEnum[]
+}
+
+/**
+ * User.visitasTerceroRegistradas
+ */
+export type User$visitasTerceroRegistradasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VisitaTercero
+   */
+  select?: Prisma.VisitaTerceroSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VisitaTercero
+   */
+  omit?: Prisma.VisitaTerceroOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VisitaTerceroInclude<ExtArgs> | null
+  where?: Prisma.VisitaTerceroWhereInput
+  orderBy?: Prisma.VisitaTerceroOrderByWithRelationInput | Prisma.VisitaTerceroOrderByWithRelationInput[]
+  cursor?: Prisma.VisitaTerceroWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VisitaTerceroScalarFieldEnum | Prisma.VisitaTerceroScalarFieldEnum[]
+}
+
+/**
+ * User.planillasGeneradas
+ */
+export type User$planillasGeneradasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Planilla
+   */
+  select?: Prisma.PlanillaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Planilla
+   */
+  omit?: Prisma.PlanillaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanillaInclude<ExtArgs> | null
+  where?: Prisma.PlanillaWhereInput
+  orderBy?: Prisma.PlanillaOrderByWithRelationInput | Prisma.PlanillaOrderByWithRelationInput[]
+  cursor?: Prisma.PlanillaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlanillaScalarFieldEnum | Prisma.PlanillaScalarFieldEnum[]
 }
 
 /**

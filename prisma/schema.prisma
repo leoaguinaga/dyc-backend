@@ -119,6 +119,12 @@ enum TipoBeneficiario {
   trabajador
 }
 
+enum CategoriaObrero {
+  operario
+  oficial
+  peon
+}
+
 enum TipoNotificacion {
   pago_por_vencer
   pago_vencido
@@ -129,6 +135,23 @@ enum TipoNotificacion {
   solicitud_lista_adjudicar
   orden_compra_generada
   obra_cerrada
+  planilla_generada
+}
+
+enum EstadoTurno {
+  abierto
+  cerrado
+}
+
+enum EstadoAsistencia {
+  presente
+  tardio
+  falta
+}
+
+enum TipoVisita {
+  staff
+  staff_oficina
 }
 
 // ---------------------------------------------------------------------------
@@ -147,16 +170,23 @@ model User {
   role           Role    @default(supervisor)
   correoContacto String?
 
-  sessions                Session[]
-  accounts                Account[]
-  trabajador              Trabajador?
-  proyectosComoSupervisor ProyectoSupervisor[]
-  requerimientos          Requerimiento[]          @relation("RequerimientosCreadosPor")
-  requerimientoHistorial  RequerimientoHistorial[] @relation("RequerimientoHistorialActor")
-  ordenesCompra           OrdenCompra[]        @relation("OrdenesCompraCreadosPor")
-  pagosRegistrados        Pago[]               @relation("PagosRegistradosPor")
-  pagosEjecutados         Pago[]               @relation("PagosEjecutadosPor")
-  notificaciones          Notificacion[]
+  sessions                      Session[]
+  accounts                      Account[]
+  trabajador                    Trabajador?
+  proyectosComoSupervisor       ProyectoSupervisor[]
+  requerimientos                Requerimiento[]          @relation("RequerimientosCreadosPor")
+  requerimientoHistorial        RequerimientoHistorial[] @relation("RequerimientoHistorialActor")
+  ordenesCompra                 OrdenCompra[]            @relation("OrdenesCompraCreadosPor")
+  pagosRegistrados              Pago[]                   @relation("PagosRegistradosPor")
+  pagosEjecutados               Pago[]                   @relation("PagosEjecutadosPor")
+  notificaciones                Notificacion[]
+  turnosAbiertos                Turno[]                  @relation("TurnosAbiertos")
+  turnosCerrados                Turno[]                  @relation("TurnosCerrados")
+  turnosCorregidos              Turno[]                  @relation("TurnosCorregidos")
+  registrosVisitaComoVisitante  RegistroVisita[]         @relation("RegistrosVisitaUsuario")
+  registrosVisitaRegistradosPor RegistroVisita[]         @relation("RegistrosVisitaRegistradosPor")
+  visitasTerceroRegistradas     VisitaTercero[]
+  planillasGeneradas            Planilla[]
 
   @@map("users")
 }
@@ -277,6 +307,14 @@ model Proyecto {
   prevencionistaId     String?
   prevencionista       Trabajador?      @relation("ProyectoPrevencionista", fields: [prevencionistaId], references: [id])
 
+  // Jornada de asistencia — el prevencionista de riesgo es el encargado de tomarla
+  // Deprecado en favor de TurnoConfig (soporte multi-turno) — se mantiene durante la migración,
+  // ver [[project_dyc_erp_multiturno_plan]]. No usar en código nuevo.
+  jornadaInicio           String? // "HH:mm"
+  jornadaFin              String? // "HH:mm"
+  toleranciaMinutos       Int?    @default(10) // tolerancia de tardanza al entrar
+  toleranciaSalidaMinutos Int?    @default(60) // umbral antes de contar horas extra al salir
+
   // Fechas programadas
   fechaInicio DateTime?
   fechaFin    DateTime?
@@ -290,12 +328,17 @@ model Proyecto {
   creadaEn      DateTime       @default(now())
   actualizadaEn DateTime       @updatedAt
 
-  supervisores   ProyectoSupervisor[]
-  trabajadores   ProyectoTrabajador[]
-  hitos          Hito[]
-  requerimientos Requerimiento[]
-  solicitudes    SolicitudCotizacion[]
-  ordenesCompra  OrdenCompra[]
+  supervisores    ProyectoSupervisor[]
+  trabajadores    ProyectoTrabajador[]
+  hitos           Hito[]
+  requerimientos  Requerimiento[]
+  solicitudes     SolicitudCotizacion[]
+  ordenesCompra   OrdenCompra[]
+  turnos          Turno[]
+  registrosVisita RegistroVisita[]
+  visitasTercero  VisitaTercero[]
+  planillas       Planilla[]
+  turnoConfigs    TurnoConfig[]
 
   @@map("proyectos")
 }
@@ -358,8 +401,34 @@ model Trabajador {
   proyectosComoCoordinador    Proyecto[]           @relation("ProyectoCoordinadorEmpresa")
   proyectosComoPrevencionista Proyecto[]           @relation("ProyectoPrevencionista")
   hitos                       Hito[]
+  perfilObrero                PerfilObrero?
+  asistencias                 Asistencia[]
+  registrosVisita             RegistroVisita[]
+  planillaItems               PlanillaItem[]
 
   @@map("trabajadores")
+}
+
+model PerfilObrero {
+  id           String @id @default(cuid())
+  trabajadorId String @unique
+
+  categoria                  CategoriaObrero?
+  precioHora                 Decimal?         @db.Decimal(10, 2)
+  tipoSangre                 String?
+  contactoEmergenciaNombre   String?
+  contactoEmergenciaTelefono String?
+  direccion                  String?
+  tallaUniforme              String?
+  tallaCalzado               String?
+  numeroSctr                 String?
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  trabajador Trabajador @relation(fields: [trabajadorId], references: [id], onDelete: Cascade)
+
+  @@map("perfiles_obrero")
 }
 
 model ProyectoTrabajador {
@@ -369,11 +438,216 @@ model ProyectoTrabajador {
   fechaIngreso DateTime
   fechaSalida  DateTime?
 
-  proyecto   Proyecto   @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
-  trabajador Trabajador @relation(fields: [trabajadorId], references: [id], onDelete: Cascade)
+  // Turno de horario asignado (mañana/tarde/noche) — null mientras el proyecto no tenga
+  // multi-turno configurado o no se haya asignado explícitamente.
+  turnoConfigId String?
+
+  proyecto    Proyecto     @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  trabajador  Trabajador   @relation(fields: [trabajadorId], references: [id], onDelete: Cascade)
+  turnoConfig TurnoConfig? @relation(fields: [turnoConfigId], references: [id], onDelete: SetNull)
 
   @@unique([proyectoId, trabajadorId])
   @@map("proyectos_trabajadores")
+}
+
+model TurnoConfig {
+  id         String   @id @default(cuid())
+  proyectoId String
+  proyecto   Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+
+  nombre String // "Mañana", "Tarde", "Noche"
+
+  horaInicio      String // "HH:mm"
+  horaFin         String // "HH:mm"
+  // true si horaFin < horaInicio (turno cruza medianoche, ej. noche 22:00–06:00) — persistido,
+  // no recalculado, para que el cálculo de horas no dependa de comparar strings en cada llamada.
+  cruzaMedianoche Boolean @default(false)
+
+  toleranciaMinutos       Int @default(10) // tolerancia de tardanza al entrar
+  toleranciaSalidaMinutos Int @default(60) // umbral antes de contar horas extra al salir
+
+  activo Boolean @default(true) // soft-delete: false una vez que ya tiene históricos referenciados
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  asignaciones ProyectoTrabajador[]
+  turnos       Turno[]
+
+  @@unique([proyectoId, nombre])
+  @@map("turno_configs")
+}
+
+// ---------------------------------------------------------------------------
+// Asistencias
+// ---------------------------------------------------------------------------
+
+model Turno {
+  id         String      @id @default(cuid())
+  proyectoId String
+  proyecto   Proyecto    @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  fecha      DateTime    @db.Date
+  estado     EstadoTurno @default(abierto)
+
+  // Turno de horario (mañana/tarde/noche) al que pertenece esta jornada-día — ver
+  // [[project_dyc_erp_multiturno_plan]]. Requerido desde que se completó el backfill.
+  turnoConfigId String
+  turnoConfig   TurnoConfig @relation(fields: [turnoConfigId], references: [id])
+
+  horaAperturaReal DateTime
+  horaCierreReal   DateTime?
+
+  fotoUrl           String?
+  fotoOmitida       Boolean @default(false)
+  motivoFotoOmitida String?
+
+  abiertoPorId String
+  abiertoPor   User    @relation("TurnosAbiertos", fields: [abiertoPorId], references: [id])
+  cerradoPorId String?
+  cerradoPor   User?   @relation("TurnosCerrados", fields: [cerradoPorId], references: [id])
+
+  corregidoPorId   String?
+  corregidoPor     User?     @relation("TurnosCorregidos", fields: [corregidoPorId], references: [id])
+  corregidoEn      DateTime?
+  motivoCorreccion String?
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  asistencias Asistencia[]
+
+  @@unique([proyectoId, fecha, turnoConfigId])
+  @@map("turnos")
+}
+
+model Asistencia {
+  id           String           @id @default(cuid())
+  turnoId      String
+  turno        Turno            @relation(fields: [turnoId], references: [id], onDelete: Cascade)
+  trabajadorId String
+  trabajador   Trabajador       @relation(fields: [trabajadorId], references: [id])
+  estado       EstadoAsistencia
+
+  horaLlegadaReal String? // "HH:mm", solo si estado = tardio
+  justificada     Boolean? // aplica a tardio y falta; irrelevante si estado = presente
+  justificacion   String? // motivo, cuando justificada = true
+
+  salidaTempranaHora   String? // "HH:mm" — presente (o tardio) que se retira antes de jornadaFin
+  salidaTempranaMotivo String?
+
+  horasNormales Decimal @default(0) @db.Decimal(5, 2)
+  horasExtra    Decimal @default(0) @db.Decimal(5, 2)
+  pagarExtra    Boolean @default(false)
+
+  @@unique([turnoId, trabajadorId])
+  @@map("asistencias")
+}
+
+// Control de acceso liviano para staff y staff de oficina — sin foto, sin
+// cálculo de horas ni planilla, salida opcional. El mismo prevencionista
+// (ResponsableAsistenciaGuard) es quien registra estos ingresos.
+model RegistroVisita {
+  id         String     @id @default(cuid())
+  proyectoId String
+  proyecto   Proyecto   @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  fecha      DateTime   @db.Date
+  tipo       TipoVisita
+
+  // Identidad: staff siempre trae trabajadorId (ya asignado a la obra).
+  // staff_oficina puede no tener cuenta ni registro de trabajador — en ese
+  // caso se captura el nombre libre.
+  trabajadorId String?
+  trabajador   Trabajador? @relation(fields: [trabajadorId], references: [id])
+  userId       String?
+  user         User?       @relation("RegistrosVisitaUsuario", fields: [userId], references: [id])
+  nombreLibre  String?
+
+  // Obligatorio solo para tipo = staff_oficina, se valida en el service.
+  motivo String?
+
+  horaEntrada DateTime
+  horaSalida  DateTime?
+
+  registradoPorId String
+  registradoPor   User   @relation("RegistrosVisitaRegistradosPor", fields: [registradoPorId], references: [id])
+
+  creadoEn DateTime @default(now())
+
+  @@map("registros_visita")
+}
+
+// Registro de ingreso de terceros (contratistas externos): una empresa
+// entra con N personas bajo un mismo motivo. Registro libre, sin vincularse
+// a una OC/requerimiento previo — salida opcional por persona.
+model VisitaTercero {
+  id            String   @id @default(cuid())
+  proyectoId    String
+  proyecto      Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  fecha         DateTime @db.Date
+  empresaNombre String
+  motivo        String
+
+  registradoPorId String
+  registradoPor   User   @relation(fields: [registradoPorId], references: [id])
+
+  creadoEn DateTime @default(now())
+
+  visitantes VisitanteTercero[]
+
+  @@map("visitas_tercero")
+}
+
+model VisitanteTercero {
+  id              String        @id @default(cuid())
+  visitaTerceroId String
+  visitaTercero   VisitaTercero @relation(fields: [visitaTerceroId], references: [id], onDelete: Cascade)
+  nombre          String
+  dni             String
+
+  horaEntrada DateTime
+  horaSalida  DateTime?
+
+  @@map("visitantes_tercero")
+}
+
+// Planilla generada (S4): snapshot persistido del cálculo de RF-A11, por
+// obra y periodo. Independiente de `Pago` (que sigue atado 1:1 a
+// OrdenCompra) — decisión cerrada en el diseño de Asistencias.
+model Planilla {
+  id             String   @id @default(cuid())
+  proyectoId     String
+  proyecto       Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  periodoInicio  DateTime @db.Date
+  periodoFin     DateTime @db.Date
+  valorHoraExtra Decimal  @db.Decimal(10, 2)
+  totalGeneral   Decimal  @db.Decimal(12, 2)
+
+  generadaPorId String
+  generadaPor   User     @relation(fields: [generadaPorId], references: [id])
+  generadaEn    DateTime @default(now())
+
+  items PlanillaItem[]
+
+  @@unique([proyectoId, periodoInicio, periodoFin])
+  @@map("planillas")
+}
+
+model PlanillaItem {
+  id           String     @id @default(cuid())
+  planillaId   String
+  planilla     Planilla   @relation(fields: [planillaId], references: [id], onDelete: Cascade)
+  trabajadorId String
+  trabajador   Trabajador @relation(fields: [trabajadorId], references: [id])
+
+  horasNormales     Decimal  @db.Decimal(6, 2)
+  horasExtraPagable Decimal  @db.Decimal(6, 2)
+  precioHora        Decimal? @db.Decimal(10, 2)
+  montoNormal       Decimal  @db.Decimal(12, 2)
+  montoExtra        Decimal  @db.Decimal(12, 2)
+  total             Decimal  @db.Decimal(12, 2)
+
+  @@unique([planillaId, trabajadorId])
+  @@map("planilla_items")
 }
 
 // ---------------------------------------------------------------------------
@@ -470,12 +744,12 @@ model Requerimiento {
 }
 
 model RequerimientoItem {
-  id              String        @id @default(cuid())
+  id              String                     @id @default(cuid())
   requerimientoId String
-  requerimiento   Requerimiento @relation(fields: [requerimientoId], references: [id], onDelete: Cascade)
+  requerimiento   Requerimiento              @relation(fields: [requerimientoId], references: [id], onDelete: Cascade)
   descripcion     String
-  cantidad        Decimal       @db.Decimal(12, 2)
-  unidad          UnidadMedida  @default(und)
+  cantidad        Decimal                    @db.Decimal(12, 2)
+  unidad          UnidadMedida               @default(und)
   nota            String?
   archivos        RequerimientoItemArchivo[]
 
@@ -483,12 +757,12 @@ model RequerimientoItem {
 }
 
 model RequerimientoItemArchivo {
-  id                   String            @id @default(cuid())
-  requerimientoItemId  String
-  requerimientoItem    RequerimientoItem @relation(fields: [requerimientoItemId], references: [id], onDelete: Cascade)
-  nombre               String
-  url                  String
-  creadoEn             DateTime          @default(now())
+  id                  String            @id @default(cuid())
+  requerimientoItemId String
+  requerimientoItem   RequerimientoItem @relation(fields: [requerimientoItemId], references: [id], onDelete: Cascade)
+  nombre              String
+  url                 String
+  creadoEn            DateTime          @default(now())
 
   @@map("requerimiento_item_archivos")
 }
@@ -603,9 +877,9 @@ model Cotizacion {
   creadoEn            DateTime            @default(now())
   actualizadoEn       DateTime            @updatedAt
 
-  items          CotizacionItem[]
+  items           CotizacionItem[]
   condicionesPago CotizacionCondicionPago[]
-  archivos       CotizacionArchivo[]
+  archivos        CotizacionArchivo[]
 
   @@map("cotizaciones")
 }
@@ -697,24 +971,24 @@ model OrdenCompra {
 }
 
 model Pago {
-  id                String           @id @default(cuid())
-  ordenCompraId     String
-  ordenCompra       OrdenCompra      @relation(fields: [ordenCompraId], references: [id], onDelete: Cascade)
-  tipoBeneficiario  TipoBeneficiario @default(proveedor)
-  monto             Decimal          @db.Decimal(12, 2)
-  porcentaje        Decimal          @db.Decimal(5, 2)
-  fechaProgramada   DateTime
-  fechaPagoReal     DateTime?
-  estado            EstadoPago       @default(pendiente)
-  metodoPago        String?
-  numeroOperacion   String?
-  nota              String?
-  registradoPorId   String
-  registradoPor     User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
-  pagadoPorId       String?
-  pagadoPor         User?            @relation("PagosEjecutadosPor", fields: [pagadoPorId], references: [id])
-  creadoEn          DateTime         @default(now())
-  actualizadoEn     DateTime         @updatedAt
+  id               String           @id @default(cuid())
+  ordenCompraId    String
+  ordenCompra      OrdenCompra      @relation(fields: [ordenCompraId], references: [id], onDelete: Cascade)
+  tipoBeneficiario TipoBeneficiario @default(proveedor)
+  monto            Decimal          @db.Decimal(12, 2)
+  porcentaje       Decimal          @db.Decimal(5, 2)
+  fechaProgramada  DateTime
+  fechaPagoReal    DateTime?
+  estado           EstadoPago       @default(pendiente)
+  metodoPago       String?
+  numeroOperacion  String?
+  nota             String?
+  registradoPorId  String
+  registradoPor    User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
+  pagadoPorId      String?
+  pagadoPor        User?            @relation("PagosEjecutadosPor", fields: [pagadoPorId], references: [id])
+  creadoEn         DateTime         @default(now())
+  actualizadoEn    DateTime         @updatedAt
 
   @@map("pagos")
 }

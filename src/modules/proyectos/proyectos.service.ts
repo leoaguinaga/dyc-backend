@@ -11,6 +11,7 @@ import { CreateProyectoDto } from './dto/create-proyecto.dto.js';
 import { UpdateProyectoDto } from './dto/update-proyecto.dto.js';
 import { CreateHitoDto } from './dto/create-hito.dto.js';
 import { UpdateHitoDto } from './dto/update-hito.dto.js';
+import { AsignarTrabajadoresDto } from './dto/asignar-trabajadores.dto.js';
 import { AppEvents } from '../../shared/events/events.js';
 
 const REQUERIMIENTO_ESTADOS_ABIERTOS = [
@@ -51,10 +52,25 @@ export class ProyectosService {
     prevencionista: { select: { id: true, nombre: true, cargo: true } },
   } as const;
 
-  findAll(userId: string, userRole: Role) {
+  private async trabajadorIdDe(userId: string): Promise<string | null> {
+    const trabajador = await this.prisma.trabajador.findUnique({
+      where: { userId },
+      select: { id: true },
+    });
+    return trabajador?.id ?? null;
+  }
+
+  async findAll(userId: string, userRole: Role) {
     if (userRole === 'supervisor') {
       return this.prisma.proyecto.findMany({
         where: { supervisores: { some: { userId } } },
+        include: this.includeBase,
+      });
+    }
+    if (userRole === 'pdr') {
+      const trabajadorId = await this.trabajadorIdDe(userId);
+      return this.prisma.proyecto.findMany({
+        where: { prevencionistaId: trabajadorId ?? '__none__' },
         include: this.includeBase,
       });
     }
@@ -85,6 +101,13 @@ export class ProyectosService {
       !proyecto.supervisores.some((s) => s.userId === userId)
     ) {
       throw new ForbiddenException('No tienes acceso a este proyecto');
+    }
+
+    if (userRole === 'pdr') {
+      const trabajadorId = await this.trabajadorIdDe(userId);
+      if (!trabajadorId || proyecto.prevencionistaId !== trabajadorId) {
+        throw new ForbiddenException('No tienes acceso a este proyecto');
+      }
     }
 
     return proyecto;
@@ -211,6 +234,31 @@ export class ProyectosService {
   async removeSupervisor(proyectoId: string, userId: string) {
     return this.prisma.proyectoSupervisor.delete({
       where: { proyectoId_userId: { proyectoId, userId } },
+    });
+  }
+
+  // ── Trabajadores ──────────────────────────────────────────────────────────
+
+  async asignarTrabajadores(proyectoId: string, dto: AsignarTrabajadoresDto) {
+    await this.assertExists(proyectoId);
+
+    const trabajadorIds = [...new Set(dto.trabajadorIds)];
+    const fechaIngreso = new Date(dto.fechaIngreso);
+    const fechaSalida = this.toDate(dto.fechaSalida);
+
+    await this.prisma.proyectoTrabajador.createMany({
+      data: trabajadorIds.map((trabajadorId) => ({
+        proyectoId,
+        trabajadorId,
+        fechaIngreso,
+        ...(fechaSalida && { fechaSalida }),
+      })),
+      skipDuplicates: true,
+    });
+
+    return this.prisma.proyectoTrabajador.findMany({
+      where: { proyectoId, trabajadorId: { in: trabajadorIds } },
+      include: { trabajador: true },
     });
   }
 

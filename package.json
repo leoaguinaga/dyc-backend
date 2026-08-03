@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "seed:admin": "tsx scripts/seed-admin.ts",
+    "backfill:turno-config": "tsx scripts/backfill-turno-config.ts",
     "seed": "tsx scripts/seed.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -37,6 +38,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
     "helmet": "^8.2.0",
     "nodemailer": "^9.0.3",
     "pg": "^8.21.0",

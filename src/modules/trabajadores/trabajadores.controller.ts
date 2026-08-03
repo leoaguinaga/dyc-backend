@@ -13,6 +13,7 @@ import { CreateTrabajadorDto } from './dto/create-trabajador.dto.js';
 import { UpdateTrabajadorDto } from './dto/update-trabajador.dto.js';
 import { AsignarProyectoDto } from './dto/asignar-proyecto.dto.js';
 import { CrearAccesoDto } from './dto/crear-acceso.dto.js';
+import { UpsertPerfilObreroDto } from './dto/upsert-perfil-obrero.dto.js';
 
 @Controller('trabajadores')
 @Roles('administrador', 'logistica', 'gerencia')
@@ -60,5 +61,13 @@ export class TrabajadoresController {
     @Param('proyectoId') proyectoId: string,
   ) {
     return this.trabajadoresService.desasignarProyecto(id, proyectoId);
+  }
+
+  @Patch(':id/perfil-obrero')
+  upsertPerfilObrero(
+    @Param('id') id: string,
+    @Body() dto: UpsertPerfilObreroDto,
+  ) {
+    return this.trabajadoresService.upsertPerfilObrero(id, dto);
   }
 }

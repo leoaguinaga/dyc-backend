@@ -159,6 +159,15 @@ export const TipoBeneficiario = {
 export type TipoBeneficiario = (typeof TipoBeneficiario)[keyof typeof TipoBeneficiario]
 
 
+export const CategoriaObrero = {
+  operario: 'operario',
+  oficial: 'oficial',
+  peon: 'peon'
+} as const
+
+export type CategoriaObrero = (typeof CategoriaObrero)[keyof typeof CategoriaObrero]
+
+
 export const TipoNotificacion = {
   pago_por_vencer: 'pago_por_vencer',
   pago_vencido: 'pago_vencido',
@@ -168,7 +177,33 @@ export const TipoNotificacion = {
   cotizacion_recibida: 'cotizacion_recibida',
   solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
   orden_compra_generada: 'orden_compra_generada',
-  obra_cerrada: 'obra_cerrada'
+  obra_cerrada: 'obra_cerrada',
+  planilla_generada: 'planilla_generada'
 } as const
 
 export type TipoNotificacion = (typeof TipoNotificacion)[keyof typeof TipoNotificacion]
+
+
+export const EstadoTurno = {
+  abierto: 'abierto',
+  cerrado: 'cerrado'
+} as const
+
+export type EstadoTurno = (typeof EstadoTurno)[keyof typeof EstadoTurno]
+
+
+export const EstadoAsistencia = {
+  presente: 'presente',
+  tardio: 'tardio',
+  falta: 'falta'
+} as const
+
+export type EstadoAsistencia = (typeof EstadoAsistencia)[keyof typeof EstadoAsistencia]
+
+
+export const TipoVisita = {
+  staff: 'staff',
+  staff_oficina: 'staff_oficina'
+} as const
+
+export type TipoVisita = (typeof TipoVisita)[keyof typeof TipoVisita]
