@@ -14,6 +14,12 @@ import { UpdateHitoDto } from './dto/update-hito.dto.js';
 import { AsignarTrabajadoresDto } from './dto/asignar-trabajadores.dto.js';
 import { AppEvents } from '../../shared/events/events.js';
 
+const ROLES_SUPERVISOR: Role[] = [
+  'supervisor',
+  'supervisor_civil',
+  'supervisor_electrico',
+];
+
 const REQUERIMIENTO_ESTADOS_ABIERTOS = [
   'borrador',
   'enviado',
@@ -50,6 +56,7 @@ export class ProyectosService {
     coordinadorCliente: { select: { id: true, nombre: true, cargo: true } },
     ejecutor: { select: { id: true, nombre: true, cargo: true } },
     prevencionista: { select: { id: true, nombre: true, cargo: true } },
+    turnoConfigs: { orderBy: { horaInicio: 'asc' as const } },
   } as const;
 
   private async trabajadorIdDe(userId: string): Promise<string | null> {
@@ -61,7 +68,7 @@ export class ProyectosService {
   }
 
   async findAll(userId: string, userRole: Role) {
-    if (userRole === 'supervisor') {
+    if (ROLES_SUPERVISOR.includes(userRole)) {
       return this.prisma.proyecto.findMany({
         where: { supervisores: { some: { userId } } },
         include: this.includeBase,
@@ -97,7 +104,7 @@ export class ProyectosService {
     if (!proyecto) throw new NotFoundException(`Proyecto ${id} no encontrado`);
 
     if (
-      userRole === 'supervisor' &&
+      ROLES_SUPERVISOR.includes(userRole) &&
       !proyecto.supervisores.some((s) => s.userId === userId)
     ) {
       throw new ForbiddenException('No tienes acceso a este proyecto');
