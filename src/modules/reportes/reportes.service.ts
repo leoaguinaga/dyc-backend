@@ -47,7 +47,7 @@ export class ReportesService {
 
   async ocsPorProveedor(query: QueryReporteRangoDto) {
     const ocs = await this.prisma.ordenCompra.findMany({
-      where: { creadoEn: rangoFecha(query) },
+      where: { creadoEn: rangoFecha(query), proveedorId: { not: null } },
       select: {
         montoTotal: true,
         proveedor: { select: { id: true, razonSocial: true } },
@@ -59,6 +59,7 @@ export class ReportesService {
       { proveedor: { id: string; razonSocial: string }; totalOcs: number; montoTotal: number }
     >();
     for (const oc of ocs) {
+      if (!oc.proveedor) continue;
       const entry = porProveedor.get(oc.proveedor.id) ?? {
         proveedor: oc.proveedor,
         totalOcs: 0,

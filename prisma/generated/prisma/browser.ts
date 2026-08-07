@@ -193,10 +193,25 @@ export type CotizacionItem = Prisma.CotizacionItemModel
  */
 export type CotizacionCondicionPago = Prisma.CotizacionCondicionPagoModel
 /**
+ * Model CompraSimple
+ * 
+ */
+export type CompraSimple = Prisma.CompraSimpleModel
+/**
  * Model OrdenCompra
  * 
  */
 export type OrdenCompra = Prisma.OrdenCompraModel
+/**
+ * Model CompraSimpleGrupoArchivo
+ * 
+ */
+export type CompraSimpleGrupoArchivo = Prisma.CompraSimpleGrupoArchivoModel
+/**
+ * Model CompraSimpleGrupoHistorial
+ * 
+ */
+export type CompraSimpleGrupoHistorial = Prisma.CompraSimpleGrupoHistorialModel
 /**
  * Model Pago
  * 

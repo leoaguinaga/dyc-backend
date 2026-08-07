@@ -86,7 +86,10 @@ export const ModelName = {
   CotizacionArchivo: 'CotizacionArchivo',
   CotizacionItem: 'CotizacionItem',
   CotizacionCondicionPago: 'CotizacionCondicionPago',
+  CompraSimple: 'CompraSimple',
   OrdenCompra: 'OrdenCompra',
+  CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
+  CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
   OrdenCompraItem: 'OrdenCompraItem',
   Notificacion: 'Notificacion'
@@ -652,12 +655,35 @@ export const CotizacionCondicionPagoScalarFieldEnum = {
 export type CotizacionCondicionPagoScalarFieldEnum = (typeof CotizacionCondicionPagoScalarFieldEnum)[keyof typeof CotizacionCondicionPagoScalarFieldEnum]
 
 
+export const CompraSimpleScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  tipo: 'tipo',
+  urgente: 'urgente',
+  proyectoId: 'proyectoId',
+  creadoPorId: 'creadoPorId',
+  nota: 'nota',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type CompraSimpleScalarFieldEnum = (typeof CompraSimpleScalarFieldEnum)[keyof typeof CompraSimpleScalarFieldEnum]
+
+
 export const OrdenCompraScalarFieldEnum = {
   id: 'id',
   numero: 'numero',
   nombre: 'nombre',
   solicitudId: 'solicitudId',
   proveedorId: 'proveedorId',
+  proveedorNombreLibre: 'proveedorNombreLibre',
+  origen: 'origen',
+  compraSimpleId: 'compraSimpleId',
+  estadoAprobacion: 'estadoAprobacion',
+  aprobadoPorId: 'aprobadoPorId',
+  aprobadoEn: 'aprobadoEn',
+  notaAprobacion: 'notaAprobacion',
   proyectoId: 'proyectoId',
   estado: 'estado',
   fechaEmision: 'fechaEmision',
@@ -682,6 +708,15 @@ export const OrdenCompraScalarFieldEnum = {
   contactoDycArea: 'contactoDycArea',
   contactoDycCelular: 'contactoDycCelular',
   contactoDycTelefono: 'contactoDycTelefono',
+  destinoPago: 'destinoPago',
+  pagoBanco: 'pagoBanco',
+  pagoNumeroCuenta: 'pagoNumeroCuenta',
+  pagoRazonSocial: 'pagoRazonSocial',
+  pagoMetodo: 'pagoMetodo',
+  pagoTrabajadorBanco: 'pagoTrabajadorBanco',
+  pagoTrabajadorNumeroCuenta: 'pagoTrabajadorNumeroCuenta',
+  pagoTrabajadorNumero: 'pagoTrabajadorNumero',
+  pagoTrabajadorId: 'pagoTrabajadorId',
   creadoPorId: 'creadoPorId',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
@@ -690,10 +725,37 @@ export const OrdenCompraScalarFieldEnum = {
 export type OrdenCompraScalarFieldEnum = (typeof OrdenCompraScalarFieldEnum)[keyof typeof OrdenCompraScalarFieldEnum]
 
 
+export const CompraSimpleGrupoArchivoScalarFieldEnum = {
+  id: 'id',
+  grupoId: 'grupoId',
+  url: 'url',
+  nombreOriginal: 'nombreOriginal',
+  mimeType: 'mimeType',
+  subidoPorId: 'subidoPorId',
+  creadoEn: 'creadoEn'
+} as const
+
+export type CompraSimpleGrupoArchivoScalarFieldEnum = (typeof CompraSimpleGrupoArchivoScalarFieldEnum)[keyof typeof CompraSimpleGrupoArchivoScalarFieldEnum]
+
+
+export const CompraSimpleGrupoHistorialScalarFieldEnum = {
+  id: 'id',
+  grupoId: 'grupoId',
+  estado: 'estado',
+  nota: 'nota',
+  actorId: 'actorId',
+  actorRole: 'actorRole',
+  creadoEn: 'creadoEn'
+} as const
+
+export type CompraSimpleGrupoHistorialScalarFieldEnum = (typeof CompraSimpleGrupoHistorialScalarFieldEnum)[keyof typeof CompraSimpleGrupoHistorialScalarFieldEnum]
+
+
 export const PagoScalarFieldEnum = {
   id: 'id',
   ordenCompraId: 'ordenCompraId',
   tipoBeneficiario: 'tipoBeneficiario',
+  beneficiarioTrabajadorId: 'beneficiarioTrabajadorId',
   monto: 'monto',
   porcentaje: 'porcentaje',
   fechaProgramada: 'fechaProgramada',

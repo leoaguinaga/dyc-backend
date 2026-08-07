@@ -411,6 +411,11 @@ export type SolicitudCotizacionScalarRelationFilter = {
   isNot?: Prisma.SolicitudCotizacionWhereInput
 }
 
+export type SolicitudCotizacionNullableScalarRelationFilter = {
+  is?: Prisma.SolicitudCotizacionWhereInput | null
+  isNot?: Prisma.SolicitudCotizacionWhereInput | null
+}
+
 export type SolicitudCotizacionCreateNestedManyWithoutProyectoInput = {
   create?: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutProyectoInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutProyectoInput> | Prisma.SolicitudCotizacionCreateWithoutProyectoInput[] | Prisma.SolicitudCotizacionUncheckedCreateWithoutProyectoInput[]
   connectOrCreate?: Prisma.SolicitudCotizacionCreateOrConnectWithoutProyectoInput | Prisma.SolicitudCotizacionCreateOrConnectWithoutProyectoInput[]
@@ -533,10 +538,12 @@ export type SolicitudCotizacionCreateNestedOneWithoutOrdenesInput = {
   connect?: Prisma.SolicitudCotizacionWhereUniqueInput
 }
 
-export type SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput = {
+export type SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput = {
   create?: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutOrdenesInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutOrdenesInput>
   connectOrCreate?: Prisma.SolicitudCotizacionCreateOrConnectWithoutOrdenesInput
   upsert?: Prisma.SolicitudCotizacionUpsertWithoutOrdenesInput
+  disconnect?: Prisma.SolicitudCotizacionWhereInput | boolean
+  delete?: Prisma.SolicitudCotizacionWhereInput | boolean
   connect?: Prisma.SolicitudCotizacionWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.SolicitudCotizacionUpdateToOneWithWhereWithoutOrdenesInput, Prisma.SolicitudCotizacionUpdateWithoutOrdenesInput>, Prisma.SolicitudCotizacionUncheckedUpdateWithoutOrdenesInput>
 }

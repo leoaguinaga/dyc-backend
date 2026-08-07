@@ -16,6 +16,7 @@ import { AlmacenesModule } from './modules/almacenes/almacenes.module.js';
 import { CotizacionesModule } from './modules/cotizaciones/cotizaciones.module.js';
 import { RequerimientosModule } from './modules/requerimientos/requerimientos.module.js';
 import { OrdenesCompraModule } from './modules/ordenes-compra/ordenes-compra.module.js';
+import { ComprasSimplesModule } from './modules/compras-simples/compras-simples.module.js';
 import { PagosModule } from './modules/pagos/pagos.module.js';
 import { ReportesModule } from './modules/reportes/reportes.module.js';
 import { DashboardModule } from './modules/dashboard/dashboard.module.js';
@@ -45,6 +46,7 @@ import { ResponsableAsistenciaGuard } from './shared/guards/responsable-asistenc
     CotizacionesModule,
     RequerimientosModule,
     OrdenesCompraModule,
+    ComprasSimplesModule,
     PagosModule,
     ReportesModule,
     DashboardModule,

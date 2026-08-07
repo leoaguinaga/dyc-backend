@@ -15,6 +15,7 @@ const GESTORES_COTIZACION = ['administrador', 'logistica', 'gerencia'] as const;
 const GESTORES_OC = ['logistica', 'gerencia', 'administrador'] as const;
 const GESTORES_OBRA = ['gerencia', 'administrador'] as const;
 const GESTORES_PLANILLA = ['gerencia', 'administrador'] as const;
+const GESTORES_COMPRA_SIMPLE = ['gerencia', 'administrador'] as const;
 
 export interface RequerimientoCreadoPayload {
   requerimientoId: string;
@@ -46,6 +47,13 @@ export interface OrdenCompraGeneradaPayload {
   ordenCompraId: string;
   numero: string;
   proveedorNombre: string;
+}
+
+export interface CompraSimpleAprobacionTecnicaPayload {
+  grupoId: string;
+  compraSimpleId: string;
+  compraSimpleCodigo: string;
+  compraSimpleNombre: string;
 }
 
 export interface ObraCerradaPayload {
@@ -129,6 +137,19 @@ export class NotificacionesListener {
       mensaje: `Se generó la OC ${payload.numero} para ${payload.proveedorNombre}.`,
       entidadTipo: 'OrdenCompra',
       entidadId: payload.ordenCompraId,
+    });
+  }
+
+  @OnEvent(AppEvents.COMPRA_SIMPLE_APROBACION_TECNICA)
+  async onCompraSimpleAprobacionTecnica(
+    payload: CompraSimpleAprobacionTecnicaPayload,
+  ) {
+    await this.service.crearParaRoles([...GESTORES_COMPRA_SIMPLE], {
+      tipo: 'compra_simple_pendiente_gerencia',
+      titulo: 'Compra simple pendiente de aprobación',
+      mensaje: `La compra simple ${payload.compraSimpleCodigo} — ${payload.compraSimpleNombre} fue aprobada por el área técnica y necesita tu aprobación.`,
+      entidadTipo: 'CompraSimple',
+      entidadId: payload.compraSimpleId,
     });
   }
 

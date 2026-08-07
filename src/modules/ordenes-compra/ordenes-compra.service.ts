@@ -44,6 +44,7 @@ const OC_INCLUDE = {
       },
     },
   },
+  aprobadoPor: { select: { id: true, name: true } },
   proyecto: {
     select: { id: true, codigo: true, nombre: true, direccion: true },
   },
@@ -61,6 +62,7 @@ export class OrdenesCompraService {
   findAll(query: { estado?: EstadoOrdenCompra; proyectoId?: string }) {
     return this.prisma.ordenCompra.findMany({
       where: {
+        origen: 'macro',
         estado: query.estado,
         proyectoId: query.proyectoId,
       },
@@ -87,7 +89,7 @@ export class OrdenesCompraService {
     });
     if (!oc) throw new NotFoundException(`Orden de compra ${id} no encontrada`);
 
-    if (!oc.fechaEntrega) {
+    if (!oc.fechaEntrega && oc.solicitudId && oc.proveedorId) {
       const cotizacion = await this.prisma.cotizacion.findFirst({
         where: {
           solicitudId: oc.solicitudId,
@@ -264,7 +266,7 @@ export class OrdenesCompraService {
       this.events.emit(AppEvents.ORDEN_COMPRA_GENERADA, {
         ordenCompraId: oc.id,
         numero: oc.numero,
-        proveedorNombre: oc.proveedor.razonSocial,
+        proveedorNombre: oc.proveedor!.razonSocial,
       });
     }
 
@@ -398,9 +400,13 @@ export class OrdenesCompraService {
         `No se puede pasar de "${oc.estado}" a "${nuevoEstado}"`,
       );
 
-    if (nuevoEstado === 'emitida' && !oc.proveedor.ruc)
+    if (nuevoEstado === 'emitida' && !oc.proveedor)
       throw new BadRequestException(
-        `El proveedor "${oc.proveedor.razonSocial}" no tiene RUC registrado. Actualízalo antes de emitir la orden.`,
+        'Esta orden no tiene un proveedor registrado. No se puede emitir.',
+      );
+    if (nuevoEstado === 'emitida' && !oc.proveedor!.ruc)
+      throw new BadRequestException(
+        `El proveedor "${oc.proveedor!.razonSocial}" no tiene RUC registrado. Actualízalo antes de emitir la orden.`,
       );
 
     return this.prisma.ordenCompra.update({
