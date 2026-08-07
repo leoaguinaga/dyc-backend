@@ -109,7 +109,13 @@ export class NotificacionesService {
     const pagos = await this.prisma.pago.findMany({
       where: { estado: 'pendiente' },
       include: {
-        ordenCompra: { select: { numero: true, proveedor: { select: { razonSocial: true } } } },
+        ordenCompra: {
+          select: {
+            numero: true,
+            proveedorNombreLibre: true,
+            proveedor: { select: { razonSocial: true } },
+          },
+        },
       },
     });
 
@@ -124,7 +130,10 @@ export class NotificacionesService {
       const tipo: TipoNotificacion = vencido ? 'pago_vencido' : 'pago_por_vencer';
       if (await this.yaNotificadoHoy(pago.id, tipo)) continue;
 
-      const proveedor = pago.ordenCompra.proveedor.razonSocial;
+      const proveedor =
+        pago.ordenCompra.proveedor?.razonSocial ??
+        pago.ordenCompra.proveedorNombreLibre ??
+        '—';
       const numeroOc = pago.ordenCompra.numero;
       const monto = Number(pago.monto).toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
 

@@ -541,11 +541,59 @@ export type EnumEstadoCotizacionWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumEstadoCotizacionFilter<$PrismaModel>
 }
 
+export type EnumOrigenOrdenCompraFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenOrdenCompra | Prisma.EnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel> | $Enums.OrigenOrdenCompra
+}
+
+export type EnumEstadoAprobacionCompraNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra | null
+}
+
 export type EnumEstadoOrdenCompraFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoOrdenCompra | Prisma.EnumEstadoOrdenCompraFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoOrdenCompra[] | Prisma.ListEnumEstadoOrdenCompraFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoOrdenCompra[] | Prisma.ListEnumEstadoOrdenCompraFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoOrdenCompraFilter<$PrismaModel> | $Enums.EstadoOrdenCompra
+}
+
+export type EnumDestinoPagoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.DestinoPago | Prisma.EnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDestinoPagoNullableFilter<$PrismaModel> | $Enums.DestinoPago | null
+}
+
+export type EnumMetodoPagoTrabajadorNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.MetodoPagoTrabajador | Prisma.EnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  in?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel> | $Enums.MetodoPagoTrabajador | null
+}
+
+export type EnumOrigenOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenOrdenCompra | Prisma.EnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenOrdenCompraWithAggregatesFilter<$PrismaModel> | $Enums.OrigenOrdenCompra
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
+}
+
+export type EnumEstadoAprobacionCompraNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEstadoAprobacionCompraNullableWithAggregatesFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel>
 }
 
 export type EnumEstadoOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
@@ -556,6 +604,43 @@ export type EnumEstadoOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoOrdenCompraFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoOrdenCompraFilter<$PrismaModel>
+}
+
+export type EnumDestinoPagoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DestinoPago | Prisma.EnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDestinoPagoNullableWithAggregatesFilter<$PrismaModel> | $Enums.DestinoPago | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDestinoPagoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDestinoPagoNullableFilter<$PrismaModel>
+}
+
+export type EnumMetodoPagoTrabajadorNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MetodoPagoTrabajador | Prisma.EnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  in?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumMetodoPagoTrabajadorNullableWithAggregatesFilter<$PrismaModel> | $Enums.MetodoPagoTrabajador | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
+}
+
+export type EnumEstadoAprobacionCompraFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoAprobacionCompraFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra
+}
+
+export type EnumEstadoAprobacionCompraWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoAprobacionCompraWithAggregatesFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoAprobacionCompraFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoAprobacionCompraFilter<$PrismaModel>
 }
 
 export type EnumTipoBeneficiarioFilter<$PrismaModel = never> = {
@@ -1149,11 +1234,59 @@ export type NestedEnumEstadoCotizacionWithAggregatesFilter<$PrismaModel = never>
   _max?: Prisma.NestedEnumEstadoCotizacionFilter<$PrismaModel>
 }
 
+export type NestedEnumOrigenOrdenCompraFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenOrdenCompra | Prisma.EnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel> | $Enums.OrigenOrdenCompra
+}
+
+export type NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra | null
+}
+
 export type NestedEnumEstadoOrdenCompraFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoOrdenCompra | Prisma.EnumEstadoOrdenCompraFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoOrdenCompra[] | Prisma.ListEnumEstadoOrdenCompraFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoOrdenCompra[] | Prisma.ListEnumEstadoOrdenCompraFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoOrdenCompraFilter<$PrismaModel> | $Enums.EstadoOrdenCompra
+}
+
+export type NestedEnumDestinoPagoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.DestinoPago | Prisma.EnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDestinoPagoNullableFilter<$PrismaModel> | $Enums.DestinoPago | null
+}
+
+export type NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.MetodoPagoTrabajador | Prisma.EnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  in?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel> | $Enums.MetodoPagoTrabajador | null
+}
+
+export type NestedEnumOrigenOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenOrdenCompra | Prisma.EnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenOrdenCompra[] | Prisma.ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenOrdenCompraWithAggregatesFilter<$PrismaModel> | $Enums.OrigenOrdenCompra
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
+}
+
+export type NestedEnumEstadoAprobacionCompraNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEstadoAprobacionCompraNullableWithAggregatesFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumEstadoOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
@@ -1164,6 +1297,43 @@ export type NestedEnumEstadoOrdenCompraWithAggregatesFilter<$PrismaModel = never
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoOrdenCompraFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoOrdenCompraFilter<$PrismaModel>
+}
+
+export type NestedEnumDestinoPagoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DestinoPago | Prisma.EnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DestinoPago[] | Prisma.ListEnumDestinoPagoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDestinoPagoNullableWithAggregatesFilter<$PrismaModel> | $Enums.DestinoPago | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDestinoPagoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDestinoPagoNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumMetodoPagoTrabajadorNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MetodoPagoTrabajador | Prisma.EnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  in?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.MetodoPagoTrabajador[] | Prisma.ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumMetodoPagoTrabajadorNullableWithAggregatesFilter<$PrismaModel> | $Enums.MetodoPagoTrabajador | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumEstadoAprobacionCompraFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoAprobacionCompraFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra
+}
+
+export type NestedEnumEstadoAprobacionCompraWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoAprobacionCompraWithAggregatesFilter<$PrismaModel> | $Enums.EstadoAprobacionCompra
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoAprobacionCompraFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoAprobacionCompraFilter<$PrismaModel>
 }
 
 export type NestedEnumTipoBeneficiarioFilter<$PrismaModel = never> = {

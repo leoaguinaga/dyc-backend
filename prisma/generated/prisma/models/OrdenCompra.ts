@@ -50,6 +50,13 @@ export type OrdenCompraMinAggregateOutputType = {
   nombre: string | null
   solicitudId: string | null
   proveedorId: string | null
+  proveedorNombreLibre: string | null
+  origen: $Enums.OrigenOrdenCompra | null
+  compraSimpleId: string | null
+  estadoAprobacion: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId: string | null
+  aprobadoEn: Date | null
+  notaAprobacion: string | null
   proyectoId: string | null
   estado: $Enums.EstadoOrdenCompra | null
   fechaEmision: Date | null
@@ -74,6 +81,15 @@ export type OrdenCompraMinAggregateOutputType = {
   contactoDycArea: string | null
   contactoDycCelular: string | null
   contactoDycTelefono: string | null
+  destinoPago: $Enums.DestinoPago | null
+  pagoBanco: string | null
+  pagoNumeroCuenta: string | null
+  pagoRazonSocial: string | null
+  pagoMetodo: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco: string | null
+  pagoTrabajadorNumeroCuenta: string | null
+  pagoTrabajadorNumero: string | null
+  pagoTrabajadorId: string | null
   creadoPorId: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -85,6 +101,13 @@ export type OrdenCompraMaxAggregateOutputType = {
   nombre: string | null
   solicitudId: string | null
   proveedorId: string | null
+  proveedorNombreLibre: string | null
+  origen: $Enums.OrigenOrdenCompra | null
+  compraSimpleId: string | null
+  estadoAprobacion: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId: string | null
+  aprobadoEn: Date | null
+  notaAprobacion: string | null
   proyectoId: string | null
   estado: $Enums.EstadoOrdenCompra | null
   fechaEmision: Date | null
@@ -109,6 +132,15 @@ export type OrdenCompraMaxAggregateOutputType = {
   contactoDycArea: string | null
   contactoDycCelular: string | null
   contactoDycTelefono: string | null
+  destinoPago: $Enums.DestinoPago | null
+  pagoBanco: string | null
+  pagoNumeroCuenta: string | null
+  pagoRazonSocial: string | null
+  pagoMetodo: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco: string | null
+  pagoTrabajadorNumeroCuenta: string | null
+  pagoTrabajadorNumero: string | null
+  pagoTrabajadorId: string | null
   creadoPorId: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -120,6 +152,13 @@ export type OrdenCompraCountAggregateOutputType = {
   nombre: number
   solicitudId: number
   proveedorId: number
+  proveedorNombreLibre: number
+  origen: number
+  compraSimpleId: number
+  estadoAprobacion: number
+  aprobadoPorId: number
+  aprobadoEn: number
+  notaAprobacion: number
   proyectoId: number
   estado: number
   fechaEmision: number
@@ -144,6 +183,15 @@ export type OrdenCompraCountAggregateOutputType = {
   contactoDycArea: number
   contactoDycCelular: number
   contactoDycTelefono: number
+  destinoPago: number
+  pagoBanco: number
+  pagoNumeroCuenta: number
+  pagoRazonSocial: number
+  pagoMetodo: number
+  pagoTrabajadorBanco: number
+  pagoTrabajadorNumeroCuenta: number
+  pagoTrabajadorNumero: number
+  pagoTrabajadorId: number
   creadoPorId: number
   creadoEn: number
   actualizadoEn: number
@@ -175,6 +223,13 @@ export type OrdenCompraMinAggregateInputType = {
   nombre?: true
   solicitudId?: true
   proveedorId?: true
+  proveedorNombreLibre?: true
+  origen?: true
+  compraSimpleId?: true
+  estadoAprobacion?: true
+  aprobadoPorId?: true
+  aprobadoEn?: true
+  notaAprobacion?: true
   proyectoId?: true
   estado?: true
   fechaEmision?: true
@@ -199,6 +254,15 @@ export type OrdenCompraMinAggregateInputType = {
   contactoDycArea?: true
   contactoDycCelular?: true
   contactoDycTelefono?: true
+  destinoPago?: true
+  pagoBanco?: true
+  pagoNumeroCuenta?: true
+  pagoRazonSocial?: true
+  pagoMetodo?: true
+  pagoTrabajadorBanco?: true
+  pagoTrabajadorNumeroCuenta?: true
+  pagoTrabajadorNumero?: true
+  pagoTrabajadorId?: true
   creadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -210,6 +274,13 @@ export type OrdenCompraMaxAggregateInputType = {
   nombre?: true
   solicitudId?: true
   proveedorId?: true
+  proveedorNombreLibre?: true
+  origen?: true
+  compraSimpleId?: true
+  estadoAprobacion?: true
+  aprobadoPorId?: true
+  aprobadoEn?: true
+  notaAprobacion?: true
   proyectoId?: true
   estado?: true
   fechaEmision?: true
@@ -234,6 +305,15 @@ export type OrdenCompraMaxAggregateInputType = {
   contactoDycArea?: true
   contactoDycCelular?: true
   contactoDycTelefono?: true
+  destinoPago?: true
+  pagoBanco?: true
+  pagoNumeroCuenta?: true
+  pagoRazonSocial?: true
+  pagoMetodo?: true
+  pagoTrabajadorBanco?: true
+  pagoTrabajadorNumeroCuenta?: true
+  pagoTrabajadorNumero?: true
+  pagoTrabajadorId?: true
   creadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -245,6 +325,13 @@ export type OrdenCompraCountAggregateInputType = {
   nombre?: true
   solicitudId?: true
   proveedorId?: true
+  proveedorNombreLibre?: true
+  origen?: true
+  compraSimpleId?: true
+  estadoAprobacion?: true
+  aprobadoPorId?: true
+  aprobadoEn?: true
+  notaAprobacion?: true
   proyectoId?: true
   estado?: true
   fechaEmision?: true
@@ -269,6 +356,15 @@ export type OrdenCompraCountAggregateInputType = {
   contactoDycArea?: true
   contactoDycCelular?: true
   contactoDycTelefono?: true
+  destinoPago?: true
+  pagoBanco?: true
+  pagoNumeroCuenta?: true
+  pagoRazonSocial?: true
+  pagoMetodo?: true
+  pagoTrabajadorBanco?: true
+  pagoTrabajadorNumeroCuenta?: true
+  pagoTrabajadorNumero?: true
+  pagoTrabajadorId?: true
   creadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -365,8 +461,15 @@ export type OrdenCompraGroupByOutputType = {
   id: string
   numero: string
   nombre: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId: string | null
+  proveedorId: string | null
+  proveedorNombreLibre: string | null
+  origen: $Enums.OrigenOrdenCompra
+  compraSimpleId: string | null
+  estadoAprobacion: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId: string | null
+  aprobadoEn: Date | null
+  notaAprobacion: string | null
   proyectoId: string
   estado: $Enums.EstadoOrdenCompra
   fechaEmision: Date | null
@@ -391,6 +494,15 @@ export type OrdenCompraGroupByOutputType = {
   contactoDycArea: string | null
   contactoDycCelular: string | null
   contactoDycTelefono: string | null
+  destinoPago: $Enums.DestinoPago | null
+  pagoBanco: string | null
+  pagoNumeroCuenta: string | null
+  pagoRazonSocial: string | null
+  pagoMetodo: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco: string | null
+  pagoTrabajadorNumeroCuenta: string | null
+  pagoTrabajadorNumero: string | null
+  pagoTrabajadorId: string | null
   creadoPorId: string
   creadoEn: Date
   actualizadoEn: Date
@@ -423,8 +535,15 @@ export type OrdenCompraWhereInput = {
   id?: Prisma.StringFilter<"OrdenCompra"> | string
   numero?: Prisma.StringFilter<"OrdenCompra"> | string
   nombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
-  solicitudId?: Prisma.StringFilter<"OrdenCompra"> | string
-  proveedorId?: Prisma.StringFilter<"OrdenCompra"> | string
+  solicitudId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  proveedorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  proveedorNombreLibre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  aprobadoEn?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  notaAprobacion?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   proyectoId?: Prisma.StringFilter<"OrdenCompra"> | string
   estado?: Prisma.EnumEstadoOrdenCompraFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
@@ -449,23 +568,44 @@ export type OrdenCompraWhereInput = {
   contactoDycArea?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   contactoDycCelular?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   contactoDycTelefono?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  destinoPago?: Prisma.EnumDestinoPagoNullableFilter<"OrdenCompra"> | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoNumeroCuenta?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoRazonSocial?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoMetodo?: Prisma.EnumMetodoPagoTrabajadorNullableFilter<"OrdenCompra"> | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumero?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   creadoPorId?: Prisma.StringFilter<"OrdenCompra"> | string
   creadoEn?: Prisma.DateTimeFilter<"OrdenCompra"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"OrdenCompra"> | Date | string
-  solicitud?: Prisma.XOR<Prisma.SolicitudCotizacionScalarRelationFilter, Prisma.SolicitudCotizacionWhereInput>
-  proveedor?: Prisma.XOR<Prisma.ProveedorScalarRelationFilter, Prisma.ProveedorWhereInput>
+  solicitud?: Prisma.XOR<Prisma.SolicitudCotizacionNullableScalarRelationFilter, Prisma.SolicitudCotizacionWhereInput> | null
+  proveedor?: Prisma.XOR<Prisma.ProveedorNullableScalarRelationFilter, Prisma.ProveedorWhereInput> | null
+  compraSimple?: Prisma.XOR<Prisma.CompraSimpleNullableScalarRelationFilter, Prisma.CompraSimpleWhereInput> | null
+  aprobadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
+  pagoTrabajador?: Prisma.XOR<Prisma.TrabajadorNullableScalarRelationFilter, Prisma.TrabajadorWhereInput> | null
   creadoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   items?: Prisma.OrdenCompraItemListRelationFilter
   pagos?: Prisma.PagoListRelationFilter
+  historial?: Prisma.CompraSimpleGrupoHistorialListRelationFilter
+  archivos?: Prisma.CompraSimpleGrupoArchivoListRelationFilter
 }
 
 export type OrdenCompraOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
-  solicitudId?: Prisma.SortOrder
-  proveedorId?: Prisma.SortOrder
+  solicitudId?: Prisma.SortOrderInput | Prisma.SortOrder
+  proveedorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  proveedorNombreLibre?: Prisma.SortOrderInput | Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  compraSimpleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  estadoAprobacion?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadoEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  notaAprobacion?: Prisma.SortOrderInput | Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -490,15 +630,29 @@ export type OrdenCompraOrderByWithRelationInput = {
   contactoDycArea?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoDycCelular?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoDycTelefono?: Prisma.SortOrderInput | Prisma.SortOrder
+  destinoPago?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoBanco?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoNumeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoRazonSocial?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoMetodo?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorBanco?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorNumeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorNumero?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
   solicitud?: Prisma.SolicitudCotizacionOrderByWithRelationInput
   proveedor?: Prisma.ProveedorOrderByWithRelationInput
+  compraSimple?: Prisma.CompraSimpleOrderByWithRelationInput
+  aprobadoPor?: Prisma.UserOrderByWithRelationInput
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
+  pagoTrabajador?: Prisma.TrabajadorOrderByWithRelationInput
   creadoPor?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.OrdenCompraItemOrderByRelationAggregateInput
   pagos?: Prisma.PagoOrderByRelationAggregateInput
+  historial?: Prisma.CompraSimpleGrupoHistorialOrderByRelationAggregateInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoOrderByRelationAggregateInput
 }
 
 export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
@@ -508,8 +662,15 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.OrdenCompraWhereInput[]
   NOT?: Prisma.OrdenCompraWhereInput | Prisma.OrdenCompraWhereInput[]
   nombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
-  solicitudId?: Prisma.StringFilter<"OrdenCompra"> | string
-  proveedorId?: Prisma.StringFilter<"OrdenCompra"> | string
+  solicitudId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  proveedorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  proveedorNombreLibre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  aprobadoEn?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  notaAprobacion?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   proyectoId?: Prisma.StringFilter<"OrdenCompra"> | string
   estado?: Prisma.EnumEstadoOrdenCompraFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
@@ -534,23 +695,44 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   contactoDycArea?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   contactoDycCelular?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   contactoDycTelefono?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  destinoPago?: Prisma.EnumDestinoPagoNullableFilter<"OrdenCompra"> | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoNumeroCuenta?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoRazonSocial?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoMetodo?: Prisma.EnumMetodoPagoTrabajadorNullableFilter<"OrdenCompra"> | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumero?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   creadoPorId?: Prisma.StringFilter<"OrdenCompra"> | string
   creadoEn?: Prisma.DateTimeFilter<"OrdenCompra"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"OrdenCompra"> | Date | string
-  solicitud?: Prisma.XOR<Prisma.SolicitudCotizacionScalarRelationFilter, Prisma.SolicitudCotizacionWhereInput>
-  proveedor?: Prisma.XOR<Prisma.ProveedorScalarRelationFilter, Prisma.ProveedorWhereInput>
+  solicitud?: Prisma.XOR<Prisma.SolicitudCotizacionNullableScalarRelationFilter, Prisma.SolicitudCotizacionWhereInput> | null
+  proveedor?: Prisma.XOR<Prisma.ProveedorNullableScalarRelationFilter, Prisma.ProveedorWhereInput> | null
+  compraSimple?: Prisma.XOR<Prisma.CompraSimpleNullableScalarRelationFilter, Prisma.CompraSimpleWhereInput> | null
+  aprobadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
+  pagoTrabajador?: Prisma.XOR<Prisma.TrabajadorNullableScalarRelationFilter, Prisma.TrabajadorWhereInput> | null
   creadoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   items?: Prisma.OrdenCompraItemListRelationFilter
   pagos?: Prisma.PagoListRelationFilter
+  historial?: Prisma.CompraSimpleGrupoHistorialListRelationFilter
+  archivos?: Prisma.CompraSimpleGrupoArchivoListRelationFilter
 }, "id" | "numero">
 
 export type OrdenCompraOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   numero?: Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
-  solicitudId?: Prisma.SortOrder
-  proveedorId?: Prisma.SortOrder
+  solicitudId?: Prisma.SortOrderInput | Prisma.SortOrder
+  proveedorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  proveedorNombreLibre?: Prisma.SortOrderInput | Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  compraSimpleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  estadoAprobacion?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadoEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  notaAprobacion?: Prisma.SortOrderInput | Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -575,6 +757,15 @@ export type OrdenCompraOrderByWithAggregationInput = {
   contactoDycArea?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoDycCelular?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoDycTelefono?: Prisma.SortOrderInput | Prisma.SortOrder
+  destinoPago?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoBanco?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoNumeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoRazonSocial?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoMetodo?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorBanco?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorNumeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorNumero?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagoTrabajadorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -592,8 +783,15 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"OrdenCompra"> | string
   numero?: Prisma.StringWithAggregatesFilter<"OrdenCompra"> | string
   nombre?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
-  solicitudId?: Prisma.StringWithAggregatesFilter<"OrdenCompra"> | string
-  proveedorId?: Prisma.StringWithAggregatesFilter<"OrdenCompra"> | string
+  solicitudId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  proveedorId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  proveedorNombreLibre?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraWithAggregatesFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableWithAggregatesFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  aprobadoEn?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
+  notaAprobacion?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   proyectoId?: Prisma.StringWithAggregatesFilter<"OrdenCompra"> | string
   estado?: Prisma.EnumEstadoOrdenCompraWithAggregatesFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
@@ -618,6 +816,15 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   contactoDycArea?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   contactoDycCelular?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   contactoDycTelefono?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  destinoPago?: Prisma.EnumDestinoPagoNullableWithAggregatesFilter<"OrdenCompra"> | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  pagoNumeroCuenta?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  pagoRazonSocial?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  pagoMetodo?: Prisma.EnumMetodoPagoTrabajadorNullableWithAggregatesFilter<"OrdenCompra"> | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumero?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   creadoPorId?: Prisma.StringWithAggregatesFilter<"OrdenCompra"> | string
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"OrdenCompra"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"OrdenCompra"> | Date | string
@@ -627,6 +834,11 @@ export type OrdenCompraCreateInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -650,22 +862,42 @@ export type OrdenCompraCreateInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
-  proveedor: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
   proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
   creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
   items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraUncheckedCreateInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -690,17 +922,33 @@ export type OrdenCompraUncheckedCreateInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -724,22 +972,42 @@ export type OrdenCompraUpdateInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput
-  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
   items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -764,19 +1032,37 @@ export type OrdenCompraUncheckedUpdateInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraCreateManyInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -801,6 +1087,15 @@ export type OrdenCompraCreateManyInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -810,6 +1105,11 @@ export type OrdenCompraUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -833,6 +1133,14 @@ export type OrdenCompraUpdateManyMutationInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -841,8 +1149,15 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -867,6 +1182,15 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -888,6 +1212,13 @@ export type OrdenCompraCountOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   solicitudId?: Prisma.SortOrder
   proveedorId?: Prisma.SortOrder
+  proveedorNombreLibre?: Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  compraSimpleId?: Prisma.SortOrder
+  estadoAprobacion?: Prisma.SortOrder
+  aprobadoPorId?: Prisma.SortOrder
+  aprobadoEn?: Prisma.SortOrder
+  notaAprobacion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrder
@@ -912,6 +1243,15 @@ export type OrdenCompraCountOrderByAggregateInput = {
   contactoDycArea?: Prisma.SortOrder
   contactoDycCelular?: Prisma.SortOrder
   contactoDycTelefono?: Prisma.SortOrder
+  destinoPago?: Prisma.SortOrder
+  pagoBanco?: Prisma.SortOrder
+  pagoNumeroCuenta?: Prisma.SortOrder
+  pagoRazonSocial?: Prisma.SortOrder
+  pagoMetodo?: Prisma.SortOrder
+  pagoTrabajadorBanco?: Prisma.SortOrder
+  pagoTrabajadorNumeroCuenta?: Prisma.SortOrder
+  pagoTrabajadorNumero?: Prisma.SortOrder
+  pagoTrabajadorId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -932,6 +1272,13 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   solicitudId?: Prisma.SortOrder
   proveedorId?: Prisma.SortOrder
+  proveedorNombreLibre?: Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  compraSimpleId?: Prisma.SortOrder
+  estadoAprobacion?: Prisma.SortOrder
+  aprobadoPorId?: Prisma.SortOrder
+  aprobadoEn?: Prisma.SortOrder
+  notaAprobacion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrder
@@ -956,6 +1303,15 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   contactoDycArea?: Prisma.SortOrder
   contactoDycCelular?: Prisma.SortOrder
   contactoDycTelefono?: Prisma.SortOrder
+  destinoPago?: Prisma.SortOrder
+  pagoBanco?: Prisma.SortOrder
+  pagoNumeroCuenta?: Prisma.SortOrder
+  pagoRazonSocial?: Prisma.SortOrder
+  pagoMetodo?: Prisma.SortOrder
+  pagoTrabajadorBanco?: Prisma.SortOrder
+  pagoTrabajadorNumeroCuenta?: Prisma.SortOrder
+  pagoTrabajadorNumero?: Prisma.SortOrder
+  pagoTrabajadorId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -967,6 +1323,13 @@ export type OrdenCompraMinOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   solicitudId?: Prisma.SortOrder
   proveedorId?: Prisma.SortOrder
+  proveedorNombreLibre?: Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  compraSimpleId?: Prisma.SortOrder
+  estadoAprobacion?: Prisma.SortOrder
+  aprobadoPorId?: Prisma.SortOrder
+  aprobadoEn?: Prisma.SortOrder
+  notaAprobacion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fechaEmision?: Prisma.SortOrder
@@ -991,6 +1354,15 @@ export type OrdenCompraMinOrderByAggregateInput = {
   contactoDycArea?: Prisma.SortOrder
   contactoDycCelular?: Prisma.SortOrder
   contactoDycTelefono?: Prisma.SortOrder
+  destinoPago?: Prisma.SortOrder
+  pagoBanco?: Prisma.SortOrder
+  pagoNumeroCuenta?: Prisma.SortOrder
+  pagoRazonSocial?: Prisma.SortOrder
+  pagoMetodo?: Prisma.SortOrder
+  pagoTrabajadorBanco?: Prisma.SortOrder
+  pagoTrabajadorNumeroCuenta?: Prisma.SortOrder
+  pagoTrabajadorNumero?: Prisma.SortOrder
+  pagoTrabajadorId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -1017,10 +1389,24 @@ export type OrdenCompraCreateNestedManyWithoutCreadoPorInput = {
   connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
 }
 
+export type OrdenCompraCreateNestedManyWithoutAprobadoPorInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput> | Prisma.OrdenCompraCreateWithoutAprobadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyAprobadoPorInputEnvelope
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+}
+
 export type OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput = {
   create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCreadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutCreadoPorInput> | Prisma.OrdenCompraCreateWithoutCreadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCreadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutCreadoPorInput[]
   createMany?: Prisma.OrdenCompraCreateManyCreadoPorInputEnvelope
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+}
+
+export type OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput> | Prisma.OrdenCompraCreateWithoutAprobadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyAprobadoPorInputEnvelope
   connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
 }
 
@@ -1038,6 +1424,20 @@ export type OrdenCompraUpdateManyWithoutCreadoPorNestedInput = {
   deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
 }
 
+export type OrdenCompraUpdateManyWithoutAprobadoPorNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput> | Prisma.OrdenCompraCreateWithoutAprobadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput[]
+  upsert?: Prisma.OrdenCompraUpsertWithWhereUniqueWithoutAprobadoPorInput | Prisma.OrdenCompraUpsertWithWhereUniqueWithoutAprobadoPorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyAprobadoPorInputEnvelope
+  set?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  disconnect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  delete?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutAprobadoPorInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutAprobadoPorInput[]
+  updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutAprobadoPorInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutAprobadoPorInput[]
+  deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
+}
+
 export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput = {
   create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCreadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutCreadoPorInput> | Prisma.OrdenCompraCreateWithoutCreadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCreadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutCreadoPorInput[]
@@ -1049,6 +1449,20 @@ export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput = {
   connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
   update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutCreadoPorInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutCreadoPorInput[]
   updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutCreadoPorInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutCreadoPorInput[]
+  deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput> | Prisma.OrdenCompraCreateWithoutAprobadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutAprobadoPorInput[]
+  upsert?: Prisma.OrdenCompraUpsertWithWhereUniqueWithoutAprobadoPorInput | Prisma.OrdenCompraUpsertWithWhereUniqueWithoutAprobadoPorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyAprobadoPorInputEnvelope
+  set?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  disconnect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  delete?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutAprobadoPorInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutAprobadoPorInput[]
+  updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutAprobadoPorInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutAprobadoPorInput[]
   deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
 }
 
@@ -1091,6 +1505,48 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput = {
   connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
   update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutProyectoInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutProyectoInput[]
   updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutProyectoInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutProyectoInput[]
+  deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
+}
+
+export type OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput> | Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput | Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyPagoTrabajadorInputEnvelope
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+}
+
+export type OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput> | Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput | Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyPagoTrabajadorInputEnvelope
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+}
+
+export type OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput> | Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput | Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput[]
+  upsert?: Prisma.OrdenCompraUpsertWithWhereUniqueWithoutPagoTrabajadorInput | Prisma.OrdenCompraUpsertWithWhereUniqueWithoutPagoTrabajadorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyPagoTrabajadorInputEnvelope
+  set?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  disconnect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  delete?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutPagoTrabajadorInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutPagoTrabajadorInput[]
+  updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutPagoTrabajadorInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutPagoTrabajadorInput[]
+  deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput> | Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput | Prisma.OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput[]
+  upsert?: Prisma.OrdenCompraUpsertWithWhereUniqueWithoutPagoTrabajadorInput | Prisma.OrdenCompraUpsertWithWhereUniqueWithoutPagoTrabajadorInput[]
+  createMany?: Prisma.OrdenCompraCreateManyPagoTrabajadorInputEnvelope
+  set?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  disconnect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  delete?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutPagoTrabajadorInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutPagoTrabajadorInput[]
+  updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutPagoTrabajadorInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutPagoTrabajadorInput[]
   deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
 }
 
@@ -1178,8 +1634,94 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput = {
   deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
 }
 
+export type OrdenCompraCreateNestedManyWithoutCompraSimpleInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput> | Prisma.OrdenCompraCreateWithoutCompraSimpleInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput | Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput[]
+  createMany?: Prisma.OrdenCompraCreateManyCompraSimpleInputEnvelope
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+}
+
+export type OrdenCompraUncheckedCreateNestedManyWithoutCompraSimpleInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput> | Prisma.OrdenCompraCreateWithoutCompraSimpleInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput | Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput[]
+  createMany?: Prisma.OrdenCompraCreateManyCompraSimpleInputEnvelope
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+}
+
+export type OrdenCompraUpdateManyWithoutCompraSimpleNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput> | Prisma.OrdenCompraCreateWithoutCompraSimpleInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput | Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput[]
+  upsert?: Prisma.OrdenCompraUpsertWithWhereUniqueWithoutCompraSimpleInput | Prisma.OrdenCompraUpsertWithWhereUniqueWithoutCompraSimpleInput[]
+  createMany?: Prisma.OrdenCompraCreateManyCompraSimpleInputEnvelope
+  set?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  disconnect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  delete?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutCompraSimpleInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutCompraSimpleInput[]
+  updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutCompraSimpleInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutCompraSimpleInput[]
+  deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutCompraSimpleNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput> | Prisma.OrdenCompraCreateWithoutCompraSimpleInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput[]
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput | Prisma.OrdenCompraCreateOrConnectWithoutCompraSimpleInput[]
+  upsert?: Prisma.OrdenCompraUpsertWithWhereUniqueWithoutCompraSimpleInput | Prisma.OrdenCompraUpsertWithWhereUniqueWithoutCompraSimpleInput[]
+  createMany?: Prisma.OrdenCompraCreateManyCompraSimpleInputEnvelope
+  set?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  disconnect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  delete?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  connect?: Prisma.OrdenCompraWhereUniqueInput | Prisma.OrdenCompraWhereUniqueInput[]
+  update?: Prisma.OrdenCompraUpdateWithWhereUniqueWithoutCompraSimpleInput | Prisma.OrdenCompraUpdateWithWhereUniqueWithoutCompraSimpleInput[]
+  updateMany?: Prisma.OrdenCompraUpdateManyWithWhereWithoutCompraSimpleInput | Prisma.OrdenCompraUpdateManyWithWhereWithoutCompraSimpleInput[]
+  deleteMany?: Prisma.OrdenCompraScalarWhereInput | Prisma.OrdenCompraScalarWhereInput[]
+}
+
+export type EnumOrigenOrdenCompraFieldUpdateOperationsInput = {
+  set?: $Enums.OrigenOrdenCompra
+}
+
+export type NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoAprobacionCompra | null
+}
+
 export type EnumEstadoOrdenCompraFieldUpdateOperationsInput = {
   set?: $Enums.EstadoOrdenCompra
+}
+
+export type NullableEnumDestinoPagoFieldUpdateOperationsInput = {
+  set?: $Enums.DestinoPago | null
+}
+
+export type NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput = {
+  set?: $Enums.MetodoPagoTrabajador | null
+}
+
+export type OrdenCompraCreateNestedOneWithoutArchivosInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutArchivosInput, Prisma.OrdenCompraUncheckedCreateWithoutArchivosInput>
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutArchivosInput
+  connect?: Prisma.OrdenCompraWhereUniqueInput
+}
+
+export type OrdenCompraUpdateOneRequiredWithoutArchivosNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutArchivosInput, Prisma.OrdenCompraUncheckedCreateWithoutArchivosInput>
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutArchivosInput
+  upsert?: Prisma.OrdenCompraUpsertWithoutArchivosInput
+  connect?: Prisma.OrdenCompraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrdenCompraUpdateToOneWithWhereWithoutArchivosInput, Prisma.OrdenCompraUpdateWithoutArchivosInput>, Prisma.OrdenCompraUncheckedUpdateWithoutArchivosInput>
+}
+
+export type OrdenCompraCreateNestedOneWithoutHistorialInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutHistorialInput, Prisma.OrdenCompraUncheckedCreateWithoutHistorialInput>
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutHistorialInput
+  connect?: Prisma.OrdenCompraWhereUniqueInput
+}
+
+export type OrdenCompraUpdateOneRequiredWithoutHistorialNestedInput = {
+  create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutHistorialInput, Prisma.OrdenCompraUncheckedCreateWithoutHistorialInput>
+  connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutHistorialInput
+  upsert?: Prisma.OrdenCompraUpsertWithoutHistorialInput
+  connect?: Prisma.OrdenCompraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrdenCompraUpdateToOneWithWhereWithoutHistorialInput, Prisma.OrdenCompraUpdateWithoutHistorialInput>, Prisma.OrdenCompraUncheckedUpdateWithoutHistorialInput>
 }
 
 export type OrdenCompraCreateNestedOneWithoutPagosInput = {
@@ -1214,6 +1756,11 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1237,21 +1784,41 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
-  proveedor: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
   proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
   items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -1276,10 +1843,21 @@ export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraCreateOrConnectWithoutCreadoPorInput = {
@@ -1289,6 +1867,124 @@ export type OrdenCompraCreateOrConnectWithoutCreadoPorInput = {
 
 export type OrdenCompraCreateManyCreadoPorInputEnvelope = {
   data: Prisma.OrdenCompraCreateManyCreadoPorInput | Prisma.OrdenCompraCreateManyCreadoPorInput[]
+  skipDuplicates?: boolean
+}
+
+export type OrdenCompraCreateWithoutAprobadoPorInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
+  items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraUncheckedCreateWithoutAprobadoPorInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraCreateOrConnectWithoutAprobadoPorInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput>
+}
+
+export type OrdenCompraCreateManyAprobadoPorInputEnvelope = {
+  data: Prisma.OrdenCompraCreateManyAprobadoPorInput | Prisma.OrdenCompraCreateManyAprobadoPorInput[]
   skipDuplicates?: boolean
 }
 
@@ -1315,8 +2011,15 @@ export type OrdenCompraScalarWhereInput = {
   id?: Prisma.StringFilter<"OrdenCompra"> | string
   numero?: Prisma.StringFilter<"OrdenCompra"> | string
   nombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
-  solicitudId?: Prisma.StringFilter<"OrdenCompra"> | string
-  proveedorId?: Prisma.StringFilter<"OrdenCompra"> | string
+  solicitudId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  proveedorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  proveedorNombreLibre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  aprobadoEn?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
+  notaAprobacion?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   proyectoId?: Prisma.StringFilter<"OrdenCompra"> | string
   estado?: Prisma.EnumEstadoOrdenCompraFilter<"OrdenCompra"> | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
@@ -1341,15 +2044,45 @@ export type OrdenCompraScalarWhereInput = {
   contactoDycArea?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   contactoDycCelular?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   contactoDycTelefono?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  destinoPago?: Prisma.EnumDestinoPagoNullableFilter<"OrdenCompra"> | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoNumeroCuenta?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoRazonSocial?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoMetodo?: Prisma.EnumMetodoPagoTrabajadorNullableFilter<"OrdenCompra"> | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorNumero?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
+  pagoTrabajadorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   creadoPorId?: Prisma.StringFilter<"OrdenCompra"> | string
   creadoEn?: Prisma.DateTimeFilter<"OrdenCompra"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"OrdenCompra"> | Date | string
+}
+
+export type OrdenCompraUpsertWithWhereUniqueWithoutAprobadoPorInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  update: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedUpdateWithoutAprobadoPorInput>
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutAprobadoPorInput>
+}
+
+export type OrdenCompraUpdateWithWhereUniqueWithoutAprobadoPorInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutAprobadoPorInput, Prisma.OrdenCompraUncheckedUpdateWithoutAprobadoPorInput>
+}
+
+export type OrdenCompraUpdateManyWithWhereWithoutAprobadoPorInput = {
+  where: Prisma.OrdenCompraScalarWhereInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateManyMutationInput, Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorInput>
 }
 
 export type OrdenCompraCreateWithoutProyectoInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1373,21 +2106,41 @@ export type OrdenCompraCreateWithoutProyectoInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
-  proveedor: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
   creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
   items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1411,11 +2164,22 @@ export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraCreateOrConnectWithoutProyectoInput = {
@@ -1444,10 +2208,15 @@ export type OrdenCompraUpdateManyWithWhereWithoutProyectoInput = {
   data: Prisma.XOR<Prisma.OrdenCompraUpdateManyMutationInput, Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoInput>
 }
 
-export type OrdenCompraCreateWithoutProveedorInput = {
+export type OrdenCompraCreateWithoutPagoTrabajadorInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1471,20 +2240,41 @@ export type OrdenCompraCreateWithoutProveedorInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
   proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
   creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
   items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
-export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
+export type OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -1509,11 +2299,155 @@ export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraCreateOrConnectWithoutPagoTrabajadorInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput>
+}
+
+export type OrdenCompraCreateManyPagoTrabajadorInputEnvelope = {
+  data: Prisma.OrdenCompraCreateManyPagoTrabajadorInput | Prisma.OrdenCompraCreateManyPagoTrabajadorInput[]
+  skipDuplicates?: boolean
+}
+
+export type OrdenCompraUpsertWithWhereUniqueWithoutPagoTrabajadorInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  update: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput>
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput>
+}
+
+export type OrdenCompraUpdateWithWhereUniqueWithoutPagoTrabajadorInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutPagoTrabajadorInput, Prisma.OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput>
+}
+
+export type OrdenCompraUpdateManyWithWhereWithoutPagoTrabajadorInput = {
+  where: Prisma.OrdenCompraScalarWhereInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateManyMutationInput, Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorInput>
+}
+
+export type OrdenCompraCreateWithoutProveedorInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
+  items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraCreateOrConnectWithoutProveedorInput = {
@@ -1546,6 +2480,11 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1569,20 +2508,40 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  proveedor: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
   proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
   creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
   items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   id?: string
   numero: string
   nombre?: string | null
-  proveedorId: string
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -1607,11 +2566,22 @@ export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraCreateOrConnectWithoutSolicitudInput = {
@@ -1640,10 +2610,15 @@ export type OrdenCompraUpdateManyWithWhereWithoutSolicitudInput = {
   data: Prisma.XOR<Prisma.OrdenCompraUpdateManyMutationInput, Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudInput>
 }
 
-export type OrdenCompraCreateWithoutPagosInput = {
+export type OrdenCompraCreateWithoutCompraSimpleInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1667,21 +2642,40 @@ export type OrdenCompraCreateWithoutPagosInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
-  proveedor: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
   proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
   creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
   items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
-export type OrdenCompraUncheckedCreateWithoutPagosInput = {
+export type OrdenCompraUncheckedCreateWithoutCompraSimpleInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -1706,10 +2700,620 @@ export type OrdenCompraUncheckedCreateWithoutPagosInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraCreateOrConnectWithoutCompraSimpleInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput>
+}
+
+export type OrdenCompraCreateManyCompraSimpleInputEnvelope = {
+  data: Prisma.OrdenCompraCreateManyCompraSimpleInput | Prisma.OrdenCompraCreateManyCompraSimpleInput[]
+  skipDuplicates?: boolean
+}
+
+export type OrdenCompraUpsertWithWhereUniqueWithoutCompraSimpleInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  update: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedUpdateWithoutCompraSimpleInput>
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedCreateWithoutCompraSimpleInput>
+}
+
+export type OrdenCompraUpdateWithWhereUniqueWithoutCompraSimpleInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutCompraSimpleInput, Prisma.OrdenCompraUncheckedUpdateWithoutCompraSimpleInput>
+}
+
+export type OrdenCompraUpdateManyWithWhereWithoutCompraSimpleInput = {
+  where: Prisma.OrdenCompraScalarWhereInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateManyMutationInput, Prisma.OrdenCompraUncheckedUpdateManyWithoutCompraSimpleInput>
+}
+
+export type OrdenCompraCreateWithoutArchivosInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
+  items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraUncheckedCreateWithoutArchivosInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraCreateOrConnectWithoutArchivosInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutArchivosInput, Prisma.OrdenCompraUncheckedCreateWithoutArchivosInput>
+}
+
+export type OrdenCompraUpsertWithoutArchivosInput = {
+  update: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutArchivosInput, Prisma.OrdenCompraUncheckedUpdateWithoutArchivosInput>
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutArchivosInput, Prisma.OrdenCompraUncheckedCreateWithoutArchivosInput>
+  where?: Prisma.OrdenCompraWhereInput
+}
+
+export type OrdenCompraUpdateToOneWithWhereWithoutArchivosInput = {
+  where?: Prisma.OrdenCompraWhereInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutArchivosInput, Prisma.OrdenCompraUncheckedUpdateWithoutArchivosInput>
+}
+
+export type OrdenCompraUpdateWithoutArchivosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateWithoutArchivosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraCreateWithoutHistorialInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
+  items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraUncheckedCreateWithoutHistorialInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraCreateOrConnectWithoutHistorialInput = {
+  where: Prisma.OrdenCompraWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutHistorialInput, Prisma.OrdenCompraUncheckedCreateWithoutHistorialInput>
+}
+
+export type OrdenCompraUpsertWithoutHistorialInput = {
+  update: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutHistorialInput, Prisma.OrdenCompraUncheckedUpdateWithoutHistorialInput>
+  create: Prisma.XOR<Prisma.OrdenCompraCreateWithoutHistorialInput, Prisma.OrdenCompraUncheckedCreateWithoutHistorialInput>
+  where?: Prisma.OrdenCompraWhereInput
+}
+
+export type OrdenCompraUpdateToOneWithWhereWithoutHistorialInput = {
+  where?: Prisma.OrdenCompraWhereInput
+  data: Prisma.XOR<Prisma.OrdenCompraUpdateWithoutHistorialInput, Prisma.OrdenCompraUncheckedUpdateWithoutHistorialInput>
+}
+
+export type OrdenCompraUpdateWithoutHistorialInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateWithoutHistorialInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraCreateWithoutPagosInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
+  items?: Prisma.OrdenCompraItemCreateNestedManyWithoutOrdenInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
+}
+
+export type OrdenCompraUncheckedCreateWithoutPagosInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  items?: Prisma.OrdenCompraItemUncheckedCreateNestedManyWithoutOrdenInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraCreateOrConnectWithoutPagosInput = {
@@ -1732,6 +3336,11 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1755,21 +3364,41 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput
-  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
   items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1794,16 +3423,32 @@ export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraCreateWithoutItemsInput = {
   id?: string
   numero: string
   nombre?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -1827,21 +3472,41 @@ export type OrdenCompraCreateWithoutItemsInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
-  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
-  proveedor: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  solicitud?: Prisma.SolicitudCotizacionCreateNestedOneWithoutOrdenesInput
+  proveedor?: Prisma.ProveedorCreateNestedOneWithoutOrdenesCompraInput
+  compraSimple?: Prisma.CompraSimpleCreateNestedOneWithoutGruposInput
+  aprobadoPor?: Prisma.UserCreateNestedOneWithoutOrdenesCompraAprobadasInput
   proyecto: Prisma.ProyectoCreateNestedOneWithoutOrdenesCompraInput
+  pagoTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutComprasSimplesPagoTrabajadorInput
   creadoPor: Prisma.UserCreateNestedOneWithoutOrdenesCompraInput
   pagos?: Prisma.PagoCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -1866,10 +3531,21 @@ export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutOrdenCompraInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutGrupoInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type OrdenCompraCreateOrConnectWithoutItemsInput = {
@@ -1892,6 +3568,11 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1915,21 +3596,41 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput
-  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1954,18 +3655,36 @@ export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraCreateManyCreadoPorInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -1990,122 +3709,32 @@ export type OrdenCompraCreateManyCreadoPorInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
 
-export type OrdenCompraUpdateWithoutCreadoPorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.StringFieldUpdateOperationsInput | string
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
-  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput
-  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput
-  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
-  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
-  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
-}
-
-export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.StringFieldUpdateOperationsInput | string
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
-  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
-  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
-  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
-}
-
-export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.StringFieldUpdateOperationsInput | string
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
-  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
-  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type OrdenCompraCreateManyProyectoInput = {
+export type OrdenCompraCreateManyAprobadoPorInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
-  proveedorId: string
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
   fechaEntrega?: Date | string | null
@@ -2129,6 +3758,381 @@ export type OrdenCompraCreateManyProyectoInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type OrdenCompraUpdateWithoutCreadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
+  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type OrdenCompraUpdateWithoutAprobadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateWithoutAprobadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutAprobadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type OrdenCompraCreateManyProyectoInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2138,6 +4142,11 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2161,21 +4170,41 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput
-  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
   items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2199,19 +4228,37 @@ export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2235,6 +4282,223 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type OrdenCompraCreateManyPagoTrabajadorInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type OrdenCompraUpdateWithoutPagoTrabajadorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2244,7 +4508,14 @@ export type OrdenCompraCreateManyProveedorInput = {
   id?: string
   numero: string
   nombre?: string | null
-  solicitudId: string
+  solicitudId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -2269,6 +4540,15 @@ export type OrdenCompraCreateManyProveedorInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2278,6 +4558,11 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2301,20 +4586,40 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutOrdenesNestedInput
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
   items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2339,18 +4644,36 @@ export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2375,6 +4698,15 @@ export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2384,7 +4716,14 @@ export type OrdenCompraCreateManySolicitudInput = {
   id?: string
   numero: string
   nombre?: string | null
-  proveedorId: string
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  compraSimpleId?: string | null
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
   proyectoId: string
   estado?: $Enums.EstadoOrdenCompra
   fechaEmision?: Date | string | null
@@ -2409,6 +4748,15 @@ export type OrdenCompraCreateManySolicitudInput = {
   contactoDycArea?: string | null
   contactoDycCelular?: string | null
   contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
   creadoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2418,6 +4766,11 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2441,20 +4794,40 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  compraSimple?: Prisma.CompraSimpleUpdateOneWithoutGruposNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
   items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2479,18 +4852,36 @@ export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   numero?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
   fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2515,6 +4906,223 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type OrdenCompraCreateManyCompraSimpleInput = {
+  id?: string
+  numero: string
+  nombre?: string | null
+  solicitudId?: string | null
+  proveedorId?: string | null
+  proveedorNombreLibre?: string | null
+  origen?: $Enums.OrigenOrdenCompra
+  estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: string | null
+  aprobadoEn?: Date | string | null
+  notaAprobacion?: string | null
+  proyectoId: string
+  estado?: $Enums.EstadoOrdenCompra
+  fechaEmision?: Date | string | null
+  fechaEntrega?: Date | string | null
+  fechaEntregaReal?: Date | string | null
+  calificacionCalidad?: number | null
+  montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: string | null
+  lugarEntrega?: string | null
+  adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: boolean
+  tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: string | null
+  contactoProveedorTelefono?: string | null
+  condicionPago?: string | null
+  referencia?: string | null
+  concepto?: string | null
+  tiempoEntrega?: string | null
+  contactoDycNombre?: string | null
+  contactoDycArea?: string | null
+  contactoDycCelular?: string | null
+  contactoDycTelefono?: string | null
+  destinoPago?: $Enums.DestinoPago | null
+  pagoBanco?: string | null
+  pagoNumeroCuenta?: string | null
+  pagoRazonSocial?: string | null
+  pagoMetodo?: $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: string | null
+  pagoTrabajadorNumeroCuenta?: string | null
+  pagoTrabajadorNumero?: string | null
+  pagoTrabajadorId?: string | null
+  creadoPorId: string
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type OrdenCompraUpdateWithoutCompraSimpleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneWithoutOrdenesCompraNestedInput
+  aprobadoPor?: Prisma.UserUpdateOneWithoutOrdenesCompraAprobadasNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  pagoTrabajador?: Prisma.TrabajadorUpdateOneWithoutComprasSimplesPagoTrabajadorNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutOrdenesCompraNestedInput
+  items?: Prisma.OrdenCompraItemUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateWithoutCompraSimpleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.OrdenCompraItemUncheckedUpdateManyWithoutOrdenNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraNestedInput
+  historial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutGrupoNestedInput
+  archivos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type OrdenCompraUncheckedUpdateManyWithoutCompraSimpleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
+  aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoOrdenCompraFieldUpdateOperationsInput | $Enums.EstadoOrdenCompra
+  fechaEmision?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoProveedorTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tiempoEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycArea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycCelular?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactoDycTelefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoPago?: Prisma.NullableEnumDestinoPagoFieldUpdateOperationsInput | $Enums.DestinoPago | null
+  pagoBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoRazonSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoMetodo?: Prisma.NullableEnumMetodoPagoTrabajadorFieldUpdateOperationsInput | $Enums.MetodoPagoTrabajador | null
+  pagoTrabajadorBanco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorNumero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagoTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2528,11 +5136,15 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
 export type OrdenCompraCountOutputType = {
   items: number
   pagos: number
+  historial: number
+  archivos: number
 }
 
 export type OrdenCompraCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | OrdenCompraCountOutputTypeCountItemsArgs
   pagos?: boolean | OrdenCompraCountOutputTypeCountPagosArgs
+  historial?: boolean | OrdenCompraCountOutputTypeCountHistorialArgs
+  archivos?: boolean | OrdenCompraCountOutputTypeCountArchivosArgs
 }
 
 /**
@@ -2559,6 +5171,20 @@ export type OrdenCompraCountOutputTypeCountPagosArgs<ExtArgs extends runtime.Typ
   where?: Prisma.PagoWhereInput
 }
 
+/**
+ * OrdenCompraCountOutputType without action
+ */
+export type OrdenCompraCountOutputTypeCountHistorialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompraSimpleGrupoHistorialWhereInput
+}
+
+/**
+ * OrdenCompraCountOutputType without action
+ */
+export type OrdenCompraCountOutputTypeCountArchivosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompraSimpleGrupoArchivoWhereInput
+}
+
 
 export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2566,6 +5192,13 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   nombre?: boolean
   solicitudId?: boolean
   proveedorId?: boolean
+  proveedorNombreLibre?: boolean
+  origen?: boolean
+  compraSimpleId?: boolean
+  estadoAprobacion?: boolean
+  aprobadoPorId?: boolean
+  aprobadoEn?: boolean
+  notaAprobacion?: boolean
   proyectoId?: boolean
   estado?: boolean
   fechaEmision?: boolean
@@ -2590,15 +5223,29 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   contactoDycArea?: boolean
   contactoDycCelular?: boolean
   contactoDycTelefono?: boolean
+  destinoPago?: boolean
+  pagoBanco?: boolean
+  pagoNumeroCuenta?: boolean
+  pagoRazonSocial?: boolean
+  pagoMetodo?: boolean
+  pagoTrabajadorBanco?: boolean
+  pagoTrabajadorNumeroCuenta?: boolean
+  pagoTrabajadorNumero?: boolean
+  pagoTrabajadorId?: boolean
   creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
-  solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
-  proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
+  proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
+  compraSimple?: boolean | Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>
+  aprobadoPor?: boolean | Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  pagoTrabajador?: boolean | Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   items?: boolean | Prisma.OrdenCompra$itemsArgs<ExtArgs>
   pagos?: boolean | Prisma.OrdenCompra$pagosArgs<ExtArgs>
+  historial?: boolean | Prisma.OrdenCompra$historialArgs<ExtArgs>
+  archivos?: boolean | Prisma.OrdenCompra$archivosArgs<ExtArgs>
   _count?: boolean | Prisma.OrdenCompraCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ordenCompra"]>
 
@@ -2608,6 +5255,13 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   nombre?: boolean
   solicitudId?: boolean
   proveedorId?: boolean
+  proveedorNombreLibre?: boolean
+  origen?: boolean
+  compraSimpleId?: boolean
+  estadoAprobacion?: boolean
+  aprobadoPorId?: boolean
+  aprobadoEn?: boolean
+  notaAprobacion?: boolean
   proyectoId?: boolean
   estado?: boolean
   fechaEmision?: boolean
@@ -2632,12 +5286,24 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   contactoDycArea?: boolean
   contactoDycCelular?: boolean
   contactoDycTelefono?: boolean
+  destinoPago?: boolean
+  pagoBanco?: boolean
+  pagoNumeroCuenta?: boolean
+  pagoRazonSocial?: boolean
+  pagoMetodo?: boolean
+  pagoTrabajadorBanco?: boolean
+  pagoTrabajadorNumeroCuenta?: boolean
+  pagoTrabajadorNumero?: boolean
+  pagoTrabajadorId?: boolean
   creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
-  solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
-  proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
+  proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
+  compraSimple?: boolean | Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>
+  aprobadoPor?: boolean | Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  pagoTrabajador?: boolean | Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ordenCompra"]>
 
@@ -2647,6 +5313,13 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   nombre?: boolean
   solicitudId?: boolean
   proveedorId?: boolean
+  proveedorNombreLibre?: boolean
+  origen?: boolean
+  compraSimpleId?: boolean
+  estadoAprobacion?: boolean
+  aprobadoPorId?: boolean
+  aprobadoEn?: boolean
+  notaAprobacion?: boolean
   proyectoId?: boolean
   estado?: boolean
   fechaEmision?: boolean
@@ -2671,12 +5344,24 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   contactoDycArea?: boolean
   contactoDycCelular?: boolean
   contactoDycTelefono?: boolean
+  destinoPago?: boolean
+  pagoBanco?: boolean
+  pagoNumeroCuenta?: boolean
+  pagoRazonSocial?: boolean
+  pagoMetodo?: boolean
+  pagoTrabajadorBanco?: boolean
+  pagoTrabajadorNumeroCuenta?: boolean
+  pagoTrabajadorNumero?: boolean
+  pagoTrabajadorId?: boolean
   creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
-  solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
-  proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
+  proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
+  compraSimple?: boolean | Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>
+  aprobadoPor?: boolean | Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  pagoTrabajador?: boolean | Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ordenCompra"]>
 
@@ -2686,6 +5371,13 @@ export type OrdenCompraSelectScalar = {
   nombre?: boolean
   solicitudId?: boolean
   proveedorId?: boolean
+  proveedorNombreLibre?: boolean
+  origen?: boolean
+  compraSimpleId?: boolean
+  estadoAprobacion?: boolean
+  aprobadoPorId?: boolean
+  aprobadoEn?: boolean
+  notaAprobacion?: boolean
   proyectoId?: boolean
   estado?: boolean
   fechaEmision?: boolean
@@ -2710,50 +5402,82 @@ export type OrdenCompraSelectScalar = {
   contactoDycArea?: boolean
   contactoDycCelular?: boolean
   contactoDycTelefono?: boolean
+  destinoPago?: boolean
+  pagoBanco?: boolean
+  pagoNumeroCuenta?: boolean
+  pagoRazonSocial?: boolean
+  pagoMetodo?: boolean
+  pagoTrabajadorBanco?: boolean
+  pagoTrabajadorNumeroCuenta?: boolean
+  pagoTrabajadorNumero?: boolean
+  pagoTrabajadorId?: boolean
   creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
+export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
 export type OrdenCompraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
-  proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
+  proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
+  compraSimple?: boolean | Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>
+  aprobadoPor?: boolean | Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  pagoTrabajador?: boolean | Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   items?: boolean | Prisma.OrdenCompra$itemsArgs<ExtArgs>
   pagos?: boolean | Prisma.OrdenCompra$pagosArgs<ExtArgs>
+  historial?: boolean | Prisma.OrdenCompra$historialArgs<ExtArgs>
+  archivos?: boolean | Prisma.OrdenCompra$archivosArgs<ExtArgs>
   _count?: boolean | Prisma.OrdenCompraCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrdenCompraIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
-  proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
+  proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
+  compraSimple?: boolean | Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>
+  aprobadoPor?: boolean | Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  pagoTrabajador?: boolean | Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type OrdenCompraIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
-  proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
+  proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
+  compraSimple?: boolean | Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>
+  aprobadoPor?: boolean | Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
+  pagoTrabajador?: boolean | Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "OrdenCompra"
   objects: {
-    solicitud: Prisma.$SolicitudCotizacionPayload<ExtArgs>
-    proveedor: Prisma.$ProveedorPayload<ExtArgs>
+    solicitud: Prisma.$SolicitudCotizacionPayload<ExtArgs> | null
+    proveedor: Prisma.$ProveedorPayload<ExtArgs> | null
+    compraSimple: Prisma.$CompraSimplePayload<ExtArgs> | null
+    aprobadoPor: Prisma.$UserPayload<ExtArgs> | null
     proyecto: Prisma.$ProyectoPayload<ExtArgs>
+    pagoTrabajador: Prisma.$TrabajadorPayload<ExtArgs> | null
     creadoPor: Prisma.$UserPayload<ExtArgs>
     items: Prisma.$OrdenCompraItemPayload<ExtArgs>[]
     pagos: Prisma.$PagoPayload<ExtArgs>[]
+    historial: Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>[]
+    archivos: Prisma.$CompraSimpleGrupoArchivoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     numero: string
     nombre: string | null
-    solicitudId: string
-    proveedorId: string
+    solicitudId: string | null
+    proveedorId: string | null
+    proveedorNombreLibre: string | null
+    origen: $Enums.OrigenOrdenCompra
+    compraSimpleId: string | null
+    estadoAprobacion: $Enums.EstadoAprobacionCompra | null
+    aprobadoPorId: string | null
+    aprobadoEn: Date | null
+    notaAprobacion: string | null
     proyectoId: string
     estado: $Enums.EstadoOrdenCompra
     fechaEmision: Date | null
@@ -2778,6 +5502,15 @@ export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.Interna
     contactoDycArea: string | null
     contactoDycCelular: string | null
     contactoDycTelefono: string | null
+    destinoPago: $Enums.DestinoPago | null
+    pagoBanco: string | null
+    pagoNumeroCuenta: string | null
+    pagoRazonSocial: string | null
+    pagoMetodo: $Enums.MetodoPagoTrabajador | null
+    pagoTrabajadorBanco: string | null
+    pagoTrabajadorNumeroCuenta: string | null
+    pagoTrabajadorNumero: string | null
+    pagoTrabajadorId: string | null
     creadoPorId: string
     creadoEn: Date
     actualizadoEn: Date
@@ -3175,12 +5908,17 @@ readonly fields: OrdenCompraFieldRefs;
  */
 export interface Prisma__OrdenCompraClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  solicitud<T extends Prisma.SolicitudCotizacionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>>): Prisma.Prisma__SolicitudCotizacionClient<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  proveedor<T extends Prisma.ProveedorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProveedorDefaultArgs<ExtArgs>>): Prisma.Prisma__ProveedorClient<runtime.Types.Result.GetResult<Prisma.$ProveedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  solicitud<T extends Prisma.OrdenCompra$solicitudArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$solicitudArgs<ExtArgs>>): Prisma.Prisma__SolicitudCotizacionClient<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  proveedor<T extends Prisma.OrdenCompra$proveedorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$proveedorArgs<ExtArgs>>): Prisma.Prisma__ProveedorClient<runtime.Types.Result.GetResult<Prisma.$ProveedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  compraSimple<T extends Prisma.OrdenCompra$compraSimpleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$compraSimpleArgs<ExtArgs>>): Prisma.Prisma__CompraSimpleClient<runtime.Types.Result.GetResult<Prisma.$CompraSimplePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aprobadoPor<T extends Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$aprobadoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   proyecto<T extends Prisma.ProyectoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProyectoDefaultArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  pagoTrabajador<T extends Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$pagoTrabajadorArgs<ExtArgs>>): Prisma.Prisma__TrabajadorClient<runtime.Types.Result.GetResult<Prisma.$TrabajadorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   creadoPor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.OrdenCompra$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagos<T extends Prisma.OrdenCompra$pagosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$pagosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  historial<T extends Prisma.OrdenCompra$historialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$historialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  archivos<T extends Prisma.OrdenCompra$archivosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrdenCompra$archivosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimpleGrupoArchivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3215,6 +5953,13 @@ export interface OrdenCompraFieldRefs {
   readonly nombre: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly solicitudId: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly proveedorId: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly proveedorNombreLibre: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly origen: Prisma.FieldRef<"OrdenCompra", 'OrigenOrdenCompra'>
+  readonly compraSimpleId: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly estadoAprobacion: Prisma.FieldRef<"OrdenCompra", 'EstadoAprobacionCompra'>
+  readonly aprobadoPorId: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly aprobadoEn: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
+  readonly notaAprobacion: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly proyectoId: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly estado: Prisma.FieldRef<"OrdenCompra", 'EstadoOrdenCompra'>
   readonly fechaEmision: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
@@ -3239,6 +5984,15 @@ export interface OrdenCompraFieldRefs {
   readonly contactoDycArea: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly contactoDycCelular: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly contactoDycTelefono: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly destinoPago: Prisma.FieldRef<"OrdenCompra", 'DestinoPago'>
+  readonly pagoBanco: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly pagoNumeroCuenta: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly pagoRazonSocial: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly pagoMetodo: Prisma.FieldRef<"OrdenCompra", 'MetodoPagoTrabajador'>
+  readonly pagoTrabajadorBanco: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly pagoTrabajadorNumeroCuenta: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly pagoTrabajadorNumero: Prisma.FieldRef<"OrdenCompra", 'String'>
+  readonly pagoTrabajadorId: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly creadoPorId: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly creadoEn: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
@@ -3643,6 +6397,101 @@ export type OrdenCompraDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * OrdenCompra.solicitud
+ */
+export type OrdenCompra$solicitudArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SolicitudCotizacion
+   */
+  select?: Prisma.SolicitudCotizacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SolicitudCotizacion
+   */
+  omit?: Prisma.SolicitudCotizacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SolicitudCotizacionInclude<ExtArgs> | null
+  where?: Prisma.SolicitudCotizacionWhereInput
+}
+
+/**
+ * OrdenCompra.proveedor
+ */
+export type OrdenCompra$proveedorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Proveedor
+   */
+  select?: Prisma.ProveedorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Proveedor
+   */
+  omit?: Prisma.ProveedorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProveedorInclude<ExtArgs> | null
+  where?: Prisma.ProveedorWhereInput
+}
+
+/**
+ * OrdenCompra.compraSimple
+ */
+export type OrdenCompra$compraSimpleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompraSimple
+   */
+  select?: Prisma.CompraSimpleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompraSimple
+   */
+  omit?: Prisma.CompraSimpleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompraSimpleInclude<ExtArgs> | null
+  where?: Prisma.CompraSimpleWhereInput
+}
+
+/**
+ * OrdenCompra.aprobadoPor
+ */
+export type OrdenCompra$aprobadoPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * OrdenCompra.pagoTrabajador
+ */
+export type OrdenCompra$pagoTrabajadorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Trabajador
+   */
+  select?: Prisma.TrabajadorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Trabajador
+   */
+  omit?: Prisma.TrabajadorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrabajadorInclude<ExtArgs> | null
+  where?: Prisma.TrabajadorWhereInput
+}
+
+/**
  * OrdenCompra.items
  */
 export type OrdenCompra$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3688,6 +6537,54 @@ export type OrdenCompra$pagosArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[]
+}
+
+/**
+ * OrdenCompra.historial
+ */
+export type OrdenCompra$historialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompraSimpleGrupoHistorial
+   */
+  select?: Prisma.CompraSimpleGrupoHistorialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompraSimpleGrupoHistorial
+   */
+  omit?: Prisma.CompraSimpleGrupoHistorialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompraSimpleGrupoHistorialInclude<ExtArgs> | null
+  where?: Prisma.CompraSimpleGrupoHistorialWhereInput
+  orderBy?: Prisma.CompraSimpleGrupoHistorialOrderByWithRelationInput | Prisma.CompraSimpleGrupoHistorialOrderByWithRelationInput[]
+  cursor?: Prisma.CompraSimpleGrupoHistorialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompraSimpleGrupoHistorialScalarFieldEnum | Prisma.CompraSimpleGrupoHistorialScalarFieldEnum[]
+}
+
+/**
+ * OrdenCompra.archivos
+ */
+export type OrdenCompra$archivosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompraSimpleGrupoArchivo
+   */
+  select?: Prisma.CompraSimpleGrupoArchivoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompraSimpleGrupoArchivo
+   */
+  omit?: Prisma.CompraSimpleGrupoArchivoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompraSimpleGrupoArchivoInclude<ExtArgs> | null
+  where?: Prisma.CompraSimpleGrupoArchivoWhereInput
+  orderBy?: Prisma.CompraSimpleGrupoArchivoOrderByWithRelationInput | Prisma.CompraSimpleGrupoArchivoOrderByWithRelationInput[]
+  cursor?: Prisma.CompraSimpleGrupoArchivoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompraSimpleGrupoArchivoScalarFieldEnum | Prisma.CompraSimpleGrupoArchivoScalarFieldEnum[]
 }
 
 /**

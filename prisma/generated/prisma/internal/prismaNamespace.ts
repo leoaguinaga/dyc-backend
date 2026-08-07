@@ -419,7 +419,10 @@ export const ModelName = {
   CotizacionArchivo: 'CotizacionArchivo',
   CotizacionItem: 'CotizacionItem',
   CotizacionCondicionPago: 'CotizacionCondicionPago',
+  CompraSimple: 'CompraSimple',
   OrdenCompra: 'OrdenCompra',
+  CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
+  CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
   OrdenCompraItem: 'OrdenCompraItem',
   Notificacion: 'Notificacion'
@@ -438,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "ordenCompra" | "pago" | "ordenCompraItem" | "notificacion"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "ordenCompraItem" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3032,6 +3035,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CompraSimple: {
+      payload: Prisma.$CompraSimplePayload<ExtArgs>
+      fields: Prisma.CompraSimpleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompraSimpleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompraSimpleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>
+        }
+        findFirst: {
+          args: Prisma.CompraSimpleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompraSimpleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>
+        }
+        findMany: {
+          args: Prisma.CompraSimpleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>[]
+        }
+        create: {
+          args: Prisma.CompraSimpleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>
+        }
+        createMany: {
+          args: Prisma.CompraSimpleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompraSimpleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>[]
+        }
+        delete: {
+          args: Prisma.CompraSimpleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>
+        }
+        update: {
+          args: Prisma.CompraSimpleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>
+        }
+        deleteMany: {
+          args: Prisma.CompraSimpleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompraSimpleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompraSimpleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>[]
+        }
+        upsert: {
+          args: Prisma.CompraSimpleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimplePayload>
+        }
+        aggregate: {
+          args: Prisma.CompraSimpleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompraSimple>
+        }
+        groupBy: {
+          args: Prisma.CompraSimpleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompraSimpleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompraSimpleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompraSimpleCountAggregateOutputType> | number
+        }
+      }
+    }
     OrdenCompra: {
       payload: Prisma.$OrdenCompraPayload<ExtArgs>
       fields: Prisma.OrdenCompraFieldRefs
@@ -3103,6 +3180,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.OrdenCompraCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.OrdenCompraCountAggregateOutputType> | number
+        }
+      }
+    }
+    CompraSimpleGrupoArchivo: {
+      payload: Prisma.$CompraSimpleGrupoArchivoPayload<ExtArgs>
+      fields: Prisma.CompraSimpleGrupoArchivoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompraSimpleGrupoArchivoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompraSimpleGrupoArchivoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>
+        }
+        findFirst: {
+          args: Prisma.CompraSimpleGrupoArchivoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompraSimpleGrupoArchivoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>
+        }
+        findMany: {
+          args: Prisma.CompraSimpleGrupoArchivoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>[]
+        }
+        create: {
+          args: Prisma.CompraSimpleGrupoArchivoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>
+        }
+        createMany: {
+          args: Prisma.CompraSimpleGrupoArchivoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompraSimpleGrupoArchivoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>[]
+        }
+        delete: {
+          args: Prisma.CompraSimpleGrupoArchivoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>
+        }
+        update: {
+          args: Prisma.CompraSimpleGrupoArchivoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompraSimpleGrupoArchivoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompraSimpleGrupoArchivoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompraSimpleGrupoArchivoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompraSimpleGrupoArchivoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoArchivoPayload>
+        }
+        aggregate: {
+          args: Prisma.CompraSimpleGrupoArchivoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompraSimpleGrupoArchivo>
+        }
+        groupBy: {
+          args: Prisma.CompraSimpleGrupoArchivoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompraSimpleGrupoArchivoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompraSimpleGrupoArchivoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompraSimpleGrupoArchivoCountAggregateOutputType> | number
+        }
+      }
+    }
+    CompraSimpleGrupoHistorial: {
+      payload: Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>
+      fields: Prisma.CompraSimpleGrupoHistorialFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompraSimpleGrupoHistorialFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompraSimpleGrupoHistorialFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>
+        }
+        findFirst: {
+          args: Prisma.CompraSimpleGrupoHistorialFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompraSimpleGrupoHistorialFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>
+        }
+        findMany: {
+          args: Prisma.CompraSimpleGrupoHistorialFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>[]
+        }
+        create: {
+          args: Prisma.CompraSimpleGrupoHistorialCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>
+        }
+        createMany: {
+          args: Prisma.CompraSimpleGrupoHistorialCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompraSimpleGrupoHistorialCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>[]
+        }
+        delete: {
+          args: Prisma.CompraSimpleGrupoHistorialDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>
+        }
+        update: {
+          args: Prisma.CompraSimpleGrupoHistorialUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompraSimpleGrupoHistorialDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompraSimpleGrupoHistorialUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompraSimpleGrupoHistorialUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompraSimpleGrupoHistorialUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompraSimpleGrupoHistorialPayload>
+        }
+        aggregate: {
+          args: Prisma.CompraSimpleGrupoHistorialAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompraSimpleGrupoHistorial>
+        }
+        groupBy: {
+          args: Prisma.CompraSimpleGrupoHistorialGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompraSimpleGrupoHistorialGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompraSimpleGrupoHistorialCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompraSimpleGrupoHistorialCountAggregateOutputType> | number
         }
       }
     }
@@ -3911,12 +4136,35 @@ export const CotizacionCondicionPagoScalarFieldEnum = {
 export type CotizacionCondicionPagoScalarFieldEnum = (typeof CotizacionCondicionPagoScalarFieldEnum)[keyof typeof CotizacionCondicionPagoScalarFieldEnum]
 
 
+export const CompraSimpleScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  nombre: 'nombre',
+  tipo: 'tipo',
+  urgente: 'urgente',
+  proyectoId: 'proyectoId',
+  creadoPorId: 'creadoPorId',
+  nota: 'nota',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type CompraSimpleScalarFieldEnum = (typeof CompraSimpleScalarFieldEnum)[keyof typeof CompraSimpleScalarFieldEnum]
+
+
 export const OrdenCompraScalarFieldEnum = {
   id: 'id',
   numero: 'numero',
   nombre: 'nombre',
   solicitudId: 'solicitudId',
   proveedorId: 'proveedorId',
+  proveedorNombreLibre: 'proveedorNombreLibre',
+  origen: 'origen',
+  compraSimpleId: 'compraSimpleId',
+  estadoAprobacion: 'estadoAprobacion',
+  aprobadoPorId: 'aprobadoPorId',
+  aprobadoEn: 'aprobadoEn',
+  notaAprobacion: 'notaAprobacion',
   proyectoId: 'proyectoId',
   estado: 'estado',
   fechaEmision: 'fechaEmision',
@@ -3941,6 +4189,15 @@ export const OrdenCompraScalarFieldEnum = {
   contactoDycArea: 'contactoDycArea',
   contactoDycCelular: 'contactoDycCelular',
   contactoDycTelefono: 'contactoDycTelefono',
+  destinoPago: 'destinoPago',
+  pagoBanco: 'pagoBanco',
+  pagoNumeroCuenta: 'pagoNumeroCuenta',
+  pagoRazonSocial: 'pagoRazonSocial',
+  pagoMetodo: 'pagoMetodo',
+  pagoTrabajadorBanco: 'pagoTrabajadorBanco',
+  pagoTrabajadorNumeroCuenta: 'pagoTrabajadorNumeroCuenta',
+  pagoTrabajadorNumero: 'pagoTrabajadorNumero',
+  pagoTrabajadorId: 'pagoTrabajadorId',
   creadoPorId: 'creadoPorId',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
@@ -3949,10 +4206,37 @@ export const OrdenCompraScalarFieldEnum = {
 export type OrdenCompraScalarFieldEnum = (typeof OrdenCompraScalarFieldEnum)[keyof typeof OrdenCompraScalarFieldEnum]
 
 
+export const CompraSimpleGrupoArchivoScalarFieldEnum = {
+  id: 'id',
+  grupoId: 'grupoId',
+  url: 'url',
+  nombreOriginal: 'nombreOriginal',
+  mimeType: 'mimeType',
+  subidoPorId: 'subidoPorId',
+  creadoEn: 'creadoEn'
+} as const
+
+export type CompraSimpleGrupoArchivoScalarFieldEnum = (typeof CompraSimpleGrupoArchivoScalarFieldEnum)[keyof typeof CompraSimpleGrupoArchivoScalarFieldEnum]
+
+
+export const CompraSimpleGrupoHistorialScalarFieldEnum = {
+  id: 'id',
+  grupoId: 'grupoId',
+  estado: 'estado',
+  nota: 'nota',
+  actorId: 'actorId',
+  actorRole: 'actorRole',
+  creadoEn: 'creadoEn'
+} as const
+
+export type CompraSimpleGrupoHistorialScalarFieldEnum = (typeof CompraSimpleGrupoHistorialScalarFieldEnum)[keyof typeof CompraSimpleGrupoHistorialScalarFieldEnum]
+
+
 export const PagoScalarFieldEnum = {
   id: 'id',
   ordenCompraId: 'ordenCompraId',
   tipoBeneficiario: 'tipoBeneficiario',
+  beneficiarioTrabajadorId: 'beneficiarioTrabajadorId',
   monto: 'monto',
   porcentaje: 'porcentaje',
   fechaProgramada: 'fechaProgramada',
@@ -4305,6 +4589,34 @@ export type ListEnumEstadoCotizacionFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
+ * Reference to a field of type 'OrigenOrdenCompra'
+ */
+export type EnumOrigenOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrigenOrdenCompra'>
+    
+
+
+/**
+ * Reference to a field of type 'OrigenOrdenCompra[]'
+ */
+export type ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrigenOrdenCompra[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoAprobacionCompra'
+ */
+export type EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoAprobacionCompra'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoAprobacionCompra[]'
+ */
+export type ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoAprobacionCompra[]'>
+    
+
+
+/**
  * Reference to a field of type 'EstadoOrdenCompra'
  */
 export type EnumEstadoOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoOrdenCompra'>
@@ -4315,6 +4627,34 @@ export type EnumEstadoOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'EstadoOrdenCompra[]'
  */
 export type ListEnumEstadoOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoOrdenCompra[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DestinoPago'
+ */
+export type EnumDestinoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DestinoPago'>
+    
+
+
+/**
+ * Reference to a field of type 'DestinoPago[]'
+ */
+export type ListEnumDestinoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DestinoPago[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MetodoPagoTrabajador'
+ */
+export type EnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoPagoTrabajador'>
+    
+
+
+/**
+ * Reference to a field of type 'MetodoPagoTrabajador[]'
+ */
+export type ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoPagoTrabajador[]'>
     
 
 
@@ -4518,7 +4858,10 @@ export type GlobalOmitConfig = {
   cotizacionArchivo?: Prisma.CotizacionArchivoOmit
   cotizacionItem?: Prisma.CotizacionItemOmit
   cotizacionCondicionPago?: Prisma.CotizacionCondicionPagoOmit
+  compraSimple?: Prisma.CompraSimpleOmit
   ordenCompra?: Prisma.OrdenCompraOmit
+  compraSimpleGrupoArchivo?: Prisma.CompraSimpleGrupoArchivoOmit
+  compraSimpleGrupoHistorial?: Prisma.CompraSimpleGrupoHistorialOmit
   pago?: Prisma.PagoOmit
   ordenCompraItem?: Prisma.OrdenCompraItemOmit
   notificacion?: Prisma.NotificacionOmit

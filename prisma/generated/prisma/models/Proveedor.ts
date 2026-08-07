@@ -558,6 +558,11 @@ export type ProveedorScalarRelationFilter = {
   isNot?: Prisma.ProveedorWhereInput
 }
 
+export type ProveedorNullableScalarRelationFilter = {
+  is?: Prisma.ProveedorWhereInput | null
+  isNot?: Prisma.ProveedorWhereInput | null
+}
+
 export type ProveedorCreateNestedOneWithoutContactosInput = {
   create?: Prisma.XOR<Prisma.ProveedorCreateWithoutContactosInput, Prisma.ProveedorUncheckedCreateWithoutContactosInput>
   connectOrCreate?: Prisma.ProveedorCreateOrConnectWithoutContactosInput
@@ -606,10 +611,12 @@ export type ProveedorCreateNestedOneWithoutOrdenesCompraInput = {
   connect?: Prisma.ProveedorWhereUniqueInput
 }
 
-export type ProveedorUpdateOneRequiredWithoutOrdenesCompraNestedInput = {
+export type ProveedorUpdateOneWithoutOrdenesCompraNestedInput = {
   create?: Prisma.XOR<Prisma.ProveedorCreateWithoutOrdenesCompraInput, Prisma.ProveedorUncheckedCreateWithoutOrdenesCompraInput>
   connectOrCreate?: Prisma.ProveedorCreateOrConnectWithoutOrdenesCompraInput
   upsert?: Prisma.ProveedorUpsertWithoutOrdenesCompraInput
+  disconnect?: Prisma.ProveedorWhereInput | boolean
+  delete?: Prisma.ProveedorWhereInput | boolean
   connect?: Prisma.ProveedorWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProveedorUpdateToOneWithWhereWithoutOrdenesCompraInput, Prisma.ProveedorUpdateWithoutOrdenesCompraInput>, Prisma.ProveedorUncheckedUpdateWithoutOrdenesCompraInput>
 }

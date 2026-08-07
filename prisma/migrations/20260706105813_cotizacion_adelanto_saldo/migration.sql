@@ -1,0 +1,4 @@
+-- Reconciliation placeholder: this migration was already applied to the database
+-- but its original file was missing from the repository. Its effect (columns
+-- adelantoPorcentaje/saldoPorcentaje on ordenes_compra) is already reflected in
+-- the current schema and was reconciled via 20260805000000_reconcile_drift.

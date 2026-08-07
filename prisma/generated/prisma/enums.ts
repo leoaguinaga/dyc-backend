@@ -159,6 +159,42 @@ export const TipoBeneficiario = {
 export type TipoBeneficiario = (typeof TipoBeneficiario)[keyof typeof TipoBeneficiario]
 
 
+export const OrigenOrdenCompra = {
+  macro: 'macro',
+  simple: 'simple'
+} as const
+
+export type OrigenOrdenCompra = (typeof OrigenOrdenCompra)[keyof typeof OrigenOrdenCompra]
+
+
+export const EstadoAprobacionCompra = {
+  pendiente: 'pendiente',
+  aprobada_tecnico: 'aprobada_tecnico',
+  aprobada: 'aprobada',
+  observada: 'observada'
+} as const
+
+export type EstadoAprobacionCompra = (typeof EstadoAprobacionCompra)[keyof typeof EstadoAprobacionCompra]
+
+
+export const DestinoPago = {
+  empresa: 'empresa',
+  trabajador: 'trabajador'
+} as const
+
+export type DestinoPago = (typeof DestinoPago)[keyof typeof DestinoPago]
+
+
+export const MetodoPagoTrabajador = {
+  registrado: 'registrado',
+  transferencia: 'transferencia',
+  yape: 'yape',
+  plin: 'plin'
+} as const
+
+export type MetodoPagoTrabajador = (typeof MetodoPagoTrabajador)[keyof typeof MetodoPagoTrabajador]
+
+
 export const CategoriaObrero = {
   operario: 'operario',
   oficial: 'oficial',
@@ -178,7 +214,8 @@ export const TipoNotificacion = {
   solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
   orden_compra_generada: 'orden_compra_generada',
   obra_cerrada: 'obra_cerrada',
-  planilla_generada: 'planilla_generada'
+  planilla_generada: 'planilla_generada',
+  compra_simple_pendiente_gerencia: 'compra_simple_pendiente_gerencia'
 } as const
 
 export type TipoNotificacion = (typeof TipoNotificacion)[keyof typeof TipoNotificacion]

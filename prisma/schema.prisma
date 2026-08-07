@@ -119,6 +119,30 @@ enum TipoBeneficiario {
   trabajador
 }
 
+enum OrigenOrdenCompra {
+  macro
+  simple
+}
+
+enum EstadoAprobacionCompra {
+  pendiente
+  aprobada_tecnico
+  aprobada
+  observada
+}
+
+enum DestinoPago {
+  empresa
+  trabajador
+}
+
+enum MetodoPagoTrabajador {
+  registrado
+  transferencia
+  yape
+  plin
+}
+
 enum CategoriaObrero {
   operario
   oficial
@@ -136,6 +160,7 @@ enum TipoNotificacion {
   orden_compra_generada
   obra_cerrada
   planilla_generada
+  compra_simple_pendiente_gerencia
 }
 
 enum EstadoTurno {
@@ -174,19 +199,23 @@ model User {
   accounts                      Account[]
   trabajador                    Trabajador?
   proyectosComoSupervisor       ProyectoSupervisor[]
-  requerimientos                Requerimiento[]          @relation("RequerimientosCreadosPor")
-  requerimientoHistorial        RequerimientoHistorial[] @relation("RequerimientoHistorialActor")
-  ordenesCompra                 OrdenCompra[]            @relation("OrdenesCompraCreadosPor")
-  pagosRegistrados              Pago[]                   @relation("PagosRegistradosPor")
-  pagosEjecutados               Pago[]                   @relation("PagosEjecutadosPor")
+  requerimientos                Requerimiento[]              @relation("RequerimientosCreadosPor")
+  requerimientoHistorial        RequerimientoHistorial[]     @relation("RequerimientoHistorialActor")
+  ordenesCompra                 OrdenCompra[]                @relation("OrdenesCompraCreadosPor")
+  ordenesCompraAprobadas        OrdenCompra[]                @relation("OrdenesCompraAprobadasPor")
+  comprasSimplesCreadas         CompraSimple[]               @relation("ComprasSimplesCreadasPor")
+  compraSimpleHistorial         CompraSimpleGrupoHistorial[] @relation("CompraSimpleHistorialActor")
+  pagosRegistrados              Pago[]                       @relation("PagosRegistradosPor")
+  pagosEjecutados               Pago[]                       @relation("PagosEjecutadosPor")
   notificaciones                Notificacion[]
-  turnosAbiertos                Turno[]                  @relation("TurnosAbiertos")
-  turnosCerrados                Turno[]                  @relation("TurnosCerrados")
-  turnosCorregidos              Turno[]                  @relation("TurnosCorregidos")
-  registrosVisitaComoVisitante  RegistroVisita[]         @relation("RegistrosVisitaUsuario")
-  registrosVisitaRegistradosPor RegistroVisita[]         @relation("RegistrosVisitaRegistradosPor")
+  turnosAbiertos                Turno[]                      @relation("TurnosAbiertos")
+  turnosCerrados                Turno[]                      @relation("TurnosCerrados")
+  turnosCorregidos              Turno[]                      @relation("TurnosCorregidos")
+  registrosVisitaComoVisitante  RegistroVisita[]             @relation("RegistrosVisitaUsuario")
+  registrosVisitaRegistradosPor RegistroVisita[]             @relation("RegistrosVisitaRegistradosPor")
   visitasTerceroRegistradas     VisitaTercero[]
   planillasGeneradas            Planilla[]
+  compraSimpleArchivosSubidos   CompraSimpleGrupoArchivo[]   @relation("CompraSimpleArchivosSubidoPor")
 
   @@map("users")
 }
@@ -334,6 +363,7 @@ model Proyecto {
   requerimientos  Requerimiento[]
   solicitudes     SolicitudCotizacion[]
   ordenesCompra   OrdenCompra[]
+  comprasSimples  CompraSimple[]
   turnos          Turno[]
   registrosVisita RegistroVisita[]
   visitasTercero  VisitaTercero[]
@@ -396,15 +426,17 @@ model Trabajador {
   userId String? @unique
   user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
 
-  proyectos                   ProyectoTrabajador[]
-  proyectosComoEjecutor       Proyecto[]           @relation("ProyectoEjecutor")
-  proyectosComoCoordinador    Proyecto[]           @relation("ProyectoCoordinadorEmpresa")
-  proyectosComoPrevencionista Proyecto[]           @relation("ProyectoPrevencionista")
-  hitos                       Hito[]
-  perfilObrero                PerfilObrero?
-  asistencias                 Asistencia[]
-  registrosVisita             RegistroVisita[]
-  planillaItems               PlanillaItem[]
+  proyectos                    ProyectoTrabajador[]
+  proyectosComoEjecutor        Proyecto[]           @relation("ProyectoEjecutor")
+  proyectosComoCoordinador     Proyecto[]           @relation("ProyectoCoordinadorEmpresa")
+  proyectosComoPrevencionista  Proyecto[]           @relation("ProyectoPrevencionista")
+  hitos                        Hito[]
+  perfilObrero                 PerfilObrero?
+  asistencias                  Asistencia[]
+  registrosVisita              RegistroVisita[]
+  planillaItems                PlanillaItem[]
+  comprasSimplesPagoTrabajador OrdenCompra[]        @relation("ComprasSimplesPagoTrabajador")
+  pagosBeneficiario            Pago[]               @relation("PagosBeneficiarioTrabajador")
 
   @@map("trabajadores")
 }
@@ -923,72 +955,146 @@ model CotizacionCondicionPago {
 }
 
 // ---------------------------------------------------------------------------
+// Compras simples (requerimientos pre-cotizados)
+// ---------------------------------------------------------------------------
+
+model CompraSimple {
+  id            String            @id @default(cuid())
+  codigo        String            @unique
+  nombre        String
+  tipo          TipoRequerimiento @default(civil)
+  urgente       Boolean           @default(false)
+  proyectoId    String
+  proyecto      Proyecto          @relation(fields: [proyectoId], references: [id])
+  creadoPorId   String
+  creadoPor     User              @relation("ComprasSimplesCreadasPor", fields: [creadoPorId], references: [id])
+  nota          String?
+  creadoEn      DateTime          @default(now())
+  actualizadoEn DateTime          @updatedAt
+
+  grupos OrdenCompra[]
+
+  @@map("compras_simples")
+}
+
+// ---------------------------------------------------------------------------
 // Órdenes de compra
 // ---------------------------------------------------------------------------
 
 model OrdenCompra {
-  id                        String              @id @default(cuid())
-  numero                    String              @unique
-  nombre                    String?
-  solicitudId               String
-  solicitud                 SolicitudCotizacion @relation(fields: [solicitudId], references: [id])
-  proveedorId               String
-  proveedor                 Proveedor           @relation(fields: [proveedorId], references: [id])
-  proyectoId                String
-  proyecto                  Proyecto            @relation(fields: [proyectoId], references: [id])
-  estado                    EstadoOrdenCompra   @default(borrador)
-  fechaEmision              DateTime?
-  fechaEntrega              DateTime?
-  fechaEntregaReal          DateTime?
-  calificacionCalidad       Int?
-  montoTotal                Decimal             @default(0) @db.Decimal(12, 2)
-  nota                      String?
-  lugarEntrega              String?
-  adelantoPorcentaje        Decimal?            @db.Decimal(5, 2)
-  saldoPorcentaje           Decimal?            @db.Decimal(5, 2)
-  detraccionPorcentaje      Decimal?            @db.Decimal(5, 2)
-  incluyeIgv                Boolean             @default(false)
-  tipoCambio                Decimal?            @db.Decimal(8, 4)
-  contactoProveedorNombre   String?
-  contactoProveedorTelefono String?
-  condicionPago             String?
-  referencia                String?
-  concepto                  String?
-  tiempoEntrega             String?
-  contactoDycNombre         String?
-  contactoDycArea           String?
-  contactoDycCelular        String?
-  contactoDycTelefono       String?
-  creadoPorId               String
-  creadoPor                 User                @relation("OrdenesCompraCreadosPor", fields: [creadoPorId], references: [id])
-  creadoEn                  DateTime            @default(now())
-  actualizadoEn             DateTime            @updatedAt
+  id                         String                  @id @default(cuid())
+  numero                     String                  @unique
+  nombre                     String?
+  solicitudId                String?
+  solicitud                  SolicitudCotizacion?    @relation(fields: [solicitudId], references: [id])
+  proveedorId                String?
+  proveedor                  Proveedor?              @relation(fields: [proveedorId], references: [id])
+  proveedorNombreLibre       String?
+  origen                     OrigenOrdenCompra       @default(macro)
+  compraSimpleId             String?
+  compraSimple               CompraSimple?           @relation(fields: [compraSimpleId], references: [id], onDelete: Cascade)
+  estadoAprobacion           EstadoAprobacionCompra?
+  aprobadoPorId              String?
+  aprobadoPor                User?                   @relation("OrdenesCompraAprobadasPor", fields: [aprobadoPorId], references: [id])
+  aprobadoEn                 DateTime?
+  notaAprobacion             String?
+  proyectoId                 String
+  proyecto                   Proyecto                @relation(fields: [proyectoId], references: [id])
+  estado                     EstadoOrdenCompra       @default(borrador)
+  fechaEmision               DateTime?
+  fechaEntrega               DateTime?
+  fechaEntregaReal           DateTime?
+  calificacionCalidad        Int?
+  montoTotal                 Decimal                 @default(0) @db.Decimal(12, 2)
+  nota                       String?
+  lugarEntrega               String?
+  adelantoPorcentaje         Decimal?                @db.Decimal(5, 2)
+  saldoPorcentaje            Decimal?                @db.Decimal(5, 2)
+  detraccionPorcentaje       Decimal?                @db.Decimal(5, 2)
+  incluyeIgv                 Boolean                 @default(false)
+  tipoCambio                 Decimal?                @db.Decimal(8, 4)
+  contactoProveedorNombre    String?
+  contactoProveedorTelefono  String?
+  condicionPago              String?
+  referencia                 String?
+  concepto                   String?
+  tiempoEntrega              String?
+  contactoDycNombre          String?
+  contactoDycArea            String?
+  contactoDycCelular         String?
+  contactoDycTelefono        String?
+  destinoPago                DestinoPago?
+  pagoBanco                  String?
+  pagoNumeroCuenta           String?
+  pagoRazonSocial            String?
+  pagoMetodo                 MetodoPagoTrabajador?
+  pagoTrabajadorBanco        String?
+  pagoTrabajadorNumeroCuenta String?
+  pagoTrabajadorNumero       String?
+  pagoTrabajadorId           String?
+  pagoTrabajador             Trabajador?             @relation("ComprasSimplesPagoTrabajador", fields: [pagoTrabajadorId], references: [id])
+  creadoPorId                String
+  creadoPor                  User                    @relation("OrdenesCompraCreadosPor", fields: [creadoPorId], references: [id])
+  creadoEn                   DateTime                @default(now())
+  actualizadoEn              DateTime                @updatedAt
 
-  items OrdenCompraItem[]
-  pagos Pago[]
+  items     OrdenCompraItem[]
+  pagos     Pago[]
+  historial CompraSimpleGrupoHistorial[]
+  archivos  CompraSimpleGrupoArchivo[]
 
   @@map("ordenes_compra")
 }
 
+model CompraSimpleGrupoArchivo {
+  id             String      @id @default(cuid())
+  grupoId        String
+  grupo          OrdenCompra @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  url            String
+  nombreOriginal String
+  mimeType       String
+  subidoPorId    String
+  subidoPor      User        @relation("CompraSimpleArchivosSubidoPor", fields: [subidoPorId], references: [id])
+  creadoEn       DateTime    @default(now())
+
+  @@map("compra_simple_grupo_archivos")
+}
+
+model CompraSimpleGrupoHistorial {
+  id        String                 @id @default(cuid())
+  grupoId   String
+  grupo     OrdenCompra            @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  estado    EstadoAprobacionCompra
+  nota      String?
+  actorId   String?
+  actor     User?                  @relation("CompraSimpleHistorialActor", fields: [actorId], references: [id])
+  actorRole Role?
+  creadoEn  DateTime               @default(now())
+
+  @@map("compra_simple_grupo_historial")
+}
+
 model Pago {
-  id               String           @id @default(cuid())
-  ordenCompraId    String
-  ordenCompra      OrdenCompra      @relation(fields: [ordenCompraId], references: [id], onDelete: Cascade)
-  tipoBeneficiario TipoBeneficiario @default(proveedor)
-  monto            Decimal          @db.Decimal(12, 2)
-  porcentaje       Decimal          @db.Decimal(5, 2)
-  fechaProgramada  DateTime
-  fechaPagoReal    DateTime?
-  estado           EstadoPago       @default(pendiente)
-  metodoPago       String?
-  numeroOperacion  String?
-  nota             String?
-  registradoPorId  String
-  registradoPor    User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
-  pagadoPorId      String?
-  pagadoPor        User?            @relation("PagosEjecutadosPor", fields: [pagadoPorId], references: [id])
-  creadoEn         DateTime         @default(now())
-  actualizadoEn    DateTime         @updatedAt
+  id                       String           @id @default(cuid())
+  ordenCompraId            String
+  ordenCompra              OrdenCompra      @relation(fields: [ordenCompraId], references: [id], onDelete: Cascade)
+  tipoBeneficiario         TipoBeneficiario @default(proveedor)
+  beneficiarioTrabajadorId String?
+  beneficiarioTrabajador   Trabajador?      @relation("PagosBeneficiarioTrabajador", fields: [beneficiarioTrabajadorId], references: [id])
+  monto                    Decimal          @db.Decimal(12, 2)
+  porcentaje               Decimal          @db.Decimal(5, 2)
+  fechaProgramada          DateTime
+  fechaPagoReal            DateTime?
+  estado                   EstadoPago       @default(pendiente)
+  metodoPago               String?
+  numeroOperacion          String?
+  nota                     String?
+  registradoPorId          String
+  registradoPor            User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
+  pagadoPorId              String?
+  pagadoPor                User?            @relation("PagosEjecutadosPor", fields: [pagadoPorId], references: [id])
+  creadoEn                 DateTime         @default(now())
+  actualizadoEn            DateTime         @updatedAt
 
   @@map("pagos")
 }

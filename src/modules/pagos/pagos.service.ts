@@ -13,12 +13,15 @@ const PAGO_INCLUDE = {
       id: true,
       numero: true,
       montoTotal: true,
+      proveedorNombreLibre: true,
       proveedor: { select: { id: true, razonSocial: true } },
       proyecto: { select: { id: true, codigo: true, nombre: true } },
+      creadoPor: { select: { id: true, name: true } },
     },
   },
   registradoPor: { select: { id: true, name: true } },
   pagadoPor: { select: { id: true, name: true } },
+  beneficiarioTrabajador: { select: { id: true, nombre: true } },
 } as const;
 
 function withEstadoEfectivo<T extends { estado: string; fechaProgramada: Date }>(pago: T) {
