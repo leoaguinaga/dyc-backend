@@ -76,3 +76,15 @@ export class QueryPagosDto {
   @IsString()
   proveedorId?: string;
 }
+
+export class ReportePagosDto {
+  @IsDateString()
+  fecha: string;
+
+  @IsIn(['pendientes', 'pagados'])
+  tipo: 'pendientes' | 'pagados';
+
+  @IsOptional()
+  @IsString()
+  proyectoId?: string;
+}

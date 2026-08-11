@@ -4,6 +4,7 @@ import {
   CreatePagoDto,
   MarcarPagadoDto,
   QueryPagosDto,
+  ReportePagosDto,
   UpdatePagoDto,
 } from './dto/create-pago.dto.js';
 
@@ -12,6 +13,7 @@ const PAGO_INCLUDE = {
     select: {
       id: true,
       numero: true,
+      concepto: true,
       montoTotal: true,
       proveedorNombreLibre: true,
       proveedor: { select: { id: true, razonSocial: true } },
@@ -206,5 +208,61 @@ export class PagosService {
     }
 
     return { totalPendiente, totalVencido, proximos7dias, pagadoMes };
+  }
+
+  /** Datos agrupados por proyecto para el reporte diario (vista y PNG comparten esta consulta). */
+  async datosReporte(query: ReportePagosDto) {
+    const fecha = new Date(`${query.fecha}T00:00:00`);
+    const finDelDia = new Date(fecha.getTime() + 24 * 60 * 60 * 1000);
+
+    const pagos = await this.prisma.pago.findMany({
+      where:
+        query.tipo === 'pendientes'
+          ? {
+              estado: 'pendiente',
+              fechaProgramada: { lt: finDelDia },
+              ordenCompra: { proyectoId: query.proyectoId },
+            }
+          : {
+              estado: 'pagado',
+              fechaPagoReal: { gte: fecha, lt: finDelDia },
+              ordenCompra: { proyectoId: query.proyectoId },
+            },
+      include: PAGO_INCLUDE,
+      orderBy: { fechaProgramada: 'asc' },
+    });
+
+    const decorados = pagos.map(withEstadoEfectivo);
+    const porProyecto = new Map<
+      string,
+      { proyecto: { id: string; codigo: string | null; nombre: string }; pagos: typeof decorados }
+    >();
+    for (const pago of decorados) {
+      const proyecto = pago.ordenCompra.proyecto;
+      if (!porProyecto.has(proyecto.id)) porProyecto.set(proyecto.id, { proyecto, pagos: [] });
+      porProyecto.get(proyecto.id)!.pagos.push(pago);
+    }
+
+    const grupos = [...porProyecto.values()].map((g) => ({
+      proyecto: g.proyecto,
+      pagos: g.pagos.map((p) => ({
+        codigo: p.ordenCompra.numero,
+        concepto:
+          p.ordenCompra.concepto ??
+          p.ordenCompra.proveedor?.razonSocial ??
+          p.ordenCompra.proveedorNombreLibre ??
+          'Sin concepto',
+        monto: Number(p.monto),
+        estadoEfectivo: p.estadoEfectivo,
+      })),
+      subtotal: g.pagos.reduce((s, p) => s + Number(p.monto), 0),
+    }));
+
+    return {
+      fecha: query.fecha,
+      tipo: query.tipo,
+      grupos,
+      total: grupos.reduce((s, g) => s + g.subtotal, 0),
+    };
   }
 }

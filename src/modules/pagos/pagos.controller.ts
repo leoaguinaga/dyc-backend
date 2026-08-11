@@ -1,11 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@nestjs/common';
-import type { Request } from 'express';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req, Res } from '@nestjs/common';
+import type { Request, Response } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { PagosService } from './pagos.service.js';
+import { renderReportePagosPng } from './pagos-reporte.render.js';
 import {
   CreatePagoDto,
   MarcarPagadoDto,
   QueryPagosDto,
+  ReportePagosDto,
   UpdatePagoDto,
 } from './dto/create-pago.dto.js';
 
@@ -24,6 +26,23 @@ export class PagosController {
   @Roles('gerencia', 'administrador')
   resumen() {
     return this.service.resumen();
+  }
+
+  @Get('reporte')
+  async reporte(@Query() query: ReportePagosDto) {
+    return this.service.datosReporte(query);
+  }
+
+  @Get('reporte.png')
+  async reportePng(@Query() query: ReportePagosDto, @Res() res: Response) {
+    const data = await this.service.datosReporte(query);
+    const png = await renderReportePagosPng({ ...data, generadoEn: new Date() });
+    res.setHeader('Content-Type', 'image/png');
+    res.setHeader(
+      'Content-Disposition',
+      `inline; filename="pagos-${data.tipo}-${data.fecha}.png"`,
+    );
+    res.send(png);
   }
 
   @Get('orden/:ordenCompraId')
