@@ -34,6 +34,7 @@
     "@nestjs/throttler": "^6.5.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "@resvg/resvg-js": "^2.6.2",
     "better-auth": "^1.6.15",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
@@ -43,7 +44,8 @@
     "nodemailer": "^9.0.3",
     "pg": "^8.21.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "satori": "^0.29.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
