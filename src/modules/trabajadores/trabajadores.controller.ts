@@ -21,11 +21,21 @@ export class TrabajadoresController {
   constructor(private trabajadoresService: TrabajadoresService) {}
 
   @Get()
+  @Roles(
+    'administrador', 'logistica', 'gerencia',
+    'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
+    'ing_civil', 'ing_electrico', 'jefe_sig',
+  )
   findAll() {
     return this.trabajadoresService.findAll();
   }
 
   @Get(':id')
+  @Roles(
+    'administrador', 'logistica', 'gerencia',
+    'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
+    'ing_civil', 'ing_electrico', 'jefe_sig',
+  )
   findOne(@Param('id') id: string) {
     return this.trabajadoresService.findOne(id);
   }

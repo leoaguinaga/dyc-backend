@@ -14,6 +14,7 @@ export const AppEvents = {
   ORDEN_COMPRA_GENERADA: 'orden_compra.generada',
 
   // Compras simples
+  COMPRA_SIMPLE_CREADA: 'compra_simple.creada',
   COMPRA_SIMPLE_APROBACION_TECNICA: 'compra_simple.aprobacion_tecnica',
 
   // Proyectos / obras

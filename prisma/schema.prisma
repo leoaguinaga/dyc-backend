@@ -161,6 +161,7 @@ enum TipoNotificacion {
   obra_cerrada
   planilla_generada
   compra_simple_pendiente_gerencia
+  compra_simple_pendiente_tecnico
 }
 
 enum EstadoTurno {

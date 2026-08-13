@@ -215,7 +215,8 @@ export const TipoNotificacion = {
   orden_compra_generada: 'orden_compra_generada',
   obra_cerrada: 'obra_cerrada',
   planilla_generada: 'planilla_generada',
-  compra_simple_pendiente_gerencia: 'compra_simple_pendiente_gerencia'
+  compra_simple_pendiente_gerencia: 'compra_simple_pendiente_gerencia',
+  compra_simple_pendiente_tecnico: 'compra_simple_pendiente_tecnico'
 } as const
 
 export type TipoNotificacion = (typeof TipoNotificacion)[keyof typeof TipoNotificacion]
