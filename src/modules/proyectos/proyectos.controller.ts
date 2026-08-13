@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
 } from '@nestjs/common';
 import { Request } from 'express';
@@ -25,8 +26,8 @@ export class ProyectosController {
   constructor(private proyectosService: ProyectosService) {}
 
   @Get()
-  findAll(@Req() req: AuthRequest) {
-    return this.proyectosService.findAll(req.user.id, req.user.role);
+  findAll(@Req() req: AuthRequest, @Query('todos') todos?: string) {
+    return this.proyectosService.findAll(req.user.id, req.user.role, todos === '1');
   }
 
   @Get(':id')

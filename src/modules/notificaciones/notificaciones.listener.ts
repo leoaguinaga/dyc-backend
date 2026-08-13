@@ -17,6 +17,15 @@ const GESTORES_OBRA = ['gerencia', 'administrador'] as const;
 const GESTORES_PLANILLA = ['gerencia', 'administrador'] as const;
 const GESTORES_COMPRA_SIMPLE = ['gerencia', 'administrador'] as const;
 
+// Aprobador técnico según el tipo de la compra simple (paso 1 — debe calzar
+// con TIPO_APPROVERS_TECNICO en compras-simples.service.ts).
+const APROBADOR_TECNICO_COMPRA_SIMPLE = {
+  civil: ['ing_civil', 'administrador'],
+  electrico: ['ing_electrico', 'administrador'],
+  seguridad: ['jefe_sig', 'administrador'],
+  administrativo: ['logistica', 'administrador'],
+} as const;
+
 export interface RequerimientoCreadoPayload {
   requerimientoId: string;
   codigo: string;
@@ -47,6 +56,13 @@ export interface OrdenCompraGeneradaPayload {
   ordenCompraId: string;
   numero: string;
   proveedorNombre: string;
+}
+
+export interface CompraSimpleCreadaPayload {
+  compraSimpleId: string;
+  compraSimpleCodigo: string;
+  compraSimpleNombre: string;
+  tipo: keyof typeof APROBADOR_TECNICO_COMPRA_SIMPLE;
 }
 
 export interface CompraSimpleAprobacionTecnicaPayload {
@@ -138,6 +154,20 @@ export class NotificacionesListener {
       entidadTipo: 'OrdenCompra',
       entidadId: payload.ordenCompraId,
     });
+  }
+
+  @OnEvent(AppEvents.COMPRA_SIMPLE_CREADA)
+  async onCompraSimpleCreada(payload: CompraSimpleCreadaPayload) {
+    await this.service.crearParaRoles(
+      [...APROBADOR_TECNICO_COMPRA_SIMPLE[payload.tipo]],
+      {
+        tipo: 'compra_simple_pendiente_tecnico',
+        titulo: 'Compra simple pendiente de aprobación técnica',
+        mensaje: `La compra simple ${payload.compraSimpleCodigo} — ${payload.compraSimpleNombre} necesita tu aprobación técnica.`,
+        entidadTipo: 'CompraSimple',
+        entidadId: payload.compraSimpleId,
+      },
+    );
   }
 
   @OnEvent(AppEvents.COMPRA_SIMPLE_APROBACION_TECNICA)

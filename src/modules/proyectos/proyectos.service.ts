@@ -67,7 +67,10 @@ export class ProyectosService {
     return trabajador?.id ?? null;
   }
 
-  async findAll(userId: string, userRole: Role) {
+  async findAll(userId: string, userRole: Role, todos = false) {
+    if (todos) {
+      return this.prisma.proyecto.findMany({ include: this.includeBase });
+    }
     if (ROLES_SUPERVISOR.includes(userRole)) {
       return this.prisma.proyecto.findMany({
         where: { supervisores: { some: { userId } } },

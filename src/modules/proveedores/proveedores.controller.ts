@@ -26,6 +26,10 @@ export class ProveedoresController {
   constructor(private proveedoresService: ProveedoresService) {}
 
   @Get()
+  @Roles(
+    'administrador', 'logistica', 'gerencia',
+    'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
+  )
   findAll(@Query() query: QueryProveedorDto) {
     return this.proveedoresService.findAll(query);
   }

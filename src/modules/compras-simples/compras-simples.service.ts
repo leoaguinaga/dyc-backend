@@ -164,7 +164,7 @@ export class ComprasSimplesService {
       where: { creadoEn: { gte: new Date(`${year}-01-01`) } },
     });
 
-    return this.prisma.compraSimple.create({
+    const creada = await this.prisma.compraSimple.create({
       data: {
         codigo,
         nombre: dto.nombre,
@@ -237,6 +237,15 @@ export class ComprasSimplesService {
       },
       include: COMPRA_SIMPLE_INCLUDE,
     });
+
+    this.events.emit(AppEvents.COMPRA_SIMPLE_CREADA, {
+      compraSimpleId: creada.id,
+      compraSimpleCodigo: creada.codigo,
+      compraSimpleNombre: creada.nombre,
+      tipo: creada.tipo,
+    });
+
+    return creada;
   }
 
   /** Roles habilitados para decidir (aprobar/observar) el paso actual del grupo. */
