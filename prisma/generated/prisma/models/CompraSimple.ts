@@ -29,7 +29,7 @@ export type CompraSimpleMinAggregateOutputType = {
   codigo: string | null
   nombre: string | null
   tipo: $Enums.TipoRequerimiento | null
-  urgente: boolean | null
+  esRendicion: boolean | null
   proyectoId: string | null
   creadoPorId: string | null
   nota: string | null
@@ -42,7 +42,7 @@ export type CompraSimpleMaxAggregateOutputType = {
   codigo: string | null
   nombre: string | null
   tipo: $Enums.TipoRequerimiento | null
-  urgente: boolean | null
+  esRendicion: boolean | null
   proyectoId: string | null
   creadoPorId: string | null
   nota: string | null
@@ -55,7 +55,7 @@ export type CompraSimpleCountAggregateOutputType = {
   codigo: number
   nombre: number
   tipo: number
-  urgente: number
+  esRendicion: number
   proyectoId: number
   creadoPorId: number
   nota: number
@@ -70,7 +70,7 @@ export type CompraSimpleMinAggregateInputType = {
   codigo?: true
   nombre?: true
   tipo?: true
-  urgente?: true
+  esRendicion?: true
   proyectoId?: true
   creadoPorId?: true
   nota?: true
@@ -83,7 +83,7 @@ export type CompraSimpleMaxAggregateInputType = {
   codigo?: true
   nombre?: true
   tipo?: true
-  urgente?: true
+  esRendicion?: true
   proyectoId?: true
   creadoPorId?: true
   nota?: true
@@ -96,7 +96,7 @@ export type CompraSimpleCountAggregateInputType = {
   codigo?: true
   nombre?: true
   tipo?: true
-  urgente?: true
+  esRendicion?: true
   proyectoId?: true
   creadoPorId?: true
   nota?: true
@@ -182,7 +182,7 @@ export type CompraSimpleGroupByOutputType = {
   codigo: string
   nombre: string
   tipo: $Enums.TipoRequerimiento
-  urgente: boolean
+  esRendicion: boolean
   proyectoId: string
   creadoPorId: string
   nota: string | null
@@ -216,7 +216,7 @@ export type CompraSimpleWhereInput = {
   codigo?: Prisma.StringFilter<"CompraSimple"> | string
   nombre?: Prisma.StringFilter<"CompraSimple"> | string
   tipo?: Prisma.EnumTipoRequerimientoFilter<"CompraSimple"> | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFilter<"CompraSimple"> | boolean
+  esRendicion?: Prisma.BoolFilter<"CompraSimple"> | boolean
   proyectoId?: Prisma.StringFilter<"CompraSimple"> | string
   creadoPorId?: Prisma.StringFilter<"CompraSimple"> | string
   nota?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
@@ -232,7 +232,7 @@ export type CompraSimpleOrderByWithRelationInput = {
   codigo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
-  urgente?: Prisma.SortOrder
+  esRendicion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -251,7 +251,7 @@ export type CompraSimpleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CompraSimpleWhereInput | Prisma.CompraSimpleWhereInput[]
   nombre?: Prisma.StringFilter<"CompraSimple"> | string
   tipo?: Prisma.EnumTipoRequerimientoFilter<"CompraSimple"> | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFilter<"CompraSimple"> | boolean
+  esRendicion?: Prisma.BoolFilter<"CompraSimple"> | boolean
   proyectoId?: Prisma.StringFilter<"CompraSimple"> | string
   creadoPorId?: Prisma.StringFilter<"CompraSimple"> | string
   nota?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
@@ -267,7 +267,7 @@ export type CompraSimpleOrderByWithAggregationInput = {
   codigo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
-  urgente?: Prisma.SortOrder
+  esRendicion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -286,7 +286,7 @@ export type CompraSimpleScalarWhereWithAggregatesInput = {
   codigo?: Prisma.StringWithAggregatesFilter<"CompraSimple"> | string
   nombre?: Prisma.StringWithAggregatesFilter<"CompraSimple"> | string
   tipo?: Prisma.EnumTipoRequerimientoWithAggregatesFilter<"CompraSimple"> | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolWithAggregatesFilter<"CompraSimple"> | boolean
+  esRendicion?: Prisma.BoolWithAggregatesFilter<"CompraSimple"> | boolean
   proyectoId?: Prisma.StringWithAggregatesFilter<"CompraSimple"> | string
   creadoPorId?: Prisma.StringWithAggregatesFilter<"CompraSimple"> | string
   nota?: Prisma.StringNullableWithAggregatesFilter<"CompraSimple"> | string | null
@@ -299,7 +299,7 @@ export type CompraSimpleCreateInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -313,7 +313,7 @@ export type CompraSimpleUncheckedCreateInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId: string
   creadoPorId: string
   nota?: string | null
@@ -327,7 +327,7 @@ export type CompraSimpleUpdateInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -341,7 +341,7 @@ export type CompraSimpleUncheckedUpdateInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -355,7 +355,7 @@ export type CompraSimpleCreateManyInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId: string
   creadoPorId: string
   nota?: string | null
@@ -368,7 +368,7 @@ export type CompraSimpleUpdateManyMutationInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -379,7 +379,7 @@ export type CompraSimpleUncheckedUpdateManyInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -402,7 +402,7 @@ export type CompraSimpleCountOrderByAggregateInput = {
   codigo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
-  urgente?: Prisma.SortOrder
+  esRendicion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   nota?: Prisma.SortOrder
@@ -415,7 +415,7 @@ export type CompraSimpleMaxOrderByAggregateInput = {
   codigo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
-  urgente?: Prisma.SortOrder
+  esRendicion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   nota?: Prisma.SortOrder
@@ -428,7 +428,7 @@ export type CompraSimpleMinOrderByAggregateInput = {
   codigo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
-  urgente?: Prisma.SortOrder
+  esRendicion?: Prisma.SortOrder
   proyectoId?: Prisma.SortOrder
   creadoPorId?: Prisma.SortOrder
   nota?: Prisma.SortOrder
@@ -546,7 +546,7 @@ export type CompraSimpleCreateWithoutCreadoPorInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -559,7 +559,7 @@ export type CompraSimpleUncheckedCreateWithoutCreadoPorInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId: string
   nota?: string | null
   creadoEn?: Date | string
@@ -601,7 +601,7 @@ export type CompraSimpleScalarWhereInput = {
   codigo?: Prisma.StringFilter<"CompraSimple"> | string
   nombre?: Prisma.StringFilter<"CompraSimple"> | string
   tipo?: Prisma.EnumTipoRequerimientoFilter<"CompraSimple"> | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFilter<"CompraSimple"> | boolean
+  esRendicion?: Prisma.BoolFilter<"CompraSimple"> | boolean
   proyectoId?: Prisma.StringFilter<"CompraSimple"> | string
   creadoPorId?: Prisma.StringFilter<"CompraSimple"> | string
   nota?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
@@ -614,7 +614,7 @@ export type CompraSimpleCreateWithoutProyectoInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -627,7 +627,7 @@ export type CompraSimpleUncheckedCreateWithoutProyectoInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   creadoPorId: string
   nota?: string | null
   creadoEn?: Date | string
@@ -666,7 +666,7 @@ export type CompraSimpleCreateWithoutGruposInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -679,7 +679,7 @@ export type CompraSimpleUncheckedCreateWithoutGruposInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId: string
   creadoPorId: string
   nota?: string | null
@@ -708,7 +708,7 @@ export type CompraSimpleUpdateWithoutGruposInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -721,7 +721,7 @@ export type CompraSimpleUncheckedUpdateWithoutGruposInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -734,7 +734,7 @@ export type CompraSimpleCreateManyCreadoPorInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId: string
   nota?: string | null
   creadoEn?: Date | string
@@ -746,7 +746,7 @@ export type CompraSimpleUpdateWithoutCreadoPorInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -759,7 +759,7 @@ export type CompraSimpleUncheckedUpdateWithoutCreadoPorInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -772,7 +772,7 @@ export type CompraSimpleUncheckedUpdateManyWithoutCreadoPorInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -784,7 +784,7 @@ export type CompraSimpleCreateManyProyectoInput = {
   codigo: string
   nombre: string
   tipo?: $Enums.TipoRequerimiento
-  urgente?: boolean
+  esRendicion?: boolean
   creadoPorId: string
   nota?: string | null
   creadoEn?: Date | string
@@ -796,7 +796,7 @@ export type CompraSimpleUpdateWithoutProyectoInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -809,7 +809,7 @@ export type CompraSimpleUncheckedUpdateWithoutProyectoInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -822,7 +822,7 @@ export type CompraSimpleUncheckedUpdateManyWithoutProyectoInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
-  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -865,7 +865,7 @@ export type CompraSimpleSelect<ExtArgs extends runtime.Types.Extensions.Internal
   codigo?: boolean
   nombre?: boolean
   tipo?: boolean
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId?: boolean
   creadoPorId?: boolean
   nota?: boolean
@@ -882,7 +882,7 @@ export type CompraSimpleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   codigo?: boolean
   nombre?: boolean
   tipo?: boolean
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId?: boolean
   creadoPorId?: boolean
   nota?: boolean
@@ -897,7 +897,7 @@ export type CompraSimpleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   codigo?: boolean
   nombre?: boolean
   tipo?: boolean
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId?: boolean
   creadoPorId?: boolean
   nota?: boolean
@@ -912,7 +912,7 @@ export type CompraSimpleSelectScalar = {
   codigo?: boolean
   nombre?: boolean
   tipo?: boolean
-  urgente?: boolean
+  esRendicion?: boolean
   proyectoId?: boolean
   creadoPorId?: boolean
   nota?: boolean
@@ -920,7 +920,7 @@ export type CompraSimpleSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type CompraSimpleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "tipo" | "urgente" | "proyectoId" | "creadoPorId" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["compraSimple"]>
+export type CompraSimpleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "tipo" | "esRendicion" | "proyectoId" | "creadoPorId" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["compraSimple"]>
 export type CompraSimpleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -948,7 +948,7 @@ export type $CompraSimplePayload<ExtArgs extends runtime.Types.Extensions.Intern
     codigo: string
     nombre: string
     tipo: $Enums.TipoRequerimiento
-    urgente: boolean
+    esRendicion: boolean
     proyectoId: string
     creadoPorId: string
     nota: string | null
@@ -1384,7 +1384,7 @@ export interface CompraSimpleFieldRefs {
   readonly codigo: Prisma.FieldRef<"CompraSimple", 'String'>
   readonly nombre: Prisma.FieldRef<"CompraSimple", 'String'>
   readonly tipo: Prisma.FieldRef<"CompraSimple", 'TipoRequerimiento'>
-  readonly urgente: Prisma.FieldRef<"CompraSimple", 'Boolean'>
+  readonly esRendicion: Prisma.FieldRef<"CompraSimple", 'Boolean'>
   readonly proyectoId: Prisma.FieldRef<"CompraSimple", 'String'>
   readonly creadoPorId: Prisma.FieldRef<"CompraSimple", 'String'>
   readonly nota: Prisma.FieldRef<"CompraSimple", 'String'>

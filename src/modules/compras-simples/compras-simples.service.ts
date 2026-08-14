@@ -12,6 +12,7 @@ import {
   CreateCompraSimpleGrupoDto,
 } from './dto/create-compra-simple.dto.js';
 import { AprobarGrupoDto, ObservarGrupoDto } from './dto/decision-grupo.dto.js';
+import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
 import type { Role, TipoRequerimiento } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
@@ -24,6 +25,7 @@ const ROLES_CREACION: Role[] = [
   'supervisor_electrico',
   'pdr',
   'administrador',
+  'admin_ti',
 ];
 
 // Qué tipo de compra puede registrar cada rol (mismo criterio que requerimientos)
@@ -33,18 +35,19 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
   supervisor_electrico: ['electrico'],
   pdr: ['seguridad'],
   administrador: ['electrico', 'civil', 'seguridad', 'administrativo'],
+  admin_ti: ['electrico', 'civil', 'seguridad', 'administrativo'],
 };
 
 // Paso 1: aprobación técnica del área correspondiente al tipo de compra
 const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
-  civil: ['ing_civil', 'administrador'],
-  electrico: ['ing_electrico', 'administrador'],
-  seguridad: ['jefe_sig', 'administrador'],
-  administrativo: ['logistica', 'administrador'],
+  civil: ['ing_civil', 'administrador', 'admin_ti'],
+  electrico: ['ing_electrico', 'administrador', 'admin_ti'],
+  seguridad: ['jefe_sig', 'administrador', 'admin_ti'],
+  administrativo: ['logistica', 'administrador', 'admin_ti'],
 };
 
 // Paso 2: aprobación final de gerencia (recién aquí se genera el pago)
-const ROLES_APROBACION_GERENCIA: Role[] = ['gerencia', 'administrador'];
+const ROLES_APROBACION_GERENCIA: Role[] = ['gerencia', 'administrador', 'admin_ti'];
 
 const GRUPO_INCLUDE = {
   proveedor: {
@@ -135,6 +138,17 @@ export class ComprasSimplesService {
         );
     }
 
+    // Rendición: el supervisor ya compró de su bolsillo. Solo aplica a compras
+    // con un único proveedor, y el pago solo puede ir al trabajador (nunca a
+    // la empresa) — se fuerza server-side sin confiar en lo que mande el cliente.
+    if (dto.esRendicion) {
+      if (dto.grupos.length !== 1)
+        throw new BadRequestException(
+          'Una compra en rendición solo puede tener un proveedor',
+        );
+      for (const grupo of dto.grupos) grupo.destinoPago = 'trabajador';
+    }
+
     // "Depositar al trabajador" siempre significa el propio solicitante —
     // se resuelve una sola vez aquí, nunca se elige desde el cliente. Solo
     // hace falta que exista la ficha cuando el método es "registrado" (se
@@ -169,7 +183,7 @@ export class ComprasSimplesService {
         codigo,
         nombre: dto.nombre,
         tipo: dto.tipo,
-        urgente: dto.urgente ?? false,
+        esRendicion: dto.esRendicion ?? false,
         proyectoId: dto.proyectoId,
         creadoPorId: userId,
         nota: dto.nota,
@@ -284,6 +298,13 @@ export class ComprasSimplesService {
 
     // Paso 1: aprobación del área técnica — todavía no genera el pago.
     if (grupo.estadoAprobacion === 'pendiente') {
+      if (
+        grupo.compraSimple.esRendicion &&
+        !grupo.archivos.some((a) => a.tipo === 'comprobante')
+      )
+        throw new BadRequestException(
+          'No se puede aprobar una rendición sin el comprobante de compra adjunto',
+        );
       const actualizado = await this.prisma.$transaction(async (tx) => {
         const oc = await tx.ordenCompra.update({
           where: { id: grupoId },
@@ -459,17 +480,115 @@ export class ComprasSimplesService {
     });
   }
 
+  /**
+   * Edición restringida para el área técnica: solo puede corregir
+   * cantidad/nombre de los ítems de una compra simple (no rendiciones),
+   * y solo mientras el grupo no ha sido aprobado por gerencia. Cada
+   * edición queda registrada en el historial, igual que en requerimientos.
+   */
+  async editarItemsGrupo(
+    grupoId: string,
+    dto: EditarItemsGrupoDto,
+    userId: string,
+    userRole: Role,
+  ) {
+    const grupo = await this.findGrupo(grupoId);
+
+    if (grupo.compraSimple.esRendicion)
+      throw new BadRequestException(
+        'Las rendiciones no se pueden editar por esta vía',
+      );
+
+    const rolesPermitidos = TIPO_APPROVERS_TECNICO[grupo.compraSimple.tipo];
+    if (!rolesPermitidos.includes(userRole))
+      throw new ForbiddenException(
+        `El rol "${userRole}" no puede editar esta compra simple`,
+      );
+
+    if (grupo.estadoAprobacion === 'aprobada')
+      throw new BadRequestException(
+        'No se puede editar un grupo ya aprobado por gerencia',
+      );
+
+    const cambios: string[] = [];
+    for (const nuevo of dto.items) {
+      const actual = grupo.items.find((i) => i.id === nuevo.id);
+      if (!actual) continue;
+      if (actual.descripcion !== nuevo.descripcion)
+        cambios.push(`"${actual.descripcion}" → "${nuevo.descripcion}"`);
+      if (Number(actual.cantidad) !== nuevo.cantidad)
+        cambios.push(
+          `cantidad de "${actual.descripcion}": ${actual.cantidad} → ${nuevo.cantidad}`,
+        );
+    }
+
+    const actualizado = await this.prisma.$transaction(async (tx) => {
+      for (const item of dto.items) {
+        const precioUnitario =
+          grupo.items.find((i) => i.id === item.id)?.precioUnitario ?? 0;
+        if (item.id) {
+          await tx.ordenCompraItem.update({
+            where: { id: item.id },
+            data: {
+              descripcion: item.descripcion,
+              cantidad: item.cantidad,
+              precioTotal: item.cantidad * Number(precioUnitario),
+            },
+          });
+        }
+      }
+
+      const items = await tx.ordenCompraItem.findMany({
+        where: { ordenId: grupoId },
+      });
+      const montoTotal = items.reduce(
+        (s, i) => s + Number(i.precioTotal),
+        0,
+      );
+
+      const oc = await tx.ordenCompra.update({
+        where: { id: grupoId },
+        data: { montoTotal },
+        include: GRUPO_INCLUDE,
+      });
+
+      await tx.compraSimpleGrupoHistorial.create({
+        data: {
+          grupoId,
+          estado: grupo.estadoAprobacion ?? 'pendiente',
+          actorId: userId,
+          actorRole: userRole,
+          nota:
+            cambios.length > 0
+              ? `Editado por área técnica: ${cambios.join('; ')}`
+              : 'Editado por área técnica',
+        },
+      });
+
+      return oc;
+    });
+
+    return actualizado;
+  }
+
   async subirArchivo(
     grupoId: string,
     file: Express.Multer.File,
     userId: string,
+    tipo: 'comprobante' | 'foto_producto' = 'comprobante',
   ) {
     const grupo = await this.findGrupo(grupoId);
     if (grupo.creadoPorId !== userId)
       throw new ForbiddenException(
         'Solo el creador de la compra simple puede adjuntar la factura',
       );
-    if (grupo.estadoAprobacion !== 'aprobada')
+
+    // Rendición: el comprobante se sube justo al crear la compra, antes de
+    // cualquier aprobación. Fuera de ese caso, se mantiene la regla original
+    // de solo adjuntar la factura de un grupo ya aprobado.
+    const esSubidaRendicion =
+      grupo.compraSimple.esRendicion && grupo.estadoAprobacion === 'pendiente';
+    if (!esSubidaRendicion && grupo.estadoAprobacion !== 'aprobada')
       throw new BadRequestException(
         'Solo se puede adjuntar la factura de un grupo ya aprobado',
       );
@@ -484,6 +603,7 @@ export class ComprasSimplesService {
     return this.prisma.compraSimpleGrupoArchivo.create({
       data: {
         grupoId,
+        tipo,
         url,
         nombreOriginal: file.originalname,
         mimeType: file.mimetype,

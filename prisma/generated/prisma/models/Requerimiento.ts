@@ -38,6 +38,10 @@ export type RequerimientoMinAggregateOutputType = {
   fechaEntregaRequerida: Date | null
   creadoEn: Date | null
   actualizadoEn: Date | null
+  recepcionFotoUrl: string | null
+  recepcionComentario: string | null
+  recepcionEn: Date | null
+  recepcionPorId: string | null
 }
 
 export type RequerimientoMaxAggregateOutputType = {
@@ -54,6 +58,10 @@ export type RequerimientoMaxAggregateOutputType = {
   fechaEntregaRequerida: Date | null
   creadoEn: Date | null
   actualizadoEn: Date | null
+  recepcionFotoUrl: string | null
+  recepcionComentario: string | null
+  recepcionEn: Date | null
+  recepcionPorId: string | null
 }
 
 export type RequerimientoCountAggregateOutputType = {
@@ -70,6 +78,10 @@ export type RequerimientoCountAggregateOutputType = {
   fechaEntregaRequerida: number
   creadoEn: number
   actualizadoEn: number
+  recepcionFotoUrl: number
+  recepcionComentario: number
+  recepcionEn: number
+  recepcionPorId: number
   _all: number
 }
 
@@ -88,6 +100,10 @@ export type RequerimientoMinAggregateInputType = {
   fechaEntregaRequerida?: true
   creadoEn?: true
   actualizadoEn?: true
+  recepcionFotoUrl?: true
+  recepcionComentario?: true
+  recepcionEn?: true
+  recepcionPorId?: true
 }
 
 export type RequerimientoMaxAggregateInputType = {
@@ -104,6 +120,10 @@ export type RequerimientoMaxAggregateInputType = {
   fechaEntregaRequerida?: true
   creadoEn?: true
   actualizadoEn?: true
+  recepcionFotoUrl?: true
+  recepcionComentario?: true
+  recepcionEn?: true
+  recepcionPorId?: true
 }
 
 export type RequerimientoCountAggregateInputType = {
@@ -120,6 +140,10 @@ export type RequerimientoCountAggregateInputType = {
   fechaEntregaRequerida?: true
   creadoEn?: true
   actualizadoEn?: true
+  recepcionFotoUrl?: true
+  recepcionComentario?: true
+  recepcionEn?: true
+  recepcionPorId?: true
   _all?: true
 }
 
@@ -209,6 +233,10 @@ export type RequerimientoGroupByOutputType = {
   fechaEntregaRequerida: Date | null
   creadoEn: Date
   actualizadoEn: Date
+  recepcionFotoUrl: string | null
+  recepcionComentario: string | null
+  recepcionEn: Date | null
+  recepcionPorId: string | null
   _count: RequerimientoCountAggregateOutputType | null
   _min: RequerimientoMinAggregateOutputType | null
   _max: RequerimientoMaxAggregateOutputType | null
@@ -246,8 +274,13 @@ export type RequerimientoWhereInput = {
   fechaEntregaRequerida?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
   creadoEn?: Prisma.DateTimeFilter<"Requerimiento"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Requerimiento"> | Date | string
+  recepcionFotoUrl?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+  recepcionComentario?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+  recepcionEn?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
+  recepcionPorId?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
   creadoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  recepcionPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.RequerimientoItemListRelationFilter
   solicitudes?: Prisma.SolicitudCotizacionListRelationFilter
   historial?: Prisma.RequerimientoHistorialListRelationFilter
@@ -267,8 +300,13 @@ export type RequerimientoOrderByWithRelationInput = {
   fechaEntregaRequerida?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  recepcionFotoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  recepcionComentario?: Prisma.SortOrderInput | Prisma.SortOrder
+  recepcionEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  recepcionPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
   creadoPor?: Prisma.UserOrderByWithRelationInput
+  recepcionPor?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.RequerimientoItemOrderByRelationAggregateInput
   solicitudes?: Prisma.SolicitudCotizacionOrderByRelationAggregateInput
   historial?: Prisma.RequerimientoHistorialOrderByRelationAggregateInput
@@ -291,8 +329,13 @@ export type RequerimientoWhereUniqueInput = Prisma.AtLeast<{
   fechaEntregaRequerida?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
   creadoEn?: Prisma.DateTimeFilter<"Requerimiento"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Requerimiento"> | Date | string
+  recepcionFotoUrl?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+  recepcionComentario?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+  recepcionEn?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
+  recepcionPorId?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
   creadoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  recepcionPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.RequerimientoItemListRelationFilter
   solicitudes?: Prisma.SolicitudCotizacionListRelationFilter
   historial?: Prisma.RequerimientoHistorialListRelationFilter
@@ -312,6 +355,10 @@ export type RequerimientoOrderByWithAggregationInput = {
   fechaEntregaRequerida?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  recepcionFotoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  recepcionComentario?: Prisma.SortOrderInput | Prisma.SortOrder
+  recepcionEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  recepcionPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RequerimientoCountOrderByAggregateInput
   _max?: Prisma.RequerimientoMaxOrderByAggregateInput
   _min?: Prisma.RequerimientoMinOrderByAggregateInput
@@ -334,6 +381,10 @@ export type RequerimientoScalarWhereWithAggregatesInput = {
   fechaEntregaRequerida?: Prisma.DateTimeNullableWithAggregatesFilter<"Requerimiento"> | Date | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Requerimiento"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Requerimiento"> | Date | string
+  recepcionFotoUrl?: Prisma.StringNullableWithAggregatesFilter<"Requerimiento"> | string | null
+  recepcionComentario?: Prisma.StringNullableWithAggregatesFilter<"Requerimiento"> | string | null
+  recepcionEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Requerimiento"> | Date | string | null
+  recepcionPorId?: Prisma.StringNullableWithAggregatesFilter<"Requerimiento"> | string | null
 }
 
 export type RequerimientoCreateInput = {
@@ -348,8 +399,12 @@ export type RequerimientoCreateInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutRequerimientosInput
   creadoPor: Prisma.UserCreateNestedOneWithoutRequerimientosInput
+  recepcionPor?: Prisma.UserCreateNestedOneWithoutRequerimientosRecepcionadosInput
   items?: Prisma.RequerimientoItemCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutRequerimientoInput
@@ -369,6 +424,10 @@ export type RequerimientoUncheckedCreateInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
   items?: Prisma.RequerimientoItemUncheckedCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutRequerimientoInput
@@ -386,8 +445,12 @@ export type RequerimientoUpdateInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutRequerimientosNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutRequerimientosNestedInput
+  recepcionPor?: Prisma.UserUpdateOneWithoutRequerimientosRecepcionadosNestedInput
   items?: Prisma.RequerimientoItemUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUpdateManyWithoutRequerimientoNestedInput
@@ -407,6 +470,10 @@ export type RequerimientoUncheckedUpdateInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedInput
@@ -426,6 +493,10 @@ export type RequerimientoCreateManyInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
 }
 
 export type RequerimientoUpdateManyMutationInput = {
@@ -440,6 +511,9 @@ export type RequerimientoUpdateManyMutationInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RequerimientoUncheckedUpdateManyInput = {
@@ -456,6 +530,10 @@ export type RequerimientoUncheckedUpdateManyInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RequerimientoListRelationFilter = {
@@ -482,6 +560,10 @@ export type RequerimientoCountOrderByAggregateInput = {
   fechaEntregaRequerida?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  recepcionFotoUrl?: Prisma.SortOrder
+  recepcionComentario?: Prisma.SortOrder
+  recepcionEn?: Prisma.SortOrder
+  recepcionPorId?: Prisma.SortOrder
 }
 
 export type RequerimientoMaxOrderByAggregateInput = {
@@ -498,6 +580,10 @@ export type RequerimientoMaxOrderByAggregateInput = {
   fechaEntregaRequerida?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  recepcionFotoUrl?: Prisma.SortOrder
+  recepcionComentario?: Prisma.SortOrder
+  recepcionEn?: Prisma.SortOrder
+  recepcionPorId?: Prisma.SortOrder
 }
 
 export type RequerimientoMinOrderByAggregateInput = {
@@ -514,6 +600,10 @@ export type RequerimientoMinOrderByAggregateInput = {
   fechaEntregaRequerida?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  recepcionFotoUrl?: Prisma.SortOrder
+  recepcionComentario?: Prisma.SortOrder
+  recepcionEn?: Prisma.SortOrder
+  recepcionPorId?: Prisma.SortOrder
 }
 
 export type RequerimientoScalarRelationFilter = {
@@ -533,10 +623,24 @@ export type RequerimientoCreateNestedManyWithoutCreadoPorInput = {
   connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
 }
 
+export type RequerimientoCreateNestedManyWithoutRecepcionPorInput = {
+  create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput> | Prisma.RequerimientoCreateWithoutRecepcionPorInput[] | Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput[]
+  connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput | Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput[]
+  createMany?: Prisma.RequerimientoCreateManyRecepcionPorInputEnvelope
+  connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+}
+
 export type RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput = {
   create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutCreadoPorInput, Prisma.RequerimientoUncheckedCreateWithoutCreadoPorInput> | Prisma.RequerimientoCreateWithoutCreadoPorInput[] | Prisma.RequerimientoUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutCreadoPorInput | Prisma.RequerimientoCreateOrConnectWithoutCreadoPorInput[]
   createMany?: Prisma.RequerimientoCreateManyCreadoPorInputEnvelope
+  connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+}
+
+export type RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput = {
+  create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput> | Prisma.RequerimientoCreateWithoutRecepcionPorInput[] | Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput[]
+  connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput | Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput[]
+  createMany?: Prisma.RequerimientoCreateManyRecepcionPorInputEnvelope
   connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
 }
 
@@ -554,6 +658,20 @@ export type RequerimientoUpdateManyWithoutCreadoPorNestedInput = {
   deleteMany?: Prisma.RequerimientoScalarWhereInput | Prisma.RequerimientoScalarWhereInput[]
 }
 
+export type RequerimientoUpdateManyWithoutRecepcionPorNestedInput = {
+  create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput> | Prisma.RequerimientoCreateWithoutRecepcionPorInput[] | Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput[]
+  connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput | Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput[]
+  upsert?: Prisma.RequerimientoUpsertWithWhereUniqueWithoutRecepcionPorInput | Prisma.RequerimientoUpsertWithWhereUniqueWithoutRecepcionPorInput[]
+  createMany?: Prisma.RequerimientoCreateManyRecepcionPorInputEnvelope
+  set?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  disconnect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  delete?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  update?: Prisma.RequerimientoUpdateWithWhereUniqueWithoutRecepcionPorInput | Prisma.RequerimientoUpdateWithWhereUniqueWithoutRecepcionPorInput[]
+  updateMany?: Prisma.RequerimientoUpdateManyWithWhereWithoutRecepcionPorInput | Prisma.RequerimientoUpdateManyWithWhereWithoutRecepcionPorInput[]
+  deleteMany?: Prisma.RequerimientoScalarWhereInput | Prisma.RequerimientoScalarWhereInput[]
+}
+
 export type RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput = {
   create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutCreadoPorInput, Prisma.RequerimientoUncheckedCreateWithoutCreadoPorInput> | Prisma.RequerimientoCreateWithoutCreadoPorInput[] | Prisma.RequerimientoUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutCreadoPorInput | Prisma.RequerimientoCreateOrConnectWithoutCreadoPorInput[]
@@ -565,6 +683,20 @@ export type RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput = {
   connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
   update?: Prisma.RequerimientoUpdateWithWhereUniqueWithoutCreadoPorInput | Prisma.RequerimientoUpdateWithWhereUniqueWithoutCreadoPorInput[]
   updateMany?: Prisma.RequerimientoUpdateManyWithWhereWithoutCreadoPorInput | Prisma.RequerimientoUpdateManyWithWhereWithoutCreadoPorInput[]
+  deleteMany?: Prisma.RequerimientoScalarWhereInput | Prisma.RequerimientoScalarWhereInput[]
+}
+
+export type RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput = {
+  create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput> | Prisma.RequerimientoCreateWithoutRecepcionPorInput[] | Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput[]
+  connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput | Prisma.RequerimientoCreateOrConnectWithoutRecepcionPorInput[]
+  upsert?: Prisma.RequerimientoUpsertWithWhereUniqueWithoutRecepcionPorInput | Prisma.RequerimientoUpsertWithWhereUniqueWithoutRecepcionPorInput[]
+  createMany?: Prisma.RequerimientoCreateManyRecepcionPorInputEnvelope
+  set?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  disconnect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  delete?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  connect?: Prisma.RequerimientoWhereUniqueInput | Prisma.RequerimientoWhereUniqueInput[]
+  update?: Prisma.RequerimientoUpdateWithWhereUniqueWithoutRecepcionPorInput | Prisma.RequerimientoUpdateWithWhereUniqueWithoutRecepcionPorInput[]
+  updateMany?: Prisma.RequerimientoUpdateManyWithWhereWithoutRecepcionPorInput | Prisma.RequerimientoUpdateManyWithWhereWithoutRecepcionPorInput[]
   deleteMany?: Prisma.RequerimientoScalarWhereInput | Prisma.RequerimientoScalarWhereInput[]
 }
 
@@ -674,7 +806,11 @@ export type RequerimientoCreateWithoutCreadoPorInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutRequerimientosInput
+  recepcionPor?: Prisma.UserCreateNestedOneWithoutRequerimientosRecepcionadosInput
   items?: Prisma.RequerimientoItemCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutRequerimientoInput
@@ -693,6 +829,10 @@ export type RequerimientoUncheckedCreateWithoutCreadoPorInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
   items?: Prisma.RequerimientoItemUncheckedCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutRequerimientoInput
@@ -705,6 +845,60 @@ export type RequerimientoCreateOrConnectWithoutCreadoPorInput = {
 
 export type RequerimientoCreateManyCreadoPorInputEnvelope = {
   data: Prisma.RequerimientoCreateManyCreadoPorInput | Prisma.RequerimientoCreateManyCreadoPorInput[]
+  skipDuplicates?: boolean
+}
+
+export type RequerimientoCreateWithoutRecepcionPorInput = {
+  id?: string
+  codigo: string
+  nombre: string
+  estado?: $Enums.EstadoRequerimiento
+  tipo?: $Enums.TipoRequerimiento
+  urgente?: boolean
+  nota?: string | null
+  notaRevision?: string | null
+  fechaEntregaRequerida?: Date | string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutRequerimientosInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutRequerimientosInput
+  items?: Prisma.RequerimientoItemCreateNestedManyWithoutRequerimientoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutRequerimientoInput
+  historial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutRequerimientoInput
+}
+
+export type RequerimientoUncheckedCreateWithoutRecepcionPorInput = {
+  id?: string
+  codigo: string
+  nombre: string
+  proyectoId: string
+  creadoPorId: string
+  estado?: $Enums.EstadoRequerimiento
+  tipo?: $Enums.TipoRequerimiento
+  urgente?: boolean
+  nota?: string | null
+  notaRevision?: string | null
+  fechaEntregaRequerida?: Date | string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  items?: Prisma.RequerimientoItemUncheckedCreateNestedManyWithoutRequerimientoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutRequerimientoInput
+  historial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutRequerimientoInput
+}
+
+export type RequerimientoCreateOrConnectWithoutRecepcionPorInput = {
+  where: Prisma.RequerimientoWhereUniqueInput
+  create: Prisma.XOR<Prisma.RequerimientoCreateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput>
+}
+
+export type RequerimientoCreateManyRecepcionPorInputEnvelope = {
+  data: Prisma.RequerimientoCreateManyRecepcionPorInput | Prisma.RequerimientoCreateManyRecepcionPorInput[]
   skipDuplicates?: boolean
 }
 
@@ -741,6 +935,26 @@ export type RequerimientoScalarWhereInput = {
   fechaEntregaRequerida?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
   creadoEn?: Prisma.DateTimeFilter<"Requerimiento"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Requerimiento"> | Date | string
+  recepcionFotoUrl?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+  recepcionComentario?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+  recepcionEn?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
+  recepcionPorId?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
+}
+
+export type RequerimientoUpsertWithWhereUniqueWithoutRecepcionPorInput = {
+  where: Prisma.RequerimientoWhereUniqueInput
+  update: Prisma.XOR<Prisma.RequerimientoUpdateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedUpdateWithoutRecepcionPorInput>
+  create: Prisma.XOR<Prisma.RequerimientoCreateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedCreateWithoutRecepcionPorInput>
+}
+
+export type RequerimientoUpdateWithWhereUniqueWithoutRecepcionPorInput = {
+  where: Prisma.RequerimientoWhereUniqueInput
+  data: Prisma.XOR<Prisma.RequerimientoUpdateWithoutRecepcionPorInput, Prisma.RequerimientoUncheckedUpdateWithoutRecepcionPorInput>
+}
+
+export type RequerimientoUpdateManyWithWhereWithoutRecepcionPorInput = {
+  where: Prisma.RequerimientoScalarWhereInput
+  data: Prisma.XOR<Prisma.RequerimientoUpdateManyMutationInput, Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorInput>
 }
 
 export type RequerimientoCreateWithoutProyectoInput = {
@@ -755,7 +969,11 @@ export type RequerimientoCreateWithoutProyectoInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
   creadoPor: Prisma.UserCreateNestedOneWithoutRequerimientosInput
+  recepcionPor?: Prisma.UserCreateNestedOneWithoutRequerimientosRecepcionadosInput
   items?: Prisma.RequerimientoItemCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutRequerimientoInput
@@ -774,6 +992,10 @@ export type RequerimientoUncheckedCreateWithoutProyectoInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
   items?: Prisma.RequerimientoItemUncheckedCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutRequerimientoInput
@@ -817,8 +1039,12 @@ export type RequerimientoCreateWithoutItemsInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutRequerimientosInput
   creadoPor: Prisma.UserCreateNestedOneWithoutRequerimientosInput
+  recepcionPor?: Prisma.UserCreateNestedOneWithoutRequerimientosRecepcionadosInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutRequerimientoInput
 }
@@ -837,6 +1063,10 @@ export type RequerimientoUncheckedCreateWithoutItemsInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutRequerimientoInput
 }
@@ -869,8 +1099,12 @@ export type RequerimientoUpdateWithoutItemsInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutRequerimientosNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutRequerimientosNestedInput
+  recepcionPor?: Prisma.UserUpdateOneWithoutRequerimientosRecepcionadosNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUpdateManyWithoutRequerimientoNestedInput
 }
@@ -889,6 +1123,10 @@ export type RequerimientoUncheckedUpdateWithoutItemsInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedInput
 }
@@ -905,8 +1143,12 @@ export type RequerimientoCreateWithoutHistorialInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutRequerimientosInput
   creadoPor: Prisma.UserCreateNestedOneWithoutRequerimientosInput
+  recepcionPor?: Prisma.UserCreateNestedOneWithoutRequerimientosRecepcionadosInput
   items?: Prisma.RequerimientoItemCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutRequerimientoInput
 }
@@ -925,6 +1167,10 @@ export type RequerimientoUncheckedCreateWithoutHistorialInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
   items?: Prisma.RequerimientoItemUncheckedCreateNestedManyWithoutRequerimientoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutRequerimientoInput
 }
@@ -957,8 +1203,12 @@ export type RequerimientoUpdateWithoutHistorialInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutRequerimientosNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutRequerimientosNestedInput
+  recepcionPor?: Prisma.UserUpdateOneWithoutRequerimientosRecepcionadosNestedInput
   items?: Prisma.RequerimientoItemUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutRequerimientoNestedInput
 }
@@ -977,6 +1227,10 @@ export type RequerimientoUncheckedUpdateWithoutHistorialInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoNestedInput
 }
@@ -993,8 +1247,12 @@ export type RequerimientoCreateWithoutSolicitudesInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
   proyecto: Prisma.ProyectoCreateNestedOneWithoutRequerimientosInput
   creadoPor: Prisma.UserCreateNestedOneWithoutRequerimientosInput
+  recepcionPor?: Prisma.UserCreateNestedOneWithoutRequerimientosRecepcionadosInput
   items?: Prisma.RequerimientoItemCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutRequerimientoInput
 }
@@ -1013,6 +1271,10 @@ export type RequerimientoUncheckedCreateWithoutSolicitudesInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
   items?: Prisma.RequerimientoItemUncheckedCreateNestedManyWithoutRequerimientoInput
   historial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutRequerimientoInput
 }
@@ -1045,8 +1307,12 @@ export type RequerimientoUpdateWithoutSolicitudesInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutRequerimientosNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutRequerimientosNestedInput
+  recepcionPor?: Prisma.UserUpdateOneWithoutRequerimientosRecepcionadosNestedInput
   items?: Prisma.RequerimientoItemUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUpdateManyWithoutRequerimientoNestedInput
 }
@@ -1065,6 +1331,10 @@ export type RequerimientoUncheckedUpdateWithoutSolicitudesInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedInput
 }
@@ -1082,6 +1352,29 @@ export type RequerimientoCreateManyCreadoPorInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
+}
+
+export type RequerimientoCreateManyRecepcionPorInput = {
+  id?: string
+  codigo: string
+  nombre: string
+  proyectoId: string
+  creadoPorId: string
+  estado?: $Enums.EstadoRequerimiento
+  tipo?: $Enums.TipoRequerimiento
+  urgente?: boolean
+  nota?: string | null
+  notaRevision?: string | null
+  fechaEntregaRequerida?: Date | string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
 }
 
 export type RequerimientoUpdateWithoutCreadoPorInput = {
@@ -1096,7 +1389,11 @@ export type RequerimientoUpdateWithoutCreadoPorInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutRequerimientosNestedInput
+  recepcionPor?: Prisma.UserUpdateOneWithoutRequerimientosRecepcionadosNestedInput
   items?: Prisma.RequerimientoItemUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUpdateManyWithoutRequerimientoNestedInput
@@ -1115,6 +1412,10 @@ export type RequerimientoUncheckedUpdateWithoutCreadoPorInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedInput
@@ -1133,6 +1434,73 @@ export type RequerimientoUncheckedUpdateManyWithoutCreadoPorInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type RequerimientoUpdateWithoutRecepcionPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
+  tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
+  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutRequerimientosNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutRequerimientosNestedInput
+  items?: Prisma.RequerimientoItemUpdateManyWithoutRequerimientoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutRequerimientoNestedInput
+  historial?: Prisma.RequerimientoHistorialUpdateManyWithoutRequerimientoNestedInput
+}
+
+export type RequerimientoUncheckedUpdateWithoutRecepcionPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
+  tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
+  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoNestedInput
+  historial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedInput
+}
+
+export type RequerimientoUncheckedUpdateManyWithoutRecepcionPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
+  tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
+  urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RequerimientoCreateManyProyectoInput = {
@@ -1148,6 +1516,10 @@ export type RequerimientoCreateManyProyectoInput = {
   fechaEntregaRequerida?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  recepcionFotoUrl?: string | null
+  recepcionComentario?: string | null
+  recepcionEn?: Date | string | null
+  recepcionPorId?: string | null
 }
 
 export type RequerimientoUpdateWithoutProyectoInput = {
@@ -1162,7 +1534,11 @@ export type RequerimientoUpdateWithoutProyectoInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutRequerimientosNestedInput
+  recepcionPor?: Prisma.UserUpdateOneWithoutRequerimientosRecepcionadosNestedInput
   items?: Prisma.RequerimientoItemUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUpdateManyWithoutRequerimientoNestedInput
@@ -1181,6 +1557,10 @@ export type RequerimientoUncheckedUpdateWithoutProyectoInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.RequerimientoItemUncheckedUpdateManyWithoutRequerimientoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoNestedInput
   historial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedInput
@@ -1199,6 +1579,10 @@ export type RequerimientoUncheckedUpdateManyWithoutProyectoInput = {
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recepcionFotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionComentario?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recepcionEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recepcionPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1264,8 +1648,13 @@ export type RequerimientoSelect<ExtArgs extends runtime.Types.Extensions.Interna
   fechaEntregaRequerida?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  recepcionFotoUrl?: boolean
+  recepcionComentario?: boolean
+  recepcionEn?: boolean
+  recepcionPorId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recepcionPor?: boolean | Prisma.Requerimiento$recepcionPorArgs<ExtArgs>
   items?: boolean | Prisma.Requerimiento$itemsArgs<ExtArgs>
   solicitudes?: boolean | Prisma.Requerimiento$solicitudesArgs<ExtArgs>
   historial?: boolean | Prisma.Requerimiento$historialArgs<ExtArgs>
@@ -1286,8 +1675,13 @@ export type RequerimientoSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   fechaEntregaRequerida?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  recepcionFotoUrl?: boolean
+  recepcionComentario?: boolean
+  recepcionEn?: boolean
+  recepcionPorId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recepcionPor?: boolean | Prisma.Requerimiento$recepcionPorArgs<ExtArgs>
 }, ExtArgs["result"]["requerimiento"]>
 
 export type RequerimientoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1304,8 +1698,13 @@ export type RequerimientoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   fechaEntregaRequerida?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  recepcionFotoUrl?: boolean
+  recepcionComentario?: boolean
+  recepcionEn?: boolean
+  recepcionPorId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recepcionPor?: boolean | Prisma.Requerimiento$recepcionPorArgs<ExtArgs>
 }, ExtArgs["result"]["requerimiento"]>
 
 export type RequerimientoSelectScalar = {
@@ -1322,12 +1721,17 @@ export type RequerimientoSelectScalar = {
   fechaEntregaRequerida?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  recepcionFotoUrl?: boolean
+  recepcionComentario?: boolean
+  recepcionEn?: boolean
+  recepcionPorId?: boolean
 }
 
-export type RequerimientoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "proyectoId" | "creadoPorId" | "estado" | "tipo" | "urgente" | "nota" | "notaRevision" | "fechaEntregaRequerida" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["requerimiento"]>
+export type RequerimientoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "proyectoId" | "creadoPorId" | "estado" | "tipo" | "urgente" | "nota" | "notaRevision" | "fechaEntregaRequerida" | "creadoEn" | "actualizadoEn" | "recepcionFotoUrl" | "recepcionComentario" | "recepcionEn" | "recepcionPorId", ExtArgs["result"]["requerimiento"]>
 export type RequerimientoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recepcionPor?: boolean | Prisma.Requerimiento$recepcionPorArgs<ExtArgs>
   items?: boolean | Prisma.Requerimiento$itemsArgs<ExtArgs>
   solicitudes?: boolean | Prisma.Requerimiento$solicitudesArgs<ExtArgs>
   historial?: boolean | Prisma.Requerimiento$historialArgs<ExtArgs>
@@ -1336,10 +1740,12 @@ export type RequerimientoInclude<ExtArgs extends runtime.Types.Extensions.Intern
 export type RequerimientoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recepcionPor?: boolean | Prisma.Requerimiento$recepcionPorArgs<ExtArgs>
 }
 export type RequerimientoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recepcionPor?: boolean | Prisma.Requerimiento$recepcionPorArgs<ExtArgs>
 }
 
 export type $RequerimientoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1347,6 +1753,7 @@ export type $RequerimientoPayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     proyecto: Prisma.$ProyectoPayload<ExtArgs>
     creadoPor: Prisma.$UserPayload<ExtArgs>
+    recepcionPor: Prisma.$UserPayload<ExtArgs> | null
     items: Prisma.$RequerimientoItemPayload<ExtArgs>[]
     solicitudes: Prisma.$SolicitudCotizacionPayload<ExtArgs>[]
     historial: Prisma.$RequerimientoHistorialPayload<ExtArgs>[]
@@ -1365,6 +1772,10 @@ export type $RequerimientoPayload<ExtArgs extends runtime.Types.Extensions.Inter
     fechaEntregaRequerida: Date | null
     creadoEn: Date
     actualizadoEn: Date
+    recepcionFotoUrl: string | null
+    recepcionComentario: string | null
+    recepcionEn: Date | null
+    recepcionPorId: string | null
   }, ExtArgs["result"]["requerimiento"]>
   composites: {}
 }
@@ -1761,6 +2172,7 @@ export interface Prisma__RequerimientoClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   proyecto<T extends Prisma.ProyectoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProyectoDefaultArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   creadoPor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  recepcionPor<T extends Prisma.Requerimiento$recepcionPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Requerimiento$recepcionPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Requerimiento$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Requerimiento$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequerimientoItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   solicitudes<T extends Prisma.Requerimiento$solicitudesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Requerimiento$solicitudesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   historial<T extends Prisma.Requerimiento$historialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Requerimiento$historialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequerimientoHistorialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1806,6 +2218,10 @@ export interface RequerimientoFieldRefs {
   readonly fechaEntregaRequerida: Prisma.FieldRef<"Requerimiento", 'DateTime'>
   readonly creadoEn: Prisma.FieldRef<"Requerimiento", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"Requerimiento", 'DateTime'>
+  readonly recepcionFotoUrl: Prisma.FieldRef<"Requerimiento", 'String'>
+  readonly recepcionComentario: Prisma.FieldRef<"Requerimiento", 'String'>
+  readonly recepcionEn: Prisma.FieldRef<"Requerimiento", 'DateTime'>
+  readonly recepcionPorId: Prisma.FieldRef<"Requerimiento", 'String'>
 }
     
 
@@ -2204,6 +2620,25 @@ export type RequerimientoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Requerimientos to delete.
    */
   limit?: number
+}
+
+/**
+ * Requerimiento.recepcionPor
+ */
+export type Requerimiento$recepcionPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

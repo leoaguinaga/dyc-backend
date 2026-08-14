@@ -7,10 +7,12 @@ import {
   Patch,
   Post,
   Query,
+  Req,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import type { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { CotizacionesService } from './cotizaciones.service.js';
 import { CreateSolicitudDto } from './dto/create-solicitud.dto.js';
@@ -26,7 +28,14 @@ import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 
 @Controller('solicitudes-cotizacion')
-@Roles('administrador', 'logistica', 'gerencia')
+@Roles(
+  'administrador',
+  'logistica',
+  'gerencia',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+)
 export class CotizacionesController {
   constructor(private cotizacionesService: CotizacionesService) {}
 
@@ -118,26 +127,39 @@ export class CotizacionesController {
   }
 
   @Post(':id/aprobar-solicitante')
-  @Roles('administrador', 'logistica', 'gerencia')
-  aprobarSolicitante(@Param('id') id: string) {
+  @Roles(
+    'administrador',
+    'logistica',
+    'gerencia',
+    'supervisor',
+    'supervisor_civil',
+    'supervisor_electrico',
+    'pdr',
+  )
+  aprobarSolicitante(@Param('id') id: string, @Req() req: Request) {
     return this.cotizacionesService.avanzarEstadoSolicitud(
       id,
       'aprobada_solicitante',
+      { id: req.user!.id, role: req.user!.role },
     );
   }
 
   @Post(':id/aprobar-gerencia')
   @Roles('administrador', 'gerencia')
-  aprobarGerencia(@Param('id') id: string) {
+  aprobarGerencia(@Param('id') id: string, @Req() req: Request) {
     return this.cotizacionesService.avanzarEstadoSolicitud(
       id,
       'aprobada_gerencia',
+      { id: req.user!.id, role: req.user!.role },
     );
   }
 
   @Post(':id/cancelar')
   @Roles('administrador', 'logistica', 'gerencia')
-  cancelar(@Param('id') id: string) {
-    return this.cotizacionesService.avanzarEstadoSolicitud(id, 'cancelada');
+  cancelar(@Param('id') id: string, @Req() req: Request) {
+    return this.cotizacionesService.avanzarEstadoSolicitud(id, 'cancelada', {
+      id: req.user!.id,
+      role: req.user!.role,
+    });
   }
 }

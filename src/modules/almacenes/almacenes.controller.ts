@@ -4,7 +4,14 @@ import { AlmacenesService } from './almacenes.service.js';
 import { CreateAlmacenDto } from './dto/create-almacen.dto.js';
 
 @Controller('almacenes')
-@Roles('administrador', 'logistica', 'gerencia')
+@Roles(
+  'administrador',
+  'logistica',
+  'gerencia',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+)
 export class AlmacenesController {
   constructor(private almacenesService: AlmacenesService) {}
 

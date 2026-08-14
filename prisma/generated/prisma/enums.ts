@@ -19,7 +19,8 @@ export const Role = {
   jefe_sig: 'jefe_sig',
   logistica: 'logistica',
   gerencia: 'gerencia',
-  administrador: 'administrador'
+  administrador: 'administrador',
+  admin_ti: 'admin_ti'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -101,7 +102,10 @@ export const EstadoRequerimiento = {
   borrador: 'borrador',
   enviado: 'enviado',
   aprobado: 'aprobado',
-  observado: 'observado'
+  observado: 'observado',
+  en_cotizacion: 'en_cotizacion',
+  pendiente_conformidad: 'pendiente_conformidad',
+  recibido: 'recibido'
 } as const
 
 export type EstadoRequerimiento = (typeof EstadoRequerimiento)[keyof typeof EstadoRequerimiento]
@@ -185,6 +189,14 @@ export const DestinoPago = {
 export type DestinoPago = (typeof DestinoPago)[keyof typeof DestinoPago]
 
 
+export const TipoArchivoCompraSimple = {
+  comprobante: 'comprobante',
+  foto_producto: 'foto_producto'
+} as const
+
+export type TipoArchivoCompraSimple = (typeof TipoArchivoCompraSimple)[keyof typeof TipoArchivoCompraSimple]
+
+
 export const MetodoPagoTrabajador = {
   registrado: 'registrado',
   transferencia: 'transferencia',
@@ -210,6 +222,9 @@ export const TipoNotificacion = {
   requerimiento_creado: 'requerimiento_creado',
   requerimiento_aprobado: 'requerimiento_aprobado',
   requerimiento_observado: 'requerimiento_observado',
+  requerimiento_en_cotizacion: 'requerimiento_en_cotizacion',
+  requerimiento_pendiente_conformidad: 'requerimiento_pendiente_conformidad',
+  requerimiento_recibido: 'requerimiento_recibido',
   cotizacion_recibida: 'cotizacion_recibida',
   solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
   orden_compra_generada: 'orden_compra_generada',

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { AppEvents } from '../../shared/events/events.js';
 import { NotificacionesService } from './notificaciones.service.js';
+import type { TipoNotificacion } from '../../prisma/types.js';
 
 const APROBADORES_REQUERIMIENTO = [
   'ing_civil',
@@ -10,20 +11,21 @@ const APROBADORES_REQUERIMIENTO = [
   'logistica',
   'gerencia',
   'administrador',
+  'admin_ti',
 ] as const;
-const GESTORES_COTIZACION = ['administrador', 'logistica', 'gerencia'] as const;
-const GESTORES_OC = ['logistica', 'gerencia', 'administrador'] as const;
-const GESTORES_OBRA = ['gerencia', 'administrador'] as const;
-const GESTORES_PLANILLA = ['gerencia', 'administrador'] as const;
-const GESTORES_COMPRA_SIMPLE = ['gerencia', 'administrador'] as const;
+const GESTORES_COTIZACION = ['administrador', 'admin_ti', 'logistica', 'gerencia'] as const;
+const GESTORES_OC = ['logistica', 'gerencia', 'administrador', 'admin_ti'] as const;
+const GESTORES_OBRA = ['gerencia', 'administrador', 'admin_ti'] as const;
+const GESTORES_PLANILLA = ['gerencia', 'administrador', 'admin_ti'] as const;
+const GESTORES_COMPRA_SIMPLE = ['gerencia', 'administrador', 'admin_ti'] as const;
 
 // Aprobador técnico según el tipo de la compra simple (paso 1 — debe calzar
 // con TIPO_APPROVERS_TECNICO en compras-simples.service.ts).
 const APROBADOR_TECNICO_COMPRA_SIMPLE = {
-  civil: ['ing_civil', 'administrador'],
-  electrico: ['ing_electrico', 'administrador'],
-  seguridad: ['jefe_sig', 'administrador'],
-  administrativo: ['logistica', 'administrador'],
+  civil: ['ing_civil', 'administrador', 'admin_ti'],
+  electrico: ['ing_electrico', 'administrador', 'admin_ti'],
+  seguridad: ['jefe_sig', 'administrador', 'admin_ti'],
+  administrativo: ['logistica', 'administrador', 'admin_ti'],
 } as const;
 
 export interface RequerimientoCreadoPayload {
@@ -36,7 +38,12 @@ export interface RequerimientoEstadoCambiadoPayload {
   requerimientoId: string;
   codigo: string;
   nombre: string;
-  estado: 'aprobado' | 'observado';
+  estado:
+    | 'aprobado'
+    | 'observado'
+    | 'en_cotizacion'
+    | 'pendiente_conformidad'
+    | 'recibido';
   creadoPorId: string;
 }
 
@@ -107,16 +114,42 @@ export class NotificacionesListener {
   async onRequerimientoEstadoCambiado(
     payload: RequerimientoEstadoCambiadoPayload,
   ) {
+    const PRESET: Record<
+      RequerimientoEstadoCambiadoPayload['estado'],
+      { tipo: TipoNotificacion; titulo: string; mensaje: string }
+    > = {
+      aprobado: {
+        tipo: 'requerimiento_aprobado',
+        titulo: 'Requerimiento aprobado',
+        mensaje: `Tu requerimiento ${payload.codigo} — ${payload.nombre} fue aprobado.`,
+      },
+      observado: {
+        tipo: 'requerimiento_observado',
+        titulo: 'Requerimiento observado',
+        mensaje: `Tu requerimiento ${payload.codigo} — ${payload.nombre} fue observado.`,
+      },
+      en_cotizacion: {
+        tipo: 'requerimiento_en_cotizacion',
+        titulo: 'Requerimiento en cotización',
+        mensaje: `Tu requerimiento ${payload.codigo} — ${payload.nombre} ya tiene una solicitud de cotización en curso.`,
+      },
+      pendiente_conformidad: {
+        tipo: 'requerimiento_pendiente_conformidad',
+        titulo: 'Confirmá la recepción',
+        mensaje: `La compra de tu requerimiento ${payload.codigo} — ${payload.nombre} ya fue recibida. Subí la foto y confirmá la recepción.`,
+      },
+      recibido: {
+        tipo: 'requerimiento_recibido',
+        titulo: 'Recepción confirmada',
+        mensaje: `Confirmaste la recepción del requerimiento ${payload.codigo} — ${payload.nombre}.`,
+      },
+    };
+    const preset = PRESET[payload.estado];
+
     await this.service.crearParaUsuarios([payload.creadoPorId], {
-      tipo:
-        payload.estado === 'aprobado'
-          ? 'requerimiento_aprobado'
-          : 'requerimiento_observado',
-      titulo:
-        payload.estado === 'aprobado'
-          ? 'Requerimiento aprobado'
-          : 'Requerimiento observado',
-      mensaje: `Tu requerimiento ${payload.codigo} — ${payload.nombre} fue ${payload.estado}.`,
+      tipo: preset.tipo,
+      titulo: preset.titulo,
+      mensaje: preset.mensaje,
       entidadTipo: 'Requerimiento',
       entidadId: payload.requerimientoId,
     });

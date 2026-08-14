@@ -24,6 +24,12 @@ export class RolesGuard implements CanActivate {
     const { user } = context
       .switchToHttp()
       .getRequest<{ user?: { role: Role } }>();
-    return !!user && requiredRoles.includes(user.role);
+    if (!user) return false;
+
+    // admin_ti (administración TI) tiene acceso total a toda la aplicación,
+    // sin importar qué roles requiera el endpoint.
+    if (user.role === 'admin_ti') return true;
+
+    return requiredRoles.includes(user.role);
   }
 }

@@ -61,6 +61,22 @@ export class MarcarPagadoDto {
   @IsOptional()
   @IsString()
   numeroOperacion?: string;
+
+  @IsOptional()
+  @IsString()
+  comprobanteNombre?: string;
+
+  @IsOptional()
+  @IsString()
+  comprobanteUrl?: string;
+}
+
+export class SubirComprobantePagoDto {
+  @IsString()
+  comprobanteNombre: string;
+
+  @IsString()
+  comprobanteUrl: string;
 }
 
 export class QueryPagosDto {

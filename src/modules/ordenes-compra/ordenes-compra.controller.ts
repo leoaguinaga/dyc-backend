@@ -24,7 +24,14 @@ import {
 import type { EstadoOrdenCompra } from '../../../prisma/generated/prisma/enums.js';
 
 @Controller('ordenes-compra')
-@Roles('logistica', 'gerencia', 'administrador')
+@Roles(
+  'logistica',
+  'gerencia',
+  'administrador',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+)
 export class OrdenesCompraController {
   constructor(private service: OrdenesCompraService) {}
 

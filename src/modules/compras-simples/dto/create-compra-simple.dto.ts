@@ -110,7 +110,7 @@ export class CreateCompraSimpleDto {
 
   @IsOptional()
   @IsBoolean()
-  urgente?: boolean;
+  esRendicion?: boolean;
 
   @IsString()
   proyectoId: string;

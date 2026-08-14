@@ -19,8 +19,10 @@ import { CreateRequerimientoDto } from './dto/create-requerimiento.dto.js';
 import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
+import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
+const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
 
 @Controller('requerimientos')
 @Roles(
@@ -85,5 +87,30 @@ export class RequerimientosController {
   @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador')
   observar(@Param('id') id: string, @Body() dto: ObservarRequerimientoDto, @Req() req: Request) {
     return this.service.observar(id, dto, req.user!.id, req.user!.role);
+  }
+
+  @Post('fotos')
+  @UseInterceptors(
+    FileInterceptor('foto', {
+      limits: { fileSize: MAX_ARCHIVO_BYTES },
+      fileFilter: (_req, file, cb) => {
+        if (!IMAGENES_PERMITIDAS.includes(file.mimetype)) {
+          cb(new BadRequestException('Solo se permiten imágenes JPG, PNG o WEBP'), false);
+          return;
+        }
+        cb(null, true);
+      },
+    }),
+  )
+  subirFoto(@UploadedFile() file?: Express.Multer.File) {
+    if (!file) throw new BadRequestException('Debes adjuntar una foto');
+    return this.service.subirFoto(file);
+  }
+
+  // El solicitante confirma la recepción — no requiere los roles de aprobador
+  // técnico, el propio servicio valida que sea el creador del requerimiento.
+  @Post(':id/recepcion')
+  recepcion(@Param('id') id: string, @Body() dto: RecepcionRequerimientoDto, @Req() req: Request) {
+    return this.service.recepcion(id, dto, req.user!.id, req.user!.role);
   }
 }

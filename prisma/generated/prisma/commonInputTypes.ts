@@ -626,6 +626,23 @@ export type EnumMetodoPagoTrabajadorNullableWithAggregatesFilter<$PrismaModel = 
   _max?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
 }
 
+export type EnumTipoArchivoCompraSimpleFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoArchivoCompraSimple | Prisma.EnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel> | $Enums.TipoArchivoCompraSimple
+}
+
+export type EnumTipoArchivoCompraSimpleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoArchivoCompraSimple | Prisma.EnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoArchivoCompraSimpleWithAggregatesFilter<$PrismaModel> | $Enums.TipoArchivoCompraSimple
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel>
+}
+
 export type EnumEstadoAprobacionCompraFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel>
@@ -1317,6 +1334,23 @@ export type NestedEnumMetodoPagoTrabajadorNullableWithAggregatesFilter<$PrismaMo
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumMetodoPagoTrabajadorNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoArchivoCompraSimple | Prisma.EnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel> | $Enums.TipoArchivoCompraSimple
+}
+
+export type NestedEnumTipoArchivoCompraSimpleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoArchivoCompraSimple | Prisma.EnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoArchivoCompraSimple[] | Prisma.ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoArchivoCompraSimpleWithAggregatesFilter<$PrismaModel> | $Enums.TipoArchivoCompraSimple
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoArchivoCompraSimpleFilter<$PrismaModel>
 }
 
 export type NestedEnumEstadoAprobacionCompraFilter<$PrismaModel = never> = {

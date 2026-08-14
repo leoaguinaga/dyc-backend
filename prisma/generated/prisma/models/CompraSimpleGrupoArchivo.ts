@@ -27,6 +27,7 @@ export type AggregateCompraSimpleGrupoArchivo = {
 export type CompraSimpleGrupoArchivoMinAggregateOutputType = {
   id: string | null
   grupoId: string | null
+  tipo: $Enums.TipoArchivoCompraSimple | null
   url: string | null
   nombreOriginal: string | null
   mimeType: string | null
@@ -37,6 +38,7 @@ export type CompraSimpleGrupoArchivoMinAggregateOutputType = {
 export type CompraSimpleGrupoArchivoMaxAggregateOutputType = {
   id: string | null
   grupoId: string | null
+  tipo: $Enums.TipoArchivoCompraSimple | null
   url: string | null
   nombreOriginal: string | null
   mimeType: string | null
@@ -47,6 +49,7 @@ export type CompraSimpleGrupoArchivoMaxAggregateOutputType = {
 export type CompraSimpleGrupoArchivoCountAggregateOutputType = {
   id: number
   grupoId: number
+  tipo: number
   url: number
   nombreOriginal: number
   mimeType: number
@@ -59,6 +62,7 @@ export type CompraSimpleGrupoArchivoCountAggregateOutputType = {
 export type CompraSimpleGrupoArchivoMinAggregateInputType = {
   id?: true
   grupoId?: true
+  tipo?: true
   url?: true
   nombreOriginal?: true
   mimeType?: true
@@ -69,6 +73,7 @@ export type CompraSimpleGrupoArchivoMinAggregateInputType = {
 export type CompraSimpleGrupoArchivoMaxAggregateInputType = {
   id?: true
   grupoId?: true
+  tipo?: true
   url?: true
   nombreOriginal?: true
   mimeType?: true
@@ -79,6 +84,7 @@ export type CompraSimpleGrupoArchivoMaxAggregateInputType = {
 export type CompraSimpleGrupoArchivoCountAggregateInputType = {
   id?: true
   grupoId?: true
+  tipo?: true
   url?: true
   nombreOriginal?: true
   mimeType?: true
@@ -162,6 +168,7 @@ export type CompraSimpleGrupoArchivoGroupByArgs<ExtArgs extends runtime.Types.Ex
 export type CompraSimpleGrupoArchivoGroupByOutputType = {
   id: string
   grupoId: string
+  tipo: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -193,6 +200,7 @@ export type CompraSimpleGrupoArchivoWhereInput = {
   NOT?: Prisma.CompraSimpleGrupoArchivoWhereInput | Prisma.CompraSimpleGrupoArchivoWhereInput[]
   id?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   grupoId?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFilter<"CompraSimpleGrupoArchivo"> | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   nombreOriginal?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   mimeType?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
@@ -205,6 +213,7 @@ export type CompraSimpleGrupoArchivoWhereInput = {
 export type CompraSimpleGrupoArchivoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   grupoId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   url?: Prisma.SortOrder
   nombreOriginal?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -220,6 +229,7 @@ export type CompraSimpleGrupoArchivoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CompraSimpleGrupoArchivoWhereInput[]
   NOT?: Prisma.CompraSimpleGrupoArchivoWhereInput | Prisma.CompraSimpleGrupoArchivoWhereInput[]
   grupoId?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFilter<"CompraSimpleGrupoArchivo"> | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   nombreOriginal?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   mimeType?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
@@ -232,6 +242,7 @@ export type CompraSimpleGrupoArchivoWhereUniqueInput = Prisma.AtLeast<{
 export type CompraSimpleGrupoArchivoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   grupoId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   url?: Prisma.SortOrder
   nombreOriginal?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -248,6 +259,7 @@ export type CompraSimpleGrupoArchivoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CompraSimpleGrupoArchivoScalarWhereWithAggregatesInput | Prisma.CompraSimpleGrupoArchivoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"CompraSimpleGrupoArchivo"> | string
   grupoId?: Prisma.StringWithAggregatesFilter<"CompraSimpleGrupoArchivo"> | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleWithAggregatesFilter<"CompraSimpleGrupoArchivo"> | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringWithAggregatesFilter<"CompraSimpleGrupoArchivo"> | string
   nombreOriginal?: Prisma.StringWithAggregatesFilter<"CompraSimpleGrupoArchivo"> | string
   mimeType?: Prisma.StringWithAggregatesFilter<"CompraSimpleGrupoArchivo"> | string
@@ -257,6 +269,7 @@ export type CompraSimpleGrupoArchivoScalarWhereWithAggregatesInput = {
 
 export type CompraSimpleGrupoArchivoCreateInput = {
   id?: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -268,6 +281,7 @@ export type CompraSimpleGrupoArchivoCreateInput = {
 export type CompraSimpleGrupoArchivoUncheckedCreateInput = {
   id?: string
   grupoId: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -277,6 +291,7 @@ export type CompraSimpleGrupoArchivoUncheckedCreateInput = {
 
 export type CompraSimpleGrupoArchivoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -288,6 +303,7 @@ export type CompraSimpleGrupoArchivoUpdateInput = {
 export type CompraSimpleGrupoArchivoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   grupoId?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -298,6 +314,7 @@ export type CompraSimpleGrupoArchivoUncheckedUpdateInput = {
 export type CompraSimpleGrupoArchivoCreateManyInput = {
   id?: string
   grupoId: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -307,6 +324,7 @@ export type CompraSimpleGrupoArchivoCreateManyInput = {
 
 export type CompraSimpleGrupoArchivoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -316,6 +334,7 @@ export type CompraSimpleGrupoArchivoUpdateManyMutationInput = {
 export type CompraSimpleGrupoArchivoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   grupoId?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -336,6 +355,7 @@ export type CompraSimpleGrupoArchivoOrderByRelationAggregateInput = {
 export type CompraSimpleGrupoArchivoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grupoId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   url?: Prisma.SortOrder
   nombreOriginal?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -346,6 +366,7 @@ export type CompraSimpleGrupoArchivoCountOrderByAggregateInput = {
 export type CompraSimpleGrupoArchivoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grupoId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   url?: Prisma.SortOrder
   nombreOriginal?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -356,6 +377,7 @@ export type CompraSimpleGrupoArchivoMaxOrderByAggregateInput = {
 export type CompraSimpleGrupoArchivoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grupoId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   url?: Prisma.SortOrder
   nombreOriginal?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -447,8 +469,13 @@ export type CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoNestedInput =
   deleteMany?: Prisma.CompraSimpleGrupoArchivoScalarWhereInput | Prisma.CompraSimpleGrupoArchivoScalarWhereInput[]
 }
 
+export type EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput = {
+  set?: $Enums.TipoArchivoCompraSimple
+}
+
 export type CompraSimpleGrupoArchivoCreateWithoutSubidoPorInput = {
   id?: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -459,6 +486,7 @@ export type CompraSimpleGrupoArchivoCreateWithoutSubidoPorInput = {
 export type CompraSimpleGrupoArchivoUncheckedCreateWithoutSubidoPorInput = {
   id?: string
   grupoId: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -497,6 +525,7 @@ export type CompraSimpleGrupoArchivoScalarWhereInput = {
   NOT?: Prisma.CompraSimpleGrupoArchivoScalarWhereInput | Prisma.CompraSimpleGrupoArchivoScalarWhereInput[]
   id?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   grupoId?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFilter<"CompraSimpleGrupoArchivo"> | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   nombreOriginal?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
   mimeType?: Prisma.StringFilter<"CompraSimpleGrupoArchivo"> | string
@@ -506,6 +535,7 @@ export type CompraSimpleGrupoArchivoScalarWhereInput = {
 
 export type CompraSimpleGrupoArchivoCreateWithoutGrupoInput = {
   id?: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -515,6 +545,7 @@ export type CompraSimpleGrupoArchivoCreateWithoutGrupoInput = {
 
 export type CompraSimpleGrupoArchivoUncheckedCreateWithoutGrupoInput = {
   id?: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -551,6 +582,7 @@ export type CompraSimpleGrupoArchivoUpdateManyWithWhereWithoutGrupoInput = {
 export type CompraSimpleGrupoArchivoCreateManySubidoPorInput = {
   id?: string
   grupoId: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -559,6 +591,7 @@ export type CompraSimpleGrupoArchivoCreateManySubidoPorInput = {
 
 export type CompraSimpleGrupoArchivoUpdateWithoutSubidoPorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -569,6 +602,7 @@ export type CompraSimpleGrupoArchivoUpdateWithoutSubidoPorInput = {
 export type CompraSimpleGrupoArchivoUncheckedUpdateWithoutSubidoPorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   grupoId?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -578,6 +612,7 @@ export type CompraSimpleGrupoArchivoUncheckedUpdateWithoutSubidoPorInput = {
 export type CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   grupoId?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -586,6 +621,7 @@ export type CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorInput = {
 
 export type CompraSimpleGrupoArchivoCreateManyGrupoInput = {
   id?: string
+  tipo?: $Enums.TipoArchivoCompraSimple
   url: string
   nombreOriginal: string
   mimeType: string
@@ -595,6 +631,7 @@ export type CompraSimpleGrupoArchivoCreateManyGrupoInput = {
 
 export type CompraSimpleGrupoArchivoUpdateWithoutGrupoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -604,6 +641,7 @@ export type CompraSimpleGrupoArchivoUpdateWithoutGrupoInput = {
 
 export type CompraSimpleGrupoArchivoUncheckedUpdateWithoutGrupoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -613,6 +651,7 @@ export type CompraSimpleGrupoArchivoUncheckedUpdateWithoutGrupoInput = {
 
 export type CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoArchivoCompraSimpleFieldUpdateOperationsInput | $Enums.TipoArchivoCompraSimple
   url?: Prisma.StringFieldUpdateOperationsInput | string
   nombreOriginal?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -625,6 +664,7 @@ export type CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutGrupoInput = {
 export type CompraSimpleGrupoArchivoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   grupoId?: boolean
+  tipo?: boolean
   url?: boolean
   nombreOriginal?: boolean
   mimeType?: boolean
@@ -637,6 +677,7 @@ export type CompraSimpleGrupoArchivoSelect<ExtArgs extends runtime.Types.Extensi
 export type CompraSimpleGrupoArchivoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   grupoId?: boolean
+  tipo?: boolean
   url?: boolean
   nombreOriginal?: boolean
   mimeType?: boolean
@@ -649,6 +690,7 @@ export type CompraSimpleGrupoArchivoSelectCreateManyAndReturn<ExtArgs extends ru
 export type CompraSimpleGrupoArchivoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   grupoId?: boolean
+  tipo?: boolean
   url?: boolean
   nombreOriginal?: boolean
   mimeType?: boolean
@@ -661,6 +703,7 @@ export type CompraSimpleGrupoArchivoSelectUpdateManyAndReturn<ExtArgs extends ru
 export type CompraSimpleGrupoArchivoSelectScalar = {
   id?: boolean
   grupoId?: boolean
+  tipo?: boolean
   url?: boolean
   nombreOriginal?: boolean
   mimeType?: boolean
@@ -668,7 +711,7 @@ export type CompraSimpleGrupoArchivoSelectScalar = {
   creadoEn?: boolean
 }
 
-export type CompraSimpleGrupoArchivoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "grupoId" | "url" | "nombreOriginal" | "mimeType" | "subidoPorId" | "creadoEn", ExtArgs["result"]["compraSimpleGrupoArchivo"]>
+export type CompraSimpleGrupoArchivoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "grupoId" | "tipo" | "url" | "nombreOriginal" | "mimeType" | "subidoPorId" | "creadoEn", ExtArgs["result"]["compraSimpleGrupoArchivo"]>
 export type CompraSimpleGrupoArchivoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupo?: boolean | Prisma.OrdenCompraDefaultArgs<ExtArgs>
   subidoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -691,6 +734,7 @@ export type $CompraSimpleGrupoArchivoPayload<ExtArgs extends runtime.Types.Exten
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     grupoId: string
+    tipo: $Enums.TipoArchivoCompraSimple
     url: string
     nombreOriginal: string
     mimeType: string
@@ -1123,6 +1167,7 @@ export interface Prisma__CompraSimpleGrupoArchivoClient<T, Null = never, ExtArgs
 export interface CompraSimpleGrupoArchivoFieldRefs {
   readonly id: Prisma.FieldRef<"CompraSimpleGrupoArchivo", 'String'>
   readonly grupoId: Prisma.FieldRef<"CompraSimpleGrupoArchivo", 'String'>
+  readonly tipo: Prisma.FieldRef<"CompraSimpleGrupoArchivo", 'TipoArchivoCompraSimple'>
   readonly url: Prisma.FieldRef<"CompraSimpleGrupoArchivo", 'String'>
   readonly nombreOriginal: Prisma.FieldRef<"CompraSimpleGrupoArchivo", 'String'>
   readonly mimeType: Prisma.FieldRef<"CompraSimpleGrupoArchivo", 'String'>

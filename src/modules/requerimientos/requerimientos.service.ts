@@ -11,6 +11,7 @@ import { CreateRequerimientoDto } from './dto/create-requerimiento.dto.js';
 import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
+import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
 import type {
   EstadoRequerimiento,
   Role,
@@ -26,10 +27,14 @@ const RESTRICTED_ROLES: Role[] = [
   'supervisor_civil',
   'supervisor_electrico',
   'pdr',
-  'ing_civil',
-  'ing_electrico',
-  'jefe_sig',
 ];
+
+// Roles that review a specific tipo across all projects (not just their own)
+const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {
+  ing_civil: 'civil',
+  ing_electrico: 'electrico',
+  jefe_sig: 'seguridad',
+};
 
 // Which tipos a role is allowed to create
 const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
@@ -43,25 +48,68 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
   logistica: ['electrico', 'civil', 'seguridad', 'administrativo'],
   gerencia: ['electrico', 'civil', 'seguridad', 'administrativo'],
   administrador: ['electrico', 'civil', 'seguridad', 'administrativo'],
+  admin_ti: ['electrico', 'civil', 'seguridad', 'administrativo'],
 };
 
 // Which roles can approve each tipo
 const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
-  civil: ['ing_civil', 'gerencia', 'administrador'],
-  electrico: ['ing_electrico', 'gerencia', 'administrador'],
-  seguridad: ['jefe_sig', 'gerencia', 'administrador'],
-  administrativo: ['logistica', 'gerencia', 'administrador'],
+  civil: ['ing_civil', 'gerencia', 'administrador', 'admin_ti'],
+  electrico: ['ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
+  seguridad: ['jefe_sig', 'gerencia', 'administrador', 'admin_ti'],
+  administrativo: ['logistica', 'gerencia', 'administrador', 'admin_ti'],
 };
 
 const INCLUDE_BASE = {
   proyecto: { select: { id: true, codigo: true, nombre: true, ciudad: true, direccion: true, comuna: true } },
   creadoPor: { select: { id: true, name: true, email: true, role: true } },
+  recepcionPor: { select: { id: true, name: true } },
   items: { include: { archivos: true } },
   historial: {
     include: { actor: { select: { id: true, name: true, role: true } } },
     orderBy: { creadoEn: 'asc' as const },
   },
   _count: { select: { solicitudes: true } },
+} as const;
+
+// Resumen de seguimiento (solicitud de cotización + orden de compra) para que
+// el solicitante vea el avance de su compra sin necesitar acceso a
+// /cotizaciones ni /ordenes-compra, módulos restringidos a logística/gerencia.
+const SOLICITUD_SEGUIMIENTO_INCLUDE = {
+  select: {
+    id: true,
+    codigo: true,
+    estado: true,
+    creadoEn: true,
+    aprobadaSolicitanteEn: true,
+    aprobadaSolicitantePorRole: true,
+    aprobadaSolicitantePor: { select: { id: true, name: true } },
+    // Cotización adjudicada (estado "aprobada") — se expone solo el ganador,
+    // no la comparación completa entre proveedores, para que el solicitante
+    // pueda revisar y aprobar sin necesitar acceso a /cotizaciones.
+    cotizaciones: {
+      where: { estado: 'aprobada' },
+      select: {
+        id: true,
+        proveedor: { select: { id: true, razonSocial: true } },
+        items: {
+          where: { seleccionado: true },
+          select: { descripcionProveedor: true, precioUnit: true, cantidad: true, unidad: true },
+        },
+      },
+    },
+    ordenes: {
+      select: {
+        id: true,
+        numero: true,
+        estado: true,
+        fechaEmision: true,
+        fechaEntrega: true,
+        fechaEntregaReal: true,
+        proveedor: { select: { id: true, razonSocial: true } },
+        proveedorNombreLibre: true,
+      },
+    },
+  },
 } as const;
 
 @Injectable()
@@ -88,6 +136,9 @@ export class RequerimientosService {
 
     if (RESTRICTED_ROLES.includes(userRole)) where.creadoPorId = userId;
 
+    const tipoScope = TIPO_SCOPED_ROLES[userRole];
+    if (tipoScope) where.tipo = tipoScope;
+
     return this.prisma.requerimiento.findMany({
       where,
       include: INCLUDE_BASE,
@@ -100,14 +151,7 @@ export class RequerimientosService {
       where: { id },
       include: {
         ...INCLUDE_BASE,
-        solicitudes: {
-          select: {
-            id: true,
-            codigo: true,
-            estado: true,
-            creadoEn: true,
-          },
-        },
+        solicitudes: SOLICITUD_SEGUIMIENTO_INCLUDE,
       },
     });
     if (!r) throw new NotFoundException(`Requerimiento ${id} no encontrado`);
@@ -375,6 +419,63 @@ export class RequerimientosService {
       codigo: r.codigo,
       nombre: r.nombre,
       estado: 'observado',
+      creadoPorId: r.creadoPorId,
+    });
+    return actualizado;
+  }
+
+  subirFoto(file: Express.Multer.File) {
+    return this.storage.save({
+      buffer: file.buffer,
+      originalName: file.originalname,
+      mimeType: file.mimetype,
+    });
+  }
+
+  async recepcion(
+    id: string,
+    dto: RecepcionRequerimientoDto,
+    userId: string,
+    userRole: Role,
+  ) {
+    const r = await this.findOne(id);
+    if (r.estado !== 'pendiente_conformidad')
+      throw new BadRequestException(
+        'Este requerimiento no está pendiente de confirmación de recepción',
+      );
+    if (r.creadoPorId !== userId && userRole !== 'administrador' && userRole !== 'admin_ti')
+      throw new ForbiddenException(
+        'Solo el solicitante puede confirmar la recepción de este requerimiento',
+      );
+
+    const actualizado = await this.prisma.$transaction(async (tx) => {
+      const actualizado = await tx.requerimiento.update({
+        where: { id },
+        data: {
+          estado: 'recibido',
+          recepcionFotoUrl: dto.fotoUrl,
+          recepcionComentario: dto.comentario,
+          recepcionEn: new Date(),
+          recepcionPorId: userId,
+        },
+        include: INCLUDE_BASE,
+      });
+      await tx.requerimientoHistorial.create({
+        data: {
+          requerimientoId: id,
+          estado: 'recibido',
+          actorId: userId,
+          actorRole: userRole,
+          nota: dto.comentario,
+        },
+      });
+      return actualizado;
+    });
+    this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+      requerimientoId: id,
+      codigo: r.codigo,
+      nombre: r.nombre,
+      estado: 'recibido',
       creadoPorId: r.creadoPorId,
     });
     return actualizado;
