@@ -224,6 +224,7 @@ export type UserWhereInput = {
   ordenesCompra?: Prisma.OrdenCompraListRelationFilter
   ordenesCompraAprobadas?: Prisma.OrdenCompraListRelationFilter
   comprasSimplesCreadas?: Prisma.CompraSimpleListRelationFilter
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleListRelationFilter
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialListRelationFilter
   pagosRegistrados?: Prisma.PagoListRelationFilter
   pagosEjecutados?: Prisma.PagoListRelationFilter
@@ -237,6 +238,8 @@ export type UserWhereInput = {
   planillasGeneradas?: Prisma.PlanillaListRelationFilter
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoListRelationFilter
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionListRelationFilter
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionListRelationFilter
+  cotizacionesCreadas?: Prisma.CotizacionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -259,6 +262,7 @@ export type UserOrderByWithRelationInput = {
   ordenesCompra?: Prisma.OrdenCompraOrderByRelationAggregateInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraOrderByRelationAggregateInput
   comprasSimplesCreadas?: Prisma.CompraSimpleOrderByRelationAggregateInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleOrderByRelationAggregateInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialOrderByRelationAggregateInput
   pagosRegistrados?: Prisma.PagoOrderByRelationAggregateInput
   pagosEjecutados?: Prisma.PagoOrderByRelationAggregateInput
@@ -272,6 +276,8 @@ export type UserOrderByWithRelationInput = {
   planillasGeneradas?: Prisma.PlanillaOrderByRelationAggregateInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoOrderByRelationAggregateInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionOrderByRelationAggregateInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionOrderByRelationAggregateInput
+  cotizacionesCreadas?: Prisma.CotizacionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -297,6 +303,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   ordenesCompra?: Prisma.OrdenCompraListRelationFilter
   ordenesCompraAprobadas?: Prisma.OrdenCompraListRelationFilter
   comprasSimplesCreadas?: Prisma.CompraSimpleListRelationFilter
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleListRelationFilter
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialListRelationFilter
   pagosRegistrados?: Prisma.PagoListRelationFilter
   pagosEjecutados?: Prisma.PagoListRelationFilter
@@ -310,6 +317,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   planillasGeneradas?: Prisma.PlanillaListRelationFilter
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoListRelationFilter
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionListRelationFilter
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionListRelationFilter
+  cotizacionesCreadas?: Prisma.CotizacionListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -362,6 +371,7 @@ export type UserCreateInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -375,6 +385,8 @@ export type UserCreateInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -397,6 +409,7 @@ export type UserUncheckedCreateInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -410,6 +423,8 @@ export type UserUncheckedCreateInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUpdateInput = {
@@ -432,6 +447,7 @@ export type UserUpdateInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -445,6 +461,8 @@ export type UserUpdateInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -467,6 +485,7 @@ export type UserUncheckedUpdateInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -480,6 +499,8 @@ export type UserUncheckedUpdateInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -798,6 +819,12 @@ export type UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicita
   connect?: Prisma.UserWhereUniqueInput
 }
 
+export type UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoGerenciaInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput, Prisma.UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
@@ -808,9 +835,41 @@ export type UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNes
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput, Prisma.UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput>, Prisma.UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput>
 }
 
+export type UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoGerenciaNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoGerenciaInput
+  upsert?: Prisma.UserUpsertWithoutSolicitudesCotizacionAprobadasComoGerenciaInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>, Prisma.UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
+}
+
+export type UserCreateNestedOneWithoutCotizacionesCreadasInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCotizacionesCreadasInput, Prisma.UserUncheckedCreateWithoutCotizacionesCreadasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCotizacionesCreadasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCotizacionesCreadasNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCotizacionesCreadasInput, Prisma.UserUncheckedCreateWithoutCotizacionesCreadasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCotizacionesCreadasInput
+  upsert?: Prisma.UserUpsertWithoutCotizacionesCreadasInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCotizacionesCreadasInput, Prisma.UserUpdateWithoutCotizacionesCreadasInput>, Prisma.UserUncheckedUpdateWithoutCotizacionesCreadasInput>
+}
+
 export type UserCreateNestedOneWithoutComprasSimplesCreadasInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutComprasSimplesCreadasInput, Prisma.UserUncheckedCreateWithoutComprasSimplesCreadasInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutComprasSimplesCreadasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutComprasSimplesAprobadasInformalmenteInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutComprasSimplesAprobadasInformalmenteInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
@@ -820,6 +879,16 @@ export type UserUpdateOneRequiredWithoutComprasSimplesCreadasNestedInput = {
   upsert?: Prisma.UserUpsertWithoutComprasSimplesCreadasInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutComprasSimplesCreadasInput, Prisma.UserUpdateWithoutComprasSimplesCreadasInput>, Prisma.UserUncheckedUpdateWithoutComprasSimplesCreadasInput>
+}
+
+export type UserUpdateOneWithoutComprasSimplesAprobadasInformalmenteNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutComprasSimplesAprobadasInformalmenteInput
+  upsert?: Prisma.UserUpsertWithoutComprasSimplesAprobadasInformalmenteInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput>, Prisma.UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput>
 }
 
 export type UserCreateNestedOneWithoutOrdenesCompraAprobadasInput = {
@@ -945,6 +1014,7 @@ export type UserCreateWithoutSessionsInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -958,6 +1028,8 @@ export type UserCreateWithoutSessionsInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -979,6 +1051,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -992,6 +1065,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1029,6 +1104,7 @@ export type UserUpdateWithoutSessionsInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1042,6 +1118,8 @@ export type UserUpdateWithoutSessionsInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1063,6 +1141,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1076,6 +1155,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -1097,6 +1178,7 @@ export type UserCreateWithoutAccountsInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -1110,6 +1192,8 @@ export type UserCreateWithoutAccountsInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -1131,6 +1215,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -1144,6 +1229,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -1181,6 +1268,7 @@ export type UserUpdateWithoutAccountsInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1194,6 +1282,8 @@ export type UserUpdateWithoutAccountsInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1215,6 +1305,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1228,6 +1319,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutProyectosComoSupervisorInput = {
@@ -1249,6 +1342,7 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -1262,6 +1356,8 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
@@ -1283,6 +1379,7 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -1296,6 +1393,8 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutProyectosComoSupervisorInput = {
@@ -1333,6 +1432,7 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1346,6 +1446,8 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
@@ -1367,6 +1469,7 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1380,6 +1483,8 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutTrabajadorInput = {
@@ -1401,6 +1506,7 @@ export type UserCreateWithoutTrabajadorInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -1414,6 +1520,8 @@ export type UserCreateWithoutTrabajadorInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTrabajadorInput = {
@@ -1435,6 +1543,7 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -1448,6 +1557,8 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTrabajadorInput = {
@@ -1485,6 +1596,7 @@ export type UserUpdateWithoutTrabajadorInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1498,6 +1610,8 @@ export type UserUpdateWithoutTrabajadorInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrabajadorInput = {
@@ -1519,6 +1633,7 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1532,6 +1647,8 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutTurnosAbiertosInput = {
@@ -1554,6 +1671,7 @@ export type UserCreateWithoutTurnosAbiertosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -1566,6 +1684,8 @@ export type UserCreateWithoutTurnosAbiertosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
@@ -1588,6 +1708,7 @@ export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -1600,6 +1721,8 @@ export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosAbiertosInput = {
@@ -1627,6 +1750,7 @@ export type UserCreateWithoutTurnosCerradosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -1639,6 +1763,8 @@ export type UserCreateWithoutTurnosCerradosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCerradosInput = {
@@ -1661,6 +1787,7 @@ export type UserUncheckedCreateWithoutTurnosCerradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -1673,6 +1800,8 @@ export type UserUncheckedCreateWithoutTurnosCerradosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCerradosInput = {
@@ -1700,6 +1829,7 @@ export type UserCreateWithoutTurnosCorregidosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -1712,6 +1842,8 @@ export type UserCreateWithoutTurnosCorregidosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
@@ -1734,6 +1866,7 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -1746,6 +1879,8 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCorregidosInput = {
@@ -1784,6 +1919,7 @@ export type UserUpdateWithoutTurnosAbiertosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1796,6 +1932,8 @@ export type UserUpdateWithoutTurnosAbiertosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
@@ -1818,6 +1956,7 @@ export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1830,6 +1969,8 @@ export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCerradosInput = {
@@ -1863,6 +2004,7 @@ export type UserUpdateWithoutTurnosCerradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1875,6 +2017,8 @@ export type UserUpdateWithoutTurnosCerradosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
@@ -1897,6 +2041,7 @@ export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1909,6 +2054,8 @@ export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCorregidosInput = {
@@ -1942,6 +2089,7 @@ export type UserUpdateWithoutTurnosCorregidosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -1954,6 +2102,8 @@ export type UserUpdateWithoutTurnosCorregidosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
@@ -1976,6 +2126,7 @@ export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -1988,6 +2139,8 @@ export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -2010,6 +2163,7 @@ export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2022,6 +2176,8 @@ export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -2044,6 +2200,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2056,6 +2213,8 @@ export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRegistrosVisitaComoVisitanteInput = {
@@ -2083,6 +2242,7 @@ export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2095,6 +2255,8 @@ export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
@@ -2117,6 +2279,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2129,6 +2292,8 @@ export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRegistrosVisitaRegistradosPorInput = {
@@ -2167,6 +2332,7 @@ export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -2179,6 +2345,8 @@ export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -2201,6 +2369,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -2213,6 +2382,8 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutRegistrosVisitaRegistradosPorInput = {
@@ -2246,6 +2417,7 @@ export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -2258,6 +2430,8 @@ export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
@@ -2280,6 +2454,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -2292,6 +2467,8 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutVisitasTerceroRegistradasInput = {
@@ -2314,6 +2491,7 @@ export type UserCreateWithoutVisitasTerceroRegistradasInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2326,6 +2504,8 @@ export type UserCreateWithoutVisitasTerceroRegistradasInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
@@ -2348,6 +2528,7 @@ export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2360,6 +2541,8 @@ export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutVisitasTerceroRegistradasInput = {
@@ -2398,6 +2581,7 @@ export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -2410,6 +2594,8 @@ export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
@@ -2432,6 +2618,7 @@ export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -2444,6 +2631,8 @@ export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutPlanillasGeneradasInput = {
@@ -2466,6 +2655,7 @@ export type UserCreateWithoutPlanillasGeneradasInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2478,6 +2668,8 @@ export type UserCreateWithoutPlanillasGeneradasInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
@@ -2500,6 +2692,7 @@ export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2512,6 +2705,8 @@ export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPlanillasGeneradasInput = {
@@ -2550,6 +2745,7 @@ export type UserUpdateWithoutPlanillasGeneradasInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -2562,6 +2758,8 @@ export type UserUpdateWithoutPlanillasGeneradasInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
@@ -2584,6 +2782,7 @@ export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -2596,6 +2795,8 @@ export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientosInput = {
@@ -2617,6 +2818,7 @@ export type UserCreateWithoutRequerimientosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2630,6 +2832,8 @@ export type UserCreateWithoutRequerimientosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosInput = {
@@ -2651,6 +2855,7 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2664,6 +2869,8 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosInput = {
@@ -2690,6 +2897,7 @@ export type UserCreateWithoutRequerimientosRecepcionadosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2703,6 +2911,8 @@ export type UserCreateWithoutRequerimientosRecepcionadosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
@@ -2724,6 +2934,7 @@ export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2737,6 +2948,8 @@ export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosRecepcionadosInput = {
@@ -2774,6 +2987,7 @@ export type UserUpdateWithoutRequerimientosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -2787,6 +3001,8 @@ export type UserUpdateWithoutRequerimientosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosInput = {
@@ -2808,6 +3024,7 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -2821,6 +3038,8 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutRequerimientosRecepcionadosInput = {
@@ -2853,6 +3072,7 @@ export type UserUpdateWithoutRequerimientosRecepcionadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -2866,6 +3086,8 @@ export type UserUpdateWithoutRequerimientosRecepcionadosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
@@ -2887,6 +3109,7 @@ export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -2900,6 +3123,8 @@ export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientoHistorialInput = {
@@ -2921,6 +3146,7 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -2934,6 +3160,8 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
@@ -2955,6 +3183,7 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -2968,6 +3197,8 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientoHistorialInput = {
@@ -3005,6 +3236,7 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -3018,6 +3250,8 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
@@ -3039,6 +3273,7 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -3052,6 +3287,8 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -3074,6 +3311,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -3086,6 +3324,8 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -3108,6 +3348,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicita
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -3120,11 +3361,92 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicita
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput, Prisma.UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput>
+}
+
+export type UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+}
+
+export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+}
+
+export type UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
 }
 
 export type UserUpsertWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -3158,6 +3480,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -3170,6 +3493,8 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -3192,6 +3517,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicita
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -3204,6 +3530,257 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicita
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserUpsertWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput, Prisma.UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput>
+}
+
+export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserCreateWithoutCotizacionesCreadasInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+}
+
+export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+}
+
+export type UserCreateOrConnectWithoutCotizacionesCreadasInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCotizacionesCreadasInput, Prisma.UserUncheckedCreateWithoutCotizacionesCreadasInput>
+}
+
+export type UserUpsertWithoutCotizacionesCreadasInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCotizacionesCreadasInput, Prisma.UserUncheckedUpdateWithoutCotizacionesCreadasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCotizacionesCreadasInput, Prisma.UserUncheckedCreateWithoutCotizacionesCreadasInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCotizacionesCreadasInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCotizacionesCreadasInput, Prisma.UserUncheckedUpdateWithoutCotizacionesCreadasInput>
+}
+
+export type UserUpdateWithoutCotizacionesCreadasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
 }
 
 export type UserCreateWithoutComprasSimplesCreadasInput = {
@@ -3225,6 +3802,7 @@ export type UserCreateWithoutComprasSimplesCreadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -3238,6 +3816,8 @@ export type UserCreateWithoutComprasSimplesCreadasInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
@@ -3259,6 +3839,7 @@ export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -3272,11 +3853,92 @@ export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprasSimplesCreadasInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutComprasSimplesCreadasInput, Prisma.UserUncheckedCreateWithoutComprasSimplesCreadasInput>
+}
+
+export type UserCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+}
+
+export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+}
+
+export type UserCreateOrConnectWithoutComprasSimplesAprobadasInformalmenteInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput>
 }
 
 export type UserUpsertWithoutComprasSimplesCreadasInput = {
@@ -3309,6 +3971,7 @@ export type UserUpdateWithoutComprasSimplesCreadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -3322,6 +3985,8 @@ export type UserUpdateWithoutComprasSimplesCreadasInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
@@ -3343,6 +4008,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -3356,6 +4022,93 @@ export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserUpsertWithoutComprasSimplesAprobadasInformalmenteInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutComprasSimplesAprobadasInformalmenteInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput, Prisma.UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput>
+}
+
+export type UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutOrdenesCompraAprobadasInput = {
@@ -3377,6 +4130,7 @@ export type UserCreateWithoutOrdenesCompraAprobadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -3390,6 +4144,8 @@ export type UserCreateWithoutOrdenesCompraAprobadasInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
@@ -3411,6 +4167,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -3424,6 +4181,8 @@ export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraAprobadasInput = {
@@ -3450,6 +4209,7 @@ export type UserCreateWithoutOrdenesCompraInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -3463,6 +4223,8 @@ export type UserCreateWithoutOrdenesCompraInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraInput = {
@@ -3484,6 +4246,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -3497,6 +4260,8 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraInput = {
@@ -3534,6 +4299,7 @@ export type UserUpdateWithoutOrdenesCompraAprobadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -3547,6 +4313,8 @@ export type UserUpdateWithoutOrdenesCompraAprobadasInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
@@ -3568,6 +4336,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -3581,6 +4350,8 @@ export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutOrdenesCompraInput = {
@@ -3613,6 +4384,7 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -3626,6 +4398,8 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
@@ -3647,6 +4421,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -3660,6 +4435,8 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
@@ -3682,6 +4459,7 @@ export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -3694,6 +4472,8 @@ export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
@@ -3716,6 +4496,7 @@ export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -3728,6 +4509,8 @@ export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCompraSimpleArchivosSubidosInput = {
@@ -3766,6 +4549,7 @@ export type UserUpdateWithoutCompraSimpleArchivosSubidosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -3778,6 +4562,8 @@ export type UserUpdateWithoutCompraSimpleArchivosSubidosInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
@@ -3800,6 +4586,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -3812,6 +4599,8 @@ export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutCompraSimpleHistorialInput = {
@@ -3834,6 +4623,7 @@ export type UserCreateWithoutCompraSimpleHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
@@ -3846,6 +4636,8 @@ export type UserCreateWithoutCompraSimpleHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
@@ -3868,6 +4660,7 @@ export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
@@ -3880,6 +4673,8 @@ export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCompraSimpleHistorialInput = {
@@ -3918,6 +4713,7 @@ export type UserUpdateWithoutCompraSimpleHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
@@ -3930,6 +4726,8 @@ export type UserUpdateWithoutCompraSimpleHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
@@ -3952,6 +4750,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
@@ -3964,6 +4763,8 @@ export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutPagosRegistradosInput = {
@@ -3986,6 +4787,7 @@ export type UserCreateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
@@ -3998,6 +4800,8 @@ export type UserCreateWithoutPagosRegistradosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosRegistradosInput = {
@@ -4020,6 +4824,7 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
@@ -4032,6 +4837,8 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosRegistradosInput = {
@@ -4059,6 +4866,7 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
@@ -4071,6 +4879,8 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
@@ -4093,6 +4903,7 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
@@ -4105,6 +4916,8 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosEjecutadosInput = {
@@ -4143,6 +4956,7 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
@@ -4155,6 +4969,8 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
@@ -4177,6 +4993,7 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
@@ -4189,6 +5006,8 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutPagosEjecutadosInput = {
@@ -4222,6 +5041,7 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
@@ -4234,6 +5054,8 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
@@ -4256,6 +5078,7 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
@@ -4268,6 +5091,8 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutNotificacionesInput = {
@@ -4290,6 +5115,7 @@ export type UserCreateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
@@ -4302,6 +5128,8 @@ export type UserCreateWithoutNotificacionesInput = {
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutNotificacionesInput = {
@@ -4324,6 +5152,7 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
@@ -4336,6 +5165,8 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutNotificacionesInput = {
@@ -4374,6 +5205,7 @@ export type UserUpdateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
@@ -4386,6 +5218,8 @@ export type UserUpdateWithoutNotificacionesInput = {
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificacionesInput = {
@@ -4408,6 +5242,7 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
   ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
   comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
@@ -4420,6 +5255,8 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
   compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 
@@ -4437,6 +5274,7 @@ export type UserCountOutputType = {
   ordenesCompra: number
   ordenesCompraAprobadas: number
   comprasSimplesCreadas: number
+  comprasSimplesAprobadasInformalmente: number
   compraSimpleHistorial: number
   pagosRegistrados: number
   pagosEjecutados: number
@@ -4450,6 +5288,8 @@ export type UserCountOutputType = {
   planillasGeneradas: number
   compraSimpleArchivosSubidos: number
   solicitudesCotizacionAprobadasComoSolicitante: number
+  solicitudesCotizacionAprobadasComoGerencia: number
+  cotizacionesCreadas: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4462,6 +5302,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   ordenesCompra?: boolean | UserCountOutputTypeCountOrdenesCompraArgs
   ordenesCompraAprobadas?: boolean | UserCountOutputTypeCountOrdenesCompraAprobadasArgs
   comprasSimplesCreadas?: boolean | UserCountOutputTypeCountComprasSimplesCreadasArgs
+  comprasSimplesAprobadasInformalmente?: boolean | UserCountOutputTypeCountComprasSimplesAprobadasInformalmenteArgs
   compraSimpleHistorial?: boolean | UserCountOutputTypeCountCompraSimpleHistorialArgs
   pagosRegistrados?: boolean | UserCountOutputTypeCountPagosRegistradosArgs
   pagosEjecutados?: boolean | UserCountOutputTypeCountPagosEjecutadosArgs
@@ -4475,6 +5316,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   planillasGeneradas?: boolean | UserCountOutputTypeCountPlanillasGeneradasArgs
   compraSimpleArchivosSubidos?: boolean | UserCountOutputTypeCountCompraSimpleArchivosSubidosArgs
   solicitudesCotizacionAprobadasComoSolicitante?: boolean | UserCountOutputTypeCountSolicitudesCotizacionAprobadasComoSolicitanteArgs
+  solicitudesCotizacionAprobadasComoGerencia?: boolean | UserCountOutputTypeCountSolicitudesCotizacionAprobadasComoGerenciaArgs
+  cotizacionesCreadas?: boolean | UserCountOutputTypeCountCotizacionesCreadasArgs
 }
 
 /**
@@ -4547,6 +5390,13 @@ export type UserCountOutputTypeCountOrdenesCompraAprobadasArgs<ExtArgs extends r
  * UserCountOutputType without action
  */
 export type UserCountOutputTypeCountComprasSimplesCreadasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompraSimpleWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountComprasSimplesAprobadasInformalmenteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CompraSimpleWhereInput
 }
 
@@ -4641,6 +5491,20 @@ export type UserCountOutputTypeCountSolicitudesCotizacionAprobadasComoSolicitant
   where?: Prisma.SolicitudCotizacionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSolicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SolicitudCotizacionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCotizacionesCreadasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CotizacionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4662,6 +5526,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   ordenesCompra?: boolean | Prisma.User$ordenesCompraArgs<ExtArgs>
   ordenesCompraAprobadas?: boolean | Prisma.User$ordenesCompraAprobadasArgs<ExtArgs>
   comprasSimplesCreadas?: boolean | Prisma.User$comprasSimplesCreadasArgs<ExtArgs>
+  comprasSimplesAprobadasInformalmente?: boolean | Prisma.User$comprasSimplesAprobadasInformalmenteArgs<ExtArgs>
   compraSimpleHistorial?: boolean | Prisma.User$compraSimpleHistorialArgs<ExtArgs>
   pagosRegistrados?: boolean | Prisma.User$pagosRegistradosArgs<ExtArgs>
   pagosEjecutados?: boolean | Prisma.User$pagosEjecutadosArgs<ExtArgs>
@@ -4675,6 +5540,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   planillasGeneradas?: boolean | Prisma.User$planillasGeneradasArgs<ExtArgs>
   compraSimpleArchivosSubidos?: boolean | Prisma.User$compraSimpleArchivosSubidosArgs<ExtArgs>
   solicitudesCotizacionAprobadasComoSolicitante?: boolean | Prisma.User$solicitudesCotizacionAprobadasComoSolicitanteArgs<ExtArgs>
+  solicitudesCotizacionAprobadasComoGerencia?: boolean | Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs>
+  cotizacionesCreadas?: boolean | Prisma.User$cotizacionesCreadasArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -4726,6 +5593,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   ordenesCompra?: boolean | Prisma.User$ordenesCompraArgs<ExtArgs>
   ordenesCompraAprobadas?: boolean | Prisma.User$ordenesCompraAprobadasArgs<ExtArgs>
   comprasSimplesCreadas?: boolean | Prisma.User$comprasSimplesCreadasArgs<ExtArgs>
+  comprasSimplesAprobadasInformalmente?: boolean | Prisma.User$comprasSimplesAprobadasInformalmenteArgs<ExtArgs>
   compraSimpleHistorial?: boolean | Prisma.User$compraSimpleHistorialArgs<ExtArgs>
   pagosRegistrados?: boolean | Prisma.User$pagosRegistradosArgs<ExtArgs>
   pagosEjecutados?: boolean | Prisma.User$pagosEjecutadosArgs<ExtArgs>
@@ -4739,6 +5607,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   planillasGeneradas?: boolean | Prisma.User$planillasGeneradasArgs<ExtArgs>
   compraSimpleArchivosSubidos?: boolean | Prisma.User$compraSimpleArchivosSubidosArgs<ExtArgs>
   solicitudesCotizacionAprobadasComoSolicitante?: boolean | Prisma.User$solicitudesCotizacionAprobadasComoSolicitanteArgs<ExtArgs>
+  solicitudesCotizacionAprobadasComoGerencia?: boolean | Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs>
+  cotizacionesCreadas?: boolean | Prisma.User$cotizacionesCreadasArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -4757,6 +5627,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     ordenesCompra: Prisma.$OrdenCompraPayload<ExtArgs>[]
     ordenesCompraAprobadas: Prisma.$OrdenCompraPayload<ExtArgs>[]
     comprasSimplesCreadas: Prisma.$CompraSimplePayload<ExtArgs>[]
+    comprasSimplesAprobadasInformalmente: Prisma.$CompraSimplePayload<ExtArgs>[]
     compraSimpleHistorial: Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>[]
     pagosRegistrados: Prisma.$PagoPayload<ExtArgs>[]
     pagosEjecutados: Prisma.$PagoPayload<ExtArgs>[]
@@ -4770,6 +5641,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     planillasGeneradas: Prisma.$PlanillaPayload<ExtArgs>[]
     compraSimpleArchivosSubidos: Prisma.$CompraSimpleGrupoArchivoPayload<ExtArgs>[]
     solicitudesCotizacionAprobadasComoSolicitante: Prisma.$SolicitudCotizacionPayload<ExtArgs>[]
+    solicitudesCotizacionAprobadasComoGerencia: Prisma.$SolicitudCotizacionPayload<ExtArgs>[]
+    cotizacionesCreadas: Prisma.$CotizacionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5185,6 +6058,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   ordenesCompra<T extends Prisma.User$ordenesCompraArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordenesCompraArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ordenesCompraAprobadas<T extends Prisma.User$ordenesCompraAprobadasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordenesCompraAprobadasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comprasSimplesCreadas<T extends Prisma.User$comprasSimplesCreadasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$comprasSimplesCreadasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comprasSimplesAprobadasInformalmente<T extends Prisma.User$comprasSimplesAprobadasInformalmenteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$comprasSimplesAprobadasInformalmenteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   compraSimpleHistorial<T extends Prisma.User$compraSimpleHistorialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$compraSimpleHistorialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosRegistrados<T extends Prisma.User$pagosRegistradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosRegistradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosEjecutados<T extends Prisma.User$pagosEjecutadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosEjecutadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -5198,6 +6072,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   planillasGeneradas<T extends Prisma.User$planillasGeneradasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$planillasGeneradasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   compraSimpleArchivosSubidos<T extends Prisma.User$compraSimpleArchivosSubidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$compraSimpleArchivosSubidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimpleGrupoArchivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   solicitudesCotizacionAprobadasComoSolicitante<T extends Prisma.User$solicitudesCotizacionAprobadasComoSolicitanteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$solicitudesCotizacionAprobadasComoSolicitanteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  solicitudesCotizacionAprobadasComoGerencia<T extends Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cotizacionesCreadas<T extends Prisma.User$cotizacionesCreadasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cotizacionesCreadasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5864,6 +6740,30 @@ export type User$comprasSimplesCreadasArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
+ * User.comprasSimplesAprobadasInformalmente
+ */
+export type User$comprasSimplesAprobadasInformalmenteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompraSimple
+   */
+  select?: Prisma.CompraSimpleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompraSimple
+   */
+  omit?: Prisma.CompraSimpleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompraSimpleInclude<ExtArgs> | null
+  where?: Prisma.CompraSimpleWhereInput
+  orderBy?: Prisma.CompraSimpleOrderByWithRelationInput | Prisma.CompraSimpleOrderByWithRelationInput[]
+  cursor?: Prisma.CompraSimpleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompraSimpleScalarFieldEnum | Prisma.CompraSimpleScalarFieldEnum[]
+}
+
+/**
  * User.compraSimpleHistorial
  */
 export type User$compraSimpleHistorialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6173,6 +7073,54 @@ export type User$solicitudesCotizacionAprobadasComoSolicitanteArgs<ExtArgs exten
   take?: number
   skip?: number
   distinct?: Prisma.SolicitudCotizacionScalarFieldEnum | Prisma.SolicitudCotizacionScalarFieldEnum[]
+}
+
+/**
+ * User.solicitudesCotizacionAprobadasComoGerencia
+ */
+export type User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SolicitudCotizacion
+   */
+  select?: Prisma.SolicitudCotizacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SolicitudCotizacion
+   */
+  omit?: Prisma.SolicitudCotizacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SolicitudCotizacionInclude<ExtArgs> | null
+  where?: Prisma.SolicitudCotizacionWhereInput
+  orderBy?: Prisma.SolicitudCotizacionOrderByWithRelationInput | Prisma.SolicitudCotizacionOrderByWithRelationInput[]
+  cursor?: Prisma.SolicitudCotizacionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SolicitudCotizacionScalarFieldEnum | Prisma.SolicitudCotizacionScalarFieldEnum[]
+}
+
+/**
+ * User.cotizacionesCreadas
+ */
+export type User$cotizacionesCreadasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Cotizacion
+   */
+  select?: Prisma.CotizacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Cotizacion
+   */
+  omit?: Prisma.CotizacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CotizacionInclude<ExtArgs> | null
+  where?: Prisma.CotizacionWhereInput
+  orderBy?: Prisma.CotizacionOrderByWithRelationInput | Prisma.CotizacionOrderByWithRelationInput[]
+  cursor?: Prisma.CotizacionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CotizacionScalarFieldEnum | Prisma.CotizacionScalarFieldEnum[]
 }
 
 /**

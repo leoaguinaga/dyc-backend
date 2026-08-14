@@ -218,6 +218,7 @@ model User {
   ordenesCompra                 OrdenCompra[]                @relation("OrdenesCompraCreadosPor")
   ordenesCompraAprobadas        OrdenCompra[]                @relation("OrdenesCompraAprobadasPor")
   comprasSimplesCreadas         CompraSimple[]               @relation("ComprasSimplesCreadasPor")
+  comprasSimplesAprobadasInformalmente CompraSimple[]        @relation("ComprasSimplesAprobadoInformalPor")
   compraSimpleHistorial         CompraSimpleGrupoHistorial[] @relation("CompraSimpleHistorialActor")
   pagosRegistrados              Pago[]                       @relation("PagosRegistradosPor")
   pagosEjecutados               Pago[]                       @relation("PagosEjecutadosPor")
@@ -231,6 +232,8 @@ model User {
   planillasGeneradas            Planilla[]
   compraSimpleArchivosSubidos   CompraSimpleGrupoArchivo[]   @relation("CompraSimpleArchivosSubidoPor")
   solicitudesCotizacionAprobadasComoSolicitante SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaSolicitantePor")
+  solicitudesCotizacionAprobadasComoGerencia    SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaGerenciaPor")
+  cotizacionesCreadas                           Cotizacion[]          @relation("CotizacionesCreadasPor")
 
   @@map("users")
 }
@@ -898,6 +901,12 @@ model SolicitudCotizacion {
   aprobadaSolicitantePorRole Role?
   aprobadaSolicitanteEn      DateTime?
 
+  // Aprobación de gerencia sobre la cotización adjudicada.
+  aprobadaGerenciaPorId   String?
+  aprobadaGerenciaPor     User?           @relation("SolicitudCotizacionAprobadaGerenciaPor", fields: [aprobadaGerenciaPorId], references: [id])
+  aprobadaGerenciaPorRole Role?
+  aprobadaGerenciaEn      DateTime?
+
   items        SolicitudItem[]
   cotizaciones Cotizacion[]
   ordenes      OrdenCompra[]
@@ -936,6 +945,8 @@ model Cotizacion {
   condicionPago       String?
   incluyeIgv          Boolean             @default(false)
   nota                String?
+  creadoPorId         String?
+  creadoPor           User?               @relation("CotizacionesCreadasPor", fields: [creadoPorId], references: [id])
   creadoEn            DateTime            @default(now())
   actualizadoEn       DateTime            @updatedAt
 
@@ -1001,6 +1012,12 @@ model CompraSimple {
   nota          String?
   creadoEn      DateTime          @default(now())
   actualizadoEn DateTime          @updatedAt
+
+  // Respaldo informal para el supervisor: qué gerente/administrador autorizó
+  // la compra antes de realizarla. No reemplaza la aprobación formal en el
+  // sistema (aprobadoPor en OrdenCompra), solo evidencia que hubo visto bueno.
+  aprobadoInformalPorId String?
+  aprobadoInformalPor   User?     @relation("ComprasSimplesAprobadoInformalPor", fields: [aprobadoInformalPorId], references: [id])
 
   grupos OrdenCompra[]
 

@@ -112,6 +112,13 @@ export class CreateCompraSimpleDto {
   @IsBoolean()
   esRendicion?: boolean;
 
+  // Respaldo informal: qué gerente/administrador autorizó la compra antes de
+  // realizarla. No reemplaza la aprobación formal del sistema, solo evidencia
+  // que el supervisor tuvo un visto bueno previo.
+  @ValidateIf((dto: CreateCompraSimpleDto) => dto.esRendicion === true)
+  @IsString()
+  aprobadoInformalPorId?: string;
+
   @IsString()
   proyectoId: string;
 

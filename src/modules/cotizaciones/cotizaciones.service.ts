@@ -34,6 +34,7 @@ const SOLICITANTE_ROLES: Role[] = [
 const SOLICITUD_INCLUDE = {
   proyecto: { select: { id: true, nombre: true, codigo: true } },
   aprobadaSolicitantePor: { select: { id: true, name: true, role: true } },
+  aprobadaGerenciaPor: { select: { id: true, name: true, role: true } },
   items: {
     include: {
       item: {
@@ -44,6 +45,7 @@ const SOLICITUD_INCLUDE = {
   cotizaciones: {
     include: {
       proveedor: { select: { id: true, razonSocial: true, ruc: true } },
+      creadoPor: { select: { id: true, name: true, role: true } },
       items: {
         include: {
           item: { select: { id: true, codigo: true, nombre: true } },
@@ -167,7 +169,11 @@ export class CotizacionesService {
 
   // ── Cotizaciones ─────────────────────────────────────────────────────────
 
-  async inviteProveedor(solicitudId: string, dto: CreateCotizacionDto) {
+  async inviteProveedor(
+    solicitudId: string,
+    dto: CreateCotizacionDto,
+    actor: { id: string; role: Role },
+  ) {
     const solicitud = await this.findOneSolicitud(solicitudId);
 
     const yaInvitado = solicitud.cotizaciones.some(
@@ -184,9 +190,11 @@ export class CotizacionesService {
         solicitudId,
         proveedorId: dto.proveedorId,
         nota: dto.nota,
+        creadoPorId: actor.id,
       },
       include: {
         proveedor: { select: { id: true, razonSocial: true, ruc: true } },
+        creadoPor: { select: { id: true, name: true, role: true } },
       },
     });
 
@@ -400,6 +408,11 @@ export class CotizacionesService {
       data.aprobadaSolicitantePorId = actor.id;
       data.aprobadaSolicitantePorRole = actor.role;
       data.aprobadaSolicitanteEn = new Date();
+    }
+    if (nuevoEstado === 'aprobada_gerencia') {
+      data.aprobadaGerenciaPorId = actor.id;
+      data.aprobadaGerenciaPorRole = actor.role;
+      data.aprobadaGerenciaEn = new Date();
     }
 
     return this.prisma.solicitudCotizacion.update({

@@ -67,8 +67,15 @@ export class CotizacionesController {
 
   @Post(':id/cotizaciones')
   @Roles('administrador', 'logistica', 'gerencia')
-  inviteProveedor(@Param('id') id: string, @Body() dto: CreateCotizacionDto) {
-    return this.cotizacionesService.inviteProveedor(id, dto);
+  inviteProveedor(
+    @Param('id') id: string,
+    @Body() dto: CreateCotizacionDto,
+    @Req() req: Request,
+  ) {
+    return this.cotizacionesService.inviteProveedor(id, dto, {
+      id: req.user!.id,
+      role: req.user!.role,
+    });
   }
 
   // ── Cotizacion individual (estado) ────────────────────────────────────────
