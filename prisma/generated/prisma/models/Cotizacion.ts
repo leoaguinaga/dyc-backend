@@ -46,6 +46,7 @@ export type CotizacionMinAggregateOutputType = {
   condicionPago: string | null
   incluyeIgv: boolean | null
   nota: string | null
+  creadoPorId: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
 }
@@ -62,6 +63,7 @@ export type CotizacionMaxAggregateOutputType = {
   condicionPago: string | null
   incluyeIgv: boolean | null
   nota: string | null
+  creadoPorId: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
 }
@@ -78,6 +80,7 @@ export type CotizacionCountAggregateOutputType = {
   condicionPago: number
   incluyeIgv: number
   nota: number
+  creadoPorId: number
   creadoEn: number
   actualizadoEn: number
   _all: number
@@ -104,6 +107,7 @@ export type CotizacionMinAggregateInputType = {
   condicionPago?: true
   incluyeIgv?: true
   nota?: true
+  creadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
 }
@@ -120,6 +124,7 @@ export type CotizacionMaxAggregateInputType = {
   condicionPago?: true
   incluyeIgv?: true
   nota?: true
+  creadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
 }
@@ -136,6 +141,7 @@ export type CotizacionCountAggregateInputType = {
   condicionPago?: true
   incluyeIgv?: true
   nota?: true
+  creadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
   _all?: true
@@ -239,6 +245,7 @@ export type CotizacionGroupByOutputType = {
   condicionPago: string | null
   incluyeIgv: boolean
   nota: string | null
+  creadoPorId: string | null
   creadoEn: Date
   actualizadoEn: Date
   _count: CotizacionCountAggregateOutputType | null
@@ -278,10 +285,12 @@ export type CotizacionWhereInput = {
   condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  creadoPorId?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   solicitud?: Prisma.XOR<Prisma.SolicitudCotizacionScalarRelationFilter, Prisma.SolicitudCotizacionWhereInput>
   proveedor?: Prisma.XOR<Prisma.ProveedorScalarRelationFilter, Prisma.ProveedorWhereInput>
+  creadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.CotizacionItemListRelationFilter
   condicionesPago?: Prisma.CotizacionCondicionPagoListRelationFilter
   archivos?: Prisma.CotizacionArchivoListRelationFilter
@@ -299,10 +308,12 @@ export type CotizacionOrderByWithRelationInput = {
   condicionPago?: Prisma.SortOrderInput | Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
+  creadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
   solicitud?: Prisma.SolicitudCotizacionOrderByWithRelationInput
   proveedor?: Prisma.ProveedorOrderByWithRelationInput
+  creadoPor?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.CotizacionItemOrderByRelationAggregateInput
   condicionesPago?: Prisma.CotizacionCondicionPagoOrderByRelationAggregateInput
   archivos?: Prisma.CotizacionArchivoOrderByRelationAggregateInput
@@ -323,10 +334,12 @@ export type CotizacionWhereUniqueInput = Prisma.AtLeast<{
   condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  creadoPorId?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
   solicitud?: Prisma.XOR<Prisma.SolicitudCotizacionScalarRelationFilter, Prisma.SolicitudCotizacionWhereInput>
   proveedor?: Prisma.XOR<Prisma.ProveedorScalarRelationFilter, Prisma.ProveedorWhereInput>
+  creadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.CotizacionItemListRelationFilter
   condicionesPago?: Prisma.CotizacionCondicionPagoListRelationFilter
   archivos?: Prisma.CotizacionArchivoListRelationFilter
@@ -344,6 +357,7 @@ export type CotizacionOrderByWithAggregationInput = {
   condicionPago?: Prisma.SortOrderInput | Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
+  creadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
   _count?: Prisma.CotizacionCountOrderByAggregateInput
@@ -368,6 +382,7 @@ export type CotizacionScalarWhereWithAggregatesInput = {
   condicionPago?: Prisma.StringNullableWithAggregatesFilter<"Cotizacion"> | string | null
   incluyeIgv?: Prisma.BoolWithAggregatesFilter<"Cotizacion"> | boolean
   nota?: Prisma.StringNullableWithAggregatesFilter<"Cotizacion"> | string | null
+  creadoPorId?: Prisma.StringNullableWithAggregatesFilter<"Cotizacion"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Cotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Cotizacion"> | Date | string
 }
@@ -386,6 +401,7 @@ export type CotizacionCreateInput = {
   actualizadoEn?: Date | string
   solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutCotizacionesInput
   proveedor: Prisma.ProveedorCreateNestedOneWithoutCotizacionesInput
+  creadoPor?: Prisma.UserCreateNestedOneWithoutCotizacionesCreadasInput
   items?: Prisma.CotizacionItemCreateNestedManyWithoutCotizacionInput
   condicionesPago?: Prisma.CotizacionCondicionPagoCreateNestedManyWithoutCotizacionInput
   archivos?: Prisma.CotizacionArchivoCreateNestedManyWithoutCotizacionInput
@@ -403,6 +419,7 @@ export type CotizacionUncheckedCreateInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.CotizacionItemUncheckedCreateNestedManyWithoutCotizacionInput
@@ -424,6 +441,7 @@ export type CotizacionUpdateInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutCotizacionesNestedInput
   proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutCotizacionesNestedInput
+  creadoPor?: Prisma.UserUpdateOneWithoutCotizacionesCreadasNestedInput
   items?: Prisma.CotizacionItemUpdateManyWithoutCotizacionNestedInput
   condicionesPago?: Prisma.CotizacionCondicionPagoUpdateManyWithoutCotizacionNestedInput
   archivos?: Prisma.CotizacionArchivoUpdateManyWithoutCotizacionNestedInput
@@ -441,6 +459,7 @@ export type CotizacionUncheckedUpdateInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.CotizacionItemUncheckedUpdateManyWithoutCotizacionNestedInput
@@ -460,6 +479,7 @@ export type CotizacionCreateManyInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -490,6 +510,7 @@ export type CotizacionUncheckedUpdateManyInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -516,6 +537,7 @@ export type CotizacionCountOrderByAggregateInput = {
   condicionPago?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrder
+  creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
 }
@@ -536,6 +558,7 @@ export type CotizacionMaxOrderByAggregateInput = {
   condicionPago?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrder
+  creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
 }
@@ -552,6 +575,7 @@ export type CotizacionMinOrderByAggregateInput = {
   condicionPago?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   nota?: Prisma.SortOrder
+  creadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
 }
@@ -563,6 +587,48 @@ export type CotizacionSumOrderByAggregateInput = {
 export type CotizacionScalarRelationFilter = {
   is?: Prisma.CotizacionWhereInput
   isNot?: Prisma.CotizacionWhereInput
+}
+
+export type CotizacionCreateNestedManyWithoutCreadoPorInput = {
+  create?: Prisma.XOR<Prisma.CotizacionCreateWithoutCreadoPorInput, Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput> | Prisma.CotizacionCreateWithoutCreadoPorInput[] | Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput[]
+  connectOrCreate?: Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput | Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput[]
+  createMany?: Prisma.CotizacionCreateManyCreadoPorInputEnvelope
+  connect?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+}
+
+export type CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput = {
+  create?: Prisma.XOR<Prisma.CotizacionCreateWithoutCreadoPorInput, Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput> | Prisma.CotizacionCreateWithoutCreadoPorInput[] | Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput[]
+  connectOrCreate?: Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput | Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput[]
+  createMany?: Prisma.CotizacionCreateManyCreadoPorInputEnvelope
+  connect?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+}
+
+export type CotizacionUpdateManyWithoutCreadoPorNestedInput = {
+  create?: Prisma.XOR<Prisma.CotizacionCreateWithoutCreadoPorInput, Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput> | Prisma.CotizacionCreateWithoutCreadoPorInput[] | Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput[]
+  connectOrCreate?: Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput | Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput[]
+  upsert?: Prisma.CotizacionUpsertWithWhereUniqueWithoutCreadoPorInput | Prisma.CotizacionUpsertWithWhereUniqueWithoutCreadoPorInput[]
+  createMany?: Prisma.CotizacionCreateManyCreadoPorInputEnvelope
+  set?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  disconnect?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  delete?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  connect?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  update?: Prisma.CotizacionUpdateWithWhereUniqueWithoutCreadoPorInput | Prisma.CotizacionUpdateWithWhereUniqueWithoutCreadoPorInput[]
+  updateMany?: Prisma.CotizacionUpdateManyWithWhereWithoutCreadoPorInput | Prisma.CotizacionUpdateManyWithWhereWithoutCreadoPorInput[]
+  deleteMany?: Prisma.CotizacionScalarWhereInput | Prisma.CotizacionScalarWhereInput[]
+}
+
+export type CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput = {
+  create?: Prisma.XOR<Prisma.CotizacionCreateWithoutCreadoPorInput, Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput> | Prisma.CotizacionCreateWithoutCreadoPorInput[] | Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput[]
+  connectOrCreate?: Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput | Prisma.CotizacionCreateOrConnectWithoutCreadoPorInput[]
+  upsert?: Prisma.CotizacionUpsertWithWhereUniqueWithoutCreadoPorInput | Prisma.CotizacionUpsertWithWhereUniqueWithoutCreadoPorInput[]
+  createMany?: Prisma.CotizacionCreateManyCreadoPorInputEnvelope
+  set?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  disconnect?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  delete?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  connect?: Prisma.CotizacionWhereUniqueInput | Prisma.CotizacionWhereUniqueInput[]
+  update?: Prisma.CotizacionUpdateWithWhereUniqueWithoutCreadoPorInput | Prisma.CotizacionUpdateWithWhereUniqueWithoutCreadoPorInput[]
+  updateMany?: Prisma.CotizacionUpdateManyWithWhereWithoutCreadoPorInput | Prisma.CotizacionUpdateManyWithWhereWithoutCreadoPorInput[]
+  deleteMany?: Prisma.CotizacionScalarWhereInput | Prisma.CotizacionScalarWhereInput[]
 }
 
 export type CotizacionCreateNestedManyWithoutProveedorInput = {
@@ -695,6 +761,90 @@ export type CotizacionUpdateOneRequiredWithoutCondicionesPagoNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CotizacionUpdateToOneWithWhereWithoutCondicionesPagoInput, Prisma.CotizacionUpdateWithoutCondicionesPagoInput>, Prisma.CotizacionUncheckedUpdateWithoutCondicionesPagoInput>
 }
 
+export type CotizacionCreateWithoutCreadoPorInput = {
+  id?: string
+  estado?: $Enums.EstadoCotizacion
+  fechaRecibida?: Date | string | null
+  fechaEntrega?: Date | string | null
+  validezDias?: number | null
+  condicionesServicio?: string | null
+  condicionPago?: string | null
+  incluyeIgv?: boolean
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutCotizacionesInput
+  proveedor: Prisma.ProveedorCreateNestedOneWithoutCotizacionesInput
+  items?: Prisma.CotizacionItemCreateNestedManyWithoutCotizacionInput
+  condicionesPago?: Prisma.CotizacionCondicionPagoCreateNestedManyWithoutCotizacionInput
+  archivos?: Prisma.CotizacionArchivoCreateNestedManyWithoutCotizacionInput
+}
+
+export type CotizacionUncheckedCreateWithoutCreadoPorInput = {
+  id?: string
+  solicitudId: string
+  proveedorId: string
+  estado?: $Enums.EstadoCotizacion
+  fechaRecibida?: Date | string | null
+  fechaEntrega?: Date | string | null
+  validezDias?: number | null
+  condicionesServicio?: string | null
+  condicionPago?: string | null
+  incluyeIgv?: boolean
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  items?: Prisma.CotizacionItemUncheckedCreateNestedManyWithoutCotizacionInput
+  condicionesPago?: Prisma.CotizacionCondicionPagoUncheckedCreateNestedManyWithoutCotizacionInput
+  archivos?: Prisma.CotizacionArchivoUncheckedCreateNestedManyWithoutCotizacionInput
+}
+
+export type CotizacionCreateOrConnectWithoutCreadoPorInput = {
+  where: Prisma.CotizacionWhereUniqueInput
+  create: Prisma.XOR<Prisma.CotizacionCreateWithoutCreadoPorInput, Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput>
+}
+
+export type CotizacionCreateManyCreadoPorInputEnvelope = {
+  data: Prisma.CotizacionCreateManyCreadoPorInput | Prisma.CotizacionCreateManyCreadoPorInput[]
+  skipDuplicates?: boolean
+}
+
+export type CotizacionUpsertWithWhereUniqueWithoutCreadoPorInput = {
+  where: Prisma.CotizacionWhereUniqueInput
+  update: Prisma.XOR<Prisma.CotizacionUpdateWithoutCreadoPorInput, Prisma.CotizacionUncheckedUpdateWithoutCreadoPorInput>
+  create: Prisma.XOR<Prisma.CotizacionCreateWithoutCreadoPorInput, Prisma.CotizacionUncheckedCreateWithoutCreadoPorInput>
+}
+
+export type CotizacionUpdateWithWhereUniqueWithoutCreadoPorInput = {
+  where: Prisma.CotizacionWhereUniqueInput
+  data: Prisma.XOR<Prisma.CotizacionUpdateWithoutCreadoPorInput, Prisma.CotizacionUncheckedUpdateWithoutCreadoPorInput>
+}
+
+export type CotizacionUpdateManyWithWhereWithoutCreadoPorInput = {
+  where: Prisma.CotizacionScalarWhereInput
+  data: Prisma.XOR<Prisma.CotizacionUpdateManyMutationInput, Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorInput>
+}
+
+export type CotizacionScalarWhereInput = {
+  AND?: Prisma.CotizacionScalarWhereInput | Prisma.CotizacionScalarWhereInput[]
+  OR?: Prisma.CotizacionScalarWhereInput[]
+  NOT?: Prisma.CotizacionScalarWhereInput | Prisma.CotizacionScalarWhereInput[]
+  id?: Prisma.StringFilter<"Cotizacion"> | string
+  solicitudId?: Prisma.StringFilter<"Cotizacion"> | string
+  proveedorId?: Prisma.StringFilter<"Cotizacion"> | string
+  estado?: Prisma.EnumEstadoCotizacionFilter<"Cotizacion"> | $Enums.EstadoCotizacion
+  fechaRecibida?: Prisma.DateTimeNullableFilter<"Cotizacion"> | Date | string | null
+  fechaEntrega?: Prisma.DateTimeNullableFilter<"Cotizacion"> | Date | string | null
+  validezDias?: Prisma.IntNullableFilter<"Cotizacion"> | number | null
+  condicionesServicio?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
+  nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  creadoPorId?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
+  creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
+  actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
+}
+
 export type CotizacionCreateWithoutProveedorInput = {
   id?: string
   estado?: $Enums.EstadoCotizacion
@@ -708,6 +858,7 @@ export type CotizacionCreateWithoutProveedorInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutCotizacionesInput
+  creadoPor?: Prisma.UserCreateNestedOneWithoutCotizacionesCreadasInput
   items?: Prisma.CotizacionItemCreateNestedManyWithoutCotizacionInput
   condicionesPago?: Prisma.CotizacionCondicionPagoCreateNestedManyWithoutCotizacionInput
   archivos?: Prisma.CotizacionArchivoCreateNestedManyWithoutCotizacionInput
@@ -724,6 +875,7 @@ export type CotizacionUncheckedCreateWithoutProveedorInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.CotizacionItemUncheckedCreateNestedManyWithoutCotizacionInput
@@ -757,25 +909,6 @@ export type CotizacionUpdateManyWithWhereWithoutProveedorInput = {
   data: Prisma.XOR<Prisma.CotizacionUpdateManyMutationInput, Prisma.CotizacionUncheckedUpdateManyWithoutProveedorInput>
 }
 
-export type CotizacionScalarWhereInput = {
-  AND?: Prisma.CotizacionScalarWhereInput | Prisma.CotizacionScalarWhereInput[]
-  OR?: Prisma.CotizacionScalarWhereInput[]
-  NOT?: Prisma.CotizacionScalarWhereInput | Prisma.CotizacionScalarWhereInput[]
-  id?: Prisma.StringFilter<"Cotizacion"> | string
-  solicitudId?: Prisma.StringFilter<"Cotizacion"> | string
-  proveedorId?: Prisma.StringFilter<"Cotizacion"> | string
-  estado?: Prisma.EnumEstadoCotizacionFilter<"Cotizacion"> | $Enums.EstadoCotizacion
-  fechaRecibida?: Prisma.DateTimeNullableFilter<"Cotizacion"> | Date | string | null
-  fechaEntrega?: Prisma.DateTimeNullableFilter<"Cotizacion"> | Date | string | null
-  validezDias?: Prisma.IntNullableFilter<"Cotizacion"> | number | null
-  condicionesServicio?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
-  condicionPago?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
-  incluyeIgv?: Prisma.BoolFilter<"Cotizacion"> | boolean
-  nota?: Prisma.StringNullableFilter<"Cotizacion"> | string | null
-  creadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
-  actualizadoEn?: Prisma.DateTimeFilter<"Cotizacion"> | Date | string
-}
-
 export type CotizacionCreateWithoutSolicitudInput = {
   id?: string
   estado?: $Enums.EstadoCotizacion
@@ -789,6 +922,7 @@ export type CotizacionCreateWithoutSolicitudInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proveedor: Prisma.ProveedorCreateNestedOneWithoutCotizacionesInput
+  creadoPor?: Prisma.UserCreateNestedOneWithoutCotizacionesCreadasInput
   items?: Prisma.CotizacionItemCreateNestedManyWithoutCotizacionInput
   condicionesPago?: Prisma.CotizacionCondicionPagoCreateNestedManyWithoutCotizacionInput
   archivos?: Prisma.CotizacionArchivoCreateNestedManyWithoutCotizacionInput
@@ -805,6 +939,7 @@ export type CotizacionUncheckedCreateWithoutSolicitudInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.CotizacionItemUncheckedCreateNestedManyWithoutCotizacionInput
@@ -852,6 +987,7 @@ export type CotizacionCreateWithoutArchivosInput = {
   actualizadoEn?: Date | string
   solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutCotizacionesInput
   proveedor: Prisma.ProveedorCreateNestedOneWithoutCotizacionesInput
+  creadoPor?: Prisma.UserCreateNestedOneWithoutCotizacionesCreadasInput
   items?: Prisma.CotizacionItemCreateNestedManyWithoutCotizacionInput
   condicionesPago?: Prisma.CotizacionCondicionPagoCreateNestedManyWithoutCotizacionInput
 }
@@ -868,6 +1004,7 @@ export type CotizacionUncheckedCreateWithoutArchivosInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.CotizacionItemUncheckedCreateNestedManyWithoutCotizacionInput
@@ -904,6 +1041,7 @@ export type CotizacionUpdateWithoutArchivosInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutCotizacionesNestedInput
   proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutCotizacionesNestedInput
+  creadoPor?: Prisma.UserUpdateOneWithoutCotizacionesCreadasNestedInput
   items?: Prisma.CotizacionItemUpdateManyWithoutCotizacionNestedInput
   condicionesPago?: Prisma.CotizacionCondicionPagoUpdateManyWithoutCotizacionNestedInput
 }
@@ -920,6 +1058,7 @@ export type CotizacionUncheckedUpdateWithoutArchivosInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.CotizacionItemUncheckedUpdateManyWithoutCotizacionNestedInput
@@ -940,6 +1079,7 @@ export type CotizacionCreateWithoutItemsInput = {
   actualizadoEn?: Date | string
   solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutCotizacionesInput
   proveedor: Prisma.ProveedorCreateNestedOneWithoutCotizacionesInput
+  creadoPor?: Prisma.UserCreateNestedOneWithoutCotizacionesCreadasInput
   condicionesPago?: Prisma.CotizacionCondicionPagoCreateNestedManyWithoutCotizacionInput
   archivos?: Prisma.CotizacionArchivoCreateNestedManyWithoutCotizacionInput
 }
@@ -956,6 +1096,7 @@ export type CotizacionUncheckedCreateWithoutItemsInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   condicionesPago?: Prisma.CotizacionCondicionPagoUncheckedCreateNestedManyWithoutCotizacionInput
@@ -992,6 +1133,7 @@ export type CotizacionUpdateWithoutItemsInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutCotizacionesNestedInput
   proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutCotizacionesNestedInput
+  creadoPor?: Prisma.UserUpdateOneWithoutCotizacionesCreadasNestedInput
   condicionesPago?: Prisma.CotizacionCondicionPagoUpdateManyWithoutCotizacionNestedInput
   archivos?: Prisma.CotizacionArchivoUpdateManyWithoutCotizacionNestedInput
 }
@@ -1008,6 +1150,7 @@ export type CotizacionUncheckedUpdateWithoutItemsInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   condicionesPago?: Prisma.CotizacionCondicionPagoUncheckedUpdateManyWithoutCotizacionNestedInput
@@ -1028,6 +1171,7 @@ export type CotizacionCreateWithoutCondicionesPagoInput = {
   actualizadoEn?: Date | string
   solicitud: Prisma.SolicitudCotizacionCreateNestedOneWithoutCotizacionesInput
   proveedor: Prisma.ProveedorCreateNestedOneWithoutCotizacionesInput
+  creadoPor?: Prisma.UserCreateNestedOneWithoutCotizacionesCreadasInput
   items?: Prisma.CotizacionItemCreateNestedManyWithoutCotizacionInput
   archivos?: Prisma.CotizacionArchivoCreateNestedManyWithoutCotizacionInput
 }
@@ -1044,6 +1188,7 @@ export type CotizacionUncheckedCreateWithoutCondicionesPagoInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   items?: Prisma.CotizacionItemUncheckedCreateNestedManyWithoutCotizacionInput
@@ -1080,6 +1225,7 @@ export type CotizacionUpdateWithoutCondicionesPagoInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutCotizacionesNestedInput
   proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutCotizacionesNestedInput
+  creadoPor?: Prisma.UserUpdateOneWithoutCotizacionesCreadasNestedInput
   items?: Prisma.CotizacionItemUpdateManyWithoutCotizacionNestedInput
   archivos?: Prisma.CotizacionArchivoUpdateManyWithoutCotizacionNestedInput
 }
@@ -1096,10 +1242,81 @@ export type CotizacionUncheckedUpdateWithoutCondicionesPagoInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.CotizacionItemUncheckedUpdateManyWithoutCotizacionNestedInput
   archivos?: Prisma.CotizacionArchivoUncheckedUpdateManyWithoutCotizacionNestedInput
+}
+
+export type CotizacionCreateManyCreadoPorInput = {
+  id?: string
+  solicitudId: string
+  proveedorId: string
+  estado?: $Enums.EstadoCotizacion
+  fechaRecibida?: Date | string | null
+  fechaEntrega?: Date | string | null
+  validezDias?: number | null
+  condicionesServicio?: string | null
+  condicionPago?: string | null
+  incluyeIgv?: boolean
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type CotizacionUpdateWithoutCreadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoCotizacionFieldUpdateOperationsInput | $Enums.EstadoCotizacion
+  fechaRecibida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutCotizacionesNestedInput
+  proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutCotizacionesNestedInput
+  items?: Prisma.CotizacionItemUpdateManyWithoutCotizacionNestedInput
+  condicionesPago?: Prisma.CotizacionCondicionPagoUpdateManyWithoutCotizacionNestedInput
+  archivos?: Prisma.CotizacionArchivoUpdateManyWithoutCotizacionNestedInput
+}
+
+export type CotizacionUncheckedUpdateWithoutCreadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
+  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoCotizacionFieldUpdateOperationsInput | $Enums.EstadoCotizacion
+  fechaRecibida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.CotizacionItemUncheckedUpdateManyWithoutCotizacionNestedInput
+  condicionesPago?: Prisma.CotizacionCondicionPagoUncheckedUpdateManyWithoutCotizacionNestedInput
+  archivos?: Prisma.CotizacionArchivoUncheckedUpdateManyWithoutCotizacionNestedInput
+}
+
+export type CotizacionUncheckedUpdateManyWithoutCreadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  solicitudId?: Prisma.StringFieldUpdateOperationsInput | string
+  proveedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoCotizacionFieldUpdateOperationsInput | $Enums.EstadoCotizacion
+  fechaRecibida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validezDias?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  condicionesServicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CotizacionCreateManyProveedorInput = {
@@ -1113,6 +1330,7 @@ export type CotizacionCreateManyProveedorInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1130,6 +1348,7 @@ export type CotizacionUpdateWithoutProveedorInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   solicitud?: Prisma.SolicitudCotizacionUpdateOneRequiredWithoutCotizacionesNestedInput
+  creadoPor?: Prisma.UserUpdateOneWithoutCotizacionesCreadasNestedInput
   items?: Prisma.CotizacionItemUpdateManyWithoutCotizacionNestedInput
   condicionesPago?: Prisma.CotizacionCondicionPagoUpdateManyWithoutCotizacionNestedInput
   archivos?: Prisma.CotizacionArchivoUpdateManyWithoutCotizacionNestedInput
@@ -1146,6 +1365,7 @@ export type CotizacionUncheckedUpdateWithoutProveedorInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.CotizacionItemUncheckedUpdateManyWithoutCotizacionNestedInput
@@ -1164,6 +1384,7 @@ export type CotizacionUncheckedUpdateManyWithoutProveedorInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1179,6 +1400,7 @@ export type CotizacionCreateManySolicitudInput = {
   condicionPago?: string | null
   incluyeIgv?: boolean
   nota?: string | null
+  creadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1196,6 +1418,7 @@ export type CotizacionUpdateWithoutSolicitudInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proveedor?: Prisma.ProveedorUpdateOneRequiredWithoutCotizacionesNestedInput
+  creadoPor?: Prisma.UserUpdateOneWithoutCotizacionesCreadasNestedInput
   items?: Prisma.CotizacionItemUpdateManyWithoutCotizacionNestedInput
   condicionesPago?: Prisma.CotizacionCondicionPagoUpdateManyWithoutCotizacionNestedInput
   archivos?: Prisma.CotizacionArchivoUpdateManyWithoutCotizacionNestedInput
@@ -1212,6 +1435,7 @@ export type CotizacionUncheckedUpdateWithoutSolicitudInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.CotizacionItemUncheckedUpdateManyWithoutCotizacionNestedInput
@@ -1230,6 +1454,7 @@ export type CotizacionUncheckedUpdateManyWithoutSolicitudInput = {
   condicionPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1295,10 +1520,12 @@ export type CotizacionSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   condicionPago?: boolean
   incluyeIgv?: boolean
   nota?: boolean
+  creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  creadoPor?: boolean | Prisma.Cotizacion$creadoPorArgs<ExtArgs>
   items?: boolean | Prisma.Cotizacion$itemsArgs<ExtArgs>
   condicionesPago?: boolean | Prisma.Cotizacion$condicionesPagoArgs<ExtArgs>
   archivos?: boolean | Prisma.Cotizacion$archivosArgs<ExtArgs>
@@ -1317,10 +1544,12 @@ export type CotizacionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   condicionPago?: boolean
   incluyeIgv?: boolean
   nota?: boolean
+  creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  creadoPor?: boolean | Prisma.Cotizacion$creadoPorArgs<ExtArgs>
 }, ExtArgs["result"]["cotizacion"]>
 
 export type CotizacionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1335,10 +1564,12 @@ export type CotizacionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   condicionPago?: boolean
   incluyeIgv?: boolean
   nota?: boolean
+  creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  creadoPor?: boolean | Prisma.Cotizacion$creadoPorArgs<ExtArgs>
 }, ExtArgs["result"]["cotizacion"]>
 
 export type CotizacionSelectScalar = {
@@ -1353,14 +1584,16 @@ export type CotizacionSelectScalar = {
   condicionPago?: boolean
   incluyeIgv?: boolean
   nota?: boolean
+  creadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type CotizacionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "solicitudId" | "proveedorId" | "estado" | "fechaRecibida" | "fechaEntrega" | "validezDias" | "condicionesServicio" | "condicionPago" | "incluyeIgv" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["cotizacion"]>
+export type CotizacionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "solicitudId" | "proveedorId" | "estado" | "fechaRecibida" | "fechaEntrega" | "validezDias" | "condicionesServicio" | "condicionPago" | "incluyeIgv" | "nota" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["cotizacion"]>
 export type CotizacionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  creadoPor?: boolean | Prisma.Cotizacion$creadoPorArgs<ExtArgs>
   items?: boolean | Prisma.Cotizacion$itemsArgs<ExtArgs>
   condicionesPago?: boolean | Prisma.Cotizacion$condicionesPagoArgs<ExtArgs>
   archivos?: boolean | Prisma.Cotizacion$archivosArgs<ExtArgs>
@@ -1369,10 +1602,12 @@ export type CotizacionInclude<ExtArgs extends runtime.Types.Extensions.InternalA
 export type CotizacionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  creadoPor?: boolean | Prisma.Cotizacion$creadoPorArgs<ExtArgs>
 }
 export type CotizacionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>
   proveedor?: boolean | Prisma.ProveedorDefaultArgs<ExtArgs>
+  creadoPor?: boolean | Prisma.Cotizacion$creadoPorArgs<ExtArgs>
 }
 
 export type $CotizacionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1380,6 +1615,7 @@ export type $CotizacionPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     solicitud: Prisma.$SolicitudCotizacionPayload<ExtArgs>
     proveedor: Prisma.$ProveedorPayload<ExtArgs>
+    creadoPor: Prisma.$UserPayload<ExtArgs> | null
     items: Prisma.$CotizacionItemPayload<ExtArgs>[]
     condicionesPago: Prisma.$CotizacionCondicionPagoPayload<ExtArgs>[]
     archivos: Prisma.$CotizacionArchivoPayload<ExtArgs>[]
@@ -1396,6 +1632,7 @@ export type $CotizacionPayload<ExtArgs extends runtime.Types.Extensions.Internal
     condicionPago: string | null
     incluyeIgv: boolean
     nota: string | null
+    creadoPorId: string | null
     creadoEn: Date
     actualizadoEn: Date
   }, ExtArgs["result"]["cotizacion"]>
@@ -1794,6 +2031,7 @@ export interface Prisma__CotizacionClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   solicitud<T extends Prisma.SolicitudCotizacionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacionDefaultArgs<ExtArgs>>): Prisma.Prisma__SolicitudCotizacionClient<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   proveedor<T extends Prisma.ProveedorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProveedorDefaultArgs<ExtArgs>>): Prisma.Prisma__ProveedorClient<runtime.Types.Result.GetResult<Prisma.$ProveedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  creadoPor<T extends Prisma.Cotizacion$creadoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cotizacion$creadoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Cotizacion$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cotizacion$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CotizacionItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   condicionesPago<T extends Prisma.Cotizacion$condicionesPagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cotizacion$condicionesPagoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CotizacionCondicionPagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   archivos<T extends Prisma.Cotizacion$archivosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cotizacion$archivosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CotizacionArchivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1837,6 +2075,7 @@ export interface CotizacionFieldRefs {
   readonly condicionPago: Prisma.FieldRef<"Cotizacion", 'String'>
   readonly incluyeIgv: Prisma.FieldRef<"Cotizacion", 'Boolean'>
   readonly nota: Prisma.FieldRef<"Cotizacion", 'String'>
+  readonly creadoPorId: Prisma.FieldRef<"Cotizacion", 'String'>
   readonly creadoEn: Prisma.FieldRef<"Cotizacion", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"Cotizacion", 'DateTime'>
 }
@@ -2237,6 +2476,25 @@ export type CotizacionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Cotizacions to delete.
    */
   limit?: number
+}
+
+/**
+ * Cotizacion.creadoPor
+ */
+export type Cotizacion$creadoPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

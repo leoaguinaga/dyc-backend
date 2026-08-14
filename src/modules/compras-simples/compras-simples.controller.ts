@@ -40,6 +40,11 @@ export class ComprasSimplesController {
     return this.service.miTrabajador(req.user!.id);
   }
 
+  @Get('aprobadores-informales')
+  aprobadoresInformales() {
+    return this.service.aprobadoresInformales();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.service.findOne(id);

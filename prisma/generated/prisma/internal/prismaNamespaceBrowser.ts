@@ -587,7 +587,10 @@ export const SolicitudCotizacionScalarFieldEnum = {
   actualizadoEn: 'actualizadoEn',
   aprobadaSolicitantePorId: 'aprobadaSolicitantePorId',
   aprobadaSolicitantePorRole: 'aprobadaSolicitantePorRole',
-  aprobadaSolicitanteEn: 'aprobadaSolicitanteEn'
+  aprobadaSolicitanteEn: 'aprobadaSolicitanteEn',
+  aprobadaGerenciaPorId: 'aprobadaGerenciaPorId',
+  aprobadaGerenciaPorRole: 'aprobadaGerenciaPorRole',
+  aprobadaGerenciaEn: 'aprobadaGerenciaEn'
 } as const
 
 export type SolicitudCotizacionScalarFieldEnum = (typeof SolicitudCotizacionScalarFieldEnum)[keyof typeof SolicitudCotizacionScalarFieldEnum]
@@ -619,6 +622,7 @@ export const CotizacionScalarFieldEnum = {
   condicionPago: 'condicionPago',
   incluyeIgv: 'incluyeIgv',
   nota: 'nota',
+  creadoPorId: 'creadoPorId',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
 } as const
@@ -672,7 +676,8 @@ export const CompraSimpleScalarFieldEnum = {
   creadoPorId: 'creadoPorId',
   nota: 'nota',
   creadoEn: 'creadoEn',
-  actualizadoEn: 'actualizadoEn'
+  actualizadoEn: 'actualizadoEn',
+  aprobadoInformalPorId: 'aprobadoInformalPorId'
 } as const
 
 export type CompraSimpleScalarFieldEnum = (typeof CompraSimpleScalarFieldEnum)[keyof typeof CompraSimpleScalarFieldEnum]

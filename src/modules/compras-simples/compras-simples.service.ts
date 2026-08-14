@@ -49,6 +49,9 @@ const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
 // Paso 2: aprobación final de gerencia (recién aquí se genera el pago)
 const ROLES_APROBACION_GERENCIA: Role[] = ['gerencia', 'administrador', 'admin_ti'];
 
+// Roles que un supervisor puede citar como respaldo informal de una rendición
+const ROLES_APROBADOR_INFORMAL: Role[] = ['gerencia', 'administrador'];
+
 const GRUPO_INCLUDE = {
   proveedor: {
     select: { id: true, razonSocial: true, ruc: true },
@@ -69,6 +72,7 @@ const GRUPO_INCLUDE = {
 const COMPRA_SIMPLE_INCLUDE = {
   proyecto: { select: { id: true, codigo: true, nombre: true } },
   creadoPor: { select: { id: true, name: true, email: true, role: true } },
+  aprobadoInformalPor: { select: { id: true, name: true, role: true } },
   grupos: { include: GRUPO_INCLUDE, orderBy: { creadoEn: 'asc' as const } },
 } as const;
 
@@ -83,6 +87,14 @@ export class ComprasSimplesService {
     @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
     private events: EventEmitter2,
   ) {}
+
+  aprobadoresInformales() {
+    return this.prisma.user.findMany({
+      where: { role: { in: ROLES_APROBADOR_INFORMAL } },
+      select: { id: true, name: true, role: true },
+      orderBy: { name: 'asc' },
+    });
+  }
 
   miTrabajador(userId: string) {
     return this.prisma.trabajador.findUnique({
@@ -147,6 +159,19 @@ export class ComprasSimplesService {
           'Una compra en rendición solo puede tener un proveedor',
         );
       for (const grupo of dto.grupos) grupo.destinoPago = 'trabajador';
+
+      if (!dto.aprobadoInformalPorId)
+        throw new BadRequestException(
+          'Selecciona qué gerente o administrador aprobó esta compra',
+        );
+      const aprobador = await this.prisma.user.findUnique({
+        where: { id: dto.aprobadoInformalPorId },
+        select: { id: true, role: true },
+      });
+      if (!aprobador || !ROLES_APROBADOR_INFORMAL.includes(aprobador.role))
+        throw new BadRequestException(
+          'El aprobador seleccionado debe ser gerencia o administrador',
+        );
     }
 
     // "Depositar al trabajador" siempre significa el propio solicitante —
@@ -184,6 +209,9 @@ export class ComprasSimplesService {
         nombre: dto.nombre,
         tipo: dto.tipo,
         esRendicion: dto.esRendicion ?? false,
+        aprobadoInformalPorId: dto.esRendicion
+          ? dto.aprobadoInformalPorId
+          : undefined,
         proyectoId: dto.proyectoId,
         creadoPorId: userId,
         nota: dto.nota,

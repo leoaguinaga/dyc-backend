@@ -35,6 +35,7 @@ export type CompraSimpleMinAggregateOutputType = {
   nota: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
+  aprobadoInformalPorId: string | null
 }
 
 export type CompraSimpleMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type CompraSimpleMaxAggregateOutputType = {
   nota: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
+  aprobadoInformalPorId: string | null
 }
 
 export type CompraSimpleCountAggregateOutputType = {
@@ -61,6 +63,7 @@ export type CompraSimpleCountAggregateOutputType = {
   nota: number
   creadoEn: number
   actualizadoEn: number
+  aprobadoInformalPorId: number
   _all: number
 }
 
@@ -76,6 +79,7 @@ export type CompraSimpleMinAggregateInputType = {
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
+  aprobadoInformalPorId?: true
 }
 
 export type CompraSimpleMaxAggregateInputType = {
@@ -89,6 +93,7 @@ export type CompraSimpleMaxAggregateInputType = {
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
+  aprobadoInformalPorId?: true
 }
 
 export type CompraSimpleCountAggregateInputType = {
@@ -102,6 +107,7 @@ export type CompraSimpleCountAggregateInputType = {
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
+  aprobadoInformalPorId?: true
   _all?: true
 }
 
@@ -188,6 +194,7 @@ export type CompraSimpleGroupByOutputType = {
   nota: string | null
   creadoEn: Date
   actualizadoEn: Date
+  aprobadoInformalPorId: string | null
   _count: CompraSimpleCountAggregateOutputType | null
   _min: CompraSimpleMinAggregateOutputType | null
   _max: CompraSimpleMaxAggregateOutputType | null
@@ -222,8 +229,10 @@ export type CompraSimpleWhereInput = {
   nota?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"CompraSimple"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"CompraSimple"> | Date | string
+  aprobadoInformalPorId?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
   creadoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  aprobadoInformalPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   grupos?: Prisma.OrdenCompraListRelationFilter
 }
 
@@ -238,8 +247,10 @@ export type CompraSimpleOrderByWithRelationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadoInformalPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
   creadoPor?: Prisma.UserOrderByWithRelationInput
+  aprobadoInformalPor?: Prisma.UserOrderByWithRelationInput
   grupos?: Prisma.OrdenCompraOrderByRelationAggregateInput
 }
 
@@ -257,8 +268,10 @@ export type CompraSimpleWhereUniqueInput = Prisma.AtLeast<{
   nota?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"CompraSimple"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"CompraSimple"> | Date | string
+  aprobadoInformalPorId?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
   creadoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  aprobadoInformalPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   grupos?: Prisma.OrdenCompraListRelationFilter
 }, "id" | "codigo">
 
@@ -273,6 +286,7 @@ export type CompraSimpleOrderByWithAggregationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadoInformalPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CompraSimpleCountOrderByAggregateInput
   _max?: Prisma.CompraSimpleMaxOrderByAggregateInput
   _min?: Prisma.CompraSimpleMinOrderByAggregateInput
@@ -292,6 +306,7 @@ export type CompraSimpleScalarWhereWithAggregatesInput = {
   nota?: Prisma.StringNullableWithAggregatesFilter<"CompraSimple"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"CompraSimple"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"CompraSimple"> | Date | string
+  aprobadoInformalPorId?: Prisma.StringNullableWithAggregatesFilter<"CompraSimple"> | string | null
 }
 
 export type CompraSimpleCreateInput = {
@@ -305,6 +320,7 @@ export type CompraSimpleCreateInput = {
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutComprasSimplesInput
   creadoPor: Prisma.UserCreateNestedOneWithoutComprasSimplesCreadasInput
+  aprobadoInformalPor?: Prisma.UserCreateNestedOneWithoutComprasSimplesAprobadasInformalmenteInput
   grupos?: Prisma.OrdenCompraCreateNestedManyWithoutCompraSimpleInput
 }
 
@@ -319,6 +335,7 @@ export type CompraSimpleUncheckedCreateInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
   grupos?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCompraSimpleInput
 }
 
@@ -333,6 +350,7 @@ export type CompraSimpleUpdateInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutComprasSimplesNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutComprasSimplesCreadasNestedInput
+  aprobadoInformalPor?: Prisma.UserUpdateOneWithoutComprasSimplesAprobadasInformalmenteNestedInput
   grupos?: Prisma.OrdenCompraUpdateManyWithoutCompraSimpleNestedInput
 }
 
@@ -347,6 +365,7 @@ export type CompraSimpleUncheckedUpdateInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupos?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCompraSimpleNestedInput
 }
 
@@ -361,6 +380,7 @@ export type CompraSimpleCreateManyInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
 }
 
 export type CompraSimpleUpdateManyMutationInput = {
@@ -385,6 +405,7 @@ export type CompraSimpleUncheckedUpdateManyInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CompraSimpleListRelationFilter = {
@@ -408,6 +429,7 @@ export type CompraSimpleCountOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadoInformalPorId?: Prisma.SortOrder
 }
 
 export type CompraSimpleMaxOrderByAggregateInput = {
@@ -421,6 +443,7 @@ export type CompraSimpleMaxOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadoInformalPorId?: Prisma.SortOrder
 }
 
 export type CompraSimpleMinOrderByAggregateInput = {
@@ -434,6 +457,7 @@ export type CompraSimpleMinOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadoInformalPorId?: Prisma.SortOrder
 }
 
 export type CompraSimpleNullableScalarRelationFilter = {
@@ -448,10 +472,24 @@ export type CompraSimpleCreateNestedManyWithoutCreadoPorInput = {
   connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
 }
 
+export type CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput = {
+  create?: Prisma.XOR<Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput> | Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput[] | Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput[]
+  connectOrCreate?: Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput | Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput[]
+  createMany?: Prisma.CompraSimpleCreateManyAprobadoInformalPorInputEnvelope
+  connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+}
+
 export type CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput = {
   create?: Prisma.XOR<Prisma.CompraSimpleCreateWithoutCreadoPorInput, Prisma.CompraSimpleUncheckedCreateWithoutCreadoPorInput> | Prisma.CompraSimpleCreateWithoutCreadoPorInput[] | Prisma.CompraSimpleUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.CompraSimpleCreateOrConnectWithoutCreadoPorInput | Prisma.CompraSimpleCreateOrConnectWithoutCreadoPorInput[]
   createMany?: Prisma.CompraSimpleCreateManyCreadoPorInputEnvelope
+  connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+}
+
+export type CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput = {
+  create?: Prisma.XOR<Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput> | Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput[] | Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput[]
+  connectOrCreate?: Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput | Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput[]
+  createMany?: Prisma.CompraSimpleCreateManyAprobadoInformalPorInputEnvelope
   connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
 }
 
@@ -469,6 +507,20 @@ export type CompraSimpleUpdateManyWithoutCreadoPorNestedInput = {
   deleteMany?: Prisma.CompraSimpleScalarWhereInput | Prisma.CompraSimpleScalarWhereInput[]
 }
 
+export type CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput = {
+  create?: Prisma.XOR<Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput> | Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput[] | Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput[]
+  connectOrCreate?: Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput | Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput[]
+  upsert?: Prisma.CompraSimpleUpsertWithWhereUniqueWithoutAprobadoInformalPorInput | Prisma.CompraSimpleUpsertWithWhereUniqueWithoutAprobadoInformalPorInput[]
+  createMany?: Prisma.CompraSimpleCreateManyAprobadoInformalPorInputEnvelope
+  set?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  disconnect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  delete?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  update?: Prisma.CompraSimpleUpdateWithWhereUniqueWithoutAprobadoInformalPorInput | Prisma.CompraSimpleUpdateWithWhereUniqueWithoutAprobadoInformalPorInput[]
+  updateMany?: Prisma.CompraSimpleUpdateManyWithWhereWithoutAprobadoInformalPorInput | Prisma.CompraSimpleUpdateManyWithWhereWithoutAprobadoInformalPorInput[]
+  deleteMany?: Prisma.CompraSimpleScalarWhereInput | Prisma.CompraSimpleScalarWhereInput[]
+}
+
 export type CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput = {
   create?: Prisma.XOR<Prisma.CompraSimpleCreateWithoutCreadoPorInput, Prisma.CompraSimpleUncheckedCreateWithoutCreadoPorInput> | Prisma.CompraSimpleCreateWithoutCreadoPorInput[] | Prisma.CompraSimpleUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.CompraSimpleCreateOrConnectWithoutCreadoPorInput | Prisma.CompraSimpleCreateOrConnectWithoutCreadoPorInput[]
@@ -480,6 +532,20 @@ export type CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput = {
   connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
   update?: Prisma.CompraSimpleUpdateWithWhereUniqueWithoutCreadoPorInput | Prisma.CompraSimpleUpdateWithWhereUniqueWithoutCreadoPorInput[]
   updateMany?: Prisma.CompraSimpleUpdateManyWithWhereWithoutCreadoPorInput | Prisma.CompraSimpleUpdateManyWithWhereWithoutCreadoPorInput[]
+  deleteMany?: Prisma.CompraSimpleScalarWhereInput | Prisma.CompraSimpleScalarWhereInput[]
+}
+
+export type CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput = {
+  create?: Prisma.XOR<Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput> | Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput[] | Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput[]
+  connectOrCreate?: Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput | Prisma.CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput[]
+  upsert?: Prisma.CompraSimpleUpsertWithWhereUniqueWithoutAprobadoInformalPorInput | Prisma.CompraSimpleUpsertWithWhereUniqueWithoutAprobadoInformalPorInput[]
+  createMany?: Prisma.CompraSimpleCreateManyAprobadoInformalPorInputEnvelope
+  set?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  disconnect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  delete?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  connect?: Prisma.CompraSimpleWhereUniqueInput | Prisma.CompraSimpleWhereUniqueInput[]
+  update?: Prisma.CompraSimpleUpdateWithWhereUniqueWithoutAprobadoInformalPorInput | Prisma.CompraSimpleUpdateWithWhereUniqueWithoutAprobadoInformalPorInput[]
+  updateMany?: Prisma.CompraSimpleUpdateManyWithWhereWithoutAprobadoInformalPorInput | Prisma.CompraSimpleUpdateManyWithWhereWithoutAprobadoInformalPorInput[]
   deleteMany?: Prisma.CompraSimpleScalarWhereInput | Prisma.CompraSimpleScalarWhereInput[]
 }
 
@@ -551,6 +617,7 @@ export type CompraSimpleCreateWithoutCreadoPorInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutComprasSimplesInput
+  aprobadoInformalPor?: Prisma.UserCreateNestedOneWithoutComprasSimplesAprobadasInformalmenteInput
   grupos?: Prisma.OrdenCompraCreateNestedManyWithoutCompraSimpleInput
 }
 
@@ -564,6 +631,7 @@ export type CompraSimpleUncheckedCreateWithoutCreadoPorInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
   grupos?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCompraSimpleInput
 }
 
@@ -574,6 +642,44 @@ export type CompraSimpleCreateOrConnectWithoutCreadoPorInput = {
 
 export type CompraSimpleCreateManyCreadoPorInputEnvelope = {
   data: Prisma.CompraSimpleCreateManyCreadoPorInput | Prisma.CompraSimpleCreateManyCreadoPorInput[]
+  skipDuplicates?: boolean
+}
+
+export type CompraSimpleCreateWithoutAprobadoInformalPorInput = {
+  id?: string
+  codigo: string
+  nombre: string
+  tipo?: $Enums.TipoRequerimiento
+  esRendicion?: boolean
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutComprasSimplesInput
+  creadoPor: Prisma.UserCreateNestedOneWithoutComprasSimplesCreadasInput
+  grupos?: Prisma.OrdenCompraCreateNestedManyWithoutCompraSimpleInput
+}
+
+export type CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput = {
+  id?: string
+  codigo: string
+  nombre: string
+  tipo?: $Enums.TipoRequerimiento
+  esRendicion?: boolean
+  proyectoId: string
+  creadoPorId: string
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  grupos?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCompraSimpleInput
+}
+
+export type CompraSimpleCreateOrConnectWithoutAprobadoInformalPorInput = {
+  where: Prisma.CompraSimpleWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput>
+}
+
+export type CompraSimpleCreateManyAprobadoInformalPorInputEnvelope = {
+  data: Prisma.CompraSimpleCreateManyAprobadoInformalPorInput | Prisma.CompraSimpleCreateManyAprobadoInformalPorInput[]
   skipDuplicates?: boolean
 }
 
@@ -607,6 +713,23 @@ export type CompraSimpleScalarWhereInput = {
   nota?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"CompraSimple"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"CompraSimple"> | Date | string
+  aprobadoInformalPorId?: Prisma.StringNullableFilter<"CompraSimple"> | string | null
+}
+
+export type CompraSimpleUpsertWithWhereUniqueWithoutAprobadoInformalPorInput = {
+  where: Prisma.CompraSimpleWhereUniqueInput
+  update: Prisma.XOR<Prisma.CompraSimpleUpdateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedUpdateWithoutAprobadoInformalPorInput>
+  create: Prisma.XOR<Prisma.CompraSimpleCreateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedCreateWithoutAprobadoInformalPorInput>
+}
+
+export type CompraSimpleUpdateWithWhereUniqueWithoutAprobadoInformalPorInput = {
+  where: Prisma.CompraSimpleWhereUniqueInput
+  data: Prisma.XOR<Prisma.CompraSimpleUpdateWithoutAprobadoInformalPorInput, Prisma.CompraSimpleUncheckedUpdateWithoutAprobadoInformalPorInput>
+}
+
+export type CompraSimpleUpdateManyWithWhereWithoutAprobadoInformalPorInput = {
+  where: Prisma.CompraSimpleScalarWhereInput
+  data: Prisma.XOR<Prisma.CompraSimpleUpdateManyMutationInput, Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorInput>
 }
 
 export type CompraSimpleCreateWithoutProyectoInput = {
@@ -619,6 +742,7 @@ export type CompraSimpleCreateWithoutProyectoInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   creadoPor: Prisma.UserCreateNestedOneWithoutComprasSimplesCreadasInput
+  aprobadoInformalPor?: Prisma.UserCreateNestedOneWithoutComprasSimplesAprobadasInformalmenteInput
   grupos?: Prisma.OrdenCompraCreateNestedManyWithoutCompraSimpleInput
 }
 
@@ -632,6 +756,7 @@ export type CompraSimpleUncheckedCreateWithoutProyectoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
   grupos?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCompraSimpleInput
 }
 
@@ -672,6 +797,7 @@ export type CompraSimpleCreateWithoutGruposInput = {
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutComprasSimplesInput
   creadoPor: Prisma.UserCreateNestedOneWithoutComprasSimplesCreadasInput
+  aprobadoInformalPor?: Prisma.UserCreateNestedOneWithoutComprasSimplesAprobadasInformalmenteInput
 }
 
 export type CompraSimpleUncheckedCreateWithoutGruposInput = {
@@ -685,6 +811,7 @@ export type CompraSimpleUncheckedCreateWithoutGruposInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
 }
 
 export type CompraSimpleCreateOrConnectWithoutGruposInput = {
@@ -714,6 +841,7 @@ export type CompraSimpleUpdateWithoutGruposInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutComprasSimplesNestedInput
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutComprasSimplesCreadasNestedInput
+  aprobadoInformalPor?: Prisma.UserUpdateOneWithoutComprasSimplesAprobadasInformalmenteNestedInput
 }
 
 export type CompraSimpleUncheckedUpdateWithoutGruposInput = {
@@ -727,6 +855,7 @@ export type CompraSimpleUncheckedUpdateWithoutGruposInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CompraSimpleCreateManyCreadoPorInput = {
@@ -736,6 +865,20 @@ export type CompraSimpleCreateManyCreadoPorInput = {
   tipo?: $Enums.TipoRequerimiento
   esRendicion?: boolean
   proyectoId: string
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
+}
+
+export type CompraSimpleCreateManyAprobadoInformalPorInput = {
+  id?: string
+  codigo: string
+  nombre: string
+  tipo?: $Enums.TipoRequerimiento
+  esRendicion?: boolean
+  proyectoId: string
+  creadoPorId: string
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -751,6 +894,7 @@ export type CompraSimpleUpdateWithoutCreadoPorInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutComprasSimplesNestedInput
+  aprobadoInformalPor?: Prisma.UserUpdateOneWithoutComprasSimplesAprobadasInformalmenteNestedInput
   grupos?: Prisma.OrdenCompraUpdateManyWithoutCompraSimpleNestedInput
 }
 
@@ -764,6 +908,7 @@ export type CompraSimpleUncheckedUpdateWithoutCreadoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupos?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCompraSimpleNestedInput
 }
 
@@ -774,6 +919,48 @@ export type CompraSimpleUncheckedUpdateManyWithoutCreadoPorInput = {
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
   proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type CompraSimpleUpdateWithoutAprobadoInformalPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutComprasSimplesNestedInput
+  creadoPor?: Prisma.UserUpdateOneRequiredWithoutComprasSimplesCreadasNestedInput
+  grupos?: Prisma.OrdenCompraUpdateManyWithoutCompraSimpleNestedInput
+}
+
+export type CompraSimpleUncheckedUpdateWithoutAprobadoInformalPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grupos?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCompraSimpleNestedInput
+}
+
+export type CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
+  esRendicion?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  creadoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -789,6 +976,7 @@ export type CompraSimpleCreateManyProyectoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadoInformalPorId?: string | null
 }
 
 export type CompraSimpleUpdateWithoutProyectoInput = {
@@ -801,6 +989,7 @@ export type CompraSimpleUpdateWithoutProyectoInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creadoPor?: Prisma.UserUpdateOneRequiredWithoutComprasSimplesCreadasNestedInput
+  aprobadoInformalPor?: Prisma.UserUpdateOneWithoutComprasSimplesAprobadasInformalmenteNestedInput
   grupos?: Prisma.OrdenCompraUpdateManyWithoutCompraSimpleNestedInput
 }
 
@@ -814,6 +1003,7 @@ export type CompraSimpleUncheckedUpdateWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupos?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCompraSimpleNestedInput
 }
 
@@ -827,6 +1017,7 @@ export type CompraSimpleUncheckedUpdateManyWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadoInformalPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -871,8 +1062,10 @@ export type CompraSimpleSelect<ExtArgs extends runtime.Types.Extensions.Internal
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadoInformalPorId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  aprobadoInformalPor?: boolean | Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>
   grupos?: boolean | Prisma.CompraSimple$gruposArgs<ExtArgs>
   _count?: boolean | Prisma.CompraSimpleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["compraSimple"]>
@@ -888,8 +1081,10 @@ export type CompraSimpleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadoInformalPorId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  aprobadoInformalPor?: boolean | Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>
 }, ExtArgs["result"]["compraSimple"]>
 
 export type CompraSimpleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -903,8 +1098,10 @@ export type CompraSimpleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadoInformalPorId?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  aprobadoInformalPor?: boolean | Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>
 }, ExtArgs["result"]["compraSimple"]>
 
 export type CompraSimpleSelectScalar = {
@@ -918,22 +1115,26 @@ export type CompraSimpleSelectScalar = {
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadoInformalPorId?: boolean
 }
 
-export type CompraSimpleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "tipo" | "esRendicion" | "proyectoId" | "creadoPorId" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["compraSimple"]>
+export type CompraSimpleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "tipo" | "esRendicion" | "proyectoId" | "creadoPorId" | "nota" | "creadoEn" | "actualizadoEn" | "aprobadoInformalPorId", ExtArgs["result"]["compraSimple"]>
 export type CompraSimpleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  aprobadoInformalPor?: boolean | Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>
   grupos?: boolean | Prisma.CompraSimple$gruposArgs<ExtArgs>
   _count?: boolean | Prisma.CompraSimpleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompraSimpleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  aprobadoInformalPor?: boolean | Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>
 }
 export type CompraSimpleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  aprobadoInformalPor?: boolean | Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>
 }
 
 export type $CompraSimplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -941,6 +1142,7 @@ export type $CompraSimplePayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     proyecto: Prisma.$ProyectoPayload<ExtArgs>
     creadoPor: Prisma.$UserPayload<ExtArgs>
+    aprobadoInformalPor: Prisma.$UserPayload<ExtArgs> | null
     grupos: Prisma.$OrdenCompraPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -954,6 +1156,7 @@ export type $CompraSimplePayload<ExtArgs extends runtime.Types.Extensions.Intern
     nota: string | null
     creadoEn: Date
     actualizadoEn: Date
+    aprobadoInformalPorId: string | null
   }, ExtArgs["result"]["compraSimple"]>
   composites: {}
 }
@@ -1350,6 +1553,7 @@ export interface Prisma__CompraSimpleClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   proyecto<T extends Prisma.ProyectoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProyectoDefaultArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   creadoPor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  aprobadoInformalPor<T extends Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompraSimple$aprobadoInformalPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   grupos<T extends Prisma.CompraSimple$gruposArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompraSimple$gruposArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1390,6 +1594,7 @@ export interface CompraSimpleFieldRefs {
   readonly nota: Prisma.FieldRef<"CompraSimple", 'String'>
   readonly creadoEn: Prisma.FieldRef<"CompraSimple", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"CompraSimple", 'DateTime'>
+  readonly aprobadoInformalPorId: Prisma.FieldRef<"CompraSimple", 'String'>
 }
     
 
@@ -1788,6 +1993,25 @@ export type CompraSimpleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many CompraSimples to delete.
    */
   limit?: number
+}
+
+/**
+ * CompraSimple.aprobadoInformalPor
+ */
+export type CompraSimple$aprobadoInformalPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
