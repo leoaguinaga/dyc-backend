@@ -22,6 +22,7 @@ enum Role {
   logistica
   gerencia
   administrador
+  admin_ti
 }
 
 enum TipoRequerimiento {
@@ -80,6 +81,9 @@ enum EstadoRequerimiento {
   enviado
   aprobado
   observado
+  en_cotizacion
+  pendiente_conformidad
+  recibido
 }
 
 enum EstadoSolicitud {
@@ -136,6 +140,11 @@ enum DestinoPago {
   trabajador
 }
 
+enum TipoArchivoCompraSimple {
+  comprobante
+  foto_producto
+}
+
 enum MetodoPagoTrabajador {
   registrado
   transferencia
@@ -155,6 +164,9 @@ enum TipoNotificacion {
   requerimiento_creado
   requerimiento_aprobado
   requerimiento_observado
+  requerimiento_en_cotizacion
+  requerimiento_pendiente_conformidad
+  requerimiento_recibido
   cotizacion_recibida
   solicitud_lista_adjudicar
   orden_compra_generada
@@ -201,6 +213,7 @@ model User {
   trabajador                    Trabajador?
   proyectosComoSupervisor       ProyectoSupervisor[]
   requerimientos                Requerimiento[]              @relation("RequerimientosCreadosPor")
+  requerimientosRecepcionados   Requerimiento[]              @relation("RequerimientosRecepcionPor")
   requerimientoHistorial        RequerimientoHistorial[]     @relation("RequerimientoHistorialActor")
   ordenesCompra                 OrdenCompra[]                @relation("OrdenesCompraCreadosPor")
   ordenesCompraAprobadas        OrdenCompra[]                @relation("OrdenesCompraAprobadasPor")
@@ -217,6 +230,7 @@ model User {
   visitasTerceroRegistradas     VisitaTercero[]
   planillasGeneradas            Planilla[]
   compraSimpleArchivosSubidos   CompraSimpleGrupoArchivo[]   @relation("CompraSimpleArchivosSubidoPor")
+  solicitudesCotizacionAprobadasComoSolicitante SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaSolicitantePor")
 
   @@map("users")
 }
@@ -769,6 +783,13 @@ model Requerimiento {
   creadoEn              DateTime            @default(now())
   actualizadoEn         DateTime            @updatedAt
 
+  // Conformidad de recepción: la sube el solicitante cuando la OC vinculada llega a "recibida"
+  recepcionFotoUrl     String?
+  recepcionComentario  String?
+  recepcionEn          DateTime?
+  recepcionPorId       String?
+  recepcionPor         User?               @relation("RequerimientosRecepcionPor", fields: [recepcionPorId], references: [id])
+
   items       RequerimientoItem[]
   solicitudes SolicitudCotizacion[]
   historial   RequerimientoHistorial[]
@@ -869,6 +890,14 @@ model SolicitudCotizacion {
   creadoEn        DateTime        @default(now())
   actualizadoEn   DateTime        @updatedAt
 
+  // Aprobación del solicitante (o de logística/gerencia/admin actuando en su
+  // lugar por premura) sobre la cotización adjudicada — queda registrado quién
+  // aprobó realmente, distinto del rol genérico requerido por el endpoint.
+  aprobadaSolicitantePorId   String?
+  aprobadaSolicitantePor     User?           @relation("SolicitudCotizacionAprobadaSolicitantePor", fields: [aprobadaSolicitantePorId], references: [id])
+  aprobadaSolicitantePorRole Role?
+  aprobadaSolicitanteEn      DateTime?
+
   items        SolicitudItem[]
   cotizaciones Cotizacion[]
   ordenes      OrdenCompra[]
@@ -964,7 +993,7 @@ model CompraSimple {
   codigo        String            @unique
   nombre        String
   tipo          TipoRequerimiento @default(civil)
-  urgente       Boolean           @default(false)
+  esRendicion   Boolean           @default(false)
   proyectoId    String
   proyecto      Proyecto          @relation(fields: [proyectoId], references: [id])
   creadoPorId   String
@@ -1048,15 +1077,16 @@ model OrdenCompra {
 }
 
 model CompraSimpleGrupoArchivo {
-  id             String      @id @default(cuid())
+  id             String                   @id @default(cuid())
   grupoId        String
-  grupo          OrdenCompra @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  grupo          OrdenCompra              @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  tipo           TipoArchivoCompraSimple  @default(comprobante)
   url            String
   nombreOriginal String
   mimeType       String
   subidoPorId    String
-  subidoPor      User        @relation("CompraSimpleArchivosSubidoPor", fields: [subidoPorId], references: [id])
-  creadoEn       DateTime    @default(now())
+  subidoPor      User                     @relation("CompraSimpleArchivosSubidoPor", fields: [subidoPorId], references: [id])
+  creadoEn       DateTime                 @default(now())
 
   @@map("compra_simple_grupo_archivos")
 }
@@ -1090,6 +1120,8 @@ model Pago {
   metodoPago               String?
   numeroOperacion          String?
   nota                     String?
+  comprobanteNombre        String?
+  comprobanteUrl           String?
   registradoPorId          String
   registradoPor            User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
   pagadoPorId              String?

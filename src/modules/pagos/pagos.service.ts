@@ -1,10 +1,13 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service.js';
+import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
+import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import {
   CreatePagoDto,
   MarcarPagadoDto,
   QueryPagosDto,
   ReportePagosDto,
+  SubirComprobantePagoDto,
   UpdatePagoDto,
 } from './dto/create-pago.dto.js';
 
@@ -33,7 +36,10 @@ function withEstadoEfectivo<T extends { estado: string; fechaProgramada: Date }>
 
 @Injectable()
 export class PagosService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
+  ) {}
 
   async findAll(query: QueryPagosDto) {
     const pagos = await this.prisma.pago.findMany({
@@ -154,7 +160,31 @@ export class PagosService {
         fechaPagoReal: dto.fechaPagoReal ? new Date(dto.fechaPagoReal) : new Date(),
         metodoPago: dto.metodoPago ?? existing.metodoPago,
         numeroOperacion: dto.numeroOperacion,
+        comprobanteNombre: dto.comprobanteNombre ?? existing.comprobanteNombre,
+        comprobanteUrl: dto.comprobanteUrl ?? existing.comprobanteUrl,
         pagadoPorId: userId,
+      },
+      include: PAGO_INCLUDE,
+    });
+    return withEstadoEfectivo(pago);
+  }
+
+  subirComprobante(file: Express.Multer.File) {
+    return this.storage.save({
+      buffer: file.buffer,
+      originalName: file.originalname,
+      mimeType: file.mimetype,
+      folder: 'pagos',
+    });
+  }
+
+  async guardarComprobante(id: string, dto: SubirComprobantePagoDto) {
+    await this.findOne(id);
+    const pago = await this.prisma.pago.update({
+      where: { id },
+      data: {
+        comprobanteNombre: dto.comprobanteNombre,
+        comprobanteUrl: dto.comprobanteUrl,
       },
       include: PAGO_INCLUDE,
     });

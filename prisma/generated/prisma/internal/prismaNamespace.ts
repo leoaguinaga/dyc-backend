@@ -3981,7 +3981,11 @@ export const RequerimientoScalarFieldEnum = {
   notaRevision: 'notaRevision',
   fechaEntregaRequerida: 'fechaEntregaRequerida',
   creadoEn: 'creadoEn',
-  actualizadoEn: 'actualizadoEn'
+  actualizadoEn: 'actualizadoEn',
+  recepcionFotoUrl: 'recepcionFotoUrl',
+  recepcionComentario: 'recepcionComentario',
+  recepcionEn: 'recepcionEn',
+  recepcionPorId: 'recepcionPorId'
 } as const
 
 export type RequerimientoScalarFieldEnum = (typeof RequerimientoScalarFieldEnum)[keyof typeof RequerimientoScalarFieldEnum]
@@ -4061,7 +4065,10 @@ export const SolicitudCotizacionScalarFieldEnum = {
   estado: 'estado',
   nota: 'nota',
   creadoEn: 'creadoEn',
-  actualizadoEn: 'actualizadoEn'
+  actualizadoEn: 'actualizadoEn',
+  aprobadaSolicitantePorId: 'aprobadaSolicitantePorId',
+  aprobadaSolicitantePorRole: 'aprobadaSolicitantePorRole',
+  aprobadaSolicitanteEn: 'aprobadaSolicitanteEn'
 } as const
 
 export type SolicitudCotizacionScalarFieldEnum = (typeof SolicitudCotizacionScalarFieldEnum)[keyof typeof SolicitudCotizacionScalarFieldEnum]
@@ -4141,7 +4148,7 @@ export const CompraSimpleScalarFieldEnum = {
   codigo: 'codigo',
   nombre: 'nombre',
   tipo: 'tipo',
-  urgente: 'urgente',
+  esRendicion: 'esRendicion',
   proyectoId: 'proyectoId',
   creadoPorId: 'creadoPorId',
   nota: 'nota',
@@ -4209,6 +4216,7 @@ export type OrdenCompraScalarFieldEnum = (typeof OrdenCompraScalarFieldEnum)[key
 export const CompraSimpleGrupoArchivoScalarFieldEnum = {
   id: 'id',
   grupoId: 'grupoId',
+  tipo: 'tipo',
   url: 'url',
   nombreOriginal: 'nombreOriginal',
   mimeType: 'mimeType',
@@ -4245,6 +4253,8 @@ export const PagoScalarFieldEnum = {
   metodoPago: 'metodoPago',
   numeroOperacion: 'numeroOperacion',
   nota: 'nota',
+  comprobanteNombre: 'comprobanteNombre',
+  comprobanteUrl: 'comprobanteUrl',
   registradoPorId: 'registradoPorId',
   pagadoPorId: 'pagadoPorId',
   creadoEn: 'creadoEn',
@@ -4655,6 +4665,20 @@ export type EnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> = FieldRefInputT
  * Reference to a field of type 'MetodoPagoTrabajador[]'
  */
 export type ListEnumMetodoPagoTrabajadorFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoPagoTrabajador[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoArchivoCompraSimple'
+ */
+export type EnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoArchivoCompraSimple'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoArchivoCompraSimple[]'
+ */
+export type ListEnumTipoArchivoCompraSimpleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoArchivoCompraSimple[]'>
     
 
 

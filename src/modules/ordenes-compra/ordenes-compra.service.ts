@@ -409,7 +409,7 @@ export class OrdenesCompraService {
         `El proveedor "${oc.proveedor!.razonSocial}" no tiene RUC registrado. Actualízalo antes de emitir la orden.`,
       );
 
-    return this.prisma.ordenCompra.update({
+    const actualizada = await this.prisma.ordenCompra.update({
       where: { id },
       data: {
         estado: nuevoEstado,
@@ -423,6 +423,31 @@ export class OrdenesCompraService {
       },
       include: OC_INCLUDE,
     });
+
+    // El solicitante del requerimiento que originó esta OC (vía solicitud de
+    // cotización) es responsable de confirmar la recepción con foto + comentario.
+    const requerimientoId = actualizada.solicitud?.requerimiento?.id;
+    if (nuevoEstado === 'recibida' && requerimientoId) {
+      const req = await this.prisma.requerimiento.findUnique({
+        where: { id: requerimientoId },
+        select: { id: true, codigo: true, nombre: true, creadoPorId: true, estado: true },
+      });
+      if (req && req.estado === 'en_cotizacion') {
+        await this.prisma.requerimiento.update({
+          where: { id: req.id },
+          data: { estado: 'pendiente_conformidad' },
+        });
+        this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+          requerimientoId: req.id,
+          codigo: req.codigo,
+          nombre: req.nombre,
+          estado: 'pendiente_conformidad',
+          creadoPorId: req.creadoPorId,
+        });
+      }
+    }
+
+    return actualizada;
   }
 
   private async generateNumero(): Promise<string> {

@@ -21,7 +21,14 @@ import {
 } from './dto/create-catalogo-item.dto.js';
 
 @Controller('proveedores')
-@Roles('administrador', 'logistica', 'gerencia')
+@Roles(
+  'administrador',
+  'logistica',
+  'gerencia',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+)
 export class ProveedoresController {
   constructor(private proveedoresService: ProveedoresService) {}
 
@@ -29,6 +36,7 @@ export class ProveedoresController {
   @Roles(
     'administrador', 'logistica', 'gerencia',
     'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
+    'ing_civil', 'ing_electrico', 'jefe_sig',
   )
   findAll(@Query() query: QueryProveedorDto) {
     return this.proveedoresService.findAll(query);

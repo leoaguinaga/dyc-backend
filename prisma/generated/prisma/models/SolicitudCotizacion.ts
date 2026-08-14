@@ -33,6 +33,9 @@ export type SolicitudCotizacionMinAggregateOutputType = {
   nota: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
+  aprobadaSolicitantePorId: string | null
+  aprobadaSolicitantePorRole: $Enums.Role | null
+  aprobadaSolicitanteEn: Date | null
 }
 
 export type SolicitudCotizacionMaxAggregateOutputType = {
@@ -44,6 +47,9 @@ export type SolicitudCotizacionMaxAggregateOutputType = {
   nota: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
+  aprobadaSolicitantePorId: string | null
+  aprobadaSolicitantePorRole: $Enums.Role | null
+  aprobadaSolicitanteEn: Date | null
 }
 
 export type SolicitudCotizacionCountAggregateOutputType = {
@@ -55,6 +61,9 @@ export type SolicitudCotizacionCountAggregateOutputType = {
   nota: number
   creadoEn: number
   actualizadoEn: number
+  aprobadaSolicitantePorId: number
+  aprobadaSolicitantePorRole: number
+  aprobadaSolicitanteEn: number
   _all: number
 }
 
@@ -68,6 +77,9 @@ export type SolicitudCotizacionMinAggregateInputType = {
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
+  aprobadaSolicitantePorId?: true
+  aprobadaSolicitantePorRole?: true
+  aprobadaSolicitanteEn?: true
 }
 
 export type SolicitudCotizacionMaxAggregateInputType = {
@@ -79,6 +91,9 @@ export type SolicitudCotizacionMaxAggregateInputType = {
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
+  aprobadaSolicitantePorId?: true
+  aprobadaSolicitantePorRole?: true
+  aprobadaSolicitanteEn?: true
 }
 
 export type SolicitudCotizacionCountAggregateInputType = {
@@ -90,6 +105,9 @@ export type SolicitudCotizacionCountAggregateInputType = {
   nota?: true
   creadoEn?: true
   actualizadoEn?: true
+  aprobadaSolicitantePorId?: true
+  aprobadaSolicitantePorRole?: true
+  aprobadaSolicitanteEn?: true
   _all?: true
 }
 
@@ -174,6 +192,9 @@ export type SolicitudCotizacionGroupByOutputType = {
   nota: string | null
   creadoEn: Date
   actualizadoEn: Date
+  aprobadaSolicitantePorId: string | null
+  aprobadaSolicitantePorRole: $Enums.Role | null
+  aprobadaSolicitanteEn: Date | null
   _count: SolicitudCotizacionCountAggregateOutputType | null
   _min: SolicitudCotizacionMinAggregateOutputType | null
   _max: SolicitudCotizacionMaxAggregateOutputType | null
@@ -206,8 +227,12 @@ export type SolicitudCotizacionWhereInput = {
   nota?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
+  aprobadaSolicitantePorId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
+  aprobadaSolicitantePorRole?: Prisma.EnumRoleNullableFilter<"SolicitudCotizacion"> | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.DateTimeNullableFilter<"SolicitudCotizacion"> | Date | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoNullableScalarRelationFilter, Prisma.ProyectoWhereInput> | null
   requerimiento?: Prisma.XOR<Prisma.RequerimientoNullableScalarRelationFilter, Prisma.RequerimientoWhereInput> | null
+  aprobadaSolicitantePor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.SolicitudItemListRelationFilter
   cotizaciones?: Prisma.CotizacionListRelationFilter
   ordenes?: Prisma.OrdenCompraListRelationFilter
@@ -222,8 +247,12 @@ export type SolicitudCotizacionOrderByWithRelationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadaSolicitantePorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaSolicitantePorRole?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaSolicitanteEn?: Prisma.SortOrderInput | Prisma.SortOrder
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
   requerimiento?: Prisma.RequerimientoOrderByWithRelationInput
+  aprobadaSolicitantePor?: Prisma.UserOrderByWithRelationInput
   items?: Prisma.SolicitudItemOrderByRelationAggregateInput
   cotizaciones?: Prisma.CotizacionOrderByRelationAggregateInput
   ordenes?: Prisma.OrdenCompraOrderByRelationAggregateInput
@@ -241,8 +270,12 @@ export type SolicitudCotizacionWhereUniqueInput = Prisma.AtLeast<{
   nota?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
+  aprobadaSolicitantePorId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
+  aprobadaSolicitantePorRole?: Prisma.EnumRoleNullableFilter<"SolicitudCotizacion"> | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.DateTimeNullableFilter<"SolicitudCotizacion"> | Date | string | null
   proyecto?: Prisma.XOR<Prisma.ProyectoNullableScalarRelationFilter, Prisma.ProyectoWhereInput> | null
   requerimiento?: Prisma.XOR<Prisma.RequerimientoNullableScalarRelationFilter, Prisma.RequerimientoWhereInput> | null
+  aprobadaSolicitantePor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   items?: Prisma.SolicitudItemListRelationFilter
   cotizaciones?: Prisma.CotizacionListRelationFilter
   ordenes?: Prisma.OrdenCompraListRelationFilter
@@ -257,6 +290,9 @@ export type SolicitudCotizacionOrderByWithAggregationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadaSolicitantePorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaSolicitantePorRole?: Prisma.SortOrderInput | Prisma.SortOrder
+  aprobadaSolicitanteEn?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SolicitudCotizacionCountOrderByAggregateInput
   _max?: Prisma.SolicitudCotizacionMaxOrderByAggregateInput
   _min?: Prisma.SolicitudCotizacionMinOrderByAggregateInput
@@ -274,6 +310,9 @@ export type SolicitudCotizacionScalarWhereWithAggregatesInput = {
   nota?: Prisma.StringNullableWithAggregatesFilter<"SolicitudCotizacion"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"SolicitudCotizacion"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"SolicitudCotizacion"> | Date | string
+  aprobadaSolicitantePorId?: Prisma.StringNullableWithAggregatesFilter<"SolicitudCotizacion"> | string | null
+  aprobadaSolicitantePorRole?: Prisma.EnumRoleNullableWithAggregatesFilter<"SolicitudCotizacion"> | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.DateTimeNullableWithAggregatesFilter<"SolicitudCotizacion"> | Date | string | null
 }
 
 export type SolicitudCotizacionCreateInput = {
@@ -283,8 +322,11 @@ export type SolicitudCotizacionCreateInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutSolicitudesInput
   requerimiento?: Prisma.RequerimientoCreateNestedOneWithoutSolicitudesInput
+  aprobadaSolicitantePor?: Prisma.UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
   items?: Prisma.SolicitudItemCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraCreateNestedManyWithoutSolicitudInput
@@ -299,6 +341,9 @@ export type SolicitudCotizacionUncheckedCreateInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   items?: Prisma.SolicitudItemUncheckedCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionUncheckedCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutSolicitudInput
@@ -311,8 +356,11 @@ export type SolicitudCotizacionUpdateInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneWithoutSolicitudesNestedInput
   requerimiento?: Prisma.RequerimientoUpdateOneWithoutSolicitudesNestedInput
+  aprobadaSolicitantePor?: Prisma.UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput
   items?: Prisma.SolicitudItemUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUpdateManyWithoutSolicitudNestedInput
@@ -327,6 +375,9 @@ export type SolicitudCotizacionUncheckedUpdateInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.SolicitudItemUncheckedUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUncheckedUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput
@@ -341,6 +392,9 @@ export type SolicitudCotizacionCreateManyInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
 }
 
 export type SolicitudCotizacionUpdateManyMutationInput = {
@@ -350,6 +404,8 @@ export type SolicitudCotizacionUpdateManyMutationInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SolicitudCotizacionUncheckedUpdateManyInput = {
@@ -361,6 +417,9 @@ export type SolicitudCotizacionUncheckedUpdateManyInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SolicitudCotizacionListRelationFilter = {
@@ -382,6 +441,9 @@ export type SolicitudCotizacionCountOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadaSolicitantePorId?: Prisma.SortOrder
+  aprobadaSolicitantePorRole?: Prisma.SortOrder
+  aprobadaSolicitanteEn?: Prisma.SortOrder
 }
 
 export type SolicitudCotizacionMaxOrderByAggregateInput = {
@@ -393,6 +455,9 @@ export type SolicitudCotizacionMaxOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadaSolicitantePorId?: Prisma.SortOrder
+  aprobadaSolicitantePorRole?: Prisma.SortOrder
+  aprobadaSolicitanteEn?: Prisma.SortOrder
 }
 
 export type SolicitudCotizacionMinOrderByAggregateInput = {
@@ -404,6 +469,9 @@ export type SolicitudCotizacionMinOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  aprobadaSolicitantePorId?: Prisma.SortOrder
+  aprobadaSolicitantePorRole?: Prisma.SortOrder
+  aprobadaSolicitanteEn?: Prisma.SortOrder
 }
 
 export type SolicitudCotizacionScalarRelationFilter = {
@@ -414,6 +482,48 @@ export type SolicitudCotizacionScalarRelationFilter = {
 export type SolicitudCotizacionNullableScalarRelationFilter = {
   is?: Prisma.SolicitudCotizacionWhereInput | null
   isNot?: Prisma.SolicitudCotizacionWhereInput | null
+}
+
+export type SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput = {
+  create?: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput> | Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput[] | Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput[]
+  connectOrCreate?: Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput[]
+  createMany?: Prisma.SolicitudCotizacionCreateManyAprobadaSolicitantePorInputEnvelope
+  connect?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+}
+
+export type SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput = {
+  create?: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput> | Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput[] | Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput[]
+  connectOrCreate?: Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput[]
+  createMany?: Prisma.SolicitudCotizacionCreateManyAprobadaSolicitantePorInputEnvelope
+  connect?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+}
+
+export type SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput = {
+  create?: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput> | Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput[] | Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput[]
+  connectOrCreate?: Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput[]
+  upsert?: Prisma.SolicitudCotizacionUpsertWithWhereUniqueWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionUpsertWithWhereUniqueWithoutAprobadaSolicitantePorInput[]
+  createMany?: Prisma.SolicitudCotizacionCreateManyAprobadaSolicitantePorInputEnvelope
+  set?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  disconnect?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  delete?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  connect?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  update?: Prisma.SolicitudCotizacionUpdateWithWhereUniqueWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionUpdateWithWhereUniqueWithoutAprobadaSolicitantePorInput[]
+  updateMany?: Prisma.SolicitudCotizacionUpdateManyWithWhereWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionUpdateManyWithWhereWithoutAprobadaSolicitantePorInput[]
+  deleteMany?: Prisma.SolicitudCotizacionScalarWhereInput | Prisma.SolicitudCotizacionScalarWhereInput[]
+}
+
+export type SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput = {
+  create?: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput> | Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput[] | Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput[]
+  connectOrCreate?: Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput[]
+  upsert?: Prisma.SolicitudCotizacionUpsertWithWhereUniqueWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionUpsertWithWhereUniqueWithoutAprobadaSolicitantePorInput[]
+  createMany?: Prisma.SolicitudCotizacionCreateManyAprobadaSolicitantePorInputEnvelope
+  set?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  disconnect?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  delete?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  connect?: Prisma.SolicitudCotizacionWhereUniqueInput | Prisma.SolicitudCotizacionWhereUniqueInput[]
+  update?: Prisma.SolicitudCotizacionUpdateWithWhereUniqueWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionUpdateWithWhereUniqueWithoutAprobadaSolicitantePorInput[]
+  updateMany?: Prisma.SolicitudCotizacionUpdateManyWithWhereWithoutAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionUpdateManyWithWhereWithoutAprobadaSolicitantePorInput[]
+  deleteMany?: Prisma.SolicitudCotizacionScalarWhereInput | Prisma.SolicitudCotizacionScalarWhereInput[]
 }
 
 export type SolicitudCotizacionCreateNestedManyWithoutProyectoInput = {
@@ -548,6 +658,81 @@ export type SolicitudCotizacionUpdateOneWithoutOrdenesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SolicitudCotizacionUpdateToOneWithWhereWithoutOrdenesInput, Prisma.SolicitudCotizacionUpdateWithoutOrdenesInput>, Prisma.SolicitudCotizacionUncheckedUpdateWithoutOrdenesInput>
 }
 
+export type SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput = {
+  id?: string
+  codigo: string
+  estado?: $Enums.EstadoSolicitud
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
+  proyecto?: Prisma.ProyectoCreateNestedOneWithoutSolicitudesInput
+  requerimiento?: Prisma.RequerimientoCreateNestedOneWithoutSolicitudesInput
+  items?: Prisma.SolicitudItemCreateNestedManyWithoutSolicitudInput
+  cotizaciones?: Prisma.CotizacionCreateNestedManyWithoutSolicitudInput
+  ordenes?: Prisma.OrdenCompraCreateNestedManyWithoutSolicitudInput
+}
+
+export type SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput = {
+  id?: string
+  codigo: string
+  proyectoId?: string | null
+  requerimientoId?: string | null
+  estado?: $Enums.EstadoSolicitud
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
+  items?: Prisma.SolicitudItemUncheckedCreateNestedManyWithoutSolicitudInput
+  cotizaciones?: Prisma.CotizacionUncheckedCreateNestedManyWithoutSolicitudInput
+  ordenes?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutSolicitudInput
+}
+
+export type SolicitudCotizacionCreateOrConnectWithoutAprobadaSolicitantePorInput = {
+  where: Prisma.SolicitudCotizacionWhereUniqueInput
+  create: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput>
+}
+
+export type SolicitudCotizacionCreateManyAprobadaSolicitantePorInputEnvelope = {
+  data: Prisma.SolicitudCotizacionCreateManyAprobadaSolicitantePorInput | Prisma.SolicitudCotizacionCreateManyAprobadaSolicitantePorInput[]
+  skipDuplicates?: boolean
+}
+
+export type SolicitudCotizacionUpsertWithWhereUniqueWithoutAprobadaSolicitantePorInput = {
+  where: Prisma.SolicitudCotizacionWhereUniqueInput
+  update: Prisma.XOR<Prisma.SolicitudCotizacionUpdateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedUpdateWithoutAprobadaSolicitantePorInput>
+  create: Prisma.XOR<Prisma.SolicitudCotizacionCreateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedCreateWithoutAprobadaSolicitantePorInput>
+}
+
+export type SolicitudCotizacionUpdateWithWhereUniqueWithoutAprobadaSolicitantePorInput = {
+  where: Prisma.SolicitudCotizacionWhereUniqueInput
+  data: Prisma.XOR<Prisma.SolicitudCotizacionUpdateWithoutAprobadaSolicitantePorInput, Prisma.SolicitudCotizacionUncheckedUpdateWithoutAprobadaSolicitantePorInput>
+}
+
+export type SolicitudCotizacionUpdateManyWithWhereWithoutAprobadaSolicitantePorInput = {
+  where: Prisma.SolicitudCotizacionScalarWhereInput
+  data: Prisma.XOR<Prisma.SolicitudCotizacionUpdateManyMutationInput, Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorInput>
+}
+
+export type SolicitudCotizacionScalarWhereInput = {
+  AND?: Prisma.SolicitudCotizacionScalarWhereInput | Prisma.SolicitudCotizacionScalarWhereInput[]
+  OR?: Prisma.SolicitudCotizacionScalarWhereInput[]
+  NOT?: Prisma.SolicitudCotizacionScalarWhereInput | Prisma.SolicitudCotizacionScalarWhereInput[]
+  id?: Prisma.StringFilter<"SolicitudCotizacion"> | string
+  codigo?: Prisma.StringFilter<"SolicitudCotizacion"> | string
+  proyectoId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
+  requerimientoId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
+  estado?: Prisma.EnumEstadoSolicitudFilter<"SolicitudCotizacion"> | $Enums.EstadoSolicitud
+  nota?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
+  creadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
+  actualizadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
+  aprobadaSolicitantePorId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
+  aprobadaSolicitantePorRole?: Prisma.EnumRoleNullableFilter<"SolicitudCotizacion"> | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.DateTimeNullableFilter<"SolicitudCotizacion"> | Date | string | null
+}
+
 export type SolicitudCotizacionCreateWithoutProyectoInput = {
   id?: string
   codigo: string
@@ -555,7 +740,10 @@ export type SolicitudCotizacionCreateWithoutProyectoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   requerimiento?: Prisma.RequerimientoCreateNestedOneWithoutSolicitudesInput
+  aprobadaSolicitantePor?: Prisma.UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
   items?: Prisma.SolicitudItemCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraCreateNestedManyWithoutSolicitudInput
@@ -569,6 +757,9 @@ export type SolicitudCotizacionUncheckedCreateWithoutProyectoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   items?: Prisma.SolicitudItemUncheckedCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionUncheckedCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutSolicitudInput
@@ -600,20 +791,6 @@ export type SolicitudCotizacionUpdateManyWithWhereWithoutProyectoInput = {
   data: Prisma.XOR<Prisma.SolicitudCotizacionUpdateManyMutationInput, Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoInput>
 }
 
-export type SolicitudCotizacionScalarWhereInput = {
-  AND?: Prisma.SolicitudCotizacionScalarWhereInput | Prisma.SolicitudCotizacionScalarWhereInput[]
-  OR?: Prisma.SolicitudCotizacionScalarWhereInput[]
-  NOT?: Prisma.SolicitudCotizacionScalarWhereInput | Prisma.SolicitudCotizacionScalarWhereInput[]
-  id?: Prisma.StringFilter<"SolicitudCotizacion"> | string
-  codigo?: Prisma.StringFilter<"SolicitudCotizacion"> | string
-  proyectoId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
-  requerimientoId?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
-  estado?: Prisma.EnumEstadoSolicitudFilter<"SolicitudCotizacion"> | $Enums.EstadoSolicitud
-  nota?: Prisma.StringNullableFilter<"SolicitudCotizacion"> | string | null
-  creadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
-  actualizadoEn?: Prisma.DateTimeFilter<"SolicitudCotizacion"> | Date | string
-}
-
 export type SolicitudCotizacionCreateWithoutRequerimientoInput = {
   id?: string
   codigo: string
@@ -621,7 +798,10 @@ export type SolicitudCotizacionCreateWithoutRequerimientoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutSolicitudesInput
+  aprobadaSolicitantePor?: Prisma.UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
   items?: Prisma.SolicitudItemCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraCreateNestedManyWithoutSolicitudInput
@@ -635,6 +815,9 @@ export type SolicitudCotizacionUncheckedCreateWithoutRequerimientoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   items?: Prisma.SolicitudItemUncheckedCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionUncheckedCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutSolicitudInput
@@ -673,8 +856,11 @@ export type SolicitudCotizacionCreateWithoutItemsInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutSolicitudesInput
   requerimiento?: Prisma.RequerimientoCreateNestedOneWithoutSolicitudesInput
+  aprobadaSolicitantePor?: Prisma.UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
   cotizaciones?: Prisma.CotizacionCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraCreateNestedManyWithoutSolicitudInput
 }
@@ -688,6 +874,9 @@ export type SolicitudCotizacionUncheckedCreateWithoutItemsInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   cotizaciones?: Prisma.CotizacionUncheckedCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutSolicitudInput
 }
@@ -715,8 +904,11 @@ export type SolicitudCotizacionUpdateWithoutItemsInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneWithoutSolicitudesNestedInput
   requerimiento?: Prisma.RequerimientoUpdateOneWithoutSolicitudesNestedInput
+  aprobadaSolicitantePor?: Prisma.UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput
   cotizaciones?: Prisma.CotizacionUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUpdateManyWithoutSolicitudNestedInput
 }
@@ -730,6 +922,9 @@ export type SolicitudCotizacionUncheckedUpdateWithoutItemsInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cotizaciones?: Prisma.CotizacionUncheckedUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput
 }
@@ -741,8 +936,11 @@ export type SolicitudCotizacionCreateWithoutCotizacionesInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutSolicitudesInput
   requerimiento?: Prisma.RequerimientoCreateNestedOneWithoutSolicitudesInput
+  aprobadaSolicitantePor?: Prisma.UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
   items?: Prisma.SolicitudItemCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraCreateNestedManyWithoutSolicitudInput
 }
@@ -756,6 +954,9 @@ export type SolicitudCotizacionUncheckedCreateWithoutCotizacionesInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   items?: Prisma.SolicitudItemUncheckedCreateNestedManyWithoutSolicitudInput
   ordenes?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutSolicitudInput
 }
@@ -783,8 +984,11 @@ export type SolicitudCotizacionUpdateWithoutCotizacionesInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneWithoutSolicitudesNestedInput
   requerimiento?: Prisma.RequerimientoUpdateOneWithoutSolicitudesNestedInput
+  aprobadaSolicitantePor?: Prisma.UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput
   items?: Prisma.SolicitudItemUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUpdateManyWithoutSolicitudNestedInput
 }
@@ -798,6 +1002,9 @@ export type SolicitudCotizacionUncheckedUpdateWithoutCotizacionesInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.SolicitudItemUncheckedUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput
 }
@@ -809,8 +1016,11 @@ export type SolicitudCotizacionCreateWithoutOrdenesInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutSolicitudesInput
   requerimiento?: Prisma.RequerimientoCreateNestedOneWithoutSolicitudesInput
+  aprobadaSolicitantePor?: Prisma.UserCreateNestedOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput
   items?: Prisma.SolicitudItemCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionCreateNestedManyWithoutSolicitudInput
 }
@@ -824,6 +1034,9 @@ export type SolicitudCotizacionUncheckedCreateWithoutOrdenesInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
   items?: Prisma.SolicitudItemUncheckedCreateNestedManyWithoutSolicitudInput
   cotizaciones?: Prisma.CotizacionUncheckedCreateNestedManyWithoutSolicitudInput
 }
@@ -851,8 +1064,11 @@ export type SolicitudCotizacionUpdateWithoutOrdenesInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneWithoutSolicitudesNestedInput
   requerimiento?: Prisma.RequerimientoUpdateOneWithoutSolicitudesNestedInput
+  aprobadaSolicitantePor?: Prisma.UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput
   items?: Prisma.SolicitudItemUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUpdateManyWithoutSolicitudNestedInput
 }
@@ -866,8 +1082,69 @@ export type SolicitudCotizacionUncheckedUpdateWithoutOrdenesInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.SolicitudItemUncheckedUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUncheckedUpdateManyWithoutSolicitudNestedInput
+}
+
+export type SolicitudCotizacionCreateManyAprobadaSolicitantePorInput = {
+  id?: string
+  codigo: string
+  proyectoId?: string | null
+  requerimientoId?: string | null
+  estado?: $Enums.EstadoSolicitud
+  nota?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
+}
+
+export type SolicitudCotizacionUpdateWithoutAprobadaSolicitantePorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoSolicitudFieldUpdateOperationsInput | $Enums.EstadoSolicitud
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  proyecto?: Prisma.ProyectoUpdateOneWithoutSolicitudesNestedInput
+  requerimiento?: Prisma.RequerimientoUpdateOneWithoutSolicitudesNestedInput
+  items?: Prisma.SolicitudItemUpdateManyWithoutSolicitudNestedInput
+  cotizaciones?: Prisma.CotizacionUpdateManyWithoutSolicitudNestedInput
+  ordenes?: Prisma.OrdenCompraUpdateManyWithoutSolicitudNestedInput
+}
+
+export type SolicitudCotizacionUncheckedUpdateWithoutAprobadaSolicitantePorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requerimientoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoSolicitudFieldUpdateOperationsInput | $Enums.EstadoSolicitud
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.SolicitudItemUncheckedUpdateManyWithoutSolicitudNestedInput
+  cotizaciones?: Prisma.CotizacionUncheckedUpdateManyWithoutSolicitudNestedInput
+  ordenes?: Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput
+}
+
+export type SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requerimientoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoSolicitudFieldUpdateOperationsInput | $Enums.EstadoSolicitud
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SolicitudCotizacionCreateManyProyectoInput = {
@@ -878,6 +1155,9 @@ export type SolicitudCotizacionCreateManyProyectoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
 }
 
 export type SolicitudCotizacionUpdateWithoutProyectoInput = {
@@ -887,7 +1167,10 @@ export type SolicitudCotizacionUpdateWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requerimiento?: Prisma.RequerimientoUpdateOneWithoutSolicitudesNestedInput
+  aprobadaSolicitantePor?: Prisma.UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput
   items?: Prisma.SolicitudItemUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUpdateManyWithoutSolicitudNestedInput
@@ -901,6 +1184,9 @@ export type SolicitudCotizacionUncheckedUpdateWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.SolicitudItemUncheckedUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUncheckedUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput
@@ -914,6 +1200,9 @@ export type SolicitudCotizacionUncheckedUpdateManyWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SolicitudCotizacionCreateManyRequerimientoInput = {
@@ -924,6 +1213,9 @@ export type SolicitudCotizacionCreateManyRequerimientoInput = {
   nota?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  aprobadaSolicitantePorId?: string | null
+  aprobadaSolicitantePorRole?: $Enums.Role | null
+  aprobadaSolicitanteEn?: Date | string | null
 }
 
 export type SolicitudCotizacionUpdateWithoutRequerimientoInput = {
@@ -933,7 +1225,10 @@ export type SolicitudCotizacionUpdateWithoutRequerimientoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   proyecto?: Prisma.ProyectoUpdateOneWithoutSolicitudesNestedInput
+  aprobadaSolicitantePor?: Prisma.UserUpdateOneWithoutSolicitudesCotizacionAprobadasComoSolicitanteNestedInput
   items?: Prisma.SolicitudItemUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUpdateManyWithoutSolicitudNestedInput
@@ -947,6 +1242,9 @@ export type SolicitudCotizacionUncheckedUpdateWithoutRequerimientoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.SolicitudItemUncheckedUpdateManyWithoutSolicitudNestedInput
   cotizaciones?: Prisma.CotizacionUncheckedUpdateManyWithoutSolicitudNestedInput
   ordenes?: Prisma.OrdenCompraUncheckedUpdateManyWithoutSolicitudNestedInput
@@ -960,6 +1258,9 @@ export type SolicitudCotizacionUncheckedUpdateManyWithoutRequerimientoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aprobadaSolicitantePorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aprobadaSolicitantePorRole?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  aprobadaSolicitanteEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1020,8 +1321,12 @@ export type SolicitudCotizacionSelect<ExtArgs extends runtime.Types.Extensions.I
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadaSolicitantePorId?: boolean
+  aprobadaSolicitantePorRole?: boolean
+  aprobadaSolicitanteEn?: boolean
   proyecto?: boolean | Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>
   requerimiento?: boolean | Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>
+  aprobadaSolicitantePor?: boolean | Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>
   items?: boolean | Prisma.SolicitudCotizacion$itemsArgs<ExtArgs>
   cotizaciones?: boolean | Prisma.SolicitudCotizacion$cotizacionesArgs<ExtArgs>
   ordenes?: boolean | Prisma.SolicitudCotizacion$ordenesArgs<ExtArgs>
@@ -1037,8 +1342,12 @@ export type SolicitudCotizacionSelectCreateManyAndReturn<ExtArgs extends runtime
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadaSolicitantePorId?: boolean
+  aprobadaSolicitantePorRole?: boolean
+  aprobadaSolicitanteEn?: boolean
   proyecto?: boolean | Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>
   requerimiento?: boolean | Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>
+  aprobadaSolicitantePor?: boolean | Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>
 }, ExtArgs["result"]["solicitudCotizacion"]>
 
 export type SolicitudCotizacionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1050,8 +1359,12 @@ export type SolicitudCotizacionSelectUpdateManyAndReturn<ExtArgs extends runtime
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadaSolicitantePorId?: boolean
+  aprobadaSolicitantePorRole?: boolean
+  aprobadaSolicitanteEn?: boolean
   proyecto?: boolean | Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>
   requerimiento?: boolean | Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>
+  aprobadaSolicitantePor?: boolean | Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>
 }, ExtArgs["result"]["solicitudCotizacion"]>
 
 export type SolicitudCotizacionSelectScalar = {
@@ -1063,12 +1376,16 @@ export type SolicitudCotizacionSelectScalar = {
   nota?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  aprobadaSolicitantePorId?: boolean
+  aprobadaSolicitantePorRole?: boolean
+  aprobadaSolicitanteEn?: boolean
 }
 
-export type SolicitudCotizacionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "proyectoId" | "requerimientoId" | "estado" | "nota" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["solicitudCotizacion"]>
+export type SolicitudCotizacionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "proyectoId" | "requerimientoId" | "estado" | "nota" | "creadoEn" | "actualizadoEn" | "aprobadaSolicitantePorId" | "aprobadaSolicitantePorRole" | "aprobadaSolicitanteEn", ExtArgs["result"]["solicitudCotizacion"]>
 export type SolicitudCotizacionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>
   requerimiento?: boolean | Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>
+  aprobadaSolicitantePor?: boolean | Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>
   items?: boolean | Prisma.SolicitudCotizacion$itemsArgs<ExtArgs>
   cotizaciones?: boolean | Prisma.SolicitudCotizacion$cotizacionesArgs<ExtArgs>
   ordenes?: boolean | Prisma.SolicitudCotizacion$ordenesArgs<ExtArgs>
@@ -1077,10 +1394,12 @@ export type SolicitudCotizacionInclude<ExtArgs extends runtime.Types.Extensions.
 export type SolicitudCotizacionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>
   requerimiento?: boolean | Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>
+  aprobadaSolicitantePor?: boolean | Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>
 }
 export type SolicitudCotizacionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>
   requerimiento?: boolean | Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>
+  aprobadaSolicitantePor?: boolean | Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>
 }
 
 export type $SolicitudCotizacionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1088,6 +1407,7 @@ export type $SolicitudCotizacionPayload<ExtArgs extends runtime.Types.Extensions
   objects: {
     proyecto: Prisma.$ProyectoPayload<ExtArgs> | null
     requerimiento: Prisma.$RequerimientoPayload<ExtArgs> | null
+    aprobadaSolicitantePor: Prisma.$UserPayload<ExtArgs> | null
     items: Prisma.$SolicitudItemPayload<ExtArgs>[]
     cotizaciones: Prisma.$CotizacionPayload<ExtArgs>[]
     ordenes: Prisma.$OrdenCompraPayload<ExtArgs>[]
@@ -1101,6 +1421,9 @@ export type $SolicitudCotizacionPayload<ExtArgs extends runtime.Types.Extensions
     nota: string | null
     creadoEn: Date
     actualizadoEn: Date
+    aprobadaSolicitantePorId: string | null
+    aprobadaSolicitantePorRole: $Enums.Role | null
+    aprobadaSolicitanteEn: Date | null
   }, ExtArgs["result"]["solicitudCotizacion"]>
   composites: {}
 }
@@ -1497,6 +1820,7 @@ export interface Prisma__SolicitudCotizacionClient<T, Null = never, ExtArgs exte
   readonly [Symbol.toStringTag]: "PrismaPromise"
   proyecto<T extends Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacion$proyectoArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   requerimiento<T extends Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacion$requerimientoArgs<ExtArgs>>): Prisma.Prisma__RequerimientoClient<runtime.Types.Result.GetResult<Prisma.$RequerimientoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aprobadaSolicitantePor<T extends Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.SolicitudCotizacion$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacion$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cotizaciones<T extends Prisma.SolicitudCotizacion$cotizacionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacion$cotizacionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ordenes<T extends Prisma.SolicitudCotizacion$ordenesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SolicitudCotizacion$ordenesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1537,6 +1861,9 @@ export interface SolicitudCotizacionFieldRefs {
   readonly nota: Prisma.FieldRef<"SolicitudCotizacion", 'String'>
   readonly creadoEn: Prisma.FieldRef<"SolicitudCotizacion", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"SolicitudCotizacion", 'DateTime'>
+  readonly aprobadaSolicitantePorId: Prisma.FieldRef<"SolicitudCotizacion", 'String'>
+  readonly aprobadaSolicitantePorRole: Prisma.FieldRef<"SolicitudCotizacion", 'Role'>
+  readonly aprobadaSolicitanteEn: Prisma.FieldRef<"SolicitudCotizacion", 'DateTime'>
 }
     
 
@@ -1973,6 +2300,25 @@ export type SolicitudCotizacion$requerimientoArgs<ExtArgs extends runtime.Types.
    */
   include?: Prisma.RequerimientoInclude<ExtArgs> | null
   where?: Prisma.RequerimientoWhereInput
+}
+
+/**
+ * SolicitudCotizacion.aprobadaSolicitantePor
+ */
+export type SolicitudCotizacion$aprobadaSolicitantePorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

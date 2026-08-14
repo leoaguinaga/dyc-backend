@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Inject,
   Injectable,
   NotFoundException,
@@ -7,6 +8,7 @@ import {
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
 import { PrismaService } from '../../prisma/prisma.service.js';
+import type { Role } from '../../prisma/types.js';
 import { CreateSolicitudDto } from './dto/create-solicitud.dto.js';
 import { UpdateSolicitudDto } from './dto/update-solicitud.dto.js';
 import {
@@ -20,8 +22,18 @@ import { AppEvents } from '../../shared/events/events.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 
+// Roles que representan al solicitante real (quien creó el requerimiento),
+// distintos de los roles de gestión que ya podían operar este endpoint.
+const SOLICITANTE_ROLES: Role[] = [
+  'supervisor',
+  'supervisor_civil',
+  'supervisor_electrico',
+  'pdr',
+];
+
 const SOLICITUD_INCLUDE = {
   proyecto: { select: { id: true, nombre: true, codigo: true } },
+  aprobadaSolicitantePor: { select: { id: true, name: true, role: true } },
   items: {
     include: {
       item: {
@@ -120,6 +132,26 @@ export class CotizacionesService {
       },
       include: SOLICITUD_INCLUDE,
     });
+
+    if (dto.requerimientoId) {
+      const req = await this.prisma.requerimiento.findUnique({
+        where: { id: dto.requerimientoId },
+        select: { id: true, codigo: true, nombre: true, creadoPorId: true, estado: true },
+      });
+      if (req?.estado === 'aprobado') {
+        await this.prisma.requerimiento.update({
+          where: { id: req.id },
+          data: { estado: 'en_cotizacion' },
+        });
+        this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+          requerimientoId: req.id,
+          codigo: req.codigo,
+          nombre: req.nombre,
+          estado: 'en_cotizacion',
+          creadoPorId: req.creadoPorId,
+        });
+      }
+    }
 
     return solicitud;
   }
@@ -333,6 +365,7 @@ export class CotizacionesService {
   async avanzarEstadoSolicitud(
     id: string,
     nuevoEstado: 'aprobada_solicitante' | 'aprobada_gerencia' | 'cancelada',
+    actor: { id: string; role: Role },
   ) {
     const TRANSICIONES: Partial<Record<string, (typeof nuevoEstado)[]>> = {
       seleccionada: ['aprobada_solicitante', 'cancelada'],
@@ -346,9 +379,32 @@ export class CotizacionesService {
         `No se puede pasar de "${s.estado}" a "${nuevoEstado}"`,
       );
 
+    // Si aprueba alguien con rol de solicitante (no logística/gerencia/admin
+    // actuando por premura), debe ser quien generó el requerimiento original.
+    if (nuevoEstado === 'aprobada_solicitante' && SOLICITANTE_ROLES.includes(actor.role)) {
+      const requerimiento = s.requerimientoId
+        ? await this.prisma.requerimiento.findUnique({
+            where: { id: s.requerimientoId },
+            select: { creadoPorId: true },
+          })
+        : null;
+      if (!requerimiento || requerimiento.creadoPorId !== actor.id) {
+        throw new ForbiddenException(
+          'Solo el solicitante que generó este requerimiento puede aprobar la cotización',
+        );
+      }
+    }
+
+    const data: Record<string, unknown> = { estado: nuevoEstado };
+    if (nuevoEstado === 'aprobada_solicitante') {
+      data.aprobadaSolicitantePorId = actor.id;
+      data.aprobadaSolicitantePorRole = actor.role;
+      data.aprobadaSolicitanteEn = new Date();
+    }
+
     return this.prisma.solicitudCotizacion.update({
       where: { id },
-      data: { estado: nuevoEstado },
+      data,
       include: SOLICITUD_INCLUDE,
     });
   }

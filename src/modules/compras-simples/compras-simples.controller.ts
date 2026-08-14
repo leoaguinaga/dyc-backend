@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   Req,
@@ -16,6 +17,7 @@ import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { ComprasSimplesService } from './compras-simples.service.js';
 import { CreateCompraSimpleDto } from './dto/create-compra-simple.dto.js';
 import { AprobarGrupoDto, ObservarGrupoDto } from './dto/decision-grupo.dto.js';
+import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 
@@ -66,6 +68,16 @@ export class ComprasSimplesController {
     return this.service.observarGrupo(grupoId, dto, req.user!.id, req.user!.role);
   }
 
+  @Patch('grupos/:grupoId/items')
+  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador', 'admin_ti')
+  editarItemsGrupo(
+    @Param('grupoId') grupoId: string,
+    @Body() dto: EditarItemsGrupoDto,
+    @Req() req: Request,
+  ) {
+    return this.service.editarItemsGrupo(grupoId, dto, req.user!.id, req.user!.role);
+  }
+
   @Post('grupos/:grupoId/reenviar')
   reenviarGrupo(@Param('grupoId') grupoId: string, @Req() req: Request) {
     return this.service.reenviarGrupo(grupoId, req.user!.id, req.user!.role);
@@ -87,9 +99,11 @@ export class ComprasSimplesController {
   subirArchivo(
     @Param('grupoId') grupoId: string,
     @Req() req: Request,
+    @Body('tipo') tipo?: string,
     @UploadedFile() file?: Express.Multer.File,
   ) {
     if (!file) throw new BadRequestException('Debes adjuntar un archivo');
-    return this.service.subirArchivo(grupoId, file, req.user!.id);
+    const tipoArchivo = tipo === 'foto_producto' ? 'foto_producto' : 'comprobante';
+    return this.service.subirArchivo(grupoId, file, req.user!.id, tipoArchivo);
   }
 }

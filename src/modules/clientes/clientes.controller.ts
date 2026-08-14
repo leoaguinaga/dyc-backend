@@ -7,7 +7,14 @@ import { CreateContactoDto } from './dto/create-contacto.dto.js';
 import { UpdateContactoDto } from './dto/update-contacto.dto.js';
 
 @Controller('clientes')
-@Roles('administrador', 'logistica', 'gerencia')
+@Roles(
+  'administrador',
+  'logistica',
+  'gerencia',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+)
 export class ClientesController {
   constructor(private clientesService: ClientesService) {}
 
