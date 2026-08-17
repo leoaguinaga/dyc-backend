@@ -548,6 +548,13 @@ export type EnumOrigenOrdenCompraFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel> | $Enums.OrigenOrdenCompra
 }
 
+export type EnumTipoOrdenCompraFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoOrdenCompra | Prisma.EnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoOrdenCompraFilter<$PrismaModel> | $Enums.TipoOrdenCompra
+}
+
 export type EnumEstadoAprobacionCompraNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
   in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
@@ -584,6 +591,16 @@ export type EnumOrigenOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
   _max?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
+}
+
+export type EnumTipoOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoOrdenCompra | Prisma.EnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoOrdenCompraWithAggregatesFilter<$PrismaModel> | $Enums.TipoOrdenCompra
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoOrdenCompraFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoOrdenCompraFilter<$PrismaModel>
 }
 
 export type EnumEstadoAprobacionCompraNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -1258,6 +1275,13 @@ export type NestedEnumOrigenOrdenCompraFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel> | $Enums.OrigenOrdenCompra
 }
 
+export type NestedEnumTipoOrdenCompraFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoOrdenCompra | Prisma.EnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoOrdenCompraFilter<$PrismaModel> | $Enums.TipoOrdenCompra
+}
+
 export type NestedEnumEstadoAprobacionCompraNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoAprobacionCompra | Prisma.EnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
   in?: $Enums.EstadoAprobacionCompra[] | Prisma.ListEnumEstadoAprobacionCompraFieldRefInput<$PrismaModel> | null
@@ -1294,6 +1318,16 @@ export type NestedEnumOrigenOrdenCompraWithAggregatesFilter<$PrismaModel = never
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
   _max?: Prisma.NestedEnumOrigenOrdenCompraFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoOrdenCompraWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoOrdenCompra | Prisma.EnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoOrdenCompra[] | Prisma.ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoOrdenCompraWithAggregatesFilter<$PrismaModel> | $Enums.TipoOrdenCompra
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoOrdenCompraFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoOrdenCompraFilter<$PrismaModel>
 }
 
 export type NestedEnumEstadoAprobacionCompraNullableWithAggregatesFilter<$PrismaModel = never> = {

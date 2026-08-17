@@ -14,7 +14,10 @@ import {
   CreateOrdenItemDto,
   UpdateOrdenItemDto,
 } from './dto/orden-item.dto.js';
-import type { EstadoOrdenCompra } from '../../../prisma/generated/prisma/enums.js';
+import type {
+  EstadoOrdenCompra,
+  TipoOrdenCompra,
+} from '../../../prisma/generated/prisma/enums.js';
 import { AppEvents } from '../../shared/events/events.js';
 
 const OC_INCLUDE = {
@@ -52,6 +55,11 @@ const OC_INCLUDE = {
   items: true,
 } as const;
 
+const PREFIJO_POR_TIPO: Record<TipoOrdenCompra, string> = {
+  compra: 'OC',
+  servicio: 'OS',
+};
+
 @Injectable()
 export class OrdenesCompraService {
   constructor(
@@ -59,12 +67,30 @@ export class OrdenesCompraService {
     private events: EventEmitter2,
   ) {}
 
-  findAll(query: { estado?: EstadoOrdenCompra; proyectoId?: string }) {
+  /**
+   * Correlativo anual por tipo (OC-2026-0001 / OS-2026-0001). El `count` no es
+   * atómico (misma limitación que antes); se asume volumen bajo de creación
+   * concurrente para este flujo.
+   */
+  async generateNumero(tipo: TipoOrdenCompra, offset = 0): Promise<string> {
+    const year = new Date().getFullYear();
+    const count = await this.prisma.ordenCompra.count({
+      where: { tipo, creadoEn: { gte: new Date(`${year}-01-01`) } },
+    });
+    return `${PREFIJO_POR_TIPO[tipo]}-${year}-${String(count + offset + 1).padStart(4, '0')}`;
+  }
+
+  findAll(query: {
+    estado?: EstadoOrdenCompra;
+    proyectoId?: string;
+    tipo?: TipoOrdenCompra;
+  }) {
     return this.prisma.ordenCompra.findMany({
       where: {
         origen: 'macro',
         estado: query.estado,
         proyectoId: query.proyectoId,
+        tipo: query.tipo,
       },
       include: {
         proveedor: { select: { id: true, razonSocial: true } },
@@ -205,13 +231,17 @@ export class OrdenesCompraService {
     const lugarEntrega = dto.lugarEntrega ?? proyecto?.direccion ?? undefined;
 
     const grupos = [...byProveedor.values()];
-    const year = new Date().getFullYear();
-    const baseCount = await this.prisma.ordenCompra.count({
-      where: { creadoEn: { gte: new Date(`${year}-01-01`) } },
-    });
+    const tipo: TipoOrdenCompra = dto.tipo ?? 'compra';
+    const numeros = await Promise.all(
+      grupos.map((_, i) => this.generateNumero(tipo, i)),
+    );
 
-    const ordenes = await this.prisma.$transaction(
-      grupos.map((grupo, i) => {
+    const [, ...ordenes] = await this.prisma.$transaction([
+      this.prisma.solicitudCotizacion.update({
+        where: { id: dto.solicitudId },
+        data: { estado: 'orden_generada' },
+      }),
+      ...grupos.map((grupo, i) => {
         const monto = grupo.items.reduce(
           (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
           0,
@@ -221,7 +251,8 @@ export class OrdenesCompraService {
         );
         return this.prisma.ordenCompra.create({
           data: {
-            numero: `OC-${year}-${String(baseCount + i + 1).padStart(4, '0')}`,
+            numero: numeros[i],
+            tipo,
             nombre: solicitud.requerimiento?.nombre,
             solicitudId: dto.solicitudId,
             proveedorId: grupo.proveedorId,
@@ -260,7 +291,7 @@ export class OrdenesCompraService {
           include: OC_INCLUDE,
         });
       }),
-    );
+    ]);
 
     for (const oc of ordenes) {
       this.events.emit(AppEvents.ORDEN_COMPRA_GENERADA, {
@@ -274,31 +305,56 @@ export class OrdenesCompraService {
   }
 
   async update(id: string, dto: UpdateOrdenCompraDto) {
-    await this.findOne(id);
-    return this.prisma.ordenCompra.update({
-      where: { id },
-      data: {
-        nombre: dto.nombre,
-        lugarEntrega: dto.lugarEntrega,
-        nota: dto.nota,
-        adelantoPorcentaje: dto.adelantoPorcentaje,
-        saldoPorcentaje: dto.saldoPorcentaje,
-        detraccionPorcentaje: dto.detraccionPorcentaje,
-        incluyeIgv: dto.incluyeIgv,
-        tipoCambio: dto.tipoCambio,
-        contactoProveedorNombre: dto.contactoProveedorNombre,
-        contactoProveedorTelefono: dto.contactoProveedorTelefono,
-        condicionPago: dto.condicionPago,
-        referencia: dto.referencia,
-        concepto: dto.concepto,
-        tiempoEntrega: dto.tiempoEntrega,
-        contactoDycNombre: dto.contactoDycNombre,
-        contactoDycArea: dto.contactoDycArea,
-        contactoDycCelular: dto.contactoDycCelular,
-        contactoDycTelefono: dto.contactoDycTelefono,
-      },
-      include: OC_INCLUDE,
-    });
+    const oc = await this.findOne(id);
+
+    const detraccionFinal =
+      dto.detraccionPorcentaje ?? Number(oc.detraccionPorcentaje ?? 0);
+    const retencionFinal =
+      dto.retencionPorcentaje ?? Number(oc.retencionPorcentaje ?? 0);
+    if (detraccionFinal > 0 && retencionFinal > 0)
+      throw new BadRequestException(
+        'Una orden no puede tener detracción y retención a la vez: son mecanismos excluyentes sobre la misma operación',
+      );
+
+    try {
+      return await this.prisma.ordenCompra.update({
+        where: { id },
+        data: {
+          nombre: dto.nombre,
+          numero: dto.numero,
+          tipo: dto.tipo,
+          lugarEntrega: dto.lugarEntrega,
+          nota: dto.nota,
+          adelantoPorcentaje: dto.adelantoPorcentaje,
+          saldoPorcentaje: dto.saldoPorcentaje,
+          detraccionPorcentaje: dto.detraccionPorcentaje,
+          retencionPorcentaje: dto.retencionPorcentaje,
+          incluyeIgv: dto.incluyeIgv,
+          tipoCambio: dto.tipoCambio,
+          contactoProveedorNombre: dto.contactoProveedorNombre,
+          contactoProveedorTelefono: dto.contactoProveedorTelefono,
+          condicionPago: dto.condicionPago,
+          referencia: dto.referencia,
+          concepto: dto.concepto,
+          tiempoEntrega: dto.tiempoEntrega,
+          contactoDycNombre: dto.contactoDycNombre,
+          contactoDycArea: dto.contactoDycArea,
+          contactoDycCelular: dto.contactoDycCelular,
+          contactoDycTelefono: dto.contactoDycTelefono,
+        },
+        include: OC_INCLUDE,
+      });
+    } catch (err) {
+      if (
+        err &&
+        typeof err === 'object' &&
+        'code' in err &&
+        err.code === 'P2002'
+      ) {
+        throw new BadRequestException('Ese número ya está en uso');
+      }
+      throw err;
+    }
   }
 
   private assertItemsEditable(estado: EstadoOrdenCompra) {
@@ -448,13 +504,5 @@ export class OrdenesCompraService {
     }
 
     return actualizada;
-  }
-
-  private async generateNumero(): Promise<string> {
-    const year = new Date().getFullYear();
-    const count = await this.prisma.ordenCompra.count({
-      where: { creadoEn: { gte: new Date(`${year}-01-01`) } },
-    });
-    return `OC-${year}-${String(count + 1).padStart(4, '0')}`;
   }
 }

@@ -4,6 +4,7 @@ import { PrismaService } from '../../prisma/prisma.service.js';
 import { EmailService } from '../../shared/email/email.service.js';
 import type { Role, TipoNotificacion } from '../../prisma/types.js';
 import { QueryNotificacionDto } from './dto/query-notificacion.dto.js';
+import { hoyLima } from '../../shared/date/fecha.util.js';
 
 const DIAS_ANTICIPACION_PAGO = 3;
 
@@ -119,7 +120,7 @@ export class NotificacionesService {
       },
     });
 
-    const hoy = new Date();
+    const hoy = hoyLima();
     const limiteAnticipacion = new Date(hoy.getTime() + DIAS_ANTICIPACION_PAGO * 24 * 60 * 60 * 1000);
 
     for (const pago of pagos) {

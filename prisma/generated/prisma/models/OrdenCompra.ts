@@ -32,6 +32,7 @@ export type OrdenCompraAvgAggregateOutputType = {
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
+  retencionPorcentaje: runtime.Decimal | null
   tipoCambio: runtime.Decimal | null
 }
 
@@ -41,6 +42,7 @@ export type OrdenCompraSumAggregateOutputType = {
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
+  retencionPorcentaje: runtime.Decimal | null
   tipoCambio: runtime.Decimal | null
 }
 
@@ -52,6 +54,7 @@ export type OrdenCompraMinAggregateOutputType = {
   proveedorId: string | null
   proveedorNombreLibre: string | null
   origen: $Enums.OrigenOrdenCompra | null
+  tipo: $Enums.TipoOrdenCompra | null
   compraSimpleId: string | null
   estadoAprobacion: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId: string | null
@@ -69,6 +72,7 @@ export type OrdenCompraMinAggregateOutputType = {
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
+  retencionPorcentaje: runtime.Decimal | null
   incluyeIgv: boolean | null
   tipoCambio: runtime.Decimal | null
   contactoProveedorNombre: string | null
@@ -103,6 +107,7 @@ export type OrdenCompraMaxAggregateOutputType = {
   proveedorId: string | null
   proveedorNombreLibre: string | null
   origen: $Enums.OrigenOrdenCompra | null
+  tipo: $Enums.TipoOrdenCompra | null
   compraSimpleId: string | null
   estadoAprobacion: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId: string | null
@@ -120,6 +125,7 @@ export type OrdenCompraMaxAggregateOutputType = {
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
+  retencionPorcentaje: runtime.Decimal | null
   incluyeIgv: boolean | null
   tipoCambio: runtime.Decimal | null
   contactoProveedorNombre: string | null
@@ -154,6 +160,7 @@ export type OrdenCompraCountAggregateOutputType = {
   proveedorId: number
   proveedorNombreLibre: number
   origen: number
+  tipo: number
   compraSimpleId: number
   estadoAprobacion: number
   aprobadoPorId: number
@@ -171,6 +178,7 @@ export type OrdenCompraCountAggregateOutputType = {
   adelantoPorcentaje: number
   saldoPorcentaje: number
   detraccionPorcentaje: number
+  retencionPorcentaje: number
   incluyeIgv: number
   tipoCambio: number
   contactoProveedorNombre: number
@@ -205,6 +213,7 @@ export type OrdenCompraAvgAggregateInputType = {
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
+  retencionPorcentaje?: true
   tipoCambio?: true
 }
 
@@ -214,6 +223,7 @@ export type OrdenCompraSumAggregateInputType = {
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
+  retencionPorcentaje?: true
   tipoCambio?: true
 }
 
@@ -225,6 +235,7 @@ export type OrdenCompraMinAggregateInputType = {
   proveedorId?: true
   proveedorNombreLibre?: true
   origen?: true
+  tipo?: true
   compraSimpleId?: true
   estadoAprobacion?: true
   aprobadoPorId?: true
@@ -242,6 +253,7 @@ export type OrdenCompraMinAggregateInputType = {
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
+  retencionPorcentaje?: true
   incluyeIgv?: true
   tipoCambio?: true
   contactoProveedorNombre?: true
@@ -276,6 +288,7 @@ export type OrdenCompraMaxAggregateInputType = {
   proveedorId?: true
   proveedorNombreLibre?: true
   origen?: true
+  tipo?: true
   compraSimpleId?: true
   estadoAprobacion?: true
   aprobadoPorId?: true
@@ -293,6 +306,7 @@ export type OrdenCompraMaxAggregateInputType = {
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
+  retencionPorcentaje?: true
   incluyeIgv?: true
   tipoCambio?: true
   contactoProveedorNombre?: true
@@ -327,6 +341,7 @@ export type OrdenCompraCountAggregateInputType = {
   proveedorId?: true
   proveedorNombreLibre?: true
   origen?: true
+  tipo?: true
   compraSimpleId?: true
   estadoAprobacion?: true
   aprobadoPorId?: true
@@ -344,6 +359,7 @@ export type OrdenCompraCountAggregateInputType = {
   adelantoPorcentaje?: true
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
+  retencionPorcentaje?: true
   incluyeIgv?: true
   tipoCambio?: true
   contactoProveedorNombre?: true
@@ -465,6 +481,7 @@ export type OrdenCompraGroupByOutputType = {
   proveedorId: string | null
   proveedorNombreLibre: string | null
   origen: $Enums.OrigenOrdenCompra
+  tipo: $Enums.TipoOrdenCompra
   compraSimpleId: string | null
   estadoAprobacion: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId: string | null
@@ -482,6 +499,7 @@ export type OrdenCompraGroupByOutputType = {
   adelantoPorcentaje: runtime.Decimal | null
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
+  retencionPorcentaje: runtime.Decimal | null
   incluyeIgv: boolean
   tipoCambio: runtime.Decimal | null
   contactoProveedorNombre: string | null
@@ -539,6 +557,7 @@ export type OrdenCompraWhereInput = {
   proveedorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   proveedorNombreLibre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFilter<"OrdenCompra"> | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -556,6 +575,7 @@ export type OrdenCompraWhereInput = {
   adelantoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -601,6 +621,7 @@ export type OrdenCompraOrderByWithRelationInput = {
   proveedorId?: Prisma.SortOrderInput | Prisma.SortOrder
   proveedorNombreLibre?: Prisma.SortOrderInput | Prisma.SortOrder
   origen?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   compraSimpleId?: Prisma.SortOrderInput | Prisma.SortOrder
   estadoAprobacion?: Prisma.SortOrderInput | Prisma.SortOrder
   aprobadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -618,6 +639,7 @@ export type OrdenCompraOrderByWithRelationInput = {
   adelantoPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -666,6 +688,7 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   proveedorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   proveedorNombreLibre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFilter<"OrdenCompra"> | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -683,6 +706,7 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   adelantoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -728,6 +752,7 @@ export type OrdenCompraOrderByWithAggregationInput = {
   proveedorId?: Prisma.SortOrderInput | Prisma.SortOrder
   proveedorNombreLibre?: Prisma.SortOrderInput | Prisma.SortOrder
   origen?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   compraSimpleId?: Prisma.SortOrderInput | Prisma.SortOrder
   estadoAprobacion?: Prisma.SortOrderInput | Prisma.SortOrder
   aprobadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -745,6 +770,7 @@ export type OrdenCompraOrderByWithAggregationInput = {
   adelantoPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -787,6 +813,7 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   proveedorId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   proveedorNombreLibre?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   origen?: Prisma.EnumOrigenOrdenCompraWithAggregatesFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraWithAggregatesFilter<"OrdenCompra"> | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableWithAggregatesFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
@@ -804,6 +831,7 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   adelantoPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolWithAggregatesFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
@@ -836,6 +864,7 @@ export type OrdenCompraCreateInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -850,6 +879,7 @@ export type OrdenCompraCreateInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -893,6 +923,7 @@ export type OrdenCompraUncheckedCreateInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -910,6 +941,7 @@ export type OrdenCompraUncheckedCreateInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -946,6 +978,7 @@ export type OrdenCompraUpdateInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -960,6 +993,7 @@ export type OrdenCompraUpdateInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1003,6 +1037,7 @@ export type OrdenCompraUncheckedUpdateInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1020,6 +1055,7 @@ export type OrdenCompraUncheckedUpdateInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1058,6 +1094,7 @@ export type OrdenCompraCreateManyInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -1075,6 +1112,7 @@ export type OrdenCompraCreateManyInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1107,6 +1145,7 @@ export type OrdenCompraUpdateManyMutationInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1121,6 +1160,7 @@ export type OrdenCompraUpdateManyMutationInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1153,6 +1193,7 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1170,6 +1211,7 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1214,6 +1256,7 @@ export type OrdenCompraCountOrderByAggregateInput = {
   proveedorId?: Prisma.SortOrder
   proveedorNombreLibre?: Prisma.SortOrder
   origen?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   compraSimpleId?: Prisma.SortOrder
   estadoAprobacion?: Prisma.SortOrder
   aprobadoPorId?: Prisma.SortOrder
@@ -1231,6 +1274,7 @@ export type OrdenCompraCountOrderByAggregateInput = {
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrder
@@ -1263,6 +1307,7 @@ export type OrdenCompraAvgOrderByAggregateInput = {
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
 }
 
@@ -1274,6 +1319,7 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   proveedorId?: Prisma.SortOrder
   proveedorNombreLibre?: Prisma.SortOrder
   origen?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   compraSimpleId?: Prisma.SortOrder
   estadoAprobacion?: Prisma.SortOrder
   aprobadoPorId?: Prisma.SortOrder
@@ -1291,6 +1337,7 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrder
@@ -1325,6 +1372,7 @@ export type OrdenCompraMinOrderByAggregateInput = {
   proveedorId?: Prisma.SortOrder
   proveedorNombreLibre?: Prisma.SortOrder
   origen?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   compraSimpleId?: Prisma.SortOrder
   estadoAprobacion?: Prisma.SortOrder
   aprobadoPorId?: Prisma.SortOrder
@@ -1342,6 +1390,7 @@ export type OrdenCompraMinOrderByAggregateInput = {
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrder
@@ -1374,6 +1423,7 @@ export type OrdenCompraSumOrderByAggregateInput = {
   adelantoPorcentaje?: Prisma.SortOrder
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
+  retencionPorcentaje?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
 }
 
@@ -1680,6 +1730,10 @@ export type EnumOrigenOrdenCompraFieldUpdateOperationsInput = {
   set?: $Enums.OrigenOrdenCompra
 }
 
+export type EnumTipoOrdenCompraFieldUpdateOperationsInput = {
+  set?: $Enums.TipoOrdenCompra
+}
+
 export type NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput = {
   set?: $Enums.EstadoAprobacionCompra | null
 }
@@ -1758,6 +1812,7 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -1772,6 +1827,7 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1814,6 +1870,7 @@ export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -1831,6 +1888,7 @@ export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1876,6 +1934,7 @@ export type OrdenCompraCreateWithoutAprobadoPorInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -1890,6 +1949,7 @@ export type OrdenCompraCreateWithoutAprobadoPorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1932,6 +1992,7 @@ export type OrdenCompraUncheckedCreateWithoutAprobadoPorInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
@@ -1948,6 +2009,7 @@ export type OrdenCompraUncheckedCreateWithoutAprobadoPorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2015,6 +2077,7 @@ export type OrdenCompraScalarWhereInput = {
   proveedorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   proveedorNombreLibre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFilter<"OrdenCompra"> | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFilter<"OrdenCompra"> | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   estadoAprobacion?: Prisma.EnumEstadoAprobacionCompraNullableFilter<"OrdenCompra"> | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -2032,6 +2095,7 @@ export type OrdenCompraScalarWhereInput = {
   adelantoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -2080,6 +2144,7 @@ export type OrdenCompraCreateWithoutProyectoInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2094,6 +2159,7 @@ export type OrdenCompraCreateWithoutProyectoInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2136,6 +2202,7 @@ export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -2152,6 +2219,7 @@ export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2214,6 +2282,7 @@ export type OrdenCompraCreateWithoutPagoTrabajadorInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2228,6 +2297,7 @@ export type OrdenCompraCreateWithoutPagoTrabajadorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2270,6 +2340,7 @@ export type OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -2287,6 +2358,7 @@ export type OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2348,6 +2420,7 @@ export type OrdenCompraCreateWithoutProveedorInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2362,6 +2435,7 @@ export type OrdenCompraCreateWithoutProveedorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2403,6 +2477,7 @@ export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
   solicitudId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -2420,6 +2495,7 @@ export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2482,6 +2558,7 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2496,6 +2573,7 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2537,6 +2615,7 @@ export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -2554,6 +2633,7 @@ export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2616,6 +2696,7 @@ export type OrdenCompraCreateWithoutCompraSimpleInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2630,6 +2711,7 @@ export type OrdenCompraCreateWithoutCompraSimpleInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2672,6 +2754,7 @@ export type OrdenCompraUncheckedCreateWithoutCompraSimpleInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
   aprobadoEn?: Date | string | null
@@ -2688,6 +2771,7 @@ export type OrdenCompraUncheckedCreateWithoutCompraSimpleInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2750,6 +2834,7 @@ export type OrdenCompraCreateWithoutArchivosInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2764,6 +2849,7 @@ export type OrdenCompraCreateWithoutArchivosInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2806,6 +2892,7 @@ export type OrdenCompraUncheckedCreateWithoutArchivosInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -2823,6 +2910,7 @@ export type OrdenCompraUncheckedCreateWithoutArchivosInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2874,6 +2962,7 @@ export type OrdenCompraUpdateWithoutArchivosInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2888,6 +2977,7 @@ export type OrdenCompraUpdateWithoutArchivosInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2930,6 +3020,7 @@ export type OrdenCompraUncheckedUpdateWithoutArchivosInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2947,6 +3038,7 @@ export type OrdenCompraUncheckedUpdateWithoutArchivosInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2982,6 +3074,7 @@ export type OrdenCompraCreateWithoutHistorialInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -2996,6 +3089,7 @@ export type OrdenCompraCreateWithoutHistorialInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3038,6 +3132,7 @@ export type OrdenCompraUncheckedCreateWithoutHistorialInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -3055,6 +3150,7 @@ export type OrdenCompraUncheckedCreateWithoutHistorialInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3106,6 +3202,7 @@ export type OrdenCompraUpdateWithoutHistorialInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3120,6 +3217,7 @@ export type OrdenCompraUpdateWithoutHistorialInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3162,6 +3260,7 @@ export type OrdenCompraUncheckedUpdateWithoutHistorialInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3179,6 +3278,7 @@ export type OrdenCompraUncheckedUpdateWithoutHistorialInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3214,6 +3314,7 @@ export type OrdenCompraCreateWithoutPagosInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -3228,6 +3329,7 @@ export type OrdenCompraCreateWithoutPagosInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3270,6 +3372,7 @@ export type OrdenCompraUncheckedCreateWithoutPagosInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -3287,6 +3390,7 @@ export type OrdenCompraUncheckedCreateWithoutPagosInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3338,6 +3442,7 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3352,6 +3457,7 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3394,6 +3500,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3411,6 +3518,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3446,6 +3554,7 @@ export type OrdenCompraCreateWithoutItemsInput = {
   nombre?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
   notaAprobacion?: string | null
@@ -3460,6 +3569,7 @@ export type OrdenCompraCreateWithoutItemsInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3502,6 +3612,7 @@ export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -3519,6 +3630,7 @@ export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3570,6 +3682,7 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3584,6 +3697,7 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3626,6 +3740,7 @@ export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3643,6 +3758,7 @@ export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3680,6 +3796,7 @@ export type OrdenCompraCreateManyCreadoPorInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -3697,6 +3814,7 @@ export type OrdenCompraCreateManyCreadoPorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3730,6 +3848,7 @@ export type OrdenCompraCreateManyAprobadoPorInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Date | string | null
@@ -3746,6 +3865,7 @@ export type OrdenCompraCreateManyAprobadoPorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3778,6 +3898,7 @@ export type OrdenCompraUpdateWithoutCreadoPorInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3792,6 +3913,7 @@ export type OrdenCompraUpdateWithoutCreadoPorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3834,6 +3956,7 @@ export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3851,6 +3974,7 @@ export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3888,6 +4012,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3905,6 +4030,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3936,6 +4062,7 @@ export type OrdenCompraUpdateWithoutAprobadoPorInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3950,6 +4077,7 @@ export type OrdenCompraUpdateWithoutAprobadoPorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3992,6 +4120,7 @@ export type OrdenCompraUncheckedUpdateWithoutAprobadoPorInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4008,6 +4137,7 @@ export type OrdenCompraUncheckedUpdateWithoutAprobadoPorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4046,6 +4176,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutAprobadoPorInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4062,6 +4193,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutAprobadoPorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4096,6 +4228,7 @@ export type OrdenCompraCreateManyProyectoInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -4112,6 +4245,7 @@ export type OrdenCompraCreateManyProyectoInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4144,6 +4278,7 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4158,6 +4293,7 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4200,6 +4336,7 @@ export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4216,6 +4353,7 @@ export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4254,6 +4392,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4270,6 +4409,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4304,6 +4444,7 @@ export type OrdenCompraCreateManyPagoTrabajadorInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -4321,6 +4462,7 @@ export type OrdenCompraCreateManyPagoTrabajadorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4352,6 +4494,7 @@ export type OrdenCompraUpdateWithoutPagoTrabajadorInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4366,6 +4509,7 @@ export type OrdenCompraUpdateWithoutPagoTrabajadorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4408,6 +4552,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4425,6 +4570,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4462,6 +4608,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4479,6 +4626,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4511,6 +4659,7 @@ export type OrdenCompraCreateManyProveedorInput = {
   solicitudId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -4528,6 +4677,7 @@ export type OrdenCompraCreateManyProveedorInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4560,6 +4710,7 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4574,6 +4725,7 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4615,6 +4767,7 @@ export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4632,6 +4785,7 @@ export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4669,6 +4823,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   solicitudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4686,6 +4841,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4719,6 +4875,7 @@ export type OrdenCompraCreateManySolicitudInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   compraSimpleId?: string | null
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
@@ -4736,6 +4893,7 @@ export type OrdenCompraCreateManySolicitudInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4768,6 +4926,7 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4782,6 +4941,7 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4823,6 +4983,7 @@ export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4840,6 +5001,7 @@ export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4877,6 +5039,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   compraSimpleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4894,6 +5057,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4928,6 +5092,7 @@ export type OrdenCompraCreateManyCompraSimpleInput = {
   proveedorId?: string | null
   proveedorNombreLibre?: string | null
   origen?: $Enums.OrigenOrdenCompra
+  tipo?: $Enums.TipoOrdenCompra
   estadoAprobacion?: $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: string | null
   aprobadoEn?: Date | string | null
@@ -4944,6 +5109,7 @@ export type OrdenCompraCreateManyCompraSimpleInput = {
   adelantoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4976,6 +5142,7 @@ export type OrdenCompraUpdateWithoutCompraSimpleInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaAprobacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4990,6 +5157,7 @@ export type OrdenCompraUpdateWithoutCompraSimpleInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5032,6 +5200,7 @@ export type OrdenCompraUncheckedUpdateWithoutCompraSimpleInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5048,6 +5217,7 @@ export type OrdenCompraUncheckedUpdateWithoutCompraSimpleInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5086,6 +5256,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCompraSimpleInput = {
   proveedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   proveedorNombreLibre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   origen?: Prisma.EnumOrigenOrdenCompraFieldUpdateOperationsInput | $Enums.OrigenOrdenCompra
+  tipo?: Prisma.EnumTipoOrdenCompraFieldUpdateOperationsInput | $Enums.TipoOrdenCompra
   estadoAprobacion?: Prisma.NullableEnumEstadoAprobacionCompraFieldUpdateOperationsInput | $Enums.EstadoAprobacionCompra | null
   aprobadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aprobadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5102,6 +5273,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCompraSimpleInput = {
   adelantoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5194,6 +5366,7 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   proveedorId?: boolean
   proveedorNombreLibre?: boolean
   origen?: boolean
+  tipo?: boolean
   compraSimpleId?: boolean
   estadoAprobacion?: boolean
   aprobadoPorId?: boolean
@@ -5211,6 +5384,7 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   adelantoPorcentaje?: boolean
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
+  retencionPorcentaje?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5257,6 +5431,7 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   proveedorId?: boolean
   proveedorNombreLibre?: boolean
   origen?: boolean
+  tipo?: boolean
   compraSimpleId?: boolean
   estadoAprobacion?: boolean
   aprobadoPorId?: boolean
@@ -5274,6 +5449,7 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   adelantoPorcentaje?: boolean
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
+  retencionPorcentaje?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5315,6 +5491,7 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   proveedorId?: boolean
   proveedorNombreLibre?: boolean
   origen?: boolean
+  tipo?: boolean
   compraSimpleId?: boolean
   estadoAprobacion?: boolean
   aprobadoPorId?: boolean
@@ -5332,6 +5509,7 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   adelantoPorcentaje?: boolean
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
+  retencionPorcentaje?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5373,6 +5551,7 @@ export type OrdenCompraSelectScalar = {
   proveedorId?: boolean
   proveedorNombreLibre?: boolean
   origen?: boolean
+  tipo?: boolean
   compraSimpleId?: boolean
   estadoAprobacion?: boolean
   aprobadoPorId?: boolean
@@ -5390,6 +5569,7 @@ export type OrdenCompraSelectScalar = {
   adelantoPorcentaje?: boolean
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
+  retencionPorcentaje?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5416,7 +5596,7 @@ export type OrdenCompraSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
+export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "tipo" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "retencionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
 export type OrdenCompraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
   proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
@@ -5473,6 +5653,7 @@ export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.Interna
     proveedorId: string | null
     proveedorNombreLibre: string | null
     origen: $Enums.OrigenOrdenCompra
+    tipo: $Enums.TipoOrdenCompra
     compraSimpleId: string | null
     estadoAprobacion: $Enums.EstadoAprobacionCompra | null
     aprobadoPorId: string | null
@@ -5490,6 +5671,7 @@ export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.Interna
     adelantoPorcentaje: runtime.Decimal | null
     saldoPorcentaje: runtime.Decimal | null
     detraccionPorcentaje: runtime.Decimal | null
+    retencionPorcentaje: runtime.Decimal | null
     incluyeIgv: boolean
     tipoCambio: runtime.Decimal | null
     contactoProveedorNombre: string | null
@@ -5955,6 +6137,7 @@ export interface OrdenCompraFieldRefs {
   readonly proveedorId: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly proveedorNombreLibre: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly origen: Prisma.FieldRef<"OrdenCompra", 'OrigenOrdenCompra'>
+  readonly tipo: Prisma.FieldRef<"OrdenCompra", 'TipoOrdenCompra'>
   readonly compraSimpleId: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly estadoAprobacion: Prisma.FieldRef<"OrdenCompra", 'EstadoAprobacionCompra'>
   readonly aprobadoPorId: Prisma.FieldRef<"OrdenCompra", 'String'>
@@ -5972,6 +6155,7 @@ export interface OrdenCompraFieldRefs {
   readonly adelantoPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly saldoPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly detraccionPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
+  readonly retencionPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly incluyeIgv: Prisma.FieldRef<"OrdenCompra", 'Boolean'>
   readonly tipoCambio: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly contactoProveedorNombre: Prisma.FieldRef<"OrdenCompra", 'String'>

@@ -21,7 +21,10 @@ import {
   CreateOrdenItemDto,
   UpdateOrdenItemDto,
 } from './dto/orden-item.dto.js';
-import type { EstadoOrdenCompra } from '../../../prisma/generated/prisma/enums.js';
+import type {
+  EstadoOrdenCompra,
+  TipoOrdenCompra,
+} from '../../../prisma/generated/prisma/enums.js';
 
 @Controller('ordenes-compra')
 @Roles(
@@ -39,8 +42,9 @@ export class OrdenesCompraController {
   findAll(
     @Query('estado') estado?: EstadoOrdenCompra,
     @Query('proyectoId') proyectoId?: string,
+    @Query('tipo') tipo?: TipoOrdenCompra,
   ) {
-    return this.service.findAll({ estado, proyectoId });
+    return this.service.findAll({ estado, proyectoId, tipo });
   }
 
   @Get(':id')

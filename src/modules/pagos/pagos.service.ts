@@ -2,6 +2,7 @@ import { BadRequestException, Inject, Injectable, NotFoundException } from '@nes
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
+import { hoyLima } from '../../shared/date/fecha.util.js';
 import {
   CreatePagoDto,
   MarcarPagadoDto,
@@ -30,7 +31,9 @@ const PAGO_INCLUDE = {
 } as const;
 
 function withEstadoEfectivo<T extends { estado: string; fechaProgramada: Date }>(pago: T) {
-  const vencido = pago.estado === 'pendiente' && pago.fechaProgramada < new Date();
+  // Comparación por día calendario (no por hora exacta): un pago programado
+  // para hoy no debe marcarse vencido hasta que empiece el día siguiente.
+  const vencido = pago.estado === 'pendiente' && pago.fechaProgramada < hoyLima();
   return { ...pago, estadoEfectivo: vencido ? 'vencido' : pago.estado };
 }
 

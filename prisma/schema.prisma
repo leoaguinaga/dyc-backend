@@ -93,6 +93,7 @@ enum EstadoSolicitud {
   seleccionada
   aprobada_solicitante
   aprobada_gerencia
+  orden_generada
   cancelada
 }
 
@@ -126,6 +127,11 @@ enum TipoBeneficiario {
 enum OrigenOrdenCompra {
   macro
   simple
+}
+
+enum TipoOrdenCompra {
+  compra
+  servicio
 }
 
 enum EstadoAprobacionCompra {
@@ -1038,6 +1044,7 @@ model OrdenCompra {
   proveedor                  Proveedor?              @relation(fields: [proveedorId], references: [id])
   proveedorNombreLibre       String?
   origen                     OrigenOrdenCompra       @default(macro)
+  tipo                       TipoOrdenCompra         @default(compra)
   compraSimpleId             String?
   compraSimple               CompraSimple?           @relation(fields: [compraSimpleId], references: [id], onDelete: Cascade)
   estadoAprobacion           EstadoAprobacionCompra?
@@ -1058,6 +1065,7 @@ model OrdenCompra {
   adelantoPorcentaje         Decimal?                @db.Decimal(5, 2)
   saldoPorcentaje            Decimal?                @db.Decimal(5, 2)
   detraccionPorcentaje       Decimal?                @db.Decimal(5, 2)
+  retencionPorcentaje        Decimal?                @db.Decimal(5, 2)
   incluyeIgv                 Boolean                 @default(false)
   tipoCambio                 Decimal?                @db.Decimal(8, 4)
   contactoProveedorNombre    String?

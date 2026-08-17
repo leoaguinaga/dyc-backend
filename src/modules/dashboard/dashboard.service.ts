@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service.js';
+import { hoyLima } from '../../shared/date/fecha.util.js';
 
 const MESES_LABEL = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -54,6 +55,7 @@ export class DashboardService {
     });
 
     const hoy = new Date();
+    const hoyCalendario = hoyLima();
     const en7dias = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000);
     const inicioMesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
 
@@ -65,7 +67,7 @@ export class DashboardService {
       const monto = Number(p.monto);
       if (p.estado === 'pendiente') {
         totalPendiente += monto;
-        if (p.fechaProgramada < hoy) totalVencido += monto;
+        if (p.fechaProgramada < hoyCalendario) totalVencido += monto;
         else if (p.fechaProgramada <= en7dias) proximos7dias += monto;
       } else if (p.estado === 'pagado' && p.fechaPagoReal && p.fechaPagoReal >= inicioMesActual) {
         pagadoMes += monto;
@@ -81,7 +83,7 @@ export class DashboardService {
           if (p.fechaPagoReal.getFullYear() === year && p.fechaPagoReal.getMonth() === month) pagado += Number(p.monto);
         } else if (p.estado === 'pendiente') {
           if (p.fechaProgramada.getFullYear() === year && p.fechaProgramada.getMonth() === month) {
-            if (p.fechaProgramada < hoy) vencido += Number(p.monto);
+            if (p.fechaProgramada < hoyCalendario) vencido += Number(p.monto);
             else pendiente += Number(p.monto);
           }
         }
