@@ -4172,6 +4172,7 @@ export const OrdenCompraScalarFieldEnum = {
   proveedorId: 'proveedorId',
   proveedorNombreLibre: 'proveedorNombreLibre',
   origen: 'origen',
+  tipo: 'tipo',
   compraSimpleId: 'compraSimpleId',
   estadoAprobacion: 'estadoAprobacion',
   aprobadoPorId: 'aprobadoPorId',
@@ -4189,6 +4190,7 @@ export const OrdenCompraScalarFieldEnum = {
   adelantoPorcentaje: 'adelantoPorcentaje',
   saldoPorcentaje: 'saldoPorcentaje',
   detraccionPorcentaje: 'detraccionPorcentaje',
+  retencionPorcentaje: 'retencionPorcentaje',
   incluyeIgv: 'incluyeIgv',
   tipoCambio: 'tipoCambio',
   contactoProveedorNombre: 'contactoProveedorNombre',
@@ -4614,6 +4616,20 @@ export type EnumOrigenOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'OrigenOrdenCompra[]'
  */
 export type ListEnumOrigenOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrigenOrdenCompra[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoOrdenCompra'
+ */
+export type EnumTipoOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoOrdenCompra'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoOrdenCompra[]'
+ */
+export type ListEnumTipoOrdenCompraFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoOrdenCompra[]'>
     
 
 

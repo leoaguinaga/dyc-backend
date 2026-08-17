@@ -118,6 +118,7 @@ export const EstadoSolicitud = {
   seleccionada: 'seleccionada',
   aprobada_solicitante: 'aprobada_solicitante',
   aprobada_gerencia: 'aprobada_gerencia',
+  orden_generada: 'orden_generada',
   cancelada: 'cancelada'
 } as const
 
@@ -169,6 +170,14 @@ export const OrigenOrdenCompra = {
 } as const
 
 export type OrigenOrdenCompra = (typeof OrigenOrdenCompra)[keyof typeof OrigenOrdenCompra]
+
+
+export const TipoOrdenCompra = {
+  compra: 'compra',
+  servicio: 'servicio'
+} as const
+
+export type TipoOrdenCompra = (typeof TipoOrdenCompra)[keyof typeof TipoOrdenCompra]
 
 
 export const EstadoAprobacionCompra = {

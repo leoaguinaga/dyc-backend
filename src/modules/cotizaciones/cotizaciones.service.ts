@@ -74,6 +74,7 @@ export class CotizacionesService {
       },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
+        requerimiento: { select: { id: true, nombre: true } },
         _count: { select: { items: true, cotizaciones: true } },
       },
       orderBy: { creadoEn: 'desc' },

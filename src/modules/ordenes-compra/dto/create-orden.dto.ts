@@ -1,13 +1,16 @@
 import {
   IsBoolean,
   IsDateString,
+  IsIn,
   IsInt,
   IsNumber,
   IsOptional,
   IsString,
+  Matches,
   Max,
   Min,
 } from 'class-validator';
+import type { TipoOrdenCompra } from '../../../../prisma/generated/prisma/enums.js';
 
 export class CreateOrdenCompraDto {
   @IsString()
@@ -24,6 +27,10 @@ export class CreateOrdenCompraDto {
   @IsOptional()
   @IsString()
   lugarEntrega?: string;
+
+  @IsOptional()
+  @IsIn(['compra', 'servicio'])
+  tipo?: TipoOrdenCompra;
 }
 
 export class UpdateOrdenCompraDto {
@@ -50,6 +57,10 @@ export class UpdateOrdenCompraDto {
   @IsOptional()
   @IsNumber()
   detraccionPorcentaje?: number;
+
+  @IsOptional()
+  @IsNumber()
+  retencionPorcentaje?: number;
 
   @IsOptional()
   @IsBoolean()
@@ -98,6 +109,17 @@ export class UpdateOrdenCompraDto {
   @IsOptional()
   @IsString()
   contactoDycTelefono?: string;
+
+  @IsOptional()
+  @IsIn(['compra', 'servicio'])
+  tipo?: TipoOrdenCompra;
+
+  @IsOptional()
+  @IsString()
+  @Matches(/^(OC|OS)-\d{4}-\d{4,}$/, {
+    message: 'El número debe tener el formato OC-2026-0001 u OS-2026-0001',
+  })
+  numero?: string;
 }
 
 export class RecibirOrdenCompraDto {

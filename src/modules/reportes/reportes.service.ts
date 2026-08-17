@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { QueryReporteRangoDto } from './dto/query-reporte.dto.js';
+import { hoyLima } from '../../shared/date/fecha.util.js';
 
 function rangoFecha(query: QueryReporteRangoDto) {
   if (!query.desde && !query.hasta) return undefined;
@@ -82,7 +83,7 @@ export class ReportesService {
       select: { estado: true, monto: true, fechaProgramada: true },
     });
 
-    const hoy = new Date();
+    const hoy = hoyLima();
     const porPeriodo = new Map<string, { periodo: string; pagado: number; pendiente: number; vencido: number }>();
     for (const p of pagos) {
       const periodo = mesDe(p.fechaProgramada);

@@ -17,6 +17,7 @@ import type { Role, TipoRequerimiento } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { AppEvents } from '../../shared/events/events.js';
+import { OrdenesCompraService } from '../ordenes-compra/ordenes-compra.service.js';
 
 // Roles que pueden registrar una compra simple (compra ya cotizada/realizada)
 const ROLES_CREACION: Role[] = [
@@ -86,6 +87,7 @@ export class ComprasSimplesService {
     private prisma: PrismaService,
     @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
     private events: EventEmitter2,
+    private ordenesCompra: OrdenesCompraService,
   ) {}
 
   aprobadoresInformales() {
@@ -198,10 +200,9 @@ export class ComprasSimplesService {
     }
 
     const codigo = await this.generateCodigo();
-    const year = new Date().getFullYear();
-    const baseCount = await this.prisma.ordenCompra.count({
-      where: { creadoEn: { gte: new Date(`${year}-01-01`) } },
-    });
+    const numeros = await Promise.all(
+      dto.grupos.map((_, i) => this.ordenesCompra.generateNumero('compra', i)),
+    );
 
     const creada = await this.prisma.compraSimple.create({
       data: {
@@ -217,7 +218,7 @@ export class ComprasSimplesService {
         nota: dto.nota,
         grupos: {
           create: dto.grupos.map((grupo, i) => ({
-            numero: `OC-${year}-${String(baseCount + i + 1).padStart(4, '0')}`,
+            numero: numeros[i],
             origen: 'simple',
             estado: 'borrador',
             estadoAprobacion: 'pendiente',
