@@ -86,6 +86,15 @@ export interface ObraCerradaPayload {
   cerradoPorId: string;
 }
 
+export interface CobroCreadoPayload {
+  cobroId: string;
+  proyectoId: string;
+  codigo: string | null;
+  nombre: string;
+  monto: number;
+  fechaProgramada: Date;
+}
+
 export interface PlanillaGeneradaPayload {
   planillaId: string;
   proyectoId: string;
@@ -224,6 +233,18 @@ export class NotificacionesListener {
       mensaje: `La obra ${payload.codigo ?? payload.nombre} — ${payload.nombre} fue cerrada.`,
       entidadTipo: 'Proyecto',
       entidadId: payload.proyectoId,
+    });
+  }
+
+  @OnEvent(AppEvents.COBRO_CREADO)
+  async onCobroCreado(payload: CobroCreadoPayload) {
+    const monto = payload.monto.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
+    await this.service.crearParaRoles([...GESTORES_OBRA], {
+      tipo: 'cobro_por_vencer',
+      titulo: 'Nuevo cobro pendiente',
+      mensaje: `Se registró un cobro de ${monto} para la obra ${payload.codigo ?? payload.nombre} — ${payload.nombre}, programado para el ${payload.fechaProgramada.toLocaleDateString('es-PE')}.`,
+      entidadTipo: 'Cobro',
+      entidadId: payload.cobroId,
     });
   }
 

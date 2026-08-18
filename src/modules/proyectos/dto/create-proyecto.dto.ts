@@ -4,6 +4,7 @@ import {
   IsInt,
   IsOptional,
   IsString,
+  IsUrl,
   Matches,
 } from 'class-validator';
 import { EstadoProyecto, AmbitoGeografico } from '../../../prisma/types.js';
@@ -35,6 +36,10 @@ export class CreateProyectoDto {
   @IsOptional()
   @IsString()
   comuna?: string;
+
+  @IsOptional()
+  @IsUrl()
+  enlaceOneDrive?: string;
 
   @IsOptional()
   @IsEnum(AmbitoGeografico)

@@ -119,6 +119,12 @@ enum EstadoPago {
   cancelado
 }
 
+enum EstadoCobro {
+  pendiente
+  cobrado
+  cancelado
+}
+
 enum TipoBeneficiario {
   proveedor
   trabajador
@@ -177,6 +183,8 @@ enum TipoNotificacion {
   solicitud_lista_adjudicar
   orden_compra_generada
   obra_cerrada
+  cobro_por_vencer
+  cobro_vencido
   planilla_generada
   compra_simple_pendiente_gerencia
   compra_simple_pendiente_tecnico
@@ -228,6 +236,8 @@ model User {
   compraSimpleHistorial         CompraSimpleGrupoHistorial[] @relation("CompraSimpleHistorialActor")
   pagosRegistrados              Pago[]                       @relation("PagosRegistradosPor")
   pagosEjecutados               Pago[]                       @relation("PagosEjecutadosPor")
+  cobrosRegistrados             Cobro[]                      @relation("CobrosRegistradosPor")
+  cobrosMarcados                Cobro[]                      @relation("CobrosCobradosPor")
   notificaciones                Notificacion[]
   turnosAbiertos                Turno[]                      @relation("TurnosAbiertos")
   turnosCerrados                Turno[]                      @relation("TurnosCerrados")
@@ -339,6 +349,8 @@ model Proyecto {
   direccion String?
   comuna    String?
 
+  enlaceOneDrive String?
+
   ambitoGeografico AmbitoGeografico @default(local)
 
   // Proyecto padre (para subproyectos)
@@ -393,6 +405,7 @@ model Proyecto {
   visitasTercero  VisitaTercero[]
   planillas       Planilla[]
   turnoConfigs    TurnoConfig[]
+  cobro           Cobro?
 
   @@map("proyectos")
 }
@@ -1155,6 +1168,26 @@ model Pago {
   actualizadoEn            DateTime         @updatedAt
 
   @@map("pagos")
+}
+
+model Cobro {
+  id                     String      @id @default(cuid())
+  proyectoId             String      @unique
+  proyecto               Proyecto    @relation(fields: [proyectoId], references: [id])
+  monto                  Decimal     @db.Decimal(12, 2)
+  fechaProgramada        DateTime
+  fechaCobrada           DateTime?
+  estado                 EstadoCobro @default(pendiente)
+  actaConformidadNombre  String
+  actaConformidadUrl     String
+  registradoPorId        String
+  registradoPor          User        @relation("CobrosRegistradosPor", fields: [registradoPorId], references: [id])
+  cobradoPorId           String?
+  cobradoPor             User?       @relation("CobrosCobradosPor", fields: [cobradoPorId], references: [id])
+  creadoEn               DateTime    @default(now())
+  actualizadoEn          DateTime    @updatedAt
+
+  @@map("cobros")
 }
 
 model OrdenCompraItem {
