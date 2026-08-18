@@ -1,17 +1,21 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   NotFoundException,
   ForbiddenException,
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PrismaService } from '../../prisma/prisma.service.js';
+import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
+import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import type { Role } from '../../prisma/types.js';
 import { CreateProyectoDto } from './dto/create-proyecto.dto.js';
 import { UpdateProyectoDto } from './dto/update-proyecto.dto.js';
 import { CreateHitoDto } from './dto/create-hito.dto.js';
 import { UpdateHitoDto } from './dto/update-hito.dto.js';
 import { AsignarTrabajadoresDto } from './dto/asignar-trabajadores.dto.js';
+import { CerrarProyectoDto } from './dto/cerrar-proyecto.dto.js';
 import { AppEvents } from '../../shared/events/events.js';
 
 const ROLES_SUPERVISOR: Role[] = [
@@ -43,7 +47,17 @@ export class ProyectosService {
   constructor(
     private prisma: PrismaService,
     private events: EventEmitter2,
+    @Inject(STORAGE_PROVIDER) private storage: StorageProvider,
   ) {}
+
+  subirActaConformidad(file: Express.Multer.File) {
+    return this.storage.save({
+      buffer: file.buffer,
+      originalName: file.originalname,
+      mimeType: file.mimetype,
+      folder: 'cobros',
+    });
+  }
 
   private readonly includeBase = {
     cliente: { select: { id: true, razonSocial: true, nombreComercial: true } },
@@ -335,7 +349,7 @@ export class ProyectosService {
 
   // ── Cierre de obra ───────────────────────────────────────────────────────
 
-  async cerrar(id: string, actorId: string) {
+  async cerrar(id: string, actorId: string, dto: CerrarProyectoDto) {
     const proyecto = await this.prisma.proyecto.findUnique({ where: { id } });
     if (!proyecto) throw new NotFoundException(`Proyecto ${id} no encontrado`);
     if (proyecto.estado !== 'ejecucion') {
@@ -378,12 +392,12 @@ export class ProyectosService {
       );
     }
 
-    const [proyectoActualizado, ordenesCompra, cantidadTrabajadores] =
+    const [proyectoActualizado, ordenesCompra, cantidadTrabajadores, cobro] =
       await this.prisma.$transaction([
         this.prisma.proyecto.update({
           where: { id },
           data: {
-            estado: 'cierre',
+            estado: 'liquidada',
             fechaFinReal: proyecto.fechaFinReal ?? new Date(),
           },
           include: this.includeBase,
@@ -393,6 +407,16 @@ export class ProyectosService {
           select: { montoTotal: true },
         }),
         this.prisma.proyectoTrabajador.count({ where: { proyectoId: id } }),
+        this.prisma.cobro.create({
+          data: {
+            proyectoId: id,
+            monto: dto.monto,
+            fechaProgramada: new Date(dto.fechaProgramada),
+            actaConformidadNombre: dto.actaConformidadNombre,
+            actaConformidadUrl: dto.actaConformidadUrl,
+            registradoPorId: actorId,
+          },
+        }),
       ]);
 
     const gastoTotal = ordenesCompra.reduce(
@@ -407,6 +431,15 @@ export class ProyectosService {
       cerradoPorId: actorId,
     });
 
+    this.events.emit(AppEvents.COBRO_CREADO, {
+      cobroId: cobro.id,
+      proyectoId: id,
+      codigo: proyectoActualizado.codigo,
+      nombre: proyectoActualizado.nombre,
+      monto: dto.monto,
+      fechaProgramada: cobro.fechaProgramada,
+    });
+
     return {
       proyecto: proyectoActualizado,
       resumen: {
@@ -414,6 +447,7 @@ export class ProyectosService {
         cantidadOrdenesCompra: ordenesCompra.length,
         cantidadTrabajadores,
       },
+      cobro,
     };
   }
 

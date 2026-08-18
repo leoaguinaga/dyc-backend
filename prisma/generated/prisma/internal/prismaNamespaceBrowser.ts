@@ -91,6 +91,7 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  Cobro: 'Cobro',
   OrdenCompraItem: 'OrdenCompraItem',
   Notificacion: 'Notificacion'
 } as const
@@ -207,6 +208,7 @@ export const ProyectoScalarFieldEnum = {
   ciudad: 'ciudad',
   direccion: 'direccion',
   comuna: 'comuna',
+  enlaceOneDrive: 'enlaceOneDrive',
   ambitoGeografico: 'ambitoGeografico',
   parentId: 'parentId',
   clienteId: 'clienteId',
@@ -788,6 +790,24 @@ export const PagoScalarFieldEnum = {
 } as const
 
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
+
+
+export const CobroScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  monto: 'monto',
+  fechaProgramada: 'fechaProgramada',
+  fechaCobrada: 'fechaCobrada',
+  estado: 'estado',
+  actaConformidadNombre: 'actaConformidadNombre',
+  actaConformidadUrl: 'actaConformidadUrl',
+  registradoPorId: 'registradoPorId',
+  cobradoPorId: 'cobradoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type CobroScalarFieldEnum = (typeof CobroScalarFieldEnum)[keyof typeof CobroScalarFieldEnum]
 
 
 export const OrdenCompraItemScalarFieldEnum = {

@@ -156,6 +156,15 @@ export const EstadoPago = {
 export type EstadoPago = (typeof EstadoPago)[keyof typeof EstadoPago]
 
 
+export const EstadoCobro = {
+  pendiente: 'pendiente',
+  cobrado: 'cobrado',
+  cancelado: 'cancelado'
+} as const
+
+export type EstadoCobro = (typeof EstadoCobro)[keyof typeof EstadoCobro]
+
+
 export const TipoBeneficiario = {
   proveedor: 'proveedor',
   trabajador: 'trabajador'
@@ -238,6 +247,8 @@ export const TipoNotificacion = {
   solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
   orden_compra_generada: 'orden_compra_generada',
   obra_cerrada: 'obra_cerrada',
+  cobro_por_vencer: 'cobro_por_vencer',
+  cobro_vencido: 'cobro_vencido',
   planilla_generada: 'planilla_generada',
   compra_simple_pendiente_gerencia: 'compra_simple_pendiente_gerencia',
   compra_simple_pendiente_tecnico: 'compra_simple_pendiente_tecnico'

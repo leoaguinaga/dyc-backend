@@ -7,6 +7,7 @@ import { QueryNotificacionDto } from './dto/query-notificacion.dto.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
 
 const DIAS_ANTICIPACION_PAGO = 3;
+const DIAS_ANTICIPACION_COBRO = 3;
 
 export interface CrearNotificacionInput {
   tipo: TipoNotificacion;
@@ -94,12 +95,16 @@ export class NotificacionesService {
     });
   }
 
-  /** Evita crear la misma notificación de pago más de una vez en el día. */
-  private async yaNotificadoHoy(entidadId: string, tipo: TipoNotificacion) {
+  /** Evita crear la misma notificación de recordatorio más de una vez en el día. */
+  private async yaNotificadoHoy(
+    entidadTipo: string,
+    entidadId: string,
+    tipo: TipoNotificacion,
+  ) {
     const inicioDia = new Date();
     inicioDia.setHours(0, 0, 0, 0);
     const existente = await this.prisma.notificacion.findFirst({
-      where: { entidadTipo: 'Pago', entidadId, tipo, creadoEn: { gte: inicioDia } },
+      where: { entidadTipo, entidadId, tipo, creadoEn: { gte: inicioDia } },
       select: { id: true },
     });
     return existente !== null;
@@ -129,7 +134,7 @@ export class NotificacionesService {
       if (!vencido && !porVencer) continue;
 
       const tipo: TipoNotificacion = vencido ? 'pago_vencido' : 'pago_por_vencer';
-      if (await this.yaNotificadoHoy(pago.id, tipo)) continue;
+      if (await this.yaNotificadoHoy('Pago', pago.id, tipo)) continue;
 
       const proveedor =
         pago.ordenCompra.proveedor?.razonSocial ??
@@ -146,6 +151,44 @@ export class NotificacionesService {
           : `El pago de ${monto} a ${proveedor} (OC ${numeroOc}) vence el ${pago.fechaProgramada.toLocaleDateString('es-PE')}.`,
         entidadTipo: 'Pago',
         entidadId: pago.id,
+      });
+    }
+  }
+
+  @Cron('0 7 * * *')
+  async revisarCobros() {
+    const cobros = await this.prisma.cobro.findMany({
+      where: { estado: 'pendiente' },
+      include: { proyecto: { select: { codigo: true, nombre: true } } },
+    });
+
+    const hoy = hoyLima();
+    const limiteAnticipacion = new Date(
+      hoy.getTime() + DIAS_ANTICIPACION_COBRO * 24 * 60 * 60 * 1000,
+    );
+
+    for (const cobro of cobros) {
+      const vencido = cobro.fechaProgramada < hoy;
+      const porVencer = !vencido && cobro.fechaProgramada <= limiteAnticipacion;
+      if (!vencido && !porVencer) continue;
+
+      const tipo: TipoNotificacion = vencido ? 'cobro_vencido' : 'cobro_por_vencer';
+      if (await this.yaNotificadoHoy('Cobro', cobro.id, tipo)) continue;
+
+      const obra = cobro.proyecto.codigo ?? cobro.proyecto.nombre;
+      const monto = Number(cobro.monto).toLocaleString('es-PE', {
+        style: 'currency',
+        currency: 'PEN',
+      });
+
+      await this.crearParaRoles(['gerencia', 'administrador'], {
+        tipo,
+        titulo: vencido ? 'Cobro vencido' : 'Cobro próximo a vencer',
+        mensaje: vencido
+          ? `El cobro de ${monto} de la obra ${obra} venció el ${cobro.fechaProgramada.toLocaleDateString('es-PE')}.`
+          : `El cobro de ${monto} de la obra ${obra} vence el ${cobro.fechaProgramada.toLocaleDateString('es-PE')}.`,
+        entidadTipo: 'Cobro',
+        entidadId: cobro.id,
       });
     }
   }

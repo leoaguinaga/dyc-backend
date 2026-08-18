@@ -424,6 +424,7 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  Cobro: 'Cobro',
   OrdenCompraItem: 'OrdenCompraItem',
   Notificacion: 'Notificacion'
 } as const
@@ -441,7 +442,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "ordenCompraItem" | "notificacion"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "cobro" | "ordenCompraItem" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3405,6 +3406,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Cobro: {
+      payload: Prisma.$CobroPayload<ExtArgs>
+      fields: Prisma.CobroFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CobroFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CobroFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>
+        }
+        findFirst: {
+          args: Prisma.CobroFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CobroFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>
+        }
+        findMany: {
+          args: Prisma.CobroFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>[]
+        }
+        create: {
+          args: Prisma.CobroCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>
+        }
+        createMany: {
+          args: Prisma.CobroCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CobroCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>[]
+        }
+        delete: {
+          args: Prisma.CobroDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>
+        }
+        update: {
+          args: Prisma.CobroUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>
+        }
+        deleteMany: {
+          args: Prisma.CobroDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CobroUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CobroUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>[]
+        }
+        upsert: {
+          args: Prisma.CobroUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CobroPayload>
+        }
+        aggregate: {
+          args: Prisma.CobroAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCobro>
+        }
+        groupBy: {
+          args: Prisma.CobroGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CobroGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CobroCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CobroCountAggregateOutputType> | number
+        }
+      }
+    }
     OrdenCompraItem: {
       payload: Prisma.$OrdenCompraItemPayload<ExtArgs>
       fields: Prisma.OrdenCompraItemFieldRefs
@@ -3688,6 +3763,7 @@ export const ProyectoScalarFieldEnum = {
   ciudad: 'ciudad',
   direccion: 'direccion',
   comuna: 'comuna',
+  enlaceOneDrive: 'enlaceOneDrive',
   ambitoGeografico: 'ambitoGeografico',
   parentId: 'parentId',
   clienteId: 'clienteId',
@@ -4271,6 +4347,24 @@ export const PagoScalarFieldEnum = {
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
 
 
+export const CobroScalarFieldEnum = {
+  id: 'id',
+  proyectoId: 'proyectoId',
+  monto: 'monto',
+  fechaProgramada: 'fechaProgramada',
+  fechaCobrada: 'fechaCobrada',
+  estado: 'estado',
+  actaConformidadNombre: 'actaConformidadNombre',
+  actaConformidadUrl: 'actaConformidadUrl',
+  registradoPorId: 'registradoPorId',
+  cobradoPorId: 'cobradoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type CobroScalarFieldEnum = (typeof CobroScalarFieldEnum)[keyof typeof CobroScalarFieldEnum]
+
+
 export const OrdenCompraItemScalarFieldEnum = {
   id: 'id',
   ordenId: 'ordenId',
@@ -4732,6 +4826,20 @@ export type ListEnumEstadoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'EstadoCobro'
+ */
+export type EnumEstadoCobroFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoCobro'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoCobro[]'
+ */
+export type ListEnumEstadoCobroFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoCobro[]'>
+    
+
+
+/**
  * Reference to a field of type 'TipoNotificacion'
  */
 export type EnumTipoNotificacionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoNotificacion'>
@@ -4908,6 +5016,7 @@ export type GlobalOmitConfig = {
   compraSimpleGrupoArchivo?: Prisma.CompraSimpleGrupoArchivoOmit
   compraSimpleGrupoHistorial?: Prisma.CompraSimpleGrupoHistorialOmit
   pago?: Prisma.PagoOmit
+  cobro?: Prisma.CobroOmit
   ordenCompraItem?: Prisma.OrdenCompraItemOmit
   notificacion?: Prisma.NotificacionOmit
 }

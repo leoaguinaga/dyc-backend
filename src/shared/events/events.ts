@@ -19,6 +19,7 @@ export const AppEvents = {
 
   // Proyectos / obras
   OBRA_CERRADA: 'obra.cerrada',
+  COBRO_CREADO: 'cobro.creado',
 
   // Asistencias / planilla
   PLANILLA_GENERADA: 'planilla.generada',
