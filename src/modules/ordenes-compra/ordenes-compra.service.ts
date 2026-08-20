@@ -480,6 +480,20 @@ export class OrdenesCompraService {
       include: OC_INCLUDE,
     });
 
+    // Si se cancela la OC/OS que había hecho avanzar a la solicitud a
+    // "orden_generada", esta vuelve a "aprobada_gerencia" para que gerencia
+    // pueda editarla y/o generar una nueva OC/OS sin rehacer el proceso desde
+    // el requerimiento.
+    if (
+      nuevoEstado === 'cancelada' &&
+      actualizada.solicitud?.estado === 'orden_generada'
+    ) {
+      await this.prisma.solicitudCotizacion.update({
+        where: { id: actualizada.solicitud.id },
+        data: { estado: 'aprobada_gerencia' },
+      });
+    }
+
     // El solicitante del requerimiento que originó esta OC (vía solicitud de
     // cotización) es responsable de confirmar la recepción con foto + comentario.
     const requerimientoId = actualizada.solicitud?.requerimiento?.id;

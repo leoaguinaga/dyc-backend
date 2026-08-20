@@ -54,16 +54,31 @@ enum CumplimientoHito {
 enum UnidadMedida {
   und
   kg
+  g
   m
   m2
   m3
   l
+  ml
   gal
   bolsa
   caja
   rollo
   par
   juego
+  docena
+  ciento
+  medio_ciento
+  millar
+  medio_millar
+  balde
+  galonera
+  cilindro
+  varilla
+  plancha
+  tubo
+  pieza
+  global
 }
 
 enum TipoAlmacen {
@@ -84,6 +99,7 @@ enum EstadoRequerimiento {
   en_cotizacion
   pendiente_conformidad
   recibido
+  cancelado
 }
 
 enum EstadoSolicitud {
@@ -179,6 +195,7 @@ enum TipoNotificacion {
   requerimiento_en_cotizacion
   requerimiento_pendiente_conformidad
   requerimiento_recibido
+  requerimiento_cancelado
   cotizacion_recibida
   solicitud_lista_adjudicar
   orden_compra_generada

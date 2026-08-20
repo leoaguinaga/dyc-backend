@@ -20,6 +20,7 @@ import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
+import { CancelarRequerimientoDto } from './dto/cancelar-requerimiento.dto.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
@@ -87,6 +88,12 @@ export class RequerimientosController {
   @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador')
   observar(@Param('id') id: string, @Body() dto: ObservarRequerimientoDto, @Req() req: Request) {
     return this.service.observar(id, dto, req.user!.id, req.user!.role);
+  }
+
+  // El propio service valida quién puede cancelar según su rol y el estado actual
+  @Post(':id/cancelar')
+  cancelar(@Param('id') id: string, @Body() dto: CancelarRequerimientoDto, @Req() req: Request) {
+    return this.service.cancelar(id, dto, req.user!.id, req.user!.role);
   }
 
   @Post('fotos')

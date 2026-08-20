@@ -67,16 +67,31 @@ export type CumplimientoHito = (typeof CumplimientoHito)[keyof typeof Cumplimien
 export const UnidadMedida = {
   und: 'und',
   kg: 'kg',
+  g: 'g',
   m: 'm',
   m2: 'm2',
   m3: 'm3',
   l: 'l',
+  ml: 'ml',
   gal: 'gal',
   bolsa: 'bolsa',
   caja: 'caja',
   rollo: 'rollo',
   par: 'par',
-  juego: 'juego'
+  juego: 'juego',
+  docena: 'docena',
+  ciento: 'ciento',
+  medio_ciento: 'medio_ciento',
+  millar: 'millar',
+  medio_millar: 'medio_millar',
+  balde: 'balde',
+  galonera: 'galonera',
+  cilindro: 'cilindro',
+  varilla: 'varilla',
+  plancha: 'plancha',
+  tubo: 'tubo',
+  pieza: 'pieza',
+  global: 'global'
 } as const
 
 export type UnidadMedida = (typeof UnidadMedida)[keyof typeof UnidadMedida]
@@ -105,7 +120,8 @@ export const EstadoRequerimiento = {
   observado: 'observado',
   en_cotizacion: 'en_cotizacion',
   pendiente_conformidad: 'pendiente_conformidad',
-  recibido: 'recibido'
+  recibido: 'recibido',
+  cancelado: 'cancelado'
 } as const
 
 export type EstadoRequerimiento = (typeof EstadoRequerimiento)[keyof typeof EstadoRequerimiento]
@@ -243,6 +259,7 @@ export const TipoNotificacion = {
   requerimiento_en_cotizacion: 'requerimiento_en_cotizacion',
   requerimiento_pendiente_conformidad: 'requerimiento_pendiente_conformidad',
   requerimiento_recibido: 'requerimiento_recibido',
+  requerimiento_cancelado: 'requerimiento_cancelado',
   cotizacion_recibida: 'cotizacion_recibida',
   solicitud_lista_adjudicar: 'solicitud_lista_adjudicar',
   orden_compra_generada: 'orden_compra_generada',

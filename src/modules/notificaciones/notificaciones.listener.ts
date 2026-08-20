@@ -43,7 +43,8 @@ export interface RequerimientoEstadoCambiadoPayload {
     | 'observado'
     | 'en_cotizacion'
     | 'pendiente_conformidad'
-    | 'recibido';
+    | 'recibido'
+    | 'cancelado';
   creadoPorId: string;
 }
 
@@ -151,6 +152,11 @@ export class NotificacionesListener {
         tipo: 'requerimiento_recibido',
         titulo: 'Recepción confirmada',
         mensaje: `Confirmaste la recepción del requerimiento ${payload.codigo} — ${payload.nombre}.`,
+      },
+      cancelado: {
+        tipo: 'requerimiento_cancelado',
+        titulo: 'Requerimiento cancelado',
+        mensaje: `Tu requerimiento ${payload.codigo} — ${payload.nombre} fue cancelado.`,
       },
     };
     const preset = PRESET[payload.estado];

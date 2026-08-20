@@ -159,12 +159,59 @@ export class CotizacionesService {
     return solicitud;
   }
 
-  async updateSolicitud(id: string, dto: UpdateSolicitudDto) {
-    await this.findOneSolicitud(id);
-    return this.prisma.solicitudCotizacion.update({
-      where: { id },
-      data: dto,
-      include: SOLICITUD_INCLUDE,
+  async updateSolicitud(
+    id: string,
+    dto: UpdateSolicitudDto,
+    actor: { id: string; role: Role },
+  ) {
+    const s = await this.findOneSolicitud(id);
+
+    // No editable una vez generada la OC/OS (mientras siga activa) ni cancelada.
+    // Si la OC se cancela, la solicitud vuelve a "aprobada_gerencia" (ver
+    // OrdenesCompraService.transicionEstado) y vuelve a quedar editable aquí.
+    if (s.estado === 'orden_generada' || s.estado === 'cancelada') {
+      throw new BadRequestException(
+        'No se puede editar la solicitud en su estado actual',
+      );
+    }
+
+    // Una vez que gerencia aprobó, solo gerencia/administración puede seguir
+    // editando (igual que el área técnica puede corregir un requerimiento
+    // mientras decide) — logística ya no.
+    if (
+      s.estado === 'aprobada_gerencia' &&
+      !['gerencia', 'administrador', 'admin_ti'].includes(actor.role)
+    ) {
+      throw new ForbiddenException(
+        'Solo gerencia puede editar la solicitud una vez aprobada',
+      );
+    }
+
+    return this.prisma.$transaction(async (tx) => {
+      if (dto.items) {
+        await tx.solicitudItem.deleteMany({ where: { solicitudId: id } });
+      }
+      return tx.solicitudCotizacion.update({
+        where: { id },
+        data: {
+          nota: dto.nota,
+          estado: dto.estado,
+          items: dto.items
+            ? {
+                create: dto.items.map((item) => ({
+                  descripcion: item.descripcion,
+                  unidad: (item.unidad as any) ?? 'und',
+                  itemInventarioId: item.itemInventarioId ?? null,
+                  cantidadTotal: item.cantidadTotal,
+                  cantidadAlmacen: item.cantidadAlmacen ?? 0,
+                  cantidadCompra:
+                    item.cantidadTotal - (item.cantidadAlmacen ?? 0),
+                })),
+              }
+            : undefined,
+        },
+        include: SOLICITUD_INCLUDE,
+      });
     });
   }
 
@@ -210,20 +257,50 @@ export class CotizacionesService {
     return cotizacion;
   }
 
-  async receiveCotizacion(cotizacionId: string, dto: ReceiveCotizacionDto) {
+  async receiveCotizacion(
+    cotizacionId: string,
+    dto: ReceiveCotizacionDto,
+    actor: { id: string; role: Role },
+  ) {
     const cotizacion = await this.prisma.cotizacion.findUnique({
       where: { id: cotizacionId },
       include: { solicitud: true },
     });
     if (!cotizacion)
       throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
+
+    const yaRespondida =
+      cotizacion.estado === 'recibida' || cotizacion.estado === 'aprobada';
     if (
       cotizacion.estado !== 'pendiente' &&
-      cotizacion.estado !== 'sin_respuesta'
+      cotizacion.estado !== 'sin_respuesta' &&
+      !yaRespondida
     ) {
       throw new BadRequestException(
-        'Solo se pueden registrar respuestas en cotizaciones pendientes o marcadas como sin respuesta',
+        'Solo se pueden registrar o corregir respuestas de cotizaciones pendientes, recibidas o aprobadas',
       );
+    }
+
+    // Corregir una cotización ya recibida/aprobada sigue las mismas reglas que
+    // editar la solicitud: no si ya se generó OC/OS, y solo gerencia una vez
+    // que la solicitud fue aprobada por gerencia.
+    if (yaRespondida) {
+      if (
+        cotizacion.solicitud.estado === 'orden_generada' ||
+        cotizacion.solicitud.estado === 'cancelada'
+      ) {
+        throw new BadRequestException(
+          'No se puede editar: ya se generó una orden de compra/servicio para esta solicitud',
+        );
+      }
+      if (
+        cotizacion.solicitud.estado === 'aprobada_gerencia' &&
+        !['gerencia', 'administrador', 'admin_ti'].includes(actor.role)
+      ) {
+        throw new ForbiddenException(
+          'Solo gerencia puede editar la cotización una vez aprobada',
+        );
+      }
     }
 
     const sumaPorcentajes = dto.condicionesPago.reduce(
@@ -235,11 +312,17 @@ export class CotizacionesService {
         `Las condiciones de pago deben sumar 100% (actual: ${sumaPorcentajes.toFixed(2)}%)`,
       );
 
+    // Al corregir una cotización ya aprobada no se debe "desaprobar": se
+    // mantiene el estado y se conserva la selección de sus ítems (adjudicación)
+    // para no romper el seguimiento del solicitante ni la generación de OC/OS.
+    const nuevoEstadoCotizacion =
+      cotizacion.estado === 'aprobada' ? 'aprobada' : 'recibida';
+
     const updated = await this.prisma.cotizacion.update({
       where: { id: cotizacionId },
       data: {
-        estado: 'recibida',
-        fechaRecibida: new Date(),
+        estado: nuevoEstadoCotizacion,
+        fechaRecibida: cotizacion.fechaRecibida ?? new Date(),
         fechaEntrega: dto.fechaEntrega ? new Date(dto.fechaEntrega) : undefined,
         validezDias: dto.validezDias,
         condicionesServicio: dto.condicionesServicio,
@@ -255,6 +338,7 @@ export class CotizacionesService {
             precioUnit: item.precioUnit,
             cantidad: item.cantidad,
             unidad: item.unidad,
+            seleccionado: nuevoEstadoCotizacion === 'aprobada',
           })),
         },
         condicionesPago: {
@@ -273,12 +357,17 @@ export class CotizacionesService {
       },
     });
 
-    // Pasar solicitud a "cotizada" si al menos una cotización fue recibida
+    // Pasar solicitud a "cotizada" tras la primera respuesta — pero si ya
+    // avanzó más allá (seleccionada/aprobada/...), una corrección posterior no
+    // debe retroceder ese avance.
+    const ESTADOS_PRE_COTIZADA: string[] = ['borrador', 'enviada', 'cotizada'];
     const yaEstabaCotizada = cotizacion.solicitud.estado === 'cotizada';
-    await this.prisma.solicitudCotizacion.update({
-      where: { id: cotizacion.solicitudId },
-      data: { estado: 'cotizada' },
-    });
+    if (ESTADOS_PRE_COTIZADA.includes(cotizacion.solicitud.estado)) {
+      await this.prisma.solicitudCotizacion.update({
+        where: { id: cotizacion.solicitudId },
+        data: { estado: 'cotizada' },
+      });
+    }
 
     this.events.emit(AppEvents.COTIZACION_RECIBIDA, {
       solicitudId: cotizacion.solicitudId,

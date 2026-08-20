@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { CreateProveedorDto } from './dto/create-proveedor.dto.js';
 import { UpdateProveedorDto } from './dto/update-proveedor.dto.js';
@@ -52,13 +57,35 @@ export class ProveedoresService {
     return p;
   }
 
-  create(dto: CreateProveedorDto) {
-    return this.prisma.proveedor.create({ data: dto });
+  async create(dto: CreateProveedorDto) {
+    try {
+      return await this.prisma.proveedor.create({ data: dto });
+    } catch (e) {
+      throw this.mapUniqueError(e, dto.ruc);
+    }
   }
 
   async update(id: string, dto: UpdateProveedorDto) {
     await this.findOne(id);
-    return this.prisma.proveedor.update({ where: { id }, data: dto });
+    try {
+      return await this.prisma.proveedor.update({ where: { id }, data: dto });
+    } catch (e) {
+      throw this.mapUniqueError(e, dto.ruc);
+    }
+  }
+
+  private mapUniqueError(e: unknown, ruc?: string) {
+    if (
+      e instanceof Prisma.PrismaClientKnownRequestError &&
+      e.code === 'P2002'
+    ) {
+      return new BadRequestException(
+        ruc
+          ? `Ya existe un proveedor registrado con el RUC ${ruc}`
+          : 'Ya existe un proveedor con esos datos',
+      );
+    }
+    return e;
   }
 
   // --- Contactos ---
