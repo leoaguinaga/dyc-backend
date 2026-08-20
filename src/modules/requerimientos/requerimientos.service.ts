@@ -12,6 +12,7 @@ import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
+import { CancelarRequerimientoDto } from './dto/cancelar-requerimiento.dto.js';
 import type {
   EstadoRequerimiento,
   Role,
@@ -29,18 +30,17 @@ const RESTRICTED_ROLES: Role[] = [
   'pdr',
 ];
 
-// Roles that review a specific tipo across all projects (not just their own)
+// Roles that review a specific tipo across all projects (not just their own).
+// ing_civil e ing_electrico (área técnica) ven todos los tipos, no solo el propio.
 const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {
-  ing_civil: 'civil',
-  ing_electrico: 'electrico',
   jefe_sig: 'seguridad',
 };
 
 // Which tipos a role is allowed to create
 const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
-  supervisor: ['civil'],
-  supervisor_civil: ['civil'],
-  supervisor_electrico: ['electrico'],
+  supervisor: ['electrico', 'civil', 'seguridad', 'administrativo'],
+  supervisor_civil: ['electrico', 'civil', 'seguridad', 'administrativo'],
+  supervisor_electrico: ['electrico', 'civil', 'seguridad', 'administrativo'],
   pdr: ['seguridad'],
   ing_civil: ['civil'],
   ing_electrico: ['electrico'],
@@ -51,12 +51,13 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
   admin_ti: ['electrico', 'civil', 'seguridad', 'administrativo'],
 };
 
-// Which roles can approve each tipo
+// Which roles can approve each tipo. El área técnica (ing_civil, ing_electrico)
+// puede resolver cualquier tipo de requerimiento, no solo el de su especialidad.
 const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
-  civil: ['ing_civil', 'gerencia', 'administrador', 'admin_ti'],
-  electrico: ['ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
-  seguridad: ['jefe_sig', 'gerencia', 'administrador', 'admin_ti'],
-  administrativo: ['logistica', 'gerencia', 'administrador', 'admin_ti'],
+  civil: ['ing_civil', 'ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
+  electrico: ['ing_electrico', 'ing_civil', 'gerencia', 'administrador', 'admin_ti'],
+  seguridad: ['jefe_sig', 'ing_civil', 'ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
+  administrativo: ['logistica', 'ing_civil', 'ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
 };
 
 const INCLUDE_BASE = {
@@ -476,6 +477,92 @@ export class RequerimientosService {
       codigo: r.codigo,
       nombre: r.nombre,
       estado: 'recibido',
+      creadoPorId: r.creadoPorId,
+    });
+    return actualizado;
+  }
+
+  async cancelar(
+    id: string,
+    dto: CancelarRequerimientoDto,
+    userId: string,
+    userRole: Role,
+  ) {
+    const r = await this.findOne(id);
+
+    if (r.estado === 'cancelado' || r.estado === 'recibido')
+      throw new BadRequestException(
+        'Este requerimiento ya está en un estado final y no se puede cancelar',
+      );
+
+    const esCreador = r.creadoPorId === userId;
+    const esAdminOGerencia =
+      userRole === 'administrador' ||
+      userRole === 'admin_ti' ||
+      userRole === 'gerencia';
+    // El solicitante solo puede cancelar antes de que se genere una solicitud
+    // de cotización (evita dejar cotizaciones/OC huérfanas); administración y
+    // gerencia pueden cancelar en cualquier estado no terminal.
+    const estadosPreCotizacion: EstadoRequerimiento[] = [
+      'borrador',
+      'enviado',
+      'aprobado',
+      'observado',
+    ];
+    const puedeCancelar =
+      esAdminOGerencia ||
+      (esCreador && estadosPreCotizacion.includes(r.estado));
+
+    if (!puedeCancelar)
+      throw new ForbiddenException(
+        'No tienes permiso para cancelar este requerimiento en su estado actual',
+      );
+
+    const actualizado = await this.prisma.$transaction(async (tx) => {
+      // Cascada: cancela solicitudes de cotización y OC activas asociadas,
+      // para no dejarlas huérfanas. No toca lo que ya se recibió.
+      const solicitudes = await tx.solicitudCotizacion.findMany({
+        where: { requerimientoId: id, estado: { not: 'cancelada' } },
+        include: { ordenes: true },
+      });
+
+      for (const s of solicitudes) {
+        for (const oc of s.ordenes) {
+          if (oc.estado !== 'cancelada' && oc.estado !== 'recibida') {
+            await tx.ordenCompra.update({
+              where: { id: oc.id },
+              data: { estado: 'cancelada' },
+            });
+          }
+        }
+        await tx.solicitudCotizacion.update({
+          where: { id: s.id },
+          data: { estado: 'cancelada' },
+        });
+      }
+
+      const actualizado = await tx.requerimiento.update({
+        where: { id },
+        data: { estado: 'cancelado', notaRevision: dto.motivo },
+        include: INCLUDE_BASE,
+      });
+      await tx.requerimientoHistorial.create({
+        data: {
+          requerimientoId: id,
+          estado: 'cancelado',
+          actorId: userId,
+          actorRole: userRole,
+          nota: dto.motivo,
+        },
+      });
+      return actualizado;
+    });
+
+    this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+      requerimientoId: id,
+      codigo: r.codigo,
+      nombre: r.nombre,
+      estado: 'cancelado',
       creadoPorId: r.creadoPorId,
     });
     return actualizado;

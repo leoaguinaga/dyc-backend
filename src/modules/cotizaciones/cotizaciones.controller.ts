@@ -59,8 +59,11 @@ export class CotizacionesController {
 
   @Patch(':id')
   @Roles('administrador', 'logistica', 'gerencia')
-  update(@Param('id') id: string, @Body() dto: UpdateSolicitudDto) {
-    return this.cotizacionesService.updateSolicitud(id, dto);
+  update(@Param('id') id: string, @Body() dto: UpdateSolicitudDto, @Req() req: Request) {
+    return this.cotizacionesService.updateSolicitud(id, dto, {
+      id: req.user!.id,
+      role: req.user!.role,
+    });
   }
 
   // ── Cotizaciones (anidadas bajo solicitud) ────────────────────────────────
@@ -111,8 +114,12 @@ export class CotizacionesController {
   receive(
     @Param('cotizacionId') cotizacionId: string,
     @Body() dto: ReceiveCotizacionDto,
+    @Req() req: Request,
   ) {
-    return this.cotizacionesService.receiveCotizacion(cotizacionId, dto);
+    return this.cotizacionesService.receiveCotizacion(cotizacionId, dto, {
+      id: req.user!.id,
+      role: req.user!.role,
+    });
   }
 
   @Patch('cotizaciones/:cotizacionId/aprobar')
