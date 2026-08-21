@@ -21,6 +21,13 @@ import type {
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { AppEvents } from '../../shared/events/events.js';
+import { hoyLima } from '../../shared/date/fecha.util.js';
+import { QueryHistorialDto } from './dto/query-historial.dto.js';
+
+// "aprobado" no es terminal: el requerimiento sigue accionable (falta generar
+// la solicitud de cotización) hasta que pasa a "en_cotizacion". Solo
+// "cancelado"/"recibido" son cierres reales del flujo.
+const ESTADOS_TERMINALES: EstadoRequerimiento[] = ['cancelado', 'recibido'];
 
 // Roles that can only see their own requerimientos
 const RESTRICTED_ROLES: Role[] = [
@@ -54,14 +61,49 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
 // Which roles can approve each tipo. El área técnica (ing_civil, ing_electrico)
 // puede resolver cualquier tipo de requerimiento, no solo el de su especialidad.
 const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
-  civil: ['ing_civil', 'ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
-  electrico: ['ing_electrico', 'ing_civil', 'gerencia', 'administrador', 'admin_ti'],
-  seguridad: ['jefe_sig', 'ing_civil', 'ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
-  administrativo: ['logistica', 'ing_civil', 'ing_electrico', 'gerencia', 'administrador', 'admin_ti'],
+  civil: [
+    'ing_civil',
+    'ing_electrico',
+    'gerencia',
+    'administrador',
+    'admin_ti',
+  ],
+  electrico: [
+    'ing_electrico',
+    'ing_civil',
+    'gerencia',
+    'administrador',
+    'admin_ti',
+  ],
+  seguridad: [
+    'jefe_sig',
+    'ing_civil',
+    'ing_electrico',
+    'gerencia',
+    'administrador',
+    'admin_ti',
+  ],
+  administrativo: [
+    'logistica',
+    'ing_civil',
+    'ing_electrico',
+    'gerencia',
+    'administrador',
+    'admin_ti',
+  ],
 };
 
 const INCLUDE_BASE = {
-  proyecto: { select: { id: true, codigo: true, nombre: true, ciudad: true, direccion: true, comuna: true } },
+  proyecto: {
+    select: {
+      id: true,
+      codigo: true,
+      nombre: true,
+      ciudad: true,
+      direccion: true,
+      comuna: true,
+    },
+  },
   creadoPor: { select: { id: true, name: true, email: true, role: true } },
   recepcionPor: { select: { id: true, name: true } },
   items: { include: { archivos: true } },
@@ -94,7 +136,12 @@ const SOLICITUD_SEGUIMIENTO_INCLUDE = {
         proveedor: { select: { id: true, razonSocial: true } },
         items: {
           where: { seleccionado: true },
-          select: { descripcionProveedor: true, precioUnit: true, cantidad: true, unidad: true },
+          select: {
+            descripcionProveedor: true,
+            precioUnit: true,
+            cantidad: true,
+            unidad: true,
+          },
         },
       },
     },
@@ -140,10 +187,45 @@ export class RequerimientosService {
     const tipoScope = TIPO_SCOPED_ROLES[userRole];
     if (tipoScope) where.tipo = tipoScope;
 
+    // Los estados terminales solo se ven en la vista principal el día en que
+    // ocurrieron; después de hoy pasan al historial (ver findHistorial). Los
+    // estados en proceso siempre se ven, sin importar la fecha.
+    const hoy = hoyLima();
+    const manana = new Date(hoy.getTime() + 24 * 60 * 60 * 1000);
+    where.OR = [
+      { estado: { notIn: ESTADOS_TERMINALES } },
+      { estado: 'recibido', recepcionEn: { gte: hoy, lt: manana } },
+      {
+        estado: 'cancelado',
+        historial: {
+          some: { estado: 'cancelado', creadoEn: { gte: hoy, lt: manana } },
+        },
+      },
+    ];
+
     return this.prisma.requerimiento.findMany({
       where,
       include: INCLUDE_BASE,
       orderBy: [{ urgente: 'desc' }, { creadoEn: 'desc' }],
+    });
+  }
+
+  findHistorial(query: QueryHistorialDto, userId: string, userRole: Role) {
+    const where: Record<string, unknown> = {
+      estado: { in: ESTADOS_TERMINALES },
+    };
+
+    if (RESTRICTED_ROLES.includes(userRole)) where.creadoPorId = userId;
+
+    const tipoScope = TIPO_SCOPED_ROLES[userRole];
+    if (tipoScope) where.tipo = tipoScope;
+
+    return this.prisma.requerimiento.findMany({
+      where,
+      include: INCLUDE_BASE,
+      orderBy: { actualizadoEn: 'desc' },
+      take: query.limit ?? 30,
+      skip: query.offset ?? 0,
     });
   }
 
@@ -444,7 +526,11 @@ export class RequerimientosService {
       throw new BadRequestException(
         'Este requerimiento no está pendiente de confirmación de recepción',
       );
-    if (r.creadoPorId !== userId && userRole !== 'administrador' && userRole !== 'admin_ti')
+    if (
+      r.creadoPorId !== userId &&
+      userRole !== 'administrador' &&
+      userRole !== 'admin_ti'
+    )
       throw new ForbiddenException(
         'Solo el solicitante puede confirmar la recepción de este requerimiento',
       );
@@ -537,7 +623,7 @@ export class RequerimientosService {
         }
         await tx.solicitudCotizacion.update({
           where: { id: s.id },
-          data: { estado: 'cancelada' },
+          data: { estado: 'cancelada', canceladaEn: new Date() },
         });
       }
 

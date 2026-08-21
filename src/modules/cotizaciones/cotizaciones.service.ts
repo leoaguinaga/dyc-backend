@@ -18,9 +18,17 @@ import {
   ReceiveCotizacionDto,
 } from './dto/create-cotizacion.dto.js';
 import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
+import { QueryHistorialDto } from './dto/query-historial.dto.js';
 import { AppEvents } from '../../shared/events/events.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
+import { hoyLima } from '../../shared/date/fecha.util.js';
+import type { EstadoSolicitud } from '../../prisma/types.js';
+
+const ESTADOS_TERMINALES: EstadoSolicitud[] = [
+  'aprobada_gerencia',
+  'cancelada',
+];
 
 // Roles que representan al solicitante real (quien creó el requerimiento),
 // distintos de los roles de gestión que ya podían operar este endpoint.
@@ -33,6 +41,7 @@ const SOLICITANTE_ROLES: Role[] = [
 
 const SOLICITUD_INCLUDE = {
   proyecto: { select: { id: true, nombre: true, codigo: true } },
+  requerimiento: { select: { id: true, codigo: true, nombre: true } },
   aprobadaSolicitantePor: { select: { id: true, name: true, role: true } },
   aprobadaGerenciaPor: { select: { id: true, name: true, role: true } },
   items: {
@@ -67,10 +76,24 @@ export class CotizacionesService {
   // ── Solicitudes ──────────────────────────────────────────────────────────
 
   findAllSolicitudes(query: QuerySolicitudDto) {
+    // Los estados terminales solo se ven en la vista principal el día en que
+    // ocurrieron; después de hoy pasan al historial (ver findHistorialSolicitudes).
+    // Los estados en proceso siempre se ven, sin importar la fecha.
+    const hoy = hoyLima();
+    const manana = new Date(hoy.getTime() + 24 * 60 * 60 * 1000);
+
     return this.prisma.solicitudCotizacion.findMany({
       where: {
         estado: query.estado,
         proyectoId: query.proyectoId,
+        OR: [
+          { estado: { notIn: ESTADOS_TERMINALES } },
+          {
+            estado: 'aprobada_gerencia',
+            aprobadaGerenciaEn: { gte: hoy, lt: manana },
+          },
+          { estado: 'cancelada', canceladaEn: { gte: hoy, lt: manana } },
+        ],
       },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
@@ -78,6 +101,20 @@ export class CotizacionesService {
         _count: { select: { items: true, cotizaciones: true } },
       },
       orderBy: { creadoEn: 'desc' },
+    });
+  }
+
+  findHistorialSolicitudes(query: QueryHistorialDto) {
+    return this.prisma.solicitudCotizacion.findMany({
+      where: { estado: { in: ESTADOS_TERMINALES } },
+      include: {
+        proyecto: { select: { id: true, nombre: true, codigo: true } },
+        requerimiento: { select: { id: true, nombre: true } },
+        _count: { select: { items: true, cotizaciones: true } },
+      },
+      orderBy: { actualizadoEn: 'desc' },
+      take: query.limit ?? 30,
+      skip: query.offset ?? 0,
     });
   }
 
@@ -139,7 +176,13 @@ export class CotizacionesService {
     if (dto.requerimientoId) {
       const req = await this.prisma.requerimiento.findUnique({
         where: { id: dto.requerimientoId },
-        select: { id: true, codigo: true, nombre: true, creadoPorId: true, estado: true },
+        select: {
+          id: true,
+          codigo: true,
+          nombre: true,
+          creadoPorId: true,
+          estado: true,
+        },
       });
       if (req?.estado === 'aprobado') {
         await this.prisma.requerimiento.update({
@@ -479,7 +522,10 @@ export class CotizacionesService {
 
     // Si aprueba alguien con rol de solicitante (no logística/gerencia/admin
     // actuando por premura), debe ser quien generó el requerimiento original.
-    if (nuevoEstado === 'aprobada_solicitante' && SOLICITANTE_ROLES.includes(actor.role)) {
+    if (
+      nuevoEstado === 'aprobada_solicitante' &&
+      SOLICITANTE_ROLES.includes(actor.role)
+    ) {
       const requerimiento = s.requerimientoId
         ? await this.prisma.requerimiento.findUnique({
             where: { id: s.requerimientoId },
@@ -503,6 +549,9 @@ export class CotizacionesService {
       data.aprobadaGerenciaPorId = actor.id;
       data.aprobadaGerenciaPorRole = actor.role;
       data.aprobadaGerenciaEn = new Date();
+    }
+    if (nuevoEstado === 'cancelada') {
+      data.canceladaEn = new Date();
     }
 
     return this.prisma.solicitudCotizacion.update({

@@ -23,6 +23,7 @@ import { ReportesModule } from './modules/reportes/reportes.module.js';
 import { DashboardModule } from './modules/dashboard/dashboard.module.js';
 import { NotificacionesModule } from './modules/notificaciones/notificaciones.module.js';
 import { AsistenciasModule } from './modules/asistencias/asistencias.module.js';
+import { AyudaModule } from './modules/ayuda/ayuda.module.js';
 import { EmailModule } from './shared/email/email.module.js';
 import { AuthGuard } from './shared/guards/auth.guard.js';
 import { RolesGuard } from './shared/guards/roles.guard.js';
@@ -54,6 +55,7 @@ import { ResponsableAsistenciaGuard } from './shared/guards/responsable-asistenc
     DashboardModule,
     NotificacionesModule,
     AsistenciasModule,
+    AyudaModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

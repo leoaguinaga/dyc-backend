@@ -264,6 +264,7 @@ model User {
   visitasTerceroRegistradas     VisitaTercero[]
   planillasGeneradas            Planilla[]
   compraSimpleArchivosSubidos   CompraSimpleGrupoArchivo[]   @relation("CompraSimpleArchivosSubidoPor")
+  helpVideosCreados              HelpVideo[]                @relation("HelpVideosCreadosPor")
   solicitudesCotizacionAprobadasComoSolicitante SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaSolicitantePor")
   solicitudesCotizacionAprobadasComoGerencia    SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaGerenciaPor")
   cotizacionesCreadas                           Cotizacion[]          @relation("CotizacionesCreadasPor")
@@ -943,6 +944,9 @@ model SolicitudCotizacion {
   aprobadaGerenciaPorRole Role?
   aprobadaGerenciaEn      DateTime?
 
+  // Cancelación de la solicitud (manual o en cascada desde el requerimiento).
+  canceladaEn DateTime?
+
   items        SolicitudItem[]
   cotizaciones Cotizacion[]
   ordenes      OrdenCompra[]
@@ -1219,6 +1223,29 @@ model OrdenCompraItem {
   precioTotal    Decimal      @db.Decimal(12, 2)
 
   @@map("orden_compra_items")
+}
+
+// ---------------------------------------------------------------------------
+// Ayuda (videos tutoriales)
+// ---------------------------------------------------------------------------
+
+model HelpVideo {
+  id          String   @id @default(cuid())
+  titulo      String
+  descripcion String?
+  youtubeId   String
+  modulo      String
+  roles       Role[]
+  orden       Int      @default(0)
+
+  creadoPorId String
+  creadoPor   User     @relation("HelpVideosCreadosPor", fields: [creadoPorId], references: [id])
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  @@index([modulo])
+  @@map("help_videos")
 }
 
 // ---------------------------------------------------------------------------

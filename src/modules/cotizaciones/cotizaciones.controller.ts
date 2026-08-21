@@ -24,6 +24,7 @@ import {
   ReceiveCotizacionDto,
 } from './dto/create-cotizacion.dto.js';
 import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
+import { QueryHistorialDto } from './dto/query-historial.dto.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 
@@ -46,6 +47,11 @@ export class CotizacionesController {
     return this.cotizacionesService.findAllSolicitudes(query);
   }
 
+  @Get('historial')
+  findHistorial(@Query() query: QueryHistorialDto) {
+    return this.cotizacionesService.findHistorialSolicitudes(query);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.cotizacionesService.findOneSolicitud(id);
@@ -59,7 +65,11 @@ export class CotizacionesController {
 
   @Patch(':id')
   @Roles('administrador', 'logistica', 'gerencia')
-  update(@Param('id') id: string, @Body() dto: UpdateSolicitudDto, @Req() req: Request) {
+  update(
+    @Param('id') id: string,
+    @Body() dto: UpdateSolicitudDto,
+    @Req() req: Request,
+  ) {
     return this.cotizacionesService.updateSolicitud(id, dto, {
       id: req.user!.id,
       role: req.user!.role,

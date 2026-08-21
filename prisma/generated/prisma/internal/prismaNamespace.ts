@@ -426,6 +426,7 @@ export const ModelName = {
   Pago: 'Pago',
   Cobro: 'Cobro',
   OrdenCompraItem: 'OrdenCompraItem',
+  HelpVideo: 'HelpVideo',
   Notificacion: 'Notificacion'
 } as const
 
@@ -442,7 +443,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "cobro" | "ordenCompraItem" | "notificacion"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3554,6 +3555,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    HelpVideo: {
+      payload: Prisma.$HelpVideoPayload<ExtArgs>
+      fields: Prisma.HelpVideoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.HelpVideoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.HelpVideoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>
+        }
+        findFirst: {
+          args: Prisma.HelpVideoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.HelpVideoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>
+        }
+        findMany: {
+          args: Prisma.HelpVideoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>[]
+        }
+        create: {
+          args: Prisma.HelpVideoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>
+        }
+        createMany: {
+          args: Prisma.HelpVideoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.HelpVideoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>[]
+        }
+        delete: {
+          args: Prisma.HelpVideoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>
+        }
+        update: {
+          args: Prisma.HelpVideoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>
+        }
+        deleteMany: {
+          args: Prisma.HelpVideoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.HelpVideoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.HelpVideoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>[]
+        }
+        upsert: {
+          args: Prisma.HelpVideoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HelpVideoPayload>
+        }
+        aggregate: {
+          args: Prisma.HelpVideoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHelpVideo>
+        }
+        groupBy: {
+          args: Prisma.HelpVideoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HelpVideoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.HelpVideoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HelpVideoCountAggregateOutputType> | number
+        }
+      }
+    }
     Notificacion: {
       payload: Prisma.$NotificacionPayload<ExtArgs>
       fields: Prisma.NotificacionFieldRefs
@@ -4147,7 +4222,8 @@ export const SolicitudCotizacionScalarFieldEnum = {
   aprobadaSolicitanteEn: 'aprobadaSolicitanteEn',
   aprobadaGerenciaPorId: 'aprobadaGerenciaPorId',
   aprobadaGerenciaPorRole: 'aprobadaGerenciaPorRole',
-  aprobadaGerenciaEn: 'aprobadaGerenciaEn'
+  aprobadaGerenciaEn: 'aprobadaGerenciaEn',
+  canceladaEn: 'canceladaEn'
 } as const
 
 export type SolicitudCotizacionScalarFieldEnum = (typeof SolicitudCotizacionScalarFieldEnum)[keyof typeof SolicitudCotizacionScalarFieldEnum]
@@ -4377,6 +4453,22 @@ export const OrdenCompraItemScalarFieldEnum = {
 } as const
 
 export type OrdenCompraItemScalarFieldEnum = (typeof OrdenCompraItemScalarFieldEnum)[keyof typeof OrdenCompraItemScalarFieldEnum]
+
+
+export const HelpVideoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descripcion: 'descripcion',
+  youtubeId: 'youtubeId',
+  modulo: 'modulo',
+  roles: 'roles',
+  orden: 'orden',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type HelpVideoScalarFieldEnum = (typeof HelpVideoScalarFieldEnum)[keyof typeof HelpVideoScalarFieldEnum]
 
 
 export const NotificacionScalarFieldEnum = {
@@ -5018,6 +5110,7 @@ export type GlobalOmitConfig = {
   pago?: Prisma.PagoOmit
   cobro?: Prisma.CobroOmit
   ordenCompraItem?: Prisma.OrdenCompraItemOmit
+  helpVideo?: Prisma.HelpVideoOmit
   notificacion?: Prisma.NotificacionOmit
 }
 

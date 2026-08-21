@@ -93,6 +93,7 @@ export const ModelName = {
   Pago: 'Pago',
   Cobro: 'Cobro',
   OrdenCompraItem: 'OrdenCompraItem',
+  HelpVideo: 'HelpVideo',
   Notificacion: 'Notificacion'
 } as const
 
@@ -592,7 +593,8 @@ export const SolicitudCotizacionScalarFieldEnum = {
   aprobadaSolicitanteEn: 'aprobadaSolicitanteEn',
   aprobadaGerenciaPorId: 'aprobadaGerenciaPorId',
   aprobadaGerenciaPorRole: 'aprobadaGerenciaPorRole',
-  aprobadaGerenciaEn: 'aprobadaGerenciaEn'
+  aprobadaGerenciaEn: 'aprobadaGerenciaEn',
+  canceladaEn: 'canceladaEn'
 } as const
 
 export type SolicitudCotizacionScalarFieldEnum = (typeof SolicitudCotizacionScalarFieldEnum)[keyof typeof SolicitudCotizacionScalarFieldEnum]
@@ -822,6 +824,22 @@ export const OrdenCompraItemScalarFieldEnum = {
 } as const
 
 export type OrdenCompraItemScalarFieldEnum = (typeof OrdenCompraItemScalarFieldEnum)[keyof typeof OrdenCompraItemScalarFieldEnum]
+
+
+export const HelpVideoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descripcion: 'descripcion',
+  youtubeId: 'youtubeId',
+  modulo: 'modulo',
+  roles: 'roles',
+  orden: 'orden',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type HelpVideoScalarFieldEnum = (typeof HelpVideoScalarFieldEnum)[keyof typeof HelpVideoScalarFieldEnum]
 
 
 export const NotificacionScalarFieldEnum = {

@@ -18,6 +18,7 @@ import { RequerimientosService } from './requerimientos.service.js';
 import { CreateRequerimientoDto } from './dto/create-requerimiento.dto.js';
 import { UpdateRequerimientoDto } from './dto/update-requerimiento.dto.js';
 import { QueryRequerimientoDto } from './dto/query-requerimiento.dto.js';
+import { QueryHistorialDto } from './dto/query-historial.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
 import { CancelarRequerimientoDto } from './dto/cancelar-requerimiento.dto.js';
@@ -27,9 +28,16 @@ const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
 
 @Controller('requerimientos')
 @Roles(
-  'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
-  'ing_civil', 'ing_electrico', 'jefe_sig',
-  'logistica', 'gerencia', 'administrador',
+  'supervisor',
+  'supervisor_civil',
+  'supervisor_electrico',
+  'pdr',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+  'logistica',
+  'gerencia',
+  'administrador',
 )
 export class RequerimientosController {
   constructor(private service: RequerimientosService) {}
@@ -37,6 +45,11 @@ export class RequerimientosController {
   @Get()
   findAll(@Query() query: QueryRequerimientoDto, @Req() req: Request) {
     return this.service.findAll(query, req.user!.id, req.user!.role);
+  }
+
+  @Get('historial')
+  findHistorial(@Query() query: QueryHistorialDto, @Req() req: Request) {
+    return this.service.findHistorial(query, req.user!.id, req.user!.role);
   }
 
   @Get(':id')
@@ -68,7 +81,11 @@ export class RequerimientosController {
   }
 
   @Patch(':id')
-  actualizar(@Param('id') id: string, @Body() dto: UpdateRequerimientoDto, @Req() req: Request) {
+  actualizar(
+    @Param('id') id: string,
+    @Body() dto: UpdateRequerimientoDto,
+    @Req() req: Request,
+  ) {
     return this.service.actualizar(id, dto, req.user!.id, req.user!.role);
   }
 
@@ -79,20 +96,42 @@ export class RequerimientosController {
 
   // Approver roles vary by tipo — the service validates the match
   @Post(':id/aprobar')
-  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador')
+  @Roles(
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'logistica',
+    'gerencia',
+    'administrador',
+  )
   aprobar(@Param('id') id: string, @Req() req: Request) {
     return this.service.aprobar(id, req.user!.id, req.user!.role);
   }
 
   @Post(':id/observar')
-  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador')
-  observar(@Param('id') id: string, @Body() dto: ObservarRequerimientoDto, @Req() req: Request) {
+  @Roles(
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'logistica',
+    'gerencia',
+    'administrador',
+  )
+  observar(
+    @Param('id') id: string,
+    @Body() dto: ObservarRequerimientoDto,
+    @Req() req: Request,
+  ) {
     return this.service.observar(id, dto, req.user!.id, req.user!.role);
   }
 
   // El propio service valida quién puede cancelar según su rol y el estado actual
   @Post(':id/cancelar')
-  cancelar(@Param('id') id: string, @Body() dto: CancelarRequerimientoDto, @Req() req: Request) {
+  cancelar(
+    @Param('id') id: string,
+    @Body() dto: CancelarRequerimientoDto,
+    @Req() req: Request,
+  ) {
     return this.service.cancelar(id, dto, req.user!.id, req.user!.role);
   }
 
@@ -102,7 +141,12 @@ export class RequerimientosController {
       limits: { fileSize: MAX_ARCHIVO_BYTES },
       fileFilter: (_req, file, cb) => {
         if (!IMAGENES_PERMITIDAS.includes(file.mimetype)) {
-          cb(new BadRequestException('Solo se permiten imágenes JPG, PNG o WEBP'), false);
+          cb(
+            new BadRequestException(
+              'Solo se permiten imágenes JPG, PNG o WEBP',
+            ),
+            false,
+          );
           return;
         }
         cb(null, true);
@@ -117,7 +161,11 @@ export class RequerimientosController {
   // El solicitante confirma la recepción — no requiere los roles de aprobador
   // técnico, el propio servicio valida que sea el creador del requerimiento.
   @Post(':id/recepcion')
-  recepcion(@Param('id') id: string, @Body() dto: RecepcionRequerimientoDto, @Req() req: Request) {
+  recepcion(
+    @Param('id') id: string,
+    @Body() dto: RecepcionRequerimientoDto,
+    @Req() req: Request,
+  ) {
     return this.service.recepcion(id, dto, req.user!.id, req.user!.role);
   }
 }

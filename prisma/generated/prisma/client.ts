@@ -252,6 +252,11 @@ export type Cobro = Prisma.CobroModel
  */
 export type OrdenCompraItem = Prisma.OrdenCompraItemModel
 /**
+ * Model HelpVideo
+ * 
+ */
+export type HelpVideo = Prisma.HelpVideoModel
+/**
  * Model Notificacion
  * 
  */
