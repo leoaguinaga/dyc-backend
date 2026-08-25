@@ -42,7 +42,7 @@ export class CreateCotizacionItemDto {
   @IsString()
   solicitudItemId?: string;
 
-  @IsNumber({ maxDecimalPlaces: 2 })
+  @IsNumber({ maxDecimalPlaces: 4 })
   @IsPositive()
   precioUnit: number;
 

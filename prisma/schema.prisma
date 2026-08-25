@@ -1017,7 +1017,7 @@ model CotizacionItem {
   item                 ItemInventario? @relation(fields: [itemInventarioId], references: [id])
   solicitudItemId      String?
   solicitudItem        SolicitudItem?  @relation(fields: [solicitudItemId], references: [id])
-  precioUnit           Decimal         @db.Decimal(12, 2)
+  precioUnit           Decimal         @db.Decimal(12, 4)
   cantidad             Decimal         @db.Decimal(12, 2)
   unidad               UnidadMedida
   seleccionado         Boolean         @default(false)

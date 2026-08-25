@@ -654,6 +654,56 @@ export class RequerimientosService {
     return actualizado;
   }
 
+  async reabrir(id: string, userId: string, userRole: Role) {
+    const r = await this.findOne(id);
+
+    if (r.estado !== 'cancelado') {
+      throw new BadRequestException('Solo se pueden reabrir requerimientos cancelados');
+    }
+    if (!['administrador', 'admin_ti', 'gerencia'].includes(userRole)) {
+      throw new ForbiddenException('No tienes permiso para reabrir este requerimiento');
+    }
+
+    const actualizado = await this.prisma.$transaction(async (tx) => {
+      const solicitudActiva = await tx.solicitudCotizacion.findFirst({
+        where: { requerimientoId: id, estado: { not: 'cancelada' } },
+        select: { codigo: true },
+      });
+      if (solicitudActiva) {
+        throw new BadRequestException(
+          `No se puede reabrir: el requerimiento ya tiene la solicitud activa ${solicitudActiva.codigo}`,
+        );
+      }
+
+      const reabierto = await tx.requerimiento.update({
+        where: { id },
+        // Volver a aprobado permite crear una nueva solicitud sin reactivar
+        // cotizaciones u órdenes que se cancelaron en cascada.
+        data: { estado: 'aprobado', notaRevision: null },
+        include: INCLUDE_BASE,
+      });
+      await tx.requerimientoHistorial.create({
+        data: {
+          requerimientoId: id,
+          estado: 'aprobado',
+          actorId: userId,
+          actorRole: userRole,
+          nota: 'Requerimiento reabierto para cotización',
+        },
+      });
+      return reabierto;
+    });
+
+    this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+      requerimientoId: id,
+      codigo: r.codigo,
+      nombre: r.nombre,
+      estado: 'aprobado',
+      creadoPorId: r.creadoPorId,
+    });
+    return actualizado;
+  }
+
   private async generateCodigo(): Promise<string> {
     const year = new Date().getFullYear();
     const count = await this.prisma.requerimiento.count({

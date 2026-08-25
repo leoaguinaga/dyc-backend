@@ -31,9 +31,7 @@ import type {
   'logistica',
   'gerencia',
   'administrador',
-  'ing_civil',
-  'ing_electrico',
-  'jefe_sig',
+  'admin_ti',
 )
 export class OrdenesCompraController {
   constructor(private service: OrdenesCompraService) {}
@@ -53,7 +51,7 @@ export class OrdenesCompraController {
   }
 
   @Post()
-  @Roles('administrador', 'logistica', 'gerencia')
+  @Roles('administrador', 'admin_ti', 'logistica', 'gerencia')
   create(@Body() dto: CreateOrdenCompraDto, @Req() req: Request) {
     return this.service.create(dto, req.user!.id);
   }
