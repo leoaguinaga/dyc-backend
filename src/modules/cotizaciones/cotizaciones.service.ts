@@ -530,19 +530,12 @@ export class CotizacionesService {
       );
 
     if (nuevoEstado === 'aprobada_gerencia') {
-      const itemsSinAdjudicar = s.items.filter(
-        (item) =>
-          !s.cotizaciones.some((cotizacion) =>
-            cotizacion.items.some(
-              (cotizacionItem) =>
-                cotizacionItem.solicitudItemId === item.id &&
-                cotizacionItem.seleccionado,
-            ),
-          ),
+      const hayItemsAdjudicados = s.cotizaciones.some((cotizacion) =>
+        cotizacion.items.some((item) => item.seleccionado),
       );
-      if (itemsSinAdjudicar.length > 0)
+      if (!hayItemsAdjudicados)
         throw new BadRequestException(
-          'No se puede aprobar por gerencia: todos los ítems deben estar adjudicados',
+          'No se puede aprobar por gerencia: debe existir al menos un ítem adjudicado',
         );
     }
 
@@ -650,20 +643,12 @@ export class CotizacionesService {
         'Solo se puede adjudicar en estado "cotizada" o completar una adjudicación aprobada por gerencia',
       );
 
-    const solicitudItemIds = new Set(solicitud.items.map((i) => i.id));
-    const coveredIds = new Set(
-      dto.adjudicaciones.map((a) => a.solicitudItemId),
-    );
-    const uncovered = [...solicitudItemIds].filter((id) => !coveredIds.has(id));
-    if (uncovered.length > 0)
-      throw new BadRequestException(
-        `${uncovered.length} ítem(s) sin proveedor asignado`,
-      );
-
     const allCotizacionItemIds = new Set(
       solicitud.cotizaciones.flatMap((c) => c.items.map((i) => i.id)),
     );
     const selectedIds = dto.adjudicaciones.map((a) => a.cotizacionItemId);
+    if (selectedIds.length === 0)
+      throw new BadRequestException('Selecciona al menos un ítem para adjudicar');
     const invalid = selectedIds.filter((id) => !allCotizacionItemIds.has(id));
     if (invalid.length > 0)
       throw new BadRequestException(
