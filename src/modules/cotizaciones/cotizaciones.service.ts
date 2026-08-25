@@ -41,7 +41,7 @@ const SOLICITANTE_ROLES: Role[] = [
 
 const SOLICITUD_INCLUDE = {
   proyecto: { select: { id: true, nombre: true, codigo: true } },
-  requerimiento: { select: { id: true, codigo: true, nombre: true } },
+  requerimiento: { select: { id: true, codigo: true, nombre: true, tipo: true } },
   aprobadaSolicitantePor: { select: { id: true, name: true, role: true } },
   aprobadaGerenciaPor: { select: { id: true, name: true, role: true } },
   items: {
@@ -97,7 +97,7 @@ export class CotizacionesService {
       },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
-        requerimiento: { select: { id: true, nombre: true } },
+        requerimiento: { select: { id: true, codigo: true, nombre: true, tipo: true } },
         _count: { select: { items: true, cotizaciones: true } },
       },
       orderBy: { creadoEn: 'desc' },
@@ -109,7 +109,7 @@ export class CotizacionesService {
       where: { estado: { in: ESTADOS_TERMINALES } },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
-        requerimiento: { select: { id: true, nombre: true } },
+        requerimiento: { select: { id: true, codigo: true, nombre: true, tipo: true } },
         _count: { select: { items: true, cotizaciones: true } },
       },
       orderBy: { actualizadoEn: 'desc' },
@@ -355,6 +355,15 @@ export class CotizacionesService {
         `Las condiciones de pago deben sumar 100% (actual: ${sumaPorcentajes.toFixed(2)}%)`,
       );
 
+    for (const item of dto.items) {
+      const parts = String(item.precioUnit).split('.');
+      if (parts.length > 1 && parts[1].length > 4) {
+        throw new BadRequestException(
+          `El precio unitario de "${item.descripcionProveedor}" no puede tener más de 4 decimales`,
+        );
+      }
+    }
+
     // Al corregir una cotización ya aprobada no se debe "desaprobar": se
     // mantiene el estado y se conserva la selección de sus ítems (adjudicación)
     // para no romper el seguimiento del solicitante ni la generación de OC/OS.
@@ -520,6 +529,23 @@ export class CotizacionesService {
         `No se puede pasar de "${s.estado}" a "${nuevoEstado}"`,
       );
 
+    if (nuevoEstado === 'aprobada_gerencia') {
+      const itemsSinAdjudicar = s.items.filter(
+        (item) =>
+          !s.cotizaciones.some((cotizacion) =>
+            cotizacion.items.some(
+              (cotizacionItem) =>
+                cotizacionItem.solicitudItemId === item.id &&
+                cotizacionItem.seleccionado,
+            ),
+          ),
+      );
+      if (itemsSinAdjudicar.length > 0)
+        throw new BadRequestException(
+          'No se puede aprobar por gerencia: todos los ítems deben estar adjudicados',
+        );
+    }
+
     // Si aprueba alguien con rol de solicitante (no logística/gerencia/admin
     // actuando por premura), debe ser quien generó el requerimiento original.
     if (
@@ -561,12 +587,67 @@ export class CotizacionesService {
     });
   }
 
+  async reabrirSolicitud(id: string) {
+    const solicitud = await this.findOneSolicitud(id);
+
+    if (solicitud.estado !== 'cancelada') {
+      throw new BadRequestException('Solo se pueden reabrir solicitudes canceladas');
+    }
+    if (!solicitud.requerimientoId) {
+      throw new BadRequestException(
+        'Solo se pueden reabrir solicitudes vinculadas a un requerimiento',
+      );
+    }
+
+    return this.prisma.$transaction(async (tx) => {
+      const requerimiento = await tx.requerimiento.findUnique({
+        where: { id: solicitud.requerimientoId! },
+        select: { id: true, estado: true },
+      });
+      if (!requerimiento || requerimiento.estado === 'recibido') {
+        throw new BadRequestException(
+          'El requerimiento vinculado no está disponible para cotizar',
+        );
+      }
+
+      const solicitudActiva = await tx.solicitudCotizacion.findFirst({
+        where: {
+          requerimientoId: solicitud.requerimientoId!,
+          id: { not: id },
+          estado: { not: 'cancelada' },
+        },
+        select: { codigo: true },
+      });
+      if (solicitudActiva) {
+        throw new BadRequestException(
+          `No se puede reabrir: el requerimiento ya tiene la solicitud activa ${solicitudActiva.codigo}`,
+        );
+      }
+
+      await tx.requerimiento.update({
+        where: { id: solicitud.requerimientoId! },
+        data: { estado: 'en_cotizacion' },
+      });
+
+      return tx.solicitudCotizacion.update({
+        where: { id },
+        // La cancelación no persiste el estado anterior; se retoma como borrador
+        // para que logística revise ítems y proveedores antes de reenviarla.
+        data: { estado: 'borrador', canceladaEn: null },
+        include: SOLICITUD_INCLUDE,
+      });
+    });
+  }
+
   async adjudicarSolicitud(solicitudId: string, dto: AdjudicarSolicitudDto) {
     const solicitud = await this.findOneSolicitud(solicitudId);
 
-    if (solicitud.estado !== 'cotizada')
+    if (
+      solicitud.estado !== 'cotizada' &&
+      solicitud.estado !== 'aprobada_gerencia'
+    )
       throw new BadRequestException(
-        'Solo se puede adjudicar en estado "cotizada"',
+        'Solo se puede adjudicar en estado "cotizada" o completar una adjudicación aprobada por gerencia',
       );
 
     const solicitudItemIds = new Set(solicitud.items.map((i) => i.id));
@@ -614,10 +695,14 @@ export class CotizacionesService {
           },
         }),
       ),
-      this.prisma.solicitudCotizacion.update({
-        where: { id: solicitudId },
-        data: { estado: 'seleccionada' },
-      }),
+      ...(solicitud.estado === 'cotizada'
+        ? [
+            this.prisma.solicitudCotizacion.update({
+              where: { id: solicitudId },
+              data: { estado: 'seleccionada' },
+            }),
+          ]
+        : []),
     ]);
 
     return this.findOneSolicitud(solicitudId);

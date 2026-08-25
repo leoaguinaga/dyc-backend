@@ -31,6 +31,7 @@ const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 @Controller('solicitudes-cotizacion')
 @Roles(
   'administrador',
+  'admin_ti',
   'logistica',
   'gerencia',
   'ing_civil',
@@ -145,7 +146,7 @@ export class CotizacionesController {
   }
 
   @Patch(':id/adjudicar')
-  @Roles('administrador', 'logistica', 'gerencia')
+  @Roles('administrador', 'admin_ti', 'logistica', 'gerencia')
   adjudicar(@Param('id') id: string, @Body() dto: AdjudicarSolicitudDto) {
     return this.cotizacionesService.adjudicarSolicitud(id, dto);
   }
@@ -185,5 +186,11 @@ export class CotizacionesController {
       id: req.user!.id,
       role: req.user!.role,
     });
+  }
+
+  @Post(':id/reabrir')
+  @Roles('administrador', 'admin_ti', 'logistica', 'gerencia')
+  reabrir(@Param('id') id: string) {
+    return this.cotizacionesService.reabrirSolicitud(id);
   }
 }

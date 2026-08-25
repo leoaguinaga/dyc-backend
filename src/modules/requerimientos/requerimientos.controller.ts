@@ -135,6 +135,12 @@ export class RequerimientosController {
     return this.service.cancelar(id, dto, req.user!.id, req.user!.role);
   }
 
+  @Post(':id/reabrir')
+  @Roles('administrador', 'admin_ti', 'gerencia')
+  reabrir(@Param('id') id: string, @Req() req: Request) {
+    return this.service.reabrir(id, req.user!.id, req.user!.role);
+  }
+
   @Post('fotos')
   @UseInterceptors(
     FileInterceptor('foto', {
