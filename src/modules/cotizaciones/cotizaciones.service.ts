@@ -693,6 +693,35 @@ export class CotizacionesService {
     return this.findOneSolicitud(solicitudId);
   }
 
+  async revertirAdjudicacion(solicitudId: string, actor: { id: string; role: Role }) {
+    const solicitud = await this.findOneSolicitud(solicitudId);
+    if (!['seleccionada', 'aprobada_solicitante', 'aprobada_gerencia'].includes(solicitud.estado))
+      throw new BadRequestException('Solo se puede revertir una adjudicación antes de generar una orden de compra');
+
+    const ordenes = await this.prisma.ordenCompra.count({ where: { solicitudId } });
+    if (ordenes > 0)
+      throw new BadRequestException('No se puede revertir la adjudicación porque la solicitud ya tiene órdenes de compra');
+
+    await this.prisma.$transaction([
+      this.prisma.cotizacionItem.updateMany({ where: { cotizacion: { solicitudId } }, data: { seleccionado: false } }),
+      this.prisma.cotizacion.updateMany({
+        where: { solicitudId, estado: { in: ['aprobada', 'rechazada'] } },
+        data: { estado: 'recibida' },
+      }),
+      this.prisma.solicitudCotizacion.update({
+        where: { id: solicitudId },
+        data: {
+          estado: 'cotizada',
+          aprobadaSolicitantePorId: null, aprobadaSolicitantePorRole: null, aprobadaSolicitanteEn: null,
+          aprobadaGerenciaPorId: null, aprobadaGerenciaPorRole: null, aprobadaGerenciaEn: null,
+        },
+      }),
+    ]);
+
+    void actor; // El AuditInterceptor registra la solicitud, actor y resultado.
+    return this.findOneSolicitud(solicitudId);
+  }
+
   // ── Archivos ─────────────────────────────────────────────────────────────
 
   subirArchivo(file: Express.Multer.File) {

@@ -151,6 +151,12 @@ export class CotizacionesController {
     return this.cotizacionesService.adjudicarSolicitud(id, dto);
   }
 
+  @Post(':id/revertir-adjudicacion')
+  @Roles('administrador', 'admin_ti', 'logistica', 'gerencia')
+  revertirAdjudicacion(@Param('id') id: string, @Req() req: Request) {
+    return this.cotizacionesService.revertirAdjudicacion(id, { id: req.user!.id, role: req.user!.role });
+  }
+
   @Post(':id/aprobar-solicitante')
   @Roles(
     'administrador',
