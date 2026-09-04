@@ -424,6 +424,10 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  PagoRecurrente: 'PagoRecurrente',
+  PerfilStaff: 'PerfilStaff',
+  PlanillaStaff: 'PlanillaStaff',
+  PlanillaStaffItem: 'PlanillaStaffItem',
   Cobro: 'Cobro',
   OrdenCompraItem: 'OrdenCompraItem',
   HelpVideo: 'HelpVideo',
@@ -443,7 +447,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3407,6 +3411,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PagoRecurrente: {
+      payload: Prisma.$PagoRecurrentePayload<ExtArgs>
+      fields: Prisma.PagoRecurrenteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PagoRecurrenteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PagoRecurrenteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>
+        }
+        findFirst: {
+          args: Prisma.PagoRecurrenteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PagoRecurrenteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>
+        }
+        findMany: {
+          args: Prisma.PagoRecurrenteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>[]
+        }
+        create: {
+          args: Prisma.PagoRecurrenteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>
+        }
+        createMany: {
+          args: Prisma.PagoRecurrenteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PagoRecurrenteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>[]
+        }
+        delete: {
+          args: Prisma.PagoRecurrenteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>
+        }
+        update: {
+          args: Prisma.PagoRecurrenteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>
+        }
+        deleteMany: {
+          args: Prisma.PagoRecurrenteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PagoRecurrenteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PagoRecurrenteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>[]
+        }
+        upsert: {
+          args: Prisma.PagoRecurrenteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PagoRecurrentePayload>
+        }
+        aggregate: {
+          args: Prisma.PagoRecurrenteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePagoRecurrente>
+        }
+        groupBy: {
+          args: Prisma.PagoRecurrenteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PagoRecurrenteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PagoRecurrenteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PagoRecurrenteCountAggregateOutputType> | number
+        }
+      }
+    }
+    PerfilStaff: {
+      payload: Prisma.$PerfilStaffPayload<ExtArgs>
+      fields: Prisma.PerfilStaffFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PerfilStaffFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PerfilStaffFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>
+        }
+        findFirst: {
+          args: Prisma.PerfilStaffFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PerfilStaffFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>
+        }
+        findMany: {
+          args: Prisma.PerfilStaffFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>[]
+        }
+        create: {
+          args: Prisma.PerfilStaffCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>
+        }
+        createMany: {
+          args: Prisma.PerfilStaffCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PerfilStaffCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>[]
+        }
+        delete: {
+          args: Prisma.PerfilStaffDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>
+        }
+        update: {
+          args: Prisma.PerfilStaffUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>
+        }
+        deleteMany: {
+          args: Prisma.PerfilStaffDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PerfilStaffUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PerfilStaffUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>[]
+        }
+        upsert: {
+          args: Prisma.PerfilStaffUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PerfilStaffPayload>
+        }
+        aggregate: {
+          args: Prisma.PerfilStaffAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePerfilStaff>
+        }
+        groupBy: {
+          args: Prisma.PerfilStaffGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PerfilStaffGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PerfilStaffCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PerfilStaffCountAggregateOutputType> | number
+        }
+      }
+    }
+    PlanillaStaff: {
+      payload: Prisma.$PlanillaStaffPayload<ExtArgs>
+      fields: Prisma.PlanillaStaffFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlanillaStaffFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlanillaStaffFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>
+        }
+        findFirst: {
+          args: Prisma.PlanillaStaffFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlanillaStaffFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>
+        }
+        findMany: {
+          args: Prisma.PlanillaStaffFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>[]
+        }
+        create: {
+          args: Prisma.PlanillaStaffCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>
+        }
+        createMany: {
+          args: Prisma.PlanillaStaffCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlanillaStaffCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>[]
+        }
+        delete: {
+          args: Prisma.PlanillaStaffDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>
+        }
+        update: {
+          args: Prisma.PlanillaStaffUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlanillaStaffDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlanillaStaffUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlanillaStaffUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlanillaStaffUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffPayload>
+        }
+        aggregate: {
+          args: Prisma.PlanillaStaffAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlanillaStaff>
+        }
+        groupBy: {
+          args: Prisma.PlanillaStaffGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaStaffGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlanillaStaffCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaStaffCountAggregateOutputType> | number
+        }
+      }
+    }
+    PlanillaStaffItem: {
+      payload: Prisma.$PlanillaStaffItemPayload<ExtArgs>
+      fields: Prisma.PlanillaStaffItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlanillaStaffItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlanillaStaffItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>
+        }
+        findFirst: {
+          args: Prisma.PlanillaStaffItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlanillaStaffItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>
+        }
+        findMany: {
+          args: Prisma.PlanillaStaffItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>[]
+        }
+        create: {
+          args: Prisma.PlanillaStaffItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>
+        }
+        createMany: {
+          args: Prisma.PlanillaStaffItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlanillaStaffItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>[]
+        }
+        delete: {
+          args: Prisma.PlanillaStaffItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>
+        }
+        update: {
+          args: Prisma.PlanillaStaffItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlanillaStaffItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlanillaStaffItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlanillaStaffItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlanillaStaffItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlanillaStaffItemPayload>
+        }
+        aggregate: {
+          args: Prisma.PlanillaStaffItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlanillaStaffItem>
+        }
+        groupBy: {
+          args: Prisma.PlanillaStaffItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaStaffItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlanillaStaffItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlanillaStaffItemCountAggregateOutputType> | number
+        }
+      }
+    }
     Cobro: {
       payload: Prisma.$CobroPayload<ExtArgs>
       fields: Prisma.CobroFieldRefs
@@ -3897,6 +4197,7 @@ export const TrabajadorScalarFieldEnum = {
   email: 'email',
   banco: 'banco',
   numeroCuenta: 'numeroCuenta',
+  tipoPersonal: 'tipoPersonal',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn',
@@ -4402,8 +4703,20 @@ export type CompraSimpleGrupoHistorialScalarFieldEnum = (typeof CompraSimpleGrup
 export const PagoScalarFieldEnum = {
   id: 'id',
   ordenCompraId: 'ordenCompraId',
+  origen: 'origen',
+  recurrenciaId: 'recurrenciaId',
+  periodoRecurrente: 'periodoRecurrente',
+  planillaStaffItemId: 'planillaStaffItemId',
+  centroCosto: 'centroCosto',
+  proyectoId: 'proyectoId',
+  concepto: 'concepto',
+  categoria: 'categoria',
   tipoBeneficiario: 'tipoBeneficiario',
   beneficiarioTrabajadorId: 'beneficiarioTrabajadorId',
+  beneficiarioNombre: 'beneficiarioNombre',
+  banco: 'banco',
+  numeroCuenta: 'numeroCuenta',
+  cci: 'cci',
   monto: 'monto',
   porcentaje: 'porcentaje',
   fechaProgramada: 'fechaProgramada',
@@ -4421,6 +4734,68 @@ export const PagoScalarFieldEnum = {
 } as const
 
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
+
+
+export const PagoRecurrenteScalarFieldEnum = {
+  id: 'id',
+  concepto: 'concepto',
+  categoria: 'categoria',
+  centroCosto: 'centroCosto',
+  proyectoId: 'proyectoId',
+  beneficiarioNombre: 'beneficiarioNombre',
+  banco: 'banco',
+  numeroCuenta: 'numeroCuenta',
+  cci: 'cci',
+  montoReferencial: 'montoReferencial',
+  diaVencimiento: 'diaVencimiento',
+  activo: 'activo',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PagoRecurrenteScalarFieldEnum = (typeof PagoRecurrenteScalarFieldEnum)[keyof typeof PagoRecurrenteScalarFieldEnum]
+
+
+export const PerfilStaffScalarFieldEnum = {
+  id: 'id',
+  trabajadorId: 'trabajadorId',
+  sueldoMensual: 'sueldoMensual',
+  centroCosto: 'centroCosto',
+  proyectoId: 'proyectoId',
+  diaPago: 'diaPago',
+  vigenteDesde: 'vigenteDesde',
+  activo: 'activo',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PerfilStaffScalarFieldEnum = (typeof PerfilStaffScalarFieldEnum)[keyof typeof PerfilStaffScalarFieldEnum]
+
+
+export const PlanillaStaffScalarFieldEnum = {
+  id: 'id',
+  periodo: 'periodo',
+  estado: 'estado',
+  totalGeneral: 'totalGeneral',
+  generadaPorId: 'generadaPorId',
+  generadoEn: 'generadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PlanillaStaffScalarFieldEnum = (typeof PlanillaStaffScalarFieldEnum)[keyof typeof PlanillaStaffScalarFieldEnum]
+
+
+export const PlanillaStaffItemScalarFieldEnum = {
+  id: 'id',
+  planillaId: 'planillaId',
+  trabajadorId: 'trabajadorId',
+  sueldoBase: 'sueldoBase',
+  ajuste: 'ajuste',
+  total: 'total'
+} as const
+
+export type PlanillaStaffItemScalarFieldEnum = (typeof PlanillaStaffItemScalarFieldEnum)[keyof typeof PlanillaStaffItemScalarFieldEnum]
 
 
 export const CobroScalarFieldEnum = {
@@ -4620,6 +4995,20 @@ export type EnumCumplimientoHitoFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'CumplimientoHito[]'
  */
 export type ListEnumCumplimientoHitoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CumplimientoHito[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoPersonal'
+ */
+export type EnumTipoPersonalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPersonal'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoPersonal[]'
+ */
+export type ListEnumTipoPersonalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPersonal[]'>
     
 
 
@@ -5108,6 +5497,10 @@ export type GlobalOmitConfig = {
   compraSimpleGrupoArchivo?: Prisma.CompraSimpleGrupoArchivoOmit
   compraSimpleGrupoHistorial?: Prisma.CompraSimpleGrupoHistorialOmit
   pago?: Prisma.PagoOmit
+  pagoRecurrente?: Prisma.PagoRecurrenteOmit
+  perfilStaff?: Prisma.PerfilStaffOmit
+  planillaStaff?: Prisma.PlanillaStaffOmit
+  planillaStaffItem?: Prisma.PlanillaStaffItemOmit
   cobro?: Prisma.CobroOmit
   ordenCompraItem?: Prisma.OrdenCompraItemOmit
   helpVideo?: Prisma.HelpVideoOmit

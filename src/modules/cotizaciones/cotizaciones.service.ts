@@ -61,7 +61,16 @@ const SOLICITUD_INCLUDE = {
         },
       },
       condicionesPago: true,
+      archivos: true,
     },
+  },
+  ordenes: {
+    include: {
+      proveedor: { select: { id: true, razonSocial: true, ruc: true } },
+      creadoPor: { select: { id: true, name: true, role: true } },
+      items: true,
+    },
+    orderBy: { creadoEn: 'asc' },
   },
 } as const;
 

@@ -3,6 +3,7 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { EmailService } from '../../shared/email/email.service.js';
+import { impersonationPlugin } from './impersonation.plugin.js';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
   ) {
     this.auth = betterAuth({
       database: prismaAdapter(this.prisma, { provider: 'postgresql' }),
+      plugins: [impersonationPlugin(this.prisma)],
       emailAndPassword: {
         enabled: true,
         sendResetPassword: async ({ user, url }: { user: { email: string }; url: string }) => {

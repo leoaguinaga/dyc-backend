@@ -114,14 +114,9 @@ export class NotificacionesService {
   async revisarPagos() {
     const pagos = await this.prisma.pago.findMany({
       where: { estado: 'pendiente' },
-      include: {
-        ordenCompra: {
-          select: {
-            numero: true,
-            proveedorNombreLibre: true,
-            proveedor: { select: { razonSocial: true } },
-          },
-        },
+      select: {
+        id: true, fechaProgramada: true, monto: true, concepto: true, beneficiarioNombre: true,
+        ordenCompra: { select: { numero: true, proveedorNombreLibre: true, proveedor: { select: { razonSocial: true } } } },
       },
     });
 
@@ -137,18 +132,20 @@ export class NotificacionesService {
       if (await this.yaNotificadoHoy('Pago', pago.id, tipo)) continue;
 
       const proveedor =
-        pago.ordenCompra.proveedor?.razonSocial ??
-        pago.ordenCompra.proveedorNombreLibre ??
+        pago.beneficiarioNombre ??
+        pago.ordenCompra?.proveedor?.razonSocial ??
+        pago.ordenCompra?.proveedorNombreLibre ??
+        pago.concepto ??
         '—';
-      const numeroOc = pago.ordenCompra.numero;
+      const referencia = pago.ordenCompra ? ` (OC ${pago.ordenCompra.numero})` : '';
       const monto = Number(pago.monto).toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
 
       await this.crearParaRoles(['gerencia', 'administrador'], {
         tipo,
         titulo: vencido ? 'Pago vencido' : 'Pago próximo a vencer',
         mensaje: vencido
-          ? `El pago de ${monto} a ${proveedor} (OC ${numeroOc}) venció el ${pago.fechaProgramada.toLocaleDateString('es-PE')}.`
-          : `El pago de ${monto} a ${proveedor} (OC ${numeroOc}) vence el ${pago.fechaProgramada.toLocaleDateString('es-PE')}.`,
+          ? `El pago de ${monto} a ${proveedor}${referencia} venció el ${pago.fechaProgramada.toLocaleDateString('es-PE')}.`
+          : `El pago de ${monto} a ${proveedor}${referencia} vence el ${pago.fechaProgramada.toLocaleDateString('es-PE')}.`,
         entidadTipo: 'Pago',
         entidadId: pago.id,
       });

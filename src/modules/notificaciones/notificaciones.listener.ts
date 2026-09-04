@@ -22,10 +22,10 @@ const GESTORES_COMPRA_SIMPLE = ['gerencia', 'administrador', 'admin_ti'] as cons
 // Aprobador técnico según el tipo de la compra simple (paso 1 — debe calzar
 // con TIPO_APPROVERS_TECNICO en compras-simples.service.ts).
 const APROBADOR_TECNICO_COMPRA_SIMPLE = {
-  civil: ['ing_civil', 'administrador', 'admin_ti'],
-  electrico: ['ing_electrico', 'administrador', 'admin_ti'],
-  seguridad: ['jefe_sig', 'administrador', 'admin_ti'],
-  administrativo: ['logistica', 'administrador', 'admin_ti'],
+  civil: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
+  electrico: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
+  seguridad: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
+  administrativo: ['ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador', 'admin_ti'],
 } as const;
 
 export interface RequerimientoCreadoPayload {

@@ -41,10 +41,10 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
 
 // Paso 1: aprobación técnica del área correspondiente al tipo de compra
 const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
-  civil: ['ing_civil', 'administrador', 'admin_ti'],
-  electrico: ['ing_electrico', 'administrador', 'admin_ti'],
-  seguridad: ['jefe_sig', 'administrador', 'admin_ti'],
-  administrativo: ['logistica', 'administrador', 'admin_ti'],
+  civil: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
+  electrico: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
+  seguridad: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
+  administrativo: ['ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador', 'admin_ti'],
 };
 
 // Paso 2: aprobación final de gerencia (recién aquí se genera el pago)
@@ -121,6 +121,224 @@ export class ComprasSimplesService {
     if (!compra)
       throw new NotFoundException(`Compra simple ${id} no encontrada`);
     return compra;
+  }
+
+  private assertAdminTi(userRole: Role) {
+    if (userRole !== 'admin_ti')
+      throw new ForbiddenException(
+        'Solo admin_ti puede eliminar permanentemente una compra simple',
+      );
+  }
+
+  private async readHardDeleteSource(
+    client: Pick<PrismaService, 'compraSimple' | 'notificacion'>,
+    id: string,
+  ) {
+    const compra = await client.compraSimple.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        codigo: true,
+        nombre: true,
+        grupos: {
+          select: {
+            id: true,
+            pagos: { select: { id: true, estado: true } },
+            items: { select: { id: true } },
+            historial: { select: { id: true } },
+            archivos: { select: { id: true, url: true } },
+          },
+        },
+      },
+    });
+    if (!compra)
+      throw new NotFoundException(`Compra simple ${id} no encontrada`);
+    const grupoIds = compra.grupos.map((grupo) => grupo.id);
+    const pagoIds = compra.grupos.flatMap((grupo) =>
+      grupo.pagos.map((pago) => pago.id),
+    );
+    const notificaciones = await client.notificacion.findMany({
+      where: {
+        OR: [
+          { entidadTipo: 'CompraSimple', entidadId: id },
+          { entidadTipo: 'OrdenCompra', entidadId: { in: grupoIds } },
+          { entidadTipo: 'Pago', entidadId: { in: pagoIds } },
+        ],
+      },
+      select: { id: true },
+    });
+    return { ...compra, notificaciones };
+  }
+
+  private summarizeHardDeleteImpact(
+    compra: Awaited<ReturnType<ComprasSimplesService['readHardDeleteSource']>>,
+  ) {
+    const entidadesAfectadas = {
+      comprasSimples: 1,
+      ordenesCompra: compra.grupos.length,
+      items: compra.grupos.reduce(
+        (total, grupo) => total + grupo.items.length,
+        0,
+      ),
+      pagos: compra.grupos.reduce(
+        (total, grupo) => total + grupo.pagos.length,
+        0,
+      ),
+      historialAprobacion: compra.grupos.reduce(
+        (total, grupo) => total + grupo.historial.length,
+        0,
+      ),
+      archivos: compra.grupos.reduce(
+        (total, grupo) => total + grupo.archivos.length,
+        0,
+      ),
+      notificaciones: compra.notificaciones.length,
+    };
+    const pagosPagados = compra.grupos.reduce(
+      (total, grupo) =>
+        total + grupo.pagos.filter((pago) => pago.estado === 'pagado').length,
+      0,
+    );
+
+    return {
+      compraSimple: {
+        id: compra.id,
+        codigo: compra.codigo,
+        nombre: compra.nombre,
+      },
+      entidadesAfectadas,
+      totalRegistros: Object.values(entidadesAfectadas).reduce(
+        (total, cantidad) => total + cantidad,
+        0,
+      ),
+      pagosPagados,
+      advertencias: [
+        'La compra simple dejará de aparecer en Compras simples.',
+        ...(entidadesAfectadas.ordenesCompra > 0
+          ? ['Sus grupos dejarán de aparecer como órdenes de compra.']
+          : []),
+        ...(entidadesAfectadas.pagos > 0
+          ? [
+              `Se eliminarán ${entidadesAfectadas.pagos} pago(s) asociado(s)${
+                pagosPagados > 0
+                  ? `, incluidos ${pagosPagados} ya marcado(s) como pagado(s)`
+                  : ''
+              }.`,
+            ]
+          : []),
+        ...(entidadesAfectadas.archivos > 0
+          ? ['Se eliminarán los registros y archivos físicos adjuntos.']
+          : []),
+        ...(entidadesAfectadas.notificaciones > 0
+          ? [
+              'Se eliminarán las notificaciones internas asociadas; los correos ya enviados no pueden retirarse.',
+            ]
+          : []),
+        'La operación es irreversible y quedará registrada en la auditoría del servidor.',
+      ],
+    };
+  }
+
+  async getHardDeleteImpact(id: string, userRole: Role) {
+    this.assertAdminTi(userRole);
+    const compra = await this.readHardDeleteSource(this.prisma, id);
+    return this.summarizeHardDeleteImpact(compra);
+  }
+
+  async hardDelete(id: string, confirmacion: string, userRole: Role) {
+    this.assertAdminTi(userRole);
+
+    const deleted = await this.prisma.$transaction(async (tx) => {
+      const compra = await this.readHardDeleteSource(tx, id);
+      if (confirmacion !== compra.codigo)
+        throw new BadRequestException(
+          `Escribe exactamente ${compra.codigo} para confirmar la eliminación`,
+        );
+
+      const impacto = this.summarizeHardDeleteImpact(compra);
+      const grupoIds = compra.grupos.map((grupo) => grupo.id);
+      const archivoUrls = compra.grupos.flatMap((grupo) =>
+        grupo.archivos.map((archivo) => archivo.url),
+      );
+      const notificacionesWhere = {
+        OR: [
+          { entidadTipo: 'CompraSimple', entidadId: id },
+          { entidadTipo: 'OrdenCompra', entidadId: { in: grupoIds } },
+          {
+            entidadTipo: 'Pago',
+            entidadId: {
+              in: compra.grupos.flatMap((grupo) =>
+                grupo.pagos.map((pago) => pago.id),
+              ),
+            },
+          },
+        ],
+      };
+
+      await tx.notificacion.deleteMany({
+        where: notificacionesWhere,
+      });
+      await tx.compraSimple.delete({ where: { id } });
+
+      const [
+        compras,
+        grupos,
+        items,
+        pagos,
+        historial,
+        archivos,
+        notificaciones,
+      ] = await Promise.all([
+        tx.compraSimple.count({ where: { id } }),
+        tx.ordenCompra.count({ where: { id: { in: grupoIds } } }),
+        tx.ordenCompraItem.count({ where: { ordenId: { in: grupoIds } } }),
+        tx.pago.count({ where: { ordenCompraId: { in: grupoIds } } }),
+        tx.compraSimpleGrupoHistorial.count({
+          where: { grupoId: { in: grupoIds } },
+        }),
+        tx.compraSimpleGrupoArchivo.count({
+          where: { grupoId: { in: grupoIds } },
+        }),
+        tx.notificacion.count({
+          where: notificacionesWhere,
+        }),
+      ]);
+
+      if (
+        [
+          compras,
+          grupos,
+          items,
+          pagos,
+          historial,
+          archivos,
+          notificaciones,
+        ].some(Boolean)
+      )
+        throw new Error(
+          'La verificación detectó registros relacionados; la eliminación fue revertida',
+        );
+
+      return { impacto, archivoUrls };
+    });
+
+    const limpiezaArchivos = await Promise.allSettled(
+      deleted.archivoUrls.map((url) => this.storage.remove(url)),
+    );
+    const archivosNoEliminados = limpiezaArchivos.filter(
+      (resultado) => resultado.status === 'rejected',
+    ).length;
+
+    return {
+      eliminado: true,
+      ...deleted.impacto,
+      verificacion: {
+        registrosRelacionadosRestantes: 0,
+        archivosFisicosEliminados:
+          deleted.archivoUrls.length - archivosNoEliminados,
+        archivosFisicosNoEliminados: archivosNoEliminados,
+      },
+    };
   }
 
   private async findGrupo(grupoId: string) {
@@ -394,6 +612,8 @@ export class ComprasSimplesService {
       await tx.pago.create({
         data: {
           ordenCompraId: grupoId,
+          proyectoId: grupo.proyectoId ?? grupo.compraSimple.proyectoId,
+          concepto: `Compra simple ${grupo.compraSimple.codigo} — ${grupo.numero}`,
           monto: oc.montoTotal,
           porcentaje: 100,
           fechaProgramada,

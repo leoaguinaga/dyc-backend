@@ -1,0 +1,17 @@
+CREATE TYPE "TipoPersonal" AS ENUM ('obrero', 'staff', 'sin_clasificar');
+ALTER TABLE "trabajadores" ADD COLUMN "tipoPersonal" "TipoPersonal" NOT NULL DEFAULT 'sin_clasificar';
+UPDATE "trabajadores" SET "tipoPersonal" = 'obrero' WHERE id IN (SELECT "trabajadorId" FROM "perfiles_obrero");
+CREATE TABLE "perfiles_staff" ("id" TEXT NOT NULL, "trabajadorId" TEXT NOT NULL, "sueldoMensual" DECIMAL(12,2) NOT NULL, "centroCosto" TEXT NOT NULL DEFAULT 'administracion', "proyectoId" TEXT, "diaPago" INTEGER NOT NULL DEFAULT 30, "vigenteDesde" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP, "activo" BOOLEAN NOT NULL DEFAULT true, "creadoEn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "actualizadoEn" TIMESTAMP(3) NOT NULL, CONSTRAINT "perfiles_staff_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "perfiles_staff_trabajadorId_key" ON "perfiles_staff"("trabajadorId");
+ALTER TABLE "perfiles_staff" ADD CONSTRAINT "perfiles_staff_trabajadorId_fkey" FOREIGN KEY ("trabajadorId") REFERENCES "trabajadores"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "perfiles_staff" ADD CONSTRAINT "perfiles_staff_proyectoId_fkey" FOREIGN KEY ("proyectoId") REFERENCES "proyectos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+CREATE TABLE "planillas_staff" ("id" TEXT NOT NULL, "periodo" TEXT NOT NULL, "estado" TEXT NOT NULL DEFAULT 'borrador', "totalGeneral" DECIMAL(12,2) NOT NULL DEFAULT 0, "generadaPorId" TEXT NOT NULL, "generadoEn" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "actualizadoEn" TIMESTAMP(3) NOT NULL, CONSTRAINT "planillas_staff_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "planillas_staff_periodo_key" ON "planillas_staff"("periodo");
+CREATE TABLE "planillas_staff_items" ("id" TEXT NOT NULL, "planillaId" TEXT NOT NULL, "trabajadorId" TEXT NOT NULL, "sueldoBase" DECIMAL(12,2) NOT NULL, "ajuste" DECIMAL(12,2) NOT NULL DEFAULT 0, "total" DECIMAL(12,2) NOT NULL, CONSTRAINT "planillas_staff_items_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "planillas_staff_items_planillaId_trabajadorId_key" ON "planillas_staff_items"("planillaId", "trabajadorId");
+ALTER TABLE "planillas_staff" ADD CONSTRAINT "planillas_staff_generadaPorId_fkey" FOREIGN KEY ("generadaPorId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "planillas_staff_items" ADD CONSTRAINT "planillas_staff_items_planillaId_fkey" FOREIGN KEY ("planillaId") REFERENCES "planillas_staff"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "planillas_staff_items" ADD CONSTRAINT "planillas_staff_items_trabajadorId_fkey" FOREIGN KEY ("trabajadorId") REFERENCES "trabajadores"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pagos" ADD COLUMN "planillaStaffItemId" TEXT;
+CREATE UNIQUE INDEX "pagos_planillaStaffItemId_key" ON "pagos"("planillaStaffItemId");
+ALTER TABLE "pagos" ADD CONSTRAINT "pagos_planillaStaffItemId_fkey" FOREIGN KEY ("planillaStaffItemId") REFERENCES "planillas_staff_items"("id") ON DELETE SET NULL ON UPDATE CASCADE;
