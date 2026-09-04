@@ -91,6 +91,10 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  PagoRecurrente: 'PagoRecurrente',
+  PerfilStaff: 'PerfilStaff',
+  PlanillaStaff: 'PlanillaStaff',
+  PlanillaStaffItem: 'PlanillaStaffItem',
   Cobro: 'Cobro',
   OrdenCompraItem: 'OrdenCompraItem',
   HelpVideo: 'HelpVideo',
@@ -268,6 +272,7 @@ export const TrabajadorScalarFieldEnum = {
   email: 'email',
   banco: 'banco',
   numeroCuenta: 'numeroCuenta',
+  tipoPersonal: 'tipoPersonal',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn',
@@ -773,8 +778,20 @@ export type CompraSimpleGrupoHistorialScalarFieldEnum = (typeof CompraSimpleGrup
 export const PagoScalarFieldEnum = {
   id: 'id',
   ordenCompraId: 'ordenCompraId',
+  origen: 'origen',
+  recurrenciaId: 'recurrenciaId',
+  periodoRecurrente: 'periodoRecurrente',
+  planillaStaffItemId: 'planillaStaffItemId',
+  centroCosto: 'centroCosto',
+  proyectoId: 'proyectoId',
+  concepto: 'concepto',
+  categoria: 'categoria',
   tipoBeneficiario: 'tipoBeneficiario',
   beneficiarioTrabajadorId: 'beneficiarioTrabajadorId',
+  beneficiarioNombre: 'beneficiarioNombre',
+  banco: 'banco',
+  numeroCuenta: 'numeroCuenta',
+  cci: 'cci',
   monto: 'monto',
   porcentaje: 'porcentaje',
   fechaProgramada: 'fechaProgramada',
@@ -792,6 +809,68 @@ export const PagoScalarFieldEnum = {
 } as const
 
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
+
+
+export const PagoRecurrenteScalarFieldEnum = {
+  id: 'id',
+  concepto: 'concepto',
+  categoria: 'categoria',
+  centroCosto: 'centroCosto',
+  proyectoId: 'proyectoId',
+  beneficiarioNombre: 'beneficiarioNombre',
+  banco: 'banco',
+  numeroCuenta: 'numeroCuenta',
+  cci: 'cci',
+  montoReferencial: 'montoReferencial',
+  diaVencimiento: 'diaVencimiento',
+  activo: 'activo',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PagoRecurrenteScalarFieldEnum = (typeof PagoRecurrenteScalarFieldEnum)[keyof typeof PagoRecurrenteScalarFieldEnum]
+
+
+export const PerfilStaffScalarFieldEnum = {
+  id: 'id',
+  trabajadorId: 'trabajadorId',
+  sueldoMensual: 'sueldoMensual',
+  centroCosto: 'centroCosto',
+  proyectoId: 'proyectoId',
+  diaPago: 'diaPago',
+  vigenteDesde: 'vigenteDesde',
+  activo: 'activo',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PerfilStaffScalarFieldEnum = (typeof PerfilStaffScalarFieldEnum)[keyof typeof PerfilStaffScalarFieldEnum]
+
+
+export const PlanillaStaffScalarFieldEnum = {
+  id: 'id',
+  periodo: 'periodo',
+  estado: 'estado',
+  totalGeneral: 'totalGeneral',
+  generadaPorId: 'generadaPorId',
+  generadoEn: 'generadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type PlanillaStaffScalarFieldEnum = (typeof PlanillaStaffScalarFieldEnum)[keyof typeof PlanillaStaffScalarFieldEnum]
+
+
+export const PlanillaStaffItemScalarFieldEnum = {
+  id: 'id',
+  planillaId: 'planillaId',
+  trabajadorId: 'trabajadorId',
+  sueldoBase: 'sueldoBase',
+  ajuste: 'ajuste',
+  total: 'total'
+} as const
+
+export type PlanillaStaffItemScalarFieldEnum = (typeof PlanillaStaffItemScalarFieldEnum)[keyof typeof PlanillaStaffItemScalarFieldEnum]
 
 
 export const CobroScalarFieldEnum = {

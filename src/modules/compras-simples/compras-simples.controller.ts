@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -18,6 +19,7 @@ import { ComprasSimplesService } from './compras-simples.service.js';
 import { CreateCompraSimpleDto } from './dto/create-compra-simple.dto.js';
 import { AprobarGrupoDto, ObservarGrupoDto } from './dto/decision-grupo.dto.js';
 import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
+import { HardDeleteCompraSimpleDto } from './dto/hard-delete-compra-simple.dto.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 
@@ -43,6 +45,22 @@ export class ComprasSimplesController {
   @Get('aprobadores-informales')
   aprobadoresInformales() {
     return this.service.aprobadoresInformales();
+  }
+
+  @Get(':id/eliminacion-impacto')
+  @Roles('admin_ti')
+  getHardDeleteImpact(@Param('id') id: string, @Req() req: Request) {
+    return this.service.getHardDeleteImpact(id, req.user!.role);
+  }
+
+  @Delete(':id')
+  @Roles('admin_ti')
+  hardDelete(
+    @Param('id') id: string,
+    @Body() dto: HardDeleteCompraSimpleDto,
+    @Req() req: Request,
+  ) {
+    return this.service.hardDelete(id, dto.confirmacion, req.user!.role);
   }
 
   @Get(':id')

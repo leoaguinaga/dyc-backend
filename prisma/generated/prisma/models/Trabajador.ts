@@ -33,6 +33,7 @@ export type TrabajadorMinAggregateOutputType = {
   email: string | null
   banco: string | null
   numeroCuenta: string | null
+  tipoPersonal: $Enums.TipoPersonal | null
   activo: boolean | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -48,6 +49,7 @@ export type TrabajadorMaxAggregateOutputType = {
   email: string | null
   banco: string | null
   numeroCuenta: string | null
+  tipoPersonal: $Enums.TipoPersonal | null
   activo: boolean | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -63,6 +65,7 @@ export type TrabajadorCountAggregateOutputType = {
   email: number
   banco: number
   numeroCuenta: number
+  tipoPersonal: number
   activo: number
   creadoEn: number
   actualizadoEn: number
@@ -80,6 +83,7 @@ export type TrabajadorMinAggregateInputType = {
   email?: true
   banco?: true
   numeroCuenta?: true
+  tipoPersonal?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -95,6 +99,7 @@ export type TrabajadorMaxAggregateInputType = {
   email?: true
   banco?: true
   numeroCuenta?: true
+  tipoPersonal?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -110,6 +115,7 @@ export type TrabajadorCountAggregateInputType = {
   email?: true
   banco?: true
   numeroCuenta?: true
+  tipoPersonal?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -198,6 +204,7 @@ export type TrabajadorGroupByOutputType = {
   email: string | null
   banco: string | null
   numeroCuenta: string | null
+  tipoPersonal: $Enums.TipoPersonal
   activo: boolean
   creadoEn: Date
   actualizadoEn: Date
@@ -234,6 +241,7 @@ export type TrabajadorWhereInput = {
   email?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   banco?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   numeroCuenta?: Prisma.StringNullableFilter<"Trabajador"> | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFilter<"Trabajador"> | $Enums.TipoPersonal
   activo?: Prisma.BoolFilter<"Trabajador"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
@@ -245,11 +253,13 @@ export type TrabajadorWhereInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoListRelationFilter
   hitos?: Prisma.HitoListRelationFilter
   perfilObrero?: Prisma.XOR<Prisma.PerfilObreroNullableScalarRelationFilter, Prisma.PerfilObreroWhereInput> | null
+  perfilStaff?: Prisma.XOR<Prisma.PerfilStaffNullableScalarRelationFilter, Prisma.PerfilStaffWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
   planillaItems?: Prisma.PlanillaItemListRelationFilter
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraListRelationFilter
   pagosBeneficiario?: Prisma.PagoListRelationFilter
+  planillaStaffItems?: Prisma.PlanillaStaffItemListRelationFilter
 }
 
 export type TrabajadorOrderByWithRelationInput = {
@@ -261,6 +271,7 @@ export type TrabajadorOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   banco?: Prisma.SortOrderInput | Prisma.SortOrder
   numeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
+  tipoPersonal?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -272,11 +283,13 @@ export type TrabajadorOrderByWithRelationInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoOrderByRelationAggregateInput
   hitos?: Prisma.HitoOrderByRelationAggregateInput
   perfilObrero?: Prisma.PerfilObreroOrderByWithRelationInput
+  perfilStaff?: Prisma.PerfilStaffOrderByWithRelationInput
   asistencias?: Prisma.AsistenciaOrderByRelationAggregateInput
   registrosVisita?: Prisma.RegistroVisitaOrderByRelationAggregateInput
   planillaItems?: Prisma.PlanillaItemOrderByRelationAggregateInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraOrderByRelationAggregateInput
   pagosBeneficiario?: Prisma.PagoOrderByRelationAggregateInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemOrderByRelationAggregateInput
 }
 
 export type TrabajadorWhereUniqueInput = Prisma.AtLeast<{
@@ -292,6 +305,7 @@ export type TrabajadorWhereUniqueInput = Prisma.AtLeast<{
   email?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   banco?: Prisma.StringNullableFilter<"Trabajador"> | string | null
   numeroCuenta?: Prisma.StringNullableFilter<"Trabajador"> | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFilter<"Trabajador"> | $Enums.TipoPersonal
   activo?: Prisma.BoolFilter<"Trabajador"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Trabajador"> | Date | string
@@ -302,11 +316,13 @@ export type TrabajadorWhereUniqueInput = Prisma.AtLeast<{
   proyectosComoPrevencionista?: Prisma.ProyectoListRelationFilter
   hitos?: Prisma.HitoListRelationFilter
   perfilObrero?: Prisma.XOR<Prisma.PerfilObreroNullableScalarRelationFilter, Prisma.PerfilObreroWhereInput> | null
+  perfilStaff?: Prisma.XOR<Prisma.PerfilStaffNullableScalarRelationFilter, Prisma.PerfilStaffWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
   planillaItems?: Prisma.PlanillaItemListRelationFilter
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraListRelationFilter
   pagosBeneficiario?: Prisma.PagoListRelationFilter
+  planillaStaffItems?: Prisma.PlanillaStaffItemListRelationFilter
 }, "id" | "dni" | "userId">
 
 export type TrabajadorOrderByWithAggregationInput = {
@@ -318,6 +334,7 @@ export type TrabajadorOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   banco?: Prisma.SortOrderInput | Prisma.SortOrder
   numeroCuenta?: Prisma.SortOrderInput | Prisma.SortOrder
+  tipoPersonal?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -339,6 +356,7 @@ export type TrabajadorScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
   banco?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
   numeroCuenta?: Prisma.StringNullableWithAggregatesFilter<"Trabajador"> | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalWithAggregatesFilter<"Trabajador"> | $Enums.TipoPersonal
   activo?: Prisma.BoolWithAggregatesFilter<"Trabajador"> | boolean
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Trabajador"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Trabajador"> | Date | string
@@ -354,6 +372,7 @@ export type TrabajadorCreateInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -364,11 +383,13 @@ export type TrabajadorCreateInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateInput = {
@@ -380,6 +401,7 @@ export type TrabajadorUncheckedCreateInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -390,11 +412,13 @@ export type TrabajadorUncheckedCreateInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUpdateInput = {
@@ -406,6 +430,7 @@ export type TrabajadorUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -416,11 +441,13 @@ export type TrabajadorUpdateInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateInput = {
@@ -432,6 +459,7 @@ export type TrabajadorUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -442,11 +470,13 @@ export type TrabajadorUncheckedUpdateInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateManyInput = {
@@ -458,6 +488,7 @@ export type TrabajadorCreateManyInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -473,6 +504,7 @@ export type TrabajadorUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -487,6 +519,7 @@ export type TrabajadorUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -512,6 +545,7 @@ export type TrabajadorCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   banco?: Prisma.SortOrder
   numeroCuenta?: Prisma.SortOrder
+  tipoPersonal?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -527,6 +561,7 @@ export type TrabajadorMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   banco?: Prisma.SortOrder
   numeroCuenta?: Prisma.SortOrder
+  tipoPersonal?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -542,6 +577,7 @@ export type TrabajadorMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   banco?: Prisma.SortOrder
   numeroCuenta?: Prisma.SortOrder
+  tipoPersonal?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -640,6 +676,10 @@ export type TrabajadorUpdateOneRequiredWithoutHitosNestedInput = {
   upsert?: Prisma.TrabajadorUpsertWithoutHitosInput
   connect?: Prisma.TrabajadorWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.TrabajadorUpdateToOneWithWhereWithoutHitosInput, Prisma.TrabajadorUpdateWithoutHitosInput>, Prisma.TrabajadorUncheckedUpdateWithoutHitosInput>
+}
+
+export type EnumTipoPersonalFieldUpdateOperationsInput = {
+  set?: $Enums.TipoPersonal
 }
 
 export type TrabajadorCreateNestedOneWithoutPerfilObreroInput = {
@@ -746,6 +786,34 @@ export type TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TrabajadorUpdateToOneWithWhereWithoutPagosBeneficiarioInput, Prisma.TrabajadorUpdateWithoutPagosBeneficiarioInput>, Prisma.TrabajadorUncheckedUpdateWithoutPagosBeneficiarioInput>
 }
 
+export type TrabajadorCreateNestedOneWithoutPerfilStaffInput = {
+  create?: Prisma.XOR<Prisma.TrabajadorCreateWithoutPerfilStaffInput, Prisma.TrabajadorUncheckedCreateWithoutPerfilStaffInput>
+  connectOrCreate?: Prisma.TrabajadorCreateOrConnectWithoutPerfilStaffInput
+  connect?: Prisma.TrabajadorWhereUniqueInput
+}
+
+export type TrabajadorUpdateOneRequiredWithoutPerfilStaffNestedInput = {
+  create?: Prisma.XOR<Prisma.TrabajadorCreateWithoutPerfilStaffInput, Prisma.TrabajadorUncheckedCreateWithoutPerfilStaffInput>
+  connectOrCreate?: Prisma.TrabajadorCreateOrConnectWithoutPerfilStaffInput
+  upsert?: Prisma.TrabajadorUpsertWithoutPerfilStaffInput
+  connect?: Prisma.TrabajadorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrabajadorUpdateToOneWithWhereWithoutPerfilStaffInput, Prisma.TrabajadorUpdateWithoutPerfilStaffInput>, Prisma.TrabajadorUncheckedUpdateWithoutPerfilStaffInput>
+}
+
+export type TrabajadorCreateNestedOneWithoutPlanillaStaffItemsInput = {
+  create?: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaStaffItemsInput>
+  connectOrCreate?: Prisma.TrabajadorCreateOrConnectWithoutPlanillaStaffItemsInput
+  connect?: Prisma.TrabajadorWhereUniqueInput
+}
+
+export type TrabajadorUpdateOneRequiredWithoutPlanillaStaffItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaStaffItemsInput>
+  connectOrCreate?: Prisma.TrabajadorCreateOrConnectWithoutPlanillaStaffItemsInput
+  upsert?: Prisma.TrabajadorUpsertWithoutPlanillaStaffItemsInput
+  connect?: Prisma.TrabajadorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrabajadorUpdateToOneWithWhereWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUpdateWithoutPlanillaStaffItemsInput>, Prisma.TrabajadorUncheckedUpdateWithoutPlanillaStaffItemsInput>
+}
+
 export type TrabajadorCreateWithoutUserInput = {
   id?: string
   nombre: string
@@ -755,6 +823,7 @@ export type TrabajadorCreateWithoutUserInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -764,11 +833,13 @@ export type TrabajadorCreateWithoutUserInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutUserInput = {
@@ -780,6 +851,7 @@ export type TrabajadorUncheckedCreateWithoutUserInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -789,11 +861,13 @@ export type TrabajadorUncheckedCreateWithoutUserInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutUserInput = {
@@ -821,6 +895,7 @@ export type TrabajadorUpdateWithoutUserInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -830,11 +905,13 @@ export type TrabajadorUpdateWithoutUserInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutUserInput = {
@@ -846,6 +923,7 @@ export type TrabajadorUncheckedUpdateWithoutUserInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -855,11 +933,13 @@ export type TrabajadorUncheckedUpdateWithoutUserInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutProyectosComoCoordinadorInput = {
@@ -871,6 +951,7 @@ export type TrabajadorCreateWithoutProyectosComoCoordinadorInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -880,11 +961,13 @@ export type TrabajadorCreateWithoutProyectosComoCoordinadorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosComoCoordinadorInput = {
@@ -896,6 +979,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoCoordinadorInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -905,11 +989,13 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoCoordinadorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosComoCoordinadorInput = {
@@ -926,6 +1012,7 @@ export type TrabajadorCreateWithoutProyectosComoEjecutorInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -935,11 +1022,13 @@ export type TrabajadorCreateWithoutProyectosComoEjecutorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosComoEjecutorInput = {
@@ -951,6 +1040,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoEjecutorInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -960,11 +1050,13 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoEjecutorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosComoEjecutorInput = {
@@ -981,6 +1073,7 @@ export type TrabajadorCreateWithoutProyectosComoPrevencionistaInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -990,11 +1083,13 @@ export type TrabajadorCreateWithoutProyectosComoPrevencionistaInput = {
   proyectosComoCoordinador?: Prisma.ProyectoCreateNestedManyWithoutCoordinadorEmpresaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosComoPrevencionistaInput = {
@@ -1006,6 +1101,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoPrevencionistaInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1015,11 +1111,13 @@ export type TrabajadorUncheckedCreateWithoutProyectosComoPrevencionistaInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUncheckedCreateNestedManyWithoutCoordinadorEmpresaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosComoPrevencionistaInput = {
@@ -1047,6 +1145,7 @@ export type TrabajadorUpdateWithoutProyectosComoCoordinadorInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1056,11 +1155,13 @@ export type TrabajadorUpdateWithoutProyectosComoCoordinadorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosComoCoordinadorInput = {
@@ -1072,6 +1173,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoCoordinadorInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1081,11 +1183,13 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoCoordinadorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUpsertWithoutProyectosComoEjecutorInput = {
@@ -1108,6 +1212,7 @@ export type TrabajadorUpdateWithoutProyectosComoEjecutorInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1117,11 +1222,13 @@ export type TrabajadorUpdateWithoutProyectosComoEjecutorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosComoEjecutorInput = {
@@ -1133,6 +1240,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoEjecutorInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1142,11 +1250,13 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoEjecutorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUpsertWithoutProyectosComoPrevencionistaInput = {
@@ -1169,6 +1279,7 @@ export type TrabajadorUpdateWithoutProyectosComoPrevencionistaInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1178,11 +1289,13 @@ export type TrabajadorUpdateWithoutProyectosComoPrevencionistaInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUpdateManyWithoutCoordinadorEmpresaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosComoPrevencionistaInput = {
@@ -1194,6 +1307,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoPrevencionistaInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1203,11 +1317,13 @@ export type TrabajadorUncheckedUpdateWithoutProyectosComoPrevencionistaInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutHitosInput = {
@@ -1219,6 +1335,7 @@ export type TrabajadorCreateWithoutHitosInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1228,11 +1345,13 @@ export type TrabajadorCreateWithoutHitosInput = {
   proyectosComoCoordinador?: Prisma.ProyectoCreateNestedManyWithoutCoordinadorEmpresaInput
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutHitosInput = {
@@ -1244,6 +1363,7 @@ export type TrabajadorUncheckedCreateWithoutHitosInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1253,11 +1373,13 @@ export type TrabajadorUncheckedCreateWithoutHitosInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUncheckedCreateNestedManyWithoutCoordinadorEmpresaInput
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutHitosInput = {
@@ -1285,6 +1407,7 @@ export type TrabajadorUpdateWithoutHitosInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1294,11 +1417,13 @@ export type TrabajadorUpdateWithoutHitosInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUpdateManyWithoutCoordinadorEmpresaNestedInput
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutHitosInput = {
@@ -1310,6 +1435,7 @@ export type TrabajadorUncheckedUpdateWithoutHitosInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1319,11 +1445,13 @@ export type TrabajadorUncheckedUpdateWithoutHitosInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaNestedInput
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutPerfilObreroInput = {
@@ -1335,6 +1463,7 @@ export type TrabajadorCreateWithoutPerfilObreroInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1344,11 +1473,13 @@ export type TrabajadorCreateWithoutPerfilObreroInput = {
   proyectosComoCoordinador?: Prisma.ProyectoCreateNestedManyWithoutCoordinadorEmpresaInput
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutPerfilObreroInput = {
@@ -1360,6 +1491,7 @@ export type TrabajadorUncheckedCreateWithoutPerfilObreroInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1369,11 +1501,13 @@ export type TrabajadorUncheckedCreateWithoutPerfilObreroInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUncheckedCreateNestedManyWithoutCoordinadorEmpresaInput
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutPerfilObreroInput = {
@@ -1401,6 +1535,7 @@ export type TrabajadorUpdateWithoutPerfilObreroInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1410,11 +1545,13 @@ export type TrabajadorUpdateWithoutPerfilObreroInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUpdateManyWithoutCoordinadorEmpresaNestedInput
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutPerfilObreroInput = {
@@ -1426,6 +1563,7 @@ export type TrabajadorUncheckedUpdateWithoutPerfilObreroInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1435,11 +1573,13 @@ export type TrabajadorUncheckedUpdateWithoutPerfilObreroInput = {
   proyectosComoCoordinador?: Prisma.ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaNestedInput
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutProyectosInput = {
@@ -1451,6 +1591,7 @@ export type TrabajadorCreateWithoutProyectosInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1460,11 +1601,13 @@ export type TrabajadorCreateWithoutProyectosInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutProyectosInput = {
@@ -1476,6 +1619,7 @@ export type TrabajadorUncheckedCreateWithoutProyectosInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1485,11 +1629,13 @@ export type TrabajadorUncheckedCreateWithoutProyectosInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutProyectosInput = {
@@ -1517,6 +1663,7 @@ export type TrabajadorUpdateWithoutProyectosInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1526,11 +1673,13 @@ export type TrabajadorUpdateWithoutProyectosInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutProyectosInput = {
@@ -1542,6 +1691,7 @@ export type TrabajadorUncheckedUpdateWithoutProyectosInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1551,11 +1701,13 @@ export type TrabajadorUncheckedUpdateWithoutProyectosInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutAsistenciasInput = {
@@ -1567,6 +1719,7 @@ export type TrabajadorCreateWithoutAsistenciasInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1577,10 +1730,12 @@ export type TrabajadorCreateWithoutAsistenciasInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutAsistenciasInput = {
@@ -1592,6 +1747,7 @@ export type TrabajadorUncheckedCreateWithoutAsistenciasInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1602,10 +1758,12 @@ export type TrabajadorUncheckedCreateWithoutAsistenciasInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutAsistenciasInput = {
@@ -1633,6 +1791,7 @@ export type TrabajadorUpdateWithoutAsistenciasInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1643,10 +1802,12 @@ export type TrabajadorUpdateWithoutAsistenciasInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutAsistenciasInput = {
@@ -1658,6 +1819,7 @@ export type TrabajadorUncheckedUpdateWithoutAsistenciasInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1668,10 +1830,12 @@ export type TrabajadorUncheckedUpdateWithoutAsistenciasInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutRegistrosVisitaInput = {
@@ -1683,6 +1847,7 @@ export type TrabajadorCreateWithoutRegistrosVisitaInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1693,10 +1858,12 @@ export type TrabajadorCreateWithoutRegistrosVisitaInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutRegistrosVisitaInput = {
@@ -1708,6 +1875,7 @@ export type TrabajadorUncheckedCreateWithoutRegistrosVisitaInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1718,10 +1886,12 @@ export type TrabajadorUncheckedCreateWithoutRegistrosVisitaInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutRegistrosVisitaInput = {
@@ -1749,6 +1919,7 @@ export type TrabajadorUpdateWithoutRegistrosVisitaInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1759,10 +1930,12 @@ export type TrabajadorUpdateWithoutRegistrosVisitaInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutRegistrosVisitaInput = {
@@ -1774,6 +1947,7 @@ export type TrabajadorUncheckedUpdateWithoutRegistrosVisitaInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1784,10 +1958,12 @@ export type TrabajadorUncheckedUpdateWithoutRegistrosVisitaInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutPlanillaItemsInput = {
@@ -1799,6 +1975,7 @@ export type TrabajadorCreateWithoutPlanillaItemsInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1809,10 +1986,12 @@ export type TrabajadorCreateWithoutPlanillaItemsInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutPlanillaItemsInput = {
@@ -1824,6 +2003,7 @@ export type TrabajadorUncheckedCreateWithoutPlanillaItemsInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1834,10 +2014,12 @@ export type TrabajadorUncheckedCreateWithoutPlanillaItemsInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutPlanillaItemsInput = {
@@ -1865,6 +2047,7 @@ export type TrabajadorUpdateWithoutPlanillaItemsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1875,10 +2058,12 @@ export type TrabajadorUpdateWithoutPlanillaItemsInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutPlanillaItemsInput = {
@@ -1890,6 +2075,7 @@ export type TrabajadorUncheckedUpdateWithoutPlanillaItemsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1900,10 +2086,12 @@ export type TrabajadorUncheckedUpdateWithoutPlanillaItemsInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutComprasSimplesPagoTrabajadorInput = {
@@ -1915,6 +2103,7 @@ export type TrabajadorCreateWithoutComprasSimplesPagoTrabajadorInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1925,10 +2114,12 @@ export type TrabajadorCreateWithoutComprasSimplesPagoTrabajadorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutComprasSimplesPagoTrabajadorInput = {
@@ -1940,6 +2131,7 @@ export type TrabajadorUncheckedCreateWithoutComprasSimplesPagoTrabajadorInput = 
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1950,10 +2142,12 @@ export type TrabajadorUncheckedCreateWithoutComprasSimplesPagoTrabajadorInput = 
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutComprasSimplesPagoTrabajadorInput = {
@@ -1981,6 +2175,7 @@ export type TrabajadorUpdateWithoutComprasSimplesPagoTrabajadorInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1991,10 +2186,12 @@ export type TrabajadorUpdateWithoutComprasSimplesPagoTrabajadorInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorUncheckedUpdateWithoutComprasSimplesPagoTrabajadorInput = {
@@ -2006,6 +2203,7 @@ export type TrabajadorUncheckedUpdateWithoutComprasSimplesPagoTrabajadorInput = 
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2016,10 +2214,12 @@ export type TrabajadorUncheckedUpdateWithoutComprasSimplesPagoTrabajadorInput = 
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
   perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
 }
 
 export type TrabajadorCreateWithoutPagosBeneficiarioInput = {
@@ -2031,6 +2231,7 @@ export type TrabajadorCreateWithoutPagosBeneficiarioInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2041,10 +2242,12 @@ export type TrabajadorCreateWithoutPagosBeneficiarioInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorUncheckedCreateWithoutPagosBeneficiarioInput = {
@@ -2056,6 +2259,7 @@ export type TrabajadorUncheckedCreateWithoutPagosBeneficiarioInput = {
   email?: string | null
   banco?: string | null
   numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2066,10 +2270,12 @@ export type TrabajadorUncheckedCreateWithoutPagosBeneficiarioInput = {
   proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
   perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
   planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
 }
 
 export type TrabajadorCreateOrConnectWithoutPagosBeneficiarioInput = {
@@ -2097,6 +2303,135 @@ export type TrabajadorUpdateWithoutPagosBeneficiarioInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutTrabajadorNestedInput
+  proyectos?: Prisma.ProyectoTrabajadorUpdateManyWithoutTrabajadorNestedInput
+  proyectosComoEjecutor?: Prisma.ProyectoUpdateManyWithoutEjecutorNestedInput
+  proyectosComoCoordinador?: Prisma.ProyectoUpdateManyWithoutCoordinadorEmpresaNestedInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
+  perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
+  asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
+}
+
+export type TrabajadorUncheckedUpdateWithoutPagosBeneficiarioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  dni?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectos?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutTrabajadorNestedInput
+  proyectosComoEjecutor?: Prisma.ProyectoUncheckedUpdateManyWithoutEjecutorNestedInput
+  proyectosComoCoordinador?: Prisma.ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaNestedInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
+  perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
+  asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
+}
+
+export type TrabajadorCreateWithoutPerfilStaffInput = {
+  id?: string
+  nombre: string
+  dni: string
+  cargo?: string | null
+  telefono?: string | null
+  email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
+  activo?: boolean
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutTrabajadorInput
+  proyectos?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutTrabajadorInput
+  proyectosComoEjecutor?: Prisma.ProyectoCreateNestedManyWithoutEjecutorInput
+  proyectosComoCoordinador?: Prisma.ProyectoCreateNestedManyWithoutCoordinadorEmpresaInput
+  proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
+  perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
+  pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemCreateNestedManyWithoutTrabajadorInput
+}
+
+export type TrabajadorUncheckedCreateWithoutPerfilStaffInput = {
+  id?: string
+  nombre: string
+  dni: string
+  cargo?: string | null
+  telefono?: string | null
+  email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
+  activo?: boolean
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  userId?: string | null
+  proyectos?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutTrabajadorInput
+  proyectosComoEjecutor?: Prisma.ProyectoUncheckedCreateNestedManyWithoutEjecutorInput
+  proyectosComoCoordinador?: Prisma.ProyectoUncheckedCreateNestedManyWithoutCoordinadorEmpresaInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
+  perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
+  pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedCreateNestedManyWithoutTrabajadorInput
+}
+
+export type TrabajadorCreateOrConnectWithoutPerfilStaffInput = {
+  where: Prisma.TrabajadorWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrabajadorCreateWithoutPerfilStaffInput, Prisma.TrabajadorUncheckedCreateWithoutPerfilStaffInput>
+}
+
+export type TrabajadorUpsertWithoutPerfilStaffInput = {
+  update: Prisma.XOR<Prisma.TrabajadorUpdateWithoutPerfilStaffInput, Prisma.TrabajadorUncheckedUpdateWithoutPerfilStaffInput>
+  create: Prisma.XOR<Prisma.TrabajadorCreateWithoutPerfilStaffInput, Prisma.TrabajadorUncheckedCreateWithoutPerfilStaffInput>
+  where?: Prisma.TrabajadorWhereInput
+}
+
+export type TrabajadorUpdateToOneWithWhereWithoutPerfilStaffInput = {
+  where?: Prisma.TrabajadorWhereInput
+  data: Prisma.XOR<Prisma.TrabajadorUpdateWithoutPerfilStaffInput, Prisma.TrabajadorUncheckedUpdateWithoutPerfilStaffInput>
+}
+
+export type TrabajadorUpdateWithoutPerfilStaffInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  dni?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2111,9 +2446,11 @@ export type TrabajadorUpdateWithoutPagosBeneficiarioInput = {
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
+  pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUpdateManyWithoutTrabajadorNestedInput
 }
 
-export type TrabajadorUncheckedUpdateWithoutPagosBeneficiarioInput = {
+export type TrabajadorUncheckedUpdateWithoutPerfilStaffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   dni?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2122,6 +2459,7 @@ export type TrabajadorUncheckedUpdateWithoutPagosBeneficiarioInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2136,6 +2474,136 @@ export type TrabajadorUncheckedUpdateWithoutPagosBeneficiarioInput = {
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
   planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
   comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
+  pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+  planillaStaffItems?: Prisma.PlanillaStaffItemUncheckedUpdateManyWithoutTrabajadorNestedInput
+}
+
+export type TrabajadorCreateWithoutPlanillaStaffItemsInput = {
+  id?: string
+  nombre: string
+  dni: string
+  cargo?: string | null
+  telefono?: string | null
+  email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
+  activo?: boolean
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutTrabajadorInput
+  proyectos?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutTrabajadorInput
+  proyectosComoEjecutor?: Prisma.ProyectoCreateNestedManyWithoutEjecutorInput
+  proyectosComoCoordinador?: Prisma.ProyectoCreateNestedManyWithoutCoordinadorEmpresaInput
+  proyectosComoPrevencionista?: Prisma.ProyectoCreateNestedManyWithoutPrevencionistaInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutResponsableInput
+  perfilObrero?: Prisma.PerfilObreroCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffCreateNestedOneWithoutTrabajadorInput
+  asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTrabajadorInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemCreateNestedManyWithoutTrabajadorInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraCreateNestedManyWithoutPagoTrabajadorInput
+  pagosBeneficiario?: Prisma.PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput
+}
+
+export type TrabajadorUncheckedCreateWithoutPlanillaStaffItemsInput = {
+  id?: string
+  nombre: string
+  dni: string
+  cargo?: string | null
+  telefono?: string | null
+  email?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  tipoPersonal?: $Enums.TipoPersonal
+  activo?: boolean
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  userId?: string | null
+  proyectos?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutTrabajadorInput
+  proyectosComoEjecutor?: Prisma.ProyectoUncheckedCreateNestedManyWithoutEjecutorInput
+  proyectosComoCoordinador?: Prisma.ProyectoUncheckedCreateNestedManyWithoutCoordinadorEmpresaInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUncheckedCreateNestedManyWithoutPrevencionistaInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutResponsableInput
+  perfilObrero?: Prisma.PerfilObreroUncheckedCreateNestedOneWithoutTrabajadorInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedCreateNestedOneWithoutTrabajadorInput
+  asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTrabajadorInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutTrabajadorInput
+  planillaItems?: Prisma.PlanillaItemUncheckedCreateNestedManyWithoutTrabajadorInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutPagoTrabajadorInput
+  pagosBeneficiario?: Prisma.PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput
+}
+
+export type TrabajadorCreateOrConnectWithoutPlanillaStaffItemsInput = {
+  where: Prisma.TrabajadorWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaStaffItemsInput>
+}
+
+export type TrabajadorUpsertWithoutPlanillaStaffItemsInput = {
+  update: Prisma.XOR<Prisma.TrabajadorUpdateWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUncheckedUpdateWithoutPlanillaStaffItemsInput>
+  create: Prisma.XOR<Prisma.TrabajadorCreateWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUncheckedCreateWithoutPlanillaStaffItemsInput>
+  where?: Prisma.TrabajadorWhereInput
+}
+
+export type TrabajadorUpdateToOneWithWhereWithoutPlanillaStaffItemsInput = {
+  where?: Prisma.TrabajadorWhereInput
+  data: Prisma.XOR<Prisma.TrabajadorUpdateWithoutPlanillaStaffItemsInput, Prisma.TrabajadorUncheckedUpdateWithoutPlanillaStaffItemsInput>
+}
+
+export type TrabajadorUpdateWithoutPlanillaStaffItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  dni?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutTrabajadorNestedInput
+  proyectos?: Prisma.ProyectoTrabajadorUpdateManyWithoutTrabajadorNestedInput
+  proyectosComoEjecutor?: Prisma.ProyectoUpdateManyWithoutEjecutorNestedInput
+  proyectosComoCoordinador?: Prisma.ProyectoUpdateManyWithoutCoordinadorEmpresaNestedInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUpdateManyWithoutPrevencionistaNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutResponsableNestedInput
+  perfilObrero?: Prisma.PerfilObreroUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUpdateOneWithoutTrabajadorNestedInput
+  asistencias?: Prisma.AsistenciaUpdateManyWithoutTrabajadorNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUpdateManyWithoutTrabajadorNestedInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUpdateManyWithoutPagoTrabajadorNestedInput
+  pagosBeneficiario?: Prisma.PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput
+}
+
+export type TrabajadorUncheckedUpdateWithoutPlanillaStaffItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  dni?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoPersonal?: Prisma.EnumTipoPersonalFieldUpdateOperationsInput | $Enums.TipoPersonal
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  proyectos?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutTrabajadorNestedInput
+  proyectosComoEjecutor?: Prisma.ProyectoUncheckedUpdateManyWithoutEjecutorNestedInput
+  proyectosComoCoordinador?: Prisma.ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaNestedInput
+  proyectosComoPrevencionista?: Prisma.ProyectoUncheckedUpdateManyWithoutPrevencionistaNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutResponsableNestedInput
+  perfilObrero?: Prisma.PerfilObreroUncheckedUpdateOneWithoutTrabajadorNestedInput
+  perfilStaff?: Prisma.PerfilStaffUncheckedUpdateOneWithoutTrabajadorNestedInput
+  asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutTrabajadorNestedInput
+  planillaItems?: Prisma.PlanillaItemUncheckedUpdateManyWithoutTrabajadorNestedInput
+  comprasSimplesPagoTrabajador?: Prisma.OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorNestedInput
+  pagosBeneficiario?: Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput
 }
 
 
@@ -2154,6 +2622,7 @@ export type TrabajadorCountOutputType = {
   planillaItems: number
   comprasSimplesPagoTrabajador: number
   pagosBeneficiario: number
+  planillaStaffItems: number
 }
 
 export type TrabajadorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2167,6 +2636,7 @@ export type TrabajadorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   planillaItems?: boolean | TrabajadorCountOutputTypeCountPlanillaItemsArgs
   comprasSimplesPagoTrabajador?: boolean | TrabajadorCountOutputTypeCountComprasSimplesPagoTrabajadorArgs
   pagosBeneficiario?: boolean | TrabajadorCountOutputTypeCountPagosBeneficiarioArgs
+  planillaStaffItems?: boolean | TrabajadorCountOutputTypeCountPlanillaStaffItemsArgs
 }
 
 /**
@@ -2249,6 +2719,13 @@ export type TrabajadorCountOutputTypeCountPagosBeneficiarioArgs<ExtArgs extends 
   where?: Prisma.PagoWhereInput
 }
 
+/**
+ * TrabajadorCountOutputType without action
+ */
+export type TrabajadorCountOutputTypeCountPlanillaStaffItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlanillaStaffItemWhereInput
+}
+
 
 export type TrabajadorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2259,6 +2736,7 @@ export type TrabajadorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   email?: boolean
   banco?: boolean
   numeroCuenta?: boolean
+  tipoPersonal?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -2270,11 +2748,13 @@ export type TrabajadorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   proyectosComoPrevencionista?: boolean | Prisma.Trabajador$proyectosComoPrevencionistaArgs<ExtArgs>
   hitos?: boolean | Prisma.Trabajador$hitosArgs<ExtArgs>
   perfilObrero?: boolean | Prisma.Trabajador$perfilObreroArgs<ExtArgs>
+  perfilStaff?: boolean | Prisma.Trabajador$perfilStaffArgs<ExtArgs>
   asistencias?: boolean | Prisma.Trabajador$asistenciasArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Trabajador$registrosVisitaArgs<ExtArgs>
   planillaItems?: boolean | Prisma.Trabajador$planillaItemsArgs<ExtArgs>
   comprasSimplesPagoTrabajador?: boolean | Prisma.Trabajador$comprasSimplesPagoTrabajadorArgs<ExtArgs>
   pagosBeneficiario?: boolean | Prisma.Trabajador$pagosBeneficiarioArgs<ExtArgs>
+  planillaStaffItems?: boolean | Prisma.Trabajador$planillaStaffItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TrabajadorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trabajador"]>
 
@@ -2287,6 +2767,7 @@ export type TrabajadorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   email?: boolean
   banco?: boolean
   numeroCuenta?: boolean
+  tipoPersonal?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -2303,6 +2784,7 @@ export type TrabajadorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   email?: boolean
   banco?: boolean
   numeroCuenta?: boolean
+  tipoPersonal?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -2319,13 +2801,14 @@ export type TrabajadorSelectScalar = {
   email?: boolean
   banco?: boolean
   numeroCuenta?: boolean
+  tipoPersonal?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   userId?: boolean
 }
 
-export type TrabajadorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "dni" | "cargo" | "telefono" | "email" | "banco" | "numeroCuenta" | "activo" | "creadoEn" | "actualizadoEn" | "userId", ExtArgs["result"]["trabajador"]>
+export type TrabajadorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "dni" | "cargo" | "telefono" | "email" | "banco" | "numeroCuenta" | "tipoPersonal" | "activo" | "creadoEn" | "actualizadoEn" | "userId", ExtArgs["result"]["trabajador"]>
 export type TrabajadorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.Trabajador$userArgs<ExtArgs>
   proyectos?: boolean | Prisma.Trabajador$proyectosArgs<ExtArgs>
@@ -2334,11 +2817,13 @@ export type TrabajadorInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   proyectosComoPrevencionista?: boolean | Prisma.Trabajador$proyectosComoPrevencionistaArgs<ExtArgs>
   hitos?: boolean | Prisma.Trabajador$hitosArgs<ExtArgs>
   perfilObrero?: boolean | Prisma.Trabajador$perfilObreroArgs<ExtArgs>
+  perfilStaff?: boolean | Prisma.Trabajador$perfilStaffArgs<ExtArgs>
   asistencias?: boolean | Prisma.Trabajador$asistenciasArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Trabajador$registrosVisitaArgs<ExtArgs>
   planillaItems?: boolean | Prisma.Trabajador$planillaItemsArgs<ExtArgs>
   comprasSimplesPagoTrabajador?: boolean | Prisma.Trabajador$comprasSimplesPagoTrabajadorArgs<ExtArgs>
   pagosBeneficiario?: boolean | Prisma.Trabajador$pagosBeneficiarioArgs<ExtArgs>
+  planillaStaffItems?: boolean | Prisma.Trabajador$planillaStaffItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TrabajadorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TrabajadorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2358,11 +2843,13 @@ export type $TrabajadorPayload<ExtArgs extends runtime.Types.Extensions.Internal
     proyectosComoPrevencionista: Prisma.$ProyectoPayload<ExtArgs>[]
     hitos: Prisma.$HitoPayload<ExtArgs>[]
     perfilObrero: Prisma.$PerfilObreroPayload<ExtArgs> | null
+    perfilStaff: Prisma.$PerfilStaffPayload<ExtArgs> | null
     asistencias: Prisma.$AsistenciaPayload<ExtArgs>[]
     registrosVisita: Prisma.$RegistroVisitaPayload<ExtArgs>[]
     planillaItems: Prisma.$PlanillaItemPayload<ExtArgs>[]
     comprasSimplesPagoTrabajador: Prisma.$OrdenCompraPayload<ExtArgs>[]
     pagosBeneficiario: Prisma.$PagoPayload<ExtArgs>[]
+    planillaStaffItems: Prisma.$PlanillaStaffItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2373,6 +2860,7 @@ export type $TrabajadorPayload<ExtArgs extends runtime.Types.Extensions.Internal
     email: string | null
     banco: string | null
     numeroCuenta: string | null
+    tipoPersonal: $Enums.TipoPersonal
     activo: boolean
     creadoEn: Date
     actualizadoEn: Date
@@ -2778,11 +3266,13 @@ export interface Prisma__TrabajadorClient<T, Null = never, ExtArgs extends runti
   proyectosComoPrevencionista<T extends Prisma.Trabajador$proyectosComoPrevencionistaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$proyectosComoPrevencionistaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   hitos<T extends Prisma.Trabajador$hitosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$hitosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HitoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   perfilObrero<T extends Prisma.Trabajador$perfilObreroArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$perfilObreroArgs<ExtArgs>>): Prisma.Prisma__PerfilObreroClient<runtime.Types.Result.GetResult<Prisma.$PerfilObreroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  perfilStaff<T extends Prisma.Trabajador$perfilStaffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$perfilStaffArgs<ExtArgs>>): Prisma.Prisma__PerfilStaffClient<runtime.Types.Result.GetResult<Prisma.$PerfilStaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   asistencias<T extends Prisma.Trabajador$asistenciasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$asistenciasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AsistenciaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrosVisita<T extends Prisma.Trabajador$registrosVisitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$registrosVisitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   planillaItems<T extends Prisma.Trabajador$planillaItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$planillaItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comprasSimplesPagoTrabajador<T extends Prisma.Trabajador$comprasSimplesPagoTrabajadorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$comprasSimplesPagoTrabajadorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosBeneficiario<T extends Prisma.Trabajador$pagosBeneficiarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$pagosBeneficiarioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planillaStaffItems<T extends Prisma.Trabajador$planillaStaffItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trabajador$planillaStaffItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanillaStaffItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2820,6 +3310,7 @@ export interface TrabajadorFieldRefs {
   readonly email: Prisma.FieldRef<"Trabajador", 'String'>
   readonly banco: Prisma.FieldRef<"Trabajador", 'String'>
   readonly numeroCuenta: Prisma.FieldRef<"Trabajador", 'String'>
+  readonly tipoPersonal: Prisma.FieldRef<"Trabajador", 'TipoPersonal'>
   readonly activo: Prisma.FieldRef<"Trabajador", 'Boolean'>
   readonly creadoEn: Prisma.FieldRef<"Trabajador", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"Trabajador", 'DateTime'>
@@ -3383,6 +3874,25 @@ export type Trabajador$perfilObreroArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
+ * Trabajador.perfilStaff
+ */
+export type Trabajador$perfilStaffArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PerfilStaff
+   */
+  select?: Prisma.PerfilStaffSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PerfilStaff
+   */
+  omit?: Prisma.PerfilStaffOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PerfilStaffInclude<ExtArgs> | null
+  where?: Prisma.PerfilStaffWhereInput
+}
+
+/**
  * Trabajador.asistencias
  */
 export type Trabajador$asistenciasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3500,6 +4010,30 @@ export type Trabajador$pagosBeneficiarioArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[]
+}
+
+/**
+ * Trabajador.planillaStaffItems
+ */
+export type Trabajador$planillaStaffItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PlanillaStaffItem
+   */
+  select?: Prisma.PlanillaStaffItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PlanillaStaffItem
+   */
+  omit?: Prisma.PlanillaStaffItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlanillaStaffItemInclude<ExtArgs> | null
+  where?: Prisma.PlanillaStaffItemWhereInput
+  orderBy?: Prisma.PlanillaStaffItemOrderByWithRelationInput | Prisma.PlanillaStaffItemOrderByWithRelationInput[]
+  cursor?: Prisma.PlanillaStaffItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlanillaStaffItemScalarFieldEnum | Prisma.PlanillaStaffItemScalarFieldEnum[]
 }
 
 /**

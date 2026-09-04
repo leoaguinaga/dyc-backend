@@ -1432,6 +1432,11 @@ export type OrdenCompraScalarRelationFilter = {
   isNot?: Prisma.OrdenCompraWhereInput
 }
 
+export type OrdenCompraNullableScalarRelationFilter = {
+  is?: Prisma.OrdenCompraWhereInput | null
+  isNot?: Prisma.OrdenCompraWhereInput | null
+}
+
 export type OrdenCompraCreateNestedManyWithoutCreadoPorInput = {
   create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutCreadoPorInput, Prisma.OrdenCompraUncheckedCreateWithoutCreadoPorInput> | Prisma.OrdenCompraCreateWithoutCreadoPorInput[] | Prisma.OrdenCompraUncheckedCreateWithoutCreadoPorInput[]
   connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutCreadoPorInput | Prisma.OrdenCompraCreateOrConnectWithoutCreadoPorInput[]
@@ -1784,10 +1789,12 @@ export type OrdenCompraCreateNestedOneWithoutPagosInput = {
   connect?: Prisma.OrdenCompraWhereUniqueInput
 }
 
-export type OrdenCompraUpdateOneRequiredWithoutPagosNestedInput = {
+export type OrdenCompraUpdateOneWithoutPagosNestedInput = {
   create?: Prisma.XOR<Prisma.OrdenCompraCreateWithoutPagosInput, Prisma.OrdenCompraUncheckedCreateWithoutPagosInput>
   connectOrCreate?: Prisma.OrdenCompraCreateOrConnectWithoutPagosInput
   upsert?: Prisma.OrdenCompraUpsertWithoutPagosInput
+  disconnect?: Prisma.OrdenCompraWhereInput | boolean
+  delete?: Prisma.OrdenCompraWhereInput | boolean
   connect?: Prisma.OrdenCompraWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrdenCompraUpdateToOneWithWhereWithoutPagosInput, Prisma.OrdenCompraUpdateWithoutPagosInput>, Prisma.OrdenCompraUncheckedUpdateWithoutPagosInput>
 }

@@ -281,6 +281,8 @@ export class OrdenesCompraService {
             },
             pagos: {
               create: grupo.condicionesPago.map((cp) => ({
+                proyectoId,
+                concepto: `Pago OC ${numeros[i]}`,
                 porcentaje: cp.porcentaje,
                 monto: (monto * Number(cp.porcentaje)) / 100,
                 fechaProgramada: cp.fecha,

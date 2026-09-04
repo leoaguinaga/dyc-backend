@@ -39,16 +39,14 @@ const RESTRICTED_ROLES: Role[] = [
 
 // Roles that review a specific tipo across all projects (not just their own).
 // ing_civil e ing_electrico (área técnica) ven todos los tipos, no solo el propio.
-const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {
-  jefe_sig: 'seguridad',
-};
+const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {};
 
 // Which tipos a role is allowed to create
 const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
   supervisor: ['electrico', 'civil', 'seguridad', 'administrativo'],
   supervisor_civil: ['electrico', 'civil', 'seguridad', 'administrativo'],
   supervisor_electrico: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  pdr: ['seguridad'],
+  pdr: ['electrico', 'civil', 'seguridad', 'administrativo'],
   ing_civil: ['civil'],
   ing_electrico: ['electrico'],
   jefe_sig: ['seguridad'],
@@ -64,6 +62,7 @@ const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
   civil: [
     'ing_civil',
     'ing_electrico',
+    'jefe_sig',
     'gerencia',
     'administrador',
     'admin_ti',
@@ -71,6 +70,7 @@ const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
   electrico: [
     'ing_electrico',
     'ing_civil',
+    'jefe_sig',
     'gerencia',
     'administrador',
     'admin_ti',
@@ -84,6 +84,7 @@ const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
     'admin_ti',
   ],
   administrativo: [
+    'jefe_sig',
     'logistica',
     'ing_civil',
     'ing_electrico',
@@ -289,6 +290,15 @@ export class RequerimientosService {
     const r = await this.findOne(id);
     const esCreador = r.creadoPorId === userId;
     const esRevisor = TIPO_APPROVERS[r.tipo].includes(userRole);
+    const cambiaContenido =
+      dto.nombre !== undefined ||
+      dto.tipo !== undefined ||
+      dto.urgente !== undefined ||
+      dto.nota !== undefined ||
+      dto.fechaEntregaRequerida !== undefined ||
+      dto.items !== undefined;
+    const cambiaProyecto =
+      dto.proyectoId !== undefined && dto.proyectoId !== r.proyectoId;
 
     const puedeEditarComoCreador =
       (esCreador || userRole === 'administrador') &&
@@ -297,23 +307,117 @@ export class RequerimientosService {
     // sin tener que "observar" y esperar a que el solicitante actualice el sistema
     // — el PDF se exporta tal cual queda en la BD, así que se necesita esta flexibilidad.
     const puedeEditarComoRevisor = esRevisor && r.estado === 'enviado';
+    const puedeCorregirAprobadoComoAdminTi =
+      userRole === 'admin_ti' && r.estado === 'aprobado';
 
-    if (!puedeEditarComoCreador && !puedeEditarComoRevisor) {
-      throw new BadRequestException(
-        'No tienes permiso para editar este requerimiento en su estado actual',
+    if (
+      cambiaContenido &&
+      !puedeEditarComoCreador &&
+      !puedeEditarComoRevisor &&
+      !puedeCorregirAprobadoComoAdminTi
+    ) {
+      throw new ForbiddenException(
+        'No tienes permiso para editar el contenido de este requerimiento en su estado actual',
       );
     }
 
+    if (dto.proyectoId !== undefined && userRole !== 'admin_ti') {
+      throw new ForbiddenException(
+        'Solo Administración TI puede cambiar el proyecto de un requerimiento',
+      );
+    }
+
+    if (dto.tipo !== undefined && userRole !== 'admin_ti') {
+      throw new ForbiddenException(
+        'Solo Administración TI puede cambiar el tipo de un requerimiento',
+      );
+    }
+
+    if (dto.items && dto.items.length === 0) {
+      throw new BadRequestException(
+        'El requerimiento debe conservar al menos un ítem',
+      );
+    }
+
+    if (!cambiaContenido && !cambiaProyecto) {
+      return r;
+    }
+
     return this.prisma.$transaction(async (tx) => {
+      let proyectoNuevo: {
+        id: string;
+        nombre: string;
+        codigo: string | null;
+      } | null = null;
+      if (cambiaProyecto) {
+        proyectoNuevo = await tx.proyecto.findUnique({
+          where: { id: dto.proyectoId },
+          select: { id: true, nombre: true, codigo: true },
+        });
+        if (!proyectoNuevo)
+          throw new NotFoundException('Proyecto no encontrado');
+
+        const solicitudes = await tx.solicitudCotizacion.findMany({
+          where: { requerimientoId: id },
+          select: { id: true },
+        });
+        const solicitudIds = solicitudes.map((solicitud) => solicitud.id);
+
+        if (solicitudIds.length > 0) {
+          await tx.solicitudCotizacion.updateMany({
+            where: { id: { in: solicitudIds } },
+            data: { proyectoId: proyectoNuevo.id },
+          });
+
+          const ordenes = await tx.ordenCompra.findMany({
+            where: { solicitudId: { in: solicitudIds } },
+            select: { id: true },
+          });
+          const ordenIds = ordenes.map((orden) => orden.id);
+
+          if (ordenIds.length > 0) {
+            await tx.ordenCompra.updateMany({
+              where: { id: { in: ordenIds } },
+              data: { proyectoId: proyectoNuevo.id },
+            });
+            await tx.pago.updateMany({
+              where: { ordenCompraId: { in: ordenIds } },
+              data: { proyectoId: proyectoNuevo.id },
+            });
+          }
+        }
+      }
+
       if (dto.items) {
         await tx.requerimientoItem.deleteMany({
           where: { requerimientoId: id },
         });
       }
+
+      if (userRole === 'admin_ti' && (cambiaContenido || cambiaProyecto)) {
+        const cambios = [
+          cambiaContenido ? 'contenido e ítems corregidos' : null,
+          cambiaProyecto && proyectoNuevo
+            ? `proyecto cambiado de ${r.proyecto.nombre} a ${proyectoNuevo.nombre}`
+            : null,
+        ].filter(Boolean);
+        await tx.requerimientoHistorial.create({
+          data: {
+            requerimientoId: id,
+            estado: r.estado,
+            actorId: userId,
+            actorRole: userRole,
+            nota: `Corrección excepcional de Administración TI: ${cambios.join('; ')}`,
+          },
+        });
+      }
+
       const actualizado = await tx.requerimiento.update({
         where: { id },
         data: {
+          proyectoId: cambiaProyecto ? proyectoNuevo!.id : undefined,
           nombre: dto.nombre,
+          tipo: dto.tipo,
           urgente: dto.urgente,
           nota: dto.nota,
           fechaEntregaRequerida: dto.fechaEntregaRequerida
@@ -373,13 +477,9 @@ export class RequerimientosService {
         'El requerimiento debe tener al menos un ítem',
       );
 
-    // Auto-aprobación: si quien envía ya es aprobador de este tipo (ej. ing_civil enviando
-    // un req civil, logística enviando uno administrativo), pedirle que apruebe su propio
-    // requerimiento sería un re-proceso inútil.
-    const autoAprueba = TIPO_APPROVERS[r.tipo].includes(userRole);
-    const nuevoEstado: EstadoRequerimiento = autoAprueba
-      ? 'aprobado'
-      : 'enviado';
+    // Todo requerimiento enviado debe pasar por una aprobación separada.
+    // Nunca se aprueba automáticamente, aunque el remitente tenga un rol aprobador.
+    const nuevoEstado: EstadoRequerimiento = 'enviado';
 
     return this.prisma
       .$transaction(async (tx) => {
@@ -394,29 +494,16 @@ export class RequerimientosService {
             estado: nuevoEstado,
             actorId: userId,
             actorRole: userRole,
-            nota: autoAprueba
-              ? 'Autoaprobado: el solicitante también es aprobador de este tipo'
-              : undefined,
           },
         });
         return actualizado;
       })
       .then((actualizado) => {
-        if (nuevoEstado === 'enviado') {
-          this.events.emit(AppEvents.REQUERIMIENTO_CREADO, {
-            requerimientoId: id,
-            codigo: r.codigo,
-            nombre: r.nombre,
-          });
-        } else {
-          this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
-            requerimientoId: id,
-            codigo: r.codigo,
-            nombre: r.nombre,
-            estado: 'aprobado',
-            creadoPorId: r.creadoPorId,
-          });
-        }
+        this.events.emit(AppEvents.REQUERIMIENTO_CREADO, {
+          requerimientoId: id,
+          codigo: r.codigo,
+          nombre: r.nombre,
+        });
         return actualizado;
       });
   }
@@ -427,6 +514,12 @@ export class RequerimientosService {
       throw new BadRequestException(
         'Solo se pueden aprobar requerimientos enviados',
       );
+
+    if (r.creadoPorId === userId) {
+      throw new ForbiddenException(
+        'El creador de un requerimiento no puede aprobarlo',
+      );
+    }
 
     const approvers = TIPO_APPROVERS[r.tipo];
     if (!approvers.includes(userRole)) {
@@ -658,10 +751,14 @@ export class RequerimientosService {
     const r = await this.findOne(id);
 
     if (r.estado !== 'cancelado') {
-      throw new BadRequestException('Solo se pueden reabrir requerimientos cancelados');
+      throw new BadRequestException(
+        'Solo se pueden reabrir requerimientos cancelados',
+      );
     }
     if (!['administrador', 'admin_ti', 'gerencia'].includes(userRole)) {
-      throw new ForbiddenException('No tienes permiso para reabrir este requerimiento');
+      throw new ForbiddenException(
+        'No tienes permiso para reabrir este requerimiento',
+      );
     }
 
     const actualizado = await this.prisma.$transaction(async (tx) => {

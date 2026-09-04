@@ -401,6 +401,9 @@ export type ProyectoWhereInput = {
   requerimientos?: Prisma.RequerimientoListRelationFilter
   solicitudes?: Prisma.SolicitudCotizacionListRelationFilter
   ordenesCompra?: Prisma.OrdenCompraListRelationFilter
+  pagos?: Prisma.PagoListRelationFilter
+  pagosRecurrentes?: Prisma.PagoRecurrenteListRelationFilter
+  perfilesStaff?: Prisma.PerfilStaffListRelationFilter
   comprasSimples?: Prisma.CompraSimpleListRelationFilter
   turnos?: Prisma.TurnoListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
@@ -450,6 +453,9 @@ export type ProyectoOrderByWithRelationInput = {
   requerimientos?: Prisma.RequerimientoOrderByRelationAggregateInput
   solicitudes?: Prisma.SolicitudCotizacionOrderByRelationAggregateInput
   ordenesCompra?: Prisma.OrdenCompraOrderByRelationAggregateInput
+  pagos?: Prisma.PagoOrderByRelationAggregateInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteOrderByRelationAggregateInput
+  perfilesStaff?: Prisma.PerfilStaffOrderByRelationAggregateInput
   comprasSimples?: Prisma.CompraSimpleOrderByRelationAggregateInput
   turnos?: Prisma.TurnoOrderByRelationAggregateInput
   registrosVisita?: Prisma.RegistroVisitaOrderByRelationAggregateInput
@@ -502,6 +508,9 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
   requerimientos?: Prisma.RequerimientoListRelationFilter
   solicitudes?: Prisma.SolicitudCotizacionListRelationFilter
   ordenesCompra?: Prisma.OrdenCompraListRelationFilter
+  pagos?: Prisma.PagoListRelationFilter
+  pagosRecurrentes?: Prisma.PagoRecurrenteListRelationFilter
+  perfilesStaff?: Prisma.PerfilStaffListRelationFilter
   comprasSimples?: Prisma.CompraSimpleListRelationFilter
   turnos?: Prisma.TurnoListRelationFilter
   registrosVisita?: Prisma.RegistroVisitaListRelationFilter
@@ -611,6 +620,9 @@ export type ProyectoCreateInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -654,6 +666,9 @@ export type ProyectoUncheckedCreateInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -697,6 +712,9 @@ export type ProyectoUpdateInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -740,6 +758,9 @@ export type ProyectoUncheckedUpdateInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -1401,6 +1422,54 @@ export type ProyectoUpdateOneRequiredWithoutOrdenesCompraNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutOrdenesCompraInput, Prisma.ProyectoUpdateWithoutOrdenesCompraInput>, Prisma.ProyectoUncheckedUpdateWithoutOrdenesCompraInput>
 }
 
+export type ProyectoCreateNestedOneWithoutPagosInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosInput, Prisma.ProyectoUncheckedCreateWithoutPagosInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPagosInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneWithoutPagosNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosInput, Prisma.ProyectoUncheckedCreateWithoutPagosInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPagosInput
+  upsert?: Prisma.ProyectoUpsertWithoutPagosInput
+  disconnect?: Prisma.ProyectoWhereInput | boolean
+  delete?: Prisma.ProyectoWhereInput | boolean
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutPagosInput, Prisma.ProyectoUpdateWithoutPagosInput>, Prisma.ProyectoUncheckedUpdateWithoutPagosInput>
+}
+
+export type ProyectoCreateNestedOneWithoutPagosRecurrentesInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosRecurrentesInput, Prisma.ProyectoUncheckedCreateWithoutPagosRecurrentesInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPagosRecurrentesInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneWithoutPagosRecurrentesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosRecurrentesInput, Prisma.ProyectoUncheckedCreateWithoutPagosRecurrentesInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPagosRecurrentesInput
+  upsert?: Prisma.ProyectoUpsertWithoutPagosRecurrentesInput
+  disconnect?: Prisma.ProyectoWhereInput | boolean
+  delete?: Prisma.ProyectoWhereInput | boolean
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutPagosRecurrentesInput, Prisma.ProyectoUpdateWithoutPagosRecurrentesInput>, Prisma.ProyectoUncheckedUpdateWithoutPagosRecurrentesInput>
+}
+
+export type ProyectoCreateNestedOneWithoutPerfilesStaffInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPerfilesStaffInput, Prisma.ProyectoUncheckedCreateWithoutPerfilesStaffInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPerfilesStaffInput
+  connect?: Prisma.ProyectoWhereUniqueInput
+}
+
+export type ProyectoUpdateOneWithoutPerfilesStaffNestedInput = {
+  create?: Prisma.XOR<Prisma.ProyectoCreateWithoutPerfilesStaffInput, Prisma.ProyectoUncheckedCreateWithoutPerfilesStaffInput>
+  connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutPerfilesStaffInput
+  upsert?: Prisma.ProyectoUpsertWithoutPerfilesStaffInput
+  disconnect?: Prisma.ProyectoWhereInput | boolean
+  delete?: Prisma.ProyectoWhereInput | boolean
+  connect?: Prisma.ProyectoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProyectoUpdateToOneWithWhereWithoutPerfilesStaffInput, Prisma.ProyectoUpdateWithoutPerfilesStaffInput>, Prisma.ProyectoUncheckedUpdateWithoutPerfilesStaffInput>
+}
+
 export type ProyectoCreateNestedOneWithoutCobroInput = {
   create?: Prisma.XOR<Prisma.ProyectoCreateWithoutCobroInput, Prisma.ProyectoUncheckedCreateWithoutCobroInput>
   connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutCobroInput
@@ -1448,6 +1517,9 @@ export type ProyectoCreateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -1490,6 +1562,9 @@ export type ProyectoUncheckedCreateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -1590,6 +1665,9 @@ export type ProyectoCreateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -1632,6 +1710,9 @@ export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -1700,6 +1781,9 @@ export type ProyectoCreateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -1742,6 +1826,9 @@ export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -1789,6 +1876,9 @@ export type ProyectoCreateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -1831,6 +1921,9 @@ export type ProyectoUncheckedCreateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -1894,6 +1987,9 @@ export type ProyectoUpdateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -1936,6 +2032,9 @@ export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -1994,6 +2093,9 @@ export type ProyectoCreateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2036,6 +2138,9 @@ export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2094,6 +2199,9 @@ export type ProyectoUpdateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -2136,6 +2244,9 @@ export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -2178,6 +2289,9 @@ export type ProyectoCreateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2220,6 +2334,9 @@ export type ProyectoUncheckedCreateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2278,6 +2395,9 @@ export type ProyectoUpdateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -2320,6 +2440,9 @@ export type ProyectoUncheckedUpdateWithoutHitosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -2362,6 +2485,9 @@ export type ProyectoCreateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2404,6 +2530,9 @@ export type ProyectoUncheckedCreateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2456,6 +2585,9 @@ export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2498,6 +2630,9 @@ export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2550,6 +2685,9 @@ export type ProyectoCreateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2592,6 +2730,9 @@ export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2692,6 +2833,9 @@ export type ProyectoCreateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2734,6 +2878,9 @@ export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2792,6 +2939,9 @@ export type ProyectoUpdateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -2834,6 +2984,9 @@ export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -2877,6 +3030,9 @@ export type ProyectoCreateWithoutTurnoConfigsInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -2919,6 +3075,9 @@ export type ProyectoUncheckedCreateWithoutTurnoConfigsInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -2977,6 +3136,9 @@ export type ProyectoUpdateWithoutTurnoConfigsInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -3019,6 +3181,9 @@ export type ProyectoUncheckedUpdateWithoutTurnoConfigsInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -3061,6 +3226,9 @@ export type ProyectoCreateWithoutTurnosInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
@@ -3103,6 +3271,9 @@ export type ProyectoUncheckedCreateWithoutTurnosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
@@ -3161,6 +3332,9 @@ export type ProyectoUpdateWithoutTurnosInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
@@ -3203,6 +3377,9 @@ export type ProyectoUncheckedUpdateWithoutTurnosInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
@@ -3245,6 +3422,9 @@ export type ProyectoCreateWithoutRegistrosVisitaInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
@@ -3287,6 +3467,9 @@ export type ProyectoUncheckedCreateWithoutRegistrosVisitaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
@@ -3345,6 +3528,9 @@ export type ProyectoUpdateWithoutRegistrosVisitaInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
@@ -3387,6 +3573,9 @@ export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
@@ -3429,6 +3618,9 @@ export type ProyectoCreateWithoutVisitasTerceroInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -3471,6 +3663,9 @@ export type ProyectoUncheckedCreateWithoutVisitasTerceroInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -3529,6 +3724,9 @@ export type ProyectoUpdateWithoutVisitasTerceroInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -3571,6 +3769,9 @@ export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -3613,6 +3814,9 @@ export type ProyectoCreateWithoutPlanillasInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -3655,6 +3859,9 @@ export type ProyectoUncheckedCreateWithoutPlanillasInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -3713,6 +3920,9 @@ export type ProyectoUpdateWithoutPlanillasInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -3755,6 +3965,9 @@ export type ProyectoUncheckedUpdateWithoutPlanillasInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -3796,6 +4009,9 @@ export type ProyectoCreateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -3838,6 +4054,9 @@ export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -3896,6 +4115,9 @@ export type ProyectoUpdateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -3938,6 +4160,9 @@ export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -3980,6 +4205,9 @@ export type ProyectoCreateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -4022,6 +4250,9 @@ export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -4080,6 +4311,9 @@ export type ProyectoUpdateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -4122,6 +4356,9 @@ export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -4165,6 +4402,9 @@ export type ProyectoCreateWithoutComprasSimplesInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
@@ -4207,6 +4447,9 @@ export type ProyectoUncheckedCreateWithoutComprasSimplesInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
@@ -4265,6 +4508,9 @@ export type ProyectoUpdateWithoutComprasSimplesInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
@@ -4307,6 +4553,9 @@ export type ProyectoUncheckedUpdateWithoutComprasSimplesInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
   visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
@@ -4348,6 +4597,9 @@ export type ProyectoCreateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -4390,6 +4642,9 @@ export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -4448,6 +4703,9 @@ export type ProyectoUpdateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -4490,6 +4748,597 @@ export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
   hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
+  comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+  cobro?: Prisma.CobroUncheckedUpdateOneWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutPagosInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  enlaceOneDrive?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
+  comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+  cobro?: Prisma.CobroCreateNestedOneWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutPagosInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  enlaceOneDrive?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
+  comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+  cobro?: Prisma.CobroUncheckedCreateNestedOneWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutPagosInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosInput, Prisma.ProyectoUncheckedCreateWithoutPagosInput>
+}
+
+export type ProyectoUpsertWithoutPagosInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutPagosInput, Prisma.ProyectoUncheckedUpdateWithoutPagosInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosInput, Prisma.ProyectoUncheckedCreateWithoutPagosInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutPagosInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutPagosInput, Prisma.ProyectoUncheckedUpdateWithoutPagosInput>
+}
+
+export type ProyectoUpdateWithoutPagosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enlaceOneDrive?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
+  comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+  cobro?: Prisma.CobroUpdateOneWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutPagosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enlaceOneDrive?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
+  comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+  cobro?: Prisma.CobroUncheckedUpdateOneWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutPagosRecurrentesInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  enlaceOneDrive?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
+  comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+  cobro?: Prisma.CobroCreateNestedOneWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutPagosRecurrentesInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  enlaceOneDrive?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
+  comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+  cobro?: Prisma.CobroUncheckedCreateNestedOneWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutPagosRecurrentesInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosRecurrentesInput, Prisma.ProyectoUncheckedCreateWithoutPagosRecurrentesInput>
+}
+
+export type ProyectoUpsertWithoutPagosRecurrentesInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutPagosRecurrentesInput, Prisma.ProyectoUncheckedUpdateWithoutPagosRecurrentesInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPagosRecurrentesInput, Prisma.ProyectoUncheckedCreateWithoutPagosRecurrentesInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutPagosRecurrentesInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutPagosRecurrentesInput, Prisma.ProyectoUncheckedUpdateWithoutPagosRecurrentesInput>
+}
+
+export type ProyectoUpdateWithoutPagosRecurrentesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enlaceOneDrive?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
+  comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+  cobro?: Prisma.CobroUpdateOneWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutPagosRecurrentesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enlaceOneDrive?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
+  comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUncheckedUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedUpdateManyWithoutProyectoNestedInput
+  cobro?: Prisma.CobroUncheckedUpdateOneWithoutProyectoNestedInput
+}
+
+export type ProyectoCreateWithoutPerfilesStaffInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  enlaceOneDrive?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  parent?: Prisma.ProyectoCreateNestedOneWithoutSubproyectosInput
+  subproyectos?: Prisma.ProyectoCreateNestedManyWithoutParentInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutProyectosInput
+  coordinadorCliente?: Prisma.ContactoClienteCreateNestedOneWithoutProyectosComoCoordinadorInput
+  coordinadorEmpresa?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoCoordinadorInput
+  ejecutor?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoEjecutorInput
+  prevencionista?: Prisma.TrabajadorCreateNestedOneWithoutProyectosComoPrevencionistaInput
+  supervisores?: Prisma.ProyectoSupervisorCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigCreateNestedManyWithoutProyectoInput
+  cobro?: Prisma.CobroCreateNestedOneWithoutProyectoInput
+}
+
+export type ProyectoUncheckedCreateWithoutPerfilesStaffInput = {
+  id?: string
+  codigo?: string | null
+  nombre: string
+  ciudad?: string | null
+  direccion?: string | null
+  comuna?: string | null
+  enlaceOneDrive?: string | null
+  ambitoGeografico?: $Enums.AmbitoGeografico
+  parentId?: string | null
+  clienteId?: string | null
+  coordinadorClienteId?: string | null
+  coordinadorEmpresaId?: string | null
+  ejecutorId?: string | null
+  prevencionistaId?: string | null
+  jornadaInicio?: string | null
+  jornadaFin?: string | null
+  toleranciaMinutos?: number | null
+  toleranciaSalidaMinutos?: number | null
+  fechaInicio?: Date | string | null
+  fechaFin?: Date | string | null
+  fechaInicioReal?: Date | string | null
+  fechaFinReal?: Date | string | null
+  notaInicioReal?: string | null
+  estado?: $Enums.EstadoProyecto
+  creadaEn?: Date | string
+  actualizadaEn?: Date | string
+  subproyectos?: Prisma.ProyectoUncheckedCreateNestedManyWithoutParentInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutProyectoInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedCreateNestedManyWithoutProyectoInput
+  hitos?: Prisma.HitoUncheckedCreateNestedManyWithoutProyectoInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
+  turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
+  registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
+  visitasTercero?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutProyectoInput
+  planillas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutProyectoInput
+  turnoConfigs?: Prisma.TurnoConfigUncheckedCreateNestedManyWithoutProyectoInput
+  cobro?: Prisma.CobroUncheckedCreateNestedOneWithoutProyectoInput
+}
+
+export type ProyectoCreateOrConnectWithoutPerfilesStaffInput = {
+  where: Prisma.ProyectoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPerfilesStaffInput, Prisma.ProyectoUncheckedCreateWithoutPerfilesStaffInput>
+}
+
+export type ProyectoUpsertWithoutPerfilesStaffInput = {
+  update: Prisma.XOR<Prisma.ProyectoUpdateWithoutPerfilesStaffInput, Prisma.ProyectoUncheckedUpdateWithoutPerfilesStaffInput>
+  create: Prisma.XOR<Prisma.ProyectoCreateWithoutPerfilesStaffInput, Prisma.ProyectoUncheckedCreateWithoutPerfilesStaffInput>
+  where?: Prisma.ProyectoWhereInput
+}
+
+export type ProyectoUpdateToOneWithWhereWithoutPerfilesStaffInput = {
+  where?: Prisma.ProyectoWhereInput
+  data: Prisma.XOR<Prisma.ProyectoUpdateWithoutPerfilesStaffInput, Prisma.ProyectoUncheckedUpdateWithoutPerfilesStaffInput>
+}
+
+export type ProyectoUpdateWithoutPerfilesStaffInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enlaceOneDrive?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.ProyectoUpdateOneWithoutSubproyectosNestedInput
+  subproyectos?: Prisma.ProyectoUpdateManyWithoutParentNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutProyectosNestedInput
+  coordinadorCliente?: Prisma.ContactoClienteUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  coordinadorEmpresa?: Prisma.TrabajadorUpdateOneWithoutProyectosComoCoordinadorNestedInput
+  ejecutor?: Prisma.TrabajadorUpdateOneWithoutProyectosComoEjecutorNestedInput
+  prevencionista?: Prisma.TrabajadorUpdateOneWithoutProyectosComoPrevencionistaNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
+  turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
+  registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
+  visitasTercero?: Prisma.VisitaTerceroUpdateManyWithoutProyectoNestedInput
+  planillas?: Prisma.PlanillaUpdateManyWithoutProyectoNestedInput
+  turnoConfigs?: Prisma.TurnoConfigUpdateManyWithoutProyectoNestedInput
+  cobro?: Prisma.CobroUpdateOneWithoutProyectoNestedInput
+}
+
+export type ProyectoUncheckedUpdateWithoutPerfilesStaffInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comuna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enlaceOneDrive?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ambitoGeografico?: Prisma.EnumAmbitoGeograficoFieldUpdateOperationsInput | $Enums.AmbitoGeografico
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorClienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinadorEmpresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ejecutorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prevencionistaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaInicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fechaFinReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notaInicioReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estado?: Prisma.EnumEstadoProyectoFieldUpdateOperationsInput | $Enums.EstadoProyecto
+  creadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadaEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subproyectos?: Prisma.ProyectoUncheckedUpdateManyWithoutParentNestedInput
+  supervisores?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutProyectoNestedInput
+  trabajadores?: Prisma.ProyectoTrabajadorUncheckedUpdateManyWithoutProyectoNestedInput
+  hitos?: Prisma.HitoUncheckedUpdateManyWithoutProyectoNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
+  solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -4533,6 +5382,9 @@ export type ProyectoCreateWithoutCobroInput = {
   requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaCreateNestedManyWithoutProyectoInput
@@ -4575,6 +5427,9 @@ export type ProyectoUncheckedCreateWithoutCobroInput = {
   requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutProyectoInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutProyectoInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutProyectoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutProyectoInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutProyectoInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedCreateNestedManyWithoutProyectoInput
   comprasSimples?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutProyectoInput
   turnos?: Prisma.TurnoUncheckedCreateNestedManyWithoutProyectoInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutProyectoInput
@@ -4633,6 +5488,9 @@ export type ProyectoUpdateWithoutCobroInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -4675,6 +5533,9 @@ export type ProyectoUncheckedUpdateWithoutCobroInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -4744,6 +5605,9 @@ export type ProyectoUpdateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -4786,6 +5650,9 @@ export type ProyectoUncheckedUpdateWithoutClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -4884,6 +5751,9 @@ export type ProyectoUpdateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -4926,6 +5796,9 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -5024,6 +5897,9 @@ export type ProyectoUpdateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -5066,6 +5942,9 @@ export type ProyectoUncheckedUpdateWithoutParentInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -5220,6 +6099,9 @@ export type ProyectoUpdateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -5262,6 +6144,9 @@ export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -5332,6 +6217,9 @@ export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -5374,6 +6262,9 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -5444,6 +6335,9 @@ export type ProyectoUpdateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUpdateManyWithoutProyectoNestedInput
@@ -5486,6 +6380,9 @@ export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
   requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutProyectoNestedInput
   solicitudes?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutProyectoNestedInput
   ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutProyectoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutProyectoNestedInput
+  pagosRecurrentes?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutProyectoNestedInput
+  perfilesStaff?: Prisma.PerfilStaffUncheckedUpdateManyWithoutProyectoNestedInput
   comprasSimples?: Prisma.CompraSimpleUncheckedUpdateManyWithoutProyectoNestedInput
   turnos?: Prisma.TurnoUncheckedUpdateManyWithoutProyectoNestedInput
   registrosVisita?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutProyectoNestedInput
@@ -5536,6 +6433,9 @@ export type ProyectoCountOutputType = {
   requerimientos: number
   solicitudes: number
   ordenesCompra: number
+  pagos: number
+  pagosRecurrentes: number
+  perfilesStaff: number
   comprasSimples: number
   turnos: number
   registrosVisita: number
@@ -5552,6 +6452,9 @@ export type ProyectoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   requerimientos?: boolean | ProyectoCountOutputTypeCountRequerimientosArgs
   solicitudes?: boolean | ProyectoCountOutputTypeCountSolicitudesArgs
   ordenesCompra?: boolean | ProyectoCountOutputTypeCountOrdenesCompraArgs
+  pagos?: boolean | ProyectoCountOutputTypeCountPagosArgs
+  pagosRecurrentes?: boolean | ProyectoCountOutputTypeCountPagosRecurrentesArgs
+  perfilesStaff?: boolean | ProyectoCountOutputTypeCountPerfilesStaffArgs
   comprasSimples?: boolean | ProyectoCountOutputTypeCountComprasSimplesArgs
   turnos?: boolean | ProyectoCountOutputTypeCountTurnosArgs
   registrosVisita?: boolean | ProyectoCountOutputTypeCountRegistrosVisitaArgs
@@ -5617,6 +6520,27 @@ export type ProyectoCountOutputTypeCountSolicitudesArgs<ExtArgs extends runtime.
  */
 export type ProyectoCountOutputTypeCountOrdenesCompraArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OrdenCompraWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountPagosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PagoWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountPagosRecurrentesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PagoRecurrenteWhereInput
+}
+
+/**
+ * ProyectoCountOutputType without action
+ */
+export type ProyectoCountOutputTypeCountPerfilesStaffArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PerfilStaffWhereInput
 }
 
 /**
@@ -5702,6 +6626,9 @@ export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   requerimientos?: boolean | Prisma.Proyecto$requerimientosArgs<ExtArgs>
   solicitudes?: boolean | Prisma.Proyecto$solicitudesArgs<ExtArgs>
   ordenesCompra?: boolean | Prisma.Proyecto$ordenesCompraArgs<ExtArgs>
+  pagos?: boolean | Prisma.Proyecto$pagosArgs<ExtArgs>
+  pagosRecurrentes?: boolean | Prisma.Proyecto$pagosRecurrentesArgs<ExtArgs>
+  perfilesStaff?: boolean | Prisma.Proyecto$perfilesStaffArgs<ExtArgs>
   comprasSimples?: boolean | Prisma.Proyecto$comprasSimplesArgs<ExtArgs>
   turnos?: boolean | Prisma.Proyecto$turnosArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Proyecto$registrosVisitaArgs<ExtArgs>
@@ -5826,6 +6753,9 @@ export type ProyectoInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   requerimientos?: boolean | Prisma.Proyecto$requerimientosArgs<ExtArgs>
   solicitudes?: boolean | Prisma.Proyecto$solicitudesArgs<ExtArgs>
   ordenesCompra?: boolean | Prisma.Proyecto$ordenesCompraArgs<ExtArgs>
+  pagos?: boolean | Prisma.Proyecto$pagosArgs<ExtArgs>
+  pagosRecurrentes?: boolean | Prisma.Proyecto$pagosRecurrentesArgs<ExtArgs>
+  perfilesStaff?: boolean | Prisma.Proyecto$perfilesStaffArgs<ExtArgs>
   comprasSimples?: boolean | Prisma.Proyecto$comprasSimplesArgs<ExtArgs>
   turnos?: boolean | Prisma.Proyecto$turnosArgs<ExtArgs>
   registrosVisita?: boolean | Prisma.Proyecto$registrosVisitaArgs<ExtArgs>
@@ -5868,6 +6798,9 @@ export type $ProyectoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     requerimientos: Prisma.$RequerimientoPayload<ExtArgs>[]
     solicitudes: Prisma.$SolicitudCotizacionPayload<ExtArgs>[]
     ordenesCompra: Prisma.$OrdenCompraPayload<ExtArgs>[]
+    pagos: Prisma.$PagoPayload<ExtArgs>[]
+    pagosRecurrentes: Prisma.$PagoRecurrentePayload<ExtArgs>[]
+    perfilesStaff: Prisma.$PerfilStaffPayload<ExtArgs>[]
     comprasSimples: Prisma.$CompraSimplePayload<ExtArgs>[]
     turnos: Prisma.$TurnoPayload<ExtArgs>[]
     registrosVisita: Prisma.$RegistroVisitaPayload<ExtArgs>[]
@@ -6310,6 +7243,9 @@ export interface Prisma__ProyectoClient<T, Null = never, ExtArgs extends runtime
   requerimientos<T extends Prisma.Proyecto$requerimientosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$requerimientosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequerimientoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   solicitudes<T extends Prisma.Proyecto$solicitudesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$solicitudesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ordenesCompra<T extends Prisma.Proyecto$ordenesCompraArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$ordenesCompraArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdenCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pagos<T extends Prisma.Proyecto$pagosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$pagosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pagosRecurrentes<T extends Prisma.Proyecto$pagosRecurrentesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$pagosRecurrentesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoRecurrentePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  perfilesStaff<T extends Prisma.Proyecto$perfilesStaffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$perfilesStaffArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PerfilStaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comprasSimples<T extends Prisma.Proyecto$comprasSimplesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$comprasSimplesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   turnos<T extends Prisma.Proyecto$turnosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$turnosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrosVisita<T extends Prisma.Proyecto$registrosVisitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Proyecto$registrosVisitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7052,6 +7988,78 @@ export type Proyecto$ordenesCompraArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.OrdenCompraScalarFieldEnum | Prisma.OrdenCompraScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.pagos
+ */
+export type Proyecto$pagosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pago
+   */
+  select?: Prisma.PagoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pago
+   */
+  omit?: Prisma.PagoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PagoInclude<ExtArgs> | null
+  where?: Prisma.PagoWhereInput
+  orderBy?: Prisma.PagoOrderByWithRelationInput | Prisma.PagoOrderByWithRelationInput[]
+  cursor?: Prisma.PagoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.pagosRecurrentes
+ */
+export type Proyecto$pagosRecurrentesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PagoRecurrente
+   */
+  select?: Prisma.PagoRecurrenteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PagoRecurrente
+   */
+  omit?: Prisma.PagoRecurrenteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PagoRecurrenteInclude<ExtArgs> | null
+  where?: Prisma.PagoRecurrenteWhereInput
+  orderBy?: Prisma.PagoRecurrenteOrderByWithRelationInput | Prisma.PagoRecurrenteOrderByWithRelationInput[]
+  cursor?: Prisma.PagoRecurrenteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PagoRecurrenteScalarFieldEnum | Prisma.PagoRecurrenteScalarFieldEnum[]
+}
+
+/**
+ * Proyecto.perfilesStaff
+ */
+export type Proyecto$perfilesStaffArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PerfilStaff
+   */
+  select?: Prisma.PerfilStaffSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PerfilStaff
+   */
+  omit?: Prisma.PerfilStaffOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PerfilStaffInclude<ExtArgs> | null
+  where?: Prisma.PerfilStaffWhereInput
+  orderBy?: Prisma.PerfilStaffOrderByWithRelationInput | Prisma.PerfilStaffOrderByWithRelationInput[]
+  cursor?: Prisma.PerfilStaffWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PerfilStaffScalarFieldEnum | Prisma.PerfilStaffScalarFieldEnum[]
 }
 
 /**

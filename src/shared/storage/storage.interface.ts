@@ -10,6 +10,7 @@ export interface StorageProvider {
     mimeType: string;
     folder?: string;
   }): Promise<StoredFile>;
+  remove(url: string): Promise<void>;
 }
 
 export const STORAGE_PROVIDER = Symbol('STORAGE_PROVIDER');

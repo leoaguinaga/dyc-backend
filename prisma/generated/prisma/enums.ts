@@ -164,6 +164,7 @@ export type EstadoOrdenCompra = (typeof EstadoOrdenCompra)[keyof typeof EstadoOr
 
 
 export const EstadoPago = {
+  borrador: 'borrador',
   pendiente: 'pendiente',
   pagado: 'pagado',
   cancelado: 'cancelado'
@@ -183,10 +184,20 @@ export type EstadoCobro = (typeof EstadoCobro)[keyof typeof EstadoCobro]
 
 export const TipoBeneficiario = {
   proveedor: 'proveedor',
-  trabajador: 'trabajador'
+  trabajador: 'trabajador',
+  otro: 'otro'
 } as const
 
 export type TipoBeneficiario = (typeof TipoBeneficiario)[keyof typeof TipoBeneficiario]
+
+
+export const TipoPersonal = {
+  obrero: 'obrero',
+  staff: 'staff',
+  sin_clasificar: 'sin_clasificar'
+} as const
+
+export type TipoPersonal = (typeof TipoPersonal)[keyof typeof TipoPersonal]
 
 
 export const OrigenOrdenCompra = {

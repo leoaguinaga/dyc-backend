@@ -242,6 +242,26 @@ export type CompraSimpleGrupoHistorial = Prisma.CompraSimpleGrupoHistorialModel
  */
 export type Pago = Prisma.PagoModel
 /**
+ * Model PagoRecurrente
+ * 
+ */
+export type PagoRecurrente = Prisma.PagoRecurrenteModel
+/**
+ * Model PerfilStaff
+ * 
+ */
+export type PerfilStaff = Prisma.PerfilStaffModel
+/**
+ * Model PlanillaStaff
+ * 
+ */
+export type PlanillaStaff = Prisma.PlanillaStaffModel
+/**
+ * Model PlanillaStaffItem
+ * 
+ */
+export type PlanillaStaffItem = Prisma.PlanillaStaffItemModel
+/**
  * Model Cobro
  * 
  */

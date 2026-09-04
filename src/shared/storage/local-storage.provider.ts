@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { mkdirSync, promises as fs } from 'fs';
-import { join } from 'path';
+import { join, resolve, sep } from 'path';
 import type { StorageProvider, StoredFile } from './storage.interface.js';
 
 const EXTENSION_BY_MIME_TYPE: Record<string, string> = {
@@ -31,5 +31,22 @@ export class LocalStorageProvider implements StorageProvider {
       nombre: input.originalName,
       url: `/uploads/${folder}/${filename}`,
     };
+  }
+
+  async remove(url: string): Promise<void> {
+    const uploadsPrefix = '/uploads/';
+    if (!url.startsWith(uploadsPrefix))
+      throw new Error('La URL no pertenece al almacenamiento local');
+
+    const basePath = resolve(this.baseDir);
+    const filePath = resolve(basePath, url.slice(uploadsPrefix.length));
+    if (!filePath.startsWith(`${basePath}${sep}`))
+      throw new Error('La ruta del archivo no es segura');
+
+    try {
+      await fs.unlink(filePath);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
   }
 }
