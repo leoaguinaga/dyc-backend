@@ -1,4 +1,5 @@
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
+import { jest } from '@jest/globals';
 import { ComprasSimplesService } from './compras-simples.service.js';
 
 describe('ComprasSimplesService hard delete', () => {
@@ -177,5 +178,72 @@ describe('ComprasSimplesService hard delete', () => {
       'La verificación detectó registros relacionados; la eliminación fue revertida',
     );
     expect(calls.removedUrls).toHaveLength(0);
+  });
+
+  it('rechaza un grupo pendiente desde área técnica y conserva su motivo en el historial', async () => {
+    const grupo = {
+      id: 'grupo-1',
+      estadoAprobacion: 'pendiente',
+      compraSimple: { tipo: 'civil' },
+    };
+    const ordenCompra = { update: jest.fn().mockResolvedValue(grupo) };
+    const historial = { create: jest.fn().mockResolvedValue({}) };
+    const service = new ComprasSimplesService(
+      {
+        $transaction: (callback: (tx: unknown) => unknown) =>
+          Promise.resolve(
+            callback({ ordenCompra, compraSimpleGrupoHistorial: historial }),
+          ),
+      } as never,
+      {} as never,
+      {} as never,
+      {} as never,
+    );
+    jest.spyOn(service as never, 'findGrupo').mockResolvedValue(grupo as never);
+
+    await service.cancelarGrupo(
+      grupo.id,
+      { motivo: 'El material ya no es necesario' },
+      'tecnico-1',
+      'ing_civil',
+    );
+
+    expect(ordenCompra.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { id: grupo.id },
+        data: expect.objectContaining({
+          estado: 'cancelada',
+          estadoAprobacion: 'cancelada',
+          notaAprobacion: 'El material ya no es necesario',
+        }),
+      }),
+    );
+    expect(historial.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          estado: 'cancelada',
+          nota: 'El material ya no es necesario',
+          actorId: 'tecnico-1',
+          actorRole: 'ing_civil',
+        }),
+      }),
+    );
+  });
+
+  it('no permite rechazar un grupo a quien no corresponde el paso', async () => {
+    const service = new ComprasSimplesService(
+      {} as never,
+      {} as never,
+      {} as never,
+      {} as never,
+    );
+    jest.spyOn(service as never, 'findGrupo').mockResolvedValue({
+      estadoAprobacion: 'pendiente',
+      compraSimple: { tipo: 'civil' },
+    } as never);
+
+    await expect(
+      service.cancelarGrupo('grupo-1', { motivo: 'No aplica' }, 'usuario-1', 'logistica'),
+    ).rejects.toBeInstanceOf(ForbiddenException);
   });
 });

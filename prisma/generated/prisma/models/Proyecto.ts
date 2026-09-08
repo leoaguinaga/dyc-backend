@@ -39,6 +39,7 @@ export type ProyectoSumAggregateOutputType = {
 export type ProyectoMinAggregateOutputType = {
   id: string | null
   codigo: string | null
+  categoriaServicio: $Enums.CategoriaServicioProyecto | null
   nombre: string | null
   ciudad: string | null
   direccion: string | null
@@ -68,6 +69,7 @@ export type ProyectoMinAggregateOutputType = {
 export type ProyectoMaxAggregateOutputType = {
   id: string | null
   codigo: string | null
+  categoriaServicio: $Enums.CategoriaServicioProyecto | null
   nombre: string | null
   ciudad: string | null
   direccion: string | null
@@ -97,6 +99,7 @@ export type ProyectoMaxAggregateOutputType = {
 export type ProyectoCountAggregateOutputType = {
   id: number
   codigo: number
+  categoriaServicio: number
   nombre: number
   ciudad: number
   direccion: number
@@ -138,6 +141,7 @@ export type ProyectoSumAggregateInputType = {
 export type ProyectoMinAggregateInputType = {
   id?: true
   codigo?: true
+  categoriaServicio?: true
   nombre?: true
   ciudad?: true
   direccion?: true
@@ -167,6 +171,7 @@ export type ProyectoMinAggregateInputType = {
 export type ProyectoMaxAggregateInputType = {
   id?: true
   codigo?: true
+  categoriaServicio?: true
   nombre?: true
   ciudad?: true
   direccion?: true
@@ -196,6 +201,7 @@ export type ProyectoMaxAggregateInputType = {
 export type ProyectoCountAggregateInputType = {
   id?: true
   codigo?: true
+  categoriaServicio?: true
   nombre?: true
   ciudad?: true
   direccion?: true
@@ -312,6 +318,7 @@ export type ProyectoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ProyectoGroupByOutputType = {
   id: string
   codigo: string | null
+  categoriaServicio: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad: string | null
   direccion: string | null
@@ -364,6 +371,7 @@ export type ProyectoWhereInput = {
   NOT?: Prisma.ProyectoWhereInput | Prisma.ProyectoWhereInput[]
   id?: Prisma.StringFilter<"Proyecto"> | string
   codigo?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  categoriaServicio?: Prisma.EnumCategoriaServicioProyectoNullableFilter<"Proyecto"> | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFilter<"Proyecto"> | string
   ciudad?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   direccion?: Prisma.StringNullableFilter<"Proyecto"> | string | null
@@ -416,6 +424,7 @@ export type ProyectoWhereInput = {
 export type ProyectoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrderInput | Prisma.SortOrder
+  categoriaServicio?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre?: Prisma.SortOrder
   ciudad?: Prisma.SortOrderInput | Prisma.SortOrder
   direccion?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -471,6 +480,7 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProyectoWhereInput | Prisma.ProyectoWhereInput[]
   OR?: Prisma.ProyectoWhereInput[]
   NOT?: Prisma.ProyectoWhereInput | Prisma.ProyectoWhereInput[]
+  categoriaServicio?: Prisma.EnumCategoriaServicioProyectoNullableFilter<"Proyecto"> | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFilter<"Proyecto"> | string
   ciudad?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   direccion?: Prisma.StringNullableFilter<"Proyecto"> | string | null
@@ -523,6 +533,7 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
 export type ProyectoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrderInput | Prisma.SortOrder
+  categoriaServicio?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre?: Prisma.SortOrder
   ciudad?: Prisma.SortOrderInput | Prisma.SortOrder
   direccion?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -560,6 +571,7 @@ export type ProyectoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProyectoScalarWhereWithAggregatesInput | Prisma.ProyectoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Proyecto"> | string
   codigo?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
+  categoriaServicio?: Prisma.EnumCategoriaServicioProyectoNullableWithAggregatesFilter<"Proyecto"> | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringWithAggregatesFilter<"Proyecto"> | string
   ciudad?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
   direccion?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
@@ -589,6 +601,7 @@ export type ProyectoScalarWhereWithAggregatesInput = {
 export type ProyectoCreateInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -635,6 +648,7 @@ export type ProyectoCreateInput = {
 export type ProyectoUncheckedCreateInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -681,6 +695,7 @@ export type ProyectoUncheckedCreateInput = {
 export type ProyectoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -727,6 +742,7 @@ export type ProyectoUpdateInput = {
 export type ProyectoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -773,6 +789,7 @@ export type ProyectoUncheckedUpdateInput = {
 export type ProyectoCreateManyInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -802,6 +819,7 @@ export type ProyectoCreateManyInput = {
 export type ProyectoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -825,6 +843,7 @@ export type ProyectoUpdateManyMutationInput = {
 export type ProyectoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -869,6 +888,7 @@ export type ProyectoNullableScalarRelationFilter = {
 export type ProyectoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  categoriaServicio?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   ciudad?: Prisma.SortOrder
   direccion?: Prisma.SortOrder
@@ -903,6 +923,7 @@ export type ProyectoAvgOrderByAggregateInput = {
 export type ProyectoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  categoriaServicio?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   ciudad?: Prisma.SortOrder
   direccion?: Prisma.SortOrder
@@ -932,6 +953,7 @@ export type ProyectoMaxOrderByAggregateInput = {
 export type ProyectoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  categoriaServicio?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   ciudad?: Prisma.SortOrder
   direccion?: Prisma.SortOrder
@@ -1070,6 +1092,10 @@ export type ProyectoUncheckedCreateNestedManyWithoutParentInput = {
   connectOrCreate?: Prisma.ProyectoCreateOrConnectWithoutParentInput | Prisma.ProyectoCreateOrConnectWithoutParentInput[]
   createMany?: Prisma.ProyectoCreateManyParentInputEnvelope
   connect?: Prisma.ProyectoWhereUniqueInput | Prisma.ProyectoWhereUniqueInput[]
+}
+
+export type NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput = {
+  set?: $Enums.CategoriaServicioProyecto | null
 }
 
 export type EnumAmbitoGeograficoFieldUpdateOperationsInput = {
@@ -1487,6 +1513,7 @@ export type ProyectoUpdateOneRequiredWithoutCobroNestedInput = {
 export type ProyectoCreateWithoutClienteInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1532,6 +1559,7 @@ export type ProyectoCreateWithoutClienteInput = {
 export type ProyectoUncheckedCreateWithoutClienteInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1606,6 +1634,7 @@ export type ProyectoScalarWhereInput = {
   NOT?: Prisma.ProyectoScalarWhereInput | Prisma.ProyectoScalarWhereInput[]
   id?: Prisma.StringFilter<"Proyecto"> | string
   codigo?: Prisma.StringNullableFilter<"Proyecto"> | string | null
+  categoriaServicio?: Prisma.EnumCategoriaServicioProyectoNullableFilter<"Proyecto"> | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFilter<"Proyecto"> | string
   ciudad?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   direccion?: Prisma.StringNullableFilter<"Proyecto"> | string | null
@@ -1635,6 +1664,7 @@ export type ProyectoScalarWhereInput = {
 export type ProyectoCreateWithoutCoordinadorClienteInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1680,6 +1710,7 @@ export type ProyectoCreateWithoutCoordinadorClienteInput = {
 export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1751,6 +1782,7 @@ export type ProyectoUpdateManyWithWhereWithoutCoordinadorClienteInput = {
 export type ProyectoCreateWithoutSubproyectosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1796,6 +1828,7 @@ export type ProyectoCreateWithoutSubproyectosInput = {
 export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1846,6 +1879,7 @@ export type ProyectoCreateOrConnectWithoutSubproyectosInput = {
 export type ProyectoCreateWithoutParentInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1891,6 +1925,7 @@ export type ProyectoCreateWithoutParentInput = {
 export type ProyectoUncheckedCreateWithoutParentInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -1957,6 +1992,7 @@ export type ProyectoUpdateToOneWithWhereWithoutSubproyectosInput = {
 export type ProyectoUpdateWithoutSubproyectosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2002,6 +2038,7 @@ export type ProyectoUpdateWithoutSubproyectosInput = {
 export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2063,6 +2100,7 @@ export type ProyectoUpdateManyWithWhereWithoutParentInput = {
 export type ProyectoCreateWithoutSupervisoresInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2108,6 +2146,7 @@ export type ProyectoCreateWithoutSupervisoresInput = {
 export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2169,6 +2208,7 @@ export type ProyectoUpdateToOneWithWhereWithoutSupervisoresInput = {
 export type ProyectoUpdateWithoutSupervisoresInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2214,6 +2254,7 @@ export type ProyectoUpdateWithoutSupervisoresInput = {
 export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2259,6 +2300,7 @@ export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
 export type ProyectoCreateWithoutHitosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2304,6 +2346,7 @@ export type ProyectoCreateWithoutHitosInput = {
 export type ProyectoUncheckedCreateWithoutHitosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2365,6 +2408,7 @@ export type ProyectoUpdateToOneWithWhereWithoutHitosInput = {
 export type ProyectoUpdateWithoutHitosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2410,6 +2454,7 @@ export type ProyectoUpdateWithoutHitosInput = {
 export type ProyectoUncheckedUpdateWithoutHitosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2455,6 +2500,7 @@ export type ProyectoUncheckedUpdateWithoutHitosInput = {
 export type ProyectoCreateWithoutEjecutorInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2500,6 +2546,7 @@ export type ProyectoCreateWithoutEjecutorInput = {
 export type ProyectoUncheckedCreateWithoutEjecutorInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2555,6 +2602,7 @@ export type ProyectoCreateManyEjecutorInputEnvelope = {
 export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2600,6 +2648,7 @@ export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
 export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2655,6 +2704,7 @@ export type ProyectoCreateManyCoordinadorEmpresaInputEnvelope = {
 export type ProyectoCreateWithoutPrevencionistaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2700,6 +2750,7 @@ export type ProyectoCreateWithoutPrevencionistaInput = {
 export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2803,6 +2854,7 @@ export type ProyectoUpdateManyWithWhereWithoutPrevencionistaInput = {
 export type ProyectoCreateWithoutTrabajadoresInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2848,6 +2900,7 @@ export type ProyectoCreateWithoutTrabajadoresInput = {
 export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -2909,6 +2962,7 @@ export type ProyectoUpdateToOneWithWhereWithoutTrabajadoresInput = {
 export type ProyectoUpdateWithoutTrabajadoresInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2954,6 +3008,7 @@ export type ProyectoUpdateWithoutTrabajadoresInput = {
 export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2999,6 +3054,7 @@ export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
 export type ProyectoCreateWithoutTurnoConfigsInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3044,6 +3100,7 @@ export type ProyectoCreateWithoutTurnoConfigsInput = {
 export type ProyectoUncheckedCreateWithoutTurnoConfigsInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3105,6 +3162,7 @@ export type ProyectoUpdateToOneWithWhereWithoutTurnoConfigsInput = {
 export type ProyectoUpdateWithoutTurnoConfigsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3150,6 +3208,7 @@ export type ProyectoUpdateWithoutTurnoConfigsInput = {
 export type ProyectoUncheckedUpdateWithoutTurnoConfigsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3195,6 +3254,7 @@ export type ProyectoUncheckedUpdateWithoutTurnoConfigsInput = {
 export type ProyectoCreateWithoutTurnosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3240,6 +3300,7 @@ export type ProyectoCreateWithoutTurnosInput = {
 export type ProyectoUncheckedCreateWithoutTurnosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3301,6 +3362,7 @@ export type ProyectoUpdateToOneWithWhereWithoutTurnosInput = {
 export type ProyectoUpdateWithoutTurnosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3346,6 +3408,7 @@ export type ProyectoUpdateWithoutTurnosInput = {
 export type ProyectoUncheckedUpdateWithoutTurnosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3391,6 +3454,7 @@ export type ProyectoUncheckedUpdateWithoutTurnosInput = {
 export type ProyectoCreateWithoutRegistrosVisitaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3436,6 +3500,7 @@ export type ProyectoCreateWithoutRegistrosVisitaInput = {
 export type ProyectoUncheckedCreateWithoutRegistrosVisitaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3497,6 +3562,7 @@ export type ProyectoUpdateToOneWithWhereWithoutRegistrosVisitaInput = {
 export type ProyectoUpdateWithoutRegistrosVisitaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3542,6 +3608,7 @@ export type ProyectoUpdateWithoutRegistrosVisitaInput = {
 export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3587,6 +3654,7 @@ export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
 export type ProyectoCreateWithoutVisitasTerceroInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3632,6 +3700,7 @@ export type ProyectoCreateWithoutVisitasTerceroInput = {
 export type ProyectoUncheckedCreateWithoutVisitasTerceroInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3693,6 +3762,7 @@ export type ProyectoUpdateToOneWithWhereWithoutVisitasTerceroInput = {
 export type ProyectoUpdateWithoutVisitasTerceroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3738,6 +3808,7 @@ export type ProyectoUpdateWithoutVisitasTerceroInput = {
 export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3783,6 +3854,7 @@ export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
 export type ProyectoCreateWithoutPlanillasInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3828,6 +3900,7 @@ export type ProyectoCreateWithoutPlanillasInput = {
 export type ProyectoUncheckedCreateWithoutPlanillasInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -3889,6 +3962,7 @@ export type ProyectoUpdateToOneWithWhereWithoutPlanillasInput = {
 export type ProyectoUpdateWithoutPlanillasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3934,6 +4008,7 @@ export type ProyectoUpdateWithoutPlanillasInput = {
 export type ProyectoUncheckedUpdateWithoutPlanillasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3979,6 +4054,7 @@ export type ProyectoUncheckedUpdateWithoutPlanillasInput = {
 export type ProyectoCreateWithoutRequerimientosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4024,6 +4100,7 @@ export type ProyectoCreateWithoutRequerimientosInput = {
 export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4085,6 +4162,7 @@ export type ProyectoUpdateToOneWithWhereWithoutRequerimientosInput = {
 export type ProyectoUpdateWithoutRequerimientosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4130,6 +4208,7 @@ export type ProyectoUpdateWithoutRequerimientosInput = {
 export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4175,6 +4254,7 @@ export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
 export type ProyectoCreateWithoutSolicitudesInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4220,6 +4300,7 @@ export type ProyectoCreateWithoutSolicitudesInput = {
 export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4281,6 +4362,7 @@ export type ProyectoUpdateToOneWithWhereWithoutSolicitudesInput = {
 export type ProyectoUpdateWithoutSolicitudesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4326,6 +4408,7 @@ export type ProyectoUpdateWithoutSolicitudesInput = {
 export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4371,6 +4454,7 @@ export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
 export type ProyectoCreateWithoutComprasSimplesInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4416,6 +4500,7 @@ export type ProyectoCreateWithoutComprasSimplesInput = {
 export type ProyectoUncheckedCreateWithoutComprasSimplesInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4477,6 +4562,7 @@ export type ProyectoUpdateToOneWithWhereWithoutComprasSimplesInput = {
 export type ProyectoUpdateWithoutComprasSimplesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4522,6 +4608,7 @@ export type ProyectoUpdateWithoutComprasSimplesInput = {
 export type ProyectoUncheckedUpdateWithoutComprasSimplesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4567,6 +4654,7 @@ export type ProyectoUncheckedUpdateWithoutComprasSimplesInput = {
 export type ProyectoCreateWithoutOrdenesCompraInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4612,6 +4700,7 @@ export type ProyectoCreateWithoutOrdenesCompraInput = {
 export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4673,6 +4762,7 @@ export type ProyectoUpdateToOneWithWhereWithoutOrdenesCompraInput = {
 export type ProyectoUpdateWithoutOrdenesCompraInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4718,6 +4808,7 @@ export type ProyectoUpdateWithoutOrdenesCompraInput = {
 export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4763,6 +4854,7 @@ export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
 export type ProyectoCreateWithoutPagosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4808,6 +4900,7 @@ export type ProyectoCreateWithoutPagosInput = {
 export type ProyectoUncheckedCreateWithoutPagosInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -4869,6 +4962,7 @@ export type ProyectoUpdateToOneWithWhereWithoutPagosInput = {
 export type ProyectoUpdateWithoutPagosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4914,6 +5008,7 @@ export type ProyectoUpdateWithoutPagosInput = {
 export type ProyectoUncheckedUpdateWithoutPagosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4959,6 +5054,7 @@ export type ProyectoUncheckedUpdateWithoutPagosInput = {
 export type ProyectoCreateWithoutPagosRecurrentesInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5004,6 +5100,7 @@ export type ProyectoCreateWithoutPagosRecurrentesInput = {
 export type ProyectoUncheckedCreateWithoutPagosRecurrentesInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5065,6 +5162,7 @@ export type ProyectoUpdateToOneWithWhereWithoutPagosRecurrentesInput = {
 export type ProyectoUpdateWithoutPagosRecurrentesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5110,6 +5208,7 @@ export type ProyectoUpdateWithoutPagosRecurrentesInput = {
 export type ProyectoUncheckedUpdateWithoutPagosRecurrentesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5155,6 +5254,7 @@ export type ProyectoUncheckedUpdateWithoutPagosRecurrentesInput = {
 export type ProyectoCreateWithoutPerfilesStaffInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5200,6 +5300,7 @@ export type ProyectoCreateWithoutPerfilesStaffInput = {
 export type ProyectoUncheckedCreateWithoutPerfilesStaffInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5261,6 +5362,7 @@ export type ProyectoUpdateToOneWithWhereWithoutPerfilesStaffInput = {
 export type ProyectoUpdateWithoutPerfilesStaffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5306,6 +5408,7 @@ export type ProyectoUpdateWithoutPerfilesStaffInput = {
 export type ProyectoUncheckedUpdateWithoutPerfilesStaffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5351,6 +5454,7 @@ export type ProyectoUncheckedUpdateWithoutPerfilesStaffInput = {
 export type ProyectoCreateWithoutCobroInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5396,6 +5500,7 @@ export type ProyectoCreateWithoutCobroInput = {
 export type ProyectoUncheckedCreateWithoutCobroInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5457,6 +5562,7 @@ export type ProyectoUpdateToOneWithWhereWithoutCobroInput = {
 export type ProyectoUpdateWithoutCobroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5502,6 +5608,7 @@ export type ProyectoUpdateWithoutCobroInput = {
 export type ProyectoUncheckedUpdateWithoutCobroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5547,6 +5654,7 @@ export type ProyectoUncheckedUpdateWithoutCobroInput = {
 export type ProyectoCreateManyClienteInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5575,6 +5683,7 @@ export type ProyectoCreateManyClienteInput = {
 export type ProyectoUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5620,6 +5729,7 @@ export type ProyectoUpdateWithoutClienteInput = {
 export type ProyectoUncheckedUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5665,6 +5775,7 @@ export type ProyectoUncheckedUpdateWithoutClienteInput = {
 export type ProyectoUncheckedUpdateManyWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5693,6 +5804,7 @@ export type ProyectoUncheckedUpdateManyWithoutClienteInput = {
 export type ProyectoCreateManyCoordinadorClienteInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5721,6 +5833,7 @@ export type ProyectoCreateManyCoordinadorClienteInput = {
 export type ProyectoUpdateWithoutCoordinadorClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5766,6 +5879,7 @@ export type ProyectoUpdateWithoutCoordinadorClienteInput = {
 export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5811,6 +5925,7 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
 export type ProyectoUncheckedUpdateManyWithoutCoordinadorClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5839,6 +5954,7 @@ export type ProyectoUncheckedUpdateManyWithoutCoordinadorClienteInput = {
 export type ProyectoCreateManyParentInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -5867,6 +5983,7 @@ export type ProyectoCreateManyParentInput = {
 export type ProyectoUpdateWithoutParentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5912,6 +6029,7 @@ export type ProyectoUpdateWithoutParentInput = {
 export type ProyectoUncheckedUpdateWithoutParentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5957,6 +6075,7 @@ export type ProyectoUncheckedUpdateWithoutParentInput = {
 export type ProyectoUncheckedUpdateManyWithoutParentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5985,6 +6104,7 @@ export type ProyectoUncheckedUpdateManyWithoutParentInput = {
 export type ProyectoCreateManyEjecutorInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -6013,6 +6133,7 @@ export type ProyectoCreateManyEjecutorInput = {
 export type ProyectoCreateManyCoordinadorEmpresaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -6041,6 +6162,7 @@ export type ProyectoCreateManyCoordinadorEmpresaInput = {
 export type ProyectoCreateManyPrevencionistaInput = {
   id?: string
   codigo?: string | null
+  categoriaServicio?: $Enums.CategoriaServicioProyecto | null
   nombre: string
   ciudad?: string | null
   direccion?: string | null
@@ -6069,6 +6191,7 @@ export type ProyectoCreateManyPrevencionistaInput = {
 export type ProyectoUpdateWithoutEjecutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6114,6 +6237,7 @@ export type ProyectoUpdateWithoutEjecutorInput = {
 export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6159,6 +6283,7 @@ export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
 export type ProyectoUncheckedUpdateManyWithoutEjecutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6187,6 +6312,7 @@ export type ProyectoUncheckedUpdateManyWithoutEjecutorInput = {
 export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6232,6 +6358,7 @@ export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
 export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6277,6 +6404,7 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
 export type ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6305,6 +6433,7 @@ export type ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaInput = {
 export type ProyectoUpdateWithoutPrevencionistaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6350,6 +6479,7 @@ export type ProyectoUpdateWithoutPrevencionistaInput = {
 export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6395,6 +6525,7 @@ export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
 export type ProyectoUncheckedUpdateManyWithoutPrevencionistaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoriaServicio?: Prisma.NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput | $Enums.CategoriaServicioProyecto | null
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -6589,6 +6720,7 @@ export type ProyectoCountOutputTypeCountTurnoConfigsArgs<ExtArgs extends runtime
 export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codigo?: boolean
+  categoriaServicio?: boolean
   nombre?: boolean
   ciudad?: boolean
   direccion?: boolean
@@ -6642,6 +6774,7 @@ export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type ProyectoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codigo?: boolean
+  categoriaServicio?: boolean
   nombre?: boolean
   ciudad?: boolean
   direccion?: boolean
@@ -6677,6 +6810,7 @@ export type ProyectoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ProyectoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codigo?: boolean
+  categoriaServicio?: boolean
   nombre?: boolean
   ciudad?: boolean
   direccion?: boolean
@@ -6712,6 +6846,7 @@ export type ProyectoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ProyectoSelectScalar = {
   id?: boolean
   codigo?: boolean
+  categoriaServicio?: boolean
   nombre?: boolean
   ciudad?: boolean
   direccion?: boolean
@@ -6738,7 +6873,7 @@ export type ProyectoSelectScalar = {
   actualizadaEn?: boolean
 }
 
-export type ProyectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "ciudad" | "direccion" | "comuna" | "enlaceOneDrive" | "ambitoGeografico" | "parentId" | "clienteId" | "coordinadorClienteId" | "coordinadorEmpresaId" | "ejecutorId" | "prevencionistaId" | "jornadaInicio" | "jornadaFin" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "fechaInicio" | "fechaFin" | "fechaInicioReal" | "fechaFinReal" | "notaInicioReal" | "estado" | "creadaEn" | "actualizadaEn", ExtArgs["result"]["proyecto"]>
+export type ProyectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "categoriaServicio" | "nombre" | "ciudad" | "direccion" | "comuna" | "enlaceOneDrive" | "ambitoGeografico" | "parentId" | "clienteId" | "coordinadorClienteId" | "coordinadorEmpresaId" | "ejecutorId" | "prevencionistaId" | "jornadaInicio" | "jornadaFin" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "fechaInicio" | "fechaFin" | "fechaInicioReal" | "fechaFinReal" | "notaInicioReal" | "estado" | "creadaEn" | "actualizadaEn", ExtArgs["result"]["proyecto"]>
 export type ProyectoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.Proyecto$parentArgs<ExtArgs>
   subproyectos?: boolean | Prisma.Proyecto$subproyectosArgs<ExtArgs>
@@ -6812,6 +6947,7 @@ export type $ProyectoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     codigo: string | null
+    categoriaServicio: $Enums.CategoriaServicioProyecto | null
     nombre: string
     ciudad: string | null
     direccion: string | null
@@ -7284,6 +7420,7 @@ export interface Prisma__ProyectoClient<T, Null = never, ExtArgs extends runtime
 export interface ProyectoFieldRefs {
   readonly id: Prisma.FieldRef<"Proyecto", 'String'>
   readonly codigo: Prisma.FieldRef<"Proyecto", 'String'>
+  readonly categoriaServicio: Prisma.FieldRef<"Proyecto", 'CategoriaServicioProyecto'>
   readonly nombre: Prisma.FieldRef<"Proyecto", 'String'>
   readonly ciudad: Prisma.FieldRef<"Proyecto", 'String'>
   readonly direccion: Prisma.FieldRef<"Proyecto", 'String'>

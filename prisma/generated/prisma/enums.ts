@@ -55,6 +55,14 @@ export const AmbitoGeografico = {
 export type AmbitoGeografico = (typeof AmbitoGeografico)[keyof typeof AmbitoGeografico]
 
 
+export const CategoriaServicioProyecto = {
+  ING: 'ING',
+  MAN: 'MAN'
+} as const
+
+export type CategoriaServicioProyecto = (typeof CategoriaServicioProyecto)[keyof typeof CategoriaServicioProyecto]
+
+
 export const CumplimientoHito = {
   si: 'si',
   no: 'no',
@@ -220,7 +228,8 @@ export const EstadoAprobacionCompra = {
   pendiente: 'pendiente',
   aprobada_tecnico: 'aprobada_tecnico',
   aprobada: 'aprobada',
-  observada: 'observada'
+  observada: 'observada',
+  cancelada: 'cancelada'
 } as const
 
 export type EstadoAprobacionCompra = (typeof EstadoAprobacionCompra)[keyof typeof EstadoAprobacionCompra]

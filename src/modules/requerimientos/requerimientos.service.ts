@@ -37,6 +37,37 @@ const RESTRICTED_ROLES: Role[] = [
   'pdr',
 ];
 
+const ROLES_SOLICITANTE: Role[] = [
+  'supervisor',
+  'supervisor_civil',
+  'supervisor_electrico',
+  'pdr',
+];
+
+// Área técnica, logística, administración, gestión y admin_ti
+const ROLES_GRUPO_B: Role[] = [
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+  'logistica',
+  'gerencia',
+  'administrador',
+  'admin_ti',
+];
+
+const ESTADOS_NO_APROBADO: EstadoRequerimiento[] = [
+  'borrador',
+  'enviado',
+  'observado',
+];
+
+const ESTADOS_PRE_COTIZACION: EstadoRequerimiento[] = [
+  'borrador',
+  'enviado',
+  'observado',
+  'aprobado',
+];
+
 // Roles that review a specific tipo across all projects (not just their own).
 // ing_civil e ing_electrico (área técnica) ven todos los tipos, no solo el propio.
 const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {};
@@ -289,7 +320,7 @@ export class RequerimientosService {
   ) {
     const r = await this.findOne(id);
     const esCreador = r.creadoPorId === userId;
-    const esRevisor = TIPO_APPROVERS[r.tipo].includes(userRole);
+    const esRevisor = TIPO_APPROVERS[r.tipo]?.includes(userRole) ?? false;
     const cambiaContenido =
       dto.nombre !== undefined ||
       dto.tipo !== undefined ||
@@ -300,34 +331,41 @@ export class RequerimientosService {
     const cambiaProyecto =
       dto.proyectoId !== undefined && dto.proyectoId !== r.proyectoId;
 
-    const puedeEditarComoCreador =
-      (esCreador || userRole === 'administrador') &&
-      (r.estado === 'borrador' || r.estado === 'observado');
-    // El revisor puede corregir directamente mientras decide (estado "enviado"),
-    // sin tener que "observar" y esperar a que el solicitante actualice el sistema
-    // — el PDF se exporta tal cual queda en la BD, así que se necesita esta flexibilidad.
-    const puedeEditarComoRevisor = esRevisor && r.estado === 'enviado';
-    const puedeCorregirAprobadoComoAdminTi =
-      userRole === 'admin_ti' && r.estado === 'aprobado';
+    const esSolicitante =
+      esCreador || ROLES_SOLICITANTE.includes(userRole);
+    const puedeCambiarObraSolicitante =
+      esSolicitante && ESTADOS_NO_APROBADO.includes(r.estado);
+    const puedeCambiarObraGrupoB =
+      ROLES_GRUPO_B.includes(userRole) &&
+      ESTADOS_PRE_COTIZACION.includes(r.estado);
 
-    if (
-      cambiaContenido &&
-      !puedeEditarComoCreador &&
-      !puedeEditarComoRevisor &&
-      !puedeCorregirAprobadoComoAdminTi
-    ) {
-      throw new ForbiddenException(
-        'No tienes permiso para editar el contenido de este requerimiento en su estado actual',
-      );
+    if (cambiaProyecto) {
+      if (!puedeCambiarObraSolicitante && !puedeCambiarObraGrupoB) {
+        if (esSolicitante && !ROLES_GRUPO_B.includes(userRole)) {
+          throw new ForbiddenException(
+            'El solicitante solo puede cambiar la obra del requerimiento mientras no esté aprobada',
+          );
+        }
+        throw new ForbiddenException(
+          'Solo se puede cambiar la obra antes de que el requerimiento entre a cotización',
+        );
+      }
     }
 
-    if (dto.proyectoId !== undefined && userRole !== 'admin_ti') {
-      throw new ForbiddenException(
-        'Solo Administración TI puede cambiar el proyecto de un requerimiento',
-      );
+    if (cambiaContenido) {
+      const puedeEditarComoRevisor = esRevisor && r.estado === 'enviado';
+      if (
+        !puedeCambiarObraSolicitante &&
+        !puedeCambiarObraGrupoB &&
+        !puedeEditarComoRevisor
+      ) {
+        throw new ForbiddenException(
+          'No tienes permiso para editar el contenido de este requerimiento en su estado actual',
+        );
+      }
     }
 
-    if (dto.tipo !== undefined && userRole !== 'admin_ti') {
+    if (dto.tipo !== undefined && dto.tipo !== r.tipo && userRole !== 'admin_ti') {
       throw new ForbiddenException(
         'Solo Administración TI puede cambiar el tipo de un requerimiento',
       );
@@ -394,20 +432,34 @@ export class RequerimientosService {
         });
       }
 
-      if (userRole === 'admin_ti' && (cambiaContenido || cambiaProyecto)) {
-        const cambios = [
-          cambiaContenido ? 'contenido e ítems corregidos' : null,
-          cambiaProyecto && proyectoNuevo
-            ? `proyecto cambiado de ${r.proyecto.nombre} a ${proyectoNuevo.nombre}`
-            : null,
-        ].filter(Boolean);
+      if (cambiaProyecto && proyectoNuevo) {
         await tx.requerimientoHistorial.create({
           data: {
             requerimientoId: id,
             estado: r.estado,
             actorId: userId,
             actorRole: userRole,
-            nota: `Corrección excepcional de Administración TI: ${cambios.join('; ')}`,
+            nota: `Obra cambiada de "${r.proyecto.nombre}" a "${proyectoNuevo.nombre}"`,
+          },
+        });
+      }
+
+      if (cambiaContenido && r.estado !== 'borrador') {
+        const actorDesc =
+          userRole === 'admin_ti'
+            ? 'Administración TI'
+            : esRevisor && r.estado === 'enviado' && !esCreador
+              ? 'revisor'
+              : esCreador
+                ? 'solicitante'
+                : userRole;
+        await tx.requerimientoHistorial.create({
+          data: {
+            requerimientoId: id,
+            estado: r.estado,
+            actorId: userId,
+            actorRole: userRole,
+            nota: `Contenido corregido por ${actorDesc}`,
           },
         });
       }
@@ -443,20 +495,6 @@ export class RequerimientosService {
         },
         include: INCLUDE_BASE,
       });
-
-      // Deja constancia en el historial cuando quien corrige es un revisor (no el
-      // solicitante) — así queda trazado quién editó, aunque el estado no cambie.
-      if (puedeEditarComoRevisor && !esCreador) {
-        await tx.requerimientoHistorial.create({
-          data: {
-            requerimientoId: id,
-            estado: r.estado,
-            actorId: userId,
-            actorRole: userRole,
-            nota: 'Corregido por el revisor antes de emitir su decisión',
-          },
-        });
-      }
 
       return actualizado;
     });

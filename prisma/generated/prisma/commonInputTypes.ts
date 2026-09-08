@@ -165,6 +165,13 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
 }
 
+export type EnumCategoriaServicioProyectoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaServicioProyecto | Prisma.EnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel> | $Enums.CategoriaServicioProyecto | null
+}
+
 export type EnumAmbitoGeograficoFilter<$PrismaModel = never> = {
   equals?: $Enums.AmbitoGeografico | Prisma.EnumAmbitoGeograficoFieldRefInput<$PrismaModel>
   in?: $Enums.AmbitoGeografico[] | Prisma.ListEnumAmbitoGeograficoFieldRefInput<$PrismaModel>
@@ -188,6 +195,16 @@ export type EnumEstadoProyectoFilter<$PrismaModel = never> = {
   in?: $Enums.EstadoProyecto[] | Prisma.ListEnumEstadoProyectoFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoProyecto[] | Prisma.ListEnumEstadoProyectoFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoProyectoFilter<$PrismaModel> | $Enums.EstadoProyecto
+}
+
+export type EnumCategoriaServicioProyectoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaServicioProyecto | Prisma.EnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaServicioProyectoNullableWithAggregatesFilter<$PrismaModel> | $Enums.CategoriaServicioProyecto | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel>
 }
 
 export type EnumAmbitoGeograficoWithAggregatesFilter<$PrismaModel = never> = {
@@ -926,6 +943,13 @@ export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
 }
 
+export type NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaServicioProyecto | Prisma.EnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel> | $Enums.CategoriaServicioProyecto | null
+}
+
 export type NestedEnumAmbitoGeograficoFilter<$PrismaModel = never> = {
   equals?: $Enums.AmbitoGeografico | Prisma.EnumAmbitoGeograficoFieldRefInput<$PrismaModel>
   in?: $Enums.AmbitoGeografico[] | Prisma.ListEnumAmbitoGeograficoFieldRefInput<$PrismaModel>
@@ -938,6 +962,16 @@ export type NestedEnumEstadoProyectoFilter<$PrismaModel = never> = {
   in?: $Enums.EstadoProyecto[] | Prisma.ListEnumEstadoProyectoFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoProyecto[] | Prisma.ListEnumEstadoProyectoFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoProyectoFilter<$PrismaModel> | $Enums.EstadoProyecto
+}
+
+export type NestedEnumCategoriaServicioProyectoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaServicioProyecto | Prisma.EnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaServicioProyecto[] | Prisma.ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaServicioProyectoNullableWithAggregatesFilter<$PrismaModel> | $Enums.CategoriaServicioProyecto | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCategoriaServicioProyectoNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumAmbitoGeograficoWithAggregatesFilter<$PrismaModel = never> = {

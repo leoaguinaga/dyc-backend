@@ -209,6 +209,7 @@ export type ContactoClienteScalarFieldEnum = (typeof ContactoClienteScalarFieldE
 export const ProyectoScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
+  categoriaServicio: 'categoriaServicio',
   nombre: 'nombre',
   ciudad: 'ciudad',
   direccion: 'direccion',
