@@ -2,17 +2,31 @@ import {
   IsDateString,
   IsEnum,
   IsInt,
+  Min,
   IsOptional,
   IsString,
   IsUrl,
   Matches,
 } from 'class-validator';
-import { EstadoProyecto, AmbitoGeografico } from '../../../prisma/types.js';
+import {
+  AmbitoGeografico,
+  CategoriaServicioProyecto,
+  EstadoProyecto,
+} from '../../../prisma/types.js';
 
 export class CreateProyectoDto {
   @IsOptional()
-  @IsString()
-  codigo?: string;
+  @IsInt()
+  anio?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  correlativo?: number;
+
+  @IsOptional()
+  @IsEnum(CategoriaServicioProyecto)
+  categoriaServicio?: CategoriaServicioProyecto;
 
   @IsString()
   nombre: string;

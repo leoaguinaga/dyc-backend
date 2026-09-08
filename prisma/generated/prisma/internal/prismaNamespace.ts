@@ -4134,6 +4134,7 @@ export type ContactoClienteScalarFieldEnum = (typeof ContactoClienteScalarFieldE
 export const ProyectoScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
+  categoriaServicio: 'categoriaServicio',
   nombre: 'nombre',
   ciudad: 'ciudad',
   direccion: 'direccion',
@@ -4939,6 +4940,20 @@ export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Role[]'
  */
 export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CategoriaServicioProyecto'
+ */
+export type EnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaServicioProyecto'>
+    
+
+
+/**
+ * Reference to a field of type 'CategoriaServicioProyecto[]'
+ */
+export type ListEnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaServicioProyecto[]'>
     
 
 

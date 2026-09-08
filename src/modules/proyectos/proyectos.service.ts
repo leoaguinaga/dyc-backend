@@ -6,10 +6,11 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
-import type { Role } from '../../prisma/types.js';
+import type { CategoriaServicioProyecto, Role } from '../../prisma/types.js';
 import { CreateProyectoDto } from './dto/create-proyecto.dto.js';
 import { UpdateProyectoDto } from './dto/update-proyecto.dto.js';
 import { CreateHitoDto } from './dto/create-hito.dto.js';
@@ -41,6 +42,43 @@ const OC_ESTADOS_ABIERTOS = [
   'emitida',
   'recibida_parcial',
 ] as const;
+
+const CATEGORIAS_PROYECTO = ['ING', 'MAN'] as const;
+
+function yearRegistro(anio?: number, fecha = new Date()) {
+  if (anio) {
+    const s = String(anio);
+    return s.length === 2 ? s : s.slice(-2);
+  }
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Lima',
+    year: '2-digit',
+  }).format(fecha);
+}
+
+function categoriaDesdeCodigo(
+  codigo: string,
+): CategoriaServicioProyecto | null {
+  const match = codigo.match(/^\d+-(ING|MAN)-\d{2}$/);
+  if (!match) return null;
+  return CATEGORIAS_PROYECTO.includes(
+    match[1] as (typeof CATEGORIAS_PROYECTO)[number],
+  )
+    ? (match[1] as CategoriaServicioProyecto)
+    : null;
+}
+
+function correlativoProyectoPrincipal(codigo: string, year: string): number | null {
+  const codigoActual = codigo.match(/^(\d{2})-(\d+)(?:-\d+)?$/);
+  if (codigoActual?.[1] === year) return Number(codigoActual[2]);
+
+  // Los proyectos históricos usan el formato 018-ING-26. Para conservar
+  // continuidad, su primer segmento también participa del correlativo anual.
+  const codigoHistorico = codigo.match(/^(\d+)-(?:ING|MAN)-(\d{2})$/);
+  if (codigoHistorico?.[2] === year) return Number(codigoHistorico[1]);
+
+  return null;
+}
 
 @Injectable()
 export class ProyectosService {
@@ -141,6 +179,133 @@ export class ProyectosService {
     return d ? new Date(d) : undefined;
   }
 
+  private async generarIdentificacion(
+    tx: Prisma.TransactionClient,
+    anioInput?: number,
+    parentId?: string,
+    categoriaServicio?: CategoriaServicioProyecto,
+    correlativoInput?: number,
+  ): Promise<{
+    codigo: string;
+    categoriaServicio?: CategoriaServicioProyecto | null;
+  }> {
+    if (parentId) {
+      if (correlativoInput !== undefined) {
+        throw new BadRequestException(
+          'El correlativo solo se puede elegir para proyectos principales',
+        );
+      }
+      const parent = await tx.proyecto.findUnique({
+        where: { id: parentId },
+        select: {
+          codigo: true,
+          categoriaServicio: true,
+          parentId: true,
+        },
+      });
+      if (!parent) throw new BadRequestException('El proyecto padre no existe');
+      if (parent.parentId) {
+        throw new BadRequestException(
+          'Un subproyecto no puede utilizar otro subproyecto como padre',
+        );
+      }
+
+      if (!parent.codigo) {
+        throw new BadRequestException(
+          'El proyecto padre no tiene un código estandarizado compatible',
+        );
+      }
+
+      // Los padres nuevos son 26-020 y sus subproyectos 26-020.01. Los
+      // registros creados con el formato anterior 26-20-01 se conservan.
+      const matchNuevo = parent.codigo.match(/^(\d{2}-\d{2})-(\d{2})$/);
+      if (matchNuevo) {
+        const basePrefix = matchNuevo[1];
+        const parentSubIndex = matchNuevo[2] ? Number(matchNuevo[2]) : 0;
+        const subproyectos = await tx.proyecto.findMany({
+          where: { parentId },
+          select: { codigo: true },
+        });
+        const subPatron = new RegExp(
+          `^${basePrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-(\\d+)$`,
+        );
+        let maxIndex = parentSubIndex;
+        for (const sp of subproyectos) {
+          const m = sp.codigo?.match(subPatron);
+          if (m) {
+            maxIndex = Math.max(maxIndex, Number(m[1]));
+          }
+        }
+        const nextIndex = maxIndex + 1;
+        return {
+          codigo: `${basePrefix}-${String(nextIndex).padStart(2, '0')}`,
+          categoriaServicio: parent.categoriaServicio ?? categoriaServicio ?? null,
+        };
+      }
+
+      // Compatibilidad con proyectos padres de esquema anterior (ej. 018-ING-26 o códigos con punto)
+      const subproyectos = await tx.proyecto.findMany({
+        where: { parentId },
+        select: { codigo: true },
+      });
+      const patronPunto = new RegExp(
+        `^${parent.codigo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\.(\\d+)$`,
+      );
+      const ultimoSufijo = subproyectos.reduce((maximo, proyecto) => {
+        const match = proyecto.codigo?.match(patronPunto);
+        return match ? Math.max(maximo, Number(match[1])) : maximo;
+      }, 0);
+
+      const categoria =
+        parent.categoriaServicio ??
+        categoriaDesdeCodigo(parent.codigo) ??
+        categoriaServicio ??
+        null;
+
+      return {
+        codigo: `${parent.codigo}.${String(ultimoSufijo + 1).padStart(2, '0')}`,
+        categoriaServicio: categoria,
+      };
+    }
+
+    const year = yearRegistro(anioInput);
+    const proyectosDelYear = await tx.proyecto.findMany({
+      where: {
+        parentId: null,
+        OR: [
+          { codigo: { startsWith: `${year}-` } },
+          { codigo: { endsWith: `-${year}` } },
+        ],
+      },
+      select: { codigo: true },
+    });
+    const ultimoCorrelativo = proyectosDelYear.reduce((maximo, proyecto) => {
+      const correlativo = proyecto.codigo
+        ? correlativoProyectoPrincipal(proyecto.codigo, year)
+        : null;
+      return correlativo === null ? maximo : Math.max(maximo, correlativo);
+    }, 0);
+
+    if (
+      correlativoInput !== undefined &&
+      proyectosDelYear.some(
+        (proyecto) =>
+          proyecto.codigo &&
+          correlativoProyectoPrincipal(proyecto.codigo, year) === correlativoInput,
+      )
+    ) {
+      throw new BadRequestException(
+        `El correlativo ${correlativoInput} ya está ocupado para el año ${year}`,
+      );
+    }
+
+    const correlativo = correlativoInput ?? ultimoCorrelativo + 1;
+    return {
+      codigo: `${year}-${String(correlativo).padStart(3, '0')}`,
+      categoriaServicio: categoriaServicio ?? null,
+    };
+  }
+
   async create(dto: CreateProyectoDto) {
     const {
       clienteId,
@@ -153,13 +318,25 @@ export class ProyectosService {
       fechaFin,
       fechaInicioReal,
       fechaFinReal,
+      categoriaServicio,
+      anio,
+      correlativo,
       ...rest
     } = dto;
 
     return this.prisma.$transaction(async (tx) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext('dyc-proyecto-codigo'))`;
+      const identificacion = await this.generarIdentificacion(
+        tx,
+        anio,
+        parentId,
+        categoriaServicio,
+        correlativo,
+      );
       const proyecto = await tx.proyecto.create({
         data: {
           ...rest,
+          ...identificacion,
           fechaInicio: this.toDate(fechaInicio),
           fechaFin: this.toDate(fechaFin),
           fechaInicioReal: this.toDate(fechaInicioReal),

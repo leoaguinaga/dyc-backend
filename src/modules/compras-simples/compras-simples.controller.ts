@@ -17,7 +17,11 @@ import type { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { ComprasSimplesService } from './compras-simples.service.js';
 import { CreateCompraSimpleDto } from './dto/create-compra-simple.dto.js';
-import { AprobarGrupoDto, ObservarGrupoDto } from './dto/decision-grupo.dto.js';
+import {
+  AprobarGrupoDto,
+  CancelarGrupoDto,
+  ObservarGrupoDto,
+} from './dto/decision-grupo.dto.js';
 import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
 import { HardDeleteCompraSimpleDto } from './dto/hard-delete-compra-simple.dto.js';
 
@@ -89,6 +93,20 @@ export class ComprasSimplesController {
     @Req() req: Request,
   ) {
     return this.service.observarGrupo(grupoId, dto, req.user!.id, req.user!.role);
+  }
+
+  @Post('grupos/:grupoId/cancelar')
+  cancelarGrupo(
+    @Param('grupoId') grupoId: string,
+    @Body() dto: CancelarGrupoDto,
+    @Req() req: Request,
+  ) {
+    return this.service.cancelarGrupo(
+      grupoId,
+      dto,
+      req.user!.id,
+      req.user!.role,
+    );
   }
 
   @Patch('grupos/:grupoId/items')

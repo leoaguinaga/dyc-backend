@@ -11,7 +11,11 @@ import {
   CreateCompraSimpleDto,
   CreateCompraSimpleGrupoDto,
 } from './dto/create-compra-simple.dto.js';
-import { AprobarGrupoDto, ObservarGrupoDto } from './dto/decision-grupo.dto.js';
+import {
+  AprobarGrupoDto,
+  CancelarGrupoDto,
+  ObservarGrupoDto,
+} from './dto/decision-grupo.dto.js';
 import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
 import type { Role, TipoRequerimiento } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
@@ -686,6 +690,59 @@ export class ComprasSimplesService {
           grupoId,
           estado: 'observada',
           nota: dto.nota,
+          actorId: userId,
+          actorRole: userRole,
+        },
+      });
+      return oc;
+    });
+  }
+
+  /**
+   * Rechazo terminal antes de generar el pago. El grupo se conserva para
+   * auditoría, pero no puede aprobarse, editarse ni reenviarse después.
+   */
+  async cancelarGrupo(
+    grupoId: string,
+    dto: CancelarGrupoDto,
+    userId: string,
+    userRole: Role,
+  ) {
+    const grupo = await this.findGrupo(grupoId);
+    if (
+      grupo.estadoAprobacion !== 'pendiente' &&
+      grupo.estadoAprobacion !== 'aprobada_tecnico'
+    )
+      throw new BadRequestException(
+        'Solo se pueden rechazar grupos pendientes de aprobación técnica o gerencial',
+      );
+
+    const rolesPermitidos = this.rolesParaPaso(
+      grupo.estadoAprobacion,
+      grupo.compraSimple.tipo,
+    );
+    if (!rolesPermitidos.includes(userRole))
+      throw new ForbiddenException(
+        `El rol "${userRole}" no puede rechazar este paso de la compra simple`,
+      );
+
+    return this.prisma.$transaction(async (tx) => {
+      const oc = await tx.ordenCompra.update({
+        where: { id: grupoId },
+        data: {
+          estado: 'cancelada',
+          estadoAprobacion: 'cancelada',
+          notaAprobacion: dto.motivo,
+          aprobadoPorId: userId,
+          aprobadoEn: new Date(),
+        },
+        include: GRUPO_INCLUDE,
+      });
+      await tx.compraSimpleGrupoHistorial.create({
+        data: {
+          grupoId,
+          estado: 'cancelada',
+          nota: dto.motivo,
           actorId: userId,
           actorRole: userRole,
         },

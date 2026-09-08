@@ -45,6 +45,11 @@ enum AmbitoGeografico {
   internacional
 }
 
+enum CategoriaServicioProyecto {
+  ING
+  MAN
+}
+
 enum CumplimientoHito {
   si
   no
@@ -169,6 +174,7 @@ enum EstadoAprobacionCompra {
   aprobada_tecnico
   aprobada
   observada
+  cancelada
 }
 
 enum DestinoPago {
@@ -369,8 +375,9 @@ model ContactoCliente {
 // ---------------------------------------------------------------------------
 
 model Proyecto {
-  id     String  @id @default(cuid())
-  codigo String? @unique
+  id                String                    @id @default(cuid())
+  codigo            String?                   @unique
+  categoriaServicio CategoriaServicioProyecto?
 
   nombre    String
   ciudad    String?
