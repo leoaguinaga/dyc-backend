@@ -527,6 +527,9 @@ export class CotizacionesService {
     actor: { id: string; role: Role },
   ) {
     const TRANSICIONES: Partial<Record<string, (typeof nuevoEstado)[]>> = {
+      borrador: ['cancelada'],
+      enviada: ['cancelada'],
+      cotizada: ['cancelada'],
       seleccionada: ['aprobada_solicitante', 'cancelada'],
       aprobada_solicitante: ['aprobada_gerencia', 'cancelada'],
     };
@@ -546,6 +549,12 @@ export class CotizacionesService {
         throw new BadRequestException(
           'No se puede aprobar por gerencia: debe existir al menos un ítem adjudicado',
         );
+    }
+
+    if (nuevoEstado === 'cancelada' && s.ordenes.length > 0) {
+      throw new BadRequestException(
+        'No se puede cancelar una solicitud que ya tiene órdenes relacionadas',
+      );
     }
 
     // Si aprueba alguien con rol de solicitante (no logística/gerencia/admin
