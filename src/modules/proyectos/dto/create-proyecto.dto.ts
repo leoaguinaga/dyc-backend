@@ -16,6 +16,10 @@ import {
 
 export class CreateProyectoDto {
   @IsOptional()
+  @IsString()
+  codigo?: string;
+
+  @IsOptional()
   @IsInt()
   anio?: number;
 

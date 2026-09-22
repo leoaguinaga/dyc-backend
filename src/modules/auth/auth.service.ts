@@ -3,6 +3,7 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { EmailService } from '../../shared/email/email.service.js';
+import { buildActionEmail } from '../../shared/email/email-template.js';
 import { impersonationPlugin } from './impersonation.plugin.js';
 
 @Injectable()
@@ -19,15 +20,17 @@ export class AuthService {
       emailAndPassword: {
         enabled: true,
         sendResetPassword: async ({ user, url }: { user: { email: string }; url: string }) => {
+          const email = buildActionEmail({
+            title: 'Restablece tu contraseña',
+            message: 'Recibimos una solicitud para restablecer tu contraseña en el sistema interno de Díaz y Castillo. Si no la solicitaste, puedes ignorar este correo.',
+            tone: 'security',
+            actionLabel: 'Elegir nueva contraseña',
+            actionUrl: url,
+          });
           await this.email.send({
             to: user.email,
             subject: 'Restablece tu contraseña — Díaz y Castillo',
-            html: `
-              <p>Hola,</p>
-              <p>Recibimos una solicitud para restablecer tu contraseña en el sistema interno de Díaz y Castillo.</p>
-              <p><a href="${url}">Haz clic aquí para elegir una nueva contraseña</a></p>
-              <p>Si no solicitaste esto, puedes ignorar este correo.</p>
-            `,
+            ...email,
           });
         },
       },
@@ -69,15 +72,17 @@ export class AuthService {
       // NUEVO correo — evita que un typo lo deje sin acceso.
       emailVerification: {
         sendVerificationEmail: async ({ user, url }: { user: { email: string }; url: string }) => {
+          const email = buildActionEmail({
+            title: 'Confirma tu nuevo correo',
+            message: 'Confirma este correo para actualizar el acceso a tu cuenta de Díaz y Castillo. Si no solicitaste el cambio, puedes ignorar este correo.',
+            tone: 'security',
+            actionLabel: 'Confirmar mi correo',
+            actionUrl: url,
+          });
           await this.email.send({
             to: user.email,
             subject: 'Confirma tu nuevo correo — Díaz y Castillo',
-            html: `
-              <p>Hola,</p>
-              <p>Confirma tu nuevo correo para el sistema interno de Díaz y Castillo haciendo clic en el siguiente enlace:</p>
-              <p><a href="${url}">Confirmar mi nuevo correo</a></p>
-              <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
-            `,
+            ...email,
           });
         },
       },

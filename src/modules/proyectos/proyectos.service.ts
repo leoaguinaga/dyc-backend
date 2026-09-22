@@ -179,6 +179,20 @@ export class ProyectosService {
     return d ? new Date(d) : undefined;
   }
 
+  private async assertCodigoDisponible(
+    tx: Prisma.TransactionClient,
+    codigo: string,
+    excludeId?: string,
+  ): Promise<void> {
+    const existente = await tx.proyecto.findFirst({
+      where: { codigo, ...(excludeId && { id: { not: excludeId } }) },
+      select: { id: true },
+    });
+    if (existente) {
+      throw new BadRequestException(`El código ${codigo} ya está en uso`);
+    }
+  }
+
   private async generarIdentificacion(
     tx: Prisma.TransactionClient,
     anioInput?: number,
@@ -321,6 +335,7 @@ export class ProyectosService {
       categoriaServicio,
       anio,
       correlativo,
+      codigo,
       ...rest
     } = dto;
 
@@ -333,6 +348,10 @@ export class ProyectosService {
         categoriaServicio,
         correlativo,
       );
+      if (codigo) {
+        await this.assertCodigoDisponible(tx, codigo);
+        identificacion.codigo = codigo;
+      }
       const proyecto = await tx.proyecto.create({
         data: {
           ...rest,
@@ -374,12 +393,22 @@ export class ProyectosService {
       fechaFin,
       fechaInicioReal,
       fechaFinReal,
+      codigo,
       ...rest
     } = dto;
+
+    if (codigo !== undefined) {
+      if (!codigo.trim()) {
+        throw new BadRequestException('El código no puede estar vacío');
+      }
+      await this.assertCodigoDisponible(this.prisma, codigo, id);
+    }
+
     return this.prisma.proyecto.update({
       where: { id },
       data: {
         ...rest,
+        ...(codigo !== undefined && { codigo }),
         ...(fechaInicio !== undefined && {
           fechaInicio: this.toDate(fechaInicio),
         }),

@@ -5,6 +5,7 @@ export interface SendEmailInput {
   to: string;
   subject: string;
   html: string;
+  text?: string;
 }
 
 @Injectable()
@@ -39,6 +40,7 @@ export class EmailService {
       to: input.to,
       subject: input.subject,
       html: input.html,
+      text: input.text,
     });
   }
 }
