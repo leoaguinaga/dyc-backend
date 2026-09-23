@@ -4,6 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import {
   CreateOrdenCompraDto,
@@ -69,43 +70,29 @@ export class OrdenesCompraService {
   ) {}
 
   /**
-   * Correlativo anual por tipo (OC-2026-0001 / OS-2026-0001). El `count` no es
-   * atómico: si dos creaciones concurrentes lo leen antes de que la primera
-   * confirme su insert, ambas calculan el mismo número y una de las dos choca
-   * con la restricción `unique` de `numero`. Los llamadores deben envolver la
-   * generación + el insert con `reintentarSiNumeroDuplicado`.
+   * Serializa la generación de números de OC/OS: toda transacción que vaya a
+   * llamar `generateNumero` debe tomar este lock primero. Un `count()` para
+   * calcular el próximo correlativo no es atómico por sí solo (dos
+   * transacciones concurrentes pueden leerlo antes de que la primera
+   * confirme su insert y calcular el mismo número); el advisory lock hace
+   * que la segunda espere a que la primera termine, en vez de chocar contra
+   * la restricción `unique` de `numero`.
    */
-  async generateNumero(tipo: TipoOrdenCompra, offset = 0): Promise<string> {
+  async bloquearNumeracion(tx: Prisma.TransactionClient): Promise<void> {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext('dyc-orden-compra-numero'))`;
+  }
+
+  /** Correlativo anual por tipo (OC-2026-0001 / OS-2026-0001). Llamar solo dentro de una transacción que ya tenga `bloquearNumeracion`. */
+  async generateNumero(
+    tx: Prisma.TransactionClient,
+    tipo: TipoOrdenCompra,
+    offset = 0,
+  ): Promise<string> {
     const year = new Date().getFullYear();
-    const count = await this.prisma.ordenCompra.count({
+    const count = await tx.ordenCompra.count({
       where: { tipo, creadoEn: { gte: new Date(`${year}-01-01`) } },
     });
     return `${PREFIJO_POR_TIPO[tipo]}-${year}-${String(count + offset + 1).padStart(4, '0')}`;
-  }
-
-  /**
-   * Reintenta `fn` cuando falla por choque de `numero` (dos creaciones
-   * concurrentes calcularon el mismo correlativo). `fn` debe recalcular el
-   * número en cada llamada, no reutilizar uno ya generado.
-   */
-  async reintentarSiNumeroDuplicado<T>(
-    fn: () => Promise<T>,
-    intentos = 5,
-  ): Promise<T> {
-    for (let intento = 1; intento <= intentos; intento++) {
-      try {
-        return await fn();
-      } catch (err) {
-        const esConflictoDeNumero =
-          err &&
-          typeof err === 'object' &&
-          'code' in err &&
-          err.code === 'P2002';
-        if (!esConflictoDeNumero || intento === intentos) throw err;
-      }
-    }
-    /* istanbul ignore next: el loop siempre retorna o lanza */
-    throw new Error('No se pudo generar un número de orden único');
   }
 
   findAll(query: {
@@ -261,25 +248,30 @@ export class OrdenesCompraService {
     const grupos = [...byProveedor.values()];
     const tipo: TipoOrdenCompra = dto.tipo ?? 'compra';
 
-    const ordenes = await this.reintentarSiNumeroDuplicado(async () => {
+    const ordenes = await this.prisma.$transaction(async (tx) => {
+      await this.bloquearNumeracion(tx);
       const numeros = await Promise.all(
-        grupos.map((_, i) => this.generateNumero(tipo, i)),
+        grupos.map((_, i) => this.generateNumero(tx, tipo, i)),
       );
 
-      const [, ...creadas] = await this.prisma.$transaction([
-        this.prisma.solicitudCotizacion.update({
-          where: { id: dto.solicitudId },
-          data: { estado: 'orden_generada' },
-        }),
-        ...grupos.map((grupo, i) => {
-          const monto = grupo.items.reduce(
-            (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
-            0,
-          );
-          const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(
-            grupo.condicionesPago,
-          );
-          return this.prisma.ordenCompra.create({
+      await tx.solicitudCotizacion.update({
+        where: { id: dto.solicitudId },
+        data: { estado: 'orden_generada' },
+      });
+
+      const creadas: Prisma.OrdenCompraGetPayload<{
+        include: typeof OC_INCLUDE;
+      }>[] = [];
+      for (const [i, grupo] of grupos.entries()) {
+        const monto = grupo.items.reduce(
+          (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
+          0,
+        );
+        const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(
+          grupo.condicionesPago,
+        );
+        creadas.push(
+          await tx.ordenCompra.create({
             data: {
               numero: numeros[i],
               tipo,
@@ -321,9 +313,9 @@ export class OrdenesCompraService {
               },
             },
             include: OC_INCLUDE,
-          });
-        }),
-      ]);
+          }),
+        );
+      }
 
       return creadas;
     });

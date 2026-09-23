@@ -452,96 +452,95 @@ export class ComprasSimplesService {
 
     const codigo = await this.generateCodigo();
 
-    const creada = await this.ordenesCompra.reintentarSiNumeroDuplicado(
-      async () => {
-        const numeros = await Promise.all(
-          dto.grupos.map((_, i) =>
-            this.ordenesCompra.generateNumero('compra', i),
-          ),
-        );
+    const creada = await this.prisma.$transaction(async (tx) => {
+      await this.ordenesCompra.bloquearNumeracion(tx);
+      const numeros = await Promise.all(
+        dto.grupos.map((_, i) =>
+          this.ordenesCompra.generateNumero(tx, 'compra', i),
+        ),
+      );
 
-        return this.prisma.compraSimple.create({
-          data: {
-            codigo,
-            nombre: dto.nombre,
-            tipo: dto.tipo,
-            esRendicion: dto.esRendicion ?? false,
-            aprobadoInformalPorId: dto.esRendicion
-              ? dto.aprobadoInformalPorId
-              : undefined,
-            proyectoId: dto.proyectoId,
-            creadoPorId: userId,
-            nota: dto.nota,
-            grupos: {
-              create: dto.grupos.map((grupo, i) => ({
-                numero: numeros[i],
-                origen: 'simple',
-                estado: 'borrador',
-                estadoAprobacion: 'pendiente',
-                proyectoId: dto.proyectoId,
-                proveedorId: grupo.proveedorId,
-                proveedorNombreLibre: grupo.proveedorId
-                  ? undefined
-                  : grupo.proveedorNombreLibre,
-                fechaEntrega: grupo.fechaEntrega
-                  ? new Date(grupo.fechaEntrega)
+      return tx.compraSimple.create({
+        data: {
+          codigo,
+          nombre: dto.nombre,
+          tipo: dto.tipo,
+          esRendicion: dto.esRendicion ?? false,
+          aprobadoInformalPorId: dto.esRendicion
+            ? dto.aprobadoInformalPorId
+            : undefined,
+          proyectoId: dto.proyectoId,
+          creadoPorId: userId,
+          nota: dto.nota,
+          grupos: {
+            create: dto.grupos.map((grupo, i) => ({
+              numero: numeros[i],
+              origen: 'simple',
+              estado: 'borrador',
+              estadoAprobacion: 'pendiente',
+              proyectoId: dto.proyectoId,
+              proveedorId: grupo.proveedorId,
+              proveedorNombreLibre: grupo.proveedorId
+                ? undefined
+                : grupo.proveedorNombreLibre,
+              fechaEntrega: grupo.fechaEntrega
+                ? new Date(grupo.fechaEntrega)
+                : undefined,
+              montoTotal: montoGrupo(grupo.items),
+              destinoPago: grupo.destinoPago,
+              pagoBanco:
+                grupo.destinoPago === 'empresa' ? grupo.pagoBanco : undefined,
+              pagoNumeroCuenta:
+                grupo.destinoPago === 'empresa'
+                  ? grupo.pagoNumeroCuenta
                   : undefined,
-                montoTotal: montoGrupo(grupo.items),
-                destinoPago: grupo.destinoPago,
-                pagoBanco:
-                  grupo.destinoPago === 'empresa' ? grupo.pagoBanco : undefined,
-                pagoNumeroCuenta:
-                  grupo.destinoPago === 'empresa'
-                    ? grupo.pagoNumeroCuenta
-                    : undefined,
-                pagoRazonSocial:
-                  grupo.destinoPago === 'empresa'
-                    ? grupo.pagoRazonSocial
-                    : undefined,
-                pagoMetodo:
-                  grupo.destinoPago === 'trabajador'
-                    ? grupo.pagoMetodo
-                    : undefined,
-                pagoTrabajadorBanco:
-                  grupo.destinoPago === 'trabajador'
-                    ? grupo.pagoTrabajadorBanco
-                    : undefined,
-                pagoTrabajadorNumeroCuenta:
-                  grupo.destinoPago === 'trabajador'
-                    ? grupo.pagoTrabajadorNumeroCuenta
-                    : undefined,
-                pagoTrabajadorNumero:
-                  grupo.destinoPago === 'trabajador'
-                    ? grupo.pagoTrabajadorNumero
-                    : undefined,
-                pagoTrabajadorId:
-                  grupo.destinoPago === 'trabajador'
-                    ? pagoTrabajadorId
-                    : undefined,
-                creadoPorId: userId,
-                items: {
-                  create: grupo.items.map((item) => ({
-                    descripcion: item.descripcion,
-                    cantidad: item.cantidad,
-                    unidad: item.unidad ?? 'und',
-                    precioUnitario: item.precioUnitario,
-                    precioTotal: item.cantidad * item.precioUnitario,
-                  })),
+              pagoRazonSocial:
+                grupo.destinoPago === 'empresa'
+                  ? grupo.pagoRazonSocial
+                  : undefined,
+              pagoMetodo:
+                grupo.destinoPago === 'trabajador'
+                  ? grupo.pagoMetodo
+                  : undefined,
+              pagoTrabajadorBanco:
+                grupo.destinoPago === 'trabajador'
+                  ? grupo.pagoTrabajadorBanco
+                  : undefined,
+              pagoTrabajadorNumeroCuenta:
+                grupo.destinoPago === 'trabajador'
+                  ? grupo.pagoTrabajadorNumeroCuenta
+                  : undefined,
+              pagoTrabajadorNumero:
+                grupo.destinoPago === 'trabajador'
+                  ? grupo.pagoTrabajadorNumero
+                  : undefined,
+              pagoTrabajadorId:
+                grupo.destinoPago === 'trabajador'
+                  ? pagoTrabajadorId
+                  : undefined,
+              creadoPorId: userId,
+              items: {
+                create: grupo.items.map((item) => ({
+                  descripcion: item.descripcion,
+                  cantidad: item.cantidad,
+                  unidad: item.unidad ?? 'und',
+                  precioUnitario: item.precioUnitario,
+                  precioTotal: item.cantidad * item.precioUnitario,
+                })),
+              },
+              historial: {
+                create: {
+                  estado: 'pendiente',
+                  actorId: userId,
+                  actorRole: userRole,
                 },
-                historial: {
-                  create: {
-                    estado: 'pendiente',
-                    actorId: userId,
-                    actorRole: userRole,
-                  },
-                },
-              })),
-            },
+              },
+            })),
           },
-          include: COMPRA_SIMPLE_INCLUDE,
-        });
-      },
-    );
+        },
+        include: COMPRA_SIMPLE_INCLUDE,
+      });
+    });
 
     this.events.emit(AppEvents.COMPRA_SIMPLE_CREADA, {
       compraSimpleId: creada.id,
