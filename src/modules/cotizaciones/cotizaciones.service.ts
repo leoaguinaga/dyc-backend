@@ -775,6 +775,48 @@ export class CotizacionesService {
     });
   }
 
+  async eliminarArchivo(
+    cotizacionId: string,
+    archivoId: string,
+    actor: { id: string; role: Role },
+  ) {
+    const archivo = await this.prisma.cotizacionArchivo.findFirst({
+      where: { id: archivoId, cotizacionId },
+    });
+    if (!archivo)
+      throw new NotFoundException(`Archivo ${archivoId} no encontrado`);
+
+    const cotizacion = await this.prisma.cotizacion.findUnique({
+      where: { id: cotizacionId },
+      include: { solicitud: true },
+    });
+    if (!cotizacion)
+      throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
+
+    // Mismas reglas que corregir una respuesta ya recibida/aprobada.
+    if (
+      cotizacion.solicitud.estado === 'orden_generada' ||
+      cotizacion.solicitud.estado === 'cancelada'
+    ) {
+      throw new BadRequestException(
+        'No se puede editar: ya se generó una orden de compra/servicio para esta solicitud',
+      );
+    }
+    if (
+      cotizacion.solicitud.estado === 'aprobada_gerencia' &&
+      !['gerencia', 'administrador', 'admin_ti'].includes(actor.role)
+    ) {
+      throw new ForbiddenException(
+        'Solo gerencia puede editar la cotización una vez aprobada',
+      );
+    }
+
+    await this.storage.remove(archivo.url).catch(() => undefined);
+    await this.prisma.cotizacionArchivo.delete({ where: { id: archivoId } });
+
+    return { success: true };
+  }
+
   // ── Helpers ───────────────────────────────────────────────────────────────
 
   private async generateCodigo(): Promise<string> {

@@ -1,5 +1,7 @@
+import { Type } from 'class-transformer';
 import { PartialType } from '@nestjs/mapped-types';
 import {
+  IsArray,
   IsBoolean,
   IsDateString,
   IsIn,
@@ -10,6 +12,7 @@ import {
   IsString,
   Max,
   Min,
+  ValidateNested,
 } from 'class-validator';
 
 export class CreatePagoDto {
@@ -112,6 +115,31 @@ export class UpdatePagoRecurrenteDto extends PartialType(CreatePagoRecurrenteDto
 export class CreatePlanillaStaffDto {
   @IsString()
   periodo: string;
+}
+
+export class TramoPagoDto {
+  @IsOptional()
+  @IsString()
+  id?: string;
+
+  @IsNumber()
+  @Min(0.01)
+  @Max(100)
+  porcentaje: number;
+
+  @IsDateString()
+  fecha: string;
+
+  @IsOptional()
+  @IsString()
+  nota?: string;
+}
+
+export class SyncPlanPagosDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => TramoPagoDto)
+  tramos: TramoPagoDto[];
 }
 
 export class UpdatePagoDto {

@@ -33,6 +33,7 @@ export type OrdenCompraAvgAggregateOutputType = {
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
   retencionPorcentaje: runtime.Decimal | null
+  descuentoMonto: runtime.Decimal | null
   tipoCambio: runtime.Decimal | null
 }
 
@@ -43,6 +44,7 @@ export type OrdenCompraSumAggregateOutputType = {
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
   retencionPorcentaje: runtime.Decimal | null
+  descuentoMonto: runtime.Decimal | null
   tipoCambio: runtime.Decimal | null
 }
 
@@ -74,6 +76,7 @@ export type OrdenCompraMinAggregateOutputType = {
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
   retencionPorcentaje: runtime.Decimal | null
+  descuentoMonto: runtime.Decimal | null
   incluyeIgv: boolean | null
   tipoCambio: runtime.Decimal | null
   contactoProveedorNombre: string | null
@@ -128,6 +131,7 @@ export type OrdenCompraMaxAggregateOutputType = {
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
   retencionPorcentaje: runtime.Decimal | null
+  descuentoMonto: runtime.Decimal | null
   incluyeIgv: boolean | null
   tipoCambio: runtime.Decimal | null
   contactoProveedorNombre: string | null
@@ -182,6 +186,7 @@ export type OrdenCompraCountAggregateOutputType = {
   saldoPorcentaje: number
   detraccionPorcentaje: number
   retencionPorcentaje: number
+  descuentoMonto: number
   incluyeIgv: number
   tipoCambio: number
   contactoProveedorNombre: number
@@ -217,6 +222,7 @@ export type OrdenCompraAvgAggregateInputType = {
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
   retencionPorcentaje?: true
+  descuentoMonto?: true
   tipoCambio?: true
 }
 
@@ -227,6 +233,7 @@ export type OrdenCompraSumAggregateInputType = {
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
   retencionPorcentaje?: true
+  descuentoMonto?: true
   tipoCambio?: true
 }
 
@@ -258,6 +265,7 @@ export type OrdenCompraMinAggregateInputType = {
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
   retencionPorcentaje?: true
+  descuentoMonto?: true
   incluyeIgv?: true
   tipoCambio?: true
   contactoProveedorNombre?: true
@@ -312,6 +320,7 @@ export type OrdenCompraMaxAggregateInputType = {
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
   retencionPorcentaje?: true
+  descuentoMonto?: true
   incluyeIgv?: true
   tipoCambio?: true
   contactoProveedorNombre?: true
@@ -366,6 +375,7 @@ export type OrdenCompraCountAggregateInputType = {
   saldoPorcentaje?: true
   detraccionPorcentaje?: true
   retencionPorcentaje?: true
+  descuentoMonto?: true
   incluyeIgv?: true
   tipoCambio?: true
   contactoProveedorNombre?: true
@@ -507,6 +517,7 @@ export type OrdenCompraGroupByOutputType = {
   saldoPorcentaje: runtime.Decimal | null
   detraccionPorcentaje: runtime.Decimal | null
   retencionPorcentaje: runtime.Decimal | null
+  descuentoMonto: runtime.Decimal | null
   incluyeIgv: boolean
   tipoCambio: runtime.Decimal | null
   contactoProveedorNombre: string | null
@@ -584,6 +595,7 @@ export type OrdenCompraWhereInput = {
   saldoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -649,6 +661,7 @@ export type OrdenCompraOrderByWithRelationInput = {
   saldoPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrderInput | Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -717,6 +730,7 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   saldoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -782,6 +796,7 @@ export type OrdenCompraOrderByWithAggregationInput = {
   saldoPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrderInput | Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrderInput | Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrderInput | Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -844,6 +859,7 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   saldoPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolWithAggregatesFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
@@ -893,6 +909,7 @@ export type OrdenCompraCreateInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -956,6 +973,7 @@ export type OrdenCompraUncheckedCreateInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1009,6 +1027,7 @@ export type OrdenCompraUpdateInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1072,6 +1091,7 @@ export type OrdenCompraUncheckedUpdateInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1130,6 +1150,7 @@ export type OrdenCompraCreateManyInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1179,6 +1200,7 @@ export type OrdenCompraUpdateManyMutationInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1231,6 +1253,7 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1295,6 +1318,7 @@ export type OrdenCompraCountOrderByAggregateInput = {
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrder
@@ -1328,6 +1352,7 @@ export type OrdenCompraAvgOrderByAggregateInput = {
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
 }
 
@@ -1359,6 +1384,7 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrder
@@ -1413,6 +1439,7 @@ export type OrdenCompraMinOrderByAggregateInput = {
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrder
   incluyeIgv?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
   contactoProveedorNombre?: Prisma.SortOrder
@@ -1446,6 +1473,7 @@ export type OrdenCompraSumOrderByAggregateInput = {
   saldoPorcentaje?: Prisma.SortOrder
   detraccionPorcentaje?: Prisma.SortOrder
   retencionPorcentaje?: Prisma.SortOrder
+  descuentoMonto?: Prisma.SortOrder
   tipoCambio?: Prisma.SortOrder
 }
 
@@ -1858,6 +1886,7 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1920,6 +1949,7 @@ export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -1982,6 +2012,7 @@ export type OrdenCompraCreateWithoutAprobadoPorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2043,6 +2074,7 @@ export type OrdenCompraUncheckedCreateWithoutAprobadoPorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2130,6 +2162,7 @@ export type OrdenCompraScalarWhereInput = {
   saldoPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFilter<"OrdenCompra"> | boolean
   tipoCambio?: Prisma.DecimalNullableFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -2195,6 +2228,7 @@ export type OrdenCompraCreateWithoutProyectoInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2256,6 +2290,7 @@ export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2335,6 +2370,7 @@ export type OrdenCompraCreateWithoutPagoTrabajadorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2397,6 +2433,7 @@ export type OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2475,6 +2512,7 @@ export type OrdenCompraCreateWithoutProveedorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2536,6 +2574,7 @@ export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2615,6 +2654,7 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2676,6 +2716,7 @@ export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2755,6 +2796,7 @@ export type OrdenCompraCreateWithoutCompraSimpleInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2816,6 +2858,7 @@ export type OrdenCompraUncheckedCreateWithoutCompraSimpleInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2895,6 +2938,7 @@ export type OrdenCompraCreateWithoutArchivosInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -2957,6 +3001,7 @@ export type OrdenCompraUncheckedCreateWithoutArchivosInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3025,6 +3070,7 @@ export type OrdenCompraUpdateWithoutArchivosInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3087,6 +3133,7 @@ export type OrdenCompraUncheckedUpdateWithoutArchivosInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3139,6 +3186,7 @@ export type OrdenCompraCreateWithoutHistorialInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3201,6 +3249,7 @@ export type OrdenCompraUncheckedCreateWithoutHistorialInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3269,6 +3318,7 @@ export type OrdenCompraUpdateWithoutHistorialInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3331,6 +3381,7 @@ export type OrdenCompraUncheckedUpdateWithoutHistorialInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3383,6 +3434,7 @@ export type OrdenCompraCreateWithoutPagosInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3445,6 +3497,7 @@ export type OrdenCompraUncheckedCreateWithoutPagosInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3513,6 +3566,7 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3575,6 +3629,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3627,6 +3682,7 @@ export type OrdenCompraCreateWithoutItemsInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3689,6 +3745,7 @@ export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3757,6 +3814,7 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3819,6 +3877,7 @@ export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3876,6 +3935,7 @@ export type OrdenCompraCreateManyCreadoPorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3928,6 +3988,7 @@ export type OrdenCompraCreateManyAprobadoPorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -3977,6 +4038,7 @@ export type OrdenCompraUpdateWithoutCreadoPorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4039,6 +4101,7 @@ export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4096,6 +4159,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4144,6 +4208,7 @@ export type OrdenCompraUpdateWithoutAprobadoPorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4205,6 +4270,7 @@ export type OrdenCompraUncheckedUpdateWithoutAprobadoPorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4262,6 +4328,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutAprobadoPorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4315,6 +4382,7 @@ export type OrdenCompraCreateManyProyectoInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4364,6 +4432,7 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4425,6 +4494,7 @@ export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4482,6 +4552,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4536,6 +4607,7 @@ export type OrdenCompraCreateManyPagoTrabajadorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4584,6 +4656,7 @@ export type OrdenCompraUpdateWithoutPagoTrabajadorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4646,6 +4719,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4703,6 +4777,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4755,6 +4830,7 @@ export type OrdenCompraCreateManyProveedorInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -4804,6 +4880,7 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4865,6 +4942,7 @@ export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4922,6 +5000,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4975,6 +5054,7 @@ export type OrdenCompraCreateManySolicitudInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -5024,6 +5104,7 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5085,6 +5166,7 @@ export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5142,6 +5224,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5195,6 +5278,7 @@ export type OrdenCompraCreateManyCompraSimpleInput = {
   saldoPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: boolean
   tipoCambio?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: string | null
@@ -5244,6 +5328,7 @@ export type OrdenCompraUpdateWithoutCompraSimpleInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5305,6 +5390,7 @@ export type OrdenCompraUncheckedUpdateWithoutCompraSimpleInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5362,6 +5448,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCompraSimpleInput = {
   saldoPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detraccionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   retencionPorcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuentoMonto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   incluyeIgv?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tipoCambio?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   contactoProveedorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5474,6 +5561,7 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
   retencionPorcentaje?: boolean
+  descuentoMonto?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5540,6 +5628,7 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
   retencionPorcentaje?: boolean
+  descuentoMonto?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5601,6 +5690,7 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
   retencionPorcentaje?: boolean
+  descuentoMonto?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5662,6 +5752,7 @@ export type OrdenCompraSelectScalar = {
   saldoPorcentaje?: boolean
   detraccionPorcentaje?: boolean
   retencionPorcentaje?: boolean
+  descuentoMonto?: boolean
   incluyeIgv?: boolean
   tipoCambio?: boolean
   contactoProveedorNombre?: boolean
@@ -5688,7 +5779,7 @@ export type OrdenCompraSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "tipo" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "comentarioRecepcion" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "retencionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
+export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "tipo" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "comentarioRecepcion" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "retencionPorcentaje" | "descuentoMonto" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
 export type OrdenCompraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
   proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
@@ -5765,6 +5856,7 @@ export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.Interna
     saldoPorcentaje: runtime.Decimal | null
     detraccionPorcentaje: runtime.Decimal | null
     retencionPorcentaje: runtime.Decimal | null
+    descuentoMonto: runtime.Decimal | null
     incluyeIgv: boolean
     tipoCambio: runtime.Decimal | null
     contactoProveedorNombre: string | null
@@ -6250,6 +6342,7 @@ export interface OrdenCompraFieldRefs {
   readonly saldoPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly detraccionPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly retencionPorcentaje: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
+  readonly descuentoMonto: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly incluyeIgv: Prisma.FieldRef<"OrdenCompra", 'Boolean'>
   readonly tipoCambio: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly contactoProveedorNombre: Prisma.FieldRef<"OrdenCompra", 'String'>

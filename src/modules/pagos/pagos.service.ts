@@ -16,6 +16,7 @@ import {
   QueryPagosDto,
   ReportePagosDto,
   SubirComprobantePagoDto,
+  SyncPlanPagosDto,
   UpdatePagoDto,
   CrearComprobanteDto,
   ActualizarComprobanteDto,
@@ -211,6 +212,73 @@ export class PagosService {
       include: PAGO_INCLUDE,
     });
     return withEstadoEfectivo(pago);
+  }
+
+  /**
+   * Reemplaza de una sola vez el plan de pagos editable de una OC (equivalente
+   * a la tabla de cuotas que ya se registra al recibir una cotización, pero
+   * editable después). Los tramos `pagado`/`cancelado` quedan intactos: no se
+   * pueden borrar ni editar desde aquí, y solo los `pagado` cuentan para el
+   * límite de 100%.
+   */
+  async syncPlan(ordenCompraId: string, dto: SyncPlanPagosDto, userId: string) {
+    const oc = await this.prisma.ordenCompra.findUnique({ where: { id: ordenCompraId } });
+    if (!oc) throw new NotFoundException('Orden de compra no encontrada');
+
+    const existentes = await this.prisma.pago.findMany({ where: { ordenCompraId } });
+    const editables = existentes.filter((p) => p.estado === 'pendiente' || p.estado === 'borrador');
+    const idsEditables = new Set(editables.map((p) => p.id));
+
+    for (const tramo of dto.tramos) {
+      if (tramo.id && !idsEditables.has(tramo.id))
+        throw new BadRequestException('Uno de los tramos no existe o ya no se puede editar');
+    }
+
+    const sumaPagada = existentes
+      .filter((p) => p.estado === 'pagado')
+      .reduce((s, p) => s + Number(p.porcentaje), 0);
+    const sumaTramos = dto.tramos.reduce((s, t) => s + t.porcentaje, 0);
+    if (sumaPagada + sumaTramos > 100.01)
+      throw new BadRequestException(
+        `El plan de pagos excede el 100%: ya hay ${sumaPagada.toFixed(2)}% pagado y el nuevo plan suma ${sumaTramos.toFixed(2)}%.`,
+      );
+
+    const idsAConservar = new Set(dto.tramos.filter((t) => t.id).map((t) => t.id!));
+    const aBorrar = editables.filter((p) => !idsAConservar.has(p.id));
+
+    await this.prisma.$transaction([
+      ...aBorrar.map((p) => this.prisma.pago.delete({ where: { id: p.id } })),
+      ...dto.tramos.map((tramo) => {
+        const monto = (Number(oc.montoTotal) * tramo.porcentaje) / 100;
+        if (tramo.id) {
+          return this.prisma.pago.update({
+            where: { id: tramo.id },
+            data: {
+              porcentaje: tramo.porcentaje,
+              monto,
+              fechaProgramada: new Date(tramo.fecha),
+              // Si el cliente no manda `nota` (la UI de tabla no la edita),
+              // se deja intacta la que ya tuviera el tramo.
+              nota: tramo.nota !== undefined ? tramo.nota.trim() || null : undefined,
+            },
+          });
+        }
+        return this.prisma.pago.create({
+          data: {
+            ordenCompraId,
+            proyectoId: oc.proyectoId,
+            concepto: oc.concepto ?? undefined,
+            monto,
+            porcentaje: tramo.porcentaje,
+            fechaProgramada: new Date(tramo.fecha),
+            nota: tramo.nota?.trim() || undefined,
+            registradoPorId: userId,
+          },
+        });
+      }),
+    ]);
+
+    return this.findByOrden(ordenCompraId);
   }
 
   async createRecordatorio(dto: CreateRecordatorioPagoDto, user: AuthenticatedUser) {

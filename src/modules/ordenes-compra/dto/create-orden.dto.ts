@@ -63,6 +63,11 @@ export class UpdateOrdenCompraDto {
   retencionPorcentaje?: number;
 
   @IsOptional()
+  @IsNumber()
+  @Min(0)
+  descuentoMonto?: number;
+
+  @IsOptional()
   @IsBoolean()
   incluyeIgv?: boolean;
 

@@ -53,6 +53,7 @@ const OC_INCLUDE = {
   },
   creadoPor: { select: { id: true, name: true, email: true } },
   items: true,
+  pagos: { orderBy: { fechaProgramada: 'asc' } },
 } as const;
 
 const PREFIJO_POR_TIPO: Record<TipoOrdenCompra, string> = {
@@ -331,6 +332,7 @@ export class OrdenesCompraService {
           saldoPorcentaje: dto.saldoPorcentaje,
           detraccionPorcentaje: dto.detraccionPorcentaje,
           retencionPorcentaje: dto.retencionPorcentaje,
+          descuentoMonto: dto.descuentoMonto,
           incluyeIgv: dto.incluyeIgv,
           tipoCambio: dto.tipoCambio,
           contactoProveedorNombre: dto.contactoProveedorNombre,

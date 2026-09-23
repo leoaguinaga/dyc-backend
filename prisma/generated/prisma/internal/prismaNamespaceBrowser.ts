@@ -739,6 +739,7 @@ export const OrdenCompraScalarFieldEnum = {
   saldoPorcentaje: 'saldoPorcentaje',
   detraccionPorcentaje: 'detraccionPorcentaje',
   retencionPorcentaje: 'retencionPorcentaje',
+  descuentoMonto: 'descuentoMonto',
   incluyeIgv: 'incluyeIgv',
   tipoCambio: 'tipoCambio',
   contactoProveedorNombre: 'contactoProveedorNombre',

@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   Query,
   Req,
   Res,
@@ -29,6 +30,7 @@ import {
   QueryPagosDto,
   ReportePagosDto,
   SubirComprobantePagoDto,
+  SyncPlanPagosDto,
   UpdatePagoDto,
   CrearComprobanteDto,
   ActualizarComprobanteDto,
@@ -97,6 +99,15 @@ export class PagosController {
   @Get('orden/:ordenCompraId')
   findByOrden(@Param('ordenCompraId') ordenCompraId: string) {
     return this.service.findByOrden(ordenCompraId);
+  }
+
+  @Put('orden/:ordenCompraId')
+  syncPlan(
+    @Param('ordenCompraId') ordenCompraId: string,
+    @Body() dto: SyncPlanPagosDto,
+    @Req() req: AuthRequest,
+  ) {
+    return this.service.syncPlan(ordenCompraId, dto, req.user!.id);
   }
 
   @Get(':id')
