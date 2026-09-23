@@ -45,14 +45,43 @@ const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
 
 // Paso 1: aprobación técnica del área correspondiente al tipo de compra
 const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
-  civil: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
-  electrico: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
-  seguridad: ['ing_civil', 'ing_electrico', 'jefe_sig', 'administrador', 'admin_ti'],
-  administrativo: ['ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador', 'admin_ti'],
+  civil: [
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'administrador',
+    'admin_ti',
+  ],
+  electrico: [
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'administrador',
+    'admin_ti',
+  ],
+  seguridad: [
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'administrador',
+    'admin_ti',
+  ],
+  administrativo: [
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'logistica',
+    'administrador',
+    'admin_ti',
+  ],
 };
 
 // Paso 2: aprobación final de gerencia (recién aquí se genera el pago)
-const ROLES_APROBACION_GERENCIA: Role[] = ['gerencia', 'administrador', 'admin_ti'];
+const ROLES_APROBACION_GERENCIA: Role[] = [
+  'gerencia',
+  'administrador',
+  'admin_ti',
+];
 
 // Roles que un supervisor puede citar como respaldo informal de una rendición
 const ROLES_APROBADOR_INFORMAL: Role[] = ['gerencia', 'administrador'];
@@ -422,86 +451,97 @@ export class ComprasSimplesService {
     }
 
     const codigo = await this.generateCodigo();
-    const numeros = await Promise.all(
-      dto.grupos.map((_, i) => this.ordenesCompra.generateNumero('compra', i)),
-    );
 
-    const creada = await this.prisma.compraSimple.create({
-      data: {
-        codigo,
-        nombre: dto.nombre,
-        tipo: dto.tipo,
-        esRendicion: dto.esRendicion ?? false,
-        aprobadoInformalPorId: dto.esRendicion
-          ? dto.aprobadoInformalPorId
-          : undefined,
-        proyectoId: dto.proyectoId,
-        creadoPorId: userId,
-        nota: dto.nota,
-        grupos: {
-          create: dto.grupos.map((grupo, i) => ({
-            numero: numeros[i],
-            origen: 'simple',
-            estado: 'borrador',
-            estadoAprobacion: 'pendiente',
-            proyectoId: dto.proyectoId,
-            proveedorId: grupo.proveedorId,
-            proveedorNombreLibre: grupo.proveedorId
-              ? undefined
-              : grupo.proveedorNombreLibre,
-            fechaEntrega: grupo.fechaEntrega
-              ? new Date(grupo.fechaEntrega)
+    const creada = await this.ordenesCompra.reintentarSiNumeroDuplicado(
+      async () => {
+        const numeros = await Promise.all(
+          dto.grupos.map((_, i) =>
+            this.ordenesCompra.generateNumero('compra', i),
+          ),
+        );
+
+        return this.prisma.compraSimple.create({
+          data: {
+            codigo,
+            nombre: dto.nombre,
+            tipo: dto.tipo,
+            esRendicion: dto.esRendicion ?? false,
+            aprobadoInformalPorId: dto.esRendicion
+              ? dto.aprobadoInformalPorId
               : undefined,
-            montoTotal: montoGrupo(grupo.items),
-            destinoPago: grupo.destinoPago,
-            pagoBanco:
-              grupo.destinoPago === 'empresa' ? grupo.pagoBanco : undefined,
-            pagoNumeroCuenta:
-              grupo.destinoPago === 'empresa'
-                ? grupo.pagoNumeroCuenta
-                : undefined,
-            pagoRazonSocial:
-              grupo.destinoPago === 'empresa'
-                ? grupo.pagoRazonSocial
-                : undefined,
-            pagoMetodo:
-              grupo.destinoPago === 'trabajador' ? grupo.pagoMetodo : undefined,
-            pagoTrabajadorBanco:
-              grupo.destinoPago === 'trabajador'
-                ? grupo.pagoTrabajadorBanco
-                : undefined,
-            pagoTrabajadorNumeroCuenta:
-              grupo.destinoPago === 'trabajador'
-                ? grupo.pagoTrabajadorNumeroCuenta
-                : undefined,
-            pagoTrabajadorNumero:
-              grupo.destinoPago === 'trabajador'
-                ? grupo.pagoTrabajadorNumero
-                : undefined,
-            pagoTrabajadorId:
-              grupo.destinoPago === 'trabajador' ? pagoTrabajadorId : undefined,
+            proyectoId: dto.proyectoId,
             creadoPorId: userId,
-            items: {
-              create: grupo.items.map((item) => ({
-                descripcion: item.descripcion,
-                cantidad: item.cantidad,
-                unidad: item.unidad ?? 'und',
-                precioUnitario: item.precioUnitario,
-                precioTotal: item.cantidad * item.precioUnitario,
+            nota: dto.nota,
+            grupos: {
+              create: dto.grupos.map((grupo, i) => ({
+                numero: numeros[i],
+                origen: 'simple',
+                estado: 'borrador',
+                estadoAprobacion: 'pendiente',
+                proyectoId: dto.proyectoId,
+                proveedorId: grupo.proveedorId,
+                proveedorNombreLibre: grupo.proveedorId
+                  ? undefined
+                  : grupo.proveedorNombreLibre,
+                fechaEntrega: grupo.fechaEntrega
+                  ? new Date(grupo.fechaEntrega)
+                  : undefined,
+                montoTotal: montoGrupo(grupo.items),
+                destinoPago: grupo.destinoPago,
+                pagoBanco:
+                  grupo.destinoPago === 'empresa' ? grupo.pagoBanco : undefined,
+                pagoNumeroCuenta:
+                  grupo.destinoPago === 'empresa'
+                    ? grupo.pagoNumeroCuenta
+                    : undefined,
+                pagoRazonSocial:
+                  grupo.destinoPago === 'empresa'
+                    ? grupo.pagoRazonSocial
+                    : undefined,
+                pagoMetodo:
+                  grupo.destinoPago === 'trabajador'
+                    ? grupo.pagoMetodo
+                    : undefined,
+                pagoTrabajadorBanco:
+                  grupo.destinoPago === 'trabajador'
+                    ? grupo.pagoTrabajadorBanco
+                    : undefined,
+                pagoTrabajadorNumeroCuenta:
+                  grupo.destinoPago === 'trabajador'
+                    ? grupo.pagoTrabajadorNumeroCuenta
+                    : undefined,
+                pagoTrabajadorNumero:
+                  grupo.destinoPago === 'trabajador'
+                    ? grupo.pagoTrabajadorNumero
+                    : undefined,
+                pagoTrabajadorId:
+                  grupo.destinoPago === 'trabajador'
+                    ? pagoTrabajadorId
+                    : undefined,
+                creadoPorId: userId,
+                items: {
+                  create: grupo.items.map((item) => ({
+                    descripcion: item.descripcion,
+                    cantidad: item.cantidad,
+                    unidad: item.unidad ?? 'und',
+                    precioUnitario: item.precioUnitario,
+                    precioTotal: item.cantidad * item.precioUnitario,
+                  })),
+                },
+                historial: {
+                  create: {
+                    estado: 'pendiente',
+                    actorId: userId,
+                    actorRole: userRole,
+                  },
+                },
               })),
             },
-            historial: {
-              create: {
-                estado: 'pendiente',
-                actorId: userId,
-                actorRole: userRole,
-              },
-            },
-          })),
-        },
+          },
+          include: COMPRA_SIMPLE_INCLUDE,
+        });
       },
-      include: COMPRA_SIMPLE_INCLUDE,
-    });
+    );
 
     this.events.emit(AppEvents.COMPRA_SIMPLE_CREADA, {
       compraSimpleId: creada.id,
@@ -847,10 +887,7 @@ export class ComprasSimplesService {
       const items = await tx.ordenCompraItem.findMany({
         where: { ordenId: grupoId },
       });
-      const montoTotal = items.reduce(
-        (s, i) => s + Number(i.precioTotal),
-        0,
-      );
+      const montoTotal = items.reduce((s, i) => s + Number(i.precioTotal), 0);
 
       const oc = await tx.ordenCompra.update({
         where: { id: grupoId },
