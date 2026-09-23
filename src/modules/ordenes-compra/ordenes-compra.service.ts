@@ -477,6 +477,7 @@ export class OrdenesCompraService {
             ? new Date(dto.fechaEntregaReal)
             : new Date(),
           calificacionCalidad: dto?.calificacionCalidad,
+          comentarioRecepcion: dto?.comentarioRecepcion,
         }),
       },
       include: OC_INCLUDE,

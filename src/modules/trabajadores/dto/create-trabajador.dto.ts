@@ -6,7 +6,7 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-import type { Role } from '../../../prisma/types.js';
+import { Role } from '../../../prisma/types.js';
 
 export class CreateTrabajadorDto {
   @IsString()
@@ -45,7 +45,7 @@ export class CreateTrabajadorDto {
   crearUsuario?: boolean;
 
   @IsOptional()
-  @IsEnum(['supervisor', 'logistica', 'gerencia', 'administrador'])
+  @IsEnum(Role)
   role?: Role;
 
   @IsOptional()

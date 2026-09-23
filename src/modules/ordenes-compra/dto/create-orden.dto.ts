@@ -132,4 +132,8 @@ export class RecibirOrdenCompraDto {
   @Min(1)
   @Max(5)
   calificacionCalidad?: number;
+
+  @IsOptional()
+  @IsString()
+  comentarioRecepcion?: string;
 }

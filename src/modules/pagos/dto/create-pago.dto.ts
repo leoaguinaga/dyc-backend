@@ -215,6 +215,102 @@ export class QueryPagosDto {
   @IsOptional()
   @IsString()
   origen?: string;
+
+  @IsOptional()
+  @IsString()
+  registradoPorId?: string;
+}
+
+const TIPOS_DOCUMENTO_COMPROBANTE = [
+  'factura',
+  'boleta',
+  'guia_remision',
+  'recibo',
+  'nota_credito',
+  'nota_debito',
+  'voucher_deposito',
+  'cotizacion_propia',
+  'cotizacion_proveedor',
+  'otro',
+] as const;
+
+export class CrearComprobanteDto {
+  @IsString()
+  @IsNotEmpty()
+  numero: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  subNumero?: number;
+
+  @IsIn(TIPOS_DOCUMENTO_COMPROBANTE)
+  tipoDocumento: (typeof TIPOS_DOCUMENTO_COMPROBANTE)[number];
+
+  @IsOptional()
+  @IsString()
+  tipoOperacion?: string;
+
+  @IsOptional()
+  @IsString()
+  banco?: string;
+
+  @IsOptional()
+  @IsString()
+  cuenta?: string;
+
+  @IsOptional()
+  @IsString()
+  detalleGasto?: string;
+
+  @IsOptional()
+  @IsString()
+  proveedor?: string;
+
+  @IsOptional()
+  @IsString()
+  cuentaProveedor?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  importe?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  importeRendido?: number;
+}
+
+export class ActualizarComprobanteDto {
+  @IsOptional()
+  @IsIn(['abierto', 'cerrado'])
+  estado?: 'abierto' | 'cerrado';
+
+  @IsOptional()
+  @IsIn(TIPOS_DOCUMENTO_COMPROBANTE)
+  tipoDocumento?: (typeof TIPOS_DOCUMENTO_COMPROBANTE)[number];
+
+  @IsOptional()
+  @IsString()
+  numero?: string;
+
+  @IsOptional()
+  @IsString()
+  detalleGasto?: string;
+
+  @IsOptional()
+  @IsString()
+  proveedor?: string;
+
+  @IsOptional()
+  @IsString()
+  cuentaProveedor?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  importeRendido?: number;
 }
 
 export class ReportePagosDto {

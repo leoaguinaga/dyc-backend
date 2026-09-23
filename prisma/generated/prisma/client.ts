@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
+/**
  * Model Session
  * 
  */
@@ -241,6 +246,11 @@ export type CompraSimpleGrupoHistorial = Prisma.CompraSimpleGrupoHistorialModel
  * 
  */
 export type Pago = Prisma.PagoModel
+/**
+ * Model Comprobante
+ * 
+ */
+export type Comprobante = Prisma.ComprobanteModel
 /**
  * Model PagoRecurrente
  * 

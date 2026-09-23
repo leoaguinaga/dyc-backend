@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  AuditLog: 'AuditLog',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
@@ -91,6 +92,7 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  Comprobante: 'Comprobante',
   PagoRecurrente: 'PagoRecurrente',
   PerfilStaff: 'PerfilStaff',
   PlanillaStaff: 'PlanillaStaff',
@@ -130,6 +132,21 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  method: 'method',
+  path: 'path',
+  entidadTipo: 'entidadTipo',
+  entidadId: 'entidadId',
+  statusCode: 'statusCode',
+  ip: 'ip',
+  creadoEn: 'creadoEn'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {
@@ -226,6 +243,7 @@ export const ProyectoScalarFieldEnum = {
   jornadaFin: 'jornadaFin',
   toleranciaMinutos: 'toleranciaMinutos',
   toleranciaSalidaMinutos: 'toleranciaSalidaMinutos',
+  fechaAsignacion: 'fechaAsignacion',
   fechaInicio: 'fechaInicio',
   fechaFin: 'fechaFin',
   fechaInicioReal: 'fechaInicioReal',
@@ -713,6 +731,7 @@ export const OrdenCompraScalarFieldEnum = {
   fechaEntrega: 'fechaEntrega',
   fechaEntregaReal: 'fechaEntregaReal',
   calificacionCalidad: 'calificacionCalidad',
+  comentarioRecepcion: 'comentarioRecepcion',
   montoTotal: 'montoTotal',
   nota: 'nota',
   lugarEntrega: 'lugarEntrega',
@@ -810,6 +829,31 @@ export const PagoScalarFieldEnum = {
 } as const
 
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
+
+
+export const ComprobanteScalarFieldEnum = {
+  id: 'id',
+  pagoId: 'pagoId',
+  numero: 'numero',
+  subNumero: 'subNumero',
+  tipoDocumento: 'tipoDocumento',
+  tipoOperacion: 'tipoOperacion',
+  banco: 'banco',
+  cuenta: 'cuenta',
+  detalleGasto: 'detalleGasto',
+  proveedor: 'proveedor',
+  cuentaProveedor: 'cuentaProveedor',
+  importe: 'importe',
+  importeRendido: 'importeRendido',
+  estado: 'estado',
+  archivoNombre: 'archivoNombre',
+  archivoUrl: 'archivoUrl',
+  generadoPorId: 'generadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ComprobanteScalarFieldEnum = (typeof ComprobanteScalarFieldEnum)[keyof typeof ComprobanteScalarFieldEnum]
 
 
 export const PagoRecurrenteScalarFieldEnum = {

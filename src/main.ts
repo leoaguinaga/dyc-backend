@@ -6,6 +6,7 @@ import { join } from 'path';
 import { AppModule } from './app.module.js';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter.js';
 import { AuditInterceptor } from './shared/interceptors/audit.interceptor.js';
+import { PrismaService } from './prisma/prisma.service.js';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -28,7 +29,7 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalInterceptors(new AuditInterceptor());
+  app.useGlobalInterceptors(new AuditInterceptor(app.get(PrismaService)));
 
   app.setGlobalPrefix('api');
 

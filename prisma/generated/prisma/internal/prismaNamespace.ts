@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  AuditLog: 'AuditLog',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
@@ -424,6 +425,7 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  Comprobante: 'Comprobante',
   PagoRecurrente: 'PagoRecurrente',
   PerfilStaff: 'PerfilStaff',
   PlanillaStaff: 'PlanillaStaff',
@@ -447,7 +449,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
+    modelProps: "user" | "auditLog" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "comprobante" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -522,6 +524,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    AuditLog: {
+      payload: Prisma.$AuditLogPayload<ExtArgs>
+      fields: Prisma.AuditLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AuditLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AuditLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        findFirst: {
+          args: Prisma.AuditLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AuditLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        findMany: {
+          args: Prisma.AuditLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+        }
+        create: {
+          args: Prisma.AuditLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        createMany: {
+          args: Prisma.AuditLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AuditLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+        }
+        delete: {
+          args: Prisma.AuditLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        update: {
+          args: Prisma.AuditLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.AuditLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AuditLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AuditLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.AuditLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
+        }
+        aggregate: {
+          args: Prisma.AuditLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAuditLog>
+        }
+        groupBy: {
+          args: Prisma.AuditLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuditLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AuditLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuditLogCountAggregateOutputType> | number
         }
       }
     }
@@ -3411,6 +3487,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Comprobante: {
+      payload: Prisma.$ComprobantePayload<ExtArgs>
+      fields: Prisma.ComprobanteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ComprobanteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ComprobanteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>
+        }
+        findFirst: {
+          args: Prisma.ComprobanteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ComprobanteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>
+        }
+        findMany: {
+          args: Prisma.ComprobanteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>[]
+        }
+        create: {
+          args: Prisma.ComprobanteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>
+        }
+        createMany: {
+          args: Prisma.ComprobanteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ComprobanteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>[]
+        }
+        delete: {
+          args: Prisma.ComprobanteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>
+        }
+        update: {
+          args: Prisma.ComprobanteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>
+        }
+        deleteMany: {
+          args: Prisma.ComprobanteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ComprobanteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ComprobanteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>[]
+        }
+        upsert: {
+          args: Prisma.ComprobanteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComprobantePayload>
+        }
+        aggregate: {
+          args: Prisma.ComprobanteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateComprobante>
+        }
+        groupBy: {
+          args: Prisma.ComprobanteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ComprobanteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ComprobanteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ComprobanteCountAggregateOutputType> | number
+        }
+      }
+    }
     PagoRecurrente: {
       payload: Prisma.$PagoRecurrentePayload<ExtArgs>
       fields: Prisma.PagoRecurrenteFieldRefs
@@ -4057,6 +4207,21 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  method: 'method',
+  path: 'path',
+  entidadTipo: 'entidadTipo',
+  entidadId: 'entidadId',
+  statusCode: 'statusCode',
+  ip: 'ip',
+  creadoEn: 'creadoEn'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
 export const SessionScalarFieldEnum = {
   id: 'id',
   expiresAt: 'expiresAt',
@@ -4151,6 +4316,7 @@ export const ProyectoScalarFieldEnum = {
   jornadaFin: 'jornadaFin',
   toleranciaMinutos: 'toleranciaMinutos',
   toleranciaSalidaMinutos: 'toleranciaSalidaMinutos',
+  fechaAsignacion: 'fechaAsignacion',
   fechaInicio: 'fechaInicio',
   fechaFin: 'fechaFin',
   fechaInicioReal: 'fechaInicioReal',
@@ -4638,6 +4804,7 @@ export const OrdenCompraScalarFieldEnum = {
   fechaEntrega: 'fechaEntrega',
   fechaEntregaReal: 'fechaEntregaReal',
   calificacionCalidad: 'calificacionCalidad',
+  comentarioRecepcion: 'comentarioRecepcion',
   montoTotal: 'montoTotal',
   nota: 'nota',
   lugarEntrega: 'lugarEntrega',
@@ -4735,6 +4902,31 @@ export const PagoScalarFieldEnum = {
 } as const
 
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
+
+
+export const ComprobanteScalarFieldEnum = {
+  id: 'id',
+  pagoId: 'pagoId',
+  numero: 'numero',
+  subNumero: 'subNumero',
+  tipoDocumento: 'tipoDocumento',
+  tipoOperacion: 'tipoOperacion',
+  banco: 'banco',
+  cuenta: 'cuenta',
+  detalleGasto: 'detalleGasto',
+  proveedor: 'proveedor',
+  cuentaProveedor: 'cuentaProveedor',
+  importe: 'importe',
+  importeRendido: 'importeRendido',
+  estado: 'estado',
+  archivoNombre: 'archivoNombre',
+  archivoUrl: 'archivoUrl',
+  generadoPorId: 'generadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ComprobanteScalarFieldEnum = (typeof ComprobanteScalarFieldEnum)[keyof typeof ComprobanteScalarFieldEnum]
 
 
 export const PagoRecurrenteScalarFieldEnum = {
@@ -4944,6 +5136,20 @@ export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
  * Reference to a field of type 'CategoriaServicioProyecto'
  */
 export type EnumCategoriaServicioProyectoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaServicioProyecto'>
@@ -4968,20 +5174,6 @@ export type EnumAmbitoGeograficoFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'AmbitoGeografico[]'
  */
 export type ListEnumAmbitoGeograficoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AmbitoGeografico[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -5322,6 +5514,34 @@ export type ListEnumEstadoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'TipoDocumentoComprobante'
+ */
+export type EnumTipoDocumentoComprobanteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoDocumentoComprobante'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoDocumentoComprobante[]'
+ */
+export type ListEnumTipoDocumentoComprobanteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoDocumentoComprobante[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoComprobante'
+ */
+export type EnumEstadoComprobanteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoComprobante'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoComprobante[]'
+ */
+export type ListEnumEstadoComprobanteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoComprobante[]'>
+    
+
+
+/**
  * Reference to a field of type 'EstadoCobro'
  */
 export type EnumEstadoCobroFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoCobro'>
@@ -5473,6 +5693,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  auditLog?: Prisma.AuditLogOmit
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit
   verification?: Prisma.VerificationOmit
@@ -5512,6 +5733,7 @@ export type GlobalOmitConfig = {
   compraSimpleGrupoArchivo?: Prisma.CompraSimpleGrupoArchivoOmit
   compraSimpleGrupoHistorial?: Prisma.CompraSimpleGrupoHistorialOmit
   pago?: Prisma.PagoOmit
+  comprobante?: Prisma.ComprobanteOmit
   pagoRecurrente?: Prisma.PagoRecurrenteOmit
   perfilStaff?: Prisma.PerfilStaffOmit
   planillaStaff?: Prisma.PlanillaStaffOmit

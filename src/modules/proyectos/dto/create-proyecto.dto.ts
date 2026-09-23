@@ -101,6 +101,10 @@ export class CreateProyectoDto {
 
   @IsOptional()
   @IsDateString()
+  fechaAsignacion?: string;
+
+  @IsOptional()
+  @IsDateString()
   fechaInicio?: string;
 
   @IsOptional()

@@ -1,5 +1,6 @@
 import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
+import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
@@ -16,6 +17,8 @@ import {
   ReportePagosDto,
   SubirComprobantePagoDto,
   UpdatePagoDto,
+  CrearComprobanteDto,
+  ActualizarComprobanteDto,
 } from './dto/create-pago.dto.js';
 
 const PAGO_INCLUDE = {
@@ -23,6 +26,7 @@ const PAGO_INCLUDE = {
     select: {
       id: true,
       numero: true,
+      nombre: true,
       concepto: true,
       montoTotal: true,
       proveedorNombreLibre: true,
@@ -59,7 +63,11 @@ const PAGO_INCLUDE = {
       telefono: true,
     },
   },
-} as const;
+  comprobantes: {
+    orderBy: [{ numero: 'asc' }, { subNumero: 'asc' }],
+    include: { generadoPor: { select: { id: true, name: true } } },
+  },
+} satisfies Prisma.PagoInclude;
 
 function withEstadoEfectivo<T extends { estado: string; fechaProgramada: Date }>(pago: T) {
   // Comparación por día calendario (no por hora exacta): un pago programado
@@ -123,6 +131,7 @@ export class PagosService {
         ...proyectoWhere,
         centroCosto: query.centroCosto,
         origen: query.origen,
+        registradoPorId: query.registradoPorId,
         ordenCompra: query.proveedorId ? { proveedorId: query.proveedorId } : undefined,
       },
       include: PAGO_INCLUDE,
@@ -469,6 +478,81 @@ export class PagosService {
     return withEstadoEfectivo(pago);
   }
 
+  async crearComprobante(
+    pagoId: string,
+    dto: CrearComprobanteDto,
+    file: Express.Multer.File,
+    userId: string,
+  ) {
+    await this.findOne(pagoId);
+    const archivo = await this.storage.save({
+      buffer: file.buffer,
+      originalName: file.originalname,
+      mimeType: file.mimetype,
+      folder: 'pagos/comprobantes',
+    });
+
+    await this.prisma.comprobante.create({
+      data: {
+        pagoId,
+        numero: dto.numero.trim(),
+        subNumero: dto.subNumero ?? 1,
+        tipoDocumento: dto.tipoDocumento,
+        tipoOperacion: dto.tipoOperacion?.trim() || null,
+        banco: dto.banco?.trim() || null,
+        cuenta: dto.cuenta?.trim() || null,
+        detalleGasto: dto.detalleGasto?.trim() || null,
+        proveedor: dto.proveedor?.trim() || null,
+        cuentaProveedor: dto.cuentaProveedor?.trim() || null,
+        importe: dto.importe ?? 0,
+        importeRendido: dto.importeRendido,
+        archivoNombre: archivo.nombre,
+        archivoUrl: archivo.url,
+        generadoPorId: userId,
+      },
+    });
+
+    return this.findOne(pagoId);
+  }
+
+  async actualizarComprobante(
+    pagoId: string,
+    comprobanteId: string,
+    dto: ActualizarComprobanteDto,
+  ) {
+    const existente = await this.prisma.comprobante.findFirst({
+      where: { id: comprobanteId, pagoId },
+    });
+    if (!existente) throw new NotFoundException('Comprobante no encontrado');
+
+    await this.prisma.comprobante.update({
+      where: { id: comprobanteId },
+      data: {
+        estado: dto.estado,
+        tipoDocumento: dto.tipoDocumento,
+        numero: dto.numero?.trim(),
+        detalleGasto: dto.detalleGasto !== undefined ? (dto.detalleGasto?.trim() || null) : undefined,
+        proveedor: dto.proveedor !== undefined ? (dto.proveedor?.trim() || null) : undefined,
+        cuentaProveedor: dto.cuentaProveedor !== undefined ? (dto.cuentaProveedor?.trim() || null) : undefined,
+        importeRendido: dto.importeRendido,
+      },
+    });
+
+    return this.findOne(pagoId);
+  }
+
+  async eliminarComprobante(pagoId: string, comprobanteId: string) {
+    const existente = await this.prisma.comprobante.findFirst({
+      where: { id: comprobanteId, pagoId },
+    });
+    if (!existente) throw new NotFoundException('Comprobante no encontrado');
+
+    await this.storage.remove(existente.archivoUrl).catch(() => undefined);
+    await this.prisma.comprobante.delete({ where: { id: comprobanteId } });
+
+    return this.findOne(pagoId);
+  }
+
   async cancelar(id: string, user: AuthenticatedUser) {
     const existing = await this.findOne(id);
     if (existing.estado !== 'pendiente')
@@ -566,17 +650,23 @@ export class PagosService {
 
     const grupos = [...porProyecto.values()].map((g) => ({
       proyecto: g.proyecto,
-      pagos: g.pagos.map((p) => ({
-        codigo: p.ordenCompra?.numero ?? 'MANUAL',
-        concepto:
-          p.concepto ??
-          p.ordenCompra?.concepto ??
+      pagos: g.pagos.map((p) => {
+        const beneficiario =
+          p.beneficiarioNombre ??
           p.ordenCompra?.proveedor?.razonSocial ??
           p.ordenCompra?.proveedorNombreLibre ??
-          'Sin concepto',
-        monto: Number(p.monto),
-        estadoEfectivo: p.estadoEfectivo,
-      })),
+          'Sin beneficiario';
+        return {
+          codigo: p.ordenCompra?.numero ?? 'MANUAL',
+          concepto:
+            p.ordenCompra?.nombre ??
+            p.ordenCompra?.concepto ??
+            (p.concepto && p.concepto !== beneficiario ? p.concepto : null) ??
+            'Sin concepto',
+          monto: Number(p.monto),
+          estadoEfectivo: p.estadoEfectivo,
+        };
+      }),
       subtotal: g.pagos.reduce((s, p) => s + Number(p.monto), 0),
     }));
 

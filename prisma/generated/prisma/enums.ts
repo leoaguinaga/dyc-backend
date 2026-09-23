@@ -317,3 +317,27 @@ export const TipoVisita = {
 } as const
 
 export type TipoVisita = (typeof TipoVisita)[keyof typeof TipoVisita]
+
+
+export const TipoDocumentoComprobante = {
+  factura: 'factura',
+  boleta: 'boleta',
+  guia_remision: 'guia_remision',
+  recibo: 'recibo',
+  nota_credito: 'nota_credito',
+  nota_debito: 'nota_debito',
+  voucher_deposito: 'voucher_deposito',
+  cotizacion_propia: 'cotizacion_propia',
+  cotizacion_proveedor: 'cotizacion_proveedor',
+  otro: 'otro'
+} as const
+
+export type TipoDocumentoComprobante = (typeof TipoDocumentoComprobante)[keyof typeof TipoDocumentoComprobante]
+
+
+export const EstadoComprobante = {
+  abierto: 'abierto',
+  cerrado: 'cerrado'
+} as const
+
+export type EstadoComprobante = (typeof EstadoComprobante)[keyof typeof EstadoComprobante]
