@@ -71,28 +71,38 @@ export class OrdenesCompraService {
 
   /**
    * Serializa la generación de números de OC/OS: toda transacción que vaya a
-   * llamar `generateNumero` debe tomar este lock primero. Un `count()` para
-   * calcular el próximo correlativo no es atómico por sí solo (dos
-   * transacciones concurrentes pueden leerlo antes de que la primera
-   * confirme su insert y calcular el mismo número); el advisory lock hace
-   * que la segunda espere a que la primera termine, en vez de chocar contra
-   * la restricción `unique` de `numero`.
+   * llamar `generateNumero` debe tomar este lock primero. Calcular el
+   * próximo correlativo no es atómico por sí solo (dos transacciones
+   * concurrentes pueden leerlo antes de que la primera confirme su insert y
+   * calcular el mismo número); el advisory lock hace que la segunda espere a
+   * que la primera termine, en vez de chocar contra la restricción `unique`
+   * de `numero`.
    */
   async bloquearNumeracion(tx: Prisma.TransactionClient): Promise<void> {
     await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext('dyc-orden-compra-numero'))`;
   }
 
-  /** Correlativo anual por tipo (OC-2026-0001 / OS-2026-0001). Llamar solo dentro de una transacción que ya tenga `bloquearNumeracion`. */
+  /**
+   * Correlativo anual por tipo (OC-2026-0001 / OS-2026-0001). Se basa en el
+   * MÁXIMO número ya usado, no en un `count()` de filas: una OC editada
+   * manualmente (numero) o eliminada deja huecos en la secuencia, y
+   * `count()+1` vuelve a caer sobre un número que ya existe más adelante.
+   * Llamar solo dentro de una transacción que ya tenga `bloquearNumeracion`.
+   */
   async generateNumero(
     tx: Prisma.TransactionClient,
     tipo: TipoOrdenCompra,
     offset = 0,
   ): Promise<string> {
     const year = new Date().getFullYear();
-    const count = await tx.ordenCompra.count({
-      where: { tipo, creadoEn: { gte: new Date(`${year}-01-01`) } },
-    });
-    return `${PREFIJO_POR_TIPO[tipo]}-${year}-${String(count + offset + 1).padStart(4, '0')}`;
+    const prefijo = PREFIJO_POR_TIPO[tipo];
+    const patron = `${prefijo}-${year}-%`;
+    const [{ max }] = await tx.$queryRaw<{ max: number }[]>`
+      SELECT COALESCE(MAX(RIGHT(numero, 4)::int), 0) AS max
+      FROM ordenes_compra
+      WHERE numero LIKE ${patron}
+    `;
+    return `${prefijo}-${year}-${String(max + offset + 1).padStart(4, '0')}`;
   }
 
   findAll(query: {
