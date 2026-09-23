@@ -125,6 +125,14 @@ const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
   ],
 };
 
+// Roles que pueden aprobar un requerimiento que ellos mismos crearon.
+const ROLES_AUTOAPROBACION: Role[] = [
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+  'admin_ti',
+];
+
 const INCLUDE_BASE = {
   proyecto: {
     select: {
@@ -553,7 +561,7 @@ export class RequerimientosService {
         'Solo se pueden aprobar requerimientos enviados',
       );
 
-    if (r.creadoPorId === userId) {
+    if (r.creadoPorId === userId && !ROLES_AUTOAPROBACION.includes(userRole)) {
       throw new ForbiddenException(
         'El creador de un requerimiento no puede aprobarlo',
       );
