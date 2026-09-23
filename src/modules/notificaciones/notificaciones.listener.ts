@@ -17,7 +17,14 @@ const GESTORES_COTIZACION = ['administrador', 'admin_ti', 'logistica', 'gerencia
 const GESTORES_OC = ['logistica', 'gerencia', 'administrador', 'admin_ti'] as const;
 const GESTORES_OBRA = ['gerencia', 'administrador', 'admin_ti'] as const;
 const GESTORES_PLANILLA = ['gerencia', 'administrador', 'admin_ti'] as const;
-const GESTORES_COMPRA_SIMPLE = ['gerencia', 'administrador', 'admin_ti'] as const;
+const GESTORES_COMPRA_SIMPLE = [
+  'gerencia',
+  'administrador',
+  'admin_ti',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+] as const;
 
 // Aprobador técnico según el tipo de la compra simple (paso 1 — debe calzar
 // con TIPO_APPROVERS_TECNICO en compras-simples.service.ts).

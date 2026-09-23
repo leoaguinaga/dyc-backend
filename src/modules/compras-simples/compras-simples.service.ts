@@ -23,26 +23,6 @@ import type { StorageProvider } from '../../shared/storage/storage.interface.js'
 import { AppEvents } from '../../shared/events/events.js';
 import { OrdenesCompraService } from '../ordenes-compra/ordenes-compra.service.js';
 
-// Roles que pueden registrar una compra simple (compra ya cotizada/realizada)
-const ROLES_CREACION: Role[] = [
-  'supervisor',
-  'supervisor_civil',
-  'supervisor_electrico',
-  'pdr',
-  'administrador',
-  'admin_ti',
-];
-
-// Qué tipo de compra puede registrar cada rol (mismo criterio que requerimientos)
-const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
-  supervisor: ['civil'],
-  supervisor_civil: ['civil'],
-  supervisor_electrico: ['electrico'],
-  pdr: ['seguridad'],
-  administrador: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  admin_ti: ['electrico', 'civil', 'seguridad', 'administrativo'],
-};
-
 // Paso 1: aprobación técnica del área correspondiente al tipo de compra
 const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
   civil: [
@@ -76,11 +56,14 @@ const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
   ],
 };
 
-// Paso 2: aprobación final de gerencia (recién aquí se genera el pago)
+// Paso 2: aprobación final (recién aquí se genera el pago)
 const ROLES_APROBACION_GERENCIA: Role[] = [
   'gerencia',
   'administrador',
   'admin_ti',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
 ];
 
 // Roles que un supervisor puede citar como respaldo informal de una rendición
@@ -385,17 +368,6 @@ export class ComprasSimplesService {
   }
 
   async create(dto: CreateCompraSimpleDto, userId: string, userRole: Role) {
-    if (!ROLES_CREACION.includes(userRole))
-      throw new ForbiddenException(
-        `El rol "${userRole}" no puede registrar compras simples`,
-      );
-
-    const allowed = ROLE_TIPOS[userRole] ?? [];
-    if (!allowed.includes(dto.tipo))
-      throw new ForbiddenException(
-        `El rol "${userRole}" no puede registrar compras simples de tipo "${dto.tipo}"`,
-      );
-
     for (const grupo of dto.grupos) {
       if (!grupo.proveedorId && !grupo.proveedorNombreLibre)
         throw new BadRequestException(
