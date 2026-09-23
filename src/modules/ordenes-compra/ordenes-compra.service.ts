@@ -70,8 +70,10 @@ export class OrdenesCompraService {
 
   /**
    * Correlativo anual por tipo (OC-2026-0001 / OS-2026-0001). El `count` no es
-   * atómico (misma limitación que antes); se asume volumen bajo de creación
-   * concurrente para este flujo.
+   * atómico: si dos creaciones concurrentes lo leen antes de que la primera
+   * confirme su insert, ambas calculan el mismo número y una de las dos choca
+   * con la restricción `unique` de `numero`. Los llamadores deben envolver la
+   * generación + el insert con `reintentarSiNumeroDuplicado`.
    */
   async generateNumero(tipo: TipoOrdenCompra, offset = 0): Promise<string> {
     const year = new Date().getFullYear();
@@ -79,6 +81,31 @@ export class OrdenesCompraService {
       where: { tipo, creadoEn: { gte: new Date(`${year}-01-01`) } },
     });
     return `${PREFIJO_POR_TIPO[tipo]}-${year}-${String(count + offset + 1).padStart(4, '0')}`;
+  }
+
+  /**
+   * Reintenta `fn` cuando falla por choque de `numero` (dos creaciones
+   * concurrentes calcularon el mismo correlativo). `fn` debe recalcular el
+   * número en cada llamada, no reutilizar uno ya generado.
+   */
+  async reintentarSiNumeroDuplicado<T>(
+    fn: () => Promise<T>,
+    intentos = 5,
+  ): Promise<T> {
+    for (let intento = 1; intento <= intentos; intento++) {
+      try {
+        return await fn();
+      } catch (err) {
+        const esConflictoDeNumero =
+          err &&
+          typeof err === 'object' &&
+          'code' in err &&
+          err.code === 'P2002';
+        if (!esConflictoDeNumero || intento === intentos) throw err;
+      }
+    }
+    /* istanbul ignore next: el loop siempre retorna o lanza */
+    throw new Error('No se pudo generar un número de orden único');
   }
 
   findAll(query: {
@@ -233,68 +260,73 @@ export class OrdenesCompraService {
 
     const grupos = [...byProveedor.values()];
     const tipo: TipoOrdenCompra = dto.tipo ?? 'compra';
-    const numeros = await Promise.all(
-      grupos.map((_, i) => this.generateNumero(tipo, i)),
-    );
 
-    const [, ...ordenes] = await this.prisma.$transaction([
-      this.prisma.solicitudCotizacion.update({
-        where: { id: dto.solicitudId },
-        data: { estado: 'orden_generada' },
-      }),
-      ...grupos.map((grupo, i) => {
-        const monto = grupo.items.reduce(
-          (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
-          0,
-        );
-        const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(
-          grupo.condicionesPago,
-        );
-        return this.prisma.ordenCompra.create({
-          data: {
-            numero: numeros[i],
-            tipo,
-            nombre: solicitud.requerimiento?.nombre,
-            solicitudId: dto.solicitudId,
-            proveedorId: grupo.proveedorId,
-            proyectoId,
-            nota: dto.nota,
-            condicionPago: grupo.condicionPago,
-            incluyeIgv: grupo.incluyeIgv,
-            adelantoPorcentaje,
-            saldoPorcentaje,
-            fechaEntrega: dto.fechaEntrega
-              ? new Date(dto.fechaEntrega)
-              : (solicitud.cotizaciones.find(
-                  (c) => c.proveedorId === grupo.proveedorId,
-                )?.fechaEntrega ?? undefined),
-            lugarEntrega,
-            montoTotal: monto,
-            creadoPorId: userId,
-            items: {
-              create: grupo.items.map((item) => ({
-                descripcion: item.descripcionProveedor,
-                cantidad: item.cantidad,
-                unidad: item.unidad,
-                precioUnitario: item.precioUnit,
-                precioTotal: Number(item.precioUnit) * Number(item.cantidad),
-              })),
+    const ordenes = await this.reintentarSiNumeroDuplicado(async () => {
+      const numeros = await Promise.all(
+        grupos.map((_, i) => this.generateNumero(tipo, i)),
+      );
+
+      const [, ...creadas] = await this.prisma.$transaction([
+        this.prisma.solicitudCotizacion.update({
+          where: { id: dto.solicitudId },
+          data: { estado: 'orden_generada' },
+        }),
+        ...grupos.map((grupo, i) => {
+          const monto = grupo.items.reduce(
+            (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
+            0,
+          );
+          const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(
+            grupo.condicionesPago,
+          );
+          return this.prisma.ordenCompra.create({
+            data: {
+              numero: numeros[i],
+              tipo,
+              nombre: solicitud.requerimiento?.nombre,
+              solicitudId: dto.solicitudId,
+              proveedorId: grupo.proveedorId,
+              proyectoId,
+              nota: dto.nota,
+              condicionPago: grupo.condicionPago,
+              incluyeIgv: grupo.incluyeIgv,
+              adelantoPorcentaje,
+              saldoPorcentaje,
+              fechaEntrega: dto.fechaEntrega
+                ? new Date(dto.fechaEntrega)
+                : (solicitud.cotizaciones.find(
+                    (c) => c.proveedorId === grupo.proveedorId,
+                  )?.fechaEntrega ?? undefined),
+              lugarEntrega,
+              montoTotal: monto,
+              creadoPorId: userId,
+              items: {
+                create: grupo.items.map((item) => ({
+                  descripcion: item.descripcionProveedor,
+                  cantidad: item.cantidad,
+                  unidad: item.unidad,
+                  precioUnitario: item.precioUnit,
+                  precioTotal: Number(item.precioUnit) * Number(item.cantidad),
+                })),
+              },
+              pagos: {
+                create: grupo.condicionesPago.map((cp) => ({
+                  proyectoId,
+                  concepto: `Pago OC ${numeros[i]}`,
+                  porcentaje: cp.porcentaje,
+                  monto: (monto * Number(cp.porcentaje)) / 100,
+                  fechaProgramada: cp.fecha,
+                  registradoPorId: userId,
+                })),
+              },
             },
-            pagos: {
-              create: grupo.condicionesPago.map((cp) => ({
-                proyectoId,
-                concepto: `Pago OC ${numeros[i]}`,
-                porcentaje: cp.porcentaje,
-                monto: (monto * Number(cp.porcentaje)) / 100,
-                fechaProgramada: cp.fecha,
-                registradoPorId: userId,
-              })),
-            },
-          },
-          include: OC_INCLUDE,
-        });
-      }),
-    ]);
+            include: OC_INCLUDE,
+          });
+        }),
+      ]);
+
+      return creadas;
+    });
 
     for (const oc of ordenes) {
       this.events.emit(AppEvents.ORDEN_COMPRA_GENERADA, {
@@ -505,7 +537,13 @@ export class OrdenesCompraService {
     if (nuevoEstado === 'recibida' && requerimientoId) {
       const req = await this.prisma.requerimiento.findUnique({
         where: { id: requerimientoId },
-        select: { id: true, codigo: true, nombre: true, creadoPorId: true, estado: true },
+        select: {
+          id: true,
+          codigo: true,
+          nombre: true,
+          creadoPorId: true,
+          estado: true,
+        },
       });
       if (req && req.estado === 'en_cotizacion') {
         await this.prisma.requerimiento.update({
