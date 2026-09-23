@@ -30,6 +30,8 @@ import {
   ReportePagosDto,
   SubirComprobantePagoDto,
   UpdatePagoDto,
+  CrearComprobanteDto,
+  ActualizarComprobanteDto,
 } from './dto/create-pago.dto.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
@@ -230,6 +232,51 @@ export class PagosController {
     @Body() dto: SubirComprobantePagoDto,
   ) {
     return this.service.guardarComprobante(id, dto);
+  }
+
+  @Post(':id/comprobantes')
+  @UseInterceptors(
+    FileInterceptor('archivo', {
+      limits: { fileSize: MAX_ARCHIVO_BYTES },
+      fileFilter: (_req, file, cb) => {
+        if (!ARCHIVOS_PERMITIDOS.includes(file.mimetype)) {
+          cb(
+            new BadRequestException(
+              'Formato no permitido (usa JPG, PNG, WEBP o PDF)',
+            ),
+            false,
+          );
+          return;
+        }
+        cb(null, true);
+      },
+    }),
+  )
+  crearComprobante(
+    @Param('id') id: string,
+    @Body() dto: CrearComprobanteDto,
+    @Req() req: AuthRequest,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    if (!file) throw new BadRequestException('Debes adjuntar un archivo');
+    return this.service.crearComprobante(id, dto, file, req.user!.id);
+  }
+
+  @Patch(':id/comprobantes/:comprobanteId')
+  actualizarComprobante(
+    @Param('id') id: string,
+    @Param('comprobanteId') comprobanteId: string,
+    @Body() dto: ActualizarComprobanteDto,
+  ) {
+    return this.service.actualizarComprobante(id, comprobanteId, dto);
+  }
+
+  @Delete(':id/comprobantes/:comprobanteId')
+  eliminarComprobante(
+    @Param('id') id: string,
+    @Param('comprobanteId') comprobanteId: string,
+  ) {
+    return this.service.eliminarComprobante(id, comprobanteId);
   }
 
   @Delete(':id')

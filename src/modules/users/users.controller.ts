@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { UsersService } from './users.service.js';
@@ -33,6 +33,24 @@ export class UsersController {
   @Roles('administrador', 'gerencia')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
+  }
+
+  @Get(':id/actividad')
+  @Roles('administrador', 'gerencia')
+  findActivity(@Param('id') id: string) {
+    return this.usersService.findActivity(id);
+  }
+
+  @Get(':id/auditoria')
+  @Roles('administrador', 'gerencia')
+  findAuditLog(
+    @Param('id') id: string,
+    @Query('page') page?: string,
+    @Query('pageSize') pageSize?: string,
+  ) {
+    const parsedPage = Math.max(1, Number(page) || 1);
+    const parsedPageSize = Math.min(100, Math.max(1, Number(pageSize) || 50));
+    return this.usersService.findAuditLog(id, parsedPage, parsedPageSize);
   }
 
   @Patch(':id')

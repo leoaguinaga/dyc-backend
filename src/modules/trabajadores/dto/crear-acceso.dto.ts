@@ -1,11 +1,11 @@
 import { IsEmail, IsEnum, IsString, MinLength } from 'class-validator';
-import type { Role } from '../../../prisma/types.js';
+import { Role } from '../../../prisma/types.js';
 
 export class CrearAccesoDto {
   @IsEmail()
   email: string;
 
-  @IsEnum(['supervisor', 'ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'gerencia', 'administrador'])
+  @IsEnum(Role)
   role: Role;
 
   @IsString()

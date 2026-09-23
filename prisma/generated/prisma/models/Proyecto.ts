@@ -56,6 +56,7 @@ export type ProyectoMinAggregateOutputType = {
   jornadaFin: string | null
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  fechaAsignacion: Date | null
   fechaInicio: Date | null
   fechaFin: Date | null
   fechaInicioReal: Date | null
@@ -86,6 +87,7 @@ export type ProyectoMaxAggregateOutputType = {
   jornadaFin: string | null
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  fechaAsignacion: Date | null
   fechaInicio: Date | null
   fechaFin: Date | null
   fechaInicioReal: Date | null
@@ -116,6 +118,7 @@ export type ProyectoCountAggregateOutputType = {
   jornadaFin: number
   toleranciaMinutos: number
   toleranciaSalidaMinutos: number
+  fechaAsignacion: number
   fechaInicio: number
   fechaFin: number
   fechaInicioReal: number
@@ -158,6 +161,7 @@ export type ProyectoMinAggregateInputType = {
   jornadaFin?: true
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  fechaAsignacion?: true
   fechaInicio?: true
   fechaFin?: true
   fechaInicioReal?: true
@@ -188,6 +192,7 @@ export type ProyectoMaxAggregateInputType = {
   jornadaFin?: true
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  fechaAsignacion?: true
   fechaInicio?: true
   fechaFin?: true
   fechaInicioReal?: true
@@ -218,6 +223,7 @@ export type ProyectoCountAggregateInputType = {
   jornadaFin?: true
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  fechaAsignacion?: true
   fechaInicio?: true
   fechaFin?: true
   fechaInicioReal?: true
@@ -335,6 +341,7 @@ export type ProyectoGroupByOutputType = {
   jornadaFin: string | null
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  fechaAsignacion: Date | null
   fechaInicio: Date | null
   fechaFin: Date | null
   fechaInicioReal: Date | null
@@ -388,6 +395,7 @@ export type ProyectoWhereInput = {
   jornadaFin?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   toleranciaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
   toleranciaSalidaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
+  fechaAsignacion?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicio?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
@@ -441,6 +449,7 @@ export type ProyectoOrderByWithRelationInput = {
   jornadaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaAsignacion?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -497,6 +506,7 @@ export type ProyectoWhereUniqueInput = Prisma.AtLeast<{
   jornadaFin?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   toleranciaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
   toleranciaSalidaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
+  fechaAsignacion?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicio?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
@@ -550,6 +560,7 @@ export type ProyectoOrderByWithAggregationInput = {
   jornadaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrderInput | Prisma.SortOrder
+  fechaAsignacion?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicio?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaFin?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -588,6 +599,7 @@ export type ProyectoScalarWhereWithAggregatesInput = {
   jornadaFin?: Prisma.StringNullableWithAggregatesFilter<"Proyecto"> | string | null
   toleranciaMinutos?: Prisma.IntNullableWithAggregatesFilter<"Proyecto"> | number | null
   toleranciaSalidaMinutos?: Prisma.IntNullableWithAggregatesFilter<"Proyecto"> | number | null
+  fechaAsignacion?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
   fechaInicio?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableWithAggregatesFilter<"Proyecto"> | Date | string | null
@@ -612,6 +624,7 @@ export type ProyectoCreateInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -665,6 +678,7 @@ export type ProyectoUncheckedCreateInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -706,6 +720,7 @@ export type ProyectoUpdateInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -759,6 +774,7 @@ export type ProyectoUncheckedUpdateInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -806,6 +822,7 @@ export type ProyectoCreateManyInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -830,6 +847,7 @@ export type ProyectoUpdateManyMutationInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -860,6 +878,7 @@ export type ProyectoUncheckedUpdateManyInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -905,6 +924,7 @@ export type ProyectoCountOrderByAggregateInput = {
   jornadaFin?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  fechaAsignacion?: Prisma.SortOrder
   fechaInicio?: Prisma.SortOrder
   fechaFin?: Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrder
@@ -940,6 +960,7 @@ export type ProyectoMaxOrderByAggregateInput = {
   jornadaFin?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  fechaAsignacion?: Prisma.SortOrder
   fechaInicio?: Prisma.SortOrder
   fechaFin?: Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrder
@@ -970,6 +991,7 @@ export type ProyectoMinOrderByAggregateInput = {
   jornadaFin?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  fechaAsignacion?: Prisma.SortOrder
   fechaInicio?: Prisma.SortOrder
   fechaFin?: Prisma.SortOrder
   fechaInicioReal?: Prisma.SortOrder
@@ -1100,14 +1122,6 @@ export type NullableEnumCategoriaServicioProyectoFieldUpdateOperationsInput = {
 
 export type EnumAmbitoGeograficoFieldUpdateOperationsInput = {
   set?: $Enums.AmbitoGeografico
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type EnumEstadoProyectoFieldUpdateOperationsInput = {
@@ -1524,6 +1538,7 @@ export type ProyectoCreateWithoutClienteInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1575,6 +1590,7 @@ export type ProyectoUncheckedCreateWithoutClienteInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1651,6 +1667,7 @@ export type ProyectoScalarWhereInput = {
   jornadaFin?: Prisma.StringNullableFilter<"Proyecto"> | string | null
   toleranciaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
   toleranciaSalidaMinutos?: Prisma.IntNullableFilter<"Proyecto"> | number | null
+  fechaAsignacion?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicio?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaFin?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
   fechaInicioReal?: Prisma.DateTimeNullableFilter<"Proyecto"> | Date | string | null
@@ -1675,6 +1692,7 @@ export type ProyectoCreateWithoutCoordinadorClienteInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1726,6 +1744,7 @@ export type ProyectoUncheckedCreateWithoutCoordinadorClienteInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1793,6 +1812,7 @@ export type ProyectoCreateWithoutSubproyectosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1845,6 +1865,7 @@ export type ProyectoUncheckedCreateWithoutSubproyectosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1890,6 +1911,7 @@ export type ProyectoCreateWithoutParentInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -1941,6 +1963,7 @@ export type ProyectoUncheckedCreateWithoutParentInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2003,6 +2026,7 @@ export type ProyectoUpdateWithoutSubproyectosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2055,6 +2079,7 @@ export type ProyectoUncheckedUpdateWithoutSubproyectosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2111,6 +2136,7 @@ export type ProyectoCreateWithoutSupervisoresInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2163,6 +2189,7 @@ export type ProyectoUncheckedCreateWithoutSupervisoresInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2219,6 +2246,7 @@ export type ProyectoUpdateWithoutSupervisoresInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2271,6 +2299,7 @@ export type ProyectoUncheckedUpdateWithoutSupervisoresInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2311,6 +2340,7 @@ export type ProyectoCreateWithoutHitosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2363,6 +2393,7 @@ export type ProyectoUncheckedCreateWithoutHitosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2419,6 +2450,7 @@ export type ProyectoUpdateWithoutHitosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2471,6 +2503,7 @@ export type ProyectoUncheckedUpdateWithoutHitosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2511,6 +2544,7 @@ export type ProyectoCreateWithoutEjecutorInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2562,6 +2596,7 @@ export type ProyectoUncheckedCreateWithoutEjecutorInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2613,6 +2648,7 @@ export type ProyectoCreateWithoutCoordinadorEmpresaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2664,6 +2700,7 @@ export type ProyectoUncheckedCreateWithoutCoordinadorEmpresaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2715,6 +2752,7 @@ export type ProyectoCreateWithoutPrevencionistaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2766,6 +2804,7 @@ export type ProyectoUncheckedCreateWithoutPrevencionistaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2865,6 +2904,7 @@ export type ProyectoCreateWithoutTrabajadoresInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2917,6 +2957,7 @@ export type ProyectoUncheckedCreateWithoutTrabajadoresInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -2973,6 +3014,7 @@ export type ProyectoUpdateWithoutTrabajadoresInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3025,6 +3067,7 @@ export type ProyectoUncheckedUpdateWithoutTrabajadoresInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3065,6 +3108,7 @@ export type ProyectoCreateWithoutTurnoConfigsInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3117,6 +3161,7 @@ export type ProyectoUncheckedCreateWithoutTurnoConfigsInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3173,6 +3218,7 @@ export type ProyectoUpdateWithoutTurnoConfigsInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3225,6 +3271,7 @@ export type ProyectoUncheckedUpdateWithoutTurnoConfigsInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3265,6 +3312,7 @@ export type ProyectoCreateWithoutTurnosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3317,6 +3365,7 @@ export type ProyectoUncheckedCreateWithoutTurnosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3373,6 +3422,7 @@ export type ProyectoUpdateWithoutTurnosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3425,6 +3475,7 @@ export type ProyectoUncheckedUpdateWithoutTurnosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3465,6 +3516,7 @@ export type ProyectoCreateWithoutRegistrosVisitaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3517,6 +3569,7 @@ export type ProyectoUncheckedCreateWithoutRegistrosVisitaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3573,6 +3626,7 @@ export type ProyectoUpdateWithoutRegistrosVisitaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3625,6 +3679,7 @@ export type ProyectoUncheckedUpdateWithoutRegistrosVisitaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3665,6 +3720,7 @@ export type ProyectoCreateWithoutVisitasTerceroInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3717,6 +3773,7 @@ export type ProyectoUncheckedCreateWithoutVisitasTerceroInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3773,6 +3830,7 @@ export type ProyectoUpdateWithoutVisitasTerceroInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3825,6 +3883,7 @@ export type ProyectoUncheckedUpdateWithoutVisitasTerceroInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3865,6 +3924,7 @@ export type ProyectoCreateWithoutPlanillasInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3917,6 +3977,7 @@ export type ProyectoUncheckedCreateWithoutPlanillasInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -3973,6 +4034,7 @@ export type ProyectoUpdateWithoutPlanillasInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4025,6 +4087,7 @@ export type ProyectoUncheckedUpdateWithoutPlanillasInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4065,6 +4128,7 @@ export type ProyectoCreateWithoutRequerimientosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4117,6 +4181,7 @@ export type ProyectoUncheckedCreateWithoutRequerimientosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4173,6 +4238,7 @@ export type ProyectoUpdateWithoutRequerimientosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4225,6 +4291,7 @@ export type ProyectoUncheckedUpdateWithoutRequerimientosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4265,6 +4332,7 @@ export type ProyectoCreateWithoutSolicitudesInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4317,6 +4385,7 @@ export type ProyectoUncheckedCreateWithoutSolicitudesInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4373,6 +4442,7 @@ export type ProyectoUpdateWithoutSolicitudesInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4425,6 +4495,7 @@ export type ProyectoUncheckedUpdateWithoutSolicitudesInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4465,6 +4536,7 @@ export type ProyectoCreateWithoutComprasSimplesInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4517,6 +4589,7 @@ export type ProyectoUncheckedCreateWithoutComprasSimplesInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4573,6 +4646,7 @@ export type ProyectoUpdateWithoutComprasSimplesInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4625,6 +4699,7 @@ export type ProyectoUncheckedUpdateWithoutComprasSimplesInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4665,6 +4740,7 @@ export type ProyectoCreateWithoutOrdenesCompraInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4717,6 +4793,7 @@ export type ProyectoUncheckedCreateWithoutOrdenesCompraInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4773,6 +4850,7 @@ export type ProyectoUpdateWithoutOrdenesCompraInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4825,6 +4903,7 @@ export type ProyectoUncheckedUpdateWithoutOrdenesCompraInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4865,6 +4944,7 @@ export type ProyectoCreateWithoutPagosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4917,6 +4997,7 @@ export type ProyectoUncheckedCreateWithoutPagosInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -4973,6 +5054,7 @@ export type ProyectoUpdateWithoutPagosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5025,6 +5107,7 @@ export type ProyectoUncheckedUpdateWithoutPagosInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5065,6 +5148,7 @@ export type ProyectoCreateWithoutPagosRecurrentesInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5117,6 +5201,7 @@ export type ProyectoUncheckedCreateWithoutPagosRecurrentesInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5173,6 +5258,7 @@ export type ProyectoUpdateWithoutPagosRecurrentesInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5225,6 +5311,7 @@ export type ProyectoUncheckedUpdateWithoutPagosRecurrentesInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5265,6 +5352,7 @@ export type ProyectoCreateWithoutPerfilesStaffInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5317,6 +5405,7 @@ export type ProyectoUncheckedCreateWithoutPerfilesStaffInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5373,6 +5462,7 @@ export type ProyectoUpdateWithoutPerfilesStaffInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5425,6 +5515,7 @@ export type ProyectoUncheckedUpdateWithoutPerfilesStaffInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5465,6 +5556,7 @@ export type ProyectoCreateWithoutCobroInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5517,6 +5609,7 @@ export type ProyectoUncheckedCreateWithoutCobroInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5573,6 +5666,7 @@ export type ProyectoUpdateWithoutCobroInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5625,6 +5719,7 @@ export type ProyectoUncheckedUpdateWithoutCobroInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5670,6 +5765,7 @@ export type ProyectoCreateManyClienteInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5694,6 +5790,7 @@ export type ProyectoUpdateWithoutClienteInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5745,6 +5842,7 @@ export type ProyectoUncheckedUpdateWithoutClienteInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5791,6 +5889,7 @@ export type ProyectoUncheckedUpdateManyWithoutClienteInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5820,6 +5919,7 @@ export type ProyectoCreateManyCoordinadorClienteInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5844,6 +5944,7 @@ export type ProyectoUpdateWithoutCoordinadorClienteInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5895,6 +5996,7 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorClienteInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5941,6 +6043,7 @@ export type ProyectoUncheckedUpdateManyWithoutCoordinadorClienteInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5970,6 +6073,7 @@ export type ProyectoCreateManyParentInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -5994,6 +6098,7 @@ export type ProyectoUpdateWithoutParentInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6045,6 +6150,7 @@ export type ProyectoUncheckedUpdateWithoutParentInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6091,6 +6197,7 @@ export type ProyectoUncheckedUpdateManyWithoutParentInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6120,6 +6227,7 @@ export type ProyectoCreateManyEjecutorInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -6149,6 +6257,7 @@ export type ProyectoCreateManyCoordinadorEmpresaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -6178,6 +6287,7 @@ export type ProyectoCreateManyPrevencionistaInput = {
   jornadaFin?: string | null
   toleranciaMinutos?: number | null
   toleranciaSalidaMinutos?: number | null
+  fechaAsignacion?: Date | string | null
   fechaInicio?: Date | string | null
   fechaFin?: Date | string | null
   fechaInicioReal?: Date | string | null
@@ -6202,6 +6312,7 @@ export type ProyectoUpdateWithoutEjecutorInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6253,6 +6364,7 @@ export type ProyectoUncheckedUpdateWithoutEjecutorInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6299,6 +6411,7 @@ export type ProyectoUncheckedUpdateManyWithoutEjecutorInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6323,6 +6436,7 @@ export type ProyectoUpdateWithoutCoordinadorEmpresaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6374,6 +6488,7 @@ export type ProyectoUncheckedUpdateWithoutCoordinadorEmpresaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6420,6 +6535,7 @@ export type ProyectoUncheckedUpdateManyWithoutCoordinadorEmpresaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6444,6 +6560,7 @@ export type ProyectoUpdateWithoutPrevencionistaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6495,6 +6612,7 @@ export type ProyectoUncheckedUpdateWithoutPrevencionistaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6541,6 +6659,7 @@ export type ProyectoUncheckedUpdateManyWithoutPrevencionistaInput = {
   jornadaFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   toleranciaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   toleranciaSalidaMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fechaAsignacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaFin?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaInicioReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6737,6 +6856,7 @@ export type ProyectoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   jornadaFin?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  fechaAsignacion?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -6791,6 +6911,7 @@ export type ProyectoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   jornadaFin?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  fechaAsignacion?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -6827,6 +6948,7 @@ export type ProyectoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   jornadaFin?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  fechaAsignacion?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -6863,6 +6985,7 @@ export type ProyectoSelectScalar = {
   jornadaFin?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  fechaAsignacion?: boolean
   fechaInicio?: boolean
   fechaFin?: boolean
   fechaInicioReal?: boolean
@@ -6873,7 +6996,7 @@ export type ProyectoSelectScalar = {
   actualizadaEn?: boolean
 }
 
-export type ProyectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "categoriaServicio" | "nombre" | "ciudad" | "direccion" | "comuna" | "enlaceOneDrive" | "ambitoGeografico" | "parentId" | "clienteId" | "coordinadorClienteId" | "coordinadorEmpresaId" | "ejecutorId" | "prevencionistaId" | "jornadaInicio" | "jornadaFin" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "fechaInicio" | "fechaFin" | "fechaInicioReal" | "fechaFinReal" | "notaInicioReal" | "estado" | "creadaEn" | "actualizadaEn", ExtArgs["result"]["proyecto"]>
+export type ProyectoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "categoriaServicio" | "nombre" | "ciudad" | "direccion" | "comuna" | "enlaceOneDrive" | "ambitoGeografico" | "parentId" | "clienteId" | "coordinadorClienteId" | "coordinadorEmpresaId" | "ejecutorId" | "prevencionistaId" | "jornadaInicio" | "jornadaFin" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "fechaAsignacion" | "fechaInicio" | "fechaFin" | "fechaInicioReal" | "fechaFinReal" | "notaInicioReal" | "estado" | "creadaEn" | "actualizadaEn", ExtArgs["result"]["proyecto"]>
 export type ProyectoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.Proyecto$parentArgs<ExtArgs>
   subproyectos?: boolean | Prisma.Proyecto$subproyectosArgs<ExtArgs>
@@ -6964,6 +7087,7 @@ export type $ProyectoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     jornadaFin: string | null
     toleranciaMinutos: number | null
     toleranciaSalidaMinutos: number | null
+    fechaAsignacion: Date | null
     fechaInicio: Date | null
     fechaFin: Date | null
     fechaInicioReal: Date | null
@@ -7437,6 +7561,7 @@ export interface ProyectoFieldRefs {
   readonly jornadaFin: Prisma.FieldRef<"Proyecto", 'String'>
   readonly toleranciaMinutos: Prisma.FieldRef<"Proyecto", 'Int'>
   readonly toleranciaSalidaMinutos: Prisma.FieldRef<"Proyecto", 'Int'>
+  readonly fechaAsignacion: Prisma.FieldRef<"Proyecto", 'DateTime'>
   readonly fechaInicio: Prisma.FieldRef<"Proyecto", 'DateTime'>
   readonly fechaFin: Prisma.FieldRef<"Proyecto", 'DateTime'>
   readonly fechaInicioReal: Prisma.FieldRef<"Proyecto", 'DateTime'>

@@ -267,6 +267,7 @@ model User {
   compraSimpleHistorial         CompraSimpleGrupoHistorial[] @relation("CompraSimpleHistorialActor")
   pagosRegistrados              Pago[]                       @relation("PagosRegistradosPor")
   pagosEjecutados               Pago[]                       @relation("PagosEjecutadosPor")
+  comprobantesGenerados          Comprobante[]               @relation("ComprobantesGeneradosPor")
   pagosRecurrentesCreados       PagoRecurrente[]
   cobrosRegistrados             Cobro[]                      @relation("CobrosRegistradosPor")
   cobrosMarcados                Cobro[]                      @relation("CobrosCobradosPor")
@@ -284,8 +285,29 @@ model User {
   solicitudesCotizacionAprobadasComoSolicitante SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaSolicitantePor")
   solicitudesCotizacionAprobadasComoGerencia    SolicitudCotizacion[] @relation("SolicitudCotizacionAprobadaGerenciaPor")
   cotizacionesCreadas                           Cotizacion[]          @relation("CotizacionesCreadasPor")
+  auditLogs                                     AuditLog[]
 
   @@map("users")
+}
+
+// Registro crudo de cada mutación (POST/PATCH/PUT/DELETE) hecha por un usuario
+// autenticado, escrito por AuditInterceptor. No reemplaza el historial de
+// negocio (RequerimientoHistorial, etc.), es la traza técnica completa.
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  method      String
+  path        String
+  entidadTipo String?
+  entidadId   String?
+  statusCode  Int?
+  ip          String?
+  creadoEn    DateTime @default(now())
+
+  @@index([userId, creadoEn])
+  @@index([entidadTipo, entidadId])
+  @@map("audit_logs")
 }
 
 model Session {
@@ -414,6 +436,9 @@ model Proyecto {
   jornadaFin              String? // "HH:mm"
   toleranciaMinutos       Int?    @default(10) // tolerancia de tardanza al entrar
   toleranciaSalidaMinutos Int?    @default(60) // umbral antes de contar horas extra al salir
+
+  // Fecha en que se asigna el proyecto al equipo (distinta del inicio programado)
+  fechaAsignacion DateTime?
 
   // Fechas programadas
   fechaInicio DateTime?
@@ -1116,6 +1141,7 @@ model OrdenCompra {
   fechaEntrega               DateTime?
   fechaEntregaReal           DateTime?
   calificacionCalidad        Int?
+  comentarioRecepcion        String?
   montoTotal                 Decimal                 @default(0) @db.Decimal(12, 2)
   nota                       String?
   lugarEntrega               String?
@@ -1220,6 +1246,7 @@ model Pago {
   nota                     String?
   comprobanteNombre        String?
   comprobanteUrl           String?
+  comprobantes             Comprobante[]
   registradoPorId          String
   registradoPor            User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
   pagadoPorId              String?
@@ -1231,6 +1258,51 @@ model Pago {
   @@index([origen, estado, fechaProgramada])
   @@unique([recurrenciaId, periodoRecurrente])
   @@map("pagos")
+}
+
+enum TipoDocumentoComprobante {
+  factura
+  boleta
+  guia_remision
+  recibo
+  nota_credito
+  nota_debito
+  voucher_deposito
+  cotizacion_propia
+  cotizacion_proveedor
+  otro
+}
+
+enum EstadoComprobante {
+  abierto
+  cerrado
+}
+
+model Comprobante {
+  id              String                   @id @default(cuid())
+  pagoId          String
+  pago            Pago                     @relation(fields: [pagoId], references: [id], onDelete: Cascade)
+  numero          String
+  subNumero       Int                      @default(1)
+  tipoDocumento   TipoDocumentoComprobante @default(otro)
+  tipoOperacion   String?
+  banco           String?
+  cuenta          String?
+  detalleGasto    String?
+  proveedor       String?
+  cuentaProveedor String?
+  importe         Decimal                  @db.Decimal(12, 2)
+  importeRendido  Decimal?                 @db.Decimal(12, 2)
+  estado          EstadoComprobante        @default(abierto)
+  archivoNombre   String
+  archivoUrl      String
+  generadoPorId   String
+  generadoPor     User                     @relation("ComprobantesGeneradosPor", fields: [generadoPorId], references: [id])
+  creadoEn        DateTime                 @default(now())
+  actualizadoEn   DateTime                 @updatedAt
+
+  @@index([pagoId])
+  @@map("comprobantes")
 }
 
 model PagoRecurrente {

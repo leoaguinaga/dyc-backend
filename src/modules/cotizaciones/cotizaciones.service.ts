@@ -103,6 +103,10 @@ export class CotizacionesService {
           },
           { estado: 'cancelada', canceladaEn: { gte: hoy, lt: manana } },
         ],
+        NOT: {
+          estado: 'orden_generada',
+          ordenes: { some: {}, every: { estado: 'recibida' } },
+        },
       },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
@@ -115,7 +119,15 @@ export class CotizacionesService {
 
   findHistorialSolicitudes(query: QueryHistorialDto) {
     return this.prisma.solicitudCotizacion.findMany({
-      where: { estado: { in: ESTADOS_TERMINALES } },
+      where: {
+        OR: [
+          { estado: { in: ESTADOS_TERMINALES } },
+          {
+            estado: 'orden_generada',
+            ordenes: { some: {}, every: { estado: 'recibida' } },
+          },
+        ],
+      },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
         requerimiento: { select: { id: true, codigo: true, nombre: true, tipo: true } },

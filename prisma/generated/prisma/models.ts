@@ -9,6 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User.js'
+export type * from './models/AuditLog.js'
 export type * from './models/Session.js'
 export type * from './models/Account.js'
 export type * from './models/Verification.js'
@@ -48,6 +49,7 @@ export type * from './models/OrdenCompra.js'
 export type * from './models/CompraSimpleGrupoArchivo.js'
 export type * from './models/CompraSimpleGrupoHistorial.js'
 export type * from './models/Pago.js'
+export type * from './models/Comprobante.js'
 export type * from './models/PagoRecurrente.js'
 export type * from './models/PerfilStaff.js'
 export type * from './models/PlanillaStaff.js'

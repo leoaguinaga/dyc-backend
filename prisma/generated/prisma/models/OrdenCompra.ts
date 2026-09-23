@@ -66,6 +66,7 @@ export type OrdenCompraMinAggregateOutputType = {
   fechaEntrega: Date | null
   fechaEntregaReal: Date | null
   calificacionCalidad: number | null
+  comentarioRecepcion: string | null
   montoTotal: runtime.Decimal | null
   nota: string | null
   lugarEntrega: string | null
@@ -119,6 +120,7 @@ export type OrdenCompraMaxAggregateOutputType = {
   fechaEntrega: Date | null
   fechaEntregaReal: Date | null
   calificacionCalidad: number | null
+  comentarioRecepcion: string | null
   montoTotal: runtime.Decimal | null
   nota: string | null
   lugarEntrega: string | null
@@ -172,6 +174,7 @@ export type OrdenCompraCountAggregateOutputType = {
   fechaEntrega: number
   fechaEntregaReal: number
   calificacionCalidad: number
+  comentarioRecepcion: number
   montoTotal: number
   nota: number
   lugarEntrega: number
@@ -247,6 +250,7 @@ export type OrdenCompraMinAggregateInputType = {
   fechaEntrega?: true
   fechaEntregaReal?: true
   calificacionCalidad?: true
+  comentarioRecepcion?: true
   montoTotal?: true
   nota?: true
   lugarEntrega?: true
@@ -300,6 +304,7 @@ export type OrdenCompraMaxAggregateInputType = {
   fechaEntrega?: true
   fechaEntregaReal?: true
   calificacionCalidad?: true
+  comentarioRecepcion?: true
   montoTotal?: true
   nota?: true
   lugarEntrega?: true
@@ -353,6 +358,7 @@ export type OrdenCompraCountAggregateInputType = {
   fechaEntrega?: true
   fechaEntregaReal?: true
   calificacionCalidad?: true
+  comentarioRecepcion?: true
   montoTotal?: true
   nota?: true
   lugarEntrega?: true
@@ -493,6 +499,7 @@ export type OrdenCompraGroupByOutputType = {
   fechaEntrega: Date | null
   fechaEntregaReal: Date | null
   calificacionCalidad: number | null
+  comentarioRecepcion: string | null
   montoTotal: runtime.Decimal
   nota: string | null
   lugarEntrega: string | null
@@ -569,6 +576,7 @@ export type OrdenCompraWhereInput = {
   fechaEntrega?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   fechaEntregaReal?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   calificacionCalidad?: Prisma.IntNullableFilter<"OrdenCompra"> | number | null
+  comentarioRecepcion?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   montoTotal?: Prisma.DecimalFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -633,6 +641,7 @@ export type OrdenCompraOrderByWithRelationInput = {
   fechaEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaEntregaReal?: Prisma.SortOrderInput | Prisma.SortOrder
   calificacionCalidad?: Prisma.SortOrderInput | Prisma.SortOrder
+  comentarioRecepcion?: Prisma.SortOrderInput | Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -700,6 +709,7 @@ export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
   fechaEntrega?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   fechaEntregaReal?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   calificacionCalidad?: Prisma.IntNullableFilter<"OrdenCompra"> | number | null
+  comentarioRecepcion?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   montoTotal?: Prisma.DecimalFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -764,6 +774,7 @@ export type OrdenCompraOrderByWithAggregationInput = {
   fechaEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaEntregaReal?: Prisma.SortOrderInput | Prisma.SortOrder
   calificacionCalidad?: Prisma.SortOrderInput | Prisma.SortOrder
+  comentarioRecepcion?: Prisma.SortOrderInput | Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -825,6 +836,7 @@ export type OrdenCompraScalarWhereWithAggregatesInput = {
   fechaEntrega?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
   fechaEntregaReal?: Prisma.DateTimeNullableWithAggregatesFilter<"OrdenCompra"> | Date | string | null
   calificacionCalidad?: Prisma.IntNullableWithAggregatesFilter<"OrdenCompra"> | number | null
+  comentarioRecepcion?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   montoTotal?: Prisma.DecimalWithAggregatesFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableWithAggregatesFilter<"OrdenCompra"> | string | null
@@ -873,6 +885,7 @@ export type OrdenCompraCreateInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -935,6 +948,7 @@ export type OrdenCompraUncheckedCreateInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -987,6 +1001,7 @@ export type OrdenCompraUpdateInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1049,6 +1064,7 @@ export type OrdenCompraUncheckedUpdateInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1106,6 +1122,7 @@ export type OrdenCompraCreateManyInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1154,6 +1171,7 @@ export type OrdenCompraUpdateManyMutationInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1205,6 +1223,7 @@ export type OrdenCompraUncheckedUpdateManyInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1268,6 +1287,7 @@ export type OrdenCompraCountOrderByAggregateInput = {
   fechaEntrega?: Prisma.SortOrder
   fechaEntregaReal?: Prisma.SortOrder
   calificacionCalidad?: Prisma.SortOrder
+  comentarioRecepcion?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrder
@@ -1331,6 +1351,7 @@ export type OrdenCompraMaxOrderByAggregateInput = {
   fechaEntrega?: Prisma.SortOrder
   fechaEntregaReal?: Prisma.SortOrder
   calificacionCalidad?: Prisma.SortOrder
+  comentarioRecepcion?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrder
@@ -1384,6 +1405,7 @@ export type OrdenCompraMinOrderByAggregateInput = {
   fechaEntrega?: Prisma.SortOrder
   fechaEntregaReal?: Prisma.SortOrder
   calificacionCalidad?: Prisma.SortOrder
+  comentarioRecepcion?: Prisma.SortOrder
   montoTotal?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   lugarEntrega?: Prisma.SortOrder
@@ -1828,6 +1850,7 @@ export type OrdenCompraCreateWithoutCreadoPorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1889,6 +1912,7 @@ export type OrdenCompraUncheckedCreateWithoutCreadoPorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -1950,6 +1974,7 @@ export type OrdenCompraCreateWithoutAprobadoPorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2010,6 +2035,7 @@ export type OrdenCompraUncheckedCreateWithoutAprobadoPorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2096,6 +2122,7 @@ export type OrdenCompraScalarWhereInput = {
   fechaEntrega?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   fechaEntregaReal?: Prisma.DateTimeNullableFilter<"OrdenCompra"> | Date | string | null
   calificacionCalidad?: Prisma.IntNullableFilter<"OrdenCompra"> | number | null
+  comentarioRecepcion?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   montoTotal?: Prisma.DecimalFilter<"OrdenCompra"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
   lugarEntrega?: Prisma.StringNullableFilter<"OrdenCompra"> | string | null
@@ -2160,6 +2187,7 @@ export type OrdenCompraCreateWithoutProyectoInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2220,6 +2248,7 @@ export type OrdenCompraUncheckedCreateWithoutProyectoInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2298,6 +2327,7 @@ export type OrdenCompraCreateWithoutPagoTrabajadorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2359,6 +2389,7 @@ export type OrdenCompraUncheckedCreateWithoutPagoTrabajadorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2436,6 +2467,7 @@ export type OrdenCompraCreateWithoutProveedorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2496,6 +2528,7 @@ export type OrdenCompraUncheckedCreateWithoutProveedorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2574,6 +2607,7 @@ export type OrdenCompraCreateWithoutSolicitudInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2634,6 +2668,7 @@ export type OrdenCompraUncheckedCreateWithoutSolicitudInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2712,6 +2747,7 @@ export type OrdenCompraCreateWithoutCompraSimpleInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2772,6 +2808,7 @@ export type OrdenCompraUncheckedCreateWithoutCompraSimpleInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2850,6 +2887,7 @@ export type OrdenCompraCreateWithoutArchivosInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2911,6 +2949,7 @@ export type OrdenCompraUncheckedCreateWithoutArchivosInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -2978,6 +3017,7 @@ export type OrdenCompraUpdateWithoutArchivosInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3039,6 +3079,7 @@ export type OrdenCompraUncheckedUpdateWithoutArchivosInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3090,6 +3131,7 @@ export type OrdenCompraCreateWithoutHistorialInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3151,6 +3193,7 @@ export type OrdenCompraUncheckedCreateWithoutHistorialInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3218,6 +3261,7 @@ export type OrdenCompraUpdateWithoutHistorialInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3279,6 +3323,7 @@ export type OrdenCompraUncheckedUpdateWithoutHistorialInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3330,6 +3375,7 @@ export type OrdenCompraCreateWithoutPagosInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3391,6 +3437,7 @@ export type OrdenCompraUncheckedCreateWithoutPagosInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3458,6 +3505,7 @@ export type OrdenCompraUpdateWithoutPagosInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3519,6 +3567,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagosInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3570,6 +3619,7 @@ export type OrdenCompraCreateWithoutItemsInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3631,6 +3681,7 @@ export type OrdenCompraUncheckedCreateWithoutItemsInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3698,6 +3749,7 @@ export type OrdenCompraUpdateWithoutItemsInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3759,6 +3811,7 @@ export type OrdenCompraUncheckedUpdateWithoutItemsInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3815,6 +3868,7 @@ export type OrdenCompraCreateManyCreadoPorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3866,6 +3920,7 @@ export type OrdenCompraCreateManyAprobadoPorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -3914,6 +3969,7 @@ export type OrdenCompraUpdateWithoutCreadoPorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3975,6 +4031,7 @@ export type OrdenCompraUncheckedUpdateWithoutCreadoPorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4031,6 +4088,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCreadoPorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4078,6 +4136,7 @@ export type OrdenCompraUpdateWithoutAprobadoPorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4138,6 +4197,7 @@ export type OrdenCompraUncheckedUpdateWithoutAprobadoPorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4194,6 +4254,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutAprobadoPorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4246,6 +4307,7 @@ export type OrdenCompraCreateManyProyectoInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -4294,6 +4356,7 @@ export type OrdenCompraUpdateWithoutProyectoInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4354,6 +4417,7 @@ export type OrdenCompraUncheckedUpdateWithoutProyectoInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4410,6 +4474,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProyectoInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4463,6 +4528,7 @@ export type OrdenCompraCreateManyPagoTrabajadorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -4510,6 +4576,7 @@ export type OrdenCompraUpdateWithoutPagoTrabajadorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4571,6 +4638,7 @@ export type OrdenCompraUncheckedUpdateWithoutPagoTrabajadorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4627,6 +4695,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutPagoTrabajadorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4678,6 +4747,7 @@ export type OrdenCompraCreateManyProveedorInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -4726,6 +4796,7 @@ export type OrdenCompraUpdateWithoutProveedorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4786,6 +4857,7 @@ export type OrdenCompraUncheckedUpdateWithoutProveedorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4842,6 +4914,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutProveedorInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4894,6 +4967,7 @@ export type OrdenCompraCreateManySolicitudInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -4942,6 +5016,7 @@ export type OrdenCompraUpdateWithoutSolicitudInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5002,6 +5077,7 @@ export type OrdenCompraUncheckedUpdateWithoutSolicitudInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5058,6 +5134,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutSolicitudInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5110,6 +5187,7 @@ export type OrdenCompraCreateManyCompraSimpleInput = {
   fechaEntrega?: Date | string | null
   fechaEntregaReal?: Date | string | null
   calificacionCalidad?: number | null
+  comentarioRecepcion?: string | null
   montoTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: string | null
   lugarEntrega?: string | null
@@ -5158,6 +5236,7 @@ export type OrdenCompraUpdateWithoutCompraSimpleInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5218,6 +5297,7 @@ export type OrdenCompraUncheckedUpdateWithoutCompraSimpleInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5274,6 +5354,7 @@ export type OrdenCompraUncheckedUpdateManyWithoutCompraSimpleInput = {
   fechaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fechaEntregaReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   calificacionCalidad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  comentarioRecepcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   montoTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lugarEntrega?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5385,6 +5466,7 @@ export type OrdenCompraSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   fechaEntrega?: boolean
   fechaEntregaReal?: boolean
   calificacionCalidad?: boolean
+  comentarioRecepcion?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -5450,6 +5532,7 @@ export type OrdenCompraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   fechaEntrega?: boolean
   fechaEntregaReal?: boolean
   calificacionCalidad?: boolean
+  comentarioRecepcion?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -5510,6 +5593,7 @@ export type OrdenCompraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   fechaEntrega?: boolean
   fechaEntregaReal?: boolean
   calificacionCalidad?: boolean
+  comentarioRecepcion?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -5570,6 +5654,7 @@ export type OrdenCompraSelectScalar = {
   fechaEntrega?: boolean
   fechaEntregaReal?: boolean
   calificacionCalidad?: boolean
+  comentarioRecepcion?: boolean
   montoTotal?: boolean
   nota?: boolean
   lugarEntrega?: boolean
@@ -5603,7 +5688,7 @@ export type OrdenCompraSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "tipo" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "retencionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
+export type OrdenCompraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "nombre" | "solicitudId" | "proveedorId" | "proveedorNombreLibre" | "origen" | "tipo" | "compraSimpleId" | "estadoAprobacion" | "aprobadoPorId" | "aprobadoEn" | "notaAprobacion" | "proyectoId" | "estado" | "fechaEmision" | "fechaEntrega" | "fechaEntregaReal" | "calificacionCalidad" | "comentarioRecepcion" | "montoTotal" | "nota" | "lugarEntrega" | "adelantoPorcentaje" | "saldoPorcentaje" | "detraccionPorcentaje" | "retencionPorcentaje" | "incluyeIgv" | "tipoCambio" | "contactoProveedorNombre" | "contactoProveedorTelefono" | "condicionPago" | "referencia" | "concepto" | "tiempoEntrega" | "contactoDycNombre" | "contactoDycArea" | "contactoDycCelular" | "contactoDycTelefono" | "destinoPago" | "pagoBanco" | "pagoNumeroCuenta" | "pagoRazonSocial" | "pagoMetodo" | "pagoTrabajadorBanco" | "pagoTrabajadorNumeroCuenta" | "pagoTrabajadorNumero" | "pagoTrabajadorId" | "creadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["ordenCompra"]>
 export type OrdenCompraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   solicitud?: boolean | Prisma.OrdenCompra$solicitudArgs<ExtArgs>
   proveedor?: boolean | Prisma.OrdenCompra$proveedorArgs<ExtArgs>
@@ -5672,6 +5757,7 @@ export type $OrdenCompraPayload<ExtArgs extends runtime.Types.Extensions.Interna
     fechaEntrega: Date | null
     fechaEntregaReal: Date | null
     calificacionCalidad: number | null
+    comentarioRecepcion: string | null
     montoTotal: runtime.Decimal
     nota: string | null
     lugarEntrega: string | null
@@ -6156,6 +6242,7 @@ export interface OrdenCompraFieldRefs {
   readonly fechaEntrega: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
   readonly fechaEntregaReal: Prisma.FieldRef<"OrdenCompra", 'DateTime'>
   readonly calificacionCalidad: Prisma.FieldRef<"OrdenCompra", 'Int'>
+  readonly comentarioRecepcion: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly montoTotal: Prisma.FieldRef<"OrdenCompra", 'Decimal'>
   readonly nota: Prisma.FieldRef<"OrdenCompra", 'String'>
   readonly lugarEntrega: Prisma.FieldRef<"OrdenCompra", 'String'>
