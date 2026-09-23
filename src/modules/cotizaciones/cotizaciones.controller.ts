@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -27,6 +28,11 @@ import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
 import { QueryHistorialDto } from './dto/query-historial.dto.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
+const ALLOWED_ARCHIVO_MIME_TYPES = [
+  'application/pdf',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+  'application/vnd.ms-excel', // .xls
+];
 
 @Controller('solicitudes-cotizacion')
 @Roles(
@@ -99,8 +105,13 @@ export class CotizacionesController {
     FileInterceptor('archivo', {
       limits: { fileSize: MAX_ARCHIVO_BYTES },
       fileFilter: (_req, file, cb) => {
-        if (file.mimetype !== 'application/pdf') {
-          cb(new BadRequestException('Solo se permiten archivos PDF'), false);
+        if (!ALLOWED_ARCHIVO_MIME_TYPES.includes(file.mimetype)) {
+          cb(
+            new BadRequestException(
+              'Solo se permiten archivos PDF o Excel (.xlsx, .xls)',
+            ),
+            false,
+          );
           return;
         }
         cb(null, true);
@@ -108,7 +119,8 @@ export class CotizacionesController {
     }),
   )
   subirArchivo(@UploadedFile() file?: Express.Multer.File) {
-    if (!file) throw new BadRequestException('Debes adjuntar un archivo PDF');
+    if (!file)
+      throw new BadRequestException('Debes adjuntar un archivo PDF o Excel');
     return this.cotizacionesService.subirArchivo(file);
   }
 
@@ -118,6 +130,19 @@ export class CotizacionesController {
     @Body() dto: AttachArchivoDto,
   ) {
     return this.cotizacionesService.attachArchivo(cotizacionId, dto);
+  }
+
+  @Delete('cotizaciones/:cotizacionId/archivos/:archivoId')
+  @Roles('administrador', 'logistica', 'gerencia')
+  eliminarArchivo(
+    @Param('cotizacionId') cotizacionId: string,
+    @Param('archivoId') archivoId: string,
+    @Req() req: Request,
+  ) {
+    return this.cotizacionesService.eliminarArchivo(cotizacionId, archivoId, {
+      id: req.user!.id,
+      role: req.user!.role,
+    });
   }
 
   @Patch('cotizaciones/:cotizacionId/recibir')
