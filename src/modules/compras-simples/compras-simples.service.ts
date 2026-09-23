@@ -17,6 +17,7 @@ import {
   ObservarGrupoDto,
 } from './dto/decision-grupo.dto.js';
 import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
+import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import type { Role, TipoRequerimiento } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
@@ -422,9 +423,8 @@ export class ComprasSimplesService {
       pagoTrabajadorId = trabajador?.id;
     }
 
-    const codigo = await this.generateCodigo();
-
     const creada = await this.prisma.$transaction(async (tx) => {
+      const codigo = await this.generateCodigo(tx);
       await this.ordenesCompra.bloquearNumeracion(tx);
       const numeros = await Promise.all(
         dto.grupos.map((_, i) =>
@@ -926,11 +926,22 @@ export class ComprasSimplesService {
     });
   }
 
-  private async generateCodigo(): Promise<string> {
+  /**
+   * Igual que `bloquearNumeracion`/`generateNumero` en OrdenesCompraService:
+   * el correlativo se basa en el MÁXIMO código ya usado (no en un `count()`,
+   * que colisiona si una compra fue eliminada) y se calcula bajo un advisory
+   * lock dentro de la transacción para que dos creaciones concurrentes no
+   * generen el mismo `codigo` y choquen contra la restricción `unique`.
+   */
+  private async generateCodigo(tx: Prisma.TransactionClient): Promise<string> {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext('dyc-compra-simple-codigo'))`;
     const year = new Date().getFullYear();
-    const count = await this.prisma.compraSimple.count({
-      where: { creadoEn: { gte: new Date(`${year}-01-01`) } },
-    });
-    return `CS-${year}-${String(count + 1).padStart(4, '0')}`;
+    const patron = `CS-${year}-%`;
+    const [{ max }] = await tx.$queryRaw<{ max: number }[]>`
+      SELECT COALESCE(MAX(RIGHT(codigo, 4)::int), 0) AS max
+      FROM compras_simples
+      WHERE codigo LIKE ${patron}
+    `;
+    return `CS-${year}-${String(max + 1).padStart(4, '0')}`;
   }
 }
