@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class RecepcionRequerimientoDto {
+  @IsOptional()
   @IsString()
-  @IsNotEmpty({ message: 'Debes adjuntar una foto de la recepción' })
-  fotoUrl: string;
+  fotoUrl?: string;
 
   @IsOptional()
   @IsString()

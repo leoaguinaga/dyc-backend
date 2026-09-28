@@ -72,6 +72,14 @@ const ESTADOS_PRE_COTIZACION: EstadoRequerimiento[] = [
 // ing_civil e ing_electrico (área técnica) ven todos los tipos, no solo el propio.
 const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {};
 
+// Qué tipo se muestra primero en el kanban para cada rol (orden dentro de
+// columna, no filtro). administrativo nunca se prioriza.
+const TIPO_PRIORITY_BY_ROLE: Partial<Record<Role, TipoRequerimiento>> = {
+  jefe_sig: 'seguridad',
+  ing_civil: 'civil',
+  ing_electrico: 'electrico',
+};
+
 // Which tipos a role is allowed to create
 const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
   supervisor: ['electrico', 'civil', 'seguridad', 'administrativo'],
@@ -216,7 +224,7 @@ export class RequerimientosService {
     });
   }
 
-  findAll(query: QueryRequerimientoDto, userId: string, userRole: Role) {
+  async findAll(query: QueryRequerimientoDto, userId: string, userRole: Role) {
     const where: Record<string, unknown> = {};
 
     if (query.estado) where.estado = query.estado;
@@ -243,10 +251,19 @@ export class RequerimientosService {
       },
     ];
 
-    return this.prisma.requerimiento.findMany({
+    const items = await this.prisma.requerimiento.findMany({
       where,
       include: INCLUDE_BASE,
       orderBy: [{ urgente: 'desc' }, { creadoEn: 'desc' }],
+    });
+
+    const tipoPrioritario = TIPO_PRIORITY_BY_ROLE[userRole];
+    if (!tipoPrioritario) return items;
+
+    return [...items].sort((a, b) => {
+      const aPrioritario = a.tipo === tipoPrioritario ? 0 : 1;
+      const bPrioritario = b.tipo === tipoPrioritario ? 0 : 1;
+      return aPrioritario - bPrioritario;
     });
   }
 
@@ -673,6 +690,8 @@ export class RequerimientosService {
       throw new ForbiddenException(
         'Solo el solicitante puede confirmar la recepción de este requerimiento',
       );
+    if (!dto.fotoUrl && userRole !== 'admin_ti')
+      throw new BadRequestException('Debes adjuntar una foto de la recepción');
 
     const actualizado = await this.prisma.$transaction(async (tx) => {
       const actualizado = await tx.requerimiento.update({

@@ -20,6 +20,7 @@ import type {
   TipoOrdenCompra,
 } from '../../../prisma/generated/prisma/enums.js';
 import { AppEvents } from '../../shared/events/events.js';
+import { montoConIgv } from '../../shared/money/igv.util.js';
 
 const OC_INCLUDE = {
   solicitud: {
@@ -277,6 +278,10 @@ export class OrdenesCompraService {
           (s, item) => s + Number(item.precioUnit) * Number(item.cantidad),
           0,
         );
+        // El plan de pagos se reparte sobre el monto final (con IGV si
+        // corresponde), no sobre el subtotal de ítems: `montoTotal` sigue
+        // siendo el subtotal de línea, sin tocarlo.
+        const montoParaPagos = montoConIgv(monto, grupo.incluyeIgv);
         const { adelantoPorcentaje, saldoPorcentaje } = derivarAdelantoSaldo(
           grupo.condicionesPago,
         );
@@ -314,9 +319,9 @@ export class OrdenesCompraService {
               pagos: {
                 create: grupo.condicionesPago.map((cp) => ({
                   proyectoId,
-                  concepto: `Pago OC ${numeros[i]}`,
+                  concepto: solicitud.requerimiento?.nombre ?? numeros[i],
                   porcentaje: cp.porcentaje,
-                  monto: (monto * Number(cp.porcentaje)) / 100,
+                  monto: (montoParaPagos * Number(cp.porcentaje)) / 100,
                   fechaProgramada: cp.fecha,
                   registradoPorId: userId,
                 })),

@@ -300,11 +300,13 @@ export class CrearComprobanteDto {
   cuentaProveedor?: string;
 
   @IsOptional()
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   importe?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   importeRendido?: number;
