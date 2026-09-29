@@ -25,6 +25,27 @@ enum Role {
   admin_ti
 }
 
+model Permission {
+  id            String           @id @default(cuid())
+  code          String           @unique
+  description   String?
+  activo        Boolean          @default(true)
+  creadoEn      DateTime         @default(now())
+  actualizadoEn DateTime         @updatedAt
+  roles         RolePermission[]
+  @@map("permissions")
+}
+
+model RolePermission {
+  role         Role
+  permissionId String
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  creadoEn     DateTime   @default(now())
+  @@id([role, permissionId])
+  @@index([permissionId])
+  @@map("role_permissions")
+}
+
 enum TipoRequerimiento {
   electrico
   civil
