@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
@@ -21,6 +21,7 @@ import {
   UpdatePagoDto,
   CrearComprobanteDto,
   ActualizarComprobanteDto,
+  ActualizarCodigoComprobanteDto,
 } from './dto/create-pago.dto.js';
 
 const PAGO_INCLUDE = {
@@ -34,6 +35,7 @@ const PAGO_INCLUDE = {
       incluyeIgv: true,
       proveedorNombreLibre: true,
       destinoPago: true,
+      compraSimpleId: true,
       pagoMetodo: true,
       pagoBanco: true,
       pagoNumeroCuenta: true,
@@ -519,20 +521,99 @@ export class PagosService {
     if (metodo?.toLowerCase().includes('transfer') && !tieneCuenta)
       throw new BadRequestException('Registra número de cuenta o CCI antes de ejecutar una transferencia');
 
-    const pago = await this.prisma.pago.update({
-      where: { id },
-      data: {
-        estado: 'pagado',
-        fechaPagoReal: dto.fechaPagoReal ? new Date(dto.fechaPagoReal) : new Date(),
-        metodoPago: dto.metodoPago ?? existing.metodoPago,
-        numeroOperacion: dto.numeroOperacion,
-        comprobanteNombre: dto.comprobanteNombre ?? existing.comprobanteNombre,
-        comprobanteUrl: dto.comprobanteUrl ?? existing.comprobanteUrl,
-        pagadoPorId: userId,
-      },
-      include: PAGO_INCLUDE,
-    });
+    const pago = await this.conCodigoComprobante(existing.codigoComprobante, (codigoComprobante) =>
+      this.prisma.pago.update({
+        where: { id },
+        data: {
+          estado: 'pagado',
+          fechaPagoReal: dto.fechaPagoReal ? new Date(dto.fechaPagoReal) : new Date(),
+          metodoPago: dto.metodoPago ?? existing.metodoPago,
+          numeroOperacion: dto.numeroOperacion,
+          comprobanteNombre: dto.comprobanteNombre ?? existing.comprobanteNombre,
+          comprobanteUrl: dto.comprobanteUrl ?? existing.comprobanteUrl,
+          pagadoPorId: userId,
+          codigoComprobante,
+        },
+        include: PAGO_INCLUDE,
+      }),
+    );
     return withEstadoEfectivo(pago);
+  }
+
+  /**
+   * Siguiente correlativo del año en curso (hora Lima): AA-NNNN. Toma el mayor
+   * número ya usado ese año (incluye los editados a mano) y suma 1.
+   */
+  private async siguienteCodigoComprobante() {
+    const anio = String(hoyLima().getUTCFullYear()).slice(-2);
+    const usados = await this.prisma.pago.findMany({
+      where: { codigoComprobante: { startsWith: `${anio}-` } },
+      select: { codigoComprobante: true },
+    });
+    const mayor = usados.reduce((max, { codigoComprobante }) => {
+      const n = Number(codigoComprobante!.slice(anio.length + 1));
+      return Number.isFinite(n) && n > max ? n : max;
+    }, 0);
+    return `${anio}-${String(mayor + 1).padStart(4, '0')}`;
+  }
+
+  /**
+   * Ejecuta `operacion` con un código asignado si el pago aún no tiene uno.
+   * Reintenta ante una colisión de unicidad (dos pagos cerrándose a la vez).
+   */
+  private async conCodigoComprobante<T>(
+    actual: string | null,
+    operacion: (codigo: string | undefined) => Promise<T>,
+  ): Promise<T> {
+    if (actual) return operacion(undefined);
+    for (let intento = 0; ; intento++) {
+      try {
+        return await operacion(await this.siguienteCodigoComprobante());
+      } catch (err) {
+        const colision =
+          err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002';
+        if (!colision || intento >= 4) throw err;
+      }
+    }
+  }
+
+  async actualizarCodigoComprobante(id: string, dto: ActualizarCodigoComprobanteDto) {
+    const existing = await this.findOne(id);
+    if (existing.estado !== 'pagado')
+      throw new BadRequestException('El código solo aplica a pagos ya realizados');
+
+    const codigo = dto.codigo?.trim();
+    if (!codigo) {
+      // Sin valor: asigna el siguiente correlativo (para pagos previos a esta función).
+      const pago = await this.conCodigoComprobante(existing.codigoComprobante, (codigoComprobante) =>
+        this.prisma.pago.update({
+          where: { id },
+          data: { codigoComprobante },
+          include: PAGO_INCLUDE,
+        }),
+      );
+      return withEstadoEfectivo(pago);
+    }
+
+    const duplicado = await this.prisma.pago.findFirst({
+      where: { codigoComprobante: codigo, NOT: { id } },
+      select: { id: true },
+    });
+    if (duplicado)
+      throw new ConflictException(`El código ${codigo} ya está asignado a otro comprobante`);
+
+    try {
+      const pago = await this.prisma.pago.update({
+        where: { id },
+        data: { codigoComprobante: codigo },
+        include: PAGO_INCLUDE,
+      });
+      return withEstadoEfectivo(pago);
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002')
+        throw new ConflictException(`El código ${codigo} ya está asignado a otro comprobante`);
+      throw err;
+    }
   }
 
   subirComprobante(file: Express.Multer.File) {
@@ -744,6 +825,7 @@ export class PagosService {
             'Sin concepto',
           monto: Number(p.monto),
           estadoEfectivo: p.estadoEfectivo,
+          fechaProgramada: p.fechaProgramada.toISOString().slice(0, 10),
         };
       }),
       subtotal: g.pagos.reduce((s, p) => s + Number(p.monto), 0),

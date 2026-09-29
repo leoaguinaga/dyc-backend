@@ -23,6 +23,8 @@ export interface ReportePagoRow {
   concepto: string;
   monto: number;
   estadoEfectivo: string;
+  /** ISO yyyy-mm-dd; opcional para no romper consumidores previos. */
+  fechaProgramada?: string;
 }
 
 export interface ReporteGrupo {
@@ -40,206 +42,200 @@ export interface ReporteData {
 }
 
 const ANCHO = 800;
+const PAD = 32;
 const COLOR_BORDE = '#e5e7eb';
 const COLOR_TEXTO = '#111827';
 const COLOR_MUTED = '#6b7280';
 const COLOR_MARCA = '#1e3a8a';
+const COLOR_VENCIDO = '#b91c1c';
+const COLOR_PAGADO = '#166534';
+const COLOR_FONDO_SUAVE = '#f3f4f6';
 
-function badgeEstado(estadoEfectivo: string) {
-  const map: Record<string, { bg: string; fg: string; label: string }> = {
-    pendiente: { bg: '#fef3c7', fg: '#92400e', label: 'Pendiente' },
-    vencido: { bg: '#fee2e2', fg: '#991b1b', label: 'Vencido' },
-    pagado: { bg: '#dcfce7', fg: '#166534', label: 'Pagado' },
-  };
-  const s = map[estadoEfectivo] ?? map.pendiente;
-  return {
-    display: 'flex',
-    padding: '2px 10px',
-    borderRadius: 999,
-    fontSize: 13,
-    fontFamily: 'Inter-Bold',
-    backgroundColor: s.bg,
-    color: s.fg,
-  } as const;
+// Alturas explícitas: el alto total se calcula sumándolas, así la imagen nunca se corta.
+const H_CABECERA = 64;
+const H_RESUMEN = 72;
+const H_GRUPO = 40;
+const H_FILA = 34;
+const H_PIE = 64;
+const GAP_BLOQUE = 20;
+
+type Nodo = { type: string; props: { style?: Record<string, unknown>; children?: unknown } };
+const el = (style: Record<string, unknown>, children?: unknown): Nodo => ({
+  type: 'div',
+  props: {
+    style: Object.fromEntries(Object.entries({ display: 'flex', ...style }).filter(([, v]) => v !== undefined)),
+    children,
+  },
+});
+
+function fmtCorta(iso?: string) {
+  if (!iso) return '';
+  return new Date(`${iso}T00:00:00`).toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit' });
 }
 
-function estadoLabel(estadoEfectivo: string) {
-  return { pendiente: 'Pendiente', vencido: 'Vencido', pagado: 'Pagado' }[estadoEfectivo] ?? estadoEfectivo;
+function vencimiento(p: ReportePagoRow): { texto: string; color: string; bold: boolean } {
+  const f = fmtCorta(p.fechaProgramada);
+  if (p.estadoEfectivo === 'vencido') return { texto: `Venció ${f}`.trim(), color: COLOR_VENCIDO, bold: true };
+  if (p.estadoEfectivo === 'pagado') return { texto: 'Pagado', color: COLOR_PAGADO, bold: true };
+  return { texto: `Vence ${f}`.trim(), color: COLOR_MUTED, bold: false };
+}
+
+function fila(p: ReportePagoRow, ultima: boolean): Nodo {
+  const v = vencimiento(p);
+  return el(
+    {
+      height: H_FILA,
+      alignItems: 'center',
+      borderBottom: ultima ? 'none' : `1px solid ${COLOR_BORDE}`,
+    },
+    [
+      el({ width: 120, fontSize: 14, color: COLOR_MUTED }, p.codigo),
+      el(
+        {
+          flex: 1,
+          minWidth: 0,
+          fontSize: 15,
+          color: COLOR_TEXTO,
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          paddingRight: 12,
+        },
+        p.concepto,
+      ),
+      el(
+        { width: 104, fontSize: 13, color: v.color, fontFamily: v.bold ? 'Inter-Bold' : 'Inter', whiteSpace: 'nowrap' },
+        v.texto,
+      ),
+      el(
+        { width: 112, justifyContent: 'flex-end', fontFamily: 'Inter-Bold', fontSize: 15, color: COLOR_TEXTO, whiteSpace: 'nowrap' },
+        fmtMonto(p.monto),
+      ),
+    ],
+  );
+}
+
+function grupo(g: ReporteGrupo): Nodo {
+  return el({ flexDirection: 'column', marginBottom: GAP_BLOQUE }, [
+    el(
+      {
+        height: H_GRUPO,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: COLOR_FONDO_SUAVE,
+        borderRadius: 6,
+        padding: '0 12px',
+        marginBottom: 2,
+      },
+      [
+        el({ alignItems: 'center', flex: 1, minWidth: 0 }, [
+          el(
+            { fontFamily: 'Inter-Bold', fontSize: 16, color: COLOR_TEXTO, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+            g.proyecto.nombre,
+          ),
+          el({ fontSize: 13, color: COLOR_MUTED, marginLeft: 10, whiteSpace: 'nowrap' }, `${g.pagos.length} ${g.pagos.length === 1 ? 'pago' : 'pagos'}`),
+        ]),
+        el({ fontFamily: 'Inter-Bold', fontSize: 16, color: COLOR_MARCA, whiteSpace: 'nowrap' }, fmtMonto(g.subtotal)),
+      ],
+    ),
+    el({ flexDirection: 'column', padding: '0 12px' }, g.pagos.map((p, i) => fila(p, i === g.pagos.length - 1))),
+  ]);
+}
+
+function celdaResumen(etiqueta: string, valor: string, color = COLOR_TEXTO, ancho?: number): Nodo {
+  return el(
+    { flexDirection: 'column', justifyContent: 'center', flex: ancho ? undefined : 1, width: ancho, height: '100%' },
+    [
+      el({ fontSize: 12, color: COLOR_MUTED, marginBottom: 4 }, etiqueta.toUpperCase()),
+      el({ fontFamily: 'Inter-Bold', fontSize: 22, color }, valor),
+    ],
+  );
 }
 
 export async function renderReportePagosPng(data: ReporteData): Promise<Buffer> {
   const filas = data.grupos.reduce((n, g) => n + g.pagos.length, 0);
-  const alto = 165 + data.grupos.length * 50 + filas * 46 + 90;
+  const alto =
+    PAD * 2 +
+    H_CABECERA + GAP_BLOQUE +
+    H_RESUMEN + GAP_BLOQUE +
+    data.grupos.length * (H_GRUPO + 2 + GAP_BLOQUE) +
+    filas * H_FILA +
+    H_PIE;
 
   const titulo = data.tipo === 'pendientes' ? 'PAGOS PENDIENTES' : 'PAGOS REALIZADOS';
+  const todos = data.grupos.flatMap((g) => g.pagos);
+  const vencido = todos.filter((p) => p.estadoEfectivo === 'vencido').reduce((s, p) => s + p.monto, 0);
+  const porVencer = data.total - vencido;
 
-  // satori acepta un árbol tipo React sin JSX; el tipado estricto de ReactNode no modela esta forma.
-  const tree = {
-      type: 'div',
-      props: {
-        style: {
-          display: 'flex',
-          flexDirection: 'column',
-          width: ANCHO,
-          height: alto,
-          backgroundColor: '#ffffff',
-          fontFamily: 'Inter',
-          padding: 32,
+  const celdas: Nodo[] =
+    data.tipo === 'pendientes'
+      ? [
+          celdaResumen('Total a pagar', fmtMonto(data.total), COLOR_MARCA),
+          celdaResumen('Vencido', fmtMonto(vencido), vencido > 0 ? COLOR_VENCIDO : COLOR_TEXTO),
+          celdaResumen('Por vencer', fmtMonto(porVencer)),
+          celdaResumen('Pagos', `${filas}`, COLOR_TEXTO, 80),
+        ]
+      : [
+          celdaResumen('Total pagado', fmtMonto(data.total), COLOR_MARCA),
+          celdaResumen('Pagos', `${filas}`),
+          celdaResumen('Proyectos', `${data.grupos.length}`),
+        ];
+
+  const tree = el(
+    {
+      flexDirection: 'column',
+      width: ANCHO,
+      height: alto,
+      backgroundColor: '#ffffff',
+      fontFamily: 'Inter',
+      padding: PAD,
+    },
+    [
+      el(
+        {
+          height: H_CABECERA,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderBottom: `3px solid ${COLOR_MARCA}`,
+          paddingBottom: 12,
+          marginBottom: GAP_BLOQUE,
         },
-        children: [
-          {
-            type: 'div',
-            props: {
-              style: {
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingBottom: 16,
-                borderBottom: `3px solid ${COLOR_MARCA}`,
-                marginBottom: 20,
-              },
-              children: [
-                {
-                  type: 'div',
-                  props: {
-                    style: { display: 'flex', fontFamily: 'Inter-Bold', fontSize: 26, color: COLOR_MARCA },
-                    children: titulo,
-                  },
-                },
-                {
-                  type: 'div',
-                  props: {
-                    style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
-                    children: [
-                      {
-                        type: 'div',
-                        props: {
-                          style: { display: 'flex', fontSize: 20, color: COLOR_MUTED },
-                          children: fmtFecha(data.fecha),
-                        },
-                      },
-                      {
-                        type: 'div',
-                        props: {
-                          style: { display: 'flex', fontSize: 13, color: COLOR_MUTED },
-                          children: `Generado ${fmtHora(data.generadoEn)}`,
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          ...data.grupos.map((g) => ({
-            type: 'div',
-            props: {
-              style: { display: 'flex', flexDirection: 'column', marginBottom: 20 },
-              children: [
-                {
-                  type: 'div',
-                  props: {
-                    style: {
-                      display: 'flex',
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 18,
-                      color: COLOR_TEXTO,
-                      marginBottom: 8,
-                    },
-                    children: g.proyecto.nombre,
-                  },
-                },
-                ...g.pagos.map((p) => ({
-                  type: 'div',
-                  props: {
-                    style: {
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '10px 0',
-                      borderBottom: `1px solid ${COLOR_BORDE}`,
-                    },
-                    children: [
-                      {
-                        type: 'div',
-                        props: {
-                          style: { display: 'flex', flexDirection: 'column', gap: 2 },
-                          children: [
-                            {
-                              type: 'div',
-                              props: {
-                                style: { display: 'flex', fontSize: 15, color: COLOR_MUTED },
-                                children: p.codigo,
-                              },
-                            },
-                            {
-                              type: 'div',
-                              props: {
-                                style: { display: 'flex', fontSize: 16, color: COLOR_TEXTO },
-                                children: p.concepto,
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        type: 'div',
-                        props: {
-                          style: { display: 'flex', alignItems: 'center', gap: 12 },
-                          children: [
-                            { type: 'div', props: { style: badgeEstado(p.estadoEfectivo), children: estadoLabel(p.estadoEfectivo) } },
-                            {
-                              type: 'div',
-                              props: {
-                                style: { display: 'flex', fontFamily: 'Inter-Bold', fontSize: 16, color: COLOR_TEXTO, minWidth: 120, justifyContent: 'flex-end' },
-                                children: fmtMonto(p.monto),
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                })),
-                {
-                  type: 'div',
-                  props: {
-                    style: {
-                      display: 'flex',
-                      justifyContent: 'flex-end',
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 15,
-                      color: COLOR_MUTED,
-                      marginTop: 6,
-                    },
-                    children: `Subtotal: ${fmtMonto(g.subtotal)}`,
-                  },
-                },
-              ],
-            },
-          })),
-          {
-            type: 'div',
-            props: {
-              style: {
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginTop: 8,
-                paddingTop: 16,
-                borderTop: `3px solid ${COLOR_MARCA}`,
-              },
-              children: [
-                { type: 'div', props: { style: { display: 'flex', fontFamily: 'Inter-Bold', fontSize: 20, color: COLOR_MARCA }, children: 'TOTAL' } },
-                { type: 'div', props: { style: { display: 'flex', fontFamily: 'Inter-Bold', fontSize: 22, color: COLOR_MARCA }, children: fmtMonto(data.total) } },
-              ],
-            },
-          },
+        [
+          el({ fontFamily: 'Inter-Bold', fontSize: 26, color: COLOR_MARCA }, titulo),
+          el({ flexDirection: 'column', alignItems: 'flex-end' }, [
+            el({ fontSize: 20, color: COLOR_TEXTO }, fmtFecha(data.fecha)),
+            el({ fontSize: 13, color: COLOR_MUTED }, `Generado ${fmtHora(data.generadoEn)}`),
+          ]),
         ],
-      },
-    };
+      ),
+      el(
+        {
+          height: H_RESUMEN,
+          alignItems: 'center',
+          border: `1px solid ${COLOR_BORDE}`,
+          borderRadius: 8,
+          padding: '0 20px',
+          marginBottom: GAP_BLOQUE,
+        },
+        celdas,
+      ),
+      ...data.grupos.map(grupo),
+      el(
+        {
+          height: H_PIE,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderTop: `3px solid ${COLOR_MARCA}`,
+        },
+        [
+          el({ fontFamily: 'Inter-Bold', fontSize: 20, color: COLOR_MARCA }, 'TOTAL'),
+          el({ fontFamily: 'Inter-Bold', fontSize: 24, color: COLOR_MARCA }, fmtMonto(data.total)),
+        ],
+      ),
+    ],
+  );
 
-  const svg = await satori(tree as Parameters<typeof satori>[0], {
+  const svg = await satori(tree as unknown as Parameters<typeof satori>[0], {
     width: ANCHO,
     height: alto,
     fonts: [

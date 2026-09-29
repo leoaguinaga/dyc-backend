@@ -13,6 +13,8 @@ import {
   Max,
   Min,
   ValidateNested,
+  Matches,
+  ValidateIf,
 } from 'class-validator';
 
 export class CreatePagoDto {
@@ -211,6 +213,14 @@ export class MarcarPagadoDto {
   @IsOptional()
   @IsString()
   comprobanteUrl?: string;
+}
+
+export class ActualizarCodigoComprobanteDto {
+  /** Formato AA-NNNN (ej. 26-2078). Vacío = asignar el siguiente correlativo. */
+  @ValidateIf((o: ActualizarCodigoComprobanteDto) => !!o.codigo?.trim())
+  @IsString()
+  @Matches(/^\d{2}-\d{4,6}$/, { message: 'El código debe tener el formato AA-NNNN (ej. 26-2078)' })
+  codigo?: string;
 }
 
 export class SubirComprobantePagoDto {

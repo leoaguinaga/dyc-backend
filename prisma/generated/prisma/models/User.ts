@@ -236,6 +236,7 @@ export type UserWhereInput = {
   turnosAbiertos?: Prisma.TurnoListRelationFilter
   turnosCerrados?: Prisma.TurnoListRelationFilter
   turnosCorregidos?: Prisma.TurnoListRelationFilter
+  turnosCierreRevisados?: Prisma.TurnoListRelationFilter
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaListRelationFilter
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaListRelationFilter
   visitasTerceroRegistradas?: Prisma.VisitaTerceroListRelationFilter
@@ -281,6 +282,7 @@ export type UserOrderByWithRelationInput = {
   turnosAbiertos?: Prisma.TurnoOrderByRelationAggregateInput
   turnosCerrados?: Prisma.TurnoOrderByRelationAggregateInput
   turnosCorregidos?: Prisma.TurnoOrderByRelationAggregateInput
+  turnosCierreRevisados?: Prisma.TurnoOrderByRelationAggregateInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaOrderByRelationAggregateInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaOrderByRelationAggregateInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroOrderByRelationAggregateInput
@@ -329,6 +331,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   turnosAbiertos?: Prisma.TurnoListRelationFilter
   turnosCerrados?: Prisma.TurnoListRelationFilter
   turnosCorregidos?: Prisma.TurnoListRelationFilter
+  turnosCierreRevisados?: Prisma.TurnoListRelationFilter
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaListRelationFilter
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaListRelationFilter
   visitasTerceroRegistradas?: Prisma.VisitaTerceroListRelationFilter
@@ -404,6 +407,7 @@ export type UserCreateInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -449,6 +453,7 @@ export type UserUncheckedCreateInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -494,6 +499,7 @@ export type UserUpdateInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -539,6 +545,7 @@ export type UserUncheckedUpdateInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -726,6 +733,12 @@ export type UserCreateNestedOneWithoutTurnosCorregidosInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
+export type UserCreateNestedOneWithoutTurnosCierreRevisadosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosCierreRevisadosInput, Prisma.UserUncheckedCreateWithoutTurnosCierreRevisadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosCierreRevisadosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosAbiertosInput, Prisma.UserUncheckedCreateWithoutTurnosAbiertosInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosAbiertosInput
@@ -752,6 +765,16 @@ export type UserUpdateOneWithoutTurnosCorregidosNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTurnosCorregidosInput, Prisma.UserUpdateWithoutTurnosCorregidosInput>, Prisma.UserUncheckedUpdateWithoutTurnosCorregidosInput>
+}
+
+export type UserUpdateOneWithoutTurnosCierreRevisadosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTurnosCierreRevisadosInput, Prisma.UserUncheckedCreateWithoutTurnosCierreRevisadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTurnosCierreRevisadosInput
+  upsert?: Prisma.UserUpsertWithoutTurnosCierreRevisadosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTurnosCierreRevisadosInput, Prisma.UserUpdateWithoutTurnosCierreRevisadosInput>, Prisma.UserUncheckedUpdateWithoutTurnosCierreRevisadosInput>
 }
 
 export type UserCreateNestedOneWithoutRegistrosVisitaComoVisitanteInput = {
@@ -1158,6 +1181,7 @@ export type UserCreateWithoutAuditLogsInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -1202,6 +1226,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1262,6 +1287,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -1306,6 +1332,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1349,6 +1376,7 @@ export type UserCreateWithoutSessionsInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -1393,6 +1421,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1453,6 +1482,7 @@ export type UserUpdateWithoutSessionsInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -1497,6 +1527,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1541,6 +1572,7 @@ export type UserCreateWithoutAccountsInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -1585,6 +1617,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1645,6 +1678,7 @@ export type UserUpdateWithoutAccountsInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -1689,6 +1723,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1733,6 +1768,7 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -1777,6 +1813,7 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1837,6 +1874,7 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -1881,6 +1919,7 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1925,6 +1964,7 @@ export type UserCreateWithoutTrabajadorInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -1969,6 +2009,7 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2029,6 +2070,7 @@ export type UserUpdateWithoutTrabajadorInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -2073,6 +2115,7 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2117,6 +2160,7 @@ export type UserCreateWithoutTurnosAbiertosInput = {
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -2161,6 +2205,7 @@ export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2210,6 +2255,7 @@ export type UserCreateWithoutTurnosCerradosInput = {
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -2254,6 +2300,7 @@ export type UserUncheckedCreateWithoutTurnosCerradosInput = {
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2303,6 +2350,7 @@ export type UserCreateWithoutTurnosCorregidosInput = {
   notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -2347,6 +2395,7 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
   notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2363,6 +2412,101 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
 export type UserCreateOrConnectWithoutTurnosCorregidosInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCorregidosInput, Prisma.UserUncheckedCreateWithoutTurnosCorregidosInput>
+}
+
+export type UserCreateWithoutTurnosCierreRevisadosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTurnosCierreRevisadosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTurnosCierreRevisadosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCierreRevisadosInput, Prisma.UserUncheckedCreateWithoutTurnosCierreRevisadosInput>
 }
 
 export type UserUpsertWithoutTurnosAbiertosInput = {
@@ -2407,6 +2551,7 @@ export type UserUpdateWithoutTurnosAbiertosInput = {
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -2451,6 +2596,7 @@ export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2506,6 +2652,7 @@ export type UserUpdateWithoutTurnosCerradosInput = {
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -2550,6 +2697,7 @@ export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2605,6 +2753,7 @@ export type UserUpdateWithoutTurnosCorregidosInput = {
   notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -2649,6 +2798,108 @@ export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
   notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutTurnosCierreRevisadosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTurnosCierreRevisadosInput, Prisma.UserUncheckedUpdateWithoutTurnosCierreRevisadosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTurnosCierreRevisadosInput, Prisma.UserUncheckedCreateWithoutTurnosCierreRevisadosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTurnosCierreRevisadosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTurnosCierreRevisadosInput, Prisma.UserUncheckedUpdateWithoutTurnosCierreRevisadosInput>
+}
+
+export type UserUpdateWithoutTurnosCierreRevisadosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTurnosCierreRevisadosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2694,6 +2945,7 @@ export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
@@ -2738,6 +2990,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
@@ -2787,6 +3040,7 @@ export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
@@ -2831,6 +3085,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
@@ -2891,6 +3146,7 @@ export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
@@ -2935,6 +3191,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
@@ -2990,6 +3247,7 @@ export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
@@ -3034,6 +3292,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
@@ -3078,6 +3337,7 @@ export type UserCreateWithoutVisitasTerceroRegistradasInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
@@ -3122,6 +3382,7 @@ export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
@@ -3182,6 +3443,7 @@ export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
@@ -3226,6 +3488,7 @@ export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
@@ -3270,6 +3533,7 @@ export type UserCreateWithoutPlanillasGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -3314,6 +3578,7 @@ export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3374,6 +3639,7 @@ export type UserUpdateWithoutPlanillasGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -3418,6 +3684,7 @@ export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3461,6 +3728,7 @@ export type UserCreateWithoutRequerimientosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -3505,6 +3773,7 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3554,6 +3823,7 @@ export type UserCreateWithoutRequerimientosRecepcionadosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -3598,6 +3868,7 @@ export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3658,6 +3929,7 @@ export type UserUpdateWithoutRequerimientosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -3702,6 +3974,7 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3757,6 +4030,7 @@ export type UserUpdateWithoutRequerimientosRecepcionadosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -3801,6 +4075,7 @@ export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3845,6 +4120,7 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -3889,6 +4165,7 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3949,6 +4226,7 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -3993,6 +4271,7 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4038,6 +4317,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -4082,6 +4362,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicita
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4131,6 +4412,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -4175,6 +4457,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerencia
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4235,6 +4518,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -4279,6 +4563,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicita
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4334,6 +4619,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -4378,6 +4664,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerencia
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4422,6 +4709,7 @@ export type UserCreateWithoutCotizacionesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -4466,6 +4754,7 @@ export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4526,6 +4815,7 @@ export type UserUpdateWithoutCotizacionesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -4570,6 +4860,7 @@ export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4613,6 +4904,7 @@ export type UserCreateWithoutComprasSimplesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -4657,6 +4949,7 @@ export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4706,6 +4999,7 @@ export type UserCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -4750,6 +5044,7 @@ export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput 
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4810,6 +5105,7 @@ export type UserUpdateWithoutComprasSimplesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -4854,6 +5150,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4909,6 +5206,7 @@ export type UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -4953,6 +5251,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput 
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4997,6 +5296,7 @@ export type UserCreateWithoutOrdenesCompraAprobadasInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -5041,6 +5341,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5090,6 +5391,7 @@ export type UserCreateWithoutOrdenesCompraInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -5134,6 +5436,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5194,6 +5497,7 @@ export type UserUpdateWithoutOrdenesCompraAprobadasInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -5238,6 +5542,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5293,6 +5598,7 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -5337,6 +5643,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5382,6 +5689,7 @@ export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -5426,6 +5734,7 @@ export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5486,6 +5795,7 @@ export type UserUpdateWithoutCompraSimpleArchivosSubidosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -5530,6 +5840,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5573,6 +5884,7 @@ export type UserCreateWithoutCompraSimpleHistorialInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -5617,6 +5929,7 @@ export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5677,6 +5990,7 @@ export type UserUpdateWithoutCompraSimpleHistorialInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -5721,6 +6035,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5765,6 +6080,7 @@ export type UserCreateWithoutPagosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -5809,6 +6125,7 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5858,6 +6175,7 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -5902,6 +6220,7 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5962,6 +6281,7 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -6006,6 +6326,7 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6061,6 +6382,7 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -6105,6 +6427,7 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6149,6 +6472,7 @@ export type UserCreateWithoutComprobantesGeneradosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -6193,6 +6517,7 @@ export type UserUncheckedCreateWithoutComprobantesGeneradosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6253,6 +6578,7 @@ export type UserUpdateWithoutComprobantesGeneradosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -6297,6 +6623,7 @@ export type UserUncheckedUpdateWithoutComprobantesGeneradosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6341,6 +6668,7 @@ export type UserCreateWithoutPagosRecurrentesCreadosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -6385,6 +6713,7 @@ export type UserUncheckedCreateWithoutPagosRecurrentesCreadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6445,6 +6774,7 @@ export type UserUpdateWithoutPagosRecurrentesCreadosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -6489,6 +6819,7 @@ export type UserUncheckedUpdateWithoutPagosRecurrentesCreadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6534,6 +6865,7 @@ export type UserCreateWithoutPlanillasStaffGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -6578,6 +6910,7 @@ export type UserUncheckedCreateWithoutPlanillasStaffGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6638,6 +6971,7 @@ export type UserUpdateWithoutPlanillasStaffGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -6682,6 +7016,7 @@ export type UserUncheckedUpdateWithoutPlanillasStaffGeneradasInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6725,6 +7060,7 @@ export type UserCreateWithoutCobrosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -6769,6 +7105,7 @@ export type UserUncheckedCreateWithoutCobrosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6818,6 +7155,7 @@ export type UserCreateWithoutCobrosMarcadosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -6862,6 +7200,7 @@ export type UserUncheckedCreateWithoutCobrosMarcadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6922,6 +7261,7 @@ export type UserUpdateWithoutCobrosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -6966,6 +7306,7 @@ export type UserUncheckedUpdateWithoutCobrosRegistradosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7021,6 +7362,7 @@ export type UserUpdateWithoutCobrosMarcadosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -7065,6 +7407,7 @@ export type UserUncheckedUpdateWithoutCobrosMarcadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7110,6 +7453,7 @@ export type UserCreateWithoutHelpVideosCreadosInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -7154,6 +7498,7 @@ export type UserUncheckedCreateWithoutHelpVideosCreadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -7214,6 +7559,7 @@ export type UserUpdateWithoutHelpVideosCreadosInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -7258,6 +7604,7 @@ export type UserUncheckedUpdateWithoutHelpVideosCreadosInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7301,6 +7648,7 @@ export type UserCreateWithoutNotificacionesInput = {
   turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
@@ -7345,6 +7693,7 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
   turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
   turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -7405,6 +7754,7 @@ export type UserUpdateWithoutNotificacionesInput = {
   turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
@@ -7449,6 +7799,7 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
   turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
   turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
   registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
   registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
   visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7489,6 +7840,7 @@ export type UserCountOutputType = {
   turnosAbiertos: number
   turnosCerrados: number
   turnosCorregidos: number
+  turnosCierreRevisados: number
   registrosVisitaComoVisitante: number
   registrosVisitaRegistradosPor: number
   visitasTerceroRegistradas: number
@@ -7524,6 +7876,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   turnosAbiertos?: boolean | UserCountOutputTypeCountTurnosAbiertosArgs
   turnosCerrados?: boolean | UserCountOutputTypeCountTurnosCerradosArgs
   turnosCorregidos?: boolean | UserCountOutputTypeCountTurnosCorregidosArgs
+  turnosCierreRevisados?: boolean | UserCountOutputTypeCountTurnosCierreRevisadosArgs
   registrosVisitaComoVisitante?: boolean | UserCountOutputTypeCountRegistrosVisitaComoVisitanteArgs
   registrosVisitaRegistradosPor?: boolean | UserCountOutputTypeCountRegistrosVisitaRegistradosPorArgs
   visitasTerceroRegistradas?: boolean | UserCountOutputTypeCountVisitasTerceroRegistradasArgs
@@ -7697,6 +8050,13 @@ export type UserCountOutputTypeCountTurnosCorregidosArgs<ExtArgs extends runtime
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountTurnosCierreRevisadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TurnoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountRegistrosVisitaComoVisitanteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.RegistroVisitaWhereInput
 }
@@ -7804,6 +8164,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   turnosAbiertos?: boolean | Prisma.User$turnosAbiertosArgs<ExtArgs>
   turnosCerrados?: boolean | Prisma.User$turnosCerradosArgs<ExtArgs>
   turnosCorregidos?: boolean | Prisma.User$turnosCorregidosArgs<ExtArgs>
+  turnosCierreRevisados?: boolean | Prisma.User$turnosCierreRevisadosArgs<ExtArgs>
   registrosVisitaComoVisitante?: boolean | Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs>
   registrosVisitaRegistradosPor?: boolean | Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs>
   visitasTerceroRegistradas?: boolean | Prisma.User$visitasTerceroRegistradasArgs<ExtArgs>
@@ -7878,6 +8239,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   turnosAbiertos?: boolean | Prisma.User$turnosAbiertosArgs<ExtArgs>
   turnosCerrados?: boolean | Prisma.User$turnosCerradosArgs<ExtArgs>
   turnosCorregidos?: boolean | Prisma.User$turnosCorregidosArgs<ExtArgs>
+  turnosCierreRevisados?: boolean | Prisma.User$turnosCierreRevisadosArgs<ExtArgs>
   registrosVisitaComoVisitante?: boolean | Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs>
   registrosVisitaRegistradosPor?: boolean | Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs>
   visitasTerceroRegistradas?: boolean | Prisma.User$visitasTerceroRegistradasArgs<ExtArgs>
@@ -7919,6 +8281,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     turnosAbiertos: Prisma.$TurnoPayload<ExtArgs>[]
     turnosCerrados: Prisma.$TurnoPayload<ExtArgs>[]
     turnosCorregidos: Prisma.$TurnoPayload<ExtArgs>[]
+    turnosCierreRevisados: Prisma.$TurnoPayload<ExtArgs>[]
     registrosVisitaComoVisitante: Prisma.$RegistroVisitaPayload<ExtArgs>[]
     registrosVisitaRegistradosPor: Prisma.$RegistroVisitaPayload<ExtArgs>[]
     visitasTerceroRegistradas: Prisma.$VisitaTerceroPayload<ExtArgs>[]
@@ -8357,6 +8720,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   turnosAbiertos<T extends Prisma.User$turnosAbiertosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosAbiertosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   turnosCerrados<T extends Prisma.User$turnosCerradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosCerradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   turnosCorregidos<T extends Prisma.User$turnosCorregidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosCorregidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  turnosCierreRevisados<T extends Prisma.User$turnosCierreRevisadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$turnosCierreRevisadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TurnoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrosVisitaComoVisitante<T extends Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$registrosVisitaComoVisitanteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrosVisitaRegistradosPor<T extends Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$registrosVisitaRegistradosPorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroVisitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   visitasTerceroRegistradas<T extends Prisma.User$visitasTerceroRegistradasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$visitasTerceroRegistradasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitaTerceroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9301,6 +9665,30 @@ export type User$turnosCerradosArgs<ExtArgs extends runtime.Types.Extensions.Int
  * User.turnosCorregidos
  */
 export type User$turnosCorregidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Turno
+   */
+  select?: Prisma.TurnoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Turno
+   */
+  omit?: Prisma.TurnoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TurnoInclude<ExtArgs> | null
+  where?: Prisma.TurnoWhereInput
+  orderBy?: Prisma.TurnoOrderByWithRelationInput | Prisma.TurnoOrderByWithRelationInput[]
+  cursor?: Prisma.TurnoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TurnoScalarFieldEnum | Prisma.TurnoScalarFieldEnum[]
+}
+
+/**
+ * User.turnosCierreRevisados
+ */
+export type User$turnosCierreRevisadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Turno
    */

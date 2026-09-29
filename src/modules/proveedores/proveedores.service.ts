@@ -19,8 +19,8 @@ import {
 export class ProveedoresService {
   constructor(private prisma: PrismaService) {}
 
-  findAll(query: QueryProveedorDto) {
-    return this.prisma.proveedor.findMany({
+  async findAll(query: QueryProveedorDto) {
+    const proveedores = await this.prisma.proveedor.findMany({
       where: {
         activo: query.activo,
         departamento: query.departamento,
@@ -44,6 +44,166 @@ export class ProveedoresService {
         },
       },
     });
+    const ids = proveedores.map((p) => p.id);
+    const actividad = await this.resumenActividad(ids);
+    const scores = await this.puntajes(ids);
+    return proveedores.map((p) => ({
+      ...p,
+      actividad: {
+        ...(actividad.get(p.id) ?? {
+          ordenes: 0,
+          montoTotal: 0,
+          monto90d: 0,
+          ultimaActividad: null,
+        }),
+        puntaje: scores.get(p.id) ?? null,
+      },
+    }));
+  }
+
+  /** OCs vigentes (no borrador/cancelada), monto y última actividad por proveedor. */
+  private async resumenActividad(ids: string[]) {
+    const desde = new Date();
+    desde.setDate(desde.getDate() - 90);
+    const estados = ['emitida', 'recibida_parcial', 'recibida'] as const;
+    const base = { proveedorId: { in: ids }, estado: { in: [...estados] } };
+    const [total, recientes, ultCot] = await Promise.all([
+      this.prisma.ordenCompra.groupBy({
+        by: ['proveedorId'],
+        where: base,
+        _count: { _all: true },
+        _sum: { montoTotal: true },
+        _max: { creadoEn: true },
+      }),
+      this.prisma.ordenCompra.groupBy({
+        by: ['proveedorId'],
+        where: { ...base, creadoEn: { gte: desde } },
+        _sum: { montoTotal: true },
+      }),
+      this.prisma.cotizacion.groupBy({
+        by: ['proveedorId'],
+        where: { proveedorId: { in: ids } },
+        _max: { creadoEn: true },
+      }),
+    ]);
+    const map = new Map<
+      string,
+      {
+        ordenes: number;
+        montoTotal: number;
+        monto90d: number;
+        ultimaActividad: Date | null;
+      }
+    >();
+    const get = (id: string) => {
+      let r = map.get(id);
+      if (!r) {
+        r = { ordenes: 0, montoTotal: 0, monto90d: 0, ultimaActividad: null };
+        map.set(id, r);
+      }
+      return r;
+    };
+    const later = (a: Date | null, b: Date | null) =>
+      a && b ? (a > b ? a : b) : (a ?? b);
+    for (const g of total) {
+      if (!g.proveedorId) continue;
+      const r = get(g.proveedorId);
+      r.ordenes = g._count._all;
+      r.montoTotal = Number(g._sum.montoTotal ?? 0);
+      r.ultimaActividad = later(r.ultimaActividad, g._max.creadoEn);
+    }
+    for (const g of recientes) {
+      if (g.proveedorId) get(g.proveedorId).monto90d = Number(g._sum.montoTotal ?? 0);
+    }
+    for (const g of ultCot) {
+      const r = get(g.proveedorId);
+      r.ultimaActividad = later(r.ultimaActividad, g._max.creadoEn);
+    }
+    return map;
+  }
+
+  /** Mismo puntaje que evaluacion(), calculado en lote para el listado. */
+  private async puntajes(ids: string[]) {
+    const out = new Map<string, number>();
+    if (ids.length === 0) return out;
+    const [ganados, ordenes] = await Promise.all([
+      this.prisma.cotizacionItem.findMany({
+        where: {
+          seleccionado: true,
+          solicitudItemId: { not: null },
+          cotizacion: { proveedorId: { in: ids } },
+        },
+        select: {
+          precioUnit: true,
+          solicitudItemId: true,
+          cotizacion: { select: { proveedorId: true } },
+        },
+      }),
+      this.prisma.ordenCompra.findMany({
+        where: { proveedorId: { in: ids }, estado: 'recibida' },
+        select: {
+          proveedorId: true,
+          fechaEntrega: true,
+          fechaEntregaReal: true,
+          calificacionCalidad: true,
+        },
+      }),
+    ]);
+
+    const minPorItem = new Map<string, number>();
+    if (ganados.length > 0) {
+      const todos = await this.prisma.cotizacionItem.findMany({
+        where: {
+          solicitudItemId: { in: ganados.map((g) => g.solicitudItemId!) },
+        },
+        select: { precioUnit: true, solicitudItemId: true },
+      });
+      for (const c of todos) {
+        const precio = Number(c.precioUnit);
+        const actual = minPorItem.get(c.solicitudItemId!);
+        if (actual === undefined || precio < actual)
+          minPorItem.set(c.solicitudItemId!, precio);
+      }
+    }
+
+    for (const id of ids) {
+      const ratios = ganados
+        .filter((g) => g.cotizacion.proveedorId === id)
+        .map((g) => {
+          const propio = Number(g.precioUnit);
+          const min = minPorItem.get(g.solicitudItemId!) ?? propio;
+          return propio > 0 ? Math.min(min / propio, 1) : 1;
+        });
+      const precio = ratios.length
+        ? ratios.reduce((a, b) => a + b, 0) / ratios.length
+        : null;
+      const ocs = ordenes.filter((o) => o.proveedorId === id);
+      const conPlazo = ocs.filter((o) => o.fechaEntrega && o.fechaEntregaReal);
+      const plazos = conPlazo.length
+        ? conPlazo.filter((o) => o.fechaEntregaReal! <= o.fechaEntrega!)
+            .length / conPlazo.length
+        : null;
+      const cals = ocs
+        .map((o) => o.calificacionCalidad)
+        .filter((c): c is number => c !== null);
+      const calidad = cals.length
+        ? cals.reduce((a, b) => a + b, 0) / cals.length / 5
+        : null;
+      const comps = [
+        { score: precio, peso: 0.4 },
+        { score: plazos, peso: 0.3 },
+        { score: calidad, peso: 0.3 },
+      ].filter((c): c is { score: number; peso: number } => c.score !== null);
+      const pesoTotal = comps.reduce((s, c) => s + c.peso, 0);
+      if (pesoTotal > 0)
+        out.set(
+          id,
+          Math.round(
+            (comps.reduce((s, c) => s + c.score * c.peso, 0) / pesoTotal) * 100,
+          ),
+        );
+    }
+    return out;
   }
 
   async findOne(id: string) {

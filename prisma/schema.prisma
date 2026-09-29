@@ -240,6 +240,12 @@ enum TipoNotificacion {
   planilla_generada
   compra_simple_pendiente_gerencia
   compra_simple_pendiente_tecnico
+  asistencia_cierre_automatico
+}
+
+enum OrigenTurno {
+  campo
+  hoja
 }
 
 enum EstadoTurno {
@@ -296,6 +302,7 @@ model User {
   turnosAbiertos                Turno[]                      @relation("TurnosAbiertos")
   turnosCerrados                Turno[]                      @relation("TurnosCerrados")
   turnosCorregidos              Turno[]                      @relation("TurnosCorregidos")
+  turnosCierreRevisados         Turno[]                      @relation("TurnosCierreRevisado")
   registrosVisitaComoVisitante  RegistroVisita[]             @relation("RegistrosVisitaUsuario")
   registrosVisitaRegistradosPor RegistroVisita[]             @relation("RegistrosVisitaRegistradosPor")
   visitasTerceroRegistradas     VisitaTercero[]
@@ -667,6 +674,18 @@ model Turno {
   corregidoEn      DateTime?
   motivoCorreccion String?
 
+  // Cierre automático: el sistema cerró la jornada porque nadie lo hizo dentro del
+  // tope (hora fin del horario + 4 h). Queda "por revisar" hasta que alguien decide
+  // si se pagan las horas extra (cierreRevisadoEn null = pendiente de revisión).
+  // Origen del registro: 'campo' = lo tomó el prevencionista en obra; 'hoja' = oficina
+  // lo cargó desde la hoja física firmada (SIG-FR-003).
+  origen OrigenTurno @default(campo)
+
+  cierreAutomatico    Boolean   @default(false)
+  cierreRevisadoEn    DateTime?
+  cierreRevisadoPorId String?
+  cierreRevisadoPor   User?     @relation("TurnosCierreRevisado", fields: [cierreRevisadoPorId], references: [id])
+
   creadoEn      DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
@@ -685,6 +704,7 @@ model Asistencia {
   estado       EstadoAsistencia
 
   horaLlegadaReal String? // "HH:mm", solo si estado = tardio
+  horaSalidaReal  String? // "HH:mm", hora real de salida registrada/corregida
   justificada     Boolean? // aplica a tardio y falta; irrelevante si estado = presente
   justificacion   String? // motivo, cuando justificada = true
 
@@ -1268,6 +1288,9 @@ model Pago {
   nota                     String?
   comprobanteNombre        String?
   comprobanteUrl           String?
+  // Correlativo de la constancia de pago (AA-NNNN, ej. 26-2078). Se asigna al
+  // marcar el pago como pagado y es editable; único en toda la empresa.
+  codigoComprobante        String?          @unique
   comprobantes             Comprobante[]
   registradoPorId          String
   registradoPor            User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])

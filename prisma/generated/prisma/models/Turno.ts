@@ -40,6 +40,10 @@ export type TurnoMinAggregateOutputType = {
   corregidoPorId: string | null
   corregidoEn: Date | null
   motivoCorreccion: string | null
+  origen: $Enums.OrigenTurno | null
+  cierreAutomatico: boolean | null
+  cierreRevisadoEn: Date | null
+  cierreRevisadoPorId: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
 }
@@ -60,6 +64,10 @@ export type TurnoMaxAggregateOutputType = {
   corregidoPorId: string | null
   corregidoEn: Date | null
   motivoCorreccion: string | null
+  origen: $Enums.OrigenTurno | null
+  cierreAutomatico: boolean | null
+  cierreRevisadoEn: Date | null
+  cierreRevisadoPorId: string | null
   creadoEn: Date | null
   actualizadoEn: Date | null
 }
@@ -80,6 +88,10 @@ export type TurnoCountAggregateOutputType = {
   corregidoPorId: number
   corregidoEn: number
   motivoCorreccion: number
+  origen: number
+  cierreAutomatico: number
+  cierreRevisadoEn: number
+  cierreRevisadoPorId: number
   creadoEn: number
   actualizadoEn: number
   _all: number
@@ -102,6 +114,10 @@ export type TurnoMinAggregateInputType = {
   corregidoPorId?: true
   corregidoEn?: true
   motivoCorreccion?: true
+  origen?: true
+  cierreAutomatico?: true
+  cierreRevisadoEn?: true
+  cierreRevisadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
 }
@@ -122,6 +138,10 @@ export type TurnoMaxAggregateInputType = {
   corregidoPorId?: true
   corregidoEn?: true
   motivoCorreccion?: true
+  origen?: true
+  cierreAutomatico?: true
+  cierreRevisadoEn?: true
+  cierreRevisadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
 }
@@ -142,6 +162,10 @@ export type TurnoCountAggregateInputType = {
   corregidoPorId?: true
   corregidoEn?: true
   motivoCorreccion?: true
+  origen?: true
+  cierreAutomatico?: true
+  cierreRevisadoEn?: true
+  cierreRevisadoPorId?: true
   creadoEn?: true
   actualizadoEn?: true
   _all?: true
@@ -235,6 +259,10 @@ export type TurnoGroupByOutputType = {
   corregidoPorId: string | null
   corregidoEn: Date | null
   motivoCorreccion: string | null
+  origen: $Enums.OrigenTurno
+  cierreAutomatico: boolean
+  cierreRevisadoEn: Date | null
+  cierreRevisadoPorId: string | null
   creadoEn: Date
   actualizadoEn: Date
   _count: TurnoCountAggregateOutputType | null
@@ -276,6 +304,10 @@ export type TurnoWhereInput = {
   corregidoPorId?: Prisma.StringNullableFilter<"Turno"> | string | null
   corregidoEn?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
   motivoCorreccion?: Prisma.StringNullableFilter<"Turno"> | string | null
+  origen?: Prisma.EnumOrigenTurnoFilter<"Turno"> | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFilter<"Turno"> | boolean
+  cierreRevisadoEn?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
+  cierreRevisadoPorId?: Prisma.StringNullableFilter<"Turno"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
@@ -283,6 +315,7 @@ export type TurnoWhereInput = {
   abiertoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   cerradoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   corregidoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  cierreRevisadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
 }
 
@@ -302,6 +335,10 @@ export type TurnoOrderByWithRelationInput = {
   corregidoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   corregidoEn?: Prisma.SortOrderInput | Prisma.SortOrder
   motivoCorreccion?: Prisma.SortOrderInput | Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  cierreAutomatico?: Prisma.SortOrder
+  cierreRevisadoEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  cierreRevisadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
@@ -309,6 +346,7 @@ export type TurnoOrderByWithRelationInput = {
   abiertoPor?: Prisma.UserOrderByWithRelationInput
   cerradoPor?: Prisma.UserOrderByWithRelationInput
   corregidoPor?: Prisma.UserOrderByWithRelationInput
+  cierreRevisadoPor?: Prisma.UserOrderByWithRelationInput
   asistencias?: Prisma.AsistenciaOrderByRelationAggregateInput
 }
 
@@ -332,6 +370,10 @@ export type TurnoWhereUniqueInput = Prisma.AtLeast<{
   corregidoPorId?: Prisma.StringNullableFilter<"Turno"> | string | null
   corregidoEn?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
   motivoCorreccion?: Prisma.StringNullableFilter<"Turno"> | string | null
+  origen?: Prisma.EnumOrigenTurnoFilter<"Turno"> | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFilter<"Turno"> | boolean
+  cierreRevisadoEn?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
+  cierreRevisadoPorId?: Prisma.StringNullableFilter<"Turno"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   proyecto?: Prisma.XOR<Prisma.ProyectoScalarRelationFilter, Prisma.ProyectoWhereInput>
@@ -339,6 +381,7 @@ export type TurnoWhereUniqueInput = Prisma.AtLeast<{
   abiertoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   cerradoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   corregidoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  cierreRevisadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   asistencias?: Prisma.AsistenciaListRelationFilter
 }, "id" | "proyectoId_fecha_turnoConfigId">
 
@@ -358,6 +401,10 @@ export type TurnoOrderByWithAggregationInput = {
   corregidoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   corregidoEn?: Prisma.SortOrderInput | Prisma.SortOrder
   motivoCorreccion?: Prisma.SortOrderInput | Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  cierreAutomatico?: Prisma.SortOrder
+  cierreRevisadoEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  cierreRevisadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
   _count?: Prisma.TurnoCountOrderByAggregateInput
@@ -384,6 +431,10 @@ export type TurnoScalarWhereWithAggregatesInput = {
   corregidoPorId?: Prisma.StringNullableWithAggregatesFilter<"Turno"> | string | null
   corregidoEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Turno"> | Date | string | null
   motivoCorreccion?: Prisma.StringNullableWithAggregatesFilter<"Turno"> | string | null
+  origen?: Prisma.EnumOrigenTurnoWithAggregatesFilter<"Turno"> | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolWithAggregatesFilter<"Turno"> | boolean
+  cierreRevisadoEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Turno"> | Date | string | null
+  cierreRevisadoPorId?: Prisma.StringNullableWithAggregatesFilter<"Turno"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Turno"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Turno"> | Date | string
 }
@@ -399,6 +450,9 @@ export type TurnoCreateInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
@@ -406,6 +460,7 @@ export type TurnoCreateInput = {
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
 }
 
@@ -425,6 +480,10 @@ export type TurnoUncheckedCreateInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
@@ -441,6 +500,9 @@ export type TurnoUpdateInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
@@ -448,6 +510,7 @@ export type TurnoUpdateInput = {
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
 }
 
@@ -467,6 +530,10 @@ export type TurnoUncheckedUpdateInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
@@ -488,6 +555,10 @@ export type TurnoCreateManyInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -503,6 +574,9 @@ export type TurnoUpdateManyMutationInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -523,6 +597,10 @@ export type TurnoUncheckedUpdateManyInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -559,6 +637,10 @@ export type TurnoCountOrderByAggregateInput = {
   corregidoPorId?: Prisma.SortOrder
   corregidoEn?: Prisma.SortOrder
   motivoCorreccion?: Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  cierreAutomatico?: Prisma.SortOrder
+  cierreRevisadoEn?: Prisma.SortOrder
+  cierreRevisadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
 }
@@ -579,6 +661,10 @@ export type TurnoMaxOrderByAggregateInput = {
   corregidoPorId?: Prisma.SortOrder
   corregidoEn?: Prisma.SortOrder
   motivoCorreccion?: Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  cierreAutomatico?: Prisma.SortOrder
+  cierreRevisadoEn?: Prisma.SortOrder
+  cierreRevisadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
 }
@@ -599,6 +685,10 @@ export type TurnoMinOrderByAggregateInput = {
   corregidoPorId?: Prisma.SortOrder
   corregidoEn?: Prisma.SortOrder
   motivoCorreccion?: Prisma.SortOrder
+  origen?: Prisma.SortOrder
+  cierreAutomatico?: Prisma.SortOrder
+  cierreRevisadoEn?: Prisma.SortOrder
+  cierreRevisadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
 }
@@ -629,6 +719,13 @@ export type TurnoCreateNestedManyWithoutCorregidoPorInput = {
   connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
 }
 
+export type TurnoCreateNestedManyWithoutCierreRevisadoPorInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput> | Prisma.TurnoCreateWithoutCierreRevisadoPorInput[] | Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput | Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput[]
+  createMany?: Prisma.TurnoCreateManyCierreRevisadoPorInputEnvelope
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+}
+
 export type TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput = {
   create?: Prisma.XOR<Prisma.TurnoCreateWithoutAbiertoPorInput, Prisma.TurnoUncheckedCreateWithoutAbiertoPorInput> | Prisma.TurnoCreateWithoutAbiertoPorInput[] | Prisma.TurnoUncheckedCreateWithoutAbiertoPorInput[]
   connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutAbiertoPorInput | Prisma.TurnoCreateOrConnectWithoutAbiertoPorInput[]
@@ -647,6 +744,13 @@ export type TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput = {
   create?: Prisma.XOR<Prisma.TurnoCreateWithoutCorregidoPorInput, Prisma.TurnoUncheckedCreateWithoutCorregidoPorInput> | Prisma.TurnoCreateWithoutCorregidoPorInput[] | Prisma.TurnoUncheckedCreateWithoutCorregidoPorInput[]
   connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutCorregidoPorInput | Prisma.TurnoCreateOrConnectWithoutCorregidoPorInput[]
   createMany?: Prisma.TurnoCreateManyCorregidoPorInputEnvelope
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+}
+
+export type TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput> | Prisma.TurnoCreateWithoutCierreRevisadoPorInput[] | Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput | Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput[]
+  createMany?: Prisma.TurnoCreateManyCierreRevisadoPorInputEnvelope
   connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
 }
 
@@ -692,6 +796,20 @@ export type TurnoUpdateManyWithoutCorregidoPorNestedInput = {
   deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
 }
 
+export type TurnoUpdateManyWithoutCierreRevisadoPorNestedInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput> | Prisma.TurnoCreateWithoutCierreRevisadoPorInput[] | Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput | Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput[]
+  upsert?: Prisma.TurnoUpsertWithWhereUniqueWithoutCierreRevisadoPorInput | Prisma.TurnoUpsertWithWhereUniqueWithoutCierreRevisadoPorInput[]
+  createMany?: Prisma.TurnoCreateManyCierreRevisadoPorInputEnvelope
+  set?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  disconnect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  delete?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  update?: Prisma.TurnoUpdateWithWhereUniqueWithoutCierreRevisadoPorInput | Prisma.TurnoUpdateWithWhereUniqueWithoutCierreRevisadoPorInput[]
+  updateMany?: Prisma.TurnoUpdateManyWithWhereWithoutCierreRevisadoPorInput | Prisma.TurnoUpdateManyWithWhereWithoutCierreRevisadoPorInput[]
+  deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
+}
+
 export type TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput = {
   create?: Prisma.XOR<Prisma.TurnoCreateWithoutAbiertoPorInput, Prisma.TurnoUncheckedCreateWithoutAbiertoPorInput> | Prisma.TurnoCreateWithoutAbiertoPorInput[] | Prisma.TurnoUncheckedCreateWithoutAbiertoPorInput[]
   connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutAbiertoPorInput | Prisma.TurnoCreateOrConnectWithoutAbiertoPorInput[]
@@ -731,6 +849,20 @@ export type TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput = {
   connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
   update?: Prisma.TurnoUpdateWithWhereUniqueWithoutCorregidoPorInput | Prisma.TurnoUpdateWithWhereUniqueWithoutCorregidoPorInput[]
   updateMany?: Prisma.TurnoUpdateManyWithWhereWithoutCorregidoPorInput | Prisma.TurnoUpdateManyWithWhereWithoutCorregidoPorInput[]
+  deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
+}
+
+export type TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput = {
+  create?: Prisma.XOR<Prisma.TurnoCreateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput> | Prisma.TurnoCreateWithoutCierreRevisadoPorInput[] | Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput[]
+  connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput | Prisma.TurnoCreateOrConnectWithoutCierreRevisadoPorInput[]
+  upsert?: Prisma.TurnoUpsertWithWhereUniqueWithoutCierreRevisadoPorInput | Prisma.TurnoUpsertWithWhereUniqueWithoutCierreRevisadoPorInput[]
+  createMany?: Prisma.TurnoCreateManyCierreRevisadoPorInputEnvelope
+  set?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  disconnect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  delete?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  connect?: Prisma.TurnoWhereUniqueInput | Prisma.TurnoWhereUniqueInput[]
+  update?: Prisma.TurnoUpdateWithWhereUniqueWithoutCierreRevisadoPorInput | Prisma.TurnoUpdateWithWhereUniqueWithoutCierreRevisadoPorInput[]
+  updateMany?: Prisma.TurnoUpdateManyWithWhereWithoutCierreRevisadoPorInput | Prisma.TurnoUpdateManyWithWhereWithoutCierreRevisadoPorInput[]
   deleteMany?: Prisma.TurnoScalarWhereInput | Prisma.TurnoScalarWhereInput[]
 }
 
@@ -822,6 +954,10 @@ export type EnumEstadoTurnoFieldUpdateOperationsInput = {
   set?: $Enums.EstadoTurno
 }
 
+export type EnumOrigenTurnoFieldUpdateOperationsInput = {
+  set?: $Enums.OrigenTurno
+}
+
 export type TurnoCreateNestedOneWithoutAsistenciasInput = {
   create?: Prisma.XOR<Prisma.TurnoCreateWithoutAsistenciasInput, Prisma.TurnoUncheckedCreateWithoutAsistenciasInput>
   connectOrCreate?: Prisma.TurnoCreateOrConnectWithoutAsistenciasInput
@@ -847,12 +983,16 @@ export type TurnoCreateWithoutAbiertoPorInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
   turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
 }
 
@@ -871,6 +1011,10 @@ export type TurnoUncheckedCreateWithoutAbiertoPorInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
@@ -897,12 +1041,16 @@ export type TurnoCreateWithoutCerradoPorInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
   turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
 }
 
@@ -921,6 +1069,10 @@ export type TurnoUncheckedCreateWithoutCerradoPorInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
@@ -947,12 +1099,16 @@ export type TurnoCreateWithoutCorregidoPorInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
   turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
 }
 
@@ -971,6 +1127,10 @@ export type TurnoUncheckedCreateWithoutCorregidoPorInput = {
   cerradoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
@@ -983,6 +1143,64 @@ export type TurnoCreateOrConnectWithoutCorregidoPorInput = {
 
 export type TurnoCreateManyCorregidoPorInputEnvelope = {
   data: Prisma.TurnoCreateManyCorregidoPorInput | Prisma.TurnoCreateManyCorregidoPorInput[]
+  skipDuplicates?: boolean
+}
+
+export type TurnoCreateWithoutCierreRevisadoPorInput = {
+  id?: string
+  fecha: Date | string
+  estado?: $Enums.EstadoTurno
+  horaAperturaReal: Date | string
+  horaCierreReal?: Date | string | null
+  fotoUrl?: string | null
+  fotoOmitida?: boolean
+  motivoFotoOmitida?: string | null
+  corregidoEn?: Date | string | null
+  motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
+  turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
+  abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
+  cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
+  corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
+}
+
+export type TurnoUncheckedCreateWithoutCierreRevisadoPorInput = {
+  id?: string
+  proyectoId: string
+  fecha: Date | string
+  estado?: $Enums.EstadoTurno
+  turnoConfigId: string
+  horaAperturaReal: Date | string
+  horaCierreReal?: Date | string | null
+  fotoUrl?: string | null
+  fotoOmitida?: boolean
+  motivoFotoOmitida?: string | null
+  abiertoPorId: string
+  cerradoPorId?: string | null
+  corregidoPorId?: string | null
+  corregidoEn?: Date | string | null
+  motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
+}
+
+export type TurnoCreateOrConnectWithoutCierreRevisadoPorInput = {
+  where: Prisma.TurnoWhereUniqueInput
+  create: Prisma.XOR<Prisma.TurnoCreateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput>
+}
+
+export type TurnoCreateManyCierreRevisadoPorInputEnvelope = {
+  data: Prisma.TurnoCreateManyCierreRevisadoPorInput | Prisma.TurnoCreateManyCierreRevisadoPorInput[]
   skipDuplicates?: boolean
 }
 
@@ -1021,6 +1239,10 @@ export type TurnoScalarWhereInput = {
   corregidoPorId?: Prisma.StringNullableFilter<"Turno"> | string | null
   corregidoEn?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
   motivoCorreccion?: Prisma.StringNullableFilter<"Turno"> | string | null
+  origen?: Prisma.EnumOrigenTurnoFilter<"Turno"> | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFilter<"Turno"> | boolean
+  cierreRevisadoEn?: Prisma.DateTimeNullableFilter<"Turno"> | Date | string | null
+  cierreRevisadoPorId?: Prisma.StringNullableFilter<"Turno"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Turno"> | Date | string
 }
@@ -1057,6 +1279,22 @@ export type TurnoUpdateManyWithWhereWithoutCorregidoPorInput = {
   data: Prisma.XOR<Prisma.TurnoUpdateManyMutationInput, Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorInput>
 }
 
+export type TurnoUpsertWithWhereUniqueWithoutCierreRevisadoPorInput = {
+  where: Prisma.TurnoWhereUniqueInput
+  update: Prisma.XOR<Prisma.TurnoUpdateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedUpdateWithoutCierreRevisadoPorInput>
+  create: Prisma.XOR<Prisma.TurnoCreateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedCreateWithoutCierreRevisadoPorInput>
+}
+
+export type TurnoUpdateWithWhereUniqueWithoutCierreRevisadoPorInput = {
+  where: Prisma.TurnoWhereUniqueInput
+  data: Prisma.XOR<Prisma.TurnoUpdateWithoutCierreRevisadoPorInput, Prisma.TurnoUncheckedUpdateWithoutCierreRevisadoPorInput>
+}
+
+export type TurnoUpdateManyWithWhereWithoutCierreRevisadoPorInput = {
+  where: Prisma.TurnoScalarWhereInput
+  data: Prisma.XOR<Prisma.TurnoUpdateManyMutationInput, Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorInput>
+}
+
 export type TurnoCreateWithoutProyectoInput = {
   id?: string
   fecha: Date | string
@@ -1068,12 +1306,16 @@ export type TurnoCreateWithoutProyectoInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   turnoConfig: Prisma.TurnoConfigCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
 }
 
@@ -1092,6 +1334,10 @@ export type TurnoUncheckedCreateWithoutProyectoInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
@@ -1134,12 +1380,16 @@ export type TurnoCreateWithoutTurnoConfigInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
   asistencias?: Prisma.AsistenciaCreateNestedManyWithoutTurnoInput
 }
 
@@ -1158,6 +1408,10 @@ export type TurnoUncheckedCreateWithoutTurnoConfigInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   asistencias?: Prisma.AsistenciaUncheckedCreateNestedManyWithoutTurnoInput
@@ -1200,6 +1454,9 @@ export type TurnoCreateWithoutAsistenciasInput = {
   motivoFotoOmitida?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   proyecto: Prisma.ProyectoCreateNestedOneWithoutTurnosInput
@@ -1207,6 +1464,7 @@ export type TurnoCreateWithoutAsistenciasInput = {
   abiertoPor: Prisma.UserCreateNestedOneWithoutTurnosAbiertosInput
   cerradoPor?: Prisma.UserCreateNestedOneWithoutTurnosCerradosInput
   corregidoPor?: Prisma.UserCreateNestedOneWithoutTurnosCorregidosInput
+  cierreRevisadoPor?: Prisma.UserCreateNestedOneWithoutTurnosCierreRevisadosInput
 }
 
 export type TurnoUncheckedCreateWithoutAsistenciasInput = {
@@ -1225,6 +1483,10 @@ export type TurnoUncheckedCreateWithoutAsistenciasInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1256,6 +1518,9 @@ export type TurnoUpdateWithoutAsistenciasInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
@@ -1263,6 +1528,7 @@ export type TurnoUpdateWithoutAsistenciasInput = {
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
 }
 
 export type TurnoUncheckedUpdateWithoutAsistenciasInput = {
@@ -1281,6 +1547,10 @@ export type TurnoUncheckedUpdateWithoutAsistenciasInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1300,6 +1570,10 @@ export type TurnoCreateManyAbiertoPorInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1319,6 +1593,10 @@ export type TurnoCreateManyCerradoPorInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1338,6 +1616,33 @@ export type TurnoCreateManyCorregidoPorInput = {
   cerradoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type TurnoCreateManyCierreRevisadoPorInput = {
+  id?: string
+  proyectoId: string
+  fecha: Date | string
+  estado?: $Enums.EstadoTurno
+  turnoConfigId: string
+  horaAperturaReal: Date | string
+  horaCierreReal?: Date | string | null
+  fotoUrl?: string | null
+  fotoOmitida?: boolean
+  motivoFotoOmitida?: string | null
+  abiertoPorId: string
+  cerradoPorId?: string | null
+  corregidoPorId?: string | null
+  corregidoEn?: Date | string | null
+  motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1353,12 +1658,16 @@ export type TurnoUpdateWithoutAbiertoPorInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
   turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
 }
 
@@ -1377,6 +1686,10 @@ export type TurnoUncheckedUpdateWithoutAbiertoPorInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
@@ -1397,6 +1710,10 @@ export type TurnoUncheckedUpdateManyWithoutAbiertoPorInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1412,12 +1729,16 @@ export type TurnoUpdateWithoutCerradoPorInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
   turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
 }
 
@@ -1436,6 +1757,10 @@ export type TurnoUncheckedUpdateWithoutCerradoPorInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
@@ -1456,6 +1781,10 @@ export type TurnoUncheckedUpdateManyWithoutCerradoPorInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1471,12 +1800,16 @@ export type TurnoUpdateWithoutCorregidoPorInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
   turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
 }
 
@@ -1495,6 +1828,10 @@ export type TurnoUncheckedUpdateWithoutCorregidoPorInput = {
   cerradoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
@@ -1515,6 +1852,81 @@ export type TurnoUncheckedUpdateManyWithoutCorregidoPorInput = {
   cerradoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TurnoUpdateWithoutCierreRevisadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fotoOmitida?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
+  turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
+  abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
+  cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
+  corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
+}
+
+export type TurnoUncheckedUpdateWithoutCierreRevisadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
+  horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fotoOmitida?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abiertoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  cerradoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
+}
+
+export type TurnoUncheckedUpdateManyWithoutCierreRevisadoPorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.EnumEstadoTurnoFieldUpdateOperationsInput | $Enums.EstadoTurno
+  turnoConfigId?: Prisma.StringFieldUpdateOperationsInput | string
+  horaAperturaReal?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horaCierreReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fotoOmitida?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abiertoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  cerradoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1534,6 +1946,10 @@ export type TurnoCreateManyProyectoInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1549,12 +1965,16 @@ export type TurnoUpdateWithoutProyectoInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   turnoConfig?: Prisma.TurnoConfigUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
 }
 
@@ -1573,6 +1993,10 @@ export type TurnoUncheckedUpdateWithoutProyectoInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
@@ -1593,6 +2017,10 @@ export type TurnoUncheckedUpdateManyWithoutProyectoInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1612,6 +2040,10 @@ export type TurnoCreateManyTurnoConfigInput = {
   corregidoPorId?: string | null
   corregidoEn?: Date | string | null
   motivoCorreccion?: string | null
+  origen?: $Enums.OrigenTurno
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: Date | string | null
+  cierreRevisadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
 }
@@ -1627,12 +2059,16 @@ export type TurnoUpdateWithoutTurnoConfigInput = {
   motivoFotoOmitida?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   proyecto?: Prisma.ProyectoUpdateOneRequiredWithoutTurnosNestedInput
   abiertoPor?: Prisma.UserUpdateOneRequiredWithoutTurnosAbiertosNestedInput
   cerradoPor?: Prisma.UserUpdateOneWithoutTurnosCerradosNestedInput
   corregidoPor?: Prisma.UserUpdateOneWithoutTurnosCorregidosNestedInput
+  cierreRevisadoPor?: Prisma.UserUpdateOneWithoutTurnosCierreRevisadosNestedInput
   asistencias?: Prisma.AsistenciaUpdateManyWithoutTurnoNestedInput
 }
 
@@ -1651,6 +2087,10 @@ export type TurnoUncheckedUpdateWithoutTurnoConfigInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asistencias?: Prisma.AsistenciaUncheckedUpdateManyWithoutTurnoNestedInput
@@ -1671,6 +2111,10 @@ export type TurnoUncheckedUpdateManyWithoutTurnoConfigInput = {
   corregidoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   corregidoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   motivoCorreccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.EnumOrigenTurnoFieldUpdateOperationsInput | $Enums.OrigenTurno
+  cierreAutomatico?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cierreRevisadoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cierreRevisadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1722,6 +2166,10 @@ export type TurnoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   corregidoPorId?: boolean
   corregidoEn?: boolean
   motivoCorreccion?: boolean
+  origen?: boolean
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: boolean
+  cierreRevisadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
@@ -1729,6 +2177,7 @@ export type TurnoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
+  cierreRevisadoPor?: boolean | Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>
   asistencias?: boolean | Prisma.Turno$asistenciasArgs<ExtArgs>
   _count?: boolean | Prisma.TurnoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["turno"]>
@@ -1749,6 +2198,10 @@ export type TurnoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   corregidoPorId?: boolean
   corregidoEn?: boolean
   motivoCorreccion?: boolean
+  origen?: boolean
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: boolean
+  cierreRevisadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
@@ -1756,6 +2209,7 @@ export type TurnoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
+  cierreRevisadoPor?: boolean | Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>
 }, ExtArgs["result"]["turno"]>
 
 export type TurnoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1774,6 +2228,10 @@ export type TurnoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   corregidoPorId?: boolean
   corregidoEn?: boolean
   motivoCorreccion?: boolean
+  origen?: boolean
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: boolean
+  cierreRevisadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
@@ -1781,6 +2239,7 @@ export type TurnoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
+  cierreRevisadoPor?: boolean | Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>
 }, ExtArgs["result"]["turno"]>
 
 export type TurnoSelectScalar = {
@@ -1799,17 +2258,22 @@ export type TurnoSelectScalar = {
   corregidoPorId?: boolean
   corregidoEn?: boolean
   motivoCorreccion?: boolean
+  origen?: boolean
+  cierreAutomatico?: boolean
+  cierreRevisadoEn?: boolean
+  cierreRevisadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type TurnoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "fecha" | "estado" | "turnoConfigId" | "horaAperturaReal" | "horaCierreReal" | "fotoUrl" | "fotoOmitida" | "motivoFotoOmitida" | "abiertoPorId" | "cerradoPorId" | "corregidoPorId" | "corregidoEn" | "motivoCorreccion" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["turno"]>
+export type TurnoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "fecha" | "estado" | "turnoConfigId" | "horaAperturaReal" | "horaCierreReal" | "fotoUrl" | "fotoOmitida" | "motivoFotoOmitida" | "abiertoPorId" | "cerradoPorId" | "corregidoPorId" | "corregidoEn" | "motivoCorreccion" | "origen" | "cierreAutomatico" | "cierreRevisadoEn" | "cierreRevisadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["turno"]>
 export type TurnoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   turnoConfig?: boolean | Prisma.TurnoConfigDefaultArgs<ExtArgs>
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
+  cierreRevisadoPor?: boolean | Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>
   asistencias?: boolean | Prisma.Turno$asistenciasArgs<ExtArgs>
   _count?: boolean | Prisma.TurnoCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1819,6 +2283,7 @@ export type TurnoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
+  cierreRevisadoPor?: boolean | Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>
 }
 export type TurnoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
@@ -1826,6 +2291,7 @@ export type TurnoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   abiertoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   cerradoPor?: boolean | Prisma.Turno$cerradoPorArgs<ExtArgs>
   corregidoPor?: boolean | Prisma.Turno$corregidoPorArgs<ExtArgs>
+  cierreRevisadoPor?: boolean | Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>
 }
 
 export type $TurnoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1836,6 +2302,7 @@ export type $TurnoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     abiertoPor: Prisma.$UserPayload<ExtArgs>
     cerradoPor: Prisma.$UserPayload<ExtArgs> | null
     corregidoPor: Prisma.$UserPayload<ExtArgs> | null
+    cierreRevisadoPor: Prisma.$UserPayload<ExtArgs> | null
     asistencias: Prisma.$AsistenciaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1854,6 +2321,10 @@ export type $TurnoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     corregidoPorId: string | null
     corregidoEn: Date | null
     motivoCorreccion: string | null
+    origen: $Enums.OrigenTurno
+    cierreAutomatico: boolean
+    cierreRevisadoEn: Date | null
+    cierreRevisadoPorId: string | null
     creadoEn: Date
     actualizadoEn: Date
   }, ExtArgs["result"]["turno"]>
@@ -2255,6 +2726,7 @@ export interface Prisma__TurnoClient<T, Null = never, ExtArgs extends runtime.Ty
   abiertoPor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   cerradoPor<T extends Prisma.Turno$cerradoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Turno$cerradoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   corregidoPor<T extends Prisma.Turno$corregidoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Turno$corregidoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  cierreRevisadoPor<T extends Prisma.Turno$cierreRevisadoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Turno$cierreRevisadoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   asistencias<T extends Prisma.Turno$asistenciasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Turno$asistenciasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AsistenciaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2300,6 +2772,10 @@ export interface TurnoFieldRefs {
   readonly corregidoPorId: Prisma.FieldRef<"Turno", 'String'>
   readonly corregidoEn: Prisma.FieldRef<"Turno", 'DateTime'>
   readonly motivoCorreccion: Prisma.FieldRef<"Turno", 'String'>
+  readonly origen: Prisma.FieldRef<"Turno", 'OrigenTurno'>
+  readonly cierreAutomatico: Prisma.FieldRef<"Turno", 'Boolean'>
+  readonly cierreRevisadoEn: Prisma.FieldRef<"Turno", 'DateTime'>
+  readonly cierreRevisadoPorId: Prisma.FieldRef<"Turno", 'String'>
   readonly creadoEn: Prisma.FieldRef<"Turno", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"Turno", 'DateTime'>
 }
@@ -2725,6 +3201,25 @@ export type Turno$cerradoPorArgs<ExtArgs extends runtime.Types.Extensions.Intern
  * Turno.corregidoPor
  */
 export type Turno$corregidoPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * Turno.cierreRevisadoPor
+ */
+export type Turno$cierreRevisadoPorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

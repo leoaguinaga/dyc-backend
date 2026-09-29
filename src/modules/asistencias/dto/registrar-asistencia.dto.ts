@@ -24,6 +24,10 @@ export class AsistenciaItemDto {
   horaLlegadaReal?: string;
 
   @IsOptional()
+  @Matches(HHMM, { message: 'horaSalidaReal debe tener formato HH:mm' })
+  horaSalidaReal?: string;
+
+  @IsOptional()
   @IsBoolean()
   justificada?: boolean;
 

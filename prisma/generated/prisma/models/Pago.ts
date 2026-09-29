@@ -63,6 +63,7 @@ export type PagoMinAggregateOutputType = {
   nota: string | null
   comprobanteNombre: string | null
   comprobanteUrl: string | null
+  codigoComprobante: string | null
   registradoPorId: string | null
   pagadoPorId: string | null
   creadoEn: Date | null
@@ -96,6 +97,7 @@ export type PagoMaxAggregateOutputType = {
   nota: string | null
   comprobanteNombre: string | null
   comprobanteUrl: string | null
+  codigoComprobante: string | null
   registradoPorId: string | null
   pagadoPorId: string | null
   creadoEn: Date | null
@@ -129,6 +131,7 @@ export type PagoCountAggregateOutputType = {
   nota: number
   comprobanteNombre: number
   comprobanteUrl: number
+  codigoComprobante: number
   registradoPorId: number
   pagadoPorId: number
   creadoEn: number
@@ -174,6 +177,7 @@ export type PagoMinAggregateInputType = {
   nota?: true
   comprobanteNombre?: true
   comprobanteUrl?: true
+  codigoComprobante?: true
   registradoPorId?: true
   pagadoPorId?: true
   creadoEn?: true
@@ -207,6 +211,7 @@ export type PagoMaxAggregateInputType = {
   nota?: true
   comprobanteNombre?: true
   comprobanteUrl?: true
+  codigoComprobante?: true
   registradoPorId?: true
   pagadoPorId?: true
   creadoEn?: true
@@ -240,6 +245,7 @@ export type PagoCountAggregateInputType = {
   nota?: true
   comprobanteNombre?: true
   comprobanteUrl?: true
+  codigoComprobante?: true
   registradoPorId?: true
   pagadoPorId?: true
   creadoEn?: true
@@ -360,6 +366,7 @@ export type PagoGroupByOutputType = {
   nota: string | null
   comprobanteNombre: string | null
   comprobanteUrl: string | null
+  codigoComprobante: string | null
   registradoPorId: string
   pagadoPorId: string | null
   creadoEn: Date
@@ -416,6 +423,7 @@ export type PagoWhereInput = {
   nota?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableFilter<"Pago"> | string | null
+  codigoComprobante?: Prisma.StringNullableFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string
@@ -457,6 +465,7 @@ export type PagoOrderByWithRelationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobanteNombre?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  codigoComprobante?: Prisma.SortOrderInput | Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -474,6 +483,7 @@ export type PagoOrderByWithRelationInput = {
 export type PagoWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   planillaStaffItemId?: string
+  codigoComprobante?: string
   recurrenciaId_periodoRecurrente?: Prisma.PagoRecurrenciaIdPeriodoRecurrenteCompoundUniqueInput
   AND?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[]
   OR?: Prisma.PagoWhereInput[]
@@ -514,7 +524,7 @@ export type PagoWhereUniqueInput = Prisma.AtLeast<{
   comprobantes?: Prisma.ComprobanteListRelationFilter
   registradoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   pagadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-}, "id" | "planillaStaffItemId" | "recurrenciaId_periodoRecurrente">
+}, "id" | "planillaStaffItemId" | "codigoComprobante" | "recurrenciaId_periodoRecurrente">
 
 export type PagoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -543,6 +553,7 @@ export type PagoOrderByWithAggregationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobanteNombre?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  codigoComprobante?: Prisma.SortOrderInput | Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -584,6 +595,7 @@ export type PagoScalarWhereWithAggregatesInput = {
   nota?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   comprobanteNombre?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  codigoComprobante?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringWithAggregatesFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Pago"> | Date | string
@@ -612,6 +624,7 @@ export type PagoCreateInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -651,6 +664,7 @@ export type PagoUncheckedCreateInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -680,6 +694,7 @@ export type PagoUpdateInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -719,6 +734,7 @@ export type PagoUncheckedUpdateInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -753,6 +769,7 @@ export type PagoCreateManyInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -781,6 +798,7 @@ export type PagoUpdateManyMutationInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -812,6 +830,7 @@ export type PagoUncheckedUpdateManyInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -860,6 +879,7 @@ export type PagoCountOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   comprobanteNombre?: Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrder
+  codigoComprobante?: Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -898,6 +918,7 @@ export type PagoMaxOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   comprobanteNombre?: Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrder
+  codigoComprobante?: Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -931,6 +952,7 @@ export type PagoMinOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   comprobanteNombre?: Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrder
+  codigoComprobante?: Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -1280,6 +1302,7 @@ export type PagoCreateWithoutRegistradoPorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1318,6 +1341,7 @@ export type PagoUncheckedCreateWithoutRegistradoPorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   pagadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1356,6 +1380,7 @@ export type PagoCreateWithoutPagadoPorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1394,6 +1419,7 @@ export type PagoUncheckedCreateWithoutPagadoPorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1456,6 +1482,7 @@ export type PagoScalarWhereInput = {
   nota?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableFilter<"Pago"> | string | null
+  codigoComprobante?: Prisma.StringNullableFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string
@@ -1500,6 +1527,7 @@ export type PagoCreateWithoutProyectoInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1537,6 +1565,7 @@ export type PagoUncheckedCreateWithoutProyectoInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1592,6 +1621,7 @@ export type PagoCreateWithoutBeneficiarioTrabajadorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1629,6 +1659,7 @@ export type PagoUncheckedCreateWithoutBeneficiarioTrabajadorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1684,6 +1715,7 @@ export type PagoCreateWithoutOrdenCompraInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   recurrencia?: Prisma.PagoRecurrenteCreateNestedOneWithoutPagosInput
@@ -1721,6 +1753,7 @@ export type PagoUncheckedCreateWithoutOrdenCompraInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1776,6 +1809,7 @@ export type PagoCreateWithoutComprobantesInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1814,6 +1848,7 @@ export type PagoUncheckedCreateWithoutComprobantesInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1858,6 +1893,7 @@ export type PagoUpdateWithoutComprobantesInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -1896,6 +1932,7 @@ export type PagoUncheckedUpdateWithoutComprobantesInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1924,6 +1961,7 @@ export type PagoCreateWithoutRecurrenciaInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1961,6 +1999,7 @@ export type PagoUncheckedCreateWithoutRecurrenciaInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2016,6 +2055,7 @@ export type PagoCreateWithoutPlanillaStaffItemInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -2053,6 +2093,7 @@ export type PagoUncheckedCreateWithoutPlanillaStaffItemInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2098,6 +2139,7 @@ export type PagoUpdateWithoutPlanillaStaffItemInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2135,6 +2177,7 @@ export type PagoUncheckedUpdateWithoutPlanillaStaffItemInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2169,6 +2212,7 @@ export type PagoCreateManyRegistradoPorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   pagadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2201,6 +2245,7 @@ export type PagoCreateManyPagadoPorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2228,6 +2273,7 @@ export type PagoUpdateWithoutRegistradoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2266,6 +2312,7 @@ export type PagoUncheckedUpdateWithoutRegistradoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2299,6 +2346,7 @@ export type PagoUncheckedUpdateManyWithoutRegistradoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2326,6 +2374,7 @@ export type PagoUpdateWithoutPagadoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2364,6 +2413,7 @@ export type PagoUncheckedUpdateWithoutPagadoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2397,6 +2447,7 @@ export type PagoUncheckedUpdateManyWithoutPagadoPorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2428,6 +2479,7 @@ export type PagoCreateManyProyectoInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2456,6 +2508,7 @@ export type PagoUpdateWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2493,6 +2546,7 @@ export type PagoUncheckedUpdateWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2526,6 +2580,7 @@ export type PagoUncheckedUpdateManyWithoutProyectoInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2558,6 +2613,7 @@ export type PagoCreateManyBeneficiarioTrabajadorInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2586,6 +2642,7 @@ export type PagoUpdateWithoutBeneficiarioTrabajadorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2623,6 +2680,7 @@ export type PagoUncheckedUpdateWithoutBeneficiarioTrabajadorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2656,6 +2714,7 @@ export type PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2688,6 +2747,7 @@ export type PagoCreateManyOrdenCompraInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2716,6 +2776,7 @@ export type PagoUpdateWithoutOrdenCompraInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recurrencia?: Prisma.PagoRecurrenteUpdateOneWithoutPagosNestedInput
@@ -2753,6 +2814,7 @@ export type PagoUncheckedUpdateWithoutOrdenCompraInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2786,6 +2848,7 @@ export type PagoUncheckedUpdateManyWithoutOrdenCompraInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2818,6 +2881,7 @@ export type PagoCreateManyRecurrenciaInput = {
   nota?: string | null
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
+  codigoComprobante?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2846,6 +2910,7 @@ export type PagoUpdateWithoutRecurrenciaInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2883,6 +2948,7 @@ export type PagoUncheckedUpdateWithoutRecurrenciaInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2916,6 +2982,7 @@ export type PagoUncheckedUpdateManyWithoutRecurrenciaInput = {
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2980,6 +3047,7 @@ export type PagoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   nota?: boolean
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
+  codigoComprobante?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
@@ -3022,6 +3090,7 @@ export type PagoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   nota?: boolean
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
+  codigoComprobante?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
@@ -3062,6 +3131,7 @@ export type PagoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   nota?: boolean
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
+  codigoComprobante?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
@@ -3102,13 +3172,14 @@ export type PagoSelectScalar = {
   nota?: boolean
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
+  codigoComprobante?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ordenCompraId" | "origen" | "recurrenciaId" | "periodoRecurrente" | "planillaStaffItemId" | "centroCosto" | "proyectoId" | "concepto" | "categoria" | "tipoBeneficiario" | "beneficiarioTrabajadorId" | "beneficiarioNombre" | "banco" | "numeroCuenta" | "cci" | "monto" | "porcentaje" | "fechaProgramada" | "fechaPagoReal" | "estado" | "metodoPago" | "numeroOperacion" | "nota" | "comprobanteNombre" | "comprobanteUrl" | "registradoPorId" | "pagadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["pago"]>
+export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ordenCompraId" | "origen" | "recurrenciaId" | "periodoRecurrente" | "planillaStaffItemId" | "centroCosto" | "proyectoId" | "concepto" | "categoria" | "tipoBeneficiario" | "beneficiarioTrabajadorId" | "beneficiarioNombre" | "banco" | "numeroCuenta" | "cci" | "monto" | "porcentaje" | "fechaProgramada" | "fechaPagoReal" | "estado" | "metodoPago" | "numeroOperacion" | "nota" | "comprobanteNombre" | "comprobanteUrl" | "codigoComprobante" | "registradoPorId" | "pagadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["pago"]>
 export type PagoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ordenCompra?: boolean | Prisma.Pago$ordenCompraArgs<ExtArgs>
   recurrencia?: boolean | Prisma.Pago$recurrenciaArgs<ExtArgs>
@@ -3178,6 +3249,7 @@ export type $PagoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     nota: string | null
     comprobanteNombre: string | null
     comprobanteUrl: string | null
+    codigoComprobante: string | null
     registradoPorId: string
     pagadoPorId: string | null
     creadoEn: Date
@@ -3639,6 +3711,7 @@ export interface PagoFieldRefs {
   readonly nota: Prisma.FieldRef<"Pago", 'String'>
   readonly comprobanteNombre: Prisma.FieldRef<"Pago", 'String'>
   readonly comprobanteUrl: Prisma.FieldRef<"Pago", 'String'>
+  readonly codigoComprobante: Prisma.FieldRef<"Pago", 'String'>
   readonly registradoPorId: Prisma.FieldRef<"Pago", 'String'>
   readonly pagadoPorId: Prisma.FieldRef<"Pago", 'String'>
   readonly creadoEn: Prisma.FieldRef<"Pago", 'DateTime'>

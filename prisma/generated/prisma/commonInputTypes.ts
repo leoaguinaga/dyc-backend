@@ -355,6 +355,13 @@ export type EnumEstadoTurnoFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumEstadoTurnoFilter<$PrismaModel> | $Enums.EstadoTurno
 }
 
+export type EnumOrigenTurnoFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenTurno | Prisma.EnumOrigenTurnoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenTurnoFilter<$PrismaModel> | $Enums.OrigenTurno
+}
+
 export type EnumEstadoTurnoWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoTurno | Prisma.EnumEstadoTurnoFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoTurno[] | Prisma.ListEnumEstadoTurnoFieldRefInput<$PrismaModel>
@@ -363,6 +370,16 @@ export type EnumEstadoTurnoWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoTurnoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoTurnoFilter<$PrismaModel>
+}
+
+export type EnumOrigenTurnoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenTurno | Prisma.EnumOrigenTurnoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenTurnoWithAggregatesFilter<$PrismaModel> | $Enums.OrigenTurno
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOrigenTurnoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOrigenTurnoFilter<$PrismaModel>
 }
 
 export type EnumEstadoAsistenciaFilter<$PrismaModel = never> = {
@@ -1167,6 +1184,13 @@ export type NestedEnumEstadoTurnoFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumEstadoTurnoFilter<$PrismaModel> | $Enums.EstadoTurno
 }
 
+export type NestedEnumOrigenTurnoFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenTurno | Prisma.EnumOrigenTurnoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenTurnoFilter<$PrismaModel> | $Enums.OrigenTurno
+}
+
 export type NestedEnumEstadoTurnoWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoTurno | Prisma.EnumEstadoTurnoFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoTurno[] | Prisma.ListEnumEstadoTurnoFieldRefInput<$PrismaModel>
@@ -1175,6 +1199,16 @@ export type NestedEnumEstadoTurnoWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoTurnoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoTurnoFilter<$PrismaModel>
+}
+
+export type NestedEnumOrigenTurnoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.OrigenTurno | Prisma.EnumOrigenTurnoFieldRefInput<$PrismaModel>
+  in?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.OrigenTurno[] | Prisma.ListEnumOrigenTurnoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumOrigenTurnoWithAggregatesFilter<$PrismaModel> | $Enums.OrigenTurno
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumOrigenTurnoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumOrigenTurnoFilter<$PrismaModel>
 }
 
 export type NestedEnumEstadoAsistenciaFilter<$PrismaModel = never> = {

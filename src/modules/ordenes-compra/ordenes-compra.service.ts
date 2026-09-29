@@ -128,6 +128,7 @@ export class OrdenesCompraService {
             requerimiento: { select: { id: true, codigo: true, tipo: true } },
           },
         },
+        pagos: { select: { id: true, monto: true, estado: true } },
         _count: { select: { items: true } },
       },
       orderBy: { creadoEn: 'desc' },

@@ -184,6 +184,24 @@ function resumenGrupos(grupos: GrupoSimple[]) {
   };
 }
 
+function cerradoEnMacro(requerimiento: {
+  estado: EstadoRequerimiento;
+  recepcionEn: Date | null;
+  actualizadoEn: Date;
+  historial: Array<{ estado: EstadoRequerimiento; creadoEn: Date }>;
+}): Date | null {
+  if (requerimiento.estado === 'recibido') {
+    return requerimiento.recepcionEn ?? requerimiento.actualizadoEn;
+  }
+  if (requerimiento.estado === 'cancelado') {
+    const cancelacion = requerimiento.historial.find(
+      (evento) => evento.estado === 'cancelado',
+    );
+    return cancelacion?.creadoEn ?? requerimiento.actualizadoEn;
+  }
+  return null;
+}
+
 @Injectable()
 export class SolicitudesService {
   constructor(private prisma: PrismaService) {}
@@ -229,7 +247,14 @@ export class SolicitudesService {
               urgente: true,
               notaRevision: true,
               fechaEntregaRequerida: true,
+              recepcionEn: true,
+              actualizadoEn: true,
               creadoEn: true,
+              historial: {
+                where: { estado: { in: ['aprobado', 'cancelado'] } },
+                orderBy: { creadoEn: 'desc' },
+                select: { estado: true, creadoEn: true },
+              },
               proyecto: { select: { id: true, codigo: true, nombre: true } },
               creadoPor: { select: { id: true, name: true } },
               _count: { select: { items: true } },
@@ -312,6 +337,11 @@ export class SolicitudesService {
             fechaEntregaRequerida:
               requerimiento.fechaEntregaRequerida?.toISOString() ?? null,
             items: requerimiento._count.items,
+            cerradoEn: cerradoEnMacro(requerimiento)?.toISOString() ?? null,
+            conformidad: Boolean(requerimiento.recepcionEn),
+            fueAprobado: requerimiento.historial.some(
+              (evento) => evento.estado === 'aprobado',
+            ),
           },
           solicitudesCotizacion: requerimiento.solicitudes.map((solicitud) => ({
             id: solicitud.id,

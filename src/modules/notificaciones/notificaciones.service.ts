@@ -31,7 +31,11 @@ interface ResumenVencimientoItem {
 
 function notificationTone(tipo: TipoNotificacion): EmailTone {
   if (tipo === 'pago_vencido' || tipo === 'cobro_vencido') return 'critical';
-  if (tipo === 'pago_por_vencer' || tipo === 'cobro_por_vencer') return 'warning';
+  if (
+    tipo === 'pago_por_vencer' ||
+    tipo === 'cobro_por_vencer' ||
+    tipo === 'asistencia_cierre_automatico'
+  ) return 'warning';
   if (tipo === 'requerimiento_aprobado' || tipo === 'requerimiento_recibido') return 'success';
   if (
     tipo === 'requerimiento_creado' ||
@@ -54,6 +58,7 @@ function notificationAction(input: CrearNotificacionInput) {
     Proyecto: { path: `/proyectos/${input.entidadId}`, label: 'Ver obra' },
     Cobro: { path: '/dashboard', label: 'Abrir sistema' },
     Planilla: { path: '/asistencia', label: 'Ver planilla' },
+    Turno: { path: `/asistencia/${input.entidadId}`, label: 'Revisar jornada' },
   };
   const target = input.entidadTipo ? paths[input.entidadTipo] : undefined;
   if (!target) return { actionLabel: 'Abrir sistema', actionUrl: frontendUrl };

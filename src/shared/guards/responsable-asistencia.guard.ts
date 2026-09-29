@@ -10,6 +10,13 @@ import { PrismaService } from '../../prisma/prisma.service.js';
 import { REQUIRE_RESPONSABLE_ASISTENCIA_KEY } from '../decorators/require-responsable-asistencia.decorator.js';
 import type { AuthenticatedUser } from './auth.guard.js';
 
+const ROLES_SIEMPRE_PASAN: string[] = [
+  'administrador',
+  'gerencia',
+  'admin_ti',
+  'jefe_sig',
+];
+
 @Injectable()
 export class ResponsableAsistenciaGuard implements CanActivate {
   constructor(
@@ -28,8 +35,9 @@ export class ResponsableAsistenciaGuard implements CanActivate {
       .switchToHttp()
       .getRequest<Request & { user: AuthenticatedUser }>();
 
-    // Administrador y gerencia pueden corregir/operar en nombre del encargado.
-    if (req.user.role === 'administrador' || req.user.role === 'gerencia') {
+    // Administración, gerencia, admin_ti y jefe SIG pueden corregir/operar en
+    // nombre del encargado, en cualquier obra.
+    if (ROLES_SIEMPRE_PASAN.includes(req.user.role)) {
       return true;
     }
 

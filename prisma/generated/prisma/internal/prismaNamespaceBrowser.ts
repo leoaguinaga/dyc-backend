@@ -388,6 +388,10 @@ export const TurnoScalarFieldEnum = {
   corregidoPorId: 'corregidoPorId',
   corregidoEn: 'corregidoEn',
   motivoCorreccion: 'motivoCorreccion',
+  origen: 'origen',
+  cierreAutomatico: 'cierreAutomatico',
+  cierreRevisadoEn: 'cierreRevisadoEn',
+  cierreRevisadoPorId: 'cierreRevisadoPorId',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
 } as const
@@ -401,6 +405,7 @@ export const AsistenciaScalarFieldEnum = {
   trabajadorId: 'trabajadorId',
   estado: 'estado',
   horaLlegadaReal: 'horaLlegadaReal',
+  horaSalidaReal: 'horaSalidaReal',
   justificada: 'justificada',
   justificacion: 'justificacion',
   salidaTempranaHora: 'salidaTempranaHora',
@@ -846,6 +851,7 @@ export const PagoScalarFieldEnum = {
   nota: 'nota',
   comprobanteNombre: 'comprobanteNombre',
   comprobanteUrl: 'comprobanteUrl',
+  codigoComprobante: 'codigoComprobante',
   registradoPorId: 'registradoPorId',
   pagadoPorId: 'pagadoPorId',
   creadoEn: 'creadoEn',
