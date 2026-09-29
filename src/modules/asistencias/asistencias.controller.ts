@@ -50,7 +50,12 @@ export class AsistenciasController {
     @Body() dto: CreateTurnoDto,
     @Req() req: AuthRequest,
   ) {
-    return this.asistenciasService.abrirTurno(proyectoId, req.user.id, dto);
+    return this.asistenciasService.abrirTurno(
+      proyectoId,
+      req.user.id,
+      req.user.role,
+      dto,
+    );
   }
 
   @Patch(':turnoId/asistencias')

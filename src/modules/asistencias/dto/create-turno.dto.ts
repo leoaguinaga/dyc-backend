@@ -3,6 +3,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  MinLength,
 } from 'class-validator';
 
 export class CreateTurnoDto {
@@ -13,4 +14,9 @@ export class CreateTurnoDto {
   @IsOptional()
   @IsDateString()
   fecha?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(5, { message: 'El motivo debe tener al menos 5 caracteres' })
+  motivo?: string;
 }

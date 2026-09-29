@@ -10,7 +10,7 @@ import { RegistrarAsistenciaDto } from './dto/registrar-asistencia.dto.js';
 import { OmitirFotoDto } from './dto/omitir-foto.dto.js';
 import { CerrarTurnoDto } from './dto/cerrar-turno.dto.js';
 import { ReabrirTurnoDto } from './dto/reabrir-turno.dto.js';
-import type { EstadoAsistencia } from '../../prisma/types.js';
+import type { EstadoAsistencia, Role } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { hoyLima, soloFechaUTC } from '../../shared/date/fecha.util.js';
@@ -71,7 +71,12 @@ export class AsistenciasService {
     };
   }
 
-  async abrirTurno(proyectoId: string, actorId: string, dto: CreateTurnoDto) {
+  async abrirTurno(
+    proyectoId: string,
+    actorId: string,
+    actorRole: Role,
+    dto: CreateTurnoDto,
+  ) {
     const turnoConfig = await this.prisma.turnoConfig.findFirst({
       where: { id: dto.turnoConfigId, proyectoId, activo: true },
     });
@@ -82,6 +87,20 @@ export class AsistenciasService {
     }
 
     const fecha = dto.fecha ? this.soloFecha(new Date(dto.fecha)) : this.hoy();
+    const esFechaPasada = fecha.getTime() !== this.hoy().getTime();
+
+    if (esFechaPasada) {
+      if (actorRole !== 'administrador' && actorRole !== 'gerencia') {
+        throw new BadRequestException(
+          'Solo administrador o gerencia pueden registrar asistencia de una fecha distinta a hoy',
+        );
+      }
+      if (!dto.motivo) {
+        throw new BadRequestException(
+          'Debes indicar un motivo para registrar asistencia de una fecha distinta a hoy',
+        );
+      }
+    }
 
     const turnoExistente = await this.prisma.turno.findUnique({
       where: {
@@ -105,6 +124,13 @@ export class AsistenciasService {
         turnoConfigId: turnoConfig.id,
         horaAperturaReal: new Date(),
         abiertoPorId: actorId,
+        ...(esFechaPasada
+          ? {
+              corregidoPorId: actorId,
+              corregidoEn: new Date(),
+              motivoCorreccion: dto.motivo,
+            }
+          : {}),
       },
     });
   }
