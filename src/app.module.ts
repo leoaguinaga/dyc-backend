@@ -29,6 +29,7 @@ import { EmailModule } from './shared/email/email.module.js';
 import { AuthGuard } from './shared/guards/auth.guard.js';
 import { RolesGuard } from './shared/guards/roles.guard.js';
 import { ResponsableAsistenciaGuard } from './shared/guards/responsable-asistencia.guard.js';
+import { RbacModule } from './modules/rbac/rbac.module.js';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { ResponsableAsistenciaGuard } from './shared/guards/responsable-asistenc
     AsistenciasModule,
     AyudaModule,
     SolicitudesModule,
+    RbacModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
