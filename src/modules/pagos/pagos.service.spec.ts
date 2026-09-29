@@ -144,3 +144,58 @@ describe('PagosService — monto del plan de pagos con IGV', () => {
     expect(updates[0].data.monto).toBe(16500);
   });
 });
+
+describe('PagosService — correlativo del comprobante', () => {
+  const anio = String(new Date().getFullYear()).slice(-2);
+
+  function setupCodigo(codigosUsados: string[], otroConCodigo = false) {
+    const updates: Array<{ data: Record<string, unknown> }> = [];
+    const pago = {
+      id: 'pago-1',
+      estado: 'pendiente',
+      codigoComprobante: null,
+      fechaProgramada: new Date('2026-09-24'),
+      metodoPago: 'efectivo',
+    };
+    const prisma = {
+      pago: {
+        findUnique: () => Promise.resolve(pago),
+        findMany: () =>
+          Promise.resolve(codigosUsados.map((codigoComprobante) => ({ codigoComprobante }))),
+        findFirst: () => Promise.resolve(otroConCodigo ? { id: 'otro' } : null),
+        update: (args: { data: Record<string, unknown> }) => {
+          updates.push(args);
+          return Promise.resolve({ ...pago, ...args.data });
+        },
+      },
+    };
+    return { svc: new PagosService(prisma as never, {} as never), updates, pago };
+  }
+
+  it('marcarPagado asigna AA-0001 cuando aún no hay códigos en el año', async () => {
+    const { svc, updates } = setupCodigo([]);
+    await svc.marcarPagado('pago-1', {}, 'user-1');
+    expect(updates[0].data.codigoComprobante).toBe(`${anio}-0001`);
+  });
+
+  it('marcarPagado continúa desde el mayor número usado (respeta ediciones manuales)', async () => {
+    const { svc, updates } = setupCodigo([`${anio}-0001`, `${anio}-2078`, `${anio}-0300`]);
+    await svc.marcarPagado('pago-1', {}, 'user-1');
+    expect(updates[0].data.codigoComprobante).toBe(`${anio}-2079`);
+  });
+
+  it('actualizarCodigoComprobante rechaza un código ya usado por otro comprobante', async () => {
+    const { svc, pago } = setupCodigo([], true);
+    pago.estado = 'pagado';
+    await expect(
+      svc.actualizarCodigoComprobante('pago-1', { codigo: `${anio}-2078` }),
+    ).rejects.toThrow(/ya está asignado/);
+  });
+
+  it('actualizarCodigoComprobante guarda el código editado', async () => {
+    const { svc, pago, updates } = setupCodigo([]);
+    pago.estado = 'pagado';
+    await svc.actualizarCodigoComprobante('pago-1', { codigo: `${anio}-2078` });
+    expect(updates[0].data.codigoComprobante).toBe(`${anio}-2078`);
+  });
+});

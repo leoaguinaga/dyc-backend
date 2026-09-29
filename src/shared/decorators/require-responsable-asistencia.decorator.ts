@@ -10,7 +10,7 @@ export const REQUIRE_RESPONSABLE_ASISTENCIA_KEY =
  * confirmado por el stakeholder el 2026-07-31. Se nombra en genérico porque
  * quién ocupa ese rol ya cambió una vez en esta misma semana de planificación;
  * si vuelve a cambiar, solo se ajusta ResponsableAsistenciaGuard, no cada uso
- * del decorador. Administrador y gerencia siempre pasan (ver el guard).
+ * del decorador. Administrador, gerencia, admin_ti y jefe SIG siempre pasan (ver el guard).
  */
 export const RequireResponsableAsistencia = () =>
   SetMetadata(REQUIRE_RESPONSABLE_ASISTENCIA_KEY, true);

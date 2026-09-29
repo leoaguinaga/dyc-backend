@@ -70,7 +70,9 @@ const ESTADOS_PRE_COTIZACION: EstadoRequerimiento[] = [
 
 // Roles that review a specific tipo across all projects (not just their own).
 // ing_civil e ing_electrico (área técnica) ven todos los tipos, no solo el propio.
-const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {};
+const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {
+  jefe_sig: 'seguridad',
+};
 
 // Qué tipo se muestra primero en el kanban para cada rol (orden dentro de
 // columna, no filtro). administrativo nunca se prioriza.

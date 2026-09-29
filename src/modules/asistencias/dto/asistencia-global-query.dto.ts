@@ -38,3 +38,11 @@ export class PlanillasGlobalQueryDto {
   @IsDateString()
   hasta?: string;
 }
+
+const ESTADOS_JORNADA = ['sin_cerrar', 'por_revisar', 'cerrada'] as const;
+
+export class JornadasQueryDto extends PlanillasGlobalQueryDto {
+  @IsOptional()
+  @IsIn(ESTADOS_JORNADA)
+  estado?: (typeof ESTADOS_JORNADA)[number];
+}

@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { StorageModule } from '../../shared/storage/storage.module.js';
+import { NotificacionesModule } from '../notificaciones/notificaciones.module.js';
+import { CierreAutomaticoService } from './cierre-automatico.service.js';
 import { AsistenciasController } from './asistencias.controller.js';
 import { AsistenciasService } from './asistencias.service.js';
 import { RegistroVisitaController } from './registro-visita.controller.js';
@@ -16,7 +18,7 @@ import { TurnoConfigsController } from './turno-configs.controller.js';
 import { TurnoConfigsService } from './turno-configs.service.js';
 
 @Module({
-  imports: [StorageModule],
+  imports: [StorageModule, NotificacionesModule],
   controllers: [
     AsistenciasController,
     RegistroVisitaController,
@@ -28,6 +30,7 @@ import { TurnoConfigsService } from './turno-configs.service.js';
   ],
   providers: [
     AsistenciasService,
+    CierreAutomaticoService,
     RegistroVisitaService,
     VisitaTerceroService,
     ConsolidadoAccesoService,

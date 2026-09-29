@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   Inject,
   Injectable,
   NotFoundException,
@@ -10,12 +11,24 @@ import { RegistrarAsistenciaDto } from './dto/registrar-asistencia.dto.js';
 import { OmitirFotoDto } from './dto/omitir-foto.dto.js';
 import { CerrarTurnoDto } from './dto/cerrar-turno.dto.js';
 import { ReabrirTurnoDto } from './dto/reabrir-turno.dto.js';
+import { EditarHorarioTurnoDto } from './dto/editar-horario-turno.dto.js';
+import { RevisarCierreDto } from './dto/revisar-cierre.dto.js';
+import { RegistrarDesdeHojaDto } from './dto/registrar-desde-hoja.dto.js';
 import type { EstadoAsistencia, Role } from '../../prisma/types.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { hoyLima, soloFechaUTC } from '../../shared/date/fecha.util.js';
 
 export const FOTO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+// Lima es UTC-5 todo el año (sin horario de verano). Las horas "HH:mm" del turno y
+// de los obreros se guardan como reloj de Lima pero se combinan con la fecha en UTC,
+// así que un instante real (Date) debe llevarse a ese mismo marco antes de compararlo.
+const LIMA_OFFSET_HORAS = 5;
+
+// Tope de gracia después de la hora fin del horario: pasado este margen el sistema
+// cierra la jornada por su cuenta (7 pm de fin → 11 pm de cierre).
+export const TOPE_CIERRE_AUTOMATICO_HORAS = 4;
 
 @Injectable()
 export class AsistenciasService {
@@ -90,9 +103,13 @@ export class AsistenciasService {
     const esFechaPasada = fecha.getTime() !== this.hoy().getTime();
 
     if (esFechaPasada) {
-      if (actorRole !== 'administrador' && actorRole !== 'gerencia') {
+      if (
+        actorRole !== 'administrador' &&
+        actorRole !== 'gerencia' &&
+        actorRole !== 'admin_ti'
+      ) {
         throw new BadRequestException(
-          'Solo administrador o gerencia pueden registrar asistencia de una fecha distinta a hoy',
+          'Solo administración o gerencia pueden registrar asistencia de una fecha distinta a hoy',
         );
       }
       if (!dto.motivo) {
@@ -140,7 +157,13 @@ export class AsistenciasService {
     turnoId: string,
     file: Express.Multer.File,
   ) {
-    await this.turnoAbierto(proyectoId, turnoId);
+    // La foto es evidencia: también se puede adjuntar a una jornada ya cerrada
+    // (por ejemplo la hoja firmada que llega a oficina después).
+    const existe = await this.prisma.turno.findFirst({
+      where: { id: turnoId, proyectoId },
+      select: { id: true },
+    });
+    if (!existe) throw new NotFoundException(`Turno ${turnoId} no encontrado`);
 
     const { url } = await this.storage.save({
       buffer: file.buffer,
@@ -200,6 +223,7 @@ export class AsistenciasService {
             trabajadorId: item.trabajadorId,
             estado: item.estado,
             horaLlegadaReal: item.horaLlegadaReal,
+            horaSalidaReal: item.horaSalidaReal,
             justificada: item.justificada,
             justificacion: item.justificacion,
             salidaTempranaHora: item.salidaTempranaHora,
@@ -208,6 +232,7 @@ export class AsistenciasService {
           update: {
             estado: item.estado,
             horaLlegadaReal: item.horaLlegadaReal,
+            horaSalidaReal: item.horaSalidaReal,
             justificada: item.justificada,
             justificacion: item.justificacion,
             salidaTempranaHora: item.salidaTempranaHora,
@@ -227,14 +252,17 @@ export class AsistenciasService {
       turno,
     );
 
-    const horaCierreReal = new Date();
+    // Una reapertura es una corrección del turno original, no un nuevo turno.
+    // Conservamos la hora de cierre que originó el cálculo para que editar una
+    // llegada/salida no cambie las horas solo por el tiempo transcurrido.
+    const horaCierreReal = turno.horaCierreReal ?? new Date();
     const calculos = asistencias.map((a) => ({
       trabajadorId: a.trabajadorId,
       nombre: a.trabajador.nombre,
       ...this.calcularHoras(
         a.estado,
         a.horaLlegadaReal,
-        a.salidaTempranaHora,
+        a.horaSalidaReal ?? a.salidaTempranaHora,
         turno.fecha,
         horaCierreReal,
         turnoConfig,
@@ -268,13 +296,15 @@ export class AsistenciasService {
       turno,
     );
 
-    const horaCierreReal = new Date();
+    // En una reapertura se corrige el turno original: no se debe desplazar
+    // el cierre a la hora actual solo porque se volvió a guardar.
+    const horaCierreReal = turno.horaCierreReal ?? new Date();
     const calculos = asistencias.map((a) => ({
       asistenciaId: a.id,
       ...this.calcularHoras(
         a.estado,
         a.horaLlegadaReal,
-        a.salidaTempranaHora,
+        a.horaSalidaReal ?? a.salidaTempranaHora,
         turno.fecha,
         horaCierreReal,
         turnoConfig,
@@ -301,7 +331,272 @@ export class AsistenciasService {
       ),
       this.prisma.turno.update({
         where: { id: turnoId },
-        data: { estado: 'cerrado', horaCierreReal, cerradoPorId: actorId },
+        data: {
+          estado: 'cerrado',
+          horaCierreReal,
+          cerradoPorId: actorId,
+          // Un cierre hecho por una persona reemplaza cualquier cierre automático previo.
+          cierreAutomatico: false,
+          cierreRevisadoEn: null,
+          cierreRevisadoPorId: null,
+        },
+      }),
+    ]);
+
+    return this.findTurnoDetalle(proyectoId, turnoId);
+  }
+
+  /**
+   * Instante real en que vence el plazo para cerrar la jornada: hora fin del
+   * horario (en el día siguiente si cruza medianoche) más el tope de gracia.
+   */
+  limiteCierreAutomatico(
+    fecha: Date,
+    turnoConfig: { horaFin: string; cruzaMedianoche: boolean },
+  ): Date {
+    const finJornada = this.combinarFechaHora(
+      fecha,
+      turnoConfig.horaFin,
+      turnoConfig.cruzaMedianoche,
+    );
+    return new Date(
+      finJornada.getTime() +
+        (TOPE_CIERRE_AUTOMATICO_HORAS + LIMA_OFFSET_HORAS) * 3_600_000,
+    );
+  }
+
+  /**
+   * Cierra una jornada abierta cuyo plazo venció. Calcula las horas de quien no
+   * marcó salida hasta el límite (por eso pueden aparecer horas extra), deja
+   * `pagarExtra` en falso y marca la jornada para revisión. No exige foto ni que
+   * todos los obreros asignados tengan registro: quien no tiene registro no suma
+   * horas y el revisor lo ve en el detalle.
+   */
+  async cerrarAutomaticamente(turnoId: string) {
+    const turno = await this.prisma.turno.findUnique({
+      where: { id: turnoId },
+      include: { turnoConfig: true, asistencias: true },
+    });
+    if (!turno || turno.estado !== 'abierto') return null;
+
+    const limite = this.limiteCierreAutomatico(turno.fecha, turno.turnoConfig);
+    if (Date.now() < limite.getTime()) return null;
+
+    const calculos = turno.asistencias.map((a) => ({
+      asistenciaId: a.id,
+      ...this.calcularHoras(
+        a.estado,
+        a.horaLlegadaReal,
+        a.horaSalidaReal ?? a.salidaTempranaHora,
+        turno.fecha,
+        limite,
+        turno.turnoConfig,
+      ),
+    }));
+
+    await this.prisma.$transaction([
+      ...calculos.map((c) =>
+        this.prisma.asistencia.update({
+          where: { id: c.asistenciaId },
+          data: {
+            horasNormales: c.horasNormales,
+            horasExtra: c.horasExtra,
+            pagarExtra: false,
+          },
+        }),
+      ),
+      this.prisma.turno.update({
+        where: { id: turno.id },
+        data: {
+          estado: 'cerrado',
+          horaCierreReal: limite,
+          cerradoPorId: null,
+          cierreAutomatico: true,
+          cierreRevisadoEn: null,
+          cierreRevisadoPorId: null,
+        },
+      }),
+    ]);
+
+    return {
+      turnoId: turno.id,
+      proyectoId: turno.proyectoId,
+      fecha: turno.fecha,
+      conHorasExtra: calculos.some((c) => c.horasExtra > 0),
+    };
+  }
+
+  /** Obreros asignados a la obra en una fecha y horario: la base para cargar una hoja física. */
+  async obrerosParaHoja(
+    proyectoId: string,
+    fecha: string,
+    turnoConfigId: string,
+  ) {
+    const asignados = await this.obrerosAsignados(
+      proyectoId,
+      soloFechaUTC(new Date(fecha)),
+      turnoConfigId,
+    );
+    return asignados
+      .map((pt) => ({
+        trabajadorId: pt.trabajadorId,
+        nombre: pt.trabajador.nombre,
+        dni: pt.trabajador.dni,
+        cargo: pt.trabajador.cargo,
+      }))
+      .sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }
+
+  /**
+   * Oficina carga la jornada desde la hoja física firmada: crea el turno ya
+   * cerrado, con la hora de ingreso y salida de cada obrero. La foto de la hoja
+   * es opcional y se adjunta aparte; si no se adjunta queda constancia.
+   */
+  async registrarDesdeHoja(
+    proyectoId: string,
+    actorId: string,
+    dto: RegistrarDesdeHojaDto,
+  ) {
+    const turnoConfig = await this.prisma.turnoConfig.findFirst({
+      where: { id: dto.turnoConfigId, proyectoId, activo: true },
+    });
+    if (!turnoConfig) {
+      throw new BadRequestException(
+        'El horario indicado no existe o está inactivo para esta obra',
+      );
+    }
+
+    const fecha = soloFechaUTC(new Date(dto.fecha));
+    if (fecha.getTime() > this.hoy().getTime()) {
+      throw new BadRequestException(
+        'No se puede registrar una hoja con fecha futura',
+      );
+    }
+
+    const existente = await this.prisma.turno.findUnique({
+      where: {
+        proyectoId_fecha_turnoConfigId: {
+          proyectoId,
+          fecha,
+          turnoConfigId: dto.turnoConfigId,
+        },
+      },
+      select: { id: true },
+    });
+    if (existente) {
+      throw new ConflictException({
+        message:
+          'Ya existe una jornada de esta obra, fecha y horario. Corrígela desde su detalle.',
+        turnoId: existente.id,
+      });
+    }
+
+    const asignados = await this.obrerosAsignados(
+      proyectoId,
+      fecha,
+      dto.turnoConfigId,
+    );
+    const validos = new Set(asignados.map((pt) => pt.trabajadorId));
+    const invalidos = dto.obreros.filter((o) => !validos.has(o.trabajadorId));
+    if (invalidos.length > 0) {
+      throw new BadRequestException(
+        'Hay obreros que no están asignados a esta obra en esa fecha y horario. Asígnalos primero.',
+      );
+    }
+    const repetidos = new Set(dto.obreros.map((o) => o.trabajadorId));
+    if (repetidos.size !== dto.obreros.length) {
+      throw new BadRequestException('Hay un obrero repetido en la hoja');
+    }
+
+    const { horaInicio, cruzaMedianoche, toleranciaMinutos } = turnoConfig;
+    const minutos = (hhmm: string) => {
+      const [h, m] = hhmm.split(':').map(Number);
+      return h * 60 + m;
+    };
+    const pagarExtra = dto.pagarExtra ?? false;
+
+    const filas = dto.obreros.map((o) => {
+      // Un ingreso "antes" de la hora de inicio en un turno de noche cae después de medianoche.
+      const llegada =
+        cruzaMedianoche && o.horaLlegadaReal < horaInicio
+          ? minutos(o.horaLlegadaReal) + 24 * 60
+          : minutos(o.horaLlegadaReal);
+      const estado: EstadoAsistencia =
+        llegada > minutos(horaInicio) + toleranciaMinutos
+          ? 'tardio'
+          : 'presente';
+      const horas = this.calcularHoras(
+        estado,
+        o.horaLlegadaReal,
+        o.horaSalidaReal,
+        fecha,
+        new Date(),
+        turnoConfig,
+      );
+      return {
+        trabajadorId: o.trabajadorId,
+        estado,
+        horaLlegadaReal: o.horaLlegadaReal,
+        horaSalidaReal: o.horaSalidaReal,
+        horasNormales: horas.horasNormales,
+        horasExtra: horas.horasExtra,
+        pagarExtra: horas.horasExtra > 0 ? pagarExtra : false,
+      };
+    });
+
+    const aInstante = (hhmm: string, diaSiguiente: boolean) =>
+      new Date(
+        this.combinarFechaHora(fecha, hhmm, diaSiguiente).getTime() +
+          LIMA_OFFSET_HORAS * 3_600_000,
+      );
+
+    const turno = await this.prisma.turno.create({
+      data: {
+        proyectoId,
+        fecha,
+        turnoConfigId: dto.turnoConfigId,
+        estado: 'cerrado',
+        origen: 'hoja',
+        horaAperturaReal: aInstante(turnoConfig.horaInicio, false),
+        horaCierreReal: aInstante(turnoConfig.horaFin, cruzaMedianoche),
+        fotoOmitida: true,
+        motivoFotoOmitida: 'Registrado desde la hoja física, sin foto adjunta',
+        abiertoPorId: actorId,
+        cerradoPorId: actorId,
+        asistencias: { create: filas },
+      },
+      select: { id: true },
+    });
+
+    return { turnoId: turno.id };
+  }
+
+  /** Resuelve una jornada cerrada automáticamente: decide si se pagan las horas extra. */
+  async revisarCierre(
+    proyectoId: string,
+    turnoId: string,
+    actorId: string,
+    dto: RevisarCierreDto,
+  ) {
+    const turno = await this.prisma.turno.findFirst({
+      where: { id: turnoId, proyectoId },
+    });
+    if (!turno) throw new NotFoundException(`Turno ${turnoId} no encontrado`);
+    if (turno.estado !== 'cerrado' || !turno.cierreAutomatico) {
+      throw new BadRequestException('Esta jornada no se cerró automáticamente');
+    }
+    if (turno.cierreRevisadoEn) {
+      throw new BadRequestException('Este cierre ya fue revisado');
+    }
+
+    await this.prisma.$transaction([
+      this.prisma.asistencia.updateMany({
+        where: { turnoId, horasExtra: { gt: 0 } },
+        data: { pagarExtra: dto.pagarExtra },
+      }),
+      this.prisma.turno.update({
+        where: { id: turnoId },
+        data: { cierreRevisadoEn: new Date(), cierreRevisadoPorId: actorId },
       }),
     ]);
 
@@ -330,6 +625,30 @@ export class AsistenciasService {
         corregidoEn: new Date(),
         motivoCorreccion: dto.motivo,
       },
+    });
+  }
+
+  async editarHorario(
+    proyectoId: string,
+    turnoId: string,
+    dto: EditarHorarioTurnoDto,
+  ) {
+    const turno = await this.prisma.turno.findFirst({
+      where: { id: turnoId, proyectoId },
+    });
+    if (!turno) throw new NotFoundException(`Turno ${turnoId} no encontrado`);
+    if (turno.estado !== 'abierto') {
+      throw new BadRequestException('Solo se puede editar una jornada abierta');
+    }
+    const fecha = new Date(dto.fecha);
+    const apertura = new Date(dto.horaAperturaReal);
+    const cierre = new Date(dto.horaCierreReal);
+    if (cierre <= apertura) {
+      throw new BadRequestException('La hora de cierre debe ser posterior a la apertura');
+    }
+    return this.prisma.turno.update({
+      where: { id: turnoId },
+      data: { fecha, horaAperturaReal: apertura, horaCierreReal: cierre },
     });
   }
 
@@ -453,11 +772,13 @@ export class AsistenciasService {
         salidaTempranaHora,
         this.esDiaSiguiente(salidaTempranaHora, horaInicio, cruzaMedianoche),
       );
-      const horasNormales = Math.min(
-        duracionJornada,
-        this.diffHoras(entradaEfectiva, salidaEfectiva),
-      );
-      return { horasNormales, horasExtra: 0 };
+      const horasHastaSalida = this.diffHoras(entradaEfectiva, salidaEfectiva);
+      const horasNormales = Math.min(duracionJornada, horasHastaSalida);
+      const excedente = this.diffHoras(finJornada, salidaEfectiva);
+      return {
+        horasNormales,
+        horasExtra: excedente > toleranciaSalidaMinutos / 60 ? excedente : 0,
+      };
     }
 
     const horasNormalesBase = Math.min(
@@ -465,7 +786,10 @@ export class AsistenciasService {
       this.diffHoras(entradaEfectiva, finJornada),
     );
 
-    const excedente = this.diffHoras(finJornada, horaCierreReal);
+    const cierreEnRelojLima = new Date(
+      horaCierreReal.getTime() - LIMA_OFFSET_HORAS * 3_600_000,
+    );
+    const excedente = this.diffHoras(finJornada, cierreEnRelojLima);
     const dentroDeTolerancia = excedente * 60 <= toleranciaSalidaMinutos;
 
     return dentroDeTolerancia

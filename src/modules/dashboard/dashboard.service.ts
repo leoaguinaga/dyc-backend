@@ -62,6 +62,7 @@ export interface TareaDashboard {
   tipo: string;
   prioridad: PrioridadDashboard;
   titulo: string;
+  concepto?: string;
   contexto: string;
   href: string;
   fecha?: Date;
@@ -205,9 +206,9 @@ export class DashboardService {
           select: {
             id: true,
             codigo: true,
-            estado: true,
-            actualizadoEn: true,
-            requerimiento: { select: { id: true, codigo: true, nombre: true } },
+          estado: true,
+          actualizadoEn: true,
+          requerimiento: { select: { id: true, codigo: true, nombre: true } },
           },
           orderBy: { actualizadoEn: 'desc' },
           take: 4,
@@ -219,6 +220,7 @@ export class DashboardService {
           tipo: 'solicitud',
           prioridad: 'informativa',
           titulo: `${solicitud.codigo} está ${solicitud.estado.replaceAll('_', ' ')}`,
+          concepto: solicitud.requerimiento?.nombre ?? undefined,
           contexto: solicitud.requerimiento
             ? `${solicitud.requerimiento.codigo} · ${solicitud.requerimiento.nombre}`
             : 'Solicitud sin requerimiento vinculado.',
@@ -252,7 +254,8 @@ export class DashboardService {
           tipo: 'aprobacion_requerimiento',
           prioridad: req.urgente ? 'critica' : 'alta',
           titulo: `Revisa ${req.codigo}`,
-          contexto: `${req.nombre} · ${req.proyecto.codigo ?? req.proyecto.nombre}`,
+          concepto: req.nombre,
+          contexto: `${req.codigo} · ${req.proyecto.codigo ?? req.proyecto.nombre}`,
           href: `/requerimientos/${req.id}`,
           fecha: req.fechaEntregaRequerida ?? undefined,
           requiereAccion: true,
@@ -278,6 +281,7 @@ export class DashboardService {
           codigo: true,
           estado: true,
           actualizadoEn: true,
+          requerimiento: { select: { nombre: true } },
           proyecto: { select: { codigo: true, nombre: true } },
         },
         orderBy: { actualizadoEn: 'asc' },
@@ -293,6 +297,7 @@ export class DashboardService {
             solicitud.estado === 'aprobada_solicitante'
               ? `Aprueba ${solicitud.codigo}`
               : `Da seguimiento a ${solicitud.codigo}`,
+          concepto: solicitud.requerimiento?.nombre ?? undefined,
           contexto: solicitud.proyecto
             ? `${solicitud.proyecto.codigo ?? solicitud.proyecto.nombre} · Estado: ${solicitud.estado.replaceAll('_', ' ')}`
             : `Estado: ${solicitud.estado.replaceAll('_', ' ')}`,
@@ -324,6 +329,7 @@ export class DashboardService {
         select: {
           id: true,
           numero: true,
+          nombre: true,
           estadoAprobacion: true,
           actualizadoEn: true,
           compraSimple: { select: { id: true, codigo: true, nombre: true } },
@@ -341,7 +347,8 @@ export class DashboardService {
           titulo: observada
             ? `Destraba ${grupo.numero}`
             : `Revisa ${grupo.numero}`,
-          contexto: `${grupo.compraSimple.codigo} · ${grupo.compraSimple.nombre}`,
+          concepto: grupo.nombre ?? grupo.compraSimple.nombre,
+          contexto: `${grupo.numero} · ${grupo.compraSimple.codigo}`,
           href: `/compras-simples/${grupo.compraSimple.id}`,
           fecha: grupo.actualizadoEn,
           requiereAccion: true,
@@ -361,6 +368,8 @@ export class DashboardService {
           id: true,
           numero: true,
           fechaEntrega: true,
+          concepto: true,
+          solicitud: { select: { requerimiento: { select: { nombre: true } } } },
           proyecto: { select: { codigo: true, nombre: true } },
         },
         orderBy: { fechaEntrega: 'asc' },
@@ -372,7 +381,8 @@ export class DashboardService {
           tipo: 'entrega_vencida',
           prioridad: 'critica',
           titulo: `Entrega vencida: ${oc.numero}`,
-          contexto: oc.proyecto.codigo ?? oc.proyecto.nombre,
+          concepto: oc.concepto ?? oc.solicitud?.requerimiento?.nombre ?? undefined,
+          contexto: `${oc.numero} · ${oc.proyecto.codigo ?? oc.proyecto.nombre}`,
           href: `/ordenes-compra/${oc.id}`,
           fecha: oc.fechaEntrega ?? undefined,
           requiereAccion: true,

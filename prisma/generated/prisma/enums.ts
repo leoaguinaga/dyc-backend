@@ -288,10 +288,19 @@ export const TipoNotificacion = {
   cobro_vencido: 'cobro_vencido',
   planilla_generada: 'planilla_generada',
   compra_simple_pendiente_gerencia: 'compra_simple_pendiente_gerencia',
-  compra_simple_pendiente_tecnico: 'compra_simple_pendiente_tecnico'
+  compra_simple_pendiente_tecnico: 'compra_simple_pendiente_tecnico',
+  asistencia_cierre_automatico: 'asistencia_cierre_automatico'
 } as const
 
 export type TipoNotificacion = (typeof TipoNotificacion)[keyof typeof TipoNotificacion]
+
+
+export const OrigenTurno = {
+  campo: 'campo',
+  hoja: 'hoja'
+} as const
+
+export type OrigenTurno = (typeof OrigenTurno)[keyof typeof OrigenTurno]
 
 
 export const EstadoTurno = {

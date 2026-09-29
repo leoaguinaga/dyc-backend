@@ -42,6 +42,7 @@ export type AsistenciaMinAggregateOutputType = {
   trabajadorId: string | null
   estado: $Enums.EstadoAsistencia | null
   horaLlegadaReal: string | null
+  horaSalidaReal: string | null
   justificada: boolean | null
   justificacion: string | null
   salidaTempranaHora: string | null
@@ -57,6 +58,7 @@ export type AsistenciaMaxAggregateOutputType = {
   trabajadorId: string | null
   estado: $Enums.EstadoAsistencia | null
   horaLlegadaReal: string | null
+  horaSalidaReal: string | null
   justificada: boolean | null
   justificacion: string | null
   salidaTempranaHora: string | null
@@ -72,6 +74,7 @@ export type AsistenciaCountAggregateOutputType = {
   trabajadorId: number
   estado: number
   horaLlegadaReal: number
+  horaSalidaReal: number
   justificada: number
   justificacion: number
   salidaTempranaHora: number
@@ -99,6 +102,7 @@ export type AsistenciaMinAggregateInputType = {
   trabajadorId?: true
   estado?: true
   horaLlegadaReal?: true
+  horaSalidaReal?: true
   justificada?: true
   justificacion?: true
   salidaTempranaHora?: true
@@ -114,6 +118,7 @@ export type AsistenciaMaxAggregateInputType = {
   trabajadorId?: true
   estado?: true
   horaLlegadaReal?: true
+  horaSalidaReal?: true
   justificada?: true
   justificacion?: true
   salidaTempranaHora?: true
@@ -129,6 +134,7 @@ export type AsistenciaCountAggregateInputType = {
   trabajadorId?: true
   estado?: true
   horaLlegadaReal?: true
+  horaSalidaReal?: true
   justificada?: true
   justificacion?: true
   salidaTempranaHora?: true
@@ -231,6 +237,7 @@ export type AsistenciaGroupByOutputType = {
   trabajadorId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal: string | null
+  horaSalidaReal: string | null
   justificada: boolean | null
   justificacion: string | null
   salidaTempranaHora: string | null
@@ -269,6 +276,7 @@ export type AsistenciaWhereInput = {
   trabajadorId?: Prisma.StringFilter<"Asistencia"> | string
   estado?: Prisma.EnumEstadoAsistenciaFilter<"Asistencia"> | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.StringNullableFilter<"Asistencia"> | string | null
+  horaSalidaReal?: Prisma.StringNullableFilter<"Asistencia"> | string | null
   justificada?: Prisma.BoolNullableFilter<"Asistencia"> | boolean | null
   justificacion?: Prisma.StringNullableFilter<"Asistencia"> | string | null
   salidaTempranaHora?: Prisma.StringNullableFilter<"Asistencia"> | string | null
@@ -286,6 +294,7 @@ export type AsistenciaOrderByWithRelationInput = {
   trabajadorId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   horaLlegadaReal?: Prisma.SortOrderInput | Prisma.SortOrder
+  horaSalidaReal?: Prisma.SortOrderInput | Prisma.SortOrder
   justificada?: Prisma.SortOrderInput | Prisma.SortOrder
   justificacion?: Prisma.SortOrderInput | Prisma.SortOrder
   salidaTempranaHora?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -307,6 +316,7 @@ export type AsistenciaWhereUniqueInput = Prisma.AtLeast<{
   trabajadorId?: Prisma.StringFilter<"Asistencia"> | string
   estado?: Prisma.EnumEstadoAsistenciaFilter<"Asistencia"> | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.StringNullableFilter<"Asistencia"> | string | null
+  horaSalidaReal?: Prisma.StringNullableFilter<"Asistencia"> | string | null
   justificada?: Prisma.BoolNullableFilter<"Asistencia"> | boolean | null
   justificacion?: Prisma.StringNullableFilter<"Asistencia"> | string | null
   salidaTempranaHora?: Prisma.StringNullableFilter<"Asistencia"> | string | null
@@ -324,6 +334,7 @@ export type AsistenciaOrderByWithAggregationInput = {
   trabajadorId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   horaLlegadaReal?: Prisma.SortOrderInput | Prisma.SortOrder
+  horaSalidaReal?: Prisma.SortOrderInput | Prisma.SortOrder
   justificada?: Prisma.SortOrderInput | Prisma.SortOrder
   justificacion?: Prisma.SortOrderInput | Prisma.SortOrder
   salidaTempranaHora?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -347,6 +358,7 @@ export type AsistenciaScalarWhereWithAggregatesInput = {
   trabajadorId?: Prisma.StringWithAggregatesFilter<"Asistencia"> | string
   estado?: Prisma.EnumEstadoAsistenciaWithAggregatesFilter<"Asistencia"> | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.StringNullableWithAggregatesFilter<"Asistencia"> | string | null
+  horaSalidaReal?: Prisma.StringNullableWithAggregatesFilter<"Asistencia"> | string | null
   justificada?: Prisma.BoolNullableWithAggregatesFilter<"Asistencia"> | boolean | null
   justificacion?: Prisma.StringNullableWithAggregatesFilter<"Asistencia"> | string | null
   salidaTempranaHora?: Prisma.StringNullableWithAggregatesFilter<"Asistencia"> | string | null
@@ -360,6 +372,7 @@ export type AsistenciaCreateInput = {
   id?: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -377,6 +390,7 @@ export type AsistenciaUncheckedCreateInput = {
   trabajadorId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -390,6 +404,7 @@ export type AsistenciaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -407,6 +422,7 @@ export type AsistenciaUncheckedUpdateInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -422,6 +438,7 @@ export type AsistenciaCreateManyInput = {
   trabajadorId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -435,6 +452,7 @@ export type AsistenciaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -450,6 +468,7 @@ export type AsistenciaUncheckedUpdateManyInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -480,6 +499,7 @@ export type AsistenciaCountOrderByAggregateInput = {
   trabajadorId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   horaLlegadaReal?: Prisma.SortOrder
+  horaSalidaReal?: Prisma.SortOrder
   justificada?: Prisma.SortOrder
   justificacion?: Prisma.SortOrder
   salidaTempranaHora?: Prisma.SortOrder
@@ -500,6 +520,7 @@ export type AsistenciaMaxOrderByAggregateInput = {
   trabajadorId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   horaLlegadaReal?: Prisma.SortOrder
+  horaSalidaReal?: Prisma.SortOrder
   justificada?: Prisma.SortOrder
   justificacion?: Prisma.SortOrder
   salidaTempranaHora?: Prisma.SortOrder
@@ -515,6 +536,7 @@ export type AsistenciaMinOrderByAggregateInput = {
   trabajadorId?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   horaLlegadaReal?: Prisma.SortOrder
+  horaSalidaReal?: Prisma.SortOrder
   justificada?: Prisma.SortOrder
   justificacion?: Prisma.SortOrder
   salidaTempranaHora?: Prisma.SortOrder
@@ -633,6 +655,7 @@ export type AsistenciaCreateWithoutTrabajadorInput = {
   id?: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -648,6 +671,7 @@ export type AsistenciaUncheckedCreateWithoutTrabajadorInput = {
   turnoId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -692,6 +716,7 @@ export type AsistenciaScalarWhereInput = {
   trabajadorId?: Prisma.StringFilter<"Asistencia"> | string
   estado?: Prisma.EnumEstadoAsistenciaFilter<"Asistencia"> | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.StringNullableFilter<"Asistencia"> | string | null
+  horaSalidaReal?: Prisma.StringNullableFilter<"Asistencia"> | string | null
   justificada?: Prisma.BoolNullableFilter<"Asistencia"> | boolean | null
   justificacion?: Prisma.StringNullableFilter<"Asistencia"> | string | null
   salidaTempranaHora?: Prisma.StringNullableFilter<"Asistencia"> | string | null
@@ -705,6 +730,7 @@ export type AsistenciaCreateWithoutTurnoInput = {
   id?: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -720,6 +746,7 @@ export type AsistenciaUncheckedCreateWithoutTurnoInput = {
   trabajadorId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -760,6 +787,7 @@ export type AsistenciaCreateManyTrabajadorInput = {
   turnoId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -773,6 +801,7 @@ export type AsistenciaUpdateWithoutTrabajadorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -788,6 +817,7 @@ export type AsistenciaUncheckedUpdateWithoutTrabajadorInput = {
   turnoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -802,6 +832,7 @@ export type AsistenciaUncheckedUpdateManyWithoutTrabajadorInput = {
   turnoId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -816,6 +847,7 @@ export type AsistenciaCreateManyTurnoInput = {
   trabajadorId: string
   estado: $Enums.EstadoAsistencia
   horaLlegadaReal?: string | null
+  horaSalidaReal?: string | null
   justificada?: boolean | null
   justificacion?: string | null
   salidaTempranaHora?: string | null
@@ -829,6 +861,7 @@ export type AsistenciaUpdateWithoutTurnoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -844,6 +877,7 @@ export type AsistenciaUncheckedUpdateWithoutTurnoInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -858,6 +892,7 @@ export type AsistenciaUncheckedUpdateManyWithoutTurnoInput = {
   trabajadorId?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.EnumEstadoAsistenciaFieldUpdateOperationsInput | $Enums.EstadoAsistencia
   horaLlegadaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  horaSalidaReal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   justificada?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   justificacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salidaTempranaHora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -875,6 +910,7 @@ export type AsistenciaSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   trabajadorId?: boolean
   estado?: boolean
   horaLlegadaReal?: boolean
+  horaSalidaReal?: boolean
   justificada?: boolean
   justificacion?: boolean
   salidaTempranaHora?: boolean
@@ -892,6 +928,7 @@ export type AsistenciaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   trabajadorId?: boolean
   estado?: boolean
   horaLlegadaReal?: boolean
+  horaSalidaReal?: boolean
   justificada?: boolean
   justificacion?: boolean
   salidaTempranaHora?: boolean
@@ -909,6 +946,7 @@ export type AsistenciaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   trabajadorId?: boolean
   estado?: boolean
   horaLlegadaReal?: boolean
+  horaSalidaReal?: boolean
   justificada?: boolean
   justificacion?: boolean
   salidaTempranaHora?: boolean
@@ -926,6 +964,7 @@ export type AsistenciaSelectScalar = {
   trabajadorId?: boolean
   estado?: boolean
   horaLlegadaReal?: boolean
+  horaSalidaReal?: boolean
   justificada?: boolean
   justificacion?: boolean
   salidaTempranaHora?: boolean
@@ -935,7 +974,7 @@ export type AsistenciaSelectScalar = {
   pagarExtra?: boolean
 }
 
-export type AsistenciaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "turnoId" | "trabajadorId" | "estado" | "horaLlegadaReal" | "justificada" | "justificacion" | "salidaTempranaHora" | "salidaTempranaMotivo" | "horasNormales" | "horasExtra" | "pagarExtra", ExtArgs["result"]["asistencia"]>
+export type AsistenciaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "turnoId" | "trabajadorId" | "estado" | "horaLlegadaReal" | "horaSalidaReal" | "justificada" | "justificacion" | "salidaTempranaHora" | "salidaTempranaMotivo" | "horasNormales" | "horasExtra" | "pagarExtra", ExtArgs["result"]["asistencia"]>
 export type AsistenciaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   turno?: boolean | Prisma.TurnoDefaultArgs<ExtArgs>
   trabajador?: boolean | Prisma.TrabajadorDefaultArgs<ExtArgs>
@@ -961,6 +1000,7 @@ export type $AsistenciaPayload<ExtArgs extends runtime.Types.Extensions.Internal
     trabajadorId: string
     estado: $Enums.EstadoAsistencia
     horaLlegadaReal: string | null
+    horaSalidaReal: string | null
     justificada: boolean | null
     justificacion: string | null
     salidaTempranaHora: string | null
@@ -1398,6 +1438,7 @@ export interface AsistenciaFieldRefs {
   readonly trabajadorId: Prisma.FieldRef<"Asistencia", 'String'>
   readonly estado: Prisma.FieldRef<"Asistencia", 'EstadoAsistencia'>
   readonly horaLlegadaReal: Prisma.FieldRef<"Asistencia", 'String'>
+  readonly horaSalidaReal: Prisma.FieldRef<"Asistencia", 'String'>
   readonly justificada: Prisma.FieldRef<"Asistencia", 'Boolean'>
   readonly justificacion: Prisma.FieldRef<"Asistencia", 'String'>
   readonly salidaTempranaHora: Prisma.FieldRef<"Asistencia", 'String'>

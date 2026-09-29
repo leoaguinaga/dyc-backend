@@ -34,6 +34,7 @@ import {
   UpdatePagoDto,
   CrearComprobanteDto,
   ActualizarComprobanteDto,
+  ActualizarCodigoComprobanteDto,
 } from './dto/create-pago.dto.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
@@ -207,6 +208,15 @@ export class PagosController {
     @Req() req: AuthRequest,
   ) {
     return this.service.marcarPagado(id, dto, req.user!.id);
+  }
+
+  @Patch(':id/codigo-comprobante')
+  @Roles('administrador', 'gerencia', 'admin_ti')
+  actualizarCodigoComprobante(
+    @Param('id') id: string,
+    @Body() dto: ActualizarCodigoComprobanteDto,
+  ) {
+    return this.service.actualizarCodigoComprobante(id, dto);
   }
 
   @Post(':id/cancelar')

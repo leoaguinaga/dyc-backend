@@ -55,6 +55,9 @@ export interface FlujoMacroSolicitud {
     notaRevision: string | null;
     fechaEntregaRequerida: string | null;
     items: number;
+    cerradoEn: string | null;
+    conformidad: boolean;
+    fueAprobado: boolean;
   };
   solicitudesCotizacion: Array<{
     id: string;
