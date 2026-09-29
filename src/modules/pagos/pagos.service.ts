@@ -5,6 +5,7 @@ import { PrismaService } from '../../prisma/prisma.service.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
+import { montoConIgv } from '../../shared/money/igv.util.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
 import {
   CreatePagoDto,
@@ -30,6 +31,7 @@ const PAGO_INCLUDE = {
       nombre: true,
       concepto: true,
       montoTotal: true,
+      incluyeIgv: true,
       proveedorNombreLibre: true,
       destinoPago: true,
       pagoMetodo: true,
@@ -195,7 +197,9 @@ export class PagosService {
         `El porcentaje excede el disponible. Ya hay ${comprometido}% planificado; queda ${disponible.toFixed(2)}%.`,
       );
 
-    const monto = (Number(oc.montoTotal) * dto.porcentaje) / 100;
+    const monto =
+      (montoConIgv(Number(oc.montoTotal), oc.incluyeIgv) * dto.porcentaje) /
+      100;
 
     const pago = await this.prisma.pago.create({
       data: {
@@ -245,11 +249,12 @@ export class PagosService {
 
     const idsAConservar = new Set(dto.tramos.filter((t) => t.id).map((t) => t.id!));
     const aBorrar = editables.filter((p) => !idsAConservar.has(p.id));
+    const montoBase = montoConIgv(Number(oc.montoTotal), oc.incluyeIgv);
 
     await this.prisma.$transaction([
       ...aBorrar.map((p) => this.prisma.pago.delete({ where: { id: p.id } })),
       ...dto.tramos.map((tramo) => {
-        const monto = (Number(oc.montoTotal) * tramo.porcentaje) / 100;
+        const monto = (montoBase * tramo.porcentaje) / 100;
         if (tramo.id) {
           return this.prisma.pago.update({
             where: { id: tramo.id },
@@ -470,7 +475,13 @@ export class PagosService {
         throw new BadRequestException(
           `El porcentaje excede el disponible. Ya hay ${comprometido}% planificado; queda ${disponible.toFixed(2)}%.`,
         );
-      monto = (Number(existing.ordenCompra!.montoTotal) * dto.porcentaje) / 100;
+      monto =
+        (montoConIgv(
+          Number(existing.ordenCompra!.montoTotal),
+          existing.ordenCompra!.incluyeIgv,
+        ) *
+          dto.porcentaje) /
+        100;
     }
 
     const pago = await this.prisma.pago.update({
