@@ -23,6 +23,7 @@ import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { AppEvents } from '../../shared/events/events.js';
 import { OrdenesCompraService } from '../ordenes-compra/ordenes-compra.service.js';
+import { puedeCrearTipo } from '../../shared/alcance/tipos-creables.js';
 
 // Paso 1: aprobación técnica del área correspondiente al tipo de compra
 const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
@@ -369,6 +370,12 @@ export class ComprasSimplesService {
   }
 
   async create(dto: CreateCompraSimpleDto, userId: string, userRole: Role) {
+    if (!puedeCrearTipo(userRole, dto.tipo)) {
+      throw new ForbiddenException(
+        `El rol "${userRole}" no puede crear compras de tipo "${dto.tipo}"`,
+      );
+    }
+
     for (const grupo of dto.grupos) {
       if (!grupo.proveedorId && !grupo.proveedorNombreLibre)
         throw new BadRequestException(

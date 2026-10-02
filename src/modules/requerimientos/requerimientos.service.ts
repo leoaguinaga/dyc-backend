@@ -23,6 +23,11 @@ import type { StorageProvider } from '../../shared/storage/storage.interface.js'
 import { AppEvents } from '../../shared/events/events.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
 import { QueryHistorialDto } from './dto/query-historial.dto.js';
+import {
+  soloPendienteGerencia,
+  tiposListadosPorRol,
+} from '../../shared/alcance/alcance-listado.js';
+import { puedeCrearTipo } from '../../shared/alcance/tipos-creables.js';
 
 // "aprobado" no es terminal: el requerimiento sigue accionable (falta generar
 // la solicitud de cotización) hasta que pasa a "en_cotizacion". Solo
@@ -68,33 +73,12 @@ const ESTADOS_PRE_COTIZACION: EstadoRequerimiento[] = [
   'aprobado',
 ];
 
-// Roles that review a specific tipo across all projects (not just their own).
-// ing_civil e ing_electrico (área técnica) ven todos los tipos, no solo el propio.
-const TIPO_SCOPED_ROLES: Partial<Record<Role, TipoRequerimiento>> = {
-  jefe_sig: 'seguridad',
-};
-
 // Qué tipo se muestra primero en el kanban para cada rol (orden dentro de
 // columna, no filtro). administrativo nunca se prioriza.
 const TIPO_PRIORITY_BY_ROLE: Partial<Record<Role, TipoRequerimiento>> = {
   jefe_sig: 'seguridad',
   ing_civil: 'civil',
   ing_electrico: 'electrico',
-};
-
-// Which tipos a role is allowed to create
-const ROLE_TIPOS: Partial<Record<Role, TipoRequerimiento[]>> = {
-  supervisor: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  supervisor_civil: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  supervisor_electrico: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  pdr: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  ing_civil: ['civil'],
-  ing_electrico: ['electrico'],
-  jefe_sig: ['seguridad'],
-  logistica: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  gerencia: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  administrador: ['electrico', 'civil', 'seguridad', 'administrativo'],
-  admin_ti: ['electrico', 'civil', 'seguridad', 'administrativo'],
 };
 
 // Which roles can approve each tipo. El área técnica (ing_civil, ing_electrico)
@@ -234,8 +218,14 @@ export class RequerimientosService {
 
     if (RESTRICTED_ROLES.includes(userRole)) where.creadoPorId = userId;
 
-    const tipoScope = TIPO_SCOPED_ROLES[userRole];
-    if (tipoScope) where.tipo = tipoScope;
+    // Con ?alcance=rol el listado se acota a lo que el rol trabaja: por tipo
+    // (ings, Jefe SIG) o solo lo que espera aprobación de compra (gerencia).
+    // El detalle por id (findOne) nunca se filtra.
+    const tipos = tiposListadosPorRol(query.alcance, userRole);
+    if (tipos) where.tipo = { in: tipos };
+    if (soloPendienteGerencia(query.alcance, userRole)) {
+      where.solicitudes = { some: { estado: 'aprobada_solicitante' } };
+    }
 
     // Los estados terminales solo se ven en la vista principal el día en que
     // ocurrieron; después de hoy pasan al historial (ver findHistorial). Los
@@ -276,8 +266,8 @@ export class RequerimientosService {
 
     if (RESTRICTED_ROLES.includes(userRole)) where.creadoPorId = userId;
 
-    const tipoScope = TIPO_SCOPED_ROLES[userRole];
-    if (tipoScope) where.tipo = tipoScope;
+    const tipos = tiposListadosPorRol(query.alcance, userRole);
+    if (tipos) where.tipo = { in: tipos };
 
     return this.prisma.requerimiento.findMany({
       where,
@@ -301,8 +291,7 @@ export class RequerimientosService {
   }
 
   async create(dto: CreateRequerimientoDto, userId: string, userRole: Role) {
-    const allowed = ROLE_TIPOS[userRole] ?? [];
-    if (!allowed.includes(dto.tipo)) {
+    if (!puedeCrearTipo(userRole, dto.tipo)) {
       throw new ForbiddenException(
         `El rol "${userRole}" no puede crear requerimientos de tipo "${dto.tipo}"`,
       );

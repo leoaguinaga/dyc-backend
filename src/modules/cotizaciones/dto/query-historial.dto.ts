@@ -1,5 +1,6 @@
-import { IsInt, IsOptional, Max, Min } from 'class-validator';
+import { IsIn, IsInt, IsOptional, Max, Min } from 'class-validator';
 import { Type } from 'class-transformer';
+import { ALCANCES_LISTADO, type AlcanceListado } from '../../../shared/alcance/alcance-listado.js';
 
 export class QueryHistorialDto {
   @IsOptional()
@@ -14,4 +15,8 @@ export class QueryHistorialDto {
   @IsInt()
   @Min(0)
   offset?: number;
+
+  @IsOptional()
+  @IsIn(ALCANCES_LISTADO)
+  alcance?: AlcanceListado;
 }

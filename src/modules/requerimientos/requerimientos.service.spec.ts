@@ -175,3 +175,61 @@ describe('RequerimientosService.actualizar (Cambio de Obra y Permisos)', () => {
     });
   });
 });
+
+describe('RequerimientosService.create (tipos permitidos por rol)', () => {
+  function crearServicio() {
+    const prisma = {
+      requerimiento: {
+        count: jest.fn().mockResolvedValue(0),
+        create: jest.fn().mockResolvedValue({ id: 'req-nuevo' }),
+      },
+    };
+    const service = new RequerimientosService(
+      prisma as unknown as PrismaService,
+      {} as StorageProvider,
+      { emit: jest.fn() } as unknown as EventEmitter2,
+    );
+    return { service, prisma };
+  }
+
+  const dtoBase = {
+    nombre: 'Req de prueba',
+    proyectoId: 'proy-1',
+    items: [{ descripcion: 'Casco', cantidad: 1 }],
+  };
+
+  const casos: Array<[Role, 'civil' | 'electrico' | 'seguridad' | 'administrativo', boolean]> = [
+    ['jefe_sig', 'seguridad', true],
+    ['jefe_sig', 'civil', false],
+    ['jefe_sig', 'administrativo', false],
+    ['pdr', 'seguridad', true],
+    ['pdr', 'electrico', false],
+    ['ing_electrico', 'electrico', true],
+    ['ing_electrico', 'seguridad', true],
+    ['ing_electrico', 'civil', false],
+    ['supervisor_electrico', 'seguridad', true],
+    ['supervisor_electrico', 'administrativo', false],
+    ['ing_civil', 'civil', true],
+    ['ing_civil', 'electrico', true],
+    ['ing_civil', 'seguridad', false],
+    ['supervisor_civil', 'electrico', true],
+    ['supervisor_civil', 'seguridad', false],
+    ['logistica', 'administrativo', true],
+    ['gerencia', 'seguridad', true],
+    ['administrador', 'civil', true],
+    ['admin_ti', 'electrico', true],
+  ];
+
+  it.each(casos)('rol "%s" · tipo "%s" · permitido: %s', async (rol, tipo, permitido) => {
+    const { service, prisma } = crearServicio();
+    const promesa = service.create({ ...dtoBase, tipo } as never, 'user-1', rol);
+
+    if (permitido) {
+      await expect(promesa).resolves.toBeDefined();
+      expect(prisma.requerimiento.create).toHaveBeenCalledTimes(1);
+    } else {
+      await expect(promesa).rejects.toThrow(ForbiddenException);
+      expect(prisma.requerimiento.create).not.toHaveBeenCalled();
+    }
+  });
+});
