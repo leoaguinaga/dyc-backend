@@ -23,6 +23,10 @@ import { AppEvents } from '../../shared/events/events.js';
 import { STORAGE_PROVIDER } from '../../shared/storage/storage.interface.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
+import {
+  soloPendienteGerencia,
+  tiposListadosPorRol,
+} from '../../shared/alcance/alcance-listado.js';
 import type { EstadoSolicitud } from '../../prisma/types.js';
 
 const ESTADOS_TERMINALES: EstadoSolicitud[] = [
@@ -84,7 +88,15 @@ export class CotizacionesService {
 
   // ── Solicitudes ──────────────────────────────────────────────────────────
 
-  findAllSolicitudes(query: QuerySolicitudDto) {
+  findAllSolicitudes(query: QuerySolicitudDto, userRole: Role) {
+    // Con ?alcance=rol el listado se acota a lo que el rol trabaja: por tipo
+    // del requerimiento (ings, Jefe SIG) o solo lo que espera aprobación de
+    // gerencia. El detalle por id (findOneSolicitud) nunca se filtra.
+    const tipos = tiposListadosPorRol(query.alcance, userRole);
+    const estado = soloPendienteGerencia(query.alcance, userRole)
+      ? 'aprobada_solicitante'
+      : query.estado;
+
     // Los estados terminales solo se ven en la vista principal el día en que
     // ocurrieron; después de hoy pasan al historial (ver findHistorialSolicitudes).
     // Los estados en proceso siempre se ven, sin importar la fecha.
@@ -93,8 +105,9 @@ export class CotizacionesService {
 
     return this.prisma.solicitudCotizacion.findMany({
       where: {
-        estado: query.estado,
+        estado,
         proyectoId: query.proyectoId,
+        ...(tipos && { requerimiento: { tipo: { in: tipos } } }),
         OR: [
           { estado: { notIn: ESTADOS_TERMINALES } },
           {
@@ -117,9 +130,12 @@ export class CotizacionesService {
     });
   }
 
-  findHistorialSolicitudes(query: QueryHistorialDto) {
+  findHistorialSolicitudes(query: QueryHistorialDto, userRole: Role) {
+    const tipos = tiposListadosPorRol(query.alcance, userRole);
+
     return this.prisma.solicitudCotizacion.findMany({
       where: {
+        ...(tipos && { requerimiento: { tipo: { in: tipos } } }),
         OR: [
           { estado: { in: ESTADOS_TERMINALES } },
           {

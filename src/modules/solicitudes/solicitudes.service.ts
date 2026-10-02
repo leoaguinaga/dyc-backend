@@ -9,6 +9,10 @@ import type {
   Role,
 } from '../../prisma/types.js';
 import { QuerySolicitudesDto } from './dto/query-solicitudes.dto.js';
+import {
+  soloPendienteGerencia,
+  tiposListadosPorRol,
+} from '../../shared/alcance/alcance-listado.js';
 import type {
   ColumnaKanbanSolicitud,
   ConteoEstados,
@@ -221,6 +225,29 @@ export class SolicitudesService {
       whereRequerimientos.creadoPorId = userId;
       whereCompras.creadoPorId = userId;
     }
+
+    // Con ?alcance=rol el listado se acota a lo que el rol trabaja: por tipo
+    // (ings, Jefe SIG) o, para gerencia en la vista activa, solo lo que espera
+    // su aprobación de compra. El detalle de cada solicitud no se filtra.
+    const tipos = tiposListadosPorRol(query.alcance, userRole);
+    if (tipos) {
+      whereRequerimientos.tipo = { in: tipos };
+      whereCompras.tipo = { in: tipos };
+    }
+    const soloGerencia =
+      query.vista === 'activas' &&
+      soloPendienteGerencia(query.alcance, userRole);
+    if (soloGerencia) {
+      whereRequerimientos.solicitudes = {
+        some: { estado: 'aprobada_solicitante' },
+      };
+      whereCompras.grupos = {
+        some: {
+          estadoAprobacion: 'aprobada_tecnico',
+          estado: { notIn: ['cancelada', 'recibida'] },
+        },
+      };
+    }
     if (termino) {
       const or = [
         { codigo: { contains: termino, mode: 'insensitive' } },
@@ -307,10 +334,17 @@ export class SolicitudesService {
 
     const macro: SolicitudResumen[] = requerimientos.map((requerimiento) => {
       const etapa = ETAPA_MACRO[requerimiento.estado];
-      const columnaKanban = columnaMacro(
-        requerimiento.estado,
-        requerimiento.solicitudes,
-      );
+      // Para gerencia todo lo listado espera su aprobación: va a su única
+      // columna aunque el requerimiento tenga otras solicitudes en curso, y
+      // la tarjeta abre directo la cotización a aprobar.
+      const solicitudPorAprobar = soloGerencia
+        ? requerimiento.solicitudes.find(
+            (solicitud) => solicitud.estado === 'aprobada_solicitante',
+          )
+        : undefined;
+      const columnaKanban: ColumnaKanbanSolicitud | null = soloGerencia
+        ? 'aprobacion_gerencia'
+        : columnaMacro(requerimiento.estado, requerimiento.solicitudes);
       return {
         id: requerimiento.id,
         origen: 'macro' as const,
@@ -327,7 +361,9 @@ export class SolicitudesService {
         esTerminal:
           requerimiento.estado === 'recibido' ||
           requerimiento.estado === 'cancelado',
-        hrefDetalle: `/requerimientos/${requerimiento.id}`,
+        hrefDetalle: solicitudPorAprobar
+          ? `/cotizaciones/${solicitudPorAprobar.id}`
+          : `/requerimientos/${requerimiento.id}`,
         flujo: {
           origen: 'macro' as const,
           requerimiento: {
@@ -360,7 +396,9 @@ export class SolicitudesService {
 
     const precotizadas: SolicitudResumen[] = compras.map((compra) => {
       const etapa = etapaPrecotizado(compra.grupos);
-      const columnaKanban = columnaPrecotizado(compra.grupos);
+      const columnaKanban: ColumnaKanbanSolicitud | null = soloGerencia
+        ? 'aprobacion_gerencia'
+        : columnaPrecotizado(compra.grupos);
       const grupos: GrupoPrecotizadoResumen[] = compra.grupos.map((grupo) => ({
         id: grupo.id,
         numero: grupo.numero,

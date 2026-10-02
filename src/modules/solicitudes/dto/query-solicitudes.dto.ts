@@ -16,6 +16,7 @@ import {
   type OrigenSolicitud,
   type VistaSolicitud,
 } from '../solicitudes.types.js';
+import { ALCANCES_LISTADO, type AlcanceListado } from '../../../shared/alcance/alcance-listado.js';
 
 export class QuerySolicitudesDto {
   @IsOptional()
@@ -33,6 +34,10 @@ export class QuerySolicitudesDto {
   @IsOptional()
   @IsString()
   proyectoId?: string;
+
+  @IsOptional()
+  @IsIn(ALCANCES_LISTADO)
+  alcance?: AlcanceListado;
 
   @IsOptional()
   @IsString()

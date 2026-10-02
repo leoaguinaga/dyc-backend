@@ -247,3 +247,47 @@ describe('ComprasSimplesService hard delete', () => {
     ).rejects.toBeInstanceOf(ForbiddenException);
   });
 });
+
+describe('ComprasSimplesService.create (tipos permitidos por rol)', () => {
+  const dto = (tipo: string) =>
+    ({
+      nombre: 'Compra de prueba',
+      tipo,
+      proyectoId: 'proy-1',
+      // Sin proveedor: si el rol sí puede crear el tipo, la validación de
+      // grupos corta enseguida con BadRequest y no hace falta mockear Prisma.
+      grupos: [{ items: [] }],
+    }) as never;
+
+  function crearServicio() {
+    return new ComprasSimplesService({} as never, {} as never, {} as never, {} as never);
+  }
+
+  it.each([
+    ['jefe_sig', 'civil'],
+    ['jefe_sig', 'administrativo'],
+    ['pdr', 'electrico'],
+    ['ing_civil', 'seguridad'],
+    ['ing_electrico', 'civil'],
+    ['supervisor_electrico', 'administrativo'],
+  ])('rechaza que "%s" cree una compra de tipo "%s"', async (rol, tipo) => {
+    await expect(crearServicio().create(dto(tipo), 'user-1', rol as never)).rejects.toThrow(
+      ForbiddenException,
+    );
+  });
+
+  it.each([
+    ['jefe_sig', 'seguridad'],
+    ['pdr', 'seguridad'],
+    ['ing_civil', 'electrico'],
+    ['supervisor_civil', 'civil'],
+    ['ing_electrico', 'seguridad'],
+    ['logistica', 'administrativo'],
+    ['gerencia', 'civil'],
+    ['admin_ti', 'seguridad'],
+  ])('deja pasar a "%s" con el tipo "%s" a la siguiente validación', async (rol, tipo) => {
+    await expect(crearServicio().create(dto(tipo), 'user-1', rol as never)).rejects.toThrow(
+      BadRequestException,
+    );
+  });
+});

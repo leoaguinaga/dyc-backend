@@ -50,13 +50,16 @@ export class CotizacionesController {
   // ── Solicitudes ───────────────────────────────────────────────────────────
 
   @Get()
-  findAll(@Query() query: QuerySolicitudDto) {
-    return this.cotizacionesService.findAllSolicitudes(query);
+  findAll(@Query() query: QuerySolicitudDto, @Req() req: Request) {
+    return this.cotizacionesService.findAllSolicitudes(query, req.user!.role);
   }
 
   @Get('historial')
-  findHistorial(@Query() query: QueryHistorialDto) {
-    return this.cotizacionesService.findHistorialSolicitudes(query);
+  findHistorial(@Query() query: QueryHistorialDto, @Req() req: Request) {
+    return this.cotizacionesService.findHistorialSolicitudes(
+      query,
+      req.user!.role,
+    );
   }
 
   @Get(':id')
