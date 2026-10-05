@@ -33,6 +33,11 @@ export type RolePermission = Prisma.RolePermissionModel
  */
 export type ModuloAcceso = Prisma.ModuloAccesoModel
 /**
+ * Model ReporteGuardado
+ * 
+ */
+export type ReporteGuardado = Prisma.ReporteGuardadoModel
+/**
  * Model User
  * 
  */

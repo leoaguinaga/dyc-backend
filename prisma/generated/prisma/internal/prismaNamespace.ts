@@ -387,6 +387,7 @@ export const ModelName = {
   Permission: 'Permission',
   RolePermission: 'RolePermission',
   ModuloAcceso: 'ModuloAcceso',
+  ReporteGuardado: 'ReporteGuardado',
   User: 'User',
   AuditLog: 'AuditLog',
   Session: 'Session',
@@ -452,7 +453,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "permission" | "rolePermission" | "moduloAcceso" | "user" | "auditLog" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "comprobante" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
+    modelProps: "permission" | "rolePermission" | "moduloAcceso" | "reporteGuardado" | "user" | "auditLog" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "comprobante" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -675,6 +676,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ModuloAccesoCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ModuloAccesoCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReporteGuardado: {
+      payload: Prisma.$ReporteGuardadoPayload<ExtArgs>
+      fields: Prisma.ReporteGuardadoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReporteGuardadoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReporteGuardadoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>
+        }
+        findFirst: {
+          args: Prisma.ReporteGuardadoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReporteGuardadoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>
+        }
+        findMany: {
+          args: Prisma.ReporteGuardadoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>[]
+        }
+        create: {
+          args: Prisma.ReporteGuardadoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>
+        }
+        createMany: {
+          args: Prisma.ReporteGuardadoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ReporteGuardadoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>[]
+        }
+        delete: {
+          args: Prisma.ReporteGuardadoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>
+        }
+        update: {
+          args: Prisma.ReporteGuardadoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReporteGuardadoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReporteGuardadoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ReporteGuardadoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>[]
+        }
+        upsert: {
+          args: Prisma.ReporteGuardadoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReporteGuardadoPayload>
+        }
+        aggregate: {
+          args: Prisma.ReporteGuardadoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReporteGuardado>
+        }
+        groupBy: {
+          args: Prisma.ReporteGuardadoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReporteGuardadoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReporteGuardadoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReporteGuardadoCountAggregateOutputType> | number
         }
       }
     }
@@ -4452,6 +4527,20 @@ export const ModuloAccesoScalarFieldEnum = {
 export type ModuloAccesoScalarFieldEnum = (typeof ModuloAccesoScalarFieldEnum)[keyof typeof ModuloAccesoScalarFieldEnum]
 
 
+export const ReporteGuardadoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  query: 'query',
+  compartido: 'compartido',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ReporteGuardadoScalarFieldEnum = (typeof ReporteGuardadoScalarFieldEnum)[keyof typeof ReporteGuardadoScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -5332,6 +5421,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -5346,6 +5442,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -5414,6 +5519,20 @@ export type EnumNivelAccesoModuloFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'NivelAccesoModulo[]'
  */
 export type ListEnumNivelAccesoModuloFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NivelAccesoModulo[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -5991,6 +6110,7 @@ export type GlobalOmitConfig = {
   permission?: Prisma.PermissionOmit
   rolePermission?: Prisma.RolePermissionOmit
   moduloAcceso?: Prisma.ModuloAccesoOmit
+  reporteGuardado?: Prisma.ReporteGuardadoOmit
   user?: Prisma.UserOmit
   auditLog?: Prisma.AuditLogOmit
   session?: Prisma.SessionOmit

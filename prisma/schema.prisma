@@ -73,6 +73,23 @@ model ModuloAcceso {
   @@map("modulo_accesos")
 }
 
+// Consulta del constructor de reportes guardada por un usuario (sub-fase 5.3).
+// `query` es el mismo cuerpo que recibe POST /reportes/query.
+model ReporteGuardado {
+  id            String   @id @default(cuid())
+  nombre        String
+  descripcion   String?
+  query         Json
+  compartido    Boolean  @default(false)
+  creadoPorId   String
+  creadoPor     User     @relation(fields: [creadoPorId], references: [id], onDelete: Cascade)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  @@index([creadoPorId])
+  @@map("reportes_guardados")
+}
+
 enum TipoRequerimiento {
   electrico
   civil
@@ -343,6 +360,7 @@ model User {
   auditLogs                                     AuditLog[]
   modulosAcceso                                 ModuloAcceso[]         @relation("ModuloAccesoUsuario")
   modulosAccesoEditados                         ModuloAcceso[]         @relation("ModuloAccesoEditadoPor")
+  reportesGuardados                             ReporteGuardado[]
 
   @@map("users")
 }

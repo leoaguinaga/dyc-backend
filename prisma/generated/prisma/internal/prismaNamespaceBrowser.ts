@@ -54,6 +54,7 @@ export const ModelName = {
   Permission: 'Permission',
   RolePermission: 'RolePermission',
   ModuloAcceso: 'ModuloAcceso',
+  ReporteGuardado: 'ReporteGuardado',
   User: 'User',
   AuditLog: 'AuditLog',
   Session: 'Session',
@@ -155,6 +156,20 @@ export const ModuloAccesoScalarFieldEnum = {
 } as const
 
 export type ModuloAccesoScalarFieldEnum = (typeof ModuloAccesoScalarFieldEnum)[keyof typeof ModuloAccesoScalarFieldEnum]
+
+
+export const ReporteGuardadoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  query: 'query',
+  compartido: 'compartido',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ReporteGuardadoScalarFieldEnum = (typeof ReporteGuardadoScalarFieldEnum)[keyof typeof ReporteGuardadoScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -1037,6 +1052,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -1051,4 +1073,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

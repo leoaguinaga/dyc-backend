@@ -250,6 +250,7 @@ export type UserWhereInput = {
   auditLogs?: Prisma.AuditLogListRelationFilter
   modulosAcceso?: Prisma.ModuloAccesoListRelationFilter
   modulosAccesoEditados?: Prisma.ModuloAccesoListRelationFilter
+  reportesGuardados?: Prisma.ReporteGuardadoListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -298,6 +299,7 @@ export type UserOrderByWithRelationInput = {
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   modulosAcceso?: Prisma.ModuloAccesoOrderByRelationAggregateInput
   modulosAccesoEditados?: Prisma.ModuloAccesoOrderByRelationAggregateInput
+  reportesGuardados?: Prisma.ReporteGuardadoOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -349,6 +351,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   auditLogs?: Prisma.AuditLogListRelationFilter
   modulosAcceso?: Prisma.ModuloAccesoListRelationFilter
   modulosAccesoEditados?: Prisma.ModuloAccesoListRelationFilter
+  reportesGuardados?: Prisma.ReporteGuardadoListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -427,6 +430,7 @@ export type UserCreateInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -475,6 +479,7 @@ export type UserUncheckedCreateInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUpdateInput = {
@@ -523,6 +528,7 @@ export type UserUpdateInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -571,6 +577,7 @@ export type UserUncheckedUpdateInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -614,6 +621,11 @@ export type UserNullableScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput | null
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -650,11 +662,6 @@ export type UserMinOrderByAggregateInput = {
   correoContacto?: Prisma.SortOrder
 }
 
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
-}
-
 export type UserCreateNestedOneWithoutModulosAccesoInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoInput, Prisma.UserUncheckedCreateWithoutModulosAccesoInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulosAccesoInput
@@ -685,6 +692,20 @@ export type UserUpdateOneWithoutModulosAccesoEditadosNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutModulosAccesoEditadosInput, Prisma.UserUpdateWithoutModulosAccesoEditadosInput>, Prisma.UserUncheckedUpdateWithoutModulosAccesoEditadosInput>
+}
+
+export type UserCreateNestedOneWithoutReportesGuardadosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReportesGuardadosInput, Prisma.UserUncheckedCreateWithoutReportesGuardadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReportesGuardadosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReportesGuardadosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReportesGuardadosInput, Prisma.UserUncheckedCreateWithoutReportesGuardadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReportesGuardadosInput
+  upsert?: Prisma.UserUpsertWithoutReportesGuardadosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReportesGuardadosInput, Prisma.UserUpdateWithoutReportesGuardadosInput>, Prisma.UserUncheckedUpdateWithoutReportesGuardadosInput>
 }
 
 export type UserCreateNestedOneWithoutAuditLogsInput = {
@@ -1240,6 +1261,7 @@ export type UserCreateWithoutModulosAccesoInput = {
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutModulosAccesoInput = {
@@ -1287,6 +1309,7 @@ export type UserUncheckedCreateWithoutModulosAccesoInput = {
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutModulosAccesoInput = {
@@ -1339,6 +1362,7 @@ export type UserCreateWithoutModulosAccesoEditadosInput = {
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutModulosAccesoEditadosInput = {
@@ -1386,6 +1410,7 @@ export type UserUncheckedCreateWithoutModulosAccesoEditadosInput = {
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutModulosAccesoEditadosInput = {
@@ -1449,6 +1474,7 @@ export type UserUpdateWithoutModulosAccesoInput = {
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutModulosAccesoInput = {
@@ -1496,6 +1522,7 @@ export type UserUncheckedUpdateWithoutModulosAccesoInput = {
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutModulosAccesoEditadosInput = {
@@ -1554,6 +1581,7 @@ export type UserUpdateWithoutModulosAccesoEditadosInput = {
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutModulosAccesoEditadosInput = {
@@ -1601,6 +1629,215 @@ export type UserUncheckedUpdateWithoutModulosAccesoEditadosInput = {
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserCreateWithoutReportesGuardadosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+}
+
+export type UserUncheckedCreateWithoutReportesGuardadosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+}
+
+export type UserCreateOrConnectWithoutReportesGuardadosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReportesGuardadosInput, Prisma.UserUncheckedCreateWithoutReportesGuardadosInput>
+}
+
+export type UserUpsertWithoutReportesGuardadosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReportesGuardadosInput, Prisma.UserUncheckedUpdateWithoutReportesGuardadosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReportesGuardadosInput, Prisma.UserUncheckedCreateWithoutReportesGuardadosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReportesGuardadosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReportesGuardadosInput, Prisma.UserUncheckedUpdateWithoutReportesGuardadosInput>
+}
+
+export type UserUpdateWithoutReportesGuardadosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReportesGuardadosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1648,6 +1885,7 @@ export type UserCreateWithoutAuditLogsInput = {
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1695,6 +1933,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1758,6 +1997,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1805,6 +2045,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -1852,6 +2093,7 @@ export type UserCreateWithoutSessionsInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -1899,6 +2141,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1962,6 +2205,7 @@ export type UserUpdateWithoutSessionsInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -2009,6 +2253,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -2056,6 +2301,7 @@ export type UserCreateWithoutAccountsInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -2103,6 +2349,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -2166,6 +2413,7 @@ export type UserUpdateWithoutAccountsInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -2213,6 +2461,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutProyectosComoSupervisorInput = {
@@ -2260,6 +2509,7 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
@@ -2307,6 +2557,7 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutProyectosComoSupervisorInput = {
@@ -2370,6 +2621,7 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
@@ -2417,6 +2669,7 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutTrabajadorInput = {
@@ -2464,6 +2717,7 @@ export type UserCreateWithoutTrabajadorInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTrabajadorInput = {
@@ -2511,6 +2765,7 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTrabajadorInput = {
@@ -2574,6 +2829,7 @@ export type UserUpdateWithoutTrabajadorInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrabajadorInput = {
@@ -2621,6 +2877,7 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutTurnosAbiertosInput = {
@@ -2668,6 +2925,7 @@ export type UserCreateWithoutTurnosAbiertosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
@@ -2715,6 +2973,7 @@ export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosAbiertosInput = {
@@ -2767,6 +3026,7 @@ export type UserCreateWithoutTurnosCerradosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCerradosInput = {
@@ -2814,6 +3074,7 @@ export type UserUncheckedCreateWithoutTurnosCerradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCerradosInput = {
@@ -2866,6 +3127,7 @@ export type UserCreateWithoutTurnosCorregidosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
@@ -2913,6 +3175,7 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCorregidosInput = {
@@ -2965,6 +3228,7 @@ export type UserCreateWithoutTurnosCierreRevisadosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCierreRevisadosInput = {
@@ -3012,6 +3276,7 @@ export type UserUncheckedCreateWithoutTurnosCierreRevisadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCierreRevisadosInput = {
@@ -3075,6 +3340,7 @@ export type UserUpdateWithoutTurnosAbiertosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
@@ -3122,6 +3388,7 @@ export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCerradosInput = {
@@ -3180,6 +3447,7 @@ export type UserUpdateWithoutTurnosCerradosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
@@ -3227,6 +3495,7 @@ export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCorregidosInput = {
@@ -3285,6 +3554,7 @@ export type UserUpdateWithoutTurnosCorregidosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
@@ -3332,6 +3602,7 @@ export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCierreRevisadosInput = {
@@ -3390,6 +3661,7 @@ export type UserUpdateWithoutTurnosCierreRevisadosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCierreRevisadosInput = {
@@ -3437,6 +3709,7 @@ export type UserUncheckedUpdateWithoutTurnosCierreRevisadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3484,6 +3757,7 @@ export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3531,6 +3805,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3583,6 +3858,7 @@ export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3630,6 +3906,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3693,6 +3970,7 @@ export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3740,6 +4018,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3798,6 +4077,7 @@ export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3845,6 +4125,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutVisitasTerceroRegistradasInput = {
@@ -3892,6 +4173,7 @@ export type UserCreateWithoutVisitasTerceroRegistradasInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
@@ -3939,6 +4221,7 @@ export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutVisitasTerceroRegistradasInput = {
@@ -4002,6 +4285,7 @@ export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
@@ -4049,6 +4333,7 @@ export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutPlanillasGeneradasInput = {
@@ -4096,6 +4381,7 @@ export type UserCreateWithoutPlanillasGeneradasInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
@@ -4143,6 +4429,7 @@ export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPlanillasGeneradasInput = {
@@ -4206,6 +4493,7 @@ export type UserUpdateWithoutPlanillasGeneradasInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
@@ -4253,6 +4541,7 @@ export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientosInput = {
@@ -4300,6 +4589,7 @@ export type UserCreateWithoutRequerimientosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosInput = {
@@ -4347,6 +4637,7 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosInput = {
@@ -4399,6 +4690,7 @@ export type UserCreateWithoutRequerimientosRecepcionadosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
@@ -4446,6 +4738,7 @@ export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosRecepcionadosInput = {
@@ -4509,6 +4802,7 @@ export type UserUpdateWithoutRequerimientosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosInput = {
@@ -4556,6 +4850,7 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutRequerimientosRecepcionadosInput = {
@@ -4614,6 +4909,7 @@ export type UserUpdateWithoutRequerimientosRecepcionadosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
@@ -4661,6 +4957,7 @@ export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientoHistorialInput = {
@@ -4708,6 +5005,7 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
@@ -4755,6 +5053,7 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientoHistorialInput = {
@@ -4818,6 +5117,7 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
@@ -4865,6 +5165,7 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -4912,6 +5213,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -4959,6 +5261,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicita
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -5011,6 +5314,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -5058,6 +5362,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerencia
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -5121,6 +5426,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -5168,6 +5474,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicita
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -5226,6 +5533,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -5273,6 +5581,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerencia
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutCotizacionesCreadasInput = {
@@ -5320,6 +5629,7 @@ export type UserCreateWithoutCotizacionesCreadasInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
@@ -5367,6 +5677,7 @@ export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCotizacionesCreadasInput = {
@@ -5430,6 +5741,7 @@ export type UserUpdateWithoutCotizacionesCreadasInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
@@ -5477,6 +5789,7 @@ export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutComprasSimplesCreadasInput = {
@@ -5524,6 +5837,7 @@ export type UserCreateWithoutComprasSimplesCreadasInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
@@ -5571,6 +5885,7 @@ export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprasSimplesCreadasInput = {
@@ -5623,6 +5938,7 @@ export type UserCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5670,6 +5986,7 @@ export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput 
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5733,6 +6050,7 @@ export type UserUpdateWithoutComprasSimplesCreadasInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
@@ -5780,6 +6098,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5838,6 +6157,7 @@ export type UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5885,6 +6205,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput 
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutOrdenesCompraAprobadasInput = {
@@ -5932,6 +6253,7 @@ export type UserCreateWithoutOrdenesCompraAprobadasInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
@@ -5979,6 +6301,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraAprobadasInput = {
@@ -6031,6 +6354,7 @@ export type UserCreateWithoutOrdenesCompraInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraInput = {
@@ -6078,6 +6402,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraInput = {
@@ -6141,6 +6466,7 @@ export type UserUpdateWithoutOrdenesCompraAprobadasInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
@@ -6188,6 +6514,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutOrdenesCompraInput = {
@@ -6246,6 +6573,7 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
@@ -6293,6 +6621,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
@@ -6340,6 +6669,7 @@ export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
@@ -6387,6 +6717,7 @@ export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCompraSimpleArchivosSubidosInput = {
@@ -6450,6 +6781,7 @@ export type UserUpdateWithoutCompraSimpleArchivosSubidosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
@@ -6497,6 +6829,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutCompraSimpleHistorialInput = {
@@ -6544,6 +6877,7 @@ export type UserCreateWithoutCompraSimpleHistorialInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
@@ -6591,6 +6925,7 @@ export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCompraSimpleHistorialInput = {
@@ -6654,6 +6989,7 @@ export type UserUpdateWithoutCompraSimpleHistorialInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
@@ -6701,6 +7037,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutPagosRegistradosInput = {
@@ -6748,6 +7085,7 @@ export type UserCreateWithoutPagosRegistradosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosRegistradosInput = {
@@ -6795,6 +7133,7 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosRegistradosInput = {
@@ -6847,6 +7186,7 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
@@ -6894,6 +7234,7 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosEjecutadosInput = {
@@ -6957,6 +7298,7 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
@@ -7004,6 +7346,7 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutPagosEjecutadosInput = {
@@ -7062,6 +7405,7 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
@@ -7109,6 +7453,7 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutComprobantesGeneradosInput = {
@@ -7156,6 +7501,7 @@ export type UserCreateWithoutComprobantesGeneradosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprobantesGeneradosInput = {
@@ -7203,6 +7549,7 @@ export type UserUncheckedCreateWithoutComprobantesGeneradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprobantesGeneradosInput = {
@@ -7266,6 +7613,7 @@ export type UserUpdateWithoutComprobantesGeneradosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprobantesGeneradosInput = {
@@ -7313,6 +7661,7 @@ export type UserUncheckedUpdateWithoutComprobantesGeneradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutPagosRecurrentesCreadosInput = {
@@ -7360,6 +7709,7 @@ export type UserCreateWithoutPagosRecurrentesCreadosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosRecurrentesCreadosInput = {
@@ -7407,6 +7757,7 @@ export type UserUncheckedCreateWithoutPagosRecurrentesCreadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosRecurrentesCreadosInput = {
@@ -7470,6 +7821,7 @@ export type UserUpdateWithoutPagosRecurrentesCreadosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosRecurrentesCreadosInput = {
@@ -7517,6 +7869,7 @@ export type UserUncheckedUpdateWithoutPagosRecurrentesCreadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutPlanillasStaffGeneradasInput = {
@@ -7564,6 +7917,7 @@ export type UserCreateWithoutPlanillasStaffGeneradasInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPlanillasStaffGeneradasInput = {
@@ -7611,6 +7965,7 @@ export type UserUncheckedCreateWithoutPlanillasStaffGeneradasInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPlanillasStaffGeneradasInput = {
@@ -7674,6 +8029,7 @@ export type UserUpdateWithoutPlanillasStaffGeneradasInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlanillasStaffGeneradasInput = {
@@ -7721,6 +8077,7 @@ export type UserUncheckedUpdateWithoutPlanillasStaffGeneradasInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutCobrosRegistradosInput = {
@@ -7768,6 +8125,7 @@ export type UserCreateWithoutCobrosRegistradosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCobrosRegistradosInput = {
@@ -7815,6 +8173,7 @@ export type UserUncheckedCreateWithoutCobrosRegistradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCobrosRegistradosInput = {
@@ -7867,6 +8226,7 @@ export type UserCreateWithoutCobrosMarcadosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCobrosMarcadosInput = {
@@ -7914,6 +8274,7 @@ export type UserUncheckedCreateWithoutCobrosMarcadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCobrosMarcadosInput = {
@@ -7977,6 +8338,7 @@ export type UserUpdateWithoutCobrosRegistradosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCobrosRegistradosInput = {
@@ -8024,6 +8386,7 @@ export type UserUncheckedUpdateWithoutCobrosRegistradosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUpsertWithoutCobrosMarcadosInput = {
@@ -8082,6 +8445,7 @@ export type UserUpdateWithoutCobrosMarcadosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCobrosMarcadosInput = {
@@ -8129,6 +8493,7 @@ export type UserUncheckedUpdateWithoutCobrosMarcadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutHelpVideosCreadosInput = {
@@ -8176,6 +8541,7 @@ export type UserCreateWithoutHelpVideosCreadosInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutHelpVideosCreadosInput = {
@@ -8223,6 +8589,7 @@ export type UserUncheckedCreateWithoutHelpVideosCreadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutHelpVideosCreadosInput = {
@@ -8286,6 +8653,7 @@ export type UserUpdateWithoutHelpVideosCreadosInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHelpVideosCreadosInput = {
@@ -8333,6 +8701,7 @@ export type UserUncheckedUpdateWithoutHelpVideosCreadosInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserCreateWithoutNotificacionesInput = {
@@ -8380,6 +8749,7 @@ export type UserCreateWithoutNotificacionesInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserUncheckedCreateWithoutNotificacionesInput = {
@@ -8427,6 +8797,7 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
 }
 
 export type UserCreateOrConnectWithoutNotificacionesInput = {
@@ -8490,6 +8861,7 @@ export type UserUpdateWithoutNotificacionesInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificacionesInput = {
@@ -8537,6 +8909,7 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
   modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
 }
 
 
@@ -8580,6 +8953,7 @@ export type UserCountOutputType = {
   auditLogs: number
   modulosAcceso: number
   modulosAccesoEditados: number
+  reportesGuardados: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -8618,6 +8992,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   modulosAcceso?: boolean | UserCountOutputTypeCountModulosAccesoArgs
   modulosAccesoEditados?: boolean | UserCountOutputTypeCountModulosAccesoEditadosArgs
+  reportesGuardados?: boolean | UserCountOutputTypeCountReportesGuardadosArgs
 }
 
 /**
@@ -8875,6 +9250,13 @@ export type UserCountOutputTypeCountModulosAccesoEditadosArgs<ExtArgs extends ru
   where?: Prisma.ModuloAccesoWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReportesGuardadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReporteGuardadoWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -8922,6 +9304,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   modulosAcceso?: boolean | Prisma.User$modulosAccesoArgs<ExtArgs>
   modulosAccesoEditados?: boolean | Prisma.User$modulosAccesoEditadosArgs<ExtArgs>
+  reportesGuardados?: boolean | Prisma.User$reportesGuardadosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -8999,6 +9382,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   modulosAcceso?: boolean | Prisma.User$modulosAccesoArgs<ExtArgs>
   modulosAccesoEditados?: boolean | Prisma.User$modulosAccesoEditadosArgs<ExtArgs>
+  reportesGuardados?: boolean | Prisma.User$reportesGuardadosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -9043,6 +9427,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     modulosAcceso: Prisma.$ModuloAccesoPayload<ExtArgs>[]
     modulosAccesoEditados: Prisma.$ModuloAccesoPayload<ExtArgs>[]
+    reportesGuardados: Prisma.$ReporteGuardadoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -9484,6 +9869,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   modulosAcceso<T extends Prisma.User$modulosAccesoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$modulosAccesoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuloAccesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   modulosAccesoEditados<T extends Prisma.User$modulosAccesoEditadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$modulosAccesoEditadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuloAccesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reportesGuardados<T extends Prisma.User$reportesGuardadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportesGuardadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReporteGuardadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10771,6 +11157,30 @@ export type User$modulosAccesoEditadosArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.ModuloAccesoScalarFieldEnum | Prisma.ModuloAccesoScalarFieldEnum[]
+}
+
+/**
+ * User.reportesGuardados
+ */
+export type User$reportesGuardadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReporteGuardado
+   */
+  select?: Prisma.ReporteGuardadoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReporteGuardado
+   */
+  omit?: Prisma.ReporteGuardadoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReporteGuardadoInclude<ExtArgs> | null
+  where?: Prisma.ReporteGuardadoWhereInput
+  orderBy?: Prisma.ReporteGuardadoOrderByWithRelationInput | Prisma.ReporteGuardadoOrderByWithRelationInput[]
+  cursor?: Prisma.ReporteGuardadoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReporteGuardadoScalarFieldEnum | Prisma.ReporteGuardadoScalarFieldEnum[]
 }
 
 /**
