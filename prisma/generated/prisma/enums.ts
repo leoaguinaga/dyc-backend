@@ -26,6 +26,15 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const NivelAccesoModulo = {
+  ninguno: 'ninguno',
+  ver: 'ver',
+  editar: 'editar'
+} as const
+
+export type NivelAccesoModulo = (typeof NivelAccesoModulo)[keyof typeof NivelAccesoModulo]
+
+
 export const TipoRequerimiento = {
   electrico: 'electrico',
   civil: 'civil',

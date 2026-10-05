@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { AlmacenesService } from './almacenes.service.js';
 import { CreateAlmacenDto } from './dto/create-almacen.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('almacenes')
 @Roles(
@@ -12,6 +13,7 @@ import { CreateAlmacenDto } from './dto/create-almacen.dto.js';
   'ing_electrico',
   'jefe_sig',
 )
+@Modulo('almacenes')
 export class AlmacenesController {
   constructor(private almacenesService: AlmacenesService) {}
 

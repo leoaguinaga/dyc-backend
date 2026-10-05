@@ -36,6 +36,7 @@ import {
   ActualizarComprobanteDto,
   ActualizarCodigoComprobanteDto,
 } from './dto/create-pago.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 const ROLES_OPERATIVOS = [
@@ -61,6 +62,7 @@ const ARCHIVOS_PERMITIDOS = [
 
 @Controller('pagos')
 @Roles(...ROLES_OPERATIVOS)
+@Modulo('pagos')
 export class PagosController {
   constructor(private service: PagosService) {}
 
@@ -177,12 +179,14 @@ export class PagosController {
   }
 
   @Get('planilla-staff')
+  @Modulo('planilla')
   @Roles('administrador', 'gerencia')
   listarPlanillaStaff() {
     return this.service.listarPlanillaStaff();
   }
 
   @Post('planilla-staff')
+  @Modulo('planilla')
   @Roles('administrador')
   generarPlanillaStaff(
     @Body() dto: CreatePlanillaStaffDto,

@@ -447,10 +447,6 @@ export type RequerimientoHistorialUncheckedUpdateManyWithoutRequerimientoNestedI
   deleteMany?: Prisma.RequerimientoHistorialScalarWhereInput | Prisma.RequerimientoHistorialScalarWhereInput[]
 }
 
-export type NullableEnumRoleFieldUpdateOperationsInput = {
-  set?: $Enums.Role | null
-}
-
 export type RequerimientoHistorialCreateWithoutActorInput = {
   id?: string
   estado: $Enums.EstadoRequerimiento

@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Permission: 'Permission',
   RolePermission: 'RolePermission',
+  ModuloAcceso: 'ModuloAcceso',
   User: 'User',
   AuditLog: 'AuditLog',
   Session: 'Session',
@@ -451,7 +452,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "permission" | "rolePermission" | "user" | "auditLog" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "comprobante" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
+    modelProps: "permission" | "rolePermission" | "moduloAcceso" | "user" | "auditLog" | "session" | "account" | "verification" | "cliente" | "contactoCliente" | "proyecto" | "proyectoSupervisor" | "hito" | "trabajador" | "perfilObrero" | "proyectoTrabajador" | "turnoConfig" | "turno" | "asistencia" | "registroVisita" | "visitaTercero" | "visitanteTercero" | "planilla" | "planillaItem" | "proveedor" | "contactoProveedor" | "catalogoProductoProveedor" | "requerimiento" | "requerimientoItem" | "requerimientoItemArchivo" | "requerimientoHistorial" | "itemInventario" | "almacen" | "solicitudCotizacion" | "solicitudItem" | "cotizacion" | "cotizacionArchivo" | "cotizacionItem" | "cotizacionCondicionPago" | "compraSimple" | "ordenCompra" | "compraSimpleGrupoArchivo" | "compraSimpleGrupoHistorial" | "pago" | "comprobante" | "pagoRecurrente" | "perfilStaff" | "planillaStaff" | "planillaStaffItem" | "cobro" | "ordenCompraItem" | "helpVideo" | "notificacion"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -600,6 +601,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.RolePermissionCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.RolePermissionCountAggregateOutputType> | number
+        }
+      }
+    }
+    ModuloAcceso: {
+      payload: Prisma.$ModuloAccesoPayload<ExtArgs>
+      fields: Prisma.ModuloAccesoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ModuloAccesoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ModuloAccesoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>
+        }
+        findFirst: {
+          args: Prisma.ModuloAccesoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ModuloAccesoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>
+        }
+        findMany: {
+          args: Prisma.ModuloAccesoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>[]
+        }
+        create: {
+          args: Prisma.ModuloAccesoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>
+        }
+        createMany: {
+          args: Prisma.ModuloAccesoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ModuloAccesoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>[]
+        }
+        delete: {
+          args: Prisma.ModuloAccesoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>
+        }
+        update: {
+          args: Prisma.ModuloAccesoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>
+        }
+        deleteMany: {
+          args: Prisma.ModuloAccesoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ModuloAccesoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ModuloAccesoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>[]
+        }
+        upsert: {
+          args: Prisma.ModuloAccesoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ModuloAccesoPayload>
+        }
+        aggregate: {
+          args: Prisma.ModuloAccesoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateModuloAcceso>
+        }
+        groupBy: {
+          args: Prisma.ModuloAccesoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ModuloAccesoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ModuloAccesoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ModuloAccesoCountAggregateOutputType> | number
         }
       }
     }
@@ -4363,6 +4438,20 @@ export const RolePermissionScalarFieldEnum = {
 export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
 
 
+export const ModuloAccesoScalarFieldEnum = {
+  id: 'id',
+  modulo: 'modulo',
+  role: 'role',
+  userId: 'userId',
+  nivel: 'nivel',
+  actualizadoPorId: 'actualizadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ModuloAccesoScalarFieldEnum = (typeof ModuloAccesoScalarFieldEnum)[keyof typeof ModuloAccesoScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -5315,6 +5404,20 @@ export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'NivelAccesoModulo'
+ */
+export type EnumNivelAccesoModuloFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NivelAccesoModulo'>
+    
+
+
+/**
+ * Reference to a field of type 'NivelAccesoModulo[]'
+ */
+export type ListEnumNivelAccesoModuloFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NivelAccesoModulo[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5887,6 +5990,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   permission?: Prisma.PermissionOmit
   rolePermission?: Prisma.RolePermissionOmit
+  moduloAcceso?: Prisma.ModuloAccesoOmit
   user?: Prisma.UserOmit
   auditLog?: Prisma.AuditLogOmit
   session?: Prisma.SessionOmit

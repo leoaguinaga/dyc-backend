@@ -248,6 +248,8 @@ export type UserWhereInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionListRelationFilter
   cotizacionesCreadas?: Prisma.CotizacionListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  modulosAcceso?: Prisma.ModuloAccesoListRelationFilter
+  modulosAccesoEditados?: Prisma.ModuloAccesoListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -294,6 +296,8 @@ export type UserOrderByWithRelationInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionOrderByRelationAggregateInput
   cotizacionesCreadas?: Prisma.CotizacionOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  modulosAcceso?: Prisma.ModuloAccesoOrderByRelationAggregateInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -343,6 +347,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionListRelationFilter
   cotizacionesCreadas?: Prisma.CotizacionListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  modulosAcceso?: Prisma.ModuloAccesoListRelationFilter
+  modulosAccesoEditados?: Prisma.ModuloAccesoListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -419,6 +425,8 @@ export type UserCreateInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -465,6 +473,8 @@ export type UserUncheckedCreateInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUpdateInput = {
@@ -511,6 +521,8 @@ export type UserUpdateInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -557,6 +569,8 @@ export type UserUncheckedUpdateInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -595,6 +609,11 @@ export type UserUncheckedUpdateManyInput = {
   correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -631,14 +650,41 @@ export type UserMinOrderByAggregateInput = {
   correoContacto?: Prisma.SortOrder
 }
 
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
-}
-
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserCreateNestedOneWithoutModulosAccesoInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoInput, Prisma.UserUncheckedCreateWithoutModulosAccesoInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulosAccesoInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutModulosAccesoEditadosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoEditadosInput, Prisma.UserUncheckedCreateWithoutModulosAccesoEditadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulosAccesoEditadosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutModulosAccesoNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoInput, Prisma.UserUncheckedCreateWithoutModulosAccesoInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulosAccesoInput
+  upsert?: Prisma.UserUpsertWithoutModulosAccesoInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutModulosAccesoInput, Prisma.UserUpdateWithoutModulosAccesoInput>, Prisma.UserUncheckedUpdateWithoutModulosAccesoInput>
+}
+
+export type UserUpdateOneWithoutModulosAccesoEditadosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoEditadosInput, Prisma.UserUncheckedCreateWithoutModulosAccesoEditadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulosAccesoEditadosInput
+  upsert?: Prisma.UserUpsertWithoutModulosAccesoEditadosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutModulosAccesoEditadosInput, Prisma.UserUpdateWithoutModulosAccesoEditadosInput>, Prisma.UserUncheckedUpdateWithoutModulosAccesoEditadosInput>
 }
 
 export type UserCreateNestedOneWithoutAuditLogsInput = {
@@ -1149,6 +1195,414 @@ export type UserUpdateOneRequiredWithoutNotificacionesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificacionesInput, Prisma.UserUpdateWithoutNotificacionesInput>, Prisma.UserUncheckedUpdateWithoutNotificacionesInput>
 }
 
+export type UserCreateWithoutModulosAccesoInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+}
+
+export type UserUncheckedCreateWithoutModulosAccesoInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+}
+
+export type UserCreateOrConnectWithoutModulosAccesoInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoInput, Prisma.UserUncheckedCreateWithoutModulosAccesoInput>
+}
+
+export type UserCreateWithoutModulosAccesoEditadosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutModulosAccesoEditadosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutModulosAccesoEditadosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoEditadosInput, Prisma.UserUncheckedCreateWithoutModulosAccesoEditadosInput>
+}
+
+export type UserUpsertWithoutModulosAccesoInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutModulosAccesoInput, Prisma.UserUncheckedUpdateWithoutModulosAccesoInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoInput, Prisma.UserUncheckedCreateWithoutModulosAccesoInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutModulosAccesoInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutModulosAccesoInput, Prisma.UserUncheckedUpdateWithoutModulosAccesoInput>
+}
+
+export type UserUpdateWithoutModulosAccesoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutModulosAccesoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+}
+
+export type UserUpsertWithoutModulosAccesoEditadosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutModulosAccesoEditadosInput, Prisma.UserUncheckedUpdateWithoutModulosAccesoEditadosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutModulosAccesoEditadosInput, Prisma.UserUncheckedCreateWithoutModulosAccesoEditadosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutModulosAccesoEditadosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutModulosAccesoEditadosInput, Prisma.UserUncheckedUpdateWithoutModulosAccesoEditadosInput>
+}
+
+export type UserUpdateWithoutModulosAccesoEditadosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutModulosAccesoEditadosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+}
+
 export type UserCreateWithoutAuditLogsInput = {
   id: string
   name: string
@@ -1192,6 +1646,8 @@ export type UserCreateWithoutAuditLogsInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1237,6 +1693,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1298,6 +1756,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1343,6 +1803,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -1388,6 +1850,8 @@ export type UserCreateWithoutSessionsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -1433,6 +1897,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1494,6 +1960,8 @@ export type UserUpdateWithoutSessionsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1539,6 +2007,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -1584,6 +2054,8 @@ export type UserCreateWithoutAccountsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -1629,6 +2101,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -1690,6 +2164,8 @@ export type UserUpdateWithoutAccountsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1735,6 +2211,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutProyectosComoSupervisorInput = {
@@ -1780,6 +2258,8 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
@@ -1825,6 +2305,8 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutProyectosComoSupervisorInput = {
@@ -1886,6 +2368,8 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
@@ -1931,6 +2415,8 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutTrabajadorInput = {
@@ -1976,6 +2462,8 @@ export type UserCreateWithoutTrabajadorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTrabajadorInput = {
@@ -2021,6 +2509,8 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTrabajadorInput = {
@@ -2082,6 +2572,8 @@ export type UserUpdateWithoutTrabajadorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrabajadorInput = {
@@ -2127,6 +2619,8 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutTurnosAbiertosInput = {
@@ -2172,6 +2666,8 @@ export type UserCreateWithoutTurnosAbiertosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
@@ -2217,6 +2713,8 @@ export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosAbiertosInput = {
@@ -2267,6 +2765,8 @@ export type UserCreateWithoutTurnosCerradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCerradosInput = {
@@ -2312,6 +2812,8 @@ export type UserUncheckedCreateWithoutTurnosCerradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCerradosInput = {
@@ -2362,6 +2864,8 @@ export type UserCreateWithoutTurnosCorregidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
@@ -2407,6 +2911,8 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCorregidosInput = {
@@ -2457,6 +2963,8 @@ export type UserCreateWithoutTurnosCierreRevisadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutTurnosCierreRevisadosInput = {
@@ -2502,6 +3010,8 @@ export type UserUncheckedCreateWithoutTurnosCierreRevisadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutTurnosCierreRevisadosInput = {
@@ -2563,6 +3073,8 @@ export type UserUpdateWithoutTurnosAbiertosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
@@ -2608,6 +3120,8 @@ export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCerradosInput = {
@@ -2664,6 +3178,8 @@ export type UserUpdateWithoutTurnosCerradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
@@ -2709,6 +3225,8 @@ export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCorregidosInput = {
@@ -2765,6 +3283,8 @@ export type UserUpdateWithoutTurnosCorregidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
@@ -2810,6 +3330,8 @@ export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutTurnosCierreRevisadosInput = {
@@ -2866,6 +3388,8 @@ export type UserUpdateWithoutTurnosCierreRevisadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTurnosCierreRevisadosInput = {
@@ -2911,6 +3435,8 @@ export type UserUncheckedUpdateWithoutTurnosCierreRevisadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -2956,6 +3482,8 @@ export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3001,6 +3529,8 @@ export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3051,6 +3581,8 @@ export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3096,6 +3628,8 @@ export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3157,6 +3691,8 @@ export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
@@ -3202,6 +3738,8 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3258,6 +3796,8 @@ export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
@@ -3303,6 +3843,8 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutVisitasTerceroRegistradasInput = {
@@ -3348,6 +3890,8 @@ export type UserCreateWithoutVisitasTerceroRegistradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
@@ -3393,6 +3937,8 @@ export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutVisitasTerceroRegistradasInput = {
@@ -3454,6 +4000,8 @@ export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
@@ -3499,6 +4047,8 @@ export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutPlanillasGeneradasInput = {
@@ -3544,6 +4094,8 @@ export type UserCreateWithoutPlanillasGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
@@ -3589,6 +4141,8 @@ export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPlanillasGeneradasInput = {
@@ -3650,6 +4204,8 @@ export type UserUpdateWithoutPlanillasGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
@@ -3695,6 +4251,8 @@ export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientosInput = {
@@ -3740,6 +4298,8 @@ export type UserCreateWithoutRequerimientosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosInput = {
@@ -3785,6 +4345,8 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosInput = {
@@ -3835,6 +4397,8 @@ export type UserCreateWithoutRequerimientosRecepcionadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
@@ -3880,6 +4444,8 @@ export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientosRecepcionadosInput = {
@@ -3941,6 +4507,8 @@ export type UserUpdateWithoutRequerimientosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosInput = {
@@ -3986,6 +4554,8 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutRequerimientosRecepcionadosInput = {
@@ -4042,6 +4612,8 @@ export type UserUpdateWithoutRequerimientosRecepcionadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
@@ -4087,6 +4659,8 @@ export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutRequerimientoHistorialInput = {
@@ -4132,6 +4706,8 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
@@ -4177,6 +4753,8 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutRequerimientoHistorialInput = {
@@ -4238,6 +4816,8 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
@@ -4283,6 +4863,8 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -4328,6 +4910,8 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -4373,6 +4957,8 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicita
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -4423,6 +5009,8 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -4468,6 +5056,8 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerencia
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -4529,6 +5119,8 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput = {
@@ -4574,6 +5166,8 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicita
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -4630,6 +5224,8 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
@@ -4675,6 +5271,8 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerencia
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutCotizacionesCreadasInput = {
@@ -4720,6 +5318,8 @@ export type UserCreateWithoutCotizacionesCreadasInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
@@ -4765,6 +5365,8 @@ export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCotizacionesCreadasInput = {
@@ -4826,6 +5428,8 @@ export type UserUpdateWithoutCotizacionesCreadasInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
@@ -4871,6 +5475,8 @@ export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
   solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutComprasSimplesCreadasInput = {
@@ -4916,6 +5522,8 @@ export type UserCreateWithoutComprasSimplesCreadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
@@ -4961,6 +5569,8 @@ export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprasSimplesCreadasInput = {
@@ -5011,6 +5621,8 @@ export type UserCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5056,6 +5668,8 @@ export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput 
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5117,6 +5731,8 @@ export type UserUpdateWithoutComprasSimplesCreadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
@@ -5162,6 +5778,8 @@ export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5218,6 +5836,8 @@ export type UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
@@ -5263,6 +5883,8 @@ export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput 
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutOrdenesCompraAprobadasInput = {
@@ -5308,6 +5930,8 @@ export type UserCreateWithoutOrdenesCompraAprobadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
@@ -5353,6 +5977,8 @@ export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraAprobadasInput = {
@@ -5403,6 +6029,8 @@ export type UserCreateWithoutOrdenesCompraInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutOrdenesCompraInput = {
@@ -5448,6 +6076,8 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutOrdenesCompraInput = {
@@ -5509,6 +6139,8 @@ export type UserUpdateWithoutOrdenesCompraAprobadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
@@ -5554,6 +6186,8 @@ export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutOrdenesCompraInput = {
@@ -5610,6 +6244,8 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
@@ -5655,6 +6291,8 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
@@ -5700,6 +6338,8 @@ export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
@@ -5745,6 +6385,8 @@ export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCompraSimpleArchivosSubidosInput = {
@@ -5806,6 +6448,8 @@ export type UserUpdateWithoutCompraSimpleArchivosSubidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
@@ -5851,6 +6495,8 @@ export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutCompraSimpleHistorialInput = {
@@ -5896,6 +6542,8 @@ export type UserCreateWithoutCompraSimpleHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
@@ -5941,6 +6589,8 @@ export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCompraSimpleHistorialInput = {
@@ -6002,6 +6652,8 @@ export type UserUpdateWithoutCompraSimpleHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
@@ -6047,6 +6699,8 @@ export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutPagosRegistradosInput = {
@@ -6092,6 +6746,8 @@ export type UserCreateWithoutPagosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosRegistradosInput = {
@@ -6137,6 +6793,8 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosRegistradosInput = {
@@ -6187,6 +6845,8 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
@@ -6232,6 +6892,8 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosEjecutadosInput = {
@@ -6293,6 +6955,8 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
@@ -6338,6 +7002,8 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutPagosEjecutadosInput = {
@@ -6394,6 +7060,8 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
@@ -6439,6 +7107,8 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutComprobantesGeneradosInput = {
@@ -6484,6 +7154,8 @@ export type UserCreateWithoutComprobantesGeneradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutComprobantesGeneradosInput = {
@@ -6529,6 +7201,8 @@ export type UserUncheckedCreateWithoutComprobantesGeneradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutComprobantesGeneradosInput = {
@@ -6590,6 +7264,8 @@ export type UserUpdateWithoutComprobantesGeneradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComprobantesGeneradosInput = {
@@ -6635,6 +7311,8 @@ export type UserUncheckedUpdateWithoutComprobantesGeneradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutPagosRecurrentesCreadosInput = {
@@ -6680,6 +7358,8 @@ export type UserCreateWithoutPagosRecurrentesCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPagosRecurrentesCreadosInput = {
@@ -6725,6 +7405,8 @@ export type UserUncheckedCreateWithoutPagosRecurrentesCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPagosRecurrentesCreadosInput = {
@@ -6786,6 +7468,8 @@ export type UserUpdateWithoutPagosRecurrentesCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagosRecurrentesCreadosInput = {
@@ -6831,6 +7515,8 @@ export type UserUncheckedUpdateWithoutPagosRecurrentesCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutPlanillasStaffGeneradasInput = {
@@ -6876,6 +7562,8 @@ export type UserCreateWithoutPlanillasStaffGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutPlanillasStaffGeneradasInput = {
@@ -6921,6 +7609,8 @@ export type UserUncheckedCreateWithoutPlanillasStaffGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutPlanillasStaffGeneradasInput = {
@@ -6982,6 +7672,8 @@ export type UserUpdateWithoutPlanillasStaffGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlanillasStaffGeneradasInput = {
@@ -7027,6 +7719,8 @@ export type UserUncheckedUpdateWithoutPlanillasStaffGeneradasInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutCobrosRegistradosInput = {
@@ -7072,6 +7766,8 @@ export type UserCreateWithoutCobrosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCobrosRegistradosInput = {
@@ -7117,6 +7813,8 @@ export type UserUncheckedCreateWithoutCobrosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCobrosRegistradosInput = {
@@ -7167,6 +7865,8 @@ export type UserCreateWithoutCobrosMarcadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutCobrosMarcadosInput = {
@@ -7212,6 +7912,8 @@ export type UserUncheckedCreateWithoutCobrosMarcadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutCobrosMarcadosInput = {
@@ -7273,6 +7975,8 @@ export type UserUpdateWithoutCobrosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCobrosRegistradosInput = {
@@ -7318,6 +8022,8 @@ export type UserUncheckedUpdateWithoutCobrosRegistradosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUpsertWithoutCobrosMarcadosInput = {
@@ -7374,6 +8080,8 @@ export type UserUpdateWithoutCobrosMarcadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCobrosMarcadosInput = {
@@ -7419,6 +8127,8 @@ export type UserUncheckedUpdateWithoutCobrosMarcadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutHelpVideosCreadosInput = {
@@ -7464,6 +8174,8 @@ export type UserCreateWithoutHelpVideosCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutHelpVideosCreadosInput = {
@@ -7509,6 +8221,8 @@ export type UserUncheckedCreateWithoutHelpVideosCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutHelpVideosCreadosInput = {
@@ -7570,6 +8284,8 @@ export type UserUpdateWithoutHelpVideosCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHelpVideosCreadosInput = {
@@ -7615,6 +8331,8 @@ export type UserUncheckedUpdateWithoutHelpVideosCreadosInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserCreateWithoutNotificacionesInput = {
@@ -7660,6 +8378,8 @@ export type UserCreateWithoutNotificacionesInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserUncheckedCreateWithoutNotificacionesInput = {
@@ -7705,6 +8425,8 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
 }
 
 export type UserCreateOrConnectWithoutNotificacionesInput = {
@@ -7766,6 +8488,8 @@ export type UserUpdateWithoutNotificacionesInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificacionesInput = {
@@ -7811,6 +8535,8 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
   cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
 }
 
 
@@ -7852,6 +8578,8 @@ export type UserCountOutputType = {
   solicitudesCotizacionAprobadasComoGerencia: number
   cotizacionesCreadas: number
   auditLogs: number
+  modulosAcceso: number
+  modulosAccesoEditados: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -7888,6 +8616,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   solicitudesCotizacionAprobadasComoGerencia?: boolean | UserCountOutputTypeCountSolicitudesCotizacionAprobadasComoGerenciaArgs
   cotizacionesCreadas?: boolean | UserCountOutputTypeCountCotizacionesCreadasArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  modulosAcceso?: boolean | UserCountOutputTypeCountModulosAccesoArgs
+  modulosAccesoEditados?: boolean | UserCountOutputTypeCountModulosAccesoEditadosArgs
 }
 
 /**
@@ -8131,6 +8861,20 @@ export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.AuditLogWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountModulosAccesoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModuloAccesoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountModulosAccesoEditadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModuloAccesoWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -8176,6 +8920,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   solicitudesCotizacionAprobadasComoGerencia?: boolean | Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs>
   cotizacionesCreadas?: boolean | Prisma.User$cotizacionesCreadasArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  modulosAcceso?: boolean | Prisma.User$modulosAccesoArgs<ExtArgs>
+  modulosAccesoEditados?: boolean | Prisma.User$modulosAccesoEditadosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -8251,6 +8997,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   solicitudesCotizacionAprobadasComoGerencia?: boolean | Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs>
   cotizacionesCreadas?: boolean | Prisma.User$cotizacionesCreadasArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  modulosAcceso?: boolean | Prisma.User$modulosAccesoArgs<ExtArgs>
+  modulosAccesoEditados?: boolean | Prisma.User$modulosAccesoEditadosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -8293,6 +9041,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     solicitudesCotizacionAprobadasComoGerencia: Prisma.$SolicitudCotizacionPayload<ExtArgs>[]
     cotizacionesCreadas: Prisma.$CotizacionPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    modulosAcceso: Prisma.$ModuloAccesoPayload<ExtArgs>[]
+    modulosAccesoEditados: Prisma.$ModuloAccesoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -8732,6 +9482,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   solicitudesCotizacionAprobadasComoGerencia<T extends Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$solicitudesCotizacionAprobadasComoGerenciaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SolicitudCotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cotizacionesCreadas<T extends Prisma.User$cotizacionesCreadasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cotizacionesCreadasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CotizacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  modulosAcceso<T extends Prisma.User$modulosAccesoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$modulosAccesoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuloAccesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  modulosAccesoEditados<T extends Prisma.User$modulosAccesoEditadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$modulosAccesoEditadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuloAccesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9971,6 +10723,54 @@ export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * User.modulosAcceso
+ */
+export type User$modulosAccesoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ModuloAcceso
+   */
+  select?: Prisma.ModuloAccesoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ModuloAcceso
+   */
+  omit?: Prisma.ModuloAccesoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModuloAccesoInclude<ExtArgs> | null
+  where?: Prisma.ModuloAccesoWhereInput
+  orderBy?: Prisma.ModuloAccesoOrderByWithRelationInput | Prisma.ModuloAccesoOrderByWithRelationInput[]
+  cursor?: Prisma.ModuloAccesoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ModuloAccesoScalarFieldEnum | Prisma.ModuloAccesoScalarFieldEnum[]
+}
+
+/**
+ * User.modulosAccesoEditados
+ */
+export type User$modulosAccesoEditadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ModuloAcceso
+   */
+  select?: Prisma.ModuloAccesoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ModuloAcceso
+   */
+  omit?: Prisma.ModuloAccesoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModuloAccesoInclude<ExtArgs> | null
+  where?: Prisma.ModuloAccesoWhereInput
+  orderBy?: Prisma.ModuloAccesoOrderByWithRelationInput | Prisma.ModuloAccesoOrderByWithRelationInput[]
+  cursor?: Prisma.ModuloAccesoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ModuloAccesoScalarFieldEnum | Prisma.ModuloAccesoScalarFieldEnum[]
 }
 
 /**

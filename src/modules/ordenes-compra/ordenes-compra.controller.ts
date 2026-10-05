@@ -25,6 +25,7 @@ import type {
   EstadoOrdenCompra,
   TipoOrdenCompra,
 } from '../../../prisma/generated/prisma/enums.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('ordenes-compra')
 @Roles(
@@ -33,6 +34,7 @@ import type {
   'administrador',
   'admin_ti',
 )
+@Modulo('ordenes')
 export class OrdenesCompraController {
   constructor(private service: OrdenesCompraService) {}
 

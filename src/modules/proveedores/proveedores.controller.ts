@@ -19,6 +19,7 @@ import {
   CreateCatalogoItemDto,
   UpdateCatalogoItemDto,
 } from './dto/create-catalogo-item.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('proveedores')
 @Roles(
@@ -29,6 +30,7 @@ import {
   'ing_electrico',
   'jefe_sig',
 )
+@Modulo('proveedores')
 export class ProveedoresController {
   constructor(private proveedoresService: ProveedoresService) {}
 

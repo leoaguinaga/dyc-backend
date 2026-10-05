@@ -24,6 +24,7 @@ import {
 } from './dto/decision-grupo.dto.js';
 import { EditarItemsGrupoDto } from './dto/editar-items-grupo.dto.js';
 import { HardDeleteCompraSimpleDto } from './dto/hard-delete-compra-simple.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 
@@ -33,6 +34,7 @@ const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
   'ing_civil', 'ing_electrico', 'jefe_sig',
   'logistica', 'gerencia', 'administrador',
 )
+@Modulo('solicitudes')
 export class ComprasSimplesController {
   constructor(private service: ComprasSimplesService) {}
 

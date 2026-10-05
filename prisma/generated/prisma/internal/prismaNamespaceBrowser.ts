@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Permission: 'Permission',
   RolePermission: 'RolePermission',
+  ModuloAcceso: 'ModuloAcceso',
   User: 'User',
   AuditLog: 'AuditLog',
   Session: 'Session',
@@ -140,6 +141,20 @@ export const RolePermissionScalarFieldEnum = {
 } as const
 
 export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
+
+
+export const ModuloAccesoScalarFieldEnum = {
+  id: 'id',
+  modulo: 'modulo',
+  role: 'role',
+  userId: 'userId',
+  nivel: 'nivel',
+  actualizadoPorId: 'actualizadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ModuloAccesoScalarFieldEnum = (typeof ModuloAccesoScalarFieldEnum)[keyof typeof ModuloAccesoScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

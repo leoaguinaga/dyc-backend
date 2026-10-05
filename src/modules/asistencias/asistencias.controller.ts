@@ -25,12 +25,14 @@ import { EditarHorarioTurnoDto } from './dto/editar-horario-turno.dto.js';
 import { RequireResponsableAsistencia } from '../../shared/decorators/require-responsable-asistencia.decorator.js';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 const MAX_FOTO_BYTES = 15 * 1024 * 1024;
 
 @Controller('asistencias/proyectos/:proyectoId/turnos')
+@Modulo('asistencia')
 export class AsistenciasController {
   constructor(private asistenciasService: AsistenciasService) {}
 

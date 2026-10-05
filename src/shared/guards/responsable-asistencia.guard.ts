@@ -10,7 +10,7 @@ import { PrismaService } from '../../prisma/prisma.service.js';
 import { REQUIRE_RESPONSABLE_ASISTENCIA_KEY } from '../decorators/require-responsable-asistencia.decorator.js';
 import type { AuthenticatedUser } from './auth.guard.js';
 
-const ROLES_SIEMPRE_PASAN: string[] = [
+export const ROLES_SIEMPRE_PASAN: string[] = [
   'administrador',
   'gerencia',
   'admin_ti',

@@ -9,11 +9,13 @@ import {
 import { CreatePlanillaDto } from './dto/create-planilla.dto.js';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 @Controller('asistencias')
 @Roles('administrador', 'gerencia')
+@Modulo('planilla')
 export class ConsolidadoAsistenciaController {
   constructor(private consolidadoService: ConsolidadoAsistenciaService) {}
 

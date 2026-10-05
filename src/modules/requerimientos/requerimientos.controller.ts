@@ -22,6 +22,7 @@ import { QueryHistorialDto } from './dto/query-historial.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
 import { CancelarRequerimientoDto } from './dto/cancelar-requerimiento.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
@@ -39,6 +40,7 @@ const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
   'gerencia',
   'administrador',
 )
+@Modulo('solicitudes')
 export class RequerimientosController {
   constructor(private service: RequerimientosService) {}
 

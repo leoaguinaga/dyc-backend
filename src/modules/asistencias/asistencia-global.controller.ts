@@ -10,11 +10,13 @@ import {
 } from './dto/asistencia-global-query.dto.js';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 @Controller('asistencias')
 @Roles('administrador', 'gerencia')
+@Modulo('asistencia')
 export class AsistenciaGlobalController {
   constructor(
     private consolidadoAcceso: ConsolidadoAccesoService,
@@ -55,6 +57,7 @@ export class AsistenciaGlobalController {
   }
 
   @Get('planillas')
+  @Modulo('planilla')
   planillasGlobal(@Query() query: PlanillasGlobalQueryDto) {
     return this.consolidadoAsistencia.listarPlanillasGlobal(query);
   }
