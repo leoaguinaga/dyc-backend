@@ -628,6 +628,8 @@ model TurnoConfig {
 
   toleranciaMinutos       Int @default(10) // tolerancia de tardanza al entrar
   toleranciaSalidaMinutos Int @default(60) // umbral antes de contar horas extra al salir
+  // Horas de gracia tras horaFin antes de que el sistema cierre solo la jornada.
+  topeCierreHoras         Int @default(4)
 
   activo Boolean @default(true) // soft-delete: false una vez que ya tiene históricos referenciados
 

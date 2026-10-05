@@ -3,6 +3,7 @@ import {
   IsOptional,
   IsString,
   Matches,
+  Max,
   Min,
   MinLength,
 } from 'class-validator';
@@ -29,4 +30,10 @@ export class CreateTurnoConfigDto {
   @IsInt()
   @Min(0)
   toleranciaSalidaMinutos?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  @Max(24)
+  topeCierreHoras?: number;
 }

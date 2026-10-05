@@ -175,7 +175,7 @@ export class JornadaGlobalService {
       where: { id: turnoId },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
-        turnoConfig: { select: { nombre: true } },
+        turnoConfig: { select: { nombre: true, topeCierreHoras: true } },
         asistencias: {
           include: { trabajador: { include: { perfilObrero: true } } },
         },
@@ -215,6 +215,7 @@ export class JornadaGlobalService {
       proyectoNombre: turno.proyecto.nombre,
       proyectoCodigo: turno.proyecto.codigo,
       turnoNombre: turno.turnoConfig.nombre,
+      topeCierreHoras: turno.turnoConfig.topeCierreHoras,
       abiertoPor: turno.abiertoPor,
       cerradoPor: turno.cerradoPor,
       corregidoPor: turno.corregidoPor,

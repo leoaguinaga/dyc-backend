@@ -26,8 +26,9 @@ export const FOTO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 // así que un instante real (Date) debe llevarse a ese mismo marco antes de compararlo.
 const LIMA_OFFSET_HORAS = 5;
 
-// Tope de gracia después de la hora fin del horario: pasado este margen el sistema
-// cierra la jornada por su cuenta (7 pm de fin → 11 pm de cierre).
+// Tope de gracia por defecto después de la hora fin del horario: pasado este margen
+// el sistema cierra la jornada por su cuenta (7 pm de fin → 11 pm de cierre). Cada
+// horario puede cambiarlo con `TurnoConfig.topeCierreHoras`.
 export const TOPE_CIERRE_AUTOMATICO_HORAS = 4;
 
 @Injectable()
@@ -348,12 +349,18 @@ export class AsistenciasService {
 
   /**
    * Instante real en que vence el plazo para cerrar la jornada: hora fin del
-   * horario (en el día siguiente si cruza medianoche) más el tope de gracia.
+   * horario (en el día siguiente si cruza medianoche) más el tope de gracia
+   * del horario.
    */
   limiteCierreAutomatico(
     fecha: Date,
-    turnoConfig: { horaFin: string; cruzaMedianoche: boolean },
+    turnoConfig: {
+      horaFin: string;
+      cruzaMedianoche: boolean;
+      topeCierreHoras?: number | null;
+    },
   ): Date {
+    const tope = turnoConfig.topeCierreHoras ?? TOPE_CIERRE_AUTOMATICO_HORAS;
     const finJornada = this.combinarFechaHora(
       fecha,
       turnoConfig.horaFin,
@@ -361,7 +368,7 @@ export class AsistenciasService {
     );
     return new Date(
       finJornada.getTime() +
-        (TOPE_CIERRE_AUTOMATICO_HORAS + LIMA_OFFSET_HORAS) * 3_600_000,
+        (tope + LIMA_OFFSET_HORAS) * 3_600_000,
     );
   }
 

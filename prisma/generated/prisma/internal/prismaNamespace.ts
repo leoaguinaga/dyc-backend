@@ -4585,6 +4585,7 @@ export const TurnoConfigScalarFieldEnum = {
   cruzaMedianoche: 'cruzaMedianoche',
   toleranciaMinutos: 'toleranciaMinutos',
   toleranciaSalidaMinutos: 'toleranciaSalidaMinutos',
+  topeCierreHoras: 'topeCierreHoras',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'

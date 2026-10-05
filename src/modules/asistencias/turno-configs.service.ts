@@ -7,6 +7,7 @@ import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { CreateTurnoConfigDto } from './dto/create-turno-config.dto.js';
 import { UpdateTurnoConfigDto } from './dto/update-turno-config.dto.js';
+import { TOPE_CIERRE_AUTOMATICO_HORAS } from './asistencias.service.js';
 
 function cruzaMedianoche(horaInicio: string, horaFin: string): boolean {
   return horaFin <= horaInicio;
@@ -49,6 +50,8 @@ export class TurnoConfigsService {
           cruzaMedianoche: cruzaMedianoche(dto.horaInicio, dto.horaFin),
           toleranciaMinutos: dto.toleranciaMinutos ?? 10,
           toleranciaSalidaMinutos: dto.toleranciaSalidaMinutos ?? 60,
+          topeCierreHoras:
+            dto.topeCierreHoras ?? TOPE_CIERRE_AUTOMATICO_HORAS,
         },
       });
     } catch (e) {
@@ -79,6 +82,7 @@ export class TurnoConfigsService {
               : undefined,
           toleranciaMinutos: dto.toleranciaMinutos,
           toleranciaSalidaMinutos: dto.toleranciaSalidaMinutos,
+          topeCierreHoras: dto.topeCierreHoras,
           activo: dto.activo,
         },
       });
