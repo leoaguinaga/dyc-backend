@@ -269,27 +269,49 @@ export class CotizacionesService {
 
     return this.prisma.$transaction(async (tx) => {
       if (dto.items) {
-        await tx.solicitudItem.deleteMany({ where: { solicitudId: id } });
+        // Los ítems existentes se actualizan en sitio: las cotizaciones ya
+        // registradas los referencian (CotizacionItem.solicitudItemId) y
+        // borrarlos violaría esa FK.
+        const existentes = await tx.solicitudItem.findMany({
+          where: { solicitudId: id },
+          select: { id: true },
+        });
+        const idsExistentes = new Set(existentes.map((e) => e.id));
+        const idsConservados = new Set(
+          dto.items.map((i) => i.id).filter((x): x is string => !!x && idsExistentes.has(x)),
+        );
+        const idsEliminados = [...idsExistentes].filter((x) => !idsConservados.has(x));
+        if (idsEliminados.length > 0) {
+          await tx.cotizacionItem.updateMany({
+            where: { solicitudItemId: { in: idsEliminados } },
+            data: { solicitudItemId: null },
+          });
+          await tx.solicitudItem.deleteMany({ where: { id: { in: idsEliminados } } });
+        }
+        for (const item of dto.items) {
+          const data = {
+            descripcion: item.descripcion,
+            unidad: (item.unidad as any) ?? 'und',
+            cantidadTotal: item.cantidadTotal,
+            cantidadAlmacen: item.cantidadAlmacen ?? 0,
+            cantidadCompra: item.cantidadTotal - (item.cantidadAlmacen ?? 0),
+          };
+          if (item.id && idsConservados.has(item.id)) {
+            await tx.solicitudItem.update({ where: { id: item.id }, data });
+          } else {
+            await tx.solicitudItem.create({
+              data: {
+                ...data,
+                solicitudId: id,
+                itemInventarioId: item.itemInventarioId ?? null,
+              },
+            });
+          }
+        }
       }
       return tx.solicitudCotizacion.update({
         where: { id },
-        data: {
-          nota: dto.nota,
-          estado: dto.estado,
-          items: dto.items
-            ? {
-                create: dto.items.map((item) => ({
-                  descripcion: item.descripcion,
-                  unidad: (item.unidad as any) ?? 'und',
-                  itemInventarioId: item.itemInventarioId ?? null,
-                  cantidadTotal: item.cantidadTotal,
-                  cantidadAlmacen: item.cantidadAlmacen ?? 0,
-                  cantidadCompra:
-                    item.cantidadTotal - (item.cantidadAlmacen ?? 0),
-                })),
-              }
-            : undefined,
-        },
+        data: { nota: dto.nota, estado: dto.estado },
         include: SOLICITUD_INCLUDE,
       });
     });

@@ -715,9 +715,13 @@ export class AsistenciasService {
     return this.prisma.proyectoTrabajador.findMany({
       where: {
         proyectoId,
-        turnoConfigId,
         fechaIngreso: { lte: fecha },
-        OR: [{ fechaSalida: null }, { fechaSalida: { gte: fecha } }],
+        AND: [
+          { OR: [{ fechaSalida: null }, { fechaSalida: { gte: fecha } }] },
+          // Sin turno asignado explícitamente (null) el obrero aplica a
+          // cualquier turno de la obra; hoy ninguna pantalla asigna turnoConfigId.
+          { OR: [{ turnoConfigId }, { turnoConfigId: null }] },
+        ],
         // Asistencia es para obreros (mano de obra que cobra por hora),
         // no para supervisores/prevencionistas/back office — cargos según
         // el grupo "Obreros" de CARGOS en CreateTrabajadorForm.tsx.
