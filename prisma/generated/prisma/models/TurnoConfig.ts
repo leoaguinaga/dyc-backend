@@ -29,11 +29,13 @@ export type AggregateTurnoConfig = {
 export type TurnoConfigAvgAggregateOutputType = {
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  topeCierreHoras: number | null
 }
 
 export type TurnoConfigSumAggregateOutputType = {
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  topeCierreHoras: number | null
 }
 
 export type TurnoConfigMinAggregateOutputType = {
@@ -45,6 +47,7 @@ export type TurnoConfigMinAggregateOutputType = {
   cruzaMedianoche: boolean | null
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  topeCierreHoras: number | null
   activo: boolean | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -59,6 +62,7 @@ export type TurnoConfigMaxAggregateOutputType = {
   cruzaMedianoche: boolean | null
   toleranciaMinutos: number | null
   toleranciaSalidaMinutos: number | null
+  topeCierreHoras: number | null
   activo: boolean | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -73,6 +77,7 @@ export type TurnoConfigCountAggregateOutputType = {
   cruzaMedianoche: number
   toleranciaMinutos: number
   toleranciaSalidaMinutos: number
+  topeCierreHoras: number
   activo: number
   creadoEn: number
   actualizadoEn: number
@@ -83,11 +88,13 @@ export type TurnoConfigCountAggregateOutputType = {
 export type TurnoConfigAvgAggregateInputType = {
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  topeCierreHoras?: true
 }
 
 export type TurnoConfigSumAggregateInputType = {
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  topeCierreHoras?: true
 }
 
 export type TurnoConfigMinAggregateInputType = {
@@ -99,6 +106,7 @@ export type TurnoConfigMinAggregateInputType = {
   cruzaMedianoche?: true
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  topeCierreHoras?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -113,6 +121,7 @@ export type TurnoConfigMaxAggregateInputType = {
   cruzaMedianoche?: true
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  topeCierreHoras?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -127,6 +136,7 @@ export type TurnoConfigCountAggregateInputType = {
   cruzaMedianoche?: true
   toleranciaMinutos?: true
   toleranciaSalidaMinutos?: true
+  topeCierreHoras?: true
   activo?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -228,6 +238,7 @@ export type TurnoConfigGroupByOutputType = {
   cruzaMedianoche: boolean
   toleranciaMinutos: number
   toleranciaSalidaMinutos: number
+  topeCierreHoras: number
   activo: boolean
   creadoEn: Date
   actualizadoEn: Date
@@ -265,6 +276,7 @@ export type TurnoConfigWhereInput = {
   cruzaMedianoche?: Prisma.BoolFilter<"TurnoConfig"> | boolean
   toleranciaMinutos?: Prisma.IntFilter<"TurnoConfig"> | number
   toleranciaSalidaMinutos?: Prisma.IntFilter<"TurnoConfig"> | number
+  topeCierreHoras?: Prisma.IntFilter<"TurnoConfig"> | number
   activo?: Prisma.BoolFilter<"TurnoConfig"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"TurnoConfig"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"TurnoConfig"> | Date | string
@@ -282,6 +294,7 @@ export type TurnoConfigOrderByWithRelationInput = {
   cruzaMedianoche?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -303,6 +316,7 @@ export type TurnoConfigWhereUniqueInput = Prisma.AtLeast<{
   cruzaMedianoche?: Prisma.BoolFilter<"TurnoConfig"> | boolean
   toleranciaMinutos?: Prisma.IntFilter<"TurnoConfig"> | number
   toleranciaSalidaMinutos?: Prisma.IntFilter<"TurnoConfig"> | number
+  topeCierreHoras?: Prisma.IntFilter<"TurnoConfig"> | number
   activo?: Prisma.BoolFilter<"TurnoConfig"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"TurnoConfig"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"TurnoConfig"> | Date | string
@@ -320,6 +334,7 @@ export type TurnoConfigOrderByWithAggregationInput = {
   cruzaMedianoche?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -342,6 +357,7 @@ export type TurnoConfigScalarWhereWithAggregatesInput = {
   cruzaMedianoche?: Prisma.BoolWithAggregatesFilter<"TurnoConfig"> | boolean
   toleranciaMinutos?: Prisma.IntWithAggregatesFilter<"TurnoConfig"> | number
   toleranciaSalidaMinutos?: Prisma.IntWithAggregatesFilter<"TurnoConfig"> | number
+  topeCierreHoras?: Prisma.IntWithAggregatesFilter<"TurnoConfig"> | number
   activo?: Prisma.BoolWithAggregatesFilter<"TurnoConfig"> | boolean
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"TurnoConfig"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"TurnoConfig"> | Date | string
@@ -355,6 +371,7 @@ export type TurnoConfigCreateInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -372,6 +389,7 @@ export type TurnoConfigUncheckedCreateInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -387,6 +405,7 @@ export type TurnoConfigUpdateInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -404,6 +423,7 @@ export type TurnoConfigUncheckedUpdateInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -420,6 +440,7 @@ export type TurnoConfigCreateManyInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -433,6 +454,7 @@ export type TurnoConfigUpdateManyMutationInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -447,6 +469,7 @@ export type TurnoConfigUncheckedUpdateManyInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -481,6 +504,7 @@ export type TurnoConfigCountOrderByAggregateInput = {
   cruzaMedianoche?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -489,6 +513,7 @@ export type TurnoConfigCountOrderByAggregateInput = {
 export type TurnoConfigAvgOrderByAggregateInput = {
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
 }
 
 export type TurnoConfigMaxOrderByAggregateInput = {
@@ -500,6 +525,7 @@ export type TurnoConfigMaxOrderByAggregateInput = {
   cruzaMedianoche?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -514,6 +540,7 @@ export type TurnoConfigMinOrderByAggregateInput = {
   cruzaMedianoche?: Prisma.SortOrder
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
   activo?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -522,6 +549,7 @@ export type TurnoConfigMinOrderByAggregateInput = {
 export type TurnoConfigSumOrderByAggregateInput = {
   toleranciaMinutos?: Prisma.SortOrder
   toleranciaSalidaMinutos?: Prisma.SortOrder
+  topeCierreHoras?: Prisma.SortOrder
 }
 
 export type TurnoConfigScalarRelationFilter = {
@@ -617,6 +645,7 @@ export type TurnoConfigCreateWithoutProyectoInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -632,6 +661,7 @@ export type TurnoConfigUncheckedCreateWithoutProyectoInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -677,6 +707,7 @@ export type TurnoConfigScalarWhereInput = {
   cruzaMedianoche?: Prisma.BoolFilter<"TurnoConfig"> | boolean
   toleranciaMinutos?: Prisma.IntFilter<"TurnoConfig"> | number
   toleranciaSalidaMinutos?: Prisma.IntFilter<"TurnoConfig"> | number
+  topeCierreHoras?: Prisma.IntFilter<"TurnoConfig"> | number
   activo?: Prisma.BoolFilter<"TurnoConfig"> | boolean
   creadoEn?: Prisma.DateTimeFilter<"TurnoConfig"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"TurnoConfig"> | Date | string
@@ -690,6 +721,7 @@ export type TurnoConfigCreateWithoutAsignacionesInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -706,6 +738,7 @@ export type TurnoConfigUncheckedCreateWithoutAsignacionesInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -736,6 +769,7 @@ export type TurnoConfigUpdateWithoutAsignacionesInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -752,6 +786,7 @@ export type TurnoConfigUncheckedUpdateWithoutAsignacionesInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -766,6 +801,7 @@ export type TurnoConfigCreateWithoutTurnosInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -782,6 +818,7 @@ export type TurnoConfigUncheckedCreateWithoutTurnosInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -812,6 +849,7 @@ export type TurnoConfigUpdateWithoutTurnosInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -828,6 +866,7 @@ export type TurnoConfigUncheckedUpdateWithoutTurnosInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -842,6 +881,7 @@ export type TurnoConfigCreateManyProyectoInput = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: number
   toleranciaSalidaMinutos?: number
+  topeCierreHoras?: number
   activo?: boolean
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -855,6 +895,7 @@ export type TurnoConfigUpdateWithoutProyectoInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -870,6 +911,7 @@ export type TurnoConfigUncheckedUpdateWithoutProyectoInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -885,6 +927,7 @@ export type TurnoConfigUncheckedUpdateManyWithoutProyectoInput = {
   cruzaMedianoche?: Prisma.BoolFieldUpdateOperationsInput | boolean
   toleranciaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
   toleranciaSalidaMinutos?: Prisma.IntFieldUpdateOperationsInput | number
+  topeCierreHoras?: Prisma.IntFieldUpdateOperationsInput | number
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -939,6 +982,7 @@ export type TurnoConfigSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   cruzaMedianoche?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  topeCierreHoras?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -957,6 +1001,7 @@ export type TurnoConfigSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   cruzaMedianoche?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  topeCierreHoras?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -972,6 +1017,7 @@ export type TurnoConfigSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   cruzaMedianoche?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  topeCierreHoras?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -987,12 +1033,13 @@ export type TurnoConfigSelectScalar = {
   cruzaMedianoche?: boolean
   toleranciaMinutos?: boolean
   toleranciaSalidaMinutos?: boolean
+  topeCierreHoras?: boolean
   activo?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type TurnoConfigOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "nombre" | "horaInicio" | "horaFin" | "cruzaMedianoche" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "activo" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["turnoConfig"]>
+export type TurnoConfigOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proyectoId" | "nombre" | "horaInicio" | "horaFin" | "cruzaMedianoche" | "toleranciaMinutos" | "toleranciaSalidaMinutos" | "topeCierreHoras" | "activo" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["turnoConfig"]>
 export type TurnoConfigInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   asignaciones?: boolean | Prisma.TurnoConfig$asignacionesArgs<ExtArgs>
@@ -1022,6 +1069,7 @@ export type $TurnoConfigPayload<ExtArgs extends runtime.Types.Extensions.Interna
     cruzaMedianoche: boolean
     toleranciaMinutos: number
     toleranciaSalidaMinutos: number
+    topeCierreHoras: number
     activo: boolean
     creadoEn: Date
     actualizadoEn: Date
@@ -1459,6 +1507,7 @@ export interface TurnoConfigFieldRefs {
   readonly cruzaMedianoche: Prisma.FieldRef<"TurnoConfig", 'Boolean'>
   readonly toleranciaMinutos: Prisma.FieldRef<"TurnoConfig", 'Int'>
   readonly toleranciaSalidaMinutos: Prisma.FieldRef<"TurnoConfig", 'Int'>
+  readonly topeCierreHoras: Prisma.FieldRef<"TurnoConfig", 'Int'>
   readonly activo: Prisma.FieldRef<"TurnoConfig", 'Boolean'>
   readonly creadoEn: Prisma.FieldRef<"TurnoConfig", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"TurnoConfig", 'DateTime'>

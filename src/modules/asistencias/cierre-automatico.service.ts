@@ -76,6 +76,13 @@ export class CierreAutomaticoService {
       input,
       opciones,
     );
+    // El coordinador SSOMA asignado a la obra también toma su asistencia.
+    await this.notificaciones.crearParaAsignadosDeObra(
+      'coordinador_ssoma',
+      cerrado.proyectoId,
+      input,
+      opciones,
+    );
     const prevencionistaUserId = proyecto.prevencionista?.userId;
     if (prevencionistaUserId) {
       await this.notificaciones.crearParaUsuarios(

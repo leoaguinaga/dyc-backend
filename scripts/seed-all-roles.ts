@@ -26,9 +26,11 @@ const ROLES = [
   { role: 'ing_civil', name: 'Ingeniero Civil Demo' },
   { role: 'ing_electrico', name: 'Ingeniero Eléctrico Demo' },
   { role: 'jefe_sig', name: 'Jefe SIG Demo' },
+  { role: 'coordinador_ssoma', name: 'Coordinador SSOMA Demo' },
   { role: 'logistica', name: 'Logística Demo' },
   { role: 'gerencia', name: 'Gerencia Demo' },
   { role: 'administrador', name: 'Administrador Demo' },
+  { role: 'tesoreria', name: 'Tesorería Demo' },
 ] as const;
 
 const PASSWORD = 'Demo1234!';

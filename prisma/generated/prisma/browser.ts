@@ -28,6 +28,16 @@ export type Permission = Prisma.PermissionModel
  */
 export type RolePermission = Prisma.RolePermissionModel
 /**
+ * Model ModuloAcceso
+ * 
+ */
+export type ModuloAcceso = Prisma.ModuloAccesoModel
+/**
+ * Model ReporteGuardado
+ * 
+ */
+export type ReporteGuardado = Prisma.ReporteGuardadoModel
+/**
  * Model User
  * 
  */
@@ -232,6 +242,21 @@ export type CompraSimpleGrupoHistorial = Prisma.CompraSimpleGrupoHistorialModel
  * 
  */
 export type Pago = Prisma.PagoModel
+/**
+ * Model Empresa
+ * 
+ */
+export type Empresa = Prisma.EmpresaModel
+/**
+ * Model CuentaEmpresa
+ * 
+ */
+export type CuentaEmpresa = Prisma.CuentaEmpresaModel
+/**
+ * Model ImportacionPagos
+ * 
+ */
+export type ImportacionPagos = Prisma.ImportacionPagosModel
 /**
  * Model Comprobante
  * 

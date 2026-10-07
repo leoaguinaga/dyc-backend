@@ -34,8 +34,11 @@ export class AuthService {
           });
         },
       },
+      // 30 días solo aplica a quien marca «Mantener sesión abierta» en el login
+      // (rememberMe). Sin marcar, better-auth emite cookie de sesión del navegador
+      // y la sesión en BD dura 1 día.
       session: {
-        expiresIn: 60 * 60 * 24 * 7,
+        expiresIn: 60 * 60 * 24 * 30,
         updateAge: 60 * 60 * 24,
       },
       trustedOrigins: [process.env.FRONTEND_URL ?? 'http://localhost:3000'],

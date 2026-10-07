@@ -11,8 +11,10 @@ import { TurnoConfigsService } from './turno-configs.service.js';
 import { CreateTurnoConfigDto } from './dto/create-turno-config.dto.js';
 import { UpdateTurnoConfigDto } from './dto/update-turno-config.dto.js';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('asistencias/proyectos/:proyectoId/turno-configs')
+@Modulo('asistencia')
 export class TurnoConfigsController {
   constructor(private turnoConfigsService: TurnoConfigsService) {}
 

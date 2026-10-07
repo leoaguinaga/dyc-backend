@@ -8,9 +8,11 @@ import { QueryReporteDinamicoDto } from './dto/query-reporte-dinamico.dto.js';
 import { CATALOGO_REPORTES } from './catalogo/index.js';
 import { PRESETS_REPORTES } from './catalogo/presets.js';
 import { construirWorkbookReporte } from './reportes-excel.builder.js';
+import { Modulo, NivelModulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('reportes')
 @Roles('gerencia', 'administrador')
+@Modulo('reportes')
 export class ReportesController {
   constructor(
     private service: ReportesService,
@@ -29,11 +31,13 @@ export class ReportesController {
   }
 
   @Post('query')
+  @NivelModulo('ver')
   query(@Body() dto: QueryReporteDinamicoDto) {
     return this.queryService.ejecutar(dto);
   }
 
   @Post('query/export')
+  @NivelModulo('ver')
   async queryExport(@Body() dto: QueryReporteDinamicoDto, @Res() res: Response) {
     const resultado = await this.queryService.ejecutar(dto);
     const buffer = await construirWorkbookReporte(resultado);

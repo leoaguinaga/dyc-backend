@@ -24,6 +24,11 @@ import type { StorageProvider } from '../../shared/storage/storage.interface.js'
 import { AppEvents } from '../../shared/events/events.js';
 import { OrdenesCompraService } from '../ordenes-compra/ordenes-compra.service.js';
 import { puedeCrearTipo } from '../../shared/alcance/tipos-creables.js';
+import {
+  exigirAsignacionSiAplica,
+  obraAsignadaA,
+  requiereAsignacion,
+} from '../../shared/alcance/asignacion-proyecto.js';
 
 // Paso 1: aprobación técnica del área correspondiente al tipo de compra
 const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
@@ -41,10 +46,13 @@ const TIPO_APPROVERS_TECNICO: Record<TipoRequerimiento, Role[]> = {
     'administrador',
     'admin_ti',
   ],
+  // coordinador_ssoma solo decide en las obras donde está asignado
+  // (exigirAsignacionSiAplica en cada decisión).
   seguridad: [
     'ing_civil',
     'ing_electrico',
     'jefe_sig',
+    'coordinador_ssoma',
     'administrador',
     'admin_ti',
   ],
@@ -123,21 +131,33 @@ export class ComprasSimplesService {
     });
   }
 
-  findAll(query: { proyectoId?: string }) {
+  findAll(query: { proyectoId?: string }, viewer?: { id: string; role: Role }) {
     return this.prisma.compraSimple.findMany({
-      where: { proyectoId: query.proyectoId },
+      where: {
+        proyectoId: query.proyectoId,
+        ...(viewer && requiereAsignacion(viewer.role)
+          ? { proyecto: obraAsignadaA(viewer.id) }
+          : {}),
+      },
       include: COMPRA_SIMPLE_INCLUDE,
       orderBy: { creadoEn: 'desc' },
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, viewer?: { id: string; role: Role }) {
     const compra = await this.prisma.compraSimple.findUnique({
       where: { id },
       include: COMPRA_SIMPLE_INCLUDE,
     });
     if (!compra)
       throw new NotFoundException(`Compra simple ${id} no encontrada`);
+    if (viewer)
+      await exigirAsignacionSiAplica(
+        this.prisma,
+        viewer.id,
+        viewer.role,
+        compra.proyectoId,
+      );
     return compra;
   }
 
@@ -375,6 +395,12 @@ export class ComprasSimplesService {
         `El rol "${userRole}" no puede crear compras de tipo "${dto.tipo}"`,
       );
     }
+    await exigirAsignacionSiAplica(
+      this.prisma,
+      userId,
+      userRole,
+      dto.proyectoId,
+    );
 
     for (const grupo of dto.grupos) {
       if (!grupo.proveedorId && !grupo.proveedorNombreLibre)
@@ -526,6 +552,7 @@ export class ComprasSimplesService {
       compraSimpleCodigo: creada.codigo,
       compraSimpleNombre: creada.nombre,
       tipo: creada.tipo,
+      proyectoId: creada.proyectoId,
     });
 
     return creada;
@@ -564,6 +591,12 @@ export class ComprasSimplesService {
       throw new ForbiddenException(
         `El rol "${userRole}" no puede aprobar este paso de la compra simple`,
       );
+    await exigirAsignacionSiAplica(
+      this.prisma,
+      userId,
+      userRole,
+      grupo.compraSimple.proyectoId,
+    );
 
     // Paso 1: aprobación del área técnica — todavía no genera el pago.
     if (grupo.estadoAprobacion === 'pendiente') {
@@ -691,6 +724,12 @@ export class ComprasSimplesService {
       throw new ForbiddenException(
         `El rol "${userRole}" no puede observar este paso de la compra simple`,
       );
+    await exigirAsignacionSiAplica(
+      this.prisma,
+      userId,
+      userRole,
+      grupo.compraSimple.proyectoId,
+    );
 
     return this.prisma.$transaction(async (tx) => {
       const oc = await tx.ordenCompra.update({
@@ -743,6 +782,12 @@ export class ComprasSimplesService {
       throw new ForbiddenException(
         `El rol "${userRole}" no puede rechazar este paso de la compra simple`,
       );
+    await exigirAsignacionSiAplica(
+      this.prisma,
+      userId,
+      userRole,
+      grupo.compraSimple.proyectoId,
+    );
 
     return this.prisma.$transaction(async (tx) => {
       const oc = await tx.ordenCompra.update({
@@ -828,6 +873,12 @@ export class ComprasSimplesService {
       throw new ForbiddenException(
         `El rol "${userRole}" no puede editar esta compra simple`,
       );
+    await exigirAsignacionSiAplica(
+      this.prisma,
+      userId,
+      userRole,
+      grupo.compraSimple.proyectoId,
+    );
 
     if (grupo.estadoAprobacion === 'aprobada')
       throw new BadRequestException(

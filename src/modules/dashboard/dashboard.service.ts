@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
+import {
+  obraAsignadaA,
+  requiereAsignacion,
+} from '../../shared/alcance/asignacion-proyecto.js';
 import type {
   EstadoSolicitud,
   Role,
@@ -86,10 +90,13 @@ const PRIORIDAD_ORDEN: Record<PrioridadDashboard, number> = {
 };
 
 const ROLES_FINANZAS: Role[] = ['administrador', 'gerencia'];
+// Tesorería ve pagos y planillas, pero no los cobros.
+const ROLES_PAGOS: Role[] = [...ROLES_FINANZAS, 'tesoreria'];
 const ROLES_COTIZACIONES: Role[] = ['administrador', 'gerencia', 'logistica'];
 const ROLES_ENTREGAS: Role[] = ['administrador', 'gerencia', 'logistica'];
 const TIPOS_APROBABLES: Partial<Record<Role, TipoRequerimiento[]>> = {
   jefe_sig: ['civil', 'electrico', 'seguridad', 'administrativo'],
+  coordinador_ssoma: ['seguridad'],
   logistica: ['administrativo'],
   ing_civil: ['civil', 'electrico', 'seguridad', 'administrativo'],
   ing_electrico: ['civil', 'electrico', 'seguridad', 'administrativo'],
@@ -101,6 +108,7 @@ const TIPOS_COMPRA_TECNICA: Partial<Record<Role, TipoRequerimiento[]>> = {
   ing_civil: ['civil', 'electrico', 'seguridad', 'administrativo'],
   ing_electrico: ['civil', 'electrico', 'seguridad', 'administrativo'],
   jefe_sig: ['civil', 'electrico', 'seguridad', 'administrativo'],
+  coordinador_ssoma: ['seguridad'],
   logistica: ['administrativo'],
   administrador: ['civil', 'electrico', 'seguridad', 'administrativo'],
 };
@@ -127,6 +135,8 @@ function etiquetaRol(role: Role) {
     ing_civil: 'Ingeniería civil',
     ing_electrico: 'Ingeniería eléctrica',
     jefe_sig: 'Jefatura SIG',
+    coordinador_ssoma: 'Coordinación SSOMA',
+    tesoreria: 'Tesorería',
     logistica: 'Logística',
     gerencia: 'Gerencia',
     administrador: 'Administración',
@@ -214,7 +224,10 @@ export class DashboardService {
           take: 4,
         },
       );
-      for (const solicitud of solicitudesPropias) {
+      // El seguimiento enlaza a /cotizaciones, que estos roles no ven.
+      const veCotizaciones =
+        user.role !== 'coordinador_ssoma' && user.role !== 'tesoreria';
+      for (const solicitud of veCotizaciones ? solicitudesPropias : []) {
         seguimiento.push({
           id: `solicitud-propia-${solicitud.id}`,
           tipo: 'solicitud',
@@ -236,7 +249,13 @@ export class DashboardService {
     const tiposAprobables = TIPOS_APROBABLES[user.role];
     if (tiposAprobables?.length) {
       const porAprobar = await this.prisma.requerimiento.findMany({
-        where: { estado: 'enviado', tipo: { in: tiposAprobables } },
+        where: {
+          estado: 'enviado',
+          tipo: { in: tiposAprobables },
+          ...(requiereAsignacion(user.role)
+            ? { proyecto: obraAsignadaA(user.id) }
+            : {}),
+        },
         select: {
           id: true,
           codigo: true,
@@ -324,7 +343,14 @@ export class DashboardService {
             user.role === 'gerencia'
               ? 'aprobada_tecnico'
               : { in: ['pendiente', 'aprobada_tecnico', 'observada'] },
-          compraSimple: tiposCompra ? { tipo: { in: tiposCompra } } : undefined,
+          compraSimple: tiposCompra
+            ? {
+                tipo: { in: tiposCompra },
+                ...(requiereAsignacion(user.role)
+                  ? { proyecto: obraAsignadaA(user.id) }
+                  : {}),
+              }
+            : undefined,
         },
         select: {
           id: true,
@@ -392,7 +418,8 @@ export class DashboardService {
       }
     }
 
-    if (ROLES_FINANZAS.includes(user.role)) {
+    if (ROLES_PAGOS.includes(user.role)) {
+      const veCobros = ROLES_FINANZAS.includes(user.role);
       const [pagos, cobros, planillas] = await Promise.all([
         this.prisma.pago.findMany({
           where: { estado: 'pendiente', fechaProgramada: { lte: en7dias } },
@@ -407,17 +434,22 @@ export class DashboardService {
           orderBy: { fechaProgramada: 'asc' },
           take: 6,
         }),
-        this.prisma.cobro.findMany({
-          where: { estado: 'pendiente', fechaProgramada: { lte: en7dias } },
-          select: {
-            id: true,
-            monto: true,
-            fechaProgramada: true,
-            proyecto: { select: { codigo: true, nombre: true } },
-          },
-          orderBy: { fechaProgramada: 'asc' },
-          take: 4,
-        }),
+        veCobros
+          ? this.prisma.cobro.findMany({
+              where: {
+                estado: 'pendiente',
+                fechaProgramada: { lte: en7dias },
+              },
+              select: {
+                id: true,
+                monto: true,
+                fechaProgramada: true,
+                proyecto: { select: { codigo: true, nombre: true } },
+              },
+              orderBy: { fechaProgramada: 'asc' },
+              take: 4,
+            })
+          : Promise.resolve([]),
         this.prisma.planillaStaff.findMany({
           where: { estado: 'borrador' },
           select: { id: true, periodo: true, totalGeneral: true },
@@ -472,7 +504,7 @@ export class DashboardService {
       }
     }
 
-    if (user.role === 'pdr') {
+    if (user.role === 'pdr' || user.role === 'coordinador_ssoma') {
       const turnos = await this.prisma.turno.findMany({
         where: { estado: 'abierto', abiertoPorId: user.id },
         select: {
@@ -554,7 +586,7 @@ export class DashboardService {
           href: '/reportes',
         },
       ];
-    if (role === 'pdr')
+    if (role === 'pdr' || role === 'coordinador_ssoma')
       return [
         {
           id: 'asistencia',
@@ -568,6 +600,27 @@ export class DashboardService {
           titulo: 'Nueva compra',
           descripcion: 'Registra una compra simple.',
           href: '/compras-simples/nueva',
+        },
+      ];
+    if (role === 'tesoreria')
+      return [
+        {
+          id: 'pagos',
+          titulo: 'Pagos',
+          descripcion: 'Revisa pagos pendientes y registra los pagados.',
+          href: '/pagos',
+        },
+        {
+          id: 'pago',
+          titulo: 'Nuevo recordatorio',
+          descripcion: 'Registra una obligación de pago.',
+          href: '/pagos',
+        },
+        {
+          id: 'planilla',
+          titulo: 'Planillas',
+          descripcion: 'Consulta las planillas de obra y de staff.',
+          href: '/planilla',
         },
       ];
     if (ROLES_FINANZAS.includes(role))

@@ -14,9 +14,11 @@ import { UpdateTrabajadorDto } from './dto/update-trabajador.dto.js';
 import { AsignarProyectoDto } from './dto/asignar-proyecto.dto.js';
 import { CrearAccesoDto } from './dto/crear-acceso.dto.js';
 import { UpsertPerfilObreroDto } from './dto/upsert-perfil-obrero.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('trabajadores')
 @Roles('administrador', 'logistica', 'gerencia')
+@Modulo('trabajadores')
 export class TrabajadoresController {
   constructor(private trabajadoresService: TrabajadoresService) {}
 
@@ -24,7 +26,7 @@ export class TrabajadoresController {
   @Roles(
     'administrador', 'logistica', 'gerencia',
     'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
-    'ing_civil', 'ing_electrico', 'jefe_sig',
+    'ing_civil', 'ing_electrico', 'jefe_sig', 'coordinador_ssoma',
   )
   findAll() {
     return this.trabajadoresService.findAll();
@@ -34,7 +36,7 @@ export class TrabajadoresController {
   @Roles(
     'administrador', 'logistica', 'gerencia',
     'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
-    'ing_civil', 'ing_electrico', 'jefe_sig',
+    'ing_civil', 'ing_electrico', 'jefe_sig', 'coordinador_ssoma',
   )
   findOne(@Param('id') id: string) {
     return this.trabajadoresService.findOne(id);

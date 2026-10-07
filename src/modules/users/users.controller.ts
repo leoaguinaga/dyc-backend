@@ -5,17 +5,21 @@ import { UsersService } from './users.service.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { ChangePasswordDto } from './dto/change-password.dto.js';
 import { Permissions } from '../../shared/decorators/permissions.decorator.js';
+import { Modulo, SinModulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('users')
+@Modulo('usuarios')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('me')
+  @SinModulo()
   getMe(@Req() req: Request & { user: { id: string } }) {
     return this.usersService.findOne(req.user.id);
   }
 
   @Patch('me/password')
+  @SinModulo()
   async changeOwnPassword(
     @Req() req: Request & { user: { id: string } },
     @Body() dto: ChangePasswordDto,

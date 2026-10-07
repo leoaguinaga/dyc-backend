@@ -3,6 +3,7 @@ import type { Request } from 'express';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { QuerySolicitudesDto } from './dto/query-solicitudes.dto.js';
 import { SolicitudesService } from './solicitudes.service.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('solicitudes')
 @Roles(
@@ -17,7 +18,9 @@ import { SolicitudesService } from './solicitudes.service.js';
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
 )
+@Modulo('solicitudes')
 export class SolicitudesController {
   constructor(private service: SolicitudesService) {}
 

@@ -12,9 +12,11 @@ import { InventarioService } from './inventario.service.js';
 import { CreateItemDto } from './dto/create-item.dto.js';
 import { UpdateItemDto } from './dto/update-item.dto.js';
 import { QueryItemDto } from './dto/query-item.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('inventario')
 @Roles('administrador', 'logistica', 'gerencia')
+@Modulo('almacenes')
 export class InventarioController {
   constructor(private inventarioService: InventarioService) {}
 

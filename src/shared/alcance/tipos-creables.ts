@@ -17,6 +17,7 @@ const TODOS_LOS_TIPOS: TipoRequerimiento[] = [
 // tipos, igual que antes.
 const TIPOS_CREABLES_POR_ROL: Partial<Record<Role, TipoRequerimiento[]>> = {
   jefe_sig: ['seguridad'],
+  coordinador_ssoma: ['seguridad'],
   pdr: ['seguridad'],
   ing_electrico: ['electrico', 'seguridad'],
   supervisor_electrico: ['electrico', 'seguridad'],

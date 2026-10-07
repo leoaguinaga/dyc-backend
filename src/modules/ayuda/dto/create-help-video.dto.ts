@@ -9,9 +9,11 @@ const ROLES: Role[] = [
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
   'logistica',
   'gerencia',
   'administrador',
+  'tesoreria',
   'admin_ti',
 ];
 

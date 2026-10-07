@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Permission: 'Permission',
   RolePermission: 'RolePermission',
+  ModuloAcceso: 'ModuloAcceso',
+  ReporteGuardado: 'ReporteGuardado',
   User: 'User',
   AuditLog: 'AuditLog',
   Session: 'Session',
@@ -94,6 +96,9 @@ export const ModelName = {
   CompraSimpleGrupoArchivo: 'CompraSimpleGrupoArchivo',
   CompraSimpleGrupoHistorial: 'CompraSimpleGrupoHistorial',
   Pago: 'Pago',
+  Empresa: 'Empresa',
+  CuentaEmpresa: 'CuentaEmpresa',
+  ImportacionPagos: 'ImportacionPagos',
   Comprobante: 'Comprobante',
   PagoRecurrente: 'PagoRecurrente',
   PerfilStaff: 'PerfilStaff',
@@ -140,6 +145,34 @@ export const RolePermissionScalarFieldEnum = {
 } as const
 
 export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
+
+
+export const ModuloAccesoScalarFieldEnum = {
+  id: 'id',
+  modulo: 'modulo',
+  role: 'role',
+  userId: 'userId',
+  nivel: 'nivel',
+  actualizadoPorId: 'actualizadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ModuloAccesoScalarFieldEnum = (typeof ModuloAccesoScalarFieldEnum)[keyof typeof ModuloAccesoScalarFieldEnum]
+
+
+export const ReporteGuardadoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  descripcion: 'descripcion',
+  query: 'query',
+  compartido: 'compartido',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type ReporteGuardadoScalarFieldEnum = (typeof ReporteGuardadoScalarFieldEnum)[keyof typeof ReporteGuardadoScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -364,6 +397,7 @@ export const TurnoConfigScalarFieldEnum = {
   cruzaMedianoche: 'cruzaMedianoche',
   toleranciaMinutos: 'toleranciaMinutos',
   toleranciaSalidaMinutos: 'toleranciaSalidaMinutos',
+  topeCierreHoras: 'topeCierreHoras',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'
@@ -852,6 +886,15 @@ export const PagoScalarFieldEnum = {
   comprobanteNombre: 'comprobanteNombre',
   comprobanteUrl: 'comprobanteUrl',
   codigoComprobante: 'codigoComprobante',
+  subNumero: 'subNumero',
+  empresaId: 'empresaId',
+  cuentaOrigenId: 'cuentaOrigenId',
+  responsableRendicionId: 'responsableRendicionId',
+  responsableRendicionNombre: 'responsableRendicionNombre',
+  importeRendido: 'importeRendido',
+  estadoRendicion: 'estadoRendicion',
+  generadoPorNombre: 'generadoPorNombre',
+  importacionId: 'importacionId',
   registradoPorId: 'registradoPorId',
   pagadoPorId: 'pagadoPorId',
   creadoEn: 'creadoEn',
@@ -859,6 +902,48 @@ export const PagoScalarFieldEnum = {
 } as const
 
 export type PagoScalarFieldEnum = (typeof PagoScalarFieldEnum)[keyof typeof PagoScalarFieldEnum]
+
+
+export const EmpresaScalarFieldEnum = {
+  id: 'id',
+  razonSocial: 'razonSocial',
+  ruc: 'ruc',
+  activa: 'activa',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type EmpresaScalarFieldEnum = (typeof EmpresaScalarFieldEnum)[keyof typeof EmpresaScalarFieldEnum]
+
+
+export const CuentaEmpresaScalarFieldEnum = {
+  id: 'id',
+  empresaId: 'empresaId',
+  banco: 'banco',
+  numero: 'numero',
+  activa: 'activa',
+  creadoEn: 'creadoEn',
+  actualizadoEn: 'actualizadoEn'
+} as const
+
+export type CuentaEmpresaScalarFieldEnum = (typeof CuentaEmpresaScalarFieldEnum)[keyof typeof CuentaEmpresaScalarFieldEnum]
+
+
+export const ImportacionPagosScalarFieldEnum = {
+  id: 'id',
+  archivo: 'archivo',
+  etiqueta: 'etiqueta',
+  filas: 'filas',
+  creados: 'creados',
+  vinculados: 'vinculados',
+  omitidos: 'omitidos',
+  resumen: 'resumen',
+  creadoPorId: 'creadoPorId',
+  creadoEn: 'creadoEn',
+  deshechoEn: 'deshechoEn'
+} as const
+
+export type ImportacionPagosScalarFieldEnum = (typeof ImportacionPagosScalarFieldEnum)[keyof typeof ImportacionPagosScalarFieldEnum]
 
 
 export const ComprobanteScalarFieldEnum = {
@@ -1021,6 +1106,21 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -1035,4 +1135,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

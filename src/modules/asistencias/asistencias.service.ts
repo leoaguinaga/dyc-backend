@@ -26,8 +26,9 @@ export const FOTO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 // así que un instante real (Date) debe llevarse a ese mismo marco antes de compararlo.
 const LIMA_OFFSET_HORAS = 5;
 
-// Tope de gracia después de la hora fin del horario: pasado este margen el sistema
-// cierra la jornada por su cuenta (7 pm de fin → 11 pm de cierre).
+// Tope de gracia por defecto después de la hora fin del horario: pasado este margen
+// el sistema cierra la jornada por su cuenta (7 pm de fin → 11 pm de cierre). Cada
+// horario puede cambiarlo con `TurnoConfig.topeCierreHoras`.
 export const TOPE_CIERRE_AUTOMATICO_HORAS = 4;
 
 @Injectable()
@@ -348,20 +349,25 @@ export class AsistenciasService {
 
   /**
    * Instante real en que vence el plazo para cerrar la jornada: hora fin del
-   * horario (en el día siguiente si cruza medianoche) más el tope de gracia.
+   * horario (en el día siguiente si cruza medianoche) más el tope de gracia
+   * del horario.
    */
   limiteCierreAutomatico(
     fecha: Date,
-    turnoConfig: { horaFin: string; cruzaMedianoche: boolean },
+    turnoConfig: {
+      horaFin: string;
+      cruzaMedianoche: boolean;
+      topeCierreHoras?: number | null;
+    },
   ): Date {
+    const tope = turnoConfig.topeCierreHoras ?? TOPE_CIERRE_AUTOMATICO_HORAS;
     const finJornada = this.combinarFechaHora(
       fecha,
       turnoConfig.horaFin,
       turnoConfig.cruzaMedianoche,
     );
     return new Date(
-      finJornada.getTime() +
-        (TOPE_CIERRE_AUTOMATICO_HORAS + LIMA_OFFSET_HORAS) * 3_600_000,
+      finJornada.getTime() + (tope + LIMA_OFFSET_HORAS) * 3_600_000,
     );
   }
 
@@ -644,7 +650,9 @@ export class AsistenciasService {
     const apertura = new Date(dto.horaAperturaReal);
     const cierre = new Date(dto.horaCierreReal);
     if (cierre <= apertura) {
-      throw new BadRequestException('La hora de cierre debe ser posterior a la apertura');
+      throw new BadRequestException(
+        'La hora de cierre debe ser posterior a la apertura',
+      );
     }
     return this.prisma.turno.update({
       where: { id: turnoId },
@@ -776,8 +784,14 @@ export class AsistenciasService {
         salidaTempranaHora,
         this.esDiaSiguiente(salidaTempranaHora, horaInicio, cruzaMedianoche),
       );
-      const horasHastaSalida = this.diffHoras(entradaEfectiva, salidaEfectiva);
-      const horasNormales = Math.min(duracionJornada, horasHastaSalida);
+      // Lo trabajado después del fin de la jornada es excedente, no hora normal:
+      // si no, un obrero que llegó tarde y se quedó más cobraría dos veces ese tramo.
+      const finNormal =
+        salidaEfectiva < finJornada ? salidaEfectiva : finJornada;
+      const horasNormales = Math.min(
+        duracionJornada,
+        this.diffHoras(entradaEfectiva, finNormal),
+      );
       const excedente = this.diffHoras(finJornada, salidaEfectiva);
       return {
         horasNormales,

@@ -9,11 +9,13 @@ import {
 import { CreatePlanillaDto } from './dto/create-planilla.dto.js';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 @Controller('asistencias')
-@Roles('administrador', 'gerencia')
+@Roles('administrador', 'gerencia', 'tesoreria')
+@Modulo('planilla')
 export class ConsolidadoAsistenciaController {
   constructor(private consolidadoService: ConsolidadoAsistenciaService) {}
 
@@ -67,7 +69,9 @@ export class ConsolidadoAsistenciaController {
     return this.consolidadoService.obtenerPlanilla(proyectoId, planillaId);
   }
 
+  // Tesorería consulta las planillas; generarlas sigue siendo de administración.
   @Post('proyectos/:proyectoId/planillas')
+  @Roles('administrador', 'gerencia')
   generarPlanilla(
     @Param('proyectoId') proyectoId: string,
     @Body() dto: CreatePlanillaDto,

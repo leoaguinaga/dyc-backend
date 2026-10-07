@@ -2,6 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { hoyLima, soloFechaUTC } from '../../shared/date/fecha.util.js';
 import type { Role } from '../../prisma/types.js';
+import {
+  obraAsignadaA,
+  requiereAsignacion,
+} from '../../shared/alcance/asignacion-proyecto.js';
 
 export interface ListarJornadasParams {
   proyectoId?: string;
@@ -16,7 +20,8 @@ export class JornadaGlobalService {
 
   /**
    * Estado de hoy por obra, para las tarjetas de /asistencia. El alcance sale
-   * del rol: pdr solo ve las obras donde es prevencionista; administración,
+   * del rol: pdr solo ve las obras donde es prevencionista y el coordinador
+   * SSOMA las obras donde está asignado; administración,
    * gerencia, admin_ti y jefe_sig ven todas y pueden abrir o continuar el turno;
    * el prevencionista solo el de sus obras (mismo criterio que
    * ResponsableAsistenciaGuard).
@@ -37,6 +42,7 @@ export class JornadaGlobalService {
       where: {
         estado: { in: ['planificacion', 'ejecucion'] },
         ...(prevencionistaId ? { prevencionistaId } : {}),
+        ...(requiereAsignacion(role) ? obraAsignadaA(userId) : {}),
       },
       orderBy: { nombre: 'asc' },
       select: {
@@ -79,7 +85,8 @@ export class JornadaGlobalService {
           horario: t.turnoConfig.nombre,
           obreros: t._count.asistencias,
         })),
-        puedeOperar: puedeOperarTodo || role === 'pdr',
+        puedeOperar:
+          puedeOperarTodo || role === 'pdr' || requiereAsignacion(role),
       })),
     };
   }
@@ -175,7 +182,7 @@ export class JornadaGlobalService {
       where: { id: turnoId },
       include: {
         proyecto: { select: { id: true, nombre: true, codigo: true } },
-        turnoConfig: { select: { nombre: true } },
+        turnoConfig: { select: { nombre: true, topeCierreHoras: true } },
         asistencias: {
           include: { trabajador: { include: { perfilObrero: true } } },
         },
@@ -215,6 +222,7 @@ export class JornadaGlobalService {
       proyectoNombre: turno.proyecto.nombre,
       proyectoCodigo: turno.proyecto.codigo,
       turnoNombre: turno.turnoConfig.nombre,
+      topeCierreHoras: turno.turnoConfig.topeCierreHoras,
       abiertoPor: turno.abiertoPor,
       cerradoPor: turno.cerradoPor,
       corregidoPor: turno.corregidoPor,

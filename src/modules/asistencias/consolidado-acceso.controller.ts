@@ -1,7 +1,9 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ConsolidadoAccesoService } from './consolidado-acceso.service.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('asistencias/proyectos/:proyectoId/consolidado-acceso')
+@Modulo('asistencia')
 export class ConsolidadoAccesoController {
   constructor(private consolidadoService: ConsolidadoAccesoService) {}
 

@@ -10,11 +10,13 @@ import {
 } from './dto/asistencia-global-query.dto.js';
 import { Roles } from '../../shared/decorators/roles.decorator.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 @Controller('asistencias')
 @Roles('administrador', 'gerencia')
+@Modulo('asistencia')
 export class AsistenciaGlobalController {
   constructor(
     private consolidadoAcceso: ConsolidadoAccesoService,
@@ -26,7 +28,7 @@ export class AsistenciaGlobalController {
   // por trabajador. Las planillas y el control de acceso global siguen para
   // administración y gerencia.
   @Get('hoy')
-  @Roles('administrador', 'gerencia', 'jefe_sig', 'pdr')
+  @Roles('administrador', 'gerencia', 'jefe_sig', 'pdr', 'coordinador_ssoma')
   obrasHoy(@Req() req: AuthRequest) {
     return this.jornadaGlobal.obrasHoy(req.user.id, req.user.role);
   }
@@ -55,6 +57,8 @@ export class AsistenciaGlobalController {
   }
 
   @Get('planillas')
+  @Modulo('planilla')
+  @Roles('administrador', 'gerencia', 'tesoreria')
   planillasGlobal(@Query() query: PlanillasGlobalQueryDto) {
     return this.consolidadoAsistencia.listarPlanillasGlobal(query);
   }

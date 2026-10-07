@@ -9,8 +9,12 @@ import { Request } from 'express';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { REQUIRE_RESPONSABLE_ASISTENCIA_KEY } from '../decorators/require-responsable-asistencia.decorator.js';
 import type { AuthenticatedUser } from './auth.guard.js';
+import {
+  estaAsignadoAProyecto,
+  requiereAsignacion,
+} from '../alcance/asignacion-proyecto.js';
 
-const ROLES_SIEMPRE_PASAN: string[] = [
+export const ROLES_SIEMPRE_PASAN: string[] = [
   'administrador',
   'gerencia',
   'admin_ti',
@@ -46,6 +50,14 @@ export class ResponsableAsistenciaGuard implements CanActivate {
       throw new ForbiddenException(
         'La ruta no incluye la obra a validar (proyectoId)',
       );
+    }
+
+    // El coordinador SSOMA toma asistencia en las obras donde está asignado
+    // (ProyectoSupervisor), igual que el prevencionista lo hace en las suyas.
+    if (requiereAsignacion(req.user.role)) {
+      if (await estaAsignadoAProyecto(this.prisma, req.user.id, proyectoId))
+        return true;
+      throw new ForbiddenException('No estás asignado a esta obra');
     }
 
     // El encargado de tomar asistencia es hoy el prevencionista de riesgo

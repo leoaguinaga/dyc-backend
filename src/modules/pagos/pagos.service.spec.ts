@@ -150,10 +150,13 @@ describe('PagosService — correlativo del comprobante', () => {
 
   function setupCodigo(codigosUsados: string[], otroConCodigo = false) {
     const updates: Array<{ data: Record<string, unknown> }> = [];
+    const busquedas: Array<{ where: Record<string, unknown> }> = [];
     const pago = {
       id: 'pago-1',
       estado: 'pendiente',
       codigoComprobante: null,
+      subNumero: 1,
+      empresaId: null as string | null,
       fechaProgramada: new Date('2026-09-24'),
       metodoPago: 'efectivo',
     };
@@ -162,14 +165,32 @@ describe('PagosService — correlativo del comprobante', () => {
         findUnique: () => Promise.resolve(pago),
         findMany: () =>
           Promise.resolve(codigosUsados.map((codigoComprobante) => ({ codigoComprobante }))),
-        findFirst: () => Promise.resolve(otroConCodigo ? { id: 'otro' } : null),
+        findFirst: (args: { where: Record<string, unknown> }) => {
+          busquedas.push(args);
+          return Promise.resolve(otroConCodigo ? { id: 'otro' } : null);
+        },
         update: (args: { data: Record<string, unknown> }) => {
           updates.push(args);
           return Promise.resolve({ ...pago, ...args.data });
         },
       },
+      empresa: { findUnique: () => Promise.resolve({ id: 'empresa-dyc' }) },
+      cuentaEmpresa: {
+        findUnique: ({ where }: { where: { id: string } }) =>
+          Promise.resolve(
+            where.id === 'cuenta-bcp'
+              ? { id: 'cuenta-bcp', empresaId: 'empresa-otra', activa: true }
+              : where.id === 'cuenta-baja'
+                ? { id: 'cuenta-baja', empresaId: 'empresa-dyc', activa: false }
+                : null,
+          ),
+      },
+      trabajador: {
+        findUnique: ({ where }: { where: { id: string } }) =>
+          Promise.resolve(where.id === 't-1' ? { id: 't-1', nombre: 'Carlos Palma' } : null),
+      },
     };
-    return { svc: new PagosService(prisma as never, {} as never), updates, pago };
+    return { svc: new PagosService(prisma as never, {} as never), updates, busquedas, pago };
   }
 
   it('marcarPagado asigna AA-0001 cuando aún no hay códigos en el año', async () => {
@@ -197,5 +218,59 @@ describe('PagosService — correlativo del comprobante', () => {
     pago.estado = 'pagado';
     await svc.actualizarCodigoComprobante('pago-1', { codigo: `${anio}-2078` });
     expect(updates[0].data.codigoComprobante).toBe(`${anio}-2078`);
+  });
+
+  it('el chequeo de duplicados mira la línea: 26-2248.2 no choca con 26-2248.1', async () => {
+    const { svc, pago, busquedas } = setupCodigo([]);
+    pago.estado = 'pagado';
+    pago.subNumero = 2;
+    await svc.actualizarCodigoComprobante('pago-1', { codigo: `${anio}-2248` });
+    expect(busquedas[0].where).toMatchObject({ codigoComprobante: `${anio}-2248`, subNumero: 2 });
+  });
+
+  it('marcarPagado toma la empresa de la cuenta de origen elegida', async () => {
+    const { svc, updates } = setupCodigo([]);
+    await svc.marcarPagado('pago-1', { cuentaOrigenId: 'cuenta-bcp' }, 'user-1');
+    expect(updates[0].data).toMatchObject({ cuentaOrigenId: 'cuenta-bcp', empresaId: 'empresa-otra' });
+  });
+
+  it('marcarPagado sin cuenta asigna la empresa por defecto si el pago no tenía empresa', async () => {
+    const { svc, updates } = setupCodigo([]);
+    await svc.marcarPagado('pago-1', {}, 'user-1');
+    expect(updates[0].data.empresaId).toBe('empresa-dyc');
+    expect(updates[0].data).not.toHaveProperty('cuentaOrigenId');
+  });
+
+  it('marcarPagado sin cuenta conserva la empresa que el pago ya tenía', async () => {
+    const { svc, updates, pago } = setupCodigo([]);
+    pago.empresaId = 'empresa-previa';
+    await svc.marcarPagado('pago-1', {}, 'user-1');
+    expect(updates[0].data).not.toHaveProperty('empresaId');
+  });
+
+  it('marcarPagado rechaza cuentas inexistentes o desactivadas', async () => {
+    const { svc } = setupCodigo([]);
+    await expect(svc.marcarPagado('pago-1', { cuentaOrigenId: 'x' }, 'u')).rejects.toThrow(/no encontrada/);
+    await expect(svc.marcarPagado('pago-1', { cuentaOrigenId: 'cuenta-baja' }, 'u')).rejects.toThrow(/desactivada/);
+  });
+
+  it('el responsable de la rendición vinculado a un trabajador toma su nombre', async () => {
+    const { svc, updates } = setupCodigo([]);
+    await svc.marcarPagado('pago-1', { responsableRendicionId: 't-1' }, 'u');
+    expect(updates[0].data).toMatchObject({ responsableRendicionId: 't-1', responsableRendicionNombre: 'Carlos Palma' });
+  });
+
+  it('el responsable de la rendición puede ser solo un nombre (sin vínculo)', async () => {
+    const { svc, updates } = setupCodigo([]);
+    await svc.marcarPagado('pago-1', { responsableRendicionNombre: ' ADMINISTRACION ' }, 'u');
+    expect(updates[0].data).toMatchObject({ responsableRendicionId: null, responsableRendicionNombre: 'ADMINISTRACION' });
+  });
+
+  it('actualizarRendicion solo aplica a pagos ya realizados y guarda importe y estado', async () => {
+    const { svc, pago, updates } = setupCodigo([]);
+    await expect(svc.actualizarRendicion('pago-1', { estadoRendicion: 'cerrado' })).rejects.toThrow(/ya realizados/);
+    pago.estado = 'pagado';
+    await svc.actualizarRendicion('pago-1', { importeRendido: 180, estadoRendicion: 'cerrado' });
+    expect(updates[0].data).toMatchObject({ importeRendido: 180, estadoRendicion: 'cerrado' });
   });
 });

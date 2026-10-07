@@ -199,7 +199,7 @@ describe('ComprasSimplesService hard delete', () => {
       {} as never,
       {} as never,
     );
-    jest.spyOn(service as never, 'findGrupo').mockResolvedValue(grupo as never);
+    jest.spyOn(service as never, 'findGrupo').mockResolvedValue(grupo);
 
     await service.cancelarGrupo(
       grupo.id,
@@ -240,10 +240,15 @@ describe('ComprasSimplesService hard delete', () => {
     jest.spyOn(service as never, 'findGrupo').mockResolvedValue({
       estadoAprobacion: 'pendiente',
       compraSimple: { tipo: 'civil' },
-    } as never);
+    });
 
     await expect(
-      service.cancelarGrupo('grupo-1', { motivo: 'No aplica' }, 'usuario-1', 'logistica'),
+      service.cancelarGrupo(
+        'grupo-1',
+        { motivo: 'No aplica' },
+        'usuario-1',
+        'logistica',
+      ),
     ).rejects.toBeInstanceOf(ForbiddenException);
   });
 });
@@ -260,7 +265,12 @@ describe('ComprasSimplesService.create (tipos permitidos por rol)', () => {
     }) as never;
 
   function crearServicio() {
-    return new ComprasSimplesService({} as never, {} as never, {} as never, {} as never);
+    return new ComprasSimplesService(
+      {} as never,
+      {} as never,
+      {} as never,
+      {} as never,
+    );
   }
 
   it.each([
@@ -271,9 +281,9 @@ describe('ComprasSimplesService.create (tipos permitidos por rol)', () => {
     ['ing_electrico', 'civil'],
     ['supervisor_electrico', 'administrativo'],
   ])('rechaza que "%s" cree una compra de tipo "%s"', async (rol, tipo) => {
-    await expect(crearServicio().create(dto(tipo), 'user-1', rol as never)).rejects.toThrow(
-      ForbiddenException,
-    );
+    await expect(
+      crearServicio().create(dto(tipo), 'user-1', rol as never),
+    ).rejects.toThrow(ForbiddenException);
   });
 
   it.each([
@@ -285,9 +295,154 @@ describe('ComprasSimplesService.create (tipos permitidos por rol)', () => {
     ['logistica', 'administrativo'],
     ['gerencia', 'civil'],
     ['admin_ti', 'seguridad'],
-  ])('deja pasar a "%s" con el tipo "%s" a la siguiente validación', async (rol, tipo) => {
-    await expect(crearServicio().create(dto(tipo), 'user-1', rol as never)).rejects.toThrow(
-      BadRequestException,
+  ])(
+    'deja pasar a "%s" con el tipo "%s" a la siguiente validación',
+    async (rol, tipo) => {
+      await expect(
+        crearServicio().create(dto(tipo), 'user-1', rol as never),
+      ).rejects.toThrow(BadRequestException);
+    },
+  );
+});
+
+describe('ComprasSimplesService — coordinador SSOMA (obras asignadas)', () => {
+  function setup(asignado: boolean) {
+    const prisma = {
+      proyectoSupervisor: {
+        findUnique: jest
+          .fn()
+          .mockResolvedValue(asignado ? { userId: 'u-ssoma' } : null),
+      },
+      compraSimple: {
+        findMany: jest.fn().mockResolvedValue([]),
+        findUnique: jest.fn(),
+      },
+      $transaction: jest.fn(),
+    };
+    const events = { emit: jest.fn() };
+    const service = new ComprasSimplesService(
+      prisma as never,
+      {} as never,
+      events as never,
+      {} as never,
+    );
+    return { prisma, events, service };
+  }
+  const grupo = (tipo: string, estadoAprobacion = 'pendiente') => ({
+    id: 'g1',
+    estadoAprobacion,
+    archivos: [],
+    compraSimple: {
+      id: 'c1',
+      codigo: 'CS-1',
+      nombre: 'Guantes',
+      tipo,
+      proyectoId: 'p1',
+      esRendicion: false,
+    },
+  });
+  const conGrupo = (service: ComprasSimplesService, g: unknown) =>
+    jest.spyOn(service as never, 'findGrupo').mockResolvedValue(g);
+
+  it('aprueba el paso técnico de seguridad en una obra asignada', async () => {
+    const { prisma, events, service } = setup(true);
+    conGrupo(service, grupo('seguridad'));
+    prisma.$transaction.mockImplementation((cb: unknown) =>
+      (cb as (tx: unknown) => unknown)({
+        ordenCompra: {
+          update: jest.fn().mockResolvedValue({
+            id: 'g1',
+            estadoAprobacion: 'aprobada_tecnico',
+          }),
+        },
+        compraSimpleGrupoHistorial: { create: jest.fn() },
+      }),
+    );
+
+    await expect(
+      service.aprobarGrupo('g1', {}, 'u-ssoma', 'coordinador_ssoma'),
+    ).resolves.toEqual(
+      expect.objectContaining({ estadoAprobacion: 'aprobada_tecnico' }),
+    );
+    expect(events.emit).toHaveBeenCalledTimes(1);
+  });
+
+  it('no decide en una obra donde no está asignado (aprobar, observar, rechazar, editar)', async () => {
+    const { prisma, service } = setup(false);
+    conGrupo(service, grupo('seguridad'));
+
+    await expect(
+      service.aprobarGrupo('g1', {}, 'u-ssoma', 'coordinador_ssoma'),
+    ).rejects.toThrow('No estás asignado a esta obra');
+    await expect(
+      service.observarGrupo(
+        'g1',
+        { nota: 'x' },
+        'u-ssoma',
+        'coordinador_ssoma',
+      ),
+    ).rejects.toThrow('No estás asignado a esta obra');
+    await expect(
+      service.cancelarGrupo(
+        'g1',
+        { motivo: 'x' },
+        'u-ssoma',
+        'coordinador_ssoma',
+      ),
+    ).rejects.toThrow('No estás asignado a esta obra');
+    await expect(
+      service.editarItemsGrupo(
+        'g1',
+        { items: [] },
+        'u-ssoma',
+        'coordinador_ssoma',
+      ),
+    ).rejects.toThrow('No estás asignado a esta obra');
+    expect(prisma.$transaction).not.toHaveBeenCalled();
+  });
+
+  it('solo decide compras de seguridad, aunque estén en su obra', async () => {
+    const { service } = setup(true);
+    conGrupo(service, grupo('civil'));
+    await expect(
+      service.aprobarGrupo('g1', {}, 'u-ssoma', 'coordinador_ssoma'),
+    ).rejects.toThrow('no puede aprobar este paso');
+  });
+
+  it('no da el segundo paso (gerencia)', async () => {
+    const { service } = setup(true);
+    conGrupo(service, grupo('seguridad', 'aprobada_tecnico'));
+    await expect(
+      service.aprobarGrupo('g1', {}, 'u-ssoma', 'coordinador_ssoma'),
+    ).rejects.toThrow('no puede aprobar este paso');
+  });
+
+  it('el listado y el detalle se acotan a sus obras', async () => {
+    const { prisma, service } = setup(false);
+    await service.findAll({}, { id: 'u-ssoma', role: 'coordinador_ssoma' });
+    expect(prisma.compraSimple.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: {
+          proyectoId: undefined,
+          proyecto: { supervisores: { some: { userId: 'u-ssoma' } } },
+        },
+      }),
+    );
+
+    prisma.compraSimple.findUnique.mockResolvedValue({
+      id: 'c1',
+      proyectoId: 'p2',
+    });
+    await expect(
+      service.findOne('c1', { id: 'u-ssoma', role: 'coordinador_ssoma' }),
+    ).rejects.toThrow('No estás asignado a esta obra');
+  });
+
+  it('los demás roles ven el listado completo', async () => {
+    const { prisma, service } = setup(false);
+    await service.findAll({}, { id: 'u-1', role: 'jefe_sig' });
+    expect(prisma.compraSimple.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: { proyectoId: undefined } }),
     );
   });
 });

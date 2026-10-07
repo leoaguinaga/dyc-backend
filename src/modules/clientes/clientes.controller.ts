@@ -5,6 +5,7 @@ import { CreateClienteDto } from './dto/create-cliente.dto.js';
 import { UpdateClienteDto } from './dto/update-cliente.dto.js';
 import { CreateContactoDto } from './dto/create-contacto.dto.js';
 import { UpdateContactoDto } from './dto/update-contacto.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 @Controller('clientes')
 @Roles(
@@ -15,6 +16,7 @@ import { UpdateContactoDto } from './dto/update-contacto.dto.js';
   'ing_electrico',
   'jefe_sig',
 )
+@Modulo('clientes')
 export class ClientesController {
   constructor(private clientesService: ClientesService) {}
 

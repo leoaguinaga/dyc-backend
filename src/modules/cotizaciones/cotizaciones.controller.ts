@@ -26,6 +26,7 @@ import {
 } from './dto/create-cotizacion.dto.js';
 import { QuerySolicitudDto } from './dto/query-solicitud.dto.js';
 import { QueryHistorialDto } from './dto/query-historial.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 const ALLOWED_ARCHIVO_MIME_TYPES = [
@@ -44,6 +45,7 @@ const ALLOWED_ARCHIVO_MIME_TYPES = [
   'ing_electrico',
   'jefe_sig',
 )
+@Modulo('cotizaciones')
 export class CotizacionesController {
   constructor(private cotizacionesService: CotizacionesService) {}
 

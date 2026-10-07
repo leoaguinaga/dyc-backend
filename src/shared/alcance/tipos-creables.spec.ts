@@ -2,8 +2,16 @@ import type { Role } from '../../prisma/types.js';
 import { puedeCrearTipo, tiposCreablesPorRol } from './tipos-creables.js';
 
 describe('tiposCreablesPorRol', () => {
-  it.each<Role>(['jefe_sig', 'pdr'])('"%s" solo crea seguridad', (rol) => {
-    expect(tiposCreablesPorRol(rol)).toEqual(['seguridad']);
+  it.each<Role>(['jefe_sig', 'pdr', 'coordinador_ssoma'])(
+    '"%s" solo crea seguridad',
+    (rol) => {
+      expect(tiposCreablesPorRol(rol)).toEqual(['seguridad']);
+    },
+  );
+
+  it('tesorería no crea requerimientos ni compras', () => {
+    expect(tiposCreablesPorRol('tesoreria')).toEqual([]);
+    expect(puedeCrearTipo('tesoreria', 'seguridad')).toBe(false);
   });
 
   it.each<Role>(['ing_electrico', 'supervisor_electrico'])(

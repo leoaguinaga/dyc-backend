@@ -9,6 +9,14 @@
   "scripts": {
     "seed:admin": "tsx scripts/seed-admin.ts",
     "backfill:turno-config": "tsx scripts/backfill-turno-config.ts",
+    "pagos:limpiar": "tsx scripts/pagos-limpiar.ts",
+    "pagos:importar": "tsx scripts/pagos-importar.ts",
+    "pagos:verificar": "tsx scripts/pagos-verificar.ts",
+    "pagos:conciliar": "tsx scripts/pagos-conciliar.ts",
+    "pagos:plantilla": "tsx scripts/pagos-plantilla.ts",
+    "pagos:exportar": "tsx scripts/pagos-exportar.ts",
+    "pagos:lotes": "tsx scripts/pagos-deshacer.ts",
+    "pagos:deshacer": "tsx scripts/pagos-deshacer.ts",
     "seed": "tsx scripts/seed.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -18,8 +26,8 @@
     "start:prod": "node dist/src/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test:cov": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
@@ -50,6 +58,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
+    "@jest/globals": "^30.4.1",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
@@ -111,6 +120,14 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "statements": 70,
+        "lines": 70,
+        "functions": 70,
+        "branches": 60
+      }
+    }
   }
 }

@@ -13,10 +13,12 @@ import { VisitaTerceroService } from './visita-tercero.service.js';
 import { CreateVisitaTerceroDto } from './dto/create-visita-tercero.dto.js';
 import { RequireResponsableAsistencia } from '../../shared/decorators/require-responsable-asistencia.decorator.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 @Controller('asistencias/proyectos/:proyectoId/terceros')
+@Modulo('asistencia')
 export class VisitaTerceroController {
   constructor(private tercerosService: VisitaTerceroService) {}
 

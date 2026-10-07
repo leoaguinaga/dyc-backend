@@ -23,6 +23,7 @@ import { UpdateHitoDto } from './dto/update-hito.dto.js';
 import { AsignarTrabajadoresDto } from './dto/asignar-trabajadores.dto.js';
 import { CerrarProyectoDto } from './dto/cerrar-proyecto.dto.js';
 import type { AuthenticatedUser } from '../../shared/guards/auth.guard.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 const MAX_ACTA_BYTES = 10 * 1024 * 1024;
 const ACTA_MIME_PERMITIDOS = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -30,6 +31,7 @@ const ACTA_MIME_PERMITIDOS = ['application/pdf', 'image/jpeg', 'image/png'];
 type AuthRequest = Request & { user: AuthenticatedUser };
 
 @Controller('proyectos')
+@Modulo('proyectos')
 export class ProyectosController {
   constructor(private proyectosService: ProyectosService) {}
 

@@ -28,6 +28,11 @@ import {
   tiposListadosPorRol,
 } from '../../shared/alcance/alcance-listado.js';
 import { puedeCrearTipo } from '../../shared/alcance/tipos-creables.js';
+import {
+  exigirAsignacionSiAplica,
+  obraAsignadaA,
+  requiereAsignacion,
+} from '../../shared/alcance/asignacion-proyecto.js';
 
 // "aprobado" no es terminal: el requerimiento sigue accionable (falta generar
 // la solicitud de cotización) hasta que pasa a "en_cotizacion". Solo
@@ -54,6 +59,7 @@ const ROLES_GRUPO_B: Role[] = [
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
   'logistica',
   'gerencia',
   'administrador',
@@ -100,8 +106,10 @@ const TIPO_APPROVERS: Record<TipoRequerimiento, Role[]> = {
     'administrador',
     'admin_ti',
   ],
+  // coordinador_ssoma solo decide en las obras donde está asignado.
   seguridad: [
     'jefe_sig',
+    'coordinador_ssoma',
     'ing_civil',
     'ing_electrico',
     'gerencia',
@@ -217,6 +225,7 @@ export class RequerimientosService {
     if (query.proyectoId) where.proyectoId = query.proyectoId;
 
     if (RESTRICTED_ROLES.includes(userRole)) where.creadoPorId = userId;
+    if (requiereAsignacion(userRole)) where.proyecto = obraAsignadaA(userId);
 
     // Con ?alcance=rol el listado se acota a lo que el rol trabaja: por tipo
     // (ings, Jefe SIG) o solo lo que espera aprobación de compra (gerencia).
@@ -265,6 +274,7 @@ export class RequerimientosService {
     };
 
     if (RESTRICTED_ROLES.includes(userRole)) where.creadoPorId = userId;
+    if (requiereAsignacion(userRole)) where.proyecto = obraAsignadaA(userId);
 
     const tipos = tiposListadosPorRol(query.alcance, userRole);
     if (tipos) where.tipo = { in: tipos };
@@ -278,7 +288,7 @@ export class RequerimientosService {
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, viewer?: { id: string; role: Role }) {
     const r = await this.prisma.requerimiento.findUnique({
       where: { id },
       include: {
@@ -287,6 +297,13 @@ export class RequerimientosService {
       },
     });
     if (!r) throw new NotFoundException(`Requerimiento ${id} no encontrado`);
+    if (viewer)
+      await exigirAsignacionSiAplica(
+        this.prisma,
+        viewer.id,
+        viewer.role,
+        r.proyectoId,
+      );
     return r;
   }
 
@@ -296,6 +313,12 @@ export class RequerimientosService {
         `El rol "${userRole}" no puede crear requerimientos de tipo "${dto.tipo}"`,
       );
     }
+    await exigirAsignacionSiAplica(
+      this.prisma,
+      userId,
+      userRole,
+      dto.proyectoId,
+    );
 
     const codigo = await this.generateCodigo();
     return this.prisma.requerimiento.create({
@@ -334,7 +357,7 @@ export class RequerimientosService {
     userId: string,
     userRole: Role,
   ) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
     const esCreador = r.creadoPorId === userId;
     const esRevisor = TIPO_APPROVERS[r.tipo]?.includes(userRole) ?? false;
     const cambiaContenido =
@@ -517,7 +540,7 @@ export class RequerimientosService {
   }
 
   async enviar(id: string, userId: string, userRole: Role) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
     if (r.estado !== 'borrador' && r.estado !== 'observado')
       throw new BadRequestException(
         'Solo se pueden enviar requerimientos en borrador u observados',
@@ -557,13 +580,15 @@ export class RequerimientosService {
           requerimientoId: id,
           codigo: r.codigo,
           nombre: r.nombre,
+          proyectoId: r.proyectoId,
+          tipo: r.tipo,
         });
         return actualizado;
       });
   }
 
   async aprobar(id: string, userId: string, userRole: Role) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
     if (r.estado !== 'enviado')
       throw new BadRequestException(
         'Solo se pueden aprobar requerimientos enviados',
@@ -614,7 +639,7 @@ export class RequerimientosService {
     userId: string,
     userRole: Role,
   ) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
     if (r.estado !== 'enviado')
       throw new BadRequestException(
         'Solo se pueden observar requerimientos enviados',
@@ -668,7 +693,7 @@ export class RequerimientosService {
     userId: string,
     userRole: Role,
   ) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
     if (r.estado !== 'pendiente_conformidad')
       throw new BadRequestException(
         'Este requerimiento no está pendiente de confirmación de recepción',
@@ -723,7 +748,7 @@ export class RequerimientosService {
     userId: string,
     userRole: Role,
   ) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
 
     if (r.estado === 'cancelado' || r.estado === 'recibido')
       throw new BadRequestException(
@@ -804,7 +829,7 @@ export class RequerimientosService {
   }
 
   async reabrir(id: string, userId: string, userRole: Role) {
-    const r = await this.findOne(id);
+    const r = await this.findOne(id, { id: userId, role: userRole });
 
     if (r.estado !== 'cancelado') {
       throw new BadRequestException(

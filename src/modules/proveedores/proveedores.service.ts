@@ -321,7 +321,26 @@ export class ProveedoresService {
       where: { proveedorId },
       include: {
         proveedor: { select: { id: true, razonSocial: true, ruc: true } },
-        solicitud: { select: { id: true, codigo: true } },
+        solicitud: {
+          select: {
+            id: true,
+            codigo: true,
+            nota: true,
+            requerimiento: { select: { id: true, codigo: true, nombre: true } },
+            proyecto: { select: { id: true, codigo: true, nombre: true } },
+            ordenes: {
+              where: { proveedorId },
+              select: {
+                id: true,
+                numero: true,
+                nombre: true,
+                concepto: true,
+                estado: true,
+                montoTotal: true,
+              },
+            },
+          },
+        },
         items: { include: { item: { select: { id: true, nombre: true } } } },
         condicionesPago: true,
         archivos: true,

@@ -16,7 +16,12 @@ const APROBADORES_REQUERIMIENTO = [
 const GESTORES_COTIZACION = ['administrador', 'admin_ti', 'logistica', 'gerencia'] as const;
 const GESTORES_OC = ['logistica', 'gerencia', 'administrador', 'admin_ti'] as const;
 const GESTORES_OBRA = ['gerencia', 'administrador', 'admin_ti'] as const;
-const GESTORES_PLANILLA = ['gerencia', 'administrador', 'admin_ti'] as const;
+const GESTORES_PLANILLA = [
+  'gerencia',
+  'administrador',
+  'admin_ti',
+  'tesoreria',
+] as const;
 const GESTORES_COMPRA_SIMPLE = [
   'gerencia',
   'administrador',
@@ -39,6 +44,8 @@ export interface RequerimientoCreadoPayload {
   requerimientoId: string;
   codigo: string;
   nombre: string;
+  proyectoId?: string;
+  tipo?: string;
 }
 
 export interface RequerimientoEstadoCambiadoPayload {
@@ -78,6 +85,7 @@ export interface CompraSimpleCreadaPayload {
   compraSimpleCodigo: string;
   compraSimpleNombre: string;
   tipo: keyof typeof APROBADOR_TECNICO_COMPRA_SIMPLE;
+  proyectoId?: string;
 }
 
 export interface CompraSimpleAprobacionTecnicaPayload {
@@ -125,6 +133,20 @@ export class NotificacionesListener {
       entidadTipo: 'Requerimiento',
       entidadId: payload.requerimientoId,
     });
+    // El coordinador SSOMA revisa lo de seguridad, solo en sus obras asignadas.
+    if (payload.tipo === 'seguridad' && payload.proyectoId) {
+      await this.service.crearParaAsignadosDeObra(
+        'coordinador_ssoma',
+        payload.proyectoId,
+        {
+          tipo: 'requerimiento_creado',
+          titulo: 'Nuevo requerimiento',
+          mensaje: `Se creó el requerimiento ${payload.codigo} — ${payload.nombre}.`,
+          entidadTipo: 'Requerimiento',
+          entidadId: payload.requerimientoId,
+        },
+      );
+    }
   }
 
   @OnEvent(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO)
@@ -223,6 +245,19 @@ export class NotificacionesListener {
         entidadId: payload.compraSimpleId,
       },
     );
+    if (payload.tipo === 'seguridad' && payload.proyectoId) {
+      await this.service.crearParaAsignadosDeObra(
+        'coordinador_ssoma',
+        payload.proyectoId,
+        {
+          tipo: 'compra_simple_pendiente_tecnico',
+          titulo: 'Compra simple pendiente de aprobación técnica',
+          mensaje: `La compra simple ${payload.compraSimpleCodigo} — ${payload.compraSimpleNombre} necesita tu aprobación técnica.`,
+          entidadTipo: 'CompraSimple',
+          entidadId: payload.compraSimpleId,
+        },
+      );
+    }
   }
 
   @OnEvent(AppEvents.COMPRA_SIMPLE_APROBACION_TECNICA)

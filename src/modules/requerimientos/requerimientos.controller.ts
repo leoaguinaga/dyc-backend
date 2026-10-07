@@ -22,6 +22,7 @@ import { QueryHistorialDto } from './dto/query-historial.dto.js';
 import { ObservarRequerimientoDto } from './dto/revisar-requerimiento.dto.js';
 import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js';
 import { CancelarRequerimientoDto } from './dto/cancelar-requerimiento.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
@@ -35,10 +36,12 @@ const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
   'logistica',
   'gerencia',
   'administrador',
 )
+@Modulo('solicitudes')
 export class RequerimientosController {
   constructor(private service: RequerimientosService) {}
 
@@ -53,8 +56,8 @@ export class RequerimientosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.service.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    return this.service.findOne(id, req.user);
   }
 
   @Post()
@@ -100,6 +103,7 @@ export class RequerimientosController {
     'ing_civil',
     'ing_electrico',
     'jefe_sig',
+    'coordinador_ssoma',
     'logistica',
     'gerencia',
     'administrador',
@@ -113,6 +117,7 @@ export class RequerimientosController {
     'ing_civil',
     'ing_electrico',
     'jefe_sig',
+    'coordinador_ssoma',
     'logistica',
     'gerencia',
     'administrador',

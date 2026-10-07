@@ -35,7 +35,10 @@ import {
   CrearComprobanteDto,
   ActualizarComprobanteDto,
   ActualizarCodigoComprobanteDto,
+  ActualizarRendicionDto,
+  CrearCuentaEmpresaDto,
 } from './dto/create-pago.dto.js';
+import { Modulo } from '../../shared/decorators/modulo.decorator.js';
 
 type AuthRequest = Request & { user: AuthenticatedUser };
 const ROLES_OPERATIVOS = [
@@ -46,9 +49,11 @@ const ROLES_OPERATIVOS = [
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
   'logistica',
   'gerencia',
   'administrador',
+  'tesoreria',
 ] as const;
 
 const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
@@ -61,6 +66,7 @@ const ARCHIVOS_PERMITIDOS = [
 
 @Controller('pagos')
 @Roles(...ROLES_OPERATIVOS)
+@Modulo('pagos')
 export class PagosController {
   constructor(private service: PagosService) {}
 
@@ -70,19 +76,33 @@ export class PagosController {
   }
 
   @Get('resumen')
-  @Roles('gerencia', 'administrador')
+  @Roles('gerencia', 'administrador', 'tesoreria')
   resumen() {
     return this.service.resumen();
   }
 
+  @Get('empresas')
+  listarEmpresas() {
+    return this.service.listarEmpresas();
+  }
+
+  @Post('empresas/:empresaId/cuentas')
+  @Roles('administrador', 'gerencia', 'admin_ti', 'tesoreria')
+  crearCuentaEmpresa(
+    @Param('empresaId') empresaId: string,
+    @Body() dto: CrearCuentaEmpresaDto,
+  ) {
+    return this.service.crearCuentaEmpresa(empresaId, dto);
+  }
+
   @Get('reporte')
-  @Roles('administrador', 'gerencia', 'admin_ti')
+  @Roles('administrador', 'gerencia', 'admin_ti', 'tesoreria')
   async reporte(@Query() query: ReportePagosDto) {
     return this.service.datosReporte(query);
   }
 
   @Get('reporte.png')
-  @Roles('administrador', 'gerencia', 'admin_ti')
+  @Roles('administrador', 'gerencia', 'admin_ti', 'tesoreria')
   async reportePng(@Query() query: ReportePagosDto, @Res() res: Response) {
     const data = await this.service.datosReporte(query);
     const png = await renderReportePagosPng({
@@ -129,9 +149,11 @@ export class PagosController {
     'ing_civil',
     'ing_electrico',
     'jefe_sig',
+    'coordinador_ssoma',
     'logistica',
     'gerencia',
     'administrador',
+    'tesoreria',
   )
   crearRecordatorio(
     @Body() dto: CreateRecordatorioPagoDto,
@@ -141,7 +163,7 @@ export class PagosController {
   }
 
   @Get('recurrentes/lista')
-  @Roles('administrador', 'gerencia')
+  @Roles('administrador', 'gerencia', 'tesoreria')
   listarRecurrentes() {
     return this.service.listarRecurrentes();
   }
@@ -177,12 +199,14 @@ export class PagosController {
   }
 
   @Get('planilla-staff')
-  @Roles('administrador', 'gerencia')
+  @Modulo('planilla')
+  @Roles('administrador', 'gerencia', 'tesoreria')
   listarPlanillaStaff() {
     return this.service.listarPlanillaStaff();
   }
 
   @Post('planilla-staff')
+  @Modulo('planilla')
   @Roles('administrador')
   generarPlanillaStaff(
     @Body() dto: CreatePlanillaStaffDto,
@@ -201,7 +225,7 @@ export class PagosController {
   }
 
   @Post(':id/marcar-pagado')
-  @Roles('administrador', 'gerencia', 'admin_ti')
+  @Roles('administrador', 'gerencia', 'admin_ti', 'tesoreria')
   marcarPagado(
     @Param('id') id: string,
     @Body() dto: MarcarPagadoDto,
@@ -210,8 +234,17 @@ export class PagosController {
     return this.service.marcarPagado(id, dto, req.user!.id);
   }
 
+  @Patch(':id/rendicion')
+  @Roles('administrador', 'gerencia', 'admin_ti', 'tesoreria')
+  actualizarRendicion(
+    @Param('id') id: string,
+    @Body() dto: ActualizarRendicionDto,
+  ) {
+    return this.service.actualizarRendicion(id, dto);
+  }
+
   @Patch(':id/codigo-comprobante')
-  @Roles('administrador', 'gerencia', 'admin_ti')
+  @Roles('administrador', 'gerencia', 'admin_ti', 'tesoreria')
   actualizarCodigoComprobante(
     @Param('id') id: string,
     @Body() dto: ActualizarCodigoComprobanteDto,
