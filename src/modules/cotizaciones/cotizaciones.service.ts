@@ -41,6 +41,19 @@ const SOLICITANTE_ROLES: Role[] = [
   'supervisor_civil',
   'supervisor_electrico',
   'pdr',
+  'ing_civil',
+  'ing_electrico',
+  'jefe_sig',
+  'coordinador_ssoma',
+];
+
+// Roles que solo pueden abrir el detalle de solicitudes de SUS requerimientos.
+const ROLES_SOLO_PROPIO: Role[] = [
+  'supervisor',
+  'supervisor_civil',
+  'supervisor_electrico',
+  'pdr',
+  'coordinador_ssoma',
 ];
 
 const SOLICITUD_INCLUDE = {
@@ -155,12 +168,25 @@ export class CotizacionesService {
     });
   }
 
-  async findOneSolicitud(id: string) {
+  async findOneSolicitud(id: string, actor?: { id: string; role: Role }) {
     const s = await this.prisma.solicitudCotizacion.findUnique({
       where: { id },
       include: SOLICITUD_INCLUDE,
     });
     if (!s) throw new NotFoundException(`Solicitud ${id} no encontrada`);
+    if (actor && ROLES_SOLO_PROPIO.includes(actor.role)) {
+      const requerimiento = s.requerimientoId
+        ? await this.prisma.requerimiento.findUnique({
+            where: { id: s.requerimientoId },
+            select: { creadoPorId: true },
+          })
+        : null;
+      if (requerimiento?.creadoPorId !== actor.id) {
+        throw new ForbiddenException(
+          'Solo puedes ver las cotizaciones de tus propios requerimientos',
+        );
+      }
+    }
     return s;
   }
 

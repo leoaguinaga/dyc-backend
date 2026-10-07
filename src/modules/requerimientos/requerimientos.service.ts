@@ -721,6 +721,11 @@ export class RequerimientosService {
         },
         include: INCLUDE_BASE,
       });
+      // La conformidad del solicitante es la recepción de las OC/OS emitidas.
+      await tx.ordenCompra.updateMany({
+        where: { solicitud: { requerimientoId: id }, estado: 'emitida' },
+        data: { estado: 'recibida', fechaEntregaReal: new Date() },
+      });
       await tx.requerimientoHistorial.create({
         data: {
           requerimientoId: id,
