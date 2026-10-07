@@ -129,6 +129,49 @@ describe('ResponsableAsistenciaGuard', () => {
   });
 });
 
+describe('ResponsableAsistenciaGuard — coordinador SSOMA', () => {
+  function setup() {
+    const prisma = prismaMock();
+    return {
+      prisma,
+      guard: new ResponsableAsistenciaGuard(new Reflector(), prisma as never),
+    };
+  }
+  const meta = { [REQUIRE_RESPONSABLE_ASISTENCIA_KEY]: true };
+  const req = (proyectoId?: string) => ({
+    user: { id: 'u-ssoma', role: 'coordinador_ssoma' },
+    params: { proyectoId },
+  });
+
+  it('opera las obras donde está asignado, sin ser el prevencionista', async () => {
+    const { guard, prisma } = setup();
+    prisma.proyectoSupervisor.findUnique.mockResolvedValue({
+      userId: 'u-ssoma',
+    });
+    expect(await guard.canActivate(contexto(meta, req('p1')))).toBe(true);
+    expect(prisma.proyectoSupervisor.findUnique).toHaveBeenCalledWith({
+      where: { proyectoId_userId: { proyectoId: 'p1', userId: 'u-ssoma' } },
+      select: { userId: true },
+    });
+    // No pasa por la regla del prevencionista
+    expect(prisma.proyecto.findUnique).not.toHaveBeenCalled();
+  });
+
+  it('no opera una obra que no tiene asignada', async () => {
+    const { guard } = setup();
+    await expect(guard.canActivate(contexto(meta, req('p2')))).rejects.toThrow(
+      'No estás asignado a esta obra',
+    );
+  });
+
+  it('exige que la ruta traiga la obra', async () => {
+    const { guard } = setup();
+    await expect(guard.canActivate(contexto(meta, req()))).rejects.toThrow(
+      /proyectoId/,
+    );
+  });
+});
+
 describe('AuditInterceptor', () => {
   const next = { handle: () => of('ok') };
 

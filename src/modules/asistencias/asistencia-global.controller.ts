@@ -28,7 +28,7 @@ export class AsistenciaGlobalController {
   // por trabajador. Las planillas y el control de acceso global siguen para
   // administración y gerencia.
   @Get('hoy')
-  @Roles('administrador', 'gerencia', 'jefe_sig', 'pdr')
+  @Roles('administrador', 'gerencia', 'jefe_sig', 'pdr', 'coordinador_ssoma')
   obrasHoy(@Req() req: AuthRequest) {
     return this.jornadaGlobal.obrasHoy(req.user.id, req.user.role);
   }
@@ -58,6 +58,7 @@ export class AsistenciaGlobalController {
 
   @Get('planillas')
   @Modulo('planilla')
+  @Roles('administrador', 'gerencia', 'tesoreria')
   planillasGlobal(@Query() query: PlanillasGlobalQueryDto) {
     return this.consolidadoAsistencia.listarPlanillasGlobal(query);
   }

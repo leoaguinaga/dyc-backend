@@ -26,7 +26,7 @@ export class TrabajadoresController {
   @Roles(
     'administrador', 'logistica', 'gerencia',
     'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
-    'ing_civil', 'ing_electrico', 'jefe_sig',
+    'ing_civil', 'ing_electrico', 'jefe_sig', 'coordinador_ssoma',
   )
   findAll() {
     return this.trabajadoresService.findAll();
@@ -36,7 +36,7 @@ export class TrabajadoresController {
   @Roles(
     'administrador', 'logistica', 'gerencia',
     'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
-    'ing_civil', 'ing_electrico', 'jefe_sig',
+    'ing_civil', 'ing_electrico', 'jefe_sig', 'coordinador_ssoma',
   )
   findOne(@Param('id') id: string) {
     return this.trabajadoresService.findOne(id);

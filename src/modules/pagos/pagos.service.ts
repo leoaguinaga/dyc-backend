@@ -22,7 +22,10 @@ import {
   CrearComprobanteDto,
   ActualizarComprobanteDto,
   ActualizarCodigoComprobanteDto,
+  ActualizarRendicionDto,
+  CrearCuentaEmpresaDto,
 } from './dto/create-pago.dto.js';
+import { EMPRESA_POR_DEFECTO_RUC } from './importacion/columnas.js';
 
 const PAGO_INCLUDE = {
   ordenCompra: {
@@ -72,6 +75,9 @@ const PAGO_INCLUDE = {
     orderBy: [{ numero: 'asc' }, { subNumero: 'asc' }],
     include: { generadoPor: { select: { id: true, name: true } } },
   },
+  empresa: { select: { id: true, razonSocial: true, ruc: true } },
+  cuentaOrigen: { select: { id: true, banco: true, numero: true } },
+  responsableRendicion: { select: { id: true, nombre: true } },
 } satisfies Prisma.PagoInclude;
 
 function withEstadoEfectivo<T extends { estado: string; fechaProgramada: Date }>(pago: T) {
@@ -89,7 +95,13 @@ export class PagosService {
   ) {}
 
   private esFinanzas(user: AuthenticatedUser) {
-    return user.role === 'administrador' || user.role === 'gerencia' || user.role === 'admin_ti' || user.role === 'logistica';
+    return (
+      user.role === 'administrador' ||
+      user.role === 'gerencia' ||
+      user.role === 'admin_ti' ||
+      user.role === 'logistica' ||
+      user.role === 'tesoreria'
+    );
   }
 
   private alcanceUsuario(user: AuthenticatedUser) {
@@ -521,6 +533,9 @@ export class PagosService {
     if (metodo?.toLowerCase().includes('transfer') && !tieneCuenta)
       throw new BadRequestException('Registra número de cuenta o CCI antes de ejecutar una transferencia');
 
+    const origen = await this.resolverOrigen(dto.cuentaOrigenId, existing.empresaId);
+    const responsable = await this.resolverResponsableRendicion(dto);
+
     const pago = await this.conCodigoComprobante(existing.codigoComprobante, (codigoComprobante) =>
       this.prisma.pago.update({
         where: { id },
@@ -533,11 +548,109 @@ export class PagosService {
           comprobanteUrl: dto.comprobanteUrl ?? existing.comprobanteUrl,
           pagadoPorId: userId,
           codigoComprobante,
+          ...origen,
+          ...responsable,
         },
         include: PAGO_INCLUDE,
       }),
     );
     return withEstadoEfectivo(pago);
+  }
+
+  /**
+   * Empresa y cuenta de la que sale el dinero. La empresa sale de la cuenta; si
+   * no se elige cuenta se conserva la del pago y, en su defecto, la empresa por
+   * defecto (hoy todos los pagos salen de D&C).
+   */
+  private async resolverOrigen(cuentaOrigenId: string | undefined, empresaActualId: string | null) {
+    if (cuentaOrigenId) {
+      const cuenta = await this.prisma.cuentaEmpresa.findUnique({
+        where: { id: cuentaOrigenId },
+        select: { id: true, empresaId: true, activa: true },
+      });
+      if (!cuenta) throw new NotFoundException('Cuenta de origen no encontrada');
+      if (!cuenta.activa) throw new BadRequestException('La cuenta de origen está desactivada');
+      return { cuentaOrigenId: cuenta.id, empresaId: cuenta.empresaId };
+    }
+    if (empresaActualId) return {};
+    const porDefecto = await this.prisma.empresa.findUnique({
+      where: { ruc: EMPRESA_POR_DEFECTO_RUC },
+      select: { id: true },
+    });
+    return porDefecto ? { empresaId: porDefecto.id } : {};
+  }
+
+  /** Responsable de la rendición: si es un trabajador del sistema se vincula; si no, queda su nombre. */
+  private async resolverResponsableRendicion(
+    dto: Pick<MarcarPagadoDto, 'responsableRendicionId' | 'responsableRendicionNombre'>,
+  ) {
+    const nombreLibre = dto.responsableRendicionNombre?.trim();
+    if (dto.responsableRendicionId) {
+      const trabajador = await this.prisma.trabajador.findUnique({
+        where: { id: dto.responsableRendicionId },
+        select: { id: true, nombre: true },
+      });
+      if (!trabajador) throw new NotFoundException('Trabajador responsable de la rendición no encontrado');
+      return { responsableRendicionId: trabajador.id, responsableRendicionNombre: trabajador.nombre };
+    }
+    if (dto.responsableRendicionId === '' || nombreLibre !== undefined) {
+      return { responsableRendicionId: null, responsableRendicionNombre: nombreLibre || null };
+    }
+    return {};
+  }
+
+  async actualizarRendicion(id: string, dto: ActualizarRendicionDto) {
+    const existing = await this.findOne(id);
+    if (existing.estado !== 'pagado')
+      throw new BadRequestException('La rendición solo aplica a pagos ya realizados');
+
+    const origen = await this.resolverOrigen(dto.cuentaOrigenId, existing.empresaId);
+    const responsable = await this.resolverResponsableRendicion(dto);
+    const pago = await this.prisma.pago.update({
+      where: { id },
+      data: {
+        ...origen,
+        ...responsable,
+        importeRendido: dto.importeRendido,
+        estadoRendicion: dto.estadoRendicion,
+      },
+      include: PAGO_INCLUDE,
+    });
+    return withEstadoEfectivo(pago);
+  }
+
+  /** Empresas activas con sus cuentas, para los desplegables de "cuenta de origen". */
+  listarEmpresas() {
+    return this.prisma.empresa.findMany({
+      where: { activa: true },
+      select: {
+        id: true,
+        razonSocial: true,
+        ruc: true,
+        cuentas: {
+          where: { activa: true },
+          select: { id: true, banco: true, numero: true },
+          orderBy: { banco: 'asc' },
+        },
+      },
+      orderBy: { razonSocial: 'asc' },
+    });
+  }
+
+  async crearCuentaEmpresa(empresaId: string, dto: CrearCuentaEmpresaDto) {
+    const empresa = await this.prisma.empresa.findUnique({ where: { id: empresaId }, select: { id: true } });
+    if (!empresa) throw new NotFoundException('Empresa no encontrada');
+    const numero = dto.numero.trim();
+    try {
+      return await this.prisma.cuentaEmpresa.create({
+        data: { empresaId, banco: dto.banco.trim(), numero },
+        select: { id: true, banco: true, numero: true },
+      });
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002')
+        throw new ConflictException(`La cuenta ${numero} ya está registrada para esta empresa`);
+      throw err;
+    }
   }
 
   /**
@@ -595,8 +708,9 @@ export class PagosService {
       return withEstadoEfectivo(pago);
     }
 
+    // Un comprobante puede repartirse en varias líneas (26-2248.1, .2): solo choca la misma línea.
     const duplicado = await this.prisma.pago.findFirst({
-      where: { codigoComprobante: codigo, NOT: { id } },
+      where: { codigoComprobante: codigo, subNumero: existing.subNumero, NOT: { id } },
       select: { id: true },
     });
     if (duplicado)

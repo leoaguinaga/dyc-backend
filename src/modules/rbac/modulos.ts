@@ -43,6 +43,8 @@ export const ROLES_CONFIGURABLES: readonly Role[] = [
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
+  'tesoreria',
 ];
 
 const ORDEN: Record<NivelAcceso, number> = { ninguno: 0, ver: 1, editar: 2 };

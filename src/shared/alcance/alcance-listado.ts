@@ -19,6 +19,7 @@ const TIPOS_LISTADOS_POR_ROL: Partial<Record<Role, TipoRequerimiento[]>> = {
   ing_civil: ['civil', 'electrico'],
   ing_electrico: ['civil', 'electrico'],
   jefe_sig: ['seguridad', 'administrativo'],
+  coordinador_ssoma: ['seguridad'],
 };
 
 /** Tipos que el rol ve en los listados, o null si ve todos. */

@@ -18,6 +18,7 @@ import { Modulo } from '../../shared/decorators/modulo.decorator.js';
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
 )
 @Modulo('solicitudes')
 export class SolicitudesController {

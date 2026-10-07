@@ -17,9 +17,11 @@ export const Role = {
   ing_civil: 'ing_civil',
   ing_electrico: 'ing_electrico',
   jefe_sig: 'jefe_sig',
+  coordinador_ssoma: 'coordinador_ssoma',
   logistica: 'logistica',
   gerencia: 'gerencia',
   administrador: 'administrador',
+  tesoreria: 'tesoreria',
   admin_ti: 'admin_ti'
 } as const
 
@@ -206,6 +208,14 @@ export const TipoBeneficiario = {
 } as const
 
 export type TipoBeneficiario = (typeof TipoBeneficiario)[keyof typeof TipoBeneficiario]
+
+
+export const EstadoRendicion = {
+  abierto: 'abierto',
+  cerrado: 'cerrado'
+} as const
+
+export type EstadoRendicion = (typeof EstadoRendicion)[keyof typeof EstadoRendicion]
 
 
 export const TipoPersonal = {

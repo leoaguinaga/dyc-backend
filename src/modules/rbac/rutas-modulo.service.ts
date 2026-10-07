@@ -71,14 +71,19 @@ export class RutasModuloService implements OnModuleInit {
           targets,
         );
         // ResponsableAsistenciaGuard filtra además por encargado de la obra: en la
-        // práctica pasan los roles fijos del guard y el prevencionista (pdr).
+        // práctica pasan los roles fijos del guard, el prevencionista (pdr) y el
+        // coordinador SSOMA de las obras donde está asignado.
         if (
           this.reflector.getAllAndOverride<boolean>(
             REQUIRE_RESPONSABLE_ASISTENCIA_KEY,
             targets,
           )
         ) {
-          const responsables = [...ROLES_SIEMPRE_PASAN, 'pdr'];
+          const responsables = [
+            ...ROLES_SIEMPRE_PASAN,
+            'pdr',
+            'coordinador_ssoma',
+          ];
           roles = (roles?.length ? roles : Object.values(ROLES)).filter((r) =>
             responsables.includes(r),
           );

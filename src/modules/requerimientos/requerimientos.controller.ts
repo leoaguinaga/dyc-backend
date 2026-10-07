@@ -36,6 +36,7 @@ const IMAGENES_PERMITIDAS = ['image/jpeg', 'image/png', 'image/webp'];
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
   'logistica',
   'gerencia',
   'administrador',
@@ -55,8 +56,8 @@ export class RequerimientosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.service.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    return this.service.findOne(id, req.user);
   }
 
   @Post()
@@ -102,6 +103,7 @@ export class RequerimientosController {
     'ing_civil',
     'ing_electrico',
     'jefe_sig',
+    'coordinador_ssoma',
     'logistica',
     'gerencia',
     'administrador',
@@ -115,6 +117,7 @@ export class RequerimientosController {
     'ing_civil',
     'ing_electrico',
     'jefe_sig',
+    'coordinador_ssoma',
     'logistica',
     'gerencia',
     'administrador',

@@ -13,6 +13,10 @@ import {
   soloPendienteGerencia,
   tiposListadosPorRol,
 } from '../../shared/alcance/alcance-listado.js';
+import {
+  obraAsignadaA,
+  requiereAsignacion,
+} from '../../shared/alcance/asignacion-proyecto.js';
 import type {
   ColumnaKanbanSolicitud,
   ConteoEstados,
@@ -224,6 +228,11 @@ export class SolicitudesService {
     if (requierePropias) {
       whereRequerimientos.creadoPorId = userId;
       whereCompras.creadoPorId = userId;
+    }
+    // Los roles por asignación solo ven lo pedido para sus obras.
+    if (requiereAsignacion(userRole)) {
+      whereRequerimientos.proyecto = obraAsignadaA(userId);
+      whereCompras.proyecto = obraAsignadaA(userId);
     }
 
     // Con ?alcance=rol el listado se acota a lo que el rol trabaja: por tipo

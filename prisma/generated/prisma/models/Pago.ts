@@ -29,11 +29,15 @@ export type AggregatePago = {
 export type PagoAvgAggregateOutputType = {
   monto: runtime.Decimal | null
   porcentaje: runtime.Decimal | null
+  subNumero: number | null
+  importeRendido: runtime.Decimal | null
 }
 
 export type PagoSumAggregateOutputType = {
   monto: runtime.Decimal | null
   porcentaje: runtime.Decimal | null
+  subNumero: number | null
+  importeRendido: runtime.Decimal | null
 }
 
 export type PagoMinAggregateOutputType = {
@@ -64,6 +68,15 @@ export type PagoMinAggregateOutputType = {
   comprobanteNombre: string | null
   comprobanteUrl: string | null
   codigoComprobante: string | null
+  subNumero: number | null
+  empresaId: string | null
+  cuentaOrigenId: string | null
+  responsableRendicionId: string | null
+  responsableRendicionNombre: string | null
+  importeRendido: runtime.Decimal | null
+  estadoRendicion: $Enums.EstadoRendicion | null
+  generadoPorNombre: string | null
+  importacionId: string | null
   registradoPorId: string | null
   pagadoPorId: string | null
   creadoEn: Date | null
@@ -98,6 +111,15 @@ export type PagoMaxAggregateOutputType = {
   comprobanteNombre: string | null
   comprobanteUrl: string | null
   codigoComprobante: string | null
+  subNumero: number | null
+  empresaId: string | null
+  cuentaOrigenId: string | null
+  responsableRendicionId: string | null
+  responsableRendicionNombre: string | null
+  importeRendido: runtime.Decimal | null
+  estadoRendicion: $Enums.EstadoRendicion | null
+  generadoPorNombre: string | null
+  importacionId: string | null
   registradoPorId: string | null
   pagadoPorId: string | null
   creadoEn: Date | null
@@ -132,6 +154,15 @@ export type PagoCountAggregateOutputType = {
   comprobanteNombre: number
   comprobanteUrl: number
   codigoComprobante: number
+  subNumero: number
+  empresaId: number
+  cuentaOrigenId: number
+  responsableRendicionId: number
+  responsableRendicionNombre: number
+  importeRendido: number
+  estadoRendicion: number
+  generadoPorNombre: number
+  importacionId: number
   registradoPorId: number
   pagadoPorId: number
   creadoEn: number
@@ -143,11 +174,15 @@ export type PagoCountAggregateOutputType = {
 export type PagoAvgAggregateInputType = {
   monto?: true
   porcentaje?: true
+  subNumero?: true
+  importeRendido?: true
 }
 
 export type PagoSumAggregateInputType = {
   monto?: true
   porcentaje?: true
+  subNumero?: true
+  importeRendido?: true
 }
 
 export type PagoMinAggregateInputType = {
@@ -178,6 +213,15 @@ export type PagoMinAggregateInputType = {
   comprobanteNombre?: true
   comprobanteUrl?: true
   codigoComprobante?: true
+  subNumero?: true
+  empresaId?: true
+  cuentaOrigenId?: true
+  responsableRendicionId?: true
+  responsableRendicionNombre?: true
+  importeRendido?: true
+  estadoRendicion?: true
+  generadoPorNombre?: true
+  importacionId?: true
   registradoPorId?: true
   pagadoPorId?: true
   creadoEn?: true
@@ -212,6 +256,15 @@ export type PagoMaxAggregateInputType = {
   comprobanteNombre?: true
   comprobanteUrl?: true
   codigoComprobante?: true
+  subNumero?: true
+  empresaId?: true
+  cuentaOrigenId?: true
+  responsableRendicionId?: true
+  responsableRendicionNombre?: true
+  importeRendido?: true
+  estadoRendicion?: true
+  generadoPorNombre?: true
+  importacionId?: true
   registradoPorId?: true
   pagadoPorId?: true
   creadoEn?: true
@@ -246,6 +299,15 @@ export type PagoCountAggregateInputType = {
   comprobanteNombre?: true
   comprobanteUrl?: true
   codigoComprobante?: true
+  subNumero?: true
+  empresaId?: true
+  cuentaOrigenId?: true
+  responsableRendicionId?: true
+  responsableRendicionNombre?: true
+  importeRendido?: true
+  estadoRendicion?: true
+  generadoPorNombre?: true
+  importacionId?: true
   registradoPorId?: true
   pagadoPorId?: true
   creadoEn?: true
@@ -367,6 +429,15 @@ export type PagoGroupByOutputType = {
   comprobanteNombre: string | null
   comprobanteUrl: string | null
   codigoComprobante: string | null
+  subNumero: number
+  empresaId: string | null
+  cuentaOrigenId: string | null
+  responsableRendicionId: string | null
+  responsableRendicionNombre: string | null
+  importeRendido: runtime.Decimal | null
+  estadoRendicion: $Enums.EstadoRendicion | null
+  generadoPorNombre: string | null
+  importacionId: string | null
   registradoPorId: string
   pagadoPorId: string | null
   creadoEn: Date
@@ -424,6 +495,15 @@ export type PagoWhereInput = {
   comprobanteNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableFilter<"Pago"> | string | null
   codigoComprobante?: Prisma.StringNullableFilter<"Pago"> | string | null
+  subNumero?: Prisma.IntFilter<"Pago"> | number
+  empresaId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  cuentaOrigenId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  responsableRendicionId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  responsableRendicionNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
+  importeRendido?: Prisma.DecimalNullableFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.EnumEstadoRendicionNullableFilter<"Pago"> | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
+  importacionId?: Prisma.StringNullableFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string
@@ -434,6 +514,10 @@ export type PagoWhereInput = {
   proyecto?: Prisma.XOR<Prisma.ProyectoNullableScalarRelationFilter, Prisma.ProyectoWhereInput> | null
   beneficiarioTrabajador?: Prisma.XOR<Prisma.TrabajadorNullableScalarRelationFilter, Prisma.TrabajadorWhereInput> | null
   comprobantes?: Prisma.ComprobanteListRelationFilter
+  empresa?: Prisma.XOR<Prisma.EmpresaNullableScalarRelationFilter, Prisma.EmpresaWhereInput> | null
+  cuentaOrigen?: Prisma.XOR<Prisma.CuentaEmpresaNullableScalarRelationFilter, Prisma.CuentaEmpresaWhereInput> | null
+  responsableRendicion?: Prisma.XOR<Prisma.TrabajadorNullableScalarRelationFilter, Prisma.TrabajadorWhereInput> | null
+  importacion?: Prisma.XOR<Prisma.ImportacionPagosNullableScalarRelationFilter, Prisma.ImportacionPagosWhereInput> | null
   registradoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   pagadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
@@ -466,6 +550,15 @@ export type PagoOrderByWithRelationInput = {
   comprobanteNombre?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   codigoComprobante?: Prisma.SortOrderInput | Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  empresaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cuentaOrigenId?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsableRendicionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsableRendicionNombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  importeRendido?: Prisma.SortOrderInput | Prisma.SortOrder
+  estadoRendicion?: Prisma.SortOrderInput | Prisma.SortOrder
+  generadoPorNombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  importacionId?: Prisma.SortOrderInput | Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -476,6 +569,10 @@ export type PagoOrderByWithRelationInput = {
   proyecto?: Prisma.ProyectoOrderByWithRelationInput
   beneficiarioTrabajador?: Prisma.TrabajadorOrderByWithRelationInput
   comprobantes?: Prisma.ComprobanteOrderByRelationAggregateInput
+  empresa?: Prisma.EmpresaOrderByWithRelationInput
+  cuentaOrigen?: Prisma.CuentaEmpresaOrderByWithRelationInput
+  responsableRendicion?: Prisma.TrabajadorOrderByWithRelationInput
+  importacion?: Prisma.ImportacionPagosOrderByWithRelationInput
   registradoPor?: Prisma.UserOrderByWithRelationInput
   pagadoPor?: Prisma.UserOrderByWithRelationInput
 }
@@ -483,8 +580,8 @@ export type PagoOrderByWithRelationInput = {
 export type PagoWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   planillaStaffItemId?: string
-  codigoComprobante?: string
   recurrenciaId_periodoRecurrente?: Prisma.PagoRecurrenciaIdPeriodoRecurrenteCompoundUniqueInput
+  codigoComprobante_subNumero?: Prisma.PagoCodigoComprobanteSubNumeroCompoundUniqueInput
   AND?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[]
   OR?: Prisma.PagoWhereInput[]
   NOT?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[]
@@ -512,6 +609,16 @@ export type PagoWhereUniqueInput = Prisma.AtLeast<{
   nota?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableFilter<"Pago"> | string | null
+  codigoComprobante?: Prisma.StringNullableFilter<"Pago"> | string | null
+  subNumero?: Prisma.IntFilter<"Pago"> | number
+  empresaId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  cuentaOrigenId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  responsableRendicionId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  responsableRendicionNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
+  importeRendido?: Prisma.DecimalNullableFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.EnumEstadoRendicionNullableFilter<"Pago"> | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
+  importacionId?: Prisma.StringNullableFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string
@@ -522,9 +629,13 @@ export type PagoWhereUniqueInput = Prisma.AtLeast<{
   proyecto?: Prisma.XOR<Prisma.ProyectoNullableScalarRelationFilter, Prisma.ProyectoWhereInput> | null
   beneficiarioTrabajador?: Prisma.XOR<Prisma.TrabajadorNullableScalarRelationFilter, Prisma.TrabajadorWhereInput> | null
   comprobantes?: Prisma.ComprobanteListRelationFilter
+  empresa?: Prisma.XOR<Prisma.EmpresaNullableScalarRelationFilter, Prisma.EmpresaWhereInput> | null
+  cuentaOrigen?: Prisma.XOR<Prisma.CuentaEmpresaNullableScalarRelationFilter, Prisma.CuentaEmpresaWhereInput> | null
+  responsableRendicion?: Prisma.XOR<Prisma.TrabajadorNullableScalarRelationFilter, Prisma.TrabajadorWhereInput> | null
+  importacion?: Prisma.XOR<Prisma.ImportacionPagosNullableScalarRelationFilter, Prisma.ImportacionPagosWhereInput> | null
   registradoPor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   pagadoPor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-}, "id" | "planillaStaffItemId" | "codigoComprobante" | "recurrenciaId_periodoRecurrente">
+}, "id" | "planillaStaffItemId" | "recurrenciaId_periodoRecurrente" | "codigoComprobante_subNumero">
 
 export type PagoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -554,6 +665,15 @@ export type PagoOrderByWithAggregationInput = {
   comprobanteNombre?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   codigoComprobante?: Prisma.SortOrderInput | Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  empresaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  cuentaOrigenId?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsableRendicionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  responsableRendicionNombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  importeRendido?: Prisma.SortOrderInput | Prisma.SortOrder
+  estadoRendicion?: Prisma.SortOrderInput | Prisma.SortOrder
+  generadoPorNombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  importacionId?: Prisma.SortOrderInput | Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -596,6 +716,15 @@ export type PagoScalarWhereWithAggregatesInput = {
   comprobanteNombre?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   codigoComprobante?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  subNumero?: Prisma.IntWithAggregatesFilter<"Pago"> | number
+  empresaId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  cuentaOrigenId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  responsableRendicionId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  responsableRendicionNombre?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  importeRendido?: Prisma.DecimalNullableWithAggregatesFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.EnumEstadoRendicionNullableWithAggregatesFilter<"Pago"> | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
+  importacionId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringWithAggregatesFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Pago"> | Date | string
@@ -625,6 +754,11 @@ export type PagoCreateInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -633,6 +767,10 @@ export type PagoCreateInput = {
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -665,6 +803,15 @@ export type PagoUncheckedCreateInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -695,6 +842,11 @@ export type PagoUpdateInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -703,6 +855,10 @@ export type PagoUpdateInput = {
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -735,6 +891,15 @@ export type PagoUncheckedUpdateInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -770,6 +935,15 @@ export type PagoCreateManyInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -799,6 +973,11 @@ export type PagoUpdateManyMutationInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -831,6 +1010,15 @@ export type PagoUncheckedUpdateManyInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -850,6 +1038,11 @@ export type PagoOrderByRelationAggregateInput = {
 export type PagoRecurrenciaIdPeriodoRecurrenteCompoundUniqueInput = {
   recurrenciaId: string
   periodoRecurrente: string
+}
+
+export type PagoCodigoComprobanteSubNumeroCompoundUniqueInput = {
+  codigoComprobante: string
+  subNumero: number
 }
 
 export type PagoCountOrderByAggregateInput = {
@@ -880,6 +1073,15 @@ export type PagoCountOrderByAggregateInput = {
   comprobanteNombre?: Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrder
   codigoComprobante?: Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  empresaId?: Prisma.SortOrder
+  cuentaOrigenId?: Prisma.SortOrder
+  responsableRendicionId?: Prisma.SortOrder
+  responsableRendicionNombre?: Prisma.SortOrder
+  importeRendido?: Prisma.SortOrder
+  estadoRendicion?: Prisma.SortOrder
+  generadoPorNombre?: Prisma.SortOrder
+  importacionId?: Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -889,6 +1091,8 @@ export type PagoCountOrderByAggregateInput = {
 export type PagoAvgOrderByAggregateInput = {
   monto?: Prisma.SortOrder
   porcentaje?: Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  importeRendido?: Prisma.SortOrder
 }
 
 export type PagoMaxOrderByAggregateInput = {
@@ -919,6 +1123,15 @@ export type PagoMaxOrderByAggregateInput = {
   comprobanteNombre?: Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrder
   codigoComprobante?: Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  empresaId?: Prisma.SortOrder
+  cuentaOrigenId?: Prisma.SortOrder
+  responsableRendicionId?: Prisma.SortOrder
+  responsableRendicionNombre?: Prisma.SortOrder
+  importeRendido?: Prisma.SortOrder
+  estadoRendicion?: Prisma.SortOrder
+  generadoPorNombre?: Prisma.SortOrder
+  importacionId?: Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -953,6 +1166,15 @@ export type PagoMinOrderByAggregateInput = {
   comprobanteNombre?: Prisma.SortOrder
   comprobanteUrl?: Prisma.SortOrder
   codigoComprobante?: Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  empresaId?: Prisma.SortOrder
+  cuentaOrigenId?: Prisma.SortOrder
+  responsableRendicionId?: Prisma.SortOrder
+  responsableRendicionNombre?: Prisma.SortOrder
+  importeRendido?: Prisma.SortOrder
+  estadoRendicion?: Prisma.SortOrder
+  generadoPorNombre?: Prisma.SortOrder
+  importacionId?: Prisma.SortOrder
   registradoPorId?: Prisma.SortOrder
   pagadoPorId?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
@@ -962,6 +1184,8 @@ export type PagoMinOrderByAggregateInput = {
 export type PagoSumOrderByAggregateInput = {
   monto?: Prisma.SortOrder
   porcentaje?: Prisma.SortOrder
+  subNumero?: Prisma.SortOrder
+  importeRendido?: Prisma.SortOrder
 }
 
 export type PagoScalarRelationFilter = {
@@ -1107,10 +1331,24 @@ export type PagoCreateNestedManyWithoutBeneficiarioTrabajadorInput = {
   connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
 }
 
+export type PagoCreateNestedManyWithoutResponsableRendicionInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutResponsableRendicionInput, Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput> | Prisma.PagoCreateWithoutResponsableRendicionInput[] | Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput | Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput[]
+  createMany?: Prisma.PagoCreateManyResponsableRendicionInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
 export type PagoUncheckedCreateNestedManyWithoutBeneficiarioTrabajadorInput = {
   create?: Prisma.XOR<Prisma.PagoCreateWithoutBeneficiarioTrabajadorInput, Prisma.PagoUncheckedCreateWithoutBeneficiarioTrabajadorInput> | Prisma.PagoCreateWithoutBeneficiarioTrabajadorInput[] | Prisma.PagoUncheckedCreateWithoutBeneficiarioTrabajadorInput[]
   connectOrCreate?: Prisma.PagoCreateOrConnectWithoutBeneficiarioTrabajadorInput | Prisma.PagoCreateOrConnectWithoutBeneficiarioTrabajadorInput[]
   createMany?: Prisma.PagoCreateManyBeneficiarioTrabajadorInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUncheckedCreateNestedManyWithoutResponsableRendicionInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutResponsableRendicionInput, Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput> | Prisma.PagoCreateWithoutResponsableRendicionInput[] | Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput | Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput[]
+  createMany?: Prisma.PagoCreateManyResponsableRendicionInputEnvelope
   connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
 }
 
@@ -1128,6 +1366,20 @@ export type PagoUpdateManyWithoutBeneficiarioTrabajadorNestedInput = {
   deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
 }
 
+export type PagoUpdateManyWithoutResponsableRendicionNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutResponsableRendicionInput, Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput> | Prisma.PagoCreateWithoutResponsableRendicionInput[] | Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput | Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutResponsableRendicionInput | Prisma.PagoUpsertWithWhereUniqueWithoutResponsableRendicionInput[]
+  createMany?: Prisma.PagoCreateManyResponsableRendicionInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutResponsableRendicionInput | Prisma.PagoUpdateWithWhereUniqueWithoutResponsableRendicionInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutResponsableRendicionInput | Prisma.PagoUpdateManyWithWhereWithoutResponsableRendicionInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
 export type PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput = {
   create?: Prisma.XOR<Prisma.PagoCreateWithoutBeneficiarioTrabajadorInput, Prisma.PagoUncheckedCreateWithoutBeneficiarioTrabajadorInput> | Prisma.PagoCreateWithoutBeneficiarioTrabajadorInput[] | Prisma.PagoUncheckedCreateWithoutBeneficiarioTrabajadorInput[]
   connectOrCreate?: Prisma.PagoCreateOrConnectWithoutBeneficiarioTrabajadorInput | Prisma.PagoCreateOrConnectWithoutBeneficiarioTrabajadorInput[]
@@ -1139,6 +1391,20 @@ export type PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorNestedInput = {
   connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
   update?: Prisma.PagoUpdateWithWhereUniqueWithoutBeneficiarioTrabajadorInput | Prisma.PagoUpdateWithWhereUniqueWithoutBeneficiarioTrabajadorInput[]
   updateMany?: Prisma.PagoUpdateManyWithWhereWithoutBeneficiarioTrabajadorInput | Prisma.PagoUpdateManyWithWhereWithoutBeneficiarioTrabajadorInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
+export type PagoUncheckedUpdateManyWithoutResponsableRendicionNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutResponsableRendicionInput, Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput> | Prisma.PagoCreateWithoutResponsableRendicionInput[] | Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput | Prisma.PagoCreateOrConnectWithoutResponsableRendicionInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutResponsableRendicionInput | Prisma.PagoUpsertWithWhereUniqueWithoutResponsableRendicionInput[]
+  createMany?: Prisma.PagoCreateManyResponsableRendicionInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutResponsableRendicionInput | Prisma.PagoUpdateWithWhereUniqueWithoutResponsableRendicionInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutResponsableRendicionInput | Prisma.PagoUpdateManyWithWhereWithoutResponsableRendicionInput[]
   deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
 }
 
@@ -1190,6 +1456,136 @@ export type EnumTipoBeneficiarioFieldUpdateOperationsInput = {
 
 export type EnumEstadoPagoFieldUpdateOperationsInput = {
   set?: $Enums.EstadoPago
+}
+
+export type NullableEnumEstadoRendicionFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoRendicion | null
+}
+
+export type PagoCreateNestedManyWithoutEmpresaInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutEmpresaInput, Prisma.PagoUncheckedCreateWithoutEmpresaInput> | Prisma.PagoCreateWithoutEmpresaInput[] | Prisma.PagoUncheckedCreateWithoutEmpresaInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutEmpresaInput | Prisma.PagoCreateOrConnectWithoutEmpresaInput[]
+  createMany?: Prisma.PagoCreateManyEmpresaInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUncheckedCreateNestedManyWithoutEmpresaInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutEmpresaInput, Prisma.PagoUncheckedCreateWithoutEmpresaInput> | Prisma.PagoCreateWithoutEmpresaInput[] | Prisma.PagoUncheckedCreateWithoutEmpresaInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutEmpresaInput | Prisma.PagoCreateOrConnectWithoutEmpresaInput[]
+  createMany?: Prisma.PagoCreateManyEmpresaInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUpdateManyWithoutEmpresaNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutEmpresaInput, Prisma.PagoUncheckedCreateWithoutEmpresaInput> | Prisma.PagoCreateWithoutEmpresaInput[] | Prisma.PagoUncheckedCreateWithoutEmpresaInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutEmpresaInput | Prisma.PagoCreateOrConnectWithoutEmpresaInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutEmpresaInput | Prisma.PagoUpsertWithWhereUniqueWithoutEmpresaInput[]
+  createMany?: Prisma.PagoCreateManyEmpresaInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutEmpresaInput | Prisma.PagoUpdateWithWhereUniqueWithoutEmpresaInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutEmpresaInput | Prisma.PagoUpdateManyWithWhereWithoutEmpresaInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
+export type PagoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutEmpresaInput, Prisma.PagoUncheckedCreateWithoutEmpresaInput> | Prisma.PagoCreateWithoutEmpresaInput[] | Prisma.PagoUncheckedCreateWithoutEmpresaInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutEmpresaInput | Prisma.PagoCreateOrConnectWithoutEmpresaInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutEmpresaInput | Prisma.PagoUpsertWithWhereUniqueWithoutEmpresaInput[]
+  createMany?: Prisma.PagoCreateManyEmpresaInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutEmpresaInput | Prisma.PagoUpdateWithWhereUniqueWithoutEmpresaInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutEmpresaInput | Prisma.PagoUpdateManyWithWhereWithoutEmpresaInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
+export type PagoCreateNestedManyWithoutCuentaOrigenInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutCuentaOrigenInput, Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput> | Prisma.PagoCreateWithoutCuentaOrigenInput[] | Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput | Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput[]
+  createMany?: Prisma.PagoCreateManyCuentaOrigenInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUncheckedCreateNestedManyWithoutCuentaOrigenInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutCuentaOrigenInput, Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput> | Prisma.PagoCreateWithoutCuentaOrigenInput[] | Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput | Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput[]
+  createMany?: Prisma.PagoCreateManyCuentaOrigenInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUpdateManyWithoutCuentaOrigenNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutCuentaOrigenInput, Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput> | Prisma.PagoCreateWithoutCuentaOrigenInput[] | Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput | Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutCuentaOrigenInput | Prisma.PagoUpsertWithWhereUniqueWithoutCuentaOrigenInput[]
+  createMany?: Prisma.PagoCreateManyCuentaOrigenInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutCuentaOrigenInput | Prisma.PagoUpdateWithWhereUniqueWithoutCuentaOrigenInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutCuentaOrigenInput | Prisma.PagoUpdateManyWithWhereWithoutCuentaOrigenInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
+export type PagoUncheckedUpdateManyWithoutCuentaOrigenNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutCuentaOrigenInput, Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput> | Prisma.PagoCreateWithoutCuentaOrigenInput[] | Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput | Prisma.PagoCreateOrConnectWithoutCuentaOrigenInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutCuentaOrigenInput | Prisma.PagoUpsertWithWhereUniqueWithoutCuentaOrigenInput[]
+  createMany?: Prisma.PagoCreateManyCuentaOrigenInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutCuentaOrigenInput | Prisma.PagoUpdateWithWhereUniqueWithoutCuentaOrigenInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutCuentaOrigenInput | Prisma.PagoUpdateManyWithWhereWithoutCuentaOrigenInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
+export type PagoCreateNestedManyWithoutImportacionInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutImportacionInput, Prisma.PagoUncheckedCreateWithoutImportacionInput> | Prisma.PagoCreateWithoutImportacionInput[] | Prisma.PagoUncheckedCreateWithoutImportacionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutImportacionInput | Prisma.PagoCreateOrConnectWithoutImportacionInput[]
+  createMany?: Prisma.PagoCreateManyImportacionInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUncheckedCreateNestedManyWithoutImportacionInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutImportacionInput, Prisma.PagoUncheckedCreateWithoutImportacionInput> | Prisma.PagoCreateWithoutImportacionInput[] | Prisma.PagoUncheckedCreateWithoutImportacionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutImportacionInput | Prisma.PagoCreateOrConnectWithoutImportacionInput[]
+  createMany?: Prisma.PagoCreateManyImportacionInputEnvelope
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+}
+
+export type PagoUpdateManyWithoutImportacionNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutImportacionInput, Prisma.PagoUncheckedCreateWithoutImportacionInput> | Prisma.PagoCreateWithoutImportacionInput[] | Prisma.PagoUncheckedCreateWithoutImportacionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutImportacionInput | Prisma.PagoCreateOrConnectWithoutImportacionInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutImportacionInput | Prisma.PagoUpsertWithWhereUniqueWithoutImportacionInput[]
+  createMany?: Prisma.PagoCreateManyImportacionInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutImportacionInput | Prisma.PagoUpdateWithWhereUniqueWithoutImportacionInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutImportacionInput | Prisma.PagoUpdateManyWithWhereWithoutImportacionInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
+}
+
+export type PagoUncheckedUpdateManyWithoutImportacionNestedInput = {
+  create?: Prisma.XOR<Prisma.PagoCreateWithoutImportacionInput, Prisma.PagoUncheckedCreateWithoutImportacionInput> | Prisma.PagoCreateWithoutImportacionInput[] | Prisma.PagoUncheckedCreateWithoutImportacionInput[]
+  connectOrCreate?: Prisma.PagoCreateOrConnectWithoutImportacionInput | Prisma.PagoCreateOrConnectWithoutImportacionInput[]
+  upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutImportacionInput | Prisma.PagoUpsertWithWhereUniqueWithoutImportacionInput[]
+  createMany?: Prisma.PagoCreateManyImportacionInputEnvelope
+  set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[]
+  update?: Prisma.PagoUpdateWithWhereUniqueWithoutImportacionInput | Prisma.PagoUpdateWithWhereUniqueWithoutImportacionInput[]
+  updateMany?: Prisma.PagoUpdateManyWithWhereWithoutImportacionInput | Prisma.PagoUpdateManyWithWhereWithoutImportacionInput[]
+  deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[]
 }
 
 export type PagoCreateNestedOneWithoutComprobantesInput = {
@@ -1303,6 +1699,11 @@ export type PagoCreateWithoutRegistradoPorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1311,6 +1712,10 @@ export type PagoCreateWithoutRegistradoPorInput = {
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
 
@@ -1342,6 +1747,15 @@ export type PagoUncheckedCreateWithoutRegistradoPorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   pagadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1381,6 +1795,11 @@ export type PagoCreateWithoutPagadoPorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1389,6 +1808,10 @@ export type PagoCreateWithoutPagadoPorInput = {
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
 }
 
@@ -1420,6 +1843,15 @@ export type PagoUncheckedCreateWithoutPagadoPorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -1483,6 +1915,15 @@ export type PagoScalarWhereInput = {
   comprobanteNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
   comprobanteUrl?: Prisma.StringNullableFilter<"Pago"> | string | null
   codigoComprobante?: Prisma.StringNullableFilter<"Pago"> | string | null
+  subNumero?: Prisma.IntFilter<"Pago"> | number
+  empresaId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  cuentaOrigenId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  responsableRendicionId?: Prisma.StringNullableFilter<"Pago"> | string | null
+  responsableRendicionNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
+  importeRendido?: Prisma.DecimalNullableFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.EnumEstadoRendicionNullableFilter<"Pago"> | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.StringNullableFilter<"Pago"> | string | null
+  importacionId?: Prisma.StringNullableFilter<"Pago"> | string | null
   registradoPorId?: Prisma.StringFilter<"Pago"> | string
   pagadoPorId?: Prisma.StringNullableFilter<"Pago"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string
@@ -1528,6 +1969,11 @@ export type PagoCreateWithoutProyectoInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1535,6 +1981,10 @@ export type PagoCreateWithoutProyectoInput = {
   planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -1566,6 +2016,15 @@ export type PagoUncheckedCreateWithoutProyectoInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1622,6 +2081,11 @@ export type PagoCreateWithoutBeneficiarioTrabajadorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1629,6 +2093,10 @@ export type PagoCreateWithoutBeneficiarioTrabajadorInput = {
   planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -1660,6 +2128,15 @@ export type PagoUncheckedCreateWithoutBeneficiarioTrabajadorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1677,6 +2154,102 @@ export type PagoCreateManyBeneficiarioTrabajadorInputEnvelope = {
   skipDuplicates?: boolean
 }
 
+export type PagoCreateWithoutResponsableRendicionInput = {
+  id?: string
+  origen?: string
+  periodoRecurrente?: string | null
+  centroCosto?: string
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
+  recurrencia?: Prisma.PagoRecurrenteCreateNestedOneWithoutPagosInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
+  proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
+  beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
+  comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
+  registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
+  pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
+}
+
+export type PagoUncheckedCreateWithoutResponsableRendicionInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutPagoInput
+}
+
+export type PagoCreateOrConnectWithoutResponsableRendicionInput = {
+  where: Prisma.PagoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagoCreateWithoutResponsableRendicionInput, Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput>
+}
+
+export type PagoCreateManyResponsableRendicionInputEnvelope = {
+  data: Prisma.PagoCreateManyResponsableRendicionInput | Prisma.PagoCreateManyResponsableRendicionInput[]
+  skipDuplicates?: boolean
+}
+
 export type PagoUpsertWithWhereUniqueWithoutBeneficiarioTrabajadorInput = {
   where: Prisma.PagoWhereUniqueInput
   update: Prisma.XOR<Prisma.PagoUpdateWithoutBeneficiarioTrabajadorInput, Prisma.PagoUncheckedUpdateWithoutBeneficiarioTrabajadorInput>
@@ -1691,6 +2264,22 @@ export type PagoUpdateWithWhereUniqueWithoutBeneficiarioTrabajadorInput = {
 export type PagoUpdateManyWithWhereWithoutBeneficiarioTrabajadorInput = {
   where: Prisma.PagoScalarWhereInput
   data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorInput>
+}
+
+export type PagoUpsertWithWhereUniqueWithoutResponsableRendicionInput = {
+  where: Prisma.PagoWhereUniqueInput
+  update: Prisma.XOR<Prisma.PagoUpdateWithoutResponsableRendicionInput, Prisma.PagoUncheckedUpdateWithoutResponsableRendicionInput>
+  create: Prisma.XOR<Prisma.PagoCreateWithoutResponsableRendicionInput, Prisma.PagoUncheckedCreateWithoutResponsableRendicionInput>
+}
+
+export type PagoUpdateWithWhereUniqueWithoutResponsableRendicionInput = {
+  where: Prisma.PagoWhereUniqueInput
+  data: Prisma.XOR<Prisma.PagoUpdateWithoutResponsableRendicionInput, Prisma.PagoUncheckedUpdateWithoutResponsableRendicionInput>
+}
+
+export type PagoUpdateManyWithWhereWithoutResponsableRendicionInput = {
+  where: Prisma.PagoScalarWhereInput
+  data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutResponsableRendicionInput>
 }
 
 export type PagoCreateWithoutOrdenCompraInput = {
@@ -1716,6 +2305,11 @@ export type PagoCreateWithoutOrdenCompraInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   recurrencia?: Prisma.PagoRecurrenteCreateNestedOneWithoutPagosInput
@@ -1723,6 +2317,10 @@ export type PagoCreateWithoutOrdenCompraInput = {
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -1754,6 +2352,15 @@ export type PagoUncheckedCreateWithoutOrdenCompraInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1787,6 +2394,342 @@ export type PagoUpdateManyWithWhereWithoutOrdenCompraInput = {
   data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutOrdenCompraInput>
 }
 
+export type PagoCreateWithoutEmpresaInput = {
+  id?: string
+  origen?: string
+  periodoRecurrente?: string | null
+  centroCosto?: string
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
+  recurrencia?: Prisma.PagoRecurrenteCreateNestedOneWithoutPagosInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
+  proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
+  beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
+  comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
+  registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
+  pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
+}
+
+export type PagoUncheckedCreateWithoutEmpresaInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutPagoInput
+}
+
+export type PagoCreateOrConnectWithoutEmpresaInput = {
+  where: Prisma.PagoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagoCreateWithoutEmpresaInput, Prisma.PagoUncheckedCreateWithoutEmpresaInput>
+}
+
+export type PagoCreateManyEmpresaInputEnvelope = {
+  data: Prisma.PagoCreateManyEmpresaInput | Prisma.PagoCreateManyEmpresaInput[]
+  skipDuplicates?: boolean
+}
+
+export type PagoUpsertWithWhereUniqueWithoutEmpresaInput = {
+  where: Prisma.PagoWhereUniqueInput
+  update: Prisma.XOR<Prisma.PagoUpdateWithoutEmpresaInput, Prisma.PagoUncheckedUpdateWithoutEmpresaInput>
+  create: Prisma.XOR<Prisma.PagoCreateWithoutEmpresaInput, Prisma.PagoUncheckedCreateWithoutEmpresaInput>
+}
+
+export type PagoUpdateWithWhereUniqueWithoutEmpresaInput = {
+  where: Prisma.PagoWhereUniqueInput
+  data: Prisma.XOR<Prisma.PagoUpdateWithoutEmpresaInput, Prisma.PagoUncheckedUpdateWithoutEmpresaInput>
+}
+
+export type PagoUpdateManyWithWhereWithoutEmpresaInput = {
+  where: Prisma.PagoScalarWhereInput
+  data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutEmpresaInput>
+}
+
+export type PagoCreateWithoutCuentaOrigenInput = {
+  id?: string
+  origen?: string
+  periodoRecurrente?: string | null
+  centroCosto?: string
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
+  recurrencia?: Prisma.PagoRecurrenteCreateNestedOneWithoutPagosInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
+  proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
+  beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
+  comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
+  registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
+  pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
+}
+
+export type PagoUncheckedCreateWithoutCuentaOrigenInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutPagoInput
+}
+
+export type PagoCreateOrConnectWithoutCuentaOrigenInput = {
+  where: Prisma.PagoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagoCreateWithoutCuentaOrigenInput, Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput>
+}
+
+export type PagoCreateManyCuentaOrigenInputEnvelope = {
+  data: Prisma.PagoCreateManyCuentaOrigenInput | Prisma.PagoCreateManyCuentaOrigenInput[]
+  skipDuplicates?: boolean
+}
+
+export type PagoUpsertWithWhereUniqueWithoutCuentaOrigenInput = {
+  where: Prisma.PagoWhereUniqueInput
+  update: Prisma.XOR<Prisma.PagoUpdateWithoutCuentaOrigenInput, Prisma.PagoUncheckedUpdateWithoutCuentaOrigenInput>
+  create: Prisma.XOR<Prisma.PagoCreateWithoutCuentaOrigenInput, Prisma.PagoUncheckedCreateWithoutCuentaOrigenInput>
+}
+
+export type PagoUpdateWithWhereUniqueWithoutCuentaOrigenInput = {
+  where: Prisma.PagoWhereUniqueInput
+  data: Prisma.XOR<Prisma.PagoUpdateWithoutCuentaOrigenInput, Prisma.PagoUncheckedUpdateWithoutCuentaOrigenInput>
+}
+
+export type PagoUpdateManyWithWhereWithoutCuentaOrigenInput = {
+  where: Prisma.PagoScalarWhereInput
+  data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutCuentaOrigenInput>
+}
+
+export type PagoCreateWithoutImportacionInput = {
+  id?: string
+  origen?: string
+  periodoRecurrente?: string | null
+  centroCosto?: string
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
+  recurrencia?: Prisma.PagoRecurrenteCreateNestedOneWithoutPagosInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
+  proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
+  beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
+  comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
+  pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
+}
+
+export type PagoUncheckedCreateWithoutImportacionInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutPagoInput
+}
+
+export type PagoCreateOrConnectWithoutImportacionInput = {
+  where: Prisma.PagoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagoCreateWithoutImportacionInput, Prisma.PagoUncheckedCreateWithoutImportacionInput>
+}
+
+export type PagoCreateManyImportacionInputEnvelope = {
+  data: Prisma.PagoCreateManyImportacionInput | Prisma.PagoCreateManyImportacionInput[]
+  skipDuplicates?: boolean
+}
+
+export type PagoUpsertWithWhereUniqueWithoutImportacionInput = {
+  where: Prisma.PagoWhereUniqueInput
+  update: Prisma.XOR<Prisma.PagoUpdateWithoutImportacionInput, Prisma.PagoUncheckedUpdateWithoutImportacionInput>
+  create: Prisma.XOR<Prisma.PagoCreateWithoutImportacionInput, Prisma.PagoUncheckedCreateWithoutImportacionInput>
+}
+
+export type PagoUpdateWithWhereUniqueWithoutImportacionInput = {
+  where: Prisma.PagoWhereUniqueInput
+  data: Prisma.XOR<Prisma.PagoUpdateWithoutImportacionInput, Prisma.PagoUncheckedUpdateWithoutImportacionInput>
+}
+
+export type PagoUpdateManyWithWhereWithoutImportacionInput = {
+  where: Prisma.PagoScalarWhereInput
+  data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutImportacionInput>
+}
+
 export type PagoCreateWithoutComprobantesInput = {
   id?: string
   origen?: string
@@ -1810,6 +2753,11 @@ export type PagoCreateWithoutComprobantesInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1817,6 +2765,10 @@ export type PagoCreateWithoutComprobantesInput = {
   planillaStaffItem?: Prisma.PlanillaStaffItemCreateNestedOneWithoutPagoInput
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -1849,6 +2801,15 @@ export type PagoUncheckedCreateWithoutComprobantesInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -1894,6 +2855,11 @@ export type PagoUpdateWithoutComprobantesInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -1901,6 +2867,10 @@ export type PagoUpdateWithoutComprobantesInput = {
   planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -1933,6 +2903,15 @@ export type PagoUncheckedUpdateWithoutComprobantesInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1962,6 +2941,11 @@ export type PagoCreateWithoutRecurrenciaInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -1969,6 +2953,10 @@ export type PagoCreateWithoutRecurrenciaInput = {
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -2000,6 +2988,15 @@ export type PagoUncheckedCreateWithoutRecurrenciaInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2056,6 +3053,11 @@ export type PagoCreateWithoutPlanillaStaffItemInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   ordenCompra?: Prisma.OrdenCompraCreateNestedOneWithoutPagosInput
@@ -2063,6 +3065,10 @@ export type PagoCreateWithoutPlanillaStaffItemInput = {
   proyecto?: Prisma.ProyectoCreateNestedOneWithoutPagosInput
   beneficiarioTrabajador?: Prisma.TrabajadorCreateNestedOneWithoutPagosBeneficiarioInput
   comprobantes?: Prisma.ComprobanteCreateNestedManyWithoutPagoInput
+  empresa?: Prisma.EmpresaCreateNestedOneWithoutPagosInput
+  cuentaOrigen?: Prisma.CuentaEmpresaCreateNestedOneWithoutPagosInput
+  responsableRendicion?: Prisma.TrabajadorCreateNestedOneWithoutPagosResponsableRendicionInput
+  importacion?: Prisma.ImportacionPagosCreateNestedOneWithoutPagosInput
   registradoPor: Prisma.UserCreateNestedOneWithoutPagosRegistradosInput
   pagadoPor?: Prisma.UserCreateNestedOneWithoutPagosEjecutadosInput
 }
@@ -2094,6 +3100,15 @@ export type PagoUncheckedCreateWithoutPlanillaStaffItemInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2140,6 +3155,11 @@ export type PagoUpdateWithoutPlanillaStaffItemInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2147,6 +3167,10 @@ export type PagoUpdateWithoutPlanillaStaffItemInput = {
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -2178,6 +3202,15 @@ export type PagoUncheckedUpdateWithoutPlanillaStaffItemInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2213,6 +3246,15 @@ export type PagoCreateManyRegistradoPorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   pagadoPorId?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2246,6 +3288,15 @@ export type PagoCreateManyPagadoPorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -2274,6 +3325,11 @@ export type PagoUpdateWithoutRegistradoPorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2282,6 +3338,10 @@ export type PagoUpdateWithoutRegistradoPorInput = {
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
 
@@ -2313,6 +3373,15 @@ export type PagoUncheckedUpdateWithoutRegistradoPorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2347,6 +3416,15 @@ export type PagoUncheckedUpdateManyWithoutRegistradoPorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2375,6 +3453,11 @@ export type PagoUpdateWithoutPagadoPorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2383,6 +3466,10 @@ export type PagoUpdateWithoutPagadoPorInput = {
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
 }
 
@@ -2414,6 +3501,15 @@ export type PagoUncheckedUpdateWithoutPagadoPorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2448,6 +3544,15 @@ export type PagoUncheckedUpdateManyWithoutPagadoPorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2480,6 +3585,15 @@ export type PagoCreateManyProyectoInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2509,6 +3623,11 @@ export type PagoUpdateWithoutProyectoInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2516,6 +3635,10 @@ export type PagoUpdateWithoutProyectoInput = {
   planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -2547,6 +3670,15 @@ export type PagoUncheckedUpdateWithoutProyectoInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2581,6 +3713,15 @@ export type PagoUncheckedUpdateManyWithoutProyectoInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2614,6 +3755,57 @@ export type PagoCreateManyBeneficiarioTrabajadorInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type PagoCreateManyResponsableRendicionInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2643,6 +3835,11 @@ export type PagoUpdateWithoutBeneficiarioTrabajadorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2650,6 +3847,10 @@ export type PagoUpdateWithoutBeneficiarioTrabajadorInput = {
   planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -2681,6 +3882,15 @@ export type PagoUncheckedUpdateWithoutBeneficiarioTrabajadorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2715,6 +3925,143 @@ export type PagoUncheckedUpdateManyWithoutBeneficiarioTrabajadorInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PagoUpdateWithoutResponsableRendicionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
+  recurrencia?: Prisma.PagoRecurrenteUpdateOneWithoutPagosNestedInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
+  beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
+  comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
+  registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
+  pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
+}
+
+export type PagoUncheckedUpdateWithoutResponsableRendicionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedUpdateManyWithoutPagoNestedInput
+}
+
+export type PagoUncheckedUpdateManyWithoutResponsableRendicionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2748,6 +4095,15 @@ export type PagoCreateManyOrdenCompraInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2777,6 +4133,11 @@ export type PagoUpdateWithoutOrdenCompraInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recurrencia?: Prisma.PagoRecurrenteUpdateOneWithoutPagosNestedInput
@@ -2784,6 +4145,10 @@ export type PagoUpdateWithoutOrdenCompraInput = {
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -2815,6 +4180,15 @@ export type PagoUncheckedUpdateWithoutOrdenCompraInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2849,6 +4223,525 @@ export type PagoUncheckedUpdateManyWithoutOrdenCompraInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PagoCreateManyEmpresaInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type PagoUpdateWithoutEmpresaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
+  recurrencia?: Prisma.PagoRecurrenteUpdateOneWithoutPagosNestedInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
+  beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
+  comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
+  registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
+  pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
+}
+
+export type PagoUncheckedUpdateWithoutEmpresaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedUpdateManyWithoutPagoNestedInput
+}
+
+export type PagoUncheckedUpdateManyWithoutEmpresaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PagoCreateManyCuentaOrigenInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type PagoUpdateWithoutCuentaOrigenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
+  recurrencia?: Prisma.PagoRecurrenteUpdateOneWithoutPagosNestedInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
+  beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
+  comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
+  registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
+  pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
+}
+
+export type PagoUncheckedUpdateWithoutCuentaOrigenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedUpdateManyWithoutPagoNestedInput
+}
+
+export type PagoUncheckedUpdateManyWithoutCuentaOrigenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PagoCreateManyImportacionInput = {
+  id?: string
+  ordenCompraId?: string | null
+  origen?: string
+  recurrenciaId?: string | null
+  periodoRecurrente?: string | null
+  planillaStaffItemId?: string | null
+  centroCosto?: string
+  proyectoId?: string | null
+  concepto?: string | null
+  categoria?: string | null
+  tipoBeneficiario?: $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: string | null
+  beneficiarioNombre?: string | null
+  banco?: string | null
+  numeroCuenta?: string | null
+  cci?: string | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada: Date | string
+  fechaPagoReal?: Date | string | null
+  estado?: $Enums.EstadoPago
+  metodoPago?: string | null
+  numeroOperacion?: string | null
+  nota?: string | null
+  comprobanteNombre?: string | null
+  comprobanteUrl?: string | null
+  codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  registradoPorId: string
+  pagadoPorId?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+}
+
+export type PagoUpdateWithoutImportacionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
+  recurrencia?: Prisma.PagoRecurrenteUpdateOneWithoutPagosNestedInput
+  planillaStaffItem?: Prisma.PlanillaStaffItemUpdateOneWithoutPagoNestedInput
+  proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
+  beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
+  comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
+  pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
+}
+
+export type PagoUncheckedUpdateWithoutImportacionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
+  pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comprobantes?: Prisma.ComprobanteUncheckedUpdateManyWithoutPagoNestedInput
+}
+
+export type PagoUncheckedUpdateManyWithoutImportacionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ordenCompraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origen?: Prisma.StringFieldUpdateOperationsInput | string
+  recurrenciaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodoRecurrente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planillaStaffItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  centroCosto?: Prisma.StringFieldUpdateOperationsInput | string
+  proyectoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  concepto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipoBeneficiario?: Prisma.EnumTipoBeneficiarioFieldUpdateOperationsInput | $Enums.TipoBeneficiario
+  beneficiarioTrabajadorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beneficiarioNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroCuenta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cci?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  porcentaje?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fechaProgramada?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fechaPagoReal?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroOperacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2882,6 +4775,15 @@ export type PagoCreateManyRecurrenciaInput = {
   comprobanteNombre?: string | null
   comprobanteUrl?: string | null
   codigoComprobante?: string | null
+  subNumero?: number
+  empresaId?: string | null
+  cuentaOrigenId?: string | null
+  responsableRendicionId?: string | null
+  responsableRendicionNombre?: string | null
+  importeRendido?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: $Enums.EstadoRendicion | null
+  generadoPorNombre?: string | null
+  importacionId?: string | null
   registradoPorId: string
   pagadoPorId?: string | null
   creadoEn?: Date | string
@@ -2911,6 +4813,11 @@ export type PagoUpdateWithoutRecurrenciaInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ordenCompra?: Prisma.OrdenCompraUpdateOneWithoutPagosNestedInput
@@ -2918,6 +4825,10 @@ export type PagoUpdateWithoutRecurrenciaInput = {
   proyecto?: Prisma.ProyectoUpdateOneWithoutPagosNestedInput
   beneficiarioTrabajador?: Prisma.TrabajadorUpdateOneWithoutPagosBeneficiarioNestedInput
   comprobantes?: Prisma.ComprobanteUpdateManyWithoutPagoNestedInput
+  empresa?: Prisma.EmpresaUpdateOneWithoutPagosNestedInput
+  cuentaOrigen?: Prisma.CuentaEmpresaUpdateOneWithoutPagosNestedInput
+  responsableRendicion?: Prisma.TrabajadorUpdateOneWithoutPagosResponsableRendicionNestedInput
+  importacion?: Prisma.ImportacionPagosUpdateOneWithoutPagosNestedInput
   registradoPor?: Prisma.UserUpdateOneRequiredWithoutPagosRegistradosNestedInput
   pagadoPor?: Prisma.UserUpdateOneWithoutPagosEjecutadosNestedInput
 }
@@ -2949,6 +4860,15 @@ export type PagoUncheckedUpdateWithoutRecurrenciaInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2983,6 +4903,15 @@ export type PagoUncheckedUpdateManyWithoutRecurrenciaInput = {
   comprobanteNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobanteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigoComprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subNumero?: Prisma.IntFieldUpdateOperationsInput | number
+  empresaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cuentaOrigenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsableRendicionNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importeRendido?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estadoRendicion?: Prisma.NullableEnumEstadoRendicionFieldUpdateOperationsInput | $Enums.EstadoRendicion | null
+  generadoPorNombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importacionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registradoPorId?: Prisma.StringFieldUpdateOperationsInput | string
   pagadoPorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3048,6 +4977,15 @@ export type PagoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
   codigoComprobante?: boolean
+  subNumero?: boolean
+  empresaId?: boolean
+  cuentaOrigenId?: boolean
+  responsableRendicionId?: boolean
+  responsableRendicionNombre?: boolean
+  importeRendido?: boolean
+  estadoRendicion?: boolean
+  generadoPorNombre?: boolean
+  importacionId?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
@@ -3058,6 +4996,10 @@ export type PagoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   proyecto?: boolean | Prisma.Pago$proyectoArgs<ExtArgs>
   beneficiarioTrabajador?: boolean | Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>
   comprobantes?: boolean | Prisma.Pago$comprobantesArgs<ExtArgs>
+  empresa?: boolean | Prisma.Pago$empresaArgs<ExtArgs>
+  cuentaOrigen?: boolean | Prisma.Pago$cuentaOrigenArgs<ExtArgs>
+  responsableRendicion?: boolean | Prisma.Pago$responsableRendicionArgs<ExtArgs>
+  importacion?: boolean | Prisma.Pago$importacionArgs<ExtArgs>
   registradoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pagadoPor?: boolean | Prisma.Pago$pagadoPorArgs<ExtArgs>
   _count?: boolean | Prisma.PagoCountOutputTypeDefaultArgs<ExtArgs>
@@ -3091,6 +5033,15 @@ export type PagoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
   codigoComprobante?: boolean
+  subNumero?: boolean
+  empresaId?: boolean
+  cuentaOrigenId?: boolean
+  responsableRendicionId?: boolean
+  responsableRendicionNombre?: boolean
+  importeRendido?: boolean
+  estadoRendicion?: boolean
+  generadoPorNombre?: boolean
+  importacionId?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
@@ -3100,6 +5051,10 @@ export type PagoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   planillaStaffItem?: boolean | Prisma.Pago$planillaStaffItemArgs<ExtArgs>
   proyecto?: boolean | Prisma.Pago$proyectoArgs<ExtArgs>
   beneficiarioTrabajador?: boolean | Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>
+  empresa?: boolean | Prisma.Pago$empresaArgs<ExtArgs>
+  cuentaOrigen?: boolean | Prisma.Pago$cuentaOrigenArgs<ExtArgs>
+  responsableRendicion?: boolean | Prisma.Pago$responsableRendicionArgs<ExtArgs>
+  importacion?: boolean | Prisma.Pago$importacionArgs<ExtArgs>
   registradoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pagadoPor?: boolean | Prisma.Pago$pagadoPorArgs<ExtArgs>
 }, ExtArgs["result"]["pago"]>
@@ -3132,6 +5087,15 @@ export type PagoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
   codigoComprobante?: boolean
+  subNumero?: boolean
+  empresaId?: boolean
+  cuentaOrigenId?: boolean
+  responsableRendicionId?: boolean
+  responsableRendicionNombre?: boolean
+  importeRendido?: boolean
+  estadoRendicion?: boolean
+  generadoPorNombre?: boolean
+  importacionId?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
@@ -3141,6 +5105,10 @@ export type PagoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   planillaStaffItem?: boolean | Prisma.Pago$planillaStaffItemArgs<ExtArgs>
   proyecto?: boolean | Prisma.Pago$proyectoArgs<ExtArgs>
   beneficiarioTrabajador?: boolean | Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>
+  empresa?: boolean | Prisma.Pago$empresaArgs<ExtArgs>
+  cuentaOrigen?: boolean | Prisma.Pago$cuentaOrigenArgs<ExtArgs>
+  responsableRendicion?: boolean | Prisma.Pago$responsableRendicionArgs<ExtArgs>
+  importacion?: boolean | Prisma.Pago$importacionArgs<ExtArgs>
   registradoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pagadoPor?: boolean | Prisma.Pago$pagadoPorArgs<ExtArgs>
 }, ExtArgs["result"]["pago"]>
@@ -3173,13 +5141,22 @@ export type PagoSelectScalar = {
   comprobanteNombre?: boolean
   comprobanteUrl?: boolean
   codigoComprobante?: boolean
+  subNumero?: boolean
+  empresaId?: boolean
+  cuentaOrigenId?: boolean
+  responsableRendicionId?: boolean
+  responsableRendicionNombre?: boolean
+  importeRendido?: boolean
+  estadoRendicion?: boolean
+  generadoPorNombre?: boolean
+  importacionId?: boolean
   registradoPorId?: boolean
   pagadoPorId?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ordenCompraId" | "origen" | "recurrenciaId" | "periodoRecurrente" | "planillaStaffItemId" | "centroCosto" | "proyectoId" | "concepto" | "categoria" | "tipoBeneficiario" | "beneficiarioTrabajadorId" | "beneficiarioNombre" | "banco" | "numeroCuenta" | "cci" | "monto" | "porcentaje" | "fechaProgramada" | "fechaPagoReal" | "estado" | "metodoPago" | "numeroOperacion" | "nota" | "comprobanteNombre" | "comprobanteUrl" | "codigoComprobante" | "registradoPorId" | "pagadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["pago"]>
+export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ordenCompraId" | "origen" | "recurrenciaId" | "periodoRecurrente" | "planillaStaffItemId" | "centroCosto" | "proyectoId" | "concepto" | "categoria" | "tipoBeneficiario" | "beneficiarioTrabajadorId" | "beneficiarioNombre" | "banco" | "numeroCuenta" | "cci" | "monto" | "porcentaje" | "fechaProgramada" | "fechaPagoReal" | "estado" | "metodoPago" | "numeroOperacion" | "nota" | "comprobanteNombre" | "comprobanteUrl" | "codigoComprobante" | "subNumero" | "empresaId" | "cuentaOrigenId" | "responsableRendicionId" | "responsableRendicionNombre" | "importeRendido" | "estadoRendicion" | "generadoPorNombre" | "importacionId" | "registradoPorId" | "pagadoPorId" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["pago"]>
 export type PagoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ordenCompra?: boolean | Prisma.Pago$ordenCompraArgs<ExtArgs>
   recurrencia?: boolean | Prisma.Pago$recurrenciaArgs<ExtArgs>
@@ -3187,6 +5164,10 @@ export type PagoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   proyecto?: boolean | Prisma.Pago$proyectoArgs<ExtArgs>
   beneficiarioTrabajador?: boolean | Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>
   comprobantes?: boolean | Prisma.Pago$comprobantesArgs<ExtArgs>
+  empresa?: boolean | Prisma.Pago$empresaArgs<ExtArgs>
+  cuentaOrigen?: boolean | Prisma.Pago$cuentaOrigenArgs<ExtArgs>
+  responsableRendicion?: boolean | Prisma.Pago$responsableRendicionArgs<ExtArgs>
+  importacion?: boolean | Prisma.Pago$importacionArgs<ExtArgs>
   registradoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pagadoPor?: boolean | Prisma.Pago$pagadoPorArgs<ExtArgs>
   _count?: boolean | Prisma.PagoCountOutputTypeDefaultArgs<ExtArgs>
@@ -3197,6 +5178,10 @@ export type PagoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   planillaStaffItem?: boolean | Prisma.Pago$planillaStaffItemArgs<ExtArgs>
   proyecto?: boolean | Prisma.Pago$proyectoArgs<ExtArgs>
   beneficiarioTrabajador?: boolean | Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>
+  empresa?: boolean | Prisma.Pago$empresaArgs<ExtArgs>
+  cuentaOrigen?: boolean | Prisma.Pago$cuentaOrigenArgs<ExtArgs>
+  responsableRendicion?: boolean | Prisma.Pago$responsableRendicionArgs<ExtArgs>
+  importacion?: boolean | Prisma.Pago$importacionArgs<ExtArgs>
   registradoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pagadoPor?: boolean | Prisma.Pago$pagadoPorArgs<ExtArgs>
 }
@@ -3206,6 +5191,10 @@ export type PagoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   planillaStaffItem?: boolean | Prisma.Pago$planillaStaffItemArgs<ExtArgs>
   proyecto?: boolean | Prisma.Pago$proyectoArgs<ExtArgs>
   beneficiarioTrabajador?: boolean | Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>
+  empresa?: boolean | Prisma.Pago$empresaArgs<ExtArgs>
+  cuentaOrigen?: boolean | Prisma.Pago$cuentaOrigenArgs<ExtArgs>
+  responsableRendicion?: boolean | Prisma.Pago$responsableRendicionArgs<ExtArgs>
+  importacion?: boolean | Prisma.Pago$importacionArgs<ExtArgs>
   registradoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pagadoPor?: boolean | Prisma.Pago$pagadoPorArgs<ExtArgs>
 }
@@ -3219,6 +5208,10 @@ export type $PagoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     proyecto: Prisma.$ProyectoPayload<ExtArgs> | null
     beneficiarioTrabajador: Prisma.$TrabajadorPayload<ExtArgs> | null
     comprobantes: Prisma.$ComprobantePayload<ExtArgs>[]
+    empresa: Prisma.$EmpresaPayload<ExtArgs> | null
+    cuentaOrigen: Prisma.$CuentaEmpresaPayload<ExtArgs> | null
+    responsableRendicion: Prisma.$TrabajadorPayload<ExtArgs> | null
+    importacion: Prisma.$ImportacionPagosPayload<ExtArgs> | null
     registradoPor: Prisma.$UserPayload<ExtArgs>
     pagadoPor: Prisma.$UserPayload<ExtArgs> | null
   }
@@ -3250,6 +5243,15 @@ export type $PagoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     comprobanteNombre: string | null
     comprobanteUrl: string | null
     codigoComprobante: string | null
+    subNumero: number
+    empresaId: string | null
+    cuentaOrigenId: string | null
+    responsableRendicionId: string | null
+    responsableRendicionNombre: string | null
+    importeRendido: runtime.Decimal | null
+    estadoRendicion: $Enums.EstadoRendicion | null
+    generadoPorNombre: string | null
+    importacionId: string | null
     registradoPorId: string
     pagadoPorId: string | null
     creadoEn: Date
@@ -3654,6 +5656,10 @@ export interface Prisma__PagoClient<T, Null = never, ExtArgs extends runtime.Typ
   proyecto<T extends Prisma.Pago$proyectoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$proyectoArgs<ExtArgs>>): Prisma.Prisma__ProyectoClient<runtime.Types.Result.GetResult<Prisma.$ProyectoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   beneficiarioTrabajador<T extends Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$beneficiarioTrabajadorArgs<ExtArgs>>): Prisma.Prisma__TrabajadorClient<runtime.Types.Result.GetResult<Prisma.$TrabajadorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   comprobantes<T extends Prisma.Pago$comprobantesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$comprobantesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComprobantePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  empresa<T extends Prisma.Pago$empresaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$empresaArgs<ExtArgs>>): Prisma.Prisma__EmpresaClient<runtime.Types.Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  cuentaOrigen<T extends Prisma.Pago$cuentaOrigenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$cuentaOrigenArgs<ExtArgs>>): Prisma.Prisma__CuentaEmpresaClient<runtime.Types.Result.GetResult<Prisma.$CuentaEmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  responsableRendicion<T extends Prisma.Pago$responsableRendicionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$responsableRendicionArgs<ExtArgs>>): Prisma.Prisma__TrabajadorClient<runtime.Types.Result.GetResult<Prisma.$TrabajadorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  importacion<T extends Prisma.Pago$importacionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$importacionArgs<ExtArgs>>): Prisma.Prisma__ImportacionPagosClient<runtime.Types.Result.GetResult<Prisma.$ImportacionPagosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   registradoPor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pagadoPor<T extends Prisma.Pago$pagadoPorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$pagadoPorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -3712,6 +5718,15 @@ export interface PagoFieldRefs {
   readonly comprobanteNombre: Prisma.FieldRef<"Pago", 'String'>
   readonly comprobanteUrl: Prisma.FieldRef<"Pago", 'String'>
   readonly codigoComprobante: Prisma.FieldRef<"Pago", 'String'>
+  readonly subNumero: Prisma.FieldRef<"Pago", 'Int'>
+  readonly empresaId: Prisma.FieldRef<"Pago", 'String'>
+  readonly cuentaOrigenId: Prisma.FieldRef<"Pago", 'String'>
+  readonly responsableRendicionId: Prisma.FieldRef<"Pago", 'String'>
+  readonly responsableRendicionNombre: Prisma.FieldRef<"Pago", 'String'>
+  readonly importeRendido: Prisma.FieldRef<"Pago", 'Decimal'>
+  readonly estadoRendicion: Prisma.FieldRef<"Pago", 'EstadoRendicion'>
+  readonly generadoPorNombre: Prisma.FieldRef<"Pago", 'String'>
+  readonly importacionId: Prisma.FieldRef<"Pago", 'String'>
   readonly registradoPorId: Prisma.FieldRef<"Pago", 'String'>
   readonly pagadoPorId: Prisma.FieldRef<"Pago", 'String'>
   readonly creadoEn: Prisma.FieldRef<"Pago", 'DateTime'>
@@ -4233,6 +6248,82 @@ export type Pago$comprobantesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ComprobanteScalarFieldEnum | Prisma.ComprobanteScalarFieldEnum[]
+}
+
+/**
+ * Pago.empresa
+ */
+export type Pago$empresaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Empresa
+   */
+  select?: Prisma.EmpresaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Empresa
+   */
+  omit?: Prisma.EmpresaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmpresaInclude<ExtArgs> | null
+  where?: Prisma.EmpresaWhereInput
+}
+
+/**
+ * Pago.cuentaOrigen
+ */
+export type Pago$cuentaOrigenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CuentaEmpresa
+   */
+  select?: Prisma.CuentaEmpresaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CuentaEmpresa
+   */
+  omit?: Prisma.CuentaEmpresaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CuentaEmpresaInclude<ExtArgs> | null
+  where?: Prisma.CuentaEmpresaWhereInput
+}
+
+/**
+ * Pago.responsableRendicion
+ */
+export type Pago$responsableRendicionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Trabajador
+   */
+  select?: Prisma.TrabajadorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Trabajador
+   */
+  omit?: Prisma.TrabajadorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrabajadorInclude<ExtArgs> | null
+  where?: Prisma.TrabajadorWhereInput
+}
+
+/**
+ * Pago.importacion
+ */
+export type Pago$importacionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ImportacionPagos
+   */
+  select?: Prisma.ImportacionPagosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ImportacionPagos
+   */
+  omit?: Prisma.ImportacionPagosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImportacionPagosInclude<ExtArgs> | null
+  where?: Prisma.ImportacionPagosWhereInput
 }
 
 /**

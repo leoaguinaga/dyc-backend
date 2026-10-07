@@ -645,7 +645,11 @@ describe('CierreAutomaticoService', () => {
   function setup() {
     const prisma = prismaMock();
     const asistencias = { cerrarAutomaticamente: fn() };
-    const notificaciones = { crearParaRoles: fn(), crearParaUsuarios: fn() };
+    const notificaciones = {
+      crearParaRoles: fn(),
+      crearParaUsuarios: fn(),
+      crearParaAsignadosDeObra: fn(),
+    };
     const service = new CierreAutomaticoService(
       prisma as never,
       asistencias as never,
@@ -681,6 +685,13 @@ describe('CierreAutomaticoService', () => {
     expect(input.mensaje).toContain('horas extra');
     expect(notificaciones.crearParaUsuarios).toHaveBeenCalledWith(
       ['prev'],
+      expect.anything(),
+      { enviarEmail: false },
+    );
+    // y al coordinador SSOMA asignado a la obra
+    expect(notificaciones.crearParaAsignadosDeObra).toHaveBeenCalledWith(
+      'coordinador_ssoma',
+      'p1',
       expect.anything(),
       { enviarEmail: false },
     );

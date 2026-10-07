@@ -31,7 +31,7 @@ const MAX_ARCHIVO_BYTES = 10 * 1024 * 1024;
 @Controller('compras-simples')
 @Roles(
   'supervisor', 'supervisor_civil', 'supervisor_electrico', 'pdr',
-  'ing_civil', 'ing_electrico', 'jefe_sig',
+  'ing_civil', 'ing_electrico', 'jefe_sig', 'coordinador_ssoma',
   'logistica', 'gerencia', 'administrador',
 )
 @Modulo('solicitudes')
@@ -39,8 +39,8 @@ export class ComprasSimplesController {
   constructor(private service: ComprasSimplesService) {}
 
   @Get()
-  findAll(@Query('proyectoId') proyectoId?: string) {
-    return this.service.findAll({ proyectoId });
+  findAll(@Req() req: Request, @Query('proyectoId') proyectoId?: string) {
+    return this.service.findAll({ proyectoId }, req.user);
   }
 
   @Get('mi-trabajador')
@@ -70,8 +70,8 @@ export class ComprasSimplesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.service.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    return this.service.findOne(id, req.user);
   }
 
   @Post()
@@ -112,7 +112,7 @@ export class ComprasSimplesController {
   }
 
   @Patch('grupos/:grupoId/items')
-  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'logistica', 'administrador', 'admin_ti')
+  @Roles('ing_civil', 'ing_electrico', 'jefe_sig', 'coordinador_ssoma', 'logistica', 'administrador', 'admin_ti')
   editarItemsGrupo(
     @Param('grupoId') grupoId: string,
     @Body() dto: EditarItemsGrupoDto,

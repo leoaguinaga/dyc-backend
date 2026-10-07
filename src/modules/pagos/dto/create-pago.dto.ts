@@ -213,6 +213,56 @@ export class MarcarPagadoDto {
   @IsOptional()
   @IsString()
   comprobanteUrl?: string;
+
+  /** Cuenta de la empresa de la que sale el dinero (define también la empresa). */
+  @IsOptional()
+  @IsString()
+  cuentaOrigenId?: string;
+
+  /** Quien debe sustentar el gasto: un trabajador del sistema o, si no lo es, su nombre. */
+  @IsOptional()
+  @IsString()
+  responsableRendicionId?: string;
+
+  @IsOptional()
+  @IsString()
+  responsableRendicionNombre?: string;
+}
+
+/** Rendición del gasto y cuenta de origen: se completan o corrigen después de pagar. */
+export class ActualizarRendicionDto {
+  @IsOptional()
+  @IsString()
+  cuentaOrigenId?: string;
+
+  /** null/"" desvincula al trabajador. */
+  @IsOptional()
+  @IsString()
+  responsableRendicionId?: string;
+
+  @IsOptional()
+  @IsString()
+  responsableRendicionNombre?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  importeRendido?: number;
+
+  @IsOptional()
+  @IsIn(['abierto', 'cerrado'])
+  estadoRendicion?: 'abierto' | 'cerrado';
+}
+
+export class CrearCuentaEmpresaDto {
+  /** Rótulo como lo usa tesorería: "BCP-D&C INGENIERIA Y PROYECTOS". */
+  @IsString()
+  @IsNotEmpty()
+  banco: string;
+
+  @IsString()
+  @IsNotEmpty()
+  numero: string;
 }
 
 export class ActualizarCodigoComprobanteDto {

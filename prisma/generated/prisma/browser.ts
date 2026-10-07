@@ -243,6 +243,21 @@ export type CompraSimpleGrupoHistorial = Prisma.CompraSimpleGrupoHistorialModel
  */
 export type Pago = Prisma.PagoModel
 /**
+ * Model Empresa
+ * 
+ */
+export type Empresa = Prisma.EmpresaModel
+/**
+ * Model CuentaEmpresa
+ * 
+ */
+export type CuentaEmpresa = Prisma.CuentaEmpresaModel
+/**
+ * Model ImportacionPagos
+ * 
+ */
+export type ImportacionPagos = Prisma.ImportacionPagosModel
+/**
  * Model Comprobante
  * 
  */

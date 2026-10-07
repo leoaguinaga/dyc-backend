@@ -228,6 +228,7 @@ export type UserWhereInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialListRelationFilter
   pagosRegistrados?: Prisma.PagoListRelationFilter
   pagosEjecutados?: Prisma.PagoListRelationFilter
+  importacionesPagos?: Prisma.ImportacionPagosListRelationFilter
   comprobantesGenerados?: Prisma.ComprobanteListRelationFilter
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteListRelationFilter
   cobrosRegistrados?: Prisma.CobroListRelationFilter
@@ -277,6 +278,7 @@ export type UserOrderByWithRelationInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialOrderByRelationAggregateInput
   pagosRegistrados?: Prisma.PagoOrderByRelationAggregateInput
   pagosEjecutados?: Prisma.PagoOrderByRelationAggregateInput
+  importacionesPagos?: Prisma.ImportacionPagosOrderByRelationAggregateInput
   comprobantesGenerados?: Prisma.ComprobanteOrderByRelationAggregateInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteOrderByRelationAggregateInput
   cobrosRegistrados?: Prisma.CobroOrderByRelationAggregateInput
@@ -329,6 +331,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialListRelationFilter
   pagosRegistrados?: Prisma.PagoListRelationFilter
   pagosEjecutados?: Prisma.PagoListRelationFilter
+  importacionesPagos?: Prisma.ImportacionPagosListRelationFilter
   comprobantesGenerados?: Prisma.ComprobanteListRelationFilter
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteListRelationFilter
   cobrosRegistrados?: Prisma.CobroListRelationFilter
@@ -408,6 +411,7 @@ export type UserCreateInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -457,6 +461,7 @@ export type UserUncheckedCreateInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -506,6 +511,7 @@ export type UserUpdateInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -555,6 +561,7 @@ export type UserUncheckedUpdateInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1116,6 +1123,20 @@ export type UserUpdateOneWithoutPagosEjecutadosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPagosEjecutadosInput, Prisma.UserUpdateWithoutPagosEjecutadosInput>, Prisma.UserUncheckedUpdateWithoutPagosEjecutadosInput>
 }
 
+export type UserCreateNestedOneWithoutImportacionesPagosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutImportacionesPagosInput, Prisma.UserUncheckedCreateWithoutImportacionesPagosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImportacionesPagosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutImportacionesPagosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutImportacionesPagosInput, Prisma.UserUncheckedCreateWithoutImportacionesPagosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImportacionesPagosInput
+  upsert?: Prisma.UserUpsertWithoutImportacionesPagosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutImportacionesPagosInput, Prisma.UserUpdateWithoutImportacionesPagosInput>, Prisma.UserUncheckedUpdateWithoutImportacionesPagosInput>
+}
+
 export type UserCreateNestedOneWithoutComprobantesGeneradosInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutComprobantesGeneradosInput, Prisma.UserUncheckedCreateWithoutComprobantesGeneradosInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutComprobantesGeneradosInput
@@ -1240,6 +1261,7 @@ export type UserCreateWithoutModulosAccesoInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -1288,6 +1310,7 @@ export type UserUncheckedCreateWithoutModulosAccesoInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1341,6 +1364,7 @@ export type UserCreateWithoutModulosAccesoEditadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -1389,6 +1413,7 @@ export type UserUncheckedCreateWithoutModulosAccesoEditadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1453,6 +1478,7 @@ export type UserUpdateWithoutModulosAccesoInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -1501,6 +1527,7 @@ export type UserUncheckedUpdateWithoutModulosAccesoInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1560,6 +1587,7 @@ export type UserUpdateWithoutModulosAccesoEditadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -1608,6 +1636,7 @@ export type UserUncheckedUpdateWithoutModulosAccesoEditadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1656,6 +1685,7 @@ export type UserCreateWithoutReportesGuardadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -1704,6 +1734,7 @@ export type UserUncheckedCreateWithoutReportesGuardadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1768,6 +1799,7 @@ export type UserUpdateWithoutReportesGuardadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -1816,6 +1848,7 @@ export type UserUncheckedUpdateWithoutReportesGuardadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -1864,6 +1897,7 @@ export type UserCreateWithoutAuditLogsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -1912,6 +1946,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -1976,6 +2011,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -2024,6 +2060,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2071,6 +2108,7 @@ export type UserCreateWithoutSessionsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -2119,6 +2157,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2183,6 +2222,7 @@ export type UserUpdateWithoutSessionsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -2231,6 +2271,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2279,6 +2320,7 @@ export type UserCreateWithoutAccountsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -2327,6 +2369,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2391,6 +2434,7 @@ export type UserUpdateWithoutAccountsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -2439,6 +2483,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2487,6 +2532,7 @@ export type UserCreateWithoutProyectosComoSupervisorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -2535,6 +2581,7 @@ export type UserUncheckedCreateWithoutProyectosComoSupervisorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2599,6 +2646,7 @@ export type UserUpdateWithoutProyectosComoSupervisorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -2647,6 +2695,7 @@ export type UserUncheckedUpdateWithoutProyectosComoSupervisorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2695,6 +2744,7 @@ export type UserCreateWithoutTrabajadorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -2743,6 +2793,7 @@ export type UserUncheckedCreateWithoutTrabajadorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -2807,6 +2858,7 @@ export type UserUpdateWithoutTrabajadorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -2855,6 +2907,7 @@ export type UserUncheckedUpdateWithoutTrabajadorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -2904,6 +2957,7 @@ export type UserCreateWithoutTurnosAbiertosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -2952,6 +3006,7 @@ export type UserUncheckedCreateWithoutTurnosAbiertosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3005,6 +3060,7 @@ export type UserCreateWithoutTurnosCerradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -3053,6 +3109,7 @@ export type UserUncheckedCreateWithoutTurnosCerradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3106,6 +3163,7 @@ export type UserCreateWithoutTurnosCorregidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -3154,6 +3212,7 @@ export type UserUncheckedCreateWithoutTurnosCorregidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3207,6 +3266,7 @@ export type UserCreateWithoutTurnosCierreRevisadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -3255,6 +3315,7 @@ export type UserUncheckedCreateWithoutTurnosCierreRevisadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3319,6 +3380,7 @@ export type UserUpdateWithoutTurnosAbiertosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -3367,6 +3429,7 @@ export type UserUncheckedUpdateWithoutTurnosAbiertosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3426,6 +3489,7 @@ export type UserUpdateWithoutTurnosCerradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -3474,6 +3538,7 @@ export type UserUncheckedUpdateWithoutTurnosCerradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3533,6 +3598,7 @@ export type UserUpdateWithoutTurnosCorregidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -3581,6 +3647,7 @@ export type UserUncheckedUpdateWithoutTurnosCorregidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3640,6 +3707,7 @@ export type UserUpdateWithoutTurnosCierreRevisadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -3688,6 +3756,7 @@ export type UserUncheckedUpdateWithoutTurnosCierreRevisadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -3736,6 +3805,7 @@ export type UserCreateWithoutRegistrosVisitaComoVisitanteInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -3784,6 +3854,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaComoVisitanteInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3837,6 +3908,7 @@ export type UserCreateWithoutRegistrosVisitaRegistradosPorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -3885,6 +3957,7 @@ export type UserUncheckedCreateWithoutRegistrosVisitaRegistradosPorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -3949,6 +4022,7 @@ export type UserUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -3997,6 +4071,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaComoVisitanteInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4056,6 +4131,7 @@ export type UserUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -4104,6 +4180,7 @@ export type UserUncheckedUpdateWithoutRegistrosVisitaRegistradosPorInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4152,6 +4229,7 @@ export type UserCreateWithoutVisitasTerceroRegistradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -4200,6 +4278,7 @@ export type UserUncheckedCreateWithoutVisitasTerceroRegistradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4264,6 +4343,7 @@ export type UserUpdateWithoutVisitasTerceroRegistradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -4312,6 +4392,7 @@ export type UserUncheckedUpdateWithoutVisitasTerceroRegistradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4360,6 +4441,7 @@ export type UserCreateWithoutPlanillasGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -4408,6 +4490,7 @@ export type UserUncheckedCreateWithoutPlanillasGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4472,6 +4555,7 @@ export type UserUpdateWithoutPlanillasGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -4520,6 +4604,7 @@ export type UserUncheckedUpdateWithoutPlanillasGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4567,6 +4652,7 @@ export type UserCreateWithoutRequerimientosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -4615,6 +4701,7 @@ export type UserUncheckedCreateWithoutRequerimientosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4668,6 +4755,7 @@ export type UserCreateWithoutRequerimientosRecepcionadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -4716,6 +4804,7 @@ export type UserUncheckedCreateWithoutRequerimientosRecepcionadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -4780,6 +4869,7 @@ export type UserUpdateWithoutRequerimientosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -4828,6 +4918,7 @@ export type UserUncheckedUpdateWithoutRequerimientosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4887,6 +4978,7 @@ export type UserUpdateWithoutRequerimientosRecepcionadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -4935,6 +5027,7 @@ export type UserUncheckedUpdateWithoutRequerimientosRecepcionadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -4983,6 +5076,7 @@ export type UserCreateWithoutRequerimientoHistorialInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -5031,6 +5125,7 @@ export type UserUncheckedCreateWithoutRequerimientoHistorialInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5095,6 +5190,7 @@ export type UserUpdateWithoutRequerimientoHistorialInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -5143,6 +5239,7 @@ export type UserUncheckedUpdateWithoutRequerimientoHistorialInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5192,6 +5289,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -5240,6 +5338,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoSolicita
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5293,6 +5392,7 @@ export type UserCreateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -5341,6 +5441,7 @@ export type UserUncheckedCreateWithoutSolicitudesCotizacionAprobadasComoGerencia
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5405,6 +5506,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoSolicitanteInput 
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -5453,6 +5555,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoSolicita
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5512,6 +5615,7 @@ export type UserUpdateWithoutSolicitudesCotizacionAprobadasComoGerenciaInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -5560,6 +5664,7 @@ export type UserUncheckedUpdateWithoutSolicitudesCotizacionAprobadasComoGerencia
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5608,6 +5713,7 @@ export type UserCreateWithoutCotizacionesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -5656,6 +5762,7 @@ export type UserUncheckedCreateWithoutCotizacionesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5720,6 +5827,7 @@ export type UserUpdateWithoutCotizacionesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -5768,6 +5876,7 @@ export type UserUncheckedUpdateWithoutCotizacionesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -5815,6 +5924,7 @@ export type UserCreateWithoutComprasSimplesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -5863,6 +5973,7 @@ export type UserUncheckedCreateWithoutComprasSimplesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -5916,6 +6027,7 @@ export type UserCreateWithoutComprasSimplesAprobadasInformalmenteInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -5964,6 +6076,7 @@ export type UserUncheckedCreateWithoutComprasSimplesAprobadasInformalmenteInput 
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6028,6 +6141,7 @@ export type UserUpdateWithoutComprasSimplesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -6076,6 +6190,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesCreadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6135,6 +6250,7 @@ export type UserUpdateWithoutComprasSimplesAprobadasInformalmenteInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -6183,6 +6299,7 @@ export type UserUncheckedUpdateWithoutComprasSimplesAprobadasInformalmenteInput 
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6231,6 +6348,7 @@ export type UserCreateWithoutOrdenesCompraAprobadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -6279,6 +6397,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraAprobadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6332,6 +6451,7 @@ export type UserCreateWithoutOrdenesCompraInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -6380,6 +6500,7 @@ export type UserUncheckedCreateWithoutOrdenesCompraInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6444,6 +6565,7 @@ export type UserUpdateWithoutOrdenesCompraAprobadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -6492,6 +6614,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraAprobadasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6551,6 +6674,7 @@ export type UserUpdateWithoutOrdenesCompraInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -6599,6 +6723,7 @@ export type UserUncheckedUpdateWithoutOrdenesCompraInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6648,6 +6773,7 @@ export type UserCreateWithoutCompraSimpleArchivosSubidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -6696,6 +6822,7 @@ export type UserUncheckedCreateWithoutCompraSimpleArchivosSubidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6760,6 +6887,7 @@ export type UserUpdateWithoutCompraSimpleArchivosSubidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -6808,6 +6936,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleArchivosSubidosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -6855,6 +6984,7 @@ export type UserCreateWithoutCompraSimpleHistorialInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -6903,6 +7033,7 @@ export type UserUncheckedCreateWithoutCompraSimpleHistorialInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -6967,6 +7098,7 @@ export type UserUpdateWithoutCompraSimpleHistorialInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -7015,6 +7147,7 @@ export type UserUncheckedUpdateWithoutCompraSimpleHistorialInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7063,6 +7196,7 @@ export type UserCreateWithoutPagosRegistradosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -7111,6 +7245,7 @@ export type UserUncheckedCreateWithoutPagosRegistradosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -7164,6 +7299,7 @@ export type UserCreateWithoutPagosEjecutadosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -7212,6 +7348,7 @@ export type UserUncheckedCreateWithoutPagosEjecutadosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -7276,6 +7413,7 @@ export type UserUpdateWithoutPagosRegistradosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -7324,6 +7462,7 @@ export type UserUncheckedUpdateWithoutPagosRegistradosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7383,6 +7522,7 @@ export type UserUpdateWithoutPagosEjecutadosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -7431,6 +7571,219 @@ export type UserUncheckedUpdateWithoutPagosEjecutadosInput = {
   comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUncheckedUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUncheckedUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUncheckedUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUncheckedUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserCreateWithoutImportacionesPagosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoCreateNestedManyWithoutCreadoPorInput
+}
+
+export type UserUncheckedCreateWithoutImportacionesPagosInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.Role
+  correoContacto?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  trabajador?: Prisma.TrabajadorUncheckedCreateNestedOneWithoutUserInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedCreateNestedManyWithoutUserInput
+  requerimientos?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutCreadoPorInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedCreateNestedManyWithoutRecepcionPorInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedCreateNestedManyWithoutActorInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutCreadoPorInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedCreateNestedManyWithoutAprobadoPorInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutCreadoPorInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedCreateNestedManyWithoutAprobadoInformalPorInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
+  pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
+  pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
+  cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
+  notificaciones?: Prisma.NotificacionUncheckedCreateNestedManyWithoutUserInput
+  turnosAbiertos?: Prisma.TurnoUncheckedCreateNestedManyWithoutAbiertoPorInput
+  turnosCerrados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCerradoPorInput
+  turnosCorregidos?: Prisma.TurnoUncheckedCreateNestedManyWithoutCorregidoPorInput
+  turnosCierreRevisados?: Prisma.TurnoUncheckedCreateNestedManyWithoutCierreRevisadoPorInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutUserInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUncheckedCreateNestedManyWithoutRegistradoPorInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUncheckedCreateNestedManyWithoutRegistradoPorInput
+  planillasGeneradas?: Prisma.PlanillaUncheckedCreateNestedManyWithoutGeneradaPorInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUncheckedCreateNestedManyWithoutGeneradaPorInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUncheckedCreateNestedManyWithoutSubidoPorInput
+  helpVideosCreados?: Prisma.HelpVideoUncheckedCreateNestedManyWithoutCreadoPorInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaSolicitantePorInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUncheckedCreateNestedManyWithoutAprobadaGerenciaPorInput
+  cotizacionesCreadas?: Prisma.CotizacionUncheckedCreateNestedManyWithoutCreadoPorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  modulosAcceso?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutUserInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUncheckedCreateNestedManyWithoutActualizadoPorInput
+  reportesGuardados?: Prisma.ReporteGuardadoUncheckedCreateNestedManyWithoutCreadoPorInput
+}
+
+export type UserCreateOrConnectWithoutImportacionesPagosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutImportacionesPagosInput, Prisma.UserUncheckedCreateWithoutImportacionesPagosInput>
+}
+
+export type UserUpsertWithoutImportacionesPagosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutImportacionesPagosInput, Prisma.UserUncheckedUpdateWithoutImportacionesPagosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutImportacionesPagosInput, Prisma.UserUncheckedCreateWithoutImportacionesPagosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutImportacionesPagosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutImportacionesPagosInput, Prisma.UserUncheckedUpdateWithoutImportacionesPagosInput>
+}
+
+export type UserUpdateWithoutImportacionesPagosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
+  pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
+  cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
+  cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
+  notificaciones?: Prisma.NotificacionUpdateManyWithoutUserNestedInput
+  turnosAbiertos?: Prisma.TurnoUpdateManyWithoutAbiertoPorNestedInput
+  turnosCerrados?: Prisma.TurnoUpdateManyWithoutCerradoPorNestedInput
+  turnosCorregidos?: Prisma.TurnoUpdateManyWithoutCorregidoPorNestedInput
+  turnosCierreRevisados?: Prisma.TurnoUpdateManyWithoutCierreRevisadoPorNestedInput
+  registrosVisitaComoVisitante?: Prisma.RegistroVisitaUpdateManyWithoutUserNestedInput
+  registrosVisitaRegistradosPor?: Prisma.RegistroVisitaUpdateManyWithoutRegistradoPorNestedInput
+  visitasTerceroRegistradas?: Prisma.VisitaTerceroUpdateManyWithoutRegistradoPorNestedInput
+  planillasGeneradas?: Prisma.PlanillaUpdateManyWithoutGeneradaPorNestedInput
+  planillasStaffGeneradas?: Prisma.PlanillaStaffUpdateManyWithoutGeneradaPorNestedInput
+  compraSimpleArchivosSubidos?: Prisma.CompraSimpleGrupoArchivoUpdateManyWithoutSubidoPorNestedInput
+  helpVideosCreados?: Prisma.HelpVideoUpdateManyWithoutCreadoPorNestedInput
+  solicitudesCotizacionAprobadasComoSolicitante?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaSolicitantePorNestedInput
+  solicitudesCotizacionAprobadasComoGerencia?: Prisma.SolicitudCotizacionUpdateManyWithoutAprobadaGerenciaPorNestedInput
+  cotizacionesCreadas?: Prisma.CotizacionUpdateManyWithoutCreadoPorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  modulosAcceso?: Prisma.ModuloAccesoUpdateManyWithoutUserNestedInput
+  modulosAccesoEditados?: Prisma.ModuloAccesoUpdateManyWithoutActualizadoPorNestedInput
+  reportesGuardados?: Prisma.ReporteGuardadoUpdateManyWithoutCreadoPorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutImportacionesPagosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  correoContacto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  trabajador?: Prisma.TrabajadorUncheckedUpdateOneWithoutUserNestedInput
+  proyectosComoSupervisor?: Prisma.ProyectoSupervisorUncheckedUpdateManyWithoutUserNestedInput
+  requerimientos?: Prisma.RequerimientoUncheckedUpdateManyWithoutCreadoPorNestedInput
+  requerimientosRecepcionados?: Prisma.RequerimientoUncheckedUpdateManyWithoutRecepcionPorNestedInput
+  requerimientoHistorial?: Prisma.RequerimientoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  ordenesCompra?: Prisma.OrdenCompraUncheckedUpdateManyWithoutCreadoPorNestedInput
+  ordenesCompraAprobadas?: Prisma.OrdenCompraUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  comprasSimplesCreadas?: Prisma.CompraSimpleUncheckedUpdateManyWithoutCreadoPorNestedInput
+  comprasSimplesAprobadasInformalmente?: Prisma.CompraSimpleUncheckedUpdateManyWithoutAprobadoInformalPorNestedInput
+  compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
+  pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
+  pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -7480,6 +7833,7 @@ export type UserCreateWithoutComprobantesGeneradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
   cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
@@ -7528,6 +7882,7 @@ export type UserUncheckedCreateWithoutComprobantesGeneradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
   cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
@@ -7592,6 +7947,7 @@ export type UserUpdateWithoutComprobantesGeneradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
   cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
@@ -7640,6 +7996,7 @@ export type UserUncheckedUpdateWithoutComprobantesGeneradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
@@ -7688,6 +8045,7 @@ export type UserCreateWithoutPagosRecurrentesCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
   cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
@@ -7736,6 +8094,7 @@ export type UserUncheckedCreateWithoutPagosRecurrentesCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
   cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
@@ -7800,6 +8159,7 @@ export type UserUpdateWithoutPagosRecurrentesCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
   cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
@@ -7848,6 +8208,7 @@ export type UserUncheckedUpdateWithoutPagosRecurrentesCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
   cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
@@ -7896,6 +8257,7 @@ export type UserCreateWithoutPlanillasStaffGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -7944,6 +8306,7 @@ export type UserUncheckedCreateWithoutPlanillasStaffGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -8008,6 +8371,7 @@ export type UserUpdateWithoutPlanillasStaffGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -8056,6 +8420,7 @@ export type UserUncheckedUpdateWithoutPlanillasStaffGeneradasInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -8104,6 +8469,7 @@ export type UserCreateWithoutCobrosRegistradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosMarcados?: Prisma.CobroCreateNestedManyWithoutCobradoPorInput
@@ -8152,6 +8518,7 @@ export type UserUncheckedCreateWithoutCobrosRegistradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosMarcados?: Prisma.CobroUncheckedCreateNestedManyWithoutCobradoPorInput
@@ -8205,6 +8572,7 @@ export type UserCreateWithoutCobrosMarcadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -8253,6 +8621,7 @@ export type UserUncheckedCreateWithoutCobrosMarcadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -8317,6 +8686,7 @@ export type UserUpdateWithoutCobrosRegistradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosMarcados?: Prisma.CobroUpdateManyWithoutCobradoPorNestedInput
@@ -8365,6 +8735,7 @@ export type UserUncheckedUpdateWithoutCobrosRegistradosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosMarcados?: Prisma.CobroUncheckedUpdateManyWithoutCobradoPorNestedInput
@@ -8424,6 +8795,7 @@ export type UserUpdateWithoutCobrosMarcadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -8472,6 +8844,7 @@ export type UserUncheckedUpdateWithoutCobrosMarcadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -8520,6 +8893,7 @@ export type UserCreateWithoutHelpVideosCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -8568,6 +8942,7 @@ export type UserUncheckedCreateWithoutHelpVideosCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -8632,6 +9007,7 @@ export type UserUpdateWithoutHelpVideosCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -8680,6 +9056,7 @@ export type UserUncheckedUpdateWithoutHelpVideosCreadosInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -8728,6 +9105,7 @@ export type UserCreateWithoutNotificacionesInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroCreateNestedManyWithoutRegistradoPorInput
@@ -8776,6 +9154,7 @@ export type UserUncheckedCreateWithoutNotificacionesInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedCreateNestedManyWithoutActorInput
   pagosRegistrados?: Prisma.PagoUncheckedCreateNestedManyWithoutRegistradoPorInput
   pagosEjecutados?: Prisma.PagoUncheckedCreateNestedManyWithoutPagadoPorInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedCreateNestedManyWithoutCreadoPorInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedCreateNestedManyWithoutGeneradoPorInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedCreateNestedManyWithoutCreadoPorInput
   cobrosRegistrados?: Prisma.CobroUncheckedCreateNestedManyWithoutRegistradoPorInput
@@ -8840,6 +9219,7 @@ export type UserUpdateWithoutNotificacionesInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUpdateManyWithoutRegistradoPorNestedInput
@@ -8888,6 +9268,7 @@ export type UserUncheckedUpdateWithoutNotificacionesInput = {
   compraSimpleHistorial?: Prisma.CompraSimpleGrupoHistorialUncheckedUpdateManyWithoutActorNestedInput
   pagosRegistrados?: Prisma.PagoUncheckedUpdateManyWithoutRegistradoPorNestedInput
   pagosEjecutados?: Prisma.PagoUncheckedUpdateManyWithoutPagadoPorNestedInput
+  importacionesPagos?: Prisma.ImportacionPagosUncheckedUpdateManyWithoutCreadoPorNestedInput
   comprobantesGenerados?: Prisma.ComprobanteUncheckedUpdateManyWithoutGeneradoPorNestedInput
   pagosRecurrentesCreados?: Prisma.PagoRecurrenteUncheckedUpdateManyWithoutCreadoPorNestedInput
   cobrosRegistrados?: Prisma.CobroUncheckedUpdateManyWithoutRegistradoPorNestedInput
@@ -8931,6 +9312,7 @@ export type UserCountOutputType = {
   compraSimpleHistorial: number
   pagosRegistrados: number
   pagosEjecutados: number
+  importacionesPagos: number
   comprobantesGenerados: number
   pagosRecurrentesCreados: number
   cobrosRegistrados: number
@@ -8970,6 +9352,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   compraSimpleHistorial?: boolean | UserCountOutputTypeCountCompraSimpleHistorialArgs
   pagosRegistrados?: boolean | UserCountOutputTypeCountPagosRegistradosArgs
   pagosEjecutados?: boolean | UserCountOutputTypeCountPagosEjecutadosArgs
+  importacionesPagos?: boolean | UserCountOutputTypeCountImportacionesPagosArgs
   comprobantesGenerados?: boolean | UserCountOutputTypeCountComprobantesGeneradosArgs
   pagosRecurrentesCreados?: boolean | UserCountOutputTypeCountPagosRecurrentesCreadosArgs
   cobrosRegistrados?: boolean | UserCountOutputTypeCountCobrosRegistradosArgs
@@ -9094,6 +9477,13 @@ export type UserCountOutputTypeCountPagosRegistradosArgs<ExtArgs extends runtime
  */
 export type UserCountOutputTypeCountPagosEjecutadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PagoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountImportacionesPagosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImportacionPagosWhereInput
 }
 
 /**
@@ -9282,6 +9672,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   compraSimpleHistorial?: boolean | Prisma.User$compraSimpleHistorialArgs<ExtArgs>
   pagosRegistrados?: boolean | Prisma.User$pagosRegistradosArgs<ExtArgs>
   pagosEjecutados?: boolean | Prisma.User$pagosEjecutadosArgs<ExtArgs>
+  importacionesPagos?: boolean | Prisma.User$importacionesPagosArgs<ExtArgs>
   comprobantesGenerados?: boolean | Prisma.User$comprobantesGeneradosArgs<ExtArgs>
   pagosRecurrentesCreados?: boolean | Prisma.User$pagosRecurrentesCreadosArgs<ExtArgs>
   cobrosRegistrados?: boolean | Prisma.User$cobrosRegistradosArgs<ExtArgs>
@@ -9360,6 +9751,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   compraSimpleHistorial?: boolean | Prisma.User$compraSimpleHistorialArgs<ExtArgs>
   pagosRegistrados?: boolean | Prisma.User$pagosRegistradosArgs<ExtArgs>
   pagosEjecutados?: boolean | Prisma.User$pagosEjecutadosArgs<ExtArgs>
+  importacionesPagos?: boolean | Prisma.User$importacionesPagosArgs<ExtArgs>
   comprobantesGenerados?: boolean | Prisma.User$comprobantesGeneradosArgs<ExtArgs>
   pagosRecurrentesCreados?: boolean | Prisma.User$pagosRecurrentesCreadosArgs<ExtArgs>
   cobrosRegistrados?: boolean | Prisma.User$cobrosRegistradosArgs<ExtArgs>
@@ -9405,6 +9797,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     compraSimpleHistorial: Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>[]
     pagosRegistrados: Prisma.$PagoPayload<ExtArgs>[]
     pagosEjecutados: Prisma.$PagoPayload<ExtArgs>[]
+    importacionesPagos: Prisma.$ImportacionPagosPayload<ExtArgs>[]
     comprobantesGenerados: Prisma.$ComprobantePayload<ExtArgs>[]
     pagosRecurrentesCreados: Prisma.$PagoRecurrentePayload<ExtArgs>[]
     cobrosRegistrados: Prisma.$CobroPayload<ExtArgs>[]
@@ -9847,6 +10240,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   compraSimpleHistorial<T extends Prisma.User$compraSimpleHistorialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$compraSimpleHistorialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompraSimpleGrupoHistorialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosRegistrados<T extends Prisma.User$pagosRegistradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosRegistradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosEjecutados<T extends Prisma.User$pagosEjecutadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosEjecutadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  importacionesPagos<T extends Prisma.User$importacionesPagosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$importacionesPagosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImportacionPagosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comprobantesGenerados<T extends Prisma.User$comprobantesGeneradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$comprobantesGeneradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComprobantePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagosRecurrentesCreados<T extends Prisma.User$pagosRecurrentesCreadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagosRecurrentesCreadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoRecurrentePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cobrosRegistrados<T extends Prisma.User$cobrosRegistradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cobrosRegistradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CobroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10629,6 +11023,30 @@ export type User$pagosEjecutadosArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[]
+}
+
+/**
+ * User.importacionesPagos
+ */
+export type User$importacionesPagosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ImportacionPagos
+   */
+  select?: Prisma.ImportacionPagosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ImportacionPagos
+   */
+  omit?: Prisma.ImportacionPagosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImportacionPagosInclude<ExtArgs> | null
+  where?: Prisma.ImportacionPagosWhereInput
+  orderBy?: Prisma.ImportacionPagosOrderByWithRelationInput | Prisma.ImportacionPagosOrderByWithRelationInput[]
+  cursor?: Prisma.ImportacionPagosWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImportacionPagosScalarFieldEnum | Prisma.ImportacionPagosScalarFieldEnum[]
 }
 
 /**

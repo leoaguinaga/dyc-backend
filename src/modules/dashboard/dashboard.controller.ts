@@ -16,6 +16,8 @@ import { DashboardService } from './dashboard.service.js';
   'ing_civil',
   'ing_electrico',
   'jefe_sig',
+  'coordinador_ssoma',
+  'tesoreria',
 )
 export class DashboardController {
   constructor(private service: DashboardService) {}

@@ -19,9 +19,11 @@ enum Role {
   ing_civil
   ing_electrico
   jefe_sig
+  coordinador_ssoma
   logistica
   gerencia
   administrador
+  tesoreria
   admin_ti
 }
 
@@ -218,6 +220,12 @@ enum TipoBeneficiario {
   otro
 }
 
+// Estado de la rendición de un pago (el responsable ya sustentó el gasto o no).
+enum EstadoRendicion {
+  abierto
+  cerrado
+}
+
 enum TipoPersonal {
   obrero
   staff
@@ -338,6 +346,7 @@ model User {
   compraSimpleHistorial         CompraSimpleGrupoHistorial[] @relation("CompraSimpleHistorialActor")
   pagosRegistrados              Pago[]                       @relation("PagosRegistradosPor")
   pagosEjecutados               Pago[]                       @relation("PagosEjecutadosPor")
+  importacionesPagos            ImportacionPagos[]
   comprobantesGenerados          Comprobante[]               @relation("ComprobantesGeneradosPor")
   pagosRecurrentesCreados       PagoRecurrente[]
   cobrosRegistrados             Cobro[]                      @relation("CobrosRegistradosPor")
@@ -614,6 +623,7 @@ model Trabajador {
   planillaItems                PlanillaItem[]
   comprasSimplesPagoTrabajador OrdenCompra[]        @relation("ComprasSimplesPagoTrabajador")
   pagosBeneficiario            Pago[]               @relation("PagosBeneficiarioTrabajador")
+  pagosResponsableRendicion    Pago[]               @relation("PagosResponsableRendicion")
   planillaStaffItems           PlanillaStaffItem[]
 
   @@map("trabajadores")
@@ -1338,9 +1348,37 @@ model Pago {
   comprobanteNombre        String?
   comprobanteUrl           String?
   // Correlativo de la constancia de pago (AA-NNNN, ej. 26-2078). Se asigna al
-  // marcar el pago como pagado y es editable; único en toda la empresa.
-  codigoComprobante        String?          @unique
+  // marcar el pago como pagado y es editable. Un mismo comprobante puede
+  // repartirse en varias líneas (26-2248.1, .2…): el código se repite y el
+  // par (código, subNumero) es único en toda la empresa.
+  codigoComprobante        String?
+  subNumero                Int              @default(1)
   comprobantes             Comprobante[]
+
+  // Quién paga y desde qué cuenta sale el dinero. `banco`/`numeroCuenta`/`cci`
+  // de arriba son los del beneficiario.
+  empresaId                String?
+  empresa                  Empresa?         @relation(fields: [empresaId], references: [id])
+  cuentaOrigenId           String?
+  cuentaOrigen             CuentaEmpresa?   @relation(fields: [cuentaOrigenId], references: [id])
+
+  // Rendición: quién debe sustentar el gasto, cuánto sustentó y si ya se cerró.
+  // El nombre en texto siempre se guarda; el vínculo al trabajador solo existe
+  // cuando la persona está dada de alta (los históricos pueden no estarlo).
+  responsableRendicionId     String?
+  responsableRendicion       Trabajador?      @relation("PagosResponsableRendicion", fields: [responsableRendicionId], references: [id])
+  responsableRendicionNombre String?
+  importeRendido             Decimal?         @db.Decimal(12, 2)
+  estadoRendicion            EstadoRendicion?
+
+  // Quién generó la constancia cuando esa persona no es un usuario del sistema
+  // (cargas históricas). Si lo es, el vínculo es `pagadoPor`.
+  generadoPorNombre        String?
+
+  // Lote de carga masiva del que viene el pago (null si se registró en el sistema).
+  importacionId            String?
+  importacion              ImportacionPagos? @relation(fields: [importacionId], references: [id])
+
   registradoPorId          String
   registradoPor            User             @relation("PagosRegistradosPor", fields: [registradoPorId], references: [id])
   pagadoPorId              String?
@@ -1350,8 +1388,66 @@ model Pago {
 
   @@index([proyectoId, fechaProgramada])
   @@index([origen, estado, fechaProgramada])
+  @@index([importacionId])
   @@unique([recurrenciaId, periodoRecurrente])
+  @@unique([codigoComprobante, subNumero])
   @@map("pagos")
+}
+
+// Razón social que emite los pagos (la constancia y las cuentas de origen
+// dependen de ella). El RUC es la clave natural: las cargas masivas la buscan
+// por RUC, no por nombre.
+model Empresa {
+  id            String          @id @default(cuid())
+  razonSocial   String
+  ruc           String          @unique
+  activa        Boolean         @default(true)
+  creadoEn      DateTime        @default(now())
+  actualizadoEn DateTime        @updatedAt
+
+  cuentas CuentaEmpresa[]
+  pagos   Pago[]
+
+  @@map("empresas")
+}
+
+// Cuenta bancaria de la empresa de la que sale el dinero. `banco` guarda el
+// rótulo tal como lo usa tesorería ("BCP-D&C INGENIERIA Y PROYECTOS").
+model CuentaEmpresa {
+  id            String   @id @default(cuid())
+  empresaId     String
+  empresa       Empresa  @relation(fields: [empresaId], references: [id], onDelete: Cascade)
+  banco         String
+  numero        String
+  activa        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  pagos Pago[]
+
+  @@unique([empresaId, numero])
+  @@map("cuentas_empresa")
+}
+
+// Un lote de carga masiva de pagos (archivo xlsx importado con
+// `pnpm pagos:importar --aplicar`). Permite auditar qué entró y deshacerlo.
+model ImportacionPagos {
+  id          String    @id @default(cuid())
+  archivo     String
+  etiqueta    String?
+  filas       Int
+  creados     Int
+  vinculados  Int
+  omitidos    Int
+  resumen     Json?
+  creadoPorId String
+  creadoPor   User      @relation(fields: [creadoPorId], references: [id])
+  creadoEn    DateTime  @default(now())
+  deshechoEn  DateTime?
+
+  pagos Pago[]
+
+  @@map("importaciones_pagos")
 }
 
 enum TipoDocumentoComprobante {

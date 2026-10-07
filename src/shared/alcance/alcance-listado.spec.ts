@@ -20,6 +20,12 @@ describe('tiposListadosPorRol', () => {
     ]);
   });
 
+  it('el coordinador SSOMA ve solo seguridad', () => {
+    expect(tiposListadosPorRol('rol', 'coordinador_ssoma')).toEqual([
+      'seguridad',
+    ]);
+  });
+
   it.each<Role>([
     'logistica',
     'administrador',
@@ -27,6 +33,7 @@ describe('tiposListadosPorRol', () => {
     'gerencia',
     'supervisor',
     'pdr',
+    'tesoreria',
   ])('"%s" no se filtra por tipo', (rol) => {
     expect(tiposListadosPorRol('rol', rol)).toBeNull();
   });

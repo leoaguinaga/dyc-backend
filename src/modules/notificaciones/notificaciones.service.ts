@@ -118,6 +118,24 @@ export class NotificacionesService {
     }
   }
 
+  /** Notifica a los usuarios del rol que están asignados a la obra. */
+  async crearParaAsignadosDeObra(
+    role: Role,
+    proyectoId: string,
+    input: CrearNotificacionInput,
+    options?: CrearNotificacionOptions,
+  ) {
+    const usuarios = await this.prisma.user.findMany({
+      where: { role, proyectosComoSupervisor: { some: { proyectoId } } },
+      select: { id: true },
+    });
+    await this.crearParaUsuarios(
+      usuarios.map((u) => u.id),
+      input,
+      options,
+    );
+  }
+
   async crearParaRoles(
     roles: Role[],
     input: CrearNotificacionInput,
@@ -143,7 +161,7 @@ export class NotificacionesService {
     if (items.length === 0) return;
 
     const usuarios = await this.prisma.user.findMany({
-      where: { role: { in: ['gerencia', 'administrador'] } },
+      where: { role: { in: ['gerencia', 'administrador', 'tesoreria'] } },
       select: { email: true, correoContacto: true },
     });
     const vencidos = items.filter((item) => item.vencido).length;
@@ -245,7 +263,7 @@ export class NotificacionesService {
       const referencia = pago.ordenCompra ? ` (OC ${pago.ordenCompra.numero})` : '';
       const monto = Number(pago.monto).toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
 
-      await this.crearParaRoles(['gerencia', 'administrador'], {
+      await this.crearParaRoles(['gerencia', 'administrador', 'tesoreria'], {
         tipo,
         titulo: vencido ? 'Pago vencido' : 'Pago próximo a vencer',
         mensaje: vencido
