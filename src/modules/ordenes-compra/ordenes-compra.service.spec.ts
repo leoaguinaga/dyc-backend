@@ -12,7 +12,12 @@ function solicitudConIgv(incluyeIgv: boolean) {
     cotizaciones: [
       {
         proveedorId: 'prov-1',
-        proveedor: { id: 'prov-1', condicionPago: null },
+        proveedor: {
+          id: 'prov-1',
+          razonSocial: 'AIR PROJECT PERU E.I.R.L.',
+          ruc: '20123456789',
+          condicionPago: null,
+        },
         condicionPago: null,
         incluyeIgv,
         estado: 'aprobada',
@@ -95,5 +100,25 @@ describe('OrdenesCompraService.create — plan de pagos con IGV', () => {
       13983.051, 9322.034, 13983.051, 9322.034,
     ]);
     expect(pagos.reduce((s, p) => s + p.monto, 0)).toBeCloseTo(46610.17, 2);
+  });
+
+  it('genera la orden ya emitida, sin paso de emisión', async () => {
+    const { service, ocCreadas } = setup(solicitudConIgv(true));
+
+    await service.create({ solicitudId: 'sol-1' }, 'user-1');
+
+    expect(ocCreadas[0].data.estado).toBe('emitida');
+    expect(ocCreadas[0].data.fechaEmision).toBeInstanceOf(Date);
+  });
+
+  it('rechaza generar la orden si el proveedor no tiene RUC', async () => {
+    const solicitud = solicitudConIgv(true);
+    solicitud.cotizaciones[0].proveedor.ruc = null as never;
+    const { service, ocCreadas } = setup(solicitud);
+
+    await expect(
+      service.create({ solicitudId: 'sol-1' }, 'user-1'),
+    ).rejects.toThrow('no tiene RUC');
+    expect(ocCreadas).toHaveLength(0);
   });
 });

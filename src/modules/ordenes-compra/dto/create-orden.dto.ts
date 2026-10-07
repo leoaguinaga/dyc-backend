@@ -126,19 +126,3 @@ export class UpdateOrdenCompraDto {
   })
   numero?: string;
 }
-
-export class RecibirOrdenCompraDto {
-  @IsOptional()
-  @IsDateString()
-  fechaEntregaReal?: string;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  @Max(5)
-  calificacionCalidad?: number;
-
-  @IsOptional()
-  @IsString()
-  comentarioRecepcion?: string;
-}

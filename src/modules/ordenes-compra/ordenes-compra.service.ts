@@ -8,7 +8,6 @@ import { Prisma } from '../../../prisma/generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import {
   CreateOrdenCompraDto,
-  RecibirOrdenCompraDto,
   UpdateOrdenCompraDto,
 } from './dto/create-orden.dto.js';
 import {
@@ -113,7 +112,6 @@ export class OrdenesCompraService {
   }) {
     return this.prisma.ordenCompra.findMany({
       where: {
-        origen: 'macro',
         estado: query.estado,
         proyectoId: query.proyectoId,
         tipo: query.tipo,
@@ -128,6 +126,7 @@ export class OrdenesCompraService {
             requerimiento: { select: { id: true, codigo: true, tipo: true } },
           },
         },
+        compraSimple: { select: { id: true, codigo: true } },
         pagos: { select: { id: true, monto: true, estado: true } },
         _count: { select: { items: true } },
       },
@@ -165,7 +164,14 @@ export class OrdenesCompraService {
         cotizaciones: {
           include: {
             items: true,
-            proveedor: { select: { id: true, condicionPago: true } },
+            proveedor: {
+              select: {
+                id: true,
+                razonSocial: true,
+                ruc: true,
+                condicionPago: true,
+              },
+            },
             condicionesPago: true,
           },
         },
@@ -258,6 +264,19 @@ export class OrdenesCompraService {
     const lugarEntrega = dto.lugarEntrega ?? proyecto?.direccion ?? undefined;
 
     const grupos = [...byProveedor.values()];
+
+    // La OC/OS nace emitida (ya no hay paso de emisión), así que el RUC del
+    // proveedor se valida al generarla.
+    for (const grupo of grupos) {
+      const proveedor = solicitud.cotizaciones.find(
+        (c) => c.proveedorId === grupo.proveedorId,
+      )?.proveedor;
+      if (!proveedor?.ruc)
+        throw new BadRequestException(
+          `El proveedor "${proveedor?.razonSocial ?? grupo.proveedorId}" no tiene RUC registrado. Actualízalo antes de generar la orden.`,
+        );
+    }
+
     const tipo: TipoOrdenCompra = dto.tipo ?? 'compra';
 
     const ordenes = await this.prisma.$transaction(async (tx) => {
@@ -292,6 +311,8 @@ export class OrdenesCompraService {
               numero: numeros[i],
               tipo,
               nombre: solicitud.requerimiento?.nombre,
+              estado: 'emitida',
+              fechaEmision: new Date(),
               solicitudId: dto.solicitudId,
               proveedorId: grupo.proveedorId,
               proyectoId,
@@ -335,6 +356,8 @@ export class OrdenesCompraService {
 
       return creadas;
     });
+
+    await this.pasarRequerimientoAConformidad(dto.solicitudId);
 
     for (const oc of ordenes) {
       this.events.emit(AppEvents.ORDEN_COMPRA_GENERADA, {
@@ -483,14 +506,14 @@ export class OrdenesCompraService {
   async transicionEstado(
     id: string,
     nuevoEstado: EstadoOrdenCompra,
-    dto?: RecibirOrdenCompraDto,
   ) {
     const TRANSICIONES: Partial<
       Record<EstadoOrdenCompra, EstadoOrdenCompra[]>
     > = {
       borrador: ['emitida', 'cancelada'],
-      emitida: ['recibida_parcial', 'recibida', 'cancelada'],
-      recibida_parcial: ['recibida', 'cancelada'],
+      // La recepción no se marca en la OC/OS: la registra el solicitante al
+      // dar su conformidad (RequerimientosService.recepcion).
+      emitida: ['cancelada'],
     };
 
     const oc = await this.findOne(id);
@@ -514,13 +537,6 @@ export class OrdenesCompraService {
       data: {
         estado: nuevoEstado,
         fechaEmision: nuevoEstado === 'emitida' ? new Date() : undefined,
-        ...(nuevoEstado === 'recibida' && {
-          fechaEntregaReal: dto?.fechaEntregaReal
-            ? new Date(dto.fechaEntregaReal)
-            : new Date(),
-          calificacionCalidad: dto?.calificacionCalidad,
-          comentarioRecepcion: dto?.comentarioRecepcion,
-        }),
       },
       include: OC_INCLUDE,
     });
@@ -539,35 +555,51 @@ export class OrdenesCompraService {
       });
     }
 
-    // El solicitante del requerimiento que originó esta OC (vía solicitud de
-    // cotización) es responsable de confirmar la recepción con foto + comentario.
-    const requerimientoId = actualizada.solicitud?.requerimiento?.id;
-    if (nuevoEstado === 'recibida' && requerimientoId) {
-      const req = await this.prisma.requerimiento.findUnique({
-        where: { id: requerimientoId },
-        select: {
-          id: true,
-          codigo: true,
-          nombre: true,
-          creadoPorId: true,
-          estado: true,
-        },
-      });
-      if (req && req.estado === 'en_cotizacion') {
-        await this.prisma.requerimiento.update({
-          where: { id: req.id },
-          data: { estado: 'pendiente_conformidad' },
-        });
-        this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
-          requerimientoId: req.id,
-          codigo: req.codigo,
-          nombre: req.nombre,
-          estado: 'pendiente_conformidad',
-          creadoPorId: req.creadoPorId,
-        });
-      }
-    }
+    if (nuevoEstado === 'emitida' && actualizada.solicitud)
+      await this.pasarRequerimientoAConformidad(actualizada.solicitud.id);
 
     return actualizada;
+  }
+
+  /**
+   * La OC/OS se genera ya emitida y no tiene paso de recepción: cuando no
+   * quedan órdenes en borrador (legado) en la solicitud, el solicitante del
+   * requerimiento pasa a confirmar la recepción con foto + comentario.
+   */
+  private async pasarRequerimientoAConformidad(solicitudId: string) {
+    const solicitud = await this.prisma.solicitudCotizacion.findUnique({
+      where: { id: solicitudId },
+      select: { requerimientoId: true },
+    });
+    if (!solicitud?.requerimientoId) return;
+
+    const pendientesDeEmitir = await this.prisma.ordenCompra.count({
+      where: { solicitudId, estado: 'borrador' },
+    });
+    if (pendientesDeEmitir > 0) return;
+
+    const req = await this.prisma.requerimiento.findUnique({
+      where: { id: solicitud.requerimientoId },
+      select: {
+        id: true,
+        codigo: true,
+        nombre: true,
+        creadoPorId: true,
+        estado: true,
+      },
+    });
+    if (!req || req.estado !== 'en_cotizacion') return;
+
+    await this.prisma.requerimiento.update({
+      where: { id: req.id },
+      data: { estado: 'pendiente_conformidad' },
+    });
+    this.events.emit(AppEvents.REQUERIMIENTO_ESTADO_CAMBIADO, {
+      requerimientoId: req.id,
+      codigo: req.codigo,
+      nombre: req.nombre,
+      estado: 'pendiente_conformidad',
+      creadoPorId: req.creadoPorId,
+    });
   }
 }

@@ -14,7 +14,6 @@ import { Roles } from '../../shared/decorators/roles.decorator.js';
 import { OrdenesCompraService } from './ordenes-compra.service.js';
 import {
   CreateOrdenCompraDto,
-  RecibirOrdenCompraDto,
   UpdateOrdenCompraDto,
 } from './dto/create-orden.dto.js';
 import {
@@ -90,18 +89,6 @@ export class OrdenesCompraController {
   @Roles('administrador', 'logistica', 'gerencia')
   emitir(@Param('id') id: string) {
     return this.service.transicionEstado(id, 'emitida');
-  }
-
-  @Post(':id/recibir-parcial')
-  @Roles('administrador', 'logistica', 'gerencia')
-  recibirParcial(@Param('id') id: string) {
-    return this.service.transicionEstado(id, 'recibida_parcial');
-  }
-
-  @Post(':id/recibir')
-  @Roles('administrador', 'logistica', 'gerencia')
-  recibir(@Param('id') id: string, @Body() dto: RecibirOrdenCompraDto) {
-    return this.service.transicionEstado(id, 'recibida', dto);
   }
 
   @Post(':id/cancelar')

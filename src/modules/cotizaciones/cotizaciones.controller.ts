@@ -64,9 +64,29 @@ export class CotizacionesController {
     );
   }
 
+  // Los solicitantes sin acceso general al módulo pueden abrir el detalle (p. ej.
+  // desde la notificación) para aprobar su cotización; el servicio los limita a
+  // los requerimientos que ellos crearon.
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cotizacionesService.findOneSolicitud(id);
+  @Roles(
+    'administrador',
+    'admin_ti',
+    'logistica',
+    'gerencia',
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'supervisor',
+    'supervisor_civil',
+    'supervisor_electrico',
+    'pdr',
+    'coordinador_ssoma',
+  )
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    return this.cotizacionesService.findOneSolicitud(id, {
+      id: req.user!.id,
+      role: req.user!.role,
+    });
   }
 
   @Post()
@@ -190,12 +210,17 @@ export class CotizacionesController {
   @Post(':id/aprobar-solicitante')
   @Roles(
     'administrador',
+    'admin_ti',
     'logistica',
     'gerencia',
     'supervisor',
     'supervisor_civil',
     'supervisor_electrico',
     'pdr',
+    'ing_civil',
+    'ing_electrico',
+    'jefe_sig',
+    'coordinador_ssoma',
   )
   aprobarSolicitante(@Param('id') id: string, @Req() req: Request) {
     return this.cotizacionesService.avanzarEstadoSolicitud(
