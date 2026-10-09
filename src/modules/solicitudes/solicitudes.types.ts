@@ -38,7 +38,6 @@ export const COLUMNAS_KANBAN_SOLICITUD = [
   'cotizacion_seleccion',
   'aprobacion_gerencia',
   'por_emitir',
-  'compra_curso',
   'recepcion_conformidad',
 ] as const;
 export type ColumnaKanbanSolicitud = (typeof COLUMNAS_KANBAN_SOLICITUD)[number];

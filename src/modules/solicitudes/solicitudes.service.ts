@@ -120,8 +120,10 @@ function columnaMacro(
   if (tieneCotizacionActiva) return 'cotizacion_seleccion';
   if (esperaGerencia) return 'aprobacion_gerencia';
   if (listaParaEmitir || estadosOrden.includes('borrador')) return 'por_emitir';
-  if (estadosOrden.includes('emitida')) return 'compra_curso';
+  // La OC/OS nace emitida y no registra entrega: una orden emitida (o
+  // recibida, legado) ya espera la conformidad del solicitante.
   if (
+    estadosOrden.includes('emitida') ||
     estadosOrden.includes('recibida_parcial') ||
     estadosOrden.includes('recibida')
   ) {
@@ -157,10 +159,12 @@ function columnaPrecotizado(
   ) {
     return 'por_emitir';
   }
-  if (activos.some((grupo) => grupo.estado === 'emitida')) {
-    return 'compra_curso';
-  }
-  if (activos.some((grupo) => grupo.estado === 'recibida_parcial')) {
+  if (
+    activos.some(
+      (grupo) =>
+        grupo.estado === 'emitida' || grupo.estado === 'recibida_parcial',
+    )
+  ) {
     return 'recepcion_conformidad';
   }
 
