@@ -113,3 +113,116 @@ export function buildActionEmail(input: ActionEmailInput) {
 
   return { html, text };
 }
+
+export interface DocumentEmailInput {
+  /** Texto de la insignia de estado, p. ej. "Orden emitida". */
+  statusLabel: string;
+  tone?: EmailTone;
+  title: string;
+  /** Rótulo y valor destacados, p. ej. "MONTO TOTAL" / "S/ 4,850.00". */
+  amountLabel: string;
+  amount: string;
+  amountNote?: string;
+  details: Array<{ label: string; value: string; critical?: boolean }>;
+  /** Nombres de los archivos adjuntos, mostrados como fichas. */
+  attachments?: string[];
+  primaryAction: { label: string; url: string };
+  secondaryAction?: { label: string; url: string };
+  detailLink?: { label: string; url: string };
+  preheader?: string;
+  footer?: string;
+}
+
+/**
+ * Plantilla para avisos sobre un documento con monto (orden de compra, pago): el monto manda,
+ * la ficha se lee de un vistazo y hay una acción principal. Misma base visual que
+ * `buildActionEmail`; estilos inline y sin emojis para que Outlook no los renderice distinto.
+ */
+export function buildDocumentEmail(input: DocumentEmailInput) {
+  const tone = TONES[input.tone ?? 'info'];
+  const footer = escapeHtml(input.footer ?? 'Este es un aviso automático del sistema de Díaz y Castillo.');
+  const preheader = escapeHtml(input.preheader ?? `${input.title} · ${input.amount}`);
+  const primaryUrl = safeUrl(input.primaryAction.url);
+  const secondaryUrl = input.secondaryAction ? safeUrl(input.secondaryAction.url) : undefined;
+  const detailUrl = input.detailLink ? safeUrl(input.detailLink.url) : undefined;
+
+  const rows = input.details
+    .map(
+      (d) =>
+        `<tr><td style="padding:7px 16px 7px 0;color:#64748b;font-size:13px;line-height:1.45;vertical-align:top;white-space:nowrap;">${escapeHtml(d.label)}</td><td style="padding:7px 0;color:${d.critical ? '#b91c1c' : '#172033'};font-size:13px;font-weight:700;line-height:1.45;vertical-align:top;">${escapeHtml(d.value)}</td></tr>`,
+    )
+    .join('');
+  const chips = (input.attachments ?? [])
+    .map(
+      (name) =>
+        `<span style="display:inline-block;margin:0 6px 6px 0;padding:5px 10px;border:1px solid #e2e8f0;border-radius:6px;background:#f8fafc;color:#334155;font-size:12px;">${escapeHtml(name)}</span>`,
+    )
+    .join('');
+  const primary = primaryUrl
+    ? `<a href="${escapeHtml(primaryUrl)}" style="display:inline-block;margin:0 10px 10px 0;padding:13px 18px;border-radius:8px;background:${tone.accent};color:#ffffff;font-size:14px;font-weight:700;line-height:1;text-decoration:none;">${escapeHtml(input.primaryAction.label)}</a>`
+    : '';
+  const secondary =
+    input.secondaryAction && secondaryUrl
+      ? `<a href="${escapeHtml(secondaryUrl)}" style="display:inline-block;margin:0 10px 10px 0;padding:12px 17px;border-radius:8px;border:1px solid #94a3b8;background:#ffffff;color:#172033;font-size:14px;font-weight:700;line-height:1;text-decoration:none;">${escapeHtml(input.secondaryAction.label)}</a>`
+      : '';
+  const detail =
+    input.detailLink && detailUrl
+      ? `<div style="margin-top:6px;"><a href="${escapeHtml(detailUrl)}" style="color:#2563eb;font-size:13px;text-decoration:underline;">${escapeHtml(input.detailLink.label)}</a></div>`
+      : '';
+
+  const html = `<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>${escapeHtml(input.title)}</title>
+  </head>
+  <body style="margin:0;padding:0;background:#f4f7fb;color:#172033;font-family:Aptos,'Segoe UI',Helvetica,sans-serif;">
+    <span style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${preheader}</span>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f4f7fb;">
+      <tr><td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;">
+          <tr><td style="padding:0 4px 18px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>
+              <td style="font-size:14px;font-weight:700;letter-spacing:.01em;color:#172033;">DÍAZ Y CASTILLO <span style="font-weight:400;color:#64748b;">| Sistema de gestión</span></td>
+              <td align="right"><span style="display:inline-block;padding:7px 10px;border-radius:999px;background:${tone.soft};color:${tone.accent};font-size:11px;font-weight:700;letter-spacing:.06em;line-height:1;">${escapeHtml(input.statusLabel.toUpperCase())}</span></td>
+            </tr></table>
+          </td></tr>
+          <tr><td style="background:#ffffff;border-radius:12px;overflow:hidden;">
+            <div style="height:5px;background:${tone.accent};line-height:5px;font-size:5px;">&nbsp;</div>
+            <div style="padding:30px 32px 28px;">
+              <h1 style="margin:0 0 20px;color:#172033;font-size:16px;line-height:1.4;font-weight:700;">${escapeHtml(input.title)}</h1>
+              <div style="color:#64748b;font-size:11px;font-weight:700;letter-spacing:.08em;">${escapeHtml(input.amountLabel)}</div>
+              <div style="margin:4px 0 0;color:#172033;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.02em;">${escapeHtml(input.amount)}${input.amountNote ? ` <span style="font-size:14px;font-weight:600;color:#64748b;letter-spacing:0;">${escapeHtml(input.amountNote)}</span>` : ''}</div>
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:22px 0;">${rows}</table>
+              ${chips ? `<div style="margin:0 0 6px;">${chips}</div>` : ''}
+              <div style="margin-top:22px;">${primary}${secondary}</div>
+              ${detail}
+            </div>
+          </td></tr>
+          <tr><td style="padding:18px 8px 0;color:#64748b;font-size:12px;line-height:1.55;">${footer}</td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>`;
+
+  const text = [
+    'DÍAZ Y CASTILLO — Sistema de gestión',
+    '',
+    `[${input.statusLabel}] ${input.title}`,
+    '',
+    `${input.amountLabel}: ${input.amount}${input.amountNote ? ` ${input.amountNote}` : ''}`,
+    ...input.details.map((d) => `${d.label}: ${d.value}`),
+    ...(input.attachments?.length ? ['', `Adjuntos: ${input.attachments.join(', ')}`] : []),
+    '',
+    ...(primaryUrl ? [`${input.primaryAction.label}: ${primaryUrl}`] : []),
+    ...(input.secondaryAction && secondaryUrl ? [`${input.secondaryAction.label}: ${secondaryUrl}`] : []),
+    ...(input.detailLink && detailUrl ? [`${input.detailLink.label}: ${detailUrl}`] : []),
+    '',
+    input.footer ?? 'Este es un aviso automático del sistema de Díaz y Castillo.',
+  ].join('\n');
+
+  return { html, text };
+}

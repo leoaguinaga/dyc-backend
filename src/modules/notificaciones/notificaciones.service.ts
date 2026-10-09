@@ -5,7 +5,10 @@ import { EmailService } from '../../shared/email/email.service.js';
 import type { Role, TipoNotificacion } from '../../prisma/types.js';
 import { QueryNotificacionDto } from './dto/query-notificacion.dto.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
-import { buildActionEmail, type EmailTone } from '../../shared/email/email-template.js';
+import { promises as fs } from 'fs';
+import { join, resolve, sep, basename } from 'path';
+import { buildActionEmail, buildDocumentEmail, type EmailTone } from '../../shared/email/email-template.js';
+import { montoConIgv } from '../../shared/money/igv.util.js';
 
 const DIAS_ANTICIPACION_PAGO = 3;
 const DIAS_ANTICIPACION_COBRO = 3;
@@ -46,6 +49,26 @@ function notificationTone(tipo: TipoNotificacion): EmailTone {
   ) return 'action';
   return 'info';
 }
+
+// Nombre legible del tipo de documento; el valor crudo de `entidadTipo` no se muestra al usuario.
+const ENTIDAD_LABEL: Record<string, string> = {
+  Requerimiento: 'Requerimiento',
+  SolicitudCotizacion: 'Solicitud de cotización',
+  OrdenCompra: 'Orden de compra',
+  CompraSimple: 'Compra simple',
+  Pago: 'Pago',
+  Proyecto: 'Obra',
+  Cobro: 'Cobro',
+  Planilla: 'Planilla',
+  Turno: 'Jornada',
+};
+
+const MAX_ADJUNTOS_BYTES = 5 * 1024 * 1024;
+const ROLES_CORREO_DETALLADO = ['gerencia'] as const;
+const ROLES_CORREO_GENERICO = ['logistica', 'administrador', 'admin_ti'] as const;
+
+const formatoSoles = (n: number) =>
+  `S/ ${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 function notificationAction(input: CrearNotificacionInput) {
   const frontendUrl = process.env.FRONTEND_URL ?? 'http://localhost:3000';
@@ -107,7 +130,7 @@ export class NotificacionesService {
         title: input.titulo,
         message: input.mensaje,
         tone: notificationTone(input.tipo),
-        reference: input.entidadTipo,
+        reference: input.entidadTipo ? ENTIDAD_LABEL[input.entidadTipo] : undefined,
         ...action,
       });
       for (const to of destinatarios) {
@@ -116,6 +139,119 @@ export class NotificacionesService {
           .catch((err: unknown) => this.logger.error(`Error enviando email a ${to}: ${String(err)}`));
       }
     }
+  }
+
+  /**
+   * Correos de una orden de compra recién emitida. Gerencia recibe el detalle con monto, ficha y
+   * accesos a la orden y a sus pagos; el resto de gestores conserva el aviso genérico. Nunca lanza:
+   * un fallo de correo no debe romper la emisión de la orden.
+   */
+  async enviarCorreosOrdenCompra(ordenCompraId: string) {
+    try {
+      const oc = await this.prisma.ordenCompra.findUnique({
+        where: { id: ordenCompraId },
+        include: {
+          proyecto: { select: { codigo: true, nombre: true } },
+          proveedor: { select: { razonSocial: true } },
+          creadoPor: { select: { name: true } },
+          solicitud: {
+            select: {
+              requerimiento: { select: { tipo: true, prioridad: true, creadoPor: { select: { name: true } } } },
+              cotizaciones: {
+                where: { estado: 'aprobada' },
+                select: { proveedorId: true, archivos: { select: { nombre: true, url: true } } },
+              },
+            },
+          },
+        },
+      });
+      if (!oc) return;
+
+      const frontendUrl = process.env.FRONTEND_URL ?? 'http://localhost:3000';
+      const ordenUrl = new URL(`/ordenes-compra/${oc.id}`, frontendUrl).toString();
+      const proveedor = oc.proveedor?.razonSocial ?? oc.proveedorNombreLibre ?? '—';
+      const proyecto = oc.proyecto.codigo ? `${oc.proyecto.codigo} · ${oc.proyecto.nombre}` : oc.proyecto.nombre;
+      const requerimiento = oc.solicitud?.requerimiento ?? null;
+      const prioridad = requerimiento?.prioridad ?? 'normal';
+
+      const destinatarios = async (roles: readonly string[]) => {
+        const users = await this.prisma.user.findMany({
+          where: { role: { in: [...roles] as Role[] } },
+          select: { email: true, correoContacto: true },
+        });
+        return [...new Set(users.flatMap((u) => [u.email, ...(u.correoContacto ? [u.correoContacto] : [])]))];
+      };
+      const enviar = (to: string, subject: string, content: { html: string; text: string }, attachments?: Array<{ filename: string; content: Buffer }>) =>
+        this.email
+          .send({ to, subject, ...content, attachments })
+          .catch((err: unknown) => this.logger.error(`Error enviando email de OC a ${to}: ${String(err)}`));
+
+      // Detalle para gerencia.
+      const adjuntos = await this.adjuntosCotizacion(
+        oc.solicitud?.cotizaciones.filter((c) => c.proveedorId === oc.proveedorId).flatMap((c) => c.archivos) ?? [],
+      );
+      const monto = montoConIgv(Number(oc.montoTotal), oc.incluyeIgv);
+      const detallado = buildDocumentEmail({
+        statusLabel: 'Orden emitida',
+        tone: prioridad === 'urgente' ? 'critical' : 'action',
+        title: `Orden de compra ${oc.numero} · ${proveedor}`,
+        amountLabel: 'MONTO TOTAL DE LA ORDEN',
+        amount: formatoSoles(monto),
+        amountNote: '(inc. IGV)',
+        details: [
+          { label: 'Orden de compra', value: oc.numero },
+          { label: 'Solicitado por', value: requerimiento?.creadoPor.name ?? oc.creadoPor.name },
+          { label: 'Proveedor', value: proveedor },
+          { label: 'Proyecto', value: proyecto },
+          ...(oc.concepto || oc.nombre ? [{ label: 'Concepto', value: (oc.concepto ?? oc.nombre) as string }] : []),
+          ...(prioridad !== 'normal'
+            ? [{ label: 'Prioridad', value: prioridad.toUpperCase(), critical: prioridad === 'urgente' }]
+            : []),
+        ],
+        attachments: adjuntos.map((a) => a.filename),
+        primaryAction: { label: 'Revisar orden de compra', url: ordenUrl },
+        secondaryAction: { label: 'Ver pagos programados', url: new URL('/pagos', frontendUrl).toString() },
+        detailLink: { label: 'Ver detalle completo en el sistema', url: ordenUrl },
+        preheader: `${oc.numero} · ${formatoSoles(monto)} · ${proyecto}`,
+      });
+      const asunto = `${prioridad === 'urgente' ? '[URGENTE] ' : ''}Orden de compra ${oc.numero} - ${formatoSoles(monto)} - ${oc.proyecto.nombre}`;
+      for (const to of await destinatarios(ROLES_CORREO_DETALLADO)) void enviar(to, asunto, detallado, adjuntos.length ? adjuntos : undefined);
+
+      // Aviso genérico para el resto de gestores.
+      const generico = buildActionEmail({
+        title: 'Nueva orden de compra',
+        message: `Se generó la OC ${oc.numero} para ${proveedor}.`,
+        tone: 'info',
+        actionLabel: 'Ver orden de compra',
+        actionUrl: ordenUrl,
+        reference: oc.numero,
+      });
+      for (const to of await destinatarios(ROLES_CORREO_GENERICO)) void enviar(to, 'Nueva orden de compra', generico);
+    } catch (err) {
+      this.logger.error(`Error preparando los correos de la OC ${ordenCompraId}: ${String(err)}`);
+    }
+  }
+
+  /** Adjunta las cotizaciones del almacenamiento local, hasta el tope de tamaño; omite lo que no pueda leer. */
+  private async adjuntosCotizacion(archivos: Array<{ nombre: string; url: string }>) {
+    const prefijo = '/uploads/';
+    const base = resolve(join(process.cwd(), 'uploads'));
+    const resultado: Array<{ filename: string; content: Buffer }> = [];
+    let total = 0;
+    for (const archivo of archivos) {
+      if (!archivo.url.startsWith(prefijo)) continue;
+      const ruta = resolve(base, archivo.url.slice(prefijo.length));
+      if (!ruta.startsWith(`${base}${sep}`)) continue;
+      try {
+        const content = await fs.readFile(ruta);
+        if (total + content.length > MAX_ADJUNTOS_BYTES) continue;
+        total += content.length;
+        resultado.push({ filename: basename(archivo.nombre) || basename(ruta), content });
+      } catch {
+        // Archivo ausente o ilegible: el correo sale igual, sin ese adjunto.
+      }
+    }
+    return resultado;
   }
 
   /** Notifica a los usuarios del rol que están asignados a la obra. */

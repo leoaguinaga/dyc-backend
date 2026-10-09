@@ -224,13 +224,19 @@ export class NotificacionesListener {
 
   @OnEvent(AppEvents.ORDEN_COMPRA_GENERADA)
   async onOrdenCompraGenerada(payload: OrdenCompraGeneradaPayload) {
-    await this.service.crearParaRoles([...GESTORES_OC], {
-      tipo: 'orden_compra_generada',
-      titulo: 'Nueva orden de compra',
-      mensaje: `Se generó la OC ${payload.numero} para ${payload.proveedorNombre}.`,
-      entidadTipo: 'OrdenCompra',
-      entidadId: payload.ordenCompraId,
-    });
+    // La campana avisa a todos los gestores; el correo lo arma el servicio (detalle para gerencia).
+    await this.service.crearParaRoles(
+      [...GESTORES_OC],
+      {
+        tipo: 'orden_compra_generada',
+        titulo: 'Nueva orden de compra',
+        mensaje: `Se generó la OC ${payload.numero} para ${payload.proveedorNombre}.`,
+        entidadTipo: 'OrdenCompra',
+        entidadId: payload.ordenCompraId,
+      },
+      { enviarEmail: false },
+    );
+    await this.service.enviarCorreosOrdenCompra(payload.ordenCompraId);
   }
 
   @OnEvent(AppEvents.COMPRA_SIMPLE_CREADA)
