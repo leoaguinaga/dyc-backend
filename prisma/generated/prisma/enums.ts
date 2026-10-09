@@ -273,7 +273,8 @@ export type DestinoPago = (typeof DestinoPago)[keyof typeof DestinoPago]
 
 export const TipoArchivoCompraSimple = {
   comprobante: 'comprobante',
-  foto_producto: 'foto_producto'
+  foto_producto: 'foto_producto',
+  cotizacion: 'cotizacion'
 } as const
 
 export type TipoArchivoCompraSimple = (typeof TipoArchivoCompraSimple)[keyof typeof TipoArchivoCompraSimple]

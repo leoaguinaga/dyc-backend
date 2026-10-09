@@ -146,7 +146,8 @@ export class ComprasSimplesController {
     @UploadedFile() file?: Express.Multer.File,
   ) {
     if (!file) throw new BadRequestException('Debes adjuntar un archivo');
-    const tipoArchivo = tipo === 'foto_producto' ? 'foto_producto' : 'comprobante';
+    const tipoArchivo =
+      tipo === 'foto_producto' || tipo === 'cotizacion' ? tipo : 'comprobante';
     return this.service.subirArchivo(grupoId, file, req.user!.id, tipoArchivo);
   }
 }

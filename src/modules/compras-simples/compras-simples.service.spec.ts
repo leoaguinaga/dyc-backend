@@ -446,3 +446,78 @@ describe('ComprasSimplesService — coordinador SSOMA (obras asignadas)', () => 
     );
   });
 });
+
+describe('CreateCompraSimpleDto.nombre', () => {
+  const base = {
+    tipo: 'civil',
+    proyectoId: 'proy-1',
+    grupos: [{ items: [{ descripcion: 'Cemento', cantidad: 1, precioUnitario: 1 }] }],
+  };
+  const errorDeNombre = async (extra: object) => {
+    const { plainToInstance } = await import('class-transformer');
+    const { validate } = await import('class-validator');
+    const { CreateCompraSimpleDto } = await import(
+      './dto/create-compra-simple.dto.js'
+    );
+    const errores = await validate(
+      plainToInstance(CreateCompraSimpleDto, { ...base, ...extra }),
+    );
+    return errores.find((e) => e.property === 'nombre');
+  };
+
+  it('ya no es obligatorio: el servicio lo arma con los ítems', async () => {
+    expect(await errorDeNombre({})).toBeUndefined();
+  });
+
+  it('sigue validando que sea texto cuando se envía', async () => {
+    expect(await errorDeNombre({ nombre: 123 })).toBeDefined();
+  });
+});
+
+describe('ComprasSimplesService.subirArchivo (cotización)', () => {
+  function setup(estadoAprobacion: string, esRendicion = false) {
+    const create = jest.fn().mockResolvedValue({ id: 'a1' });
+    const prisma = { compraSimpleGrupoArchivo: { create } };
+    const storage = { save: jest.fn().mockResolvedValue({ url: '/u/x.pdf' }) };
+    const service = new ComprasSimplesService(
+      prisma as never,
+      storage as never,
+      {} as never,
+      {} as never,
+    );
+    jest.spyOn(service as never, 'findGrupo').mockResolvedValue({
+      id: 'g1',
+      creadoPorId: 'u1',
+      estadoAprobacion,
+      compraSimple: { esRendicion },
+    } as never);
+    return { service, create };
+  }
+  const archivo = {
+    buffer: Buffer.from('x'),
+    originalname: 'cotizacion.pdf',
+    mimetype: 'application/pdf',
+  } as Express.Multer.File;
+
+  it('acepta la cotización mientras el grupo está pendiente', async () => {
+    const { service, create } = setup('pendiente');
+    await service.subirArchivo('g1', archivo, 'u1', 'cotizacion');
+    expect(create).toHaveBeenCalledWith({
+      data: expect.objectContaining({ tipo: 'cotizacion', grupoId: 'g1' }),
+    });
+  });
+
+  it('sigue rechazando una factura en un grupo pendiente que no es rendición', async () => {
+    const { service } = setup('pendiente');
+    await expect(
+      service.subirArchivo('g1', archivo, 'u1', 'comprobante'),
+    ).rejects.toThrow(BadRequestException);
+  });
+
+  it('solo el creador puede adjuntar', async () => {
+    const { service } = setup('pendiente');
+    await expect(
+      service.subirArchivo('g1', archivo, 'otro', 'cotizacion'),
+    ).rejects.toThrow(ForbiddenException);
+  });
+});
