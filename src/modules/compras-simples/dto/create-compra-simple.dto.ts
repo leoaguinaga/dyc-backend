@@ -102,8 +102,10 @@ export class CreateCompraSimpleGrupoDto {
 }
 
 export class CreateCompraSimpleDto {
+  /** Opcional: si no llega, se arma como «primer ítem (+N más)». */
+  @IsOptional()
   @IsString()
-  nombre: string;
+  nombre?: string;
 
   @IsEnum(TipoRequerimiento)
   tipo: TipoRequerimiento;

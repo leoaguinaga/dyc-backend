@@ -264,6 +264,7 @@ enum DestinoPago {
 enum TipoArchivoCompraSimple {
   comprobante
   foto_producto
+  cotizacion
 }
 
 enum MetodoPagoTrabajador {

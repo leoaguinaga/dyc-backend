@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PrismaService } from '../../prisma/prisma.service.js';
+import { nombreAutomatico } from '../requerimientos/requerimientos.service.js';
 import {
   CreateCompraSimpleDto,
   CreateCompraSimpleGrupoDto,
@@ -468,7 +469,9 @@ export class ComprasSimplesService {
       return tx.compraSimple.create({
         data: {
           codigo,
-          nombre: dto.nombre,
+          nombre:
+            dto.nombre?.trim() ||
+            nombreAutomatico(dto.grupos.flatMap((g) => g.items)),
           tipo: dto.tipo,
           esRendicion: dto.esRendicion ?? false,
           aprobadoInformalPorId: dto.esRendicion
@@ -947,7 +950,7 @@ export class ComprasSimplesService {
     grupoId: string,
     file: Express.Multer.File,
     userId: string,
-    tipo: 'comprobante' | 'foto_producto' = 'comprobante',
+    tipo: 'comprobante' | 'foto_producto' | 'cotizacion' = 'comprobante',
   ) {
     const grupo = await this.findGrupo(grupoId);
     if (grupo.creadoPorId !== userId)
@@ -960,7 +963,15 @@ export class ComprasSimplesService {
     // de solo adjuntar la factura de un grupo ya aprobado.
     const esSubidaRendicion =
       grupo.compraSimple.esRendicion && grupo.estadoAprobacion === 'pendiente';
-    if (!esSubidaRendicion && grupo.estadoAprobacion !== 'aprobada')
+    // La cotización o proforma respalda el monto: se adjunta al registrar la
+    // compra, mientras el grupo aún espera su primera revisión.
+    const esCotizacionInicial =
+      tipo === 'cotizacion' && grupo.estadoAprobacion === 'pendiente';
+    if (
+      !esSubidaRendicion &&
+      !esCotizacionInicial &&
+      grupo.estadoAprobacion !== 'aprobada'
+    )
       throw new BadRequestException(
         'Solo se puede adjuntar la factura de un grupo ya aprobado',
       );
