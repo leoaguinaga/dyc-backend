@@ -585,6 +585,7 @@ export const RequerimientoScalarFieldEnum = {
   estado: 'estado',
   tipo: 'tipo',
   urgente: 'urgente',
+  prioridad: 'prioridad',
   nota: 'nota',
   notaRevision: 'notaRevision',
   fechaEntregaRequerida: 'fechaEntregaRequerida',

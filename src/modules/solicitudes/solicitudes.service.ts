@@ -281,6 +281,7 @@ export class SolicitudesService {
               tipo: true,
               estado: true,
               urgente: true,
+              prioridad: true,
               notaRevision: true,
               fechaEntregaRequerida: true,
               recepcionEn: true,
@@ -378,6 +379,7 @@ export class SolicitudesService {
           requerimiento: {
             estado: requerimiento.estado,
             urgente: requerimiento.urgente,
+            prioridad: requerimiento.prioridad,
             notaRevision: requerimiento.notaRevision,
             fechaEntregaRequerida:
               requerimiento.fechaEntregaRequerida?.toISOString() ?? null,

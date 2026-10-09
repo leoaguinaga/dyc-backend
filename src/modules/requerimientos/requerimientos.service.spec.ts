@@ -1,6 +1,6 @@
-import { ForbiddenException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { jest } from '@jest/globals';
-import { RequerimientosService } from './requerimientos.service.js';
+import { RequerimientosService, nombreAutomatico } from './requerimientos.service.js';
 import type { PrismaService } from '../../prisma/prisma.service.js';
 import type { StorageProvider } from '../../shared/storage/storage.interface.js';
 import type { EventEmitter2 } from '@nestjs/event-emitter';
@@ -231,5 +231,118 @@ describe('RequerimientosService.create (tipos permitidos por rol)', () => {
       await expect(promesa).rejects.toThrow(ForbiddenException);
       expect(prisma.requerimiento.create).not.toHaveBeenCalled();
     }
+  });
+});
+
+describe('RequerimientosService.create (prioridad y nombre)', () => {
+  function crearServicio() {
+    const prisma = {
+      requerimiento: {
+        count: jest.fn().mockResolvedValue(0),
+        create: jest.fn().mockResolvedValue({ id: 'req-nuevo' }),
+      },
+    };
+    const service = new RequerimientosService(
+      prisma as unknown as PrismaService,
+      {} as StorageProvider,
+      { emit: jest.fn() } as unknown as EventEmitter2,
+    );
+    return { service, prisma };
+  }
+  const base = {
+    proyectoId: 'proy-1',
+    tipo: 'civil',
+    items: [{ descripcion: 'Casco', cantidad: 1 }],
+  };
+  const dataCreada = (prisma: ReturnType<typeof crearServicio>['prisma']) =>
+    (prisma.requerimiento.create.mock.calls[0][0] as { data: Record<string, unknown> }).data;
+
+  it('guarda la prioridad y deriva urgente de ella', async () => {
+    const { service, prisma } = crearServicio();
+    await service.create({ ...base, prioridad: 'alta' } as never, 'u1', 'administrador');
+    expect(dataCreada(prisma)).toMatchObject({ prioridad: 'alta', urgente: false });
+  });
+
+  it('traduce urgente=true de un cliente viejo a prioridad urgente', async () => {
+    const { service, prisma } = crearServicio();
+    await service.create({ ...base, urgente: true } as never, 'u1', 'administrador');
+    expect(dataCreada(prisma)).toMatchObject({ prioridad: 'urgente', urgente: true });
+  });
+
+  it('usa prioridad normal por defecto', async () => {
+    const { service, prisma } = crearServicio();
+    await service.create(base as never, 'u1', 'administrador');
+    expect(dataCreada(prisma)).toMatchObject({ prioridad: 'normal', urgente: false });
+  });
+
+  it('autogenera el nombre desde el primer ítem cuando no llega', async () => {
+    const { service, prisma } = crearServicio();
+    await service.create(
+      { ...base, items: [{ descripcion: 'Casco', cantidad: 1 }, { descripcion: 'Guantes', cantidad: 2 }] } as never,
+      'u1',
+      'administrador',
+    );
+    expect(dataCreada(prisma).nombre).toBe('Casco (+1 más)');
+  });
+
+  it('respeta el nombre enviado', async () => {
+    const { service, prisma } = crearServicio();
+    await service.create({ ...base, nombre: '  EPP obra  ' } as never, 'u1', 'administrador');
+    expect(dataCreada(prisma).nombre).toBe('EPP obra');
+  });
+});
+
+describe('nombreAutomatico', () => {
+  it('devuelve el único ítem sin sufijo', () => {
+    expect(nombreAutomatico([{ descripcion: ' Extintor PQS ' }])).toBe('Extintor PQS');
+  });
+  it('recorta a 80 caracteres incluyendo el sufijo', () => {
+    const largo = 'x'.repeat(200);
+    const nombre = nombreAutomatico([{ descripcion: largo }, { descripcion: 'b' }, { descripcion: 'c' }]);
+    expect(nombre.length).toBeLessThanOrEqual(80);
+    expect(nombre.endsWith('… (+2 más)')).toBe(true);
+  });
+  it('cae a un nombre genérico sin ítems', () => {
+    expect(nombreAutomatico([])).toBe('Requerimiento');
+  });
+});
+
+describe('RequerimientosService.enviar (fecha requerida)', () => {
+  function servicioConRequerimiento(extra: object) {
+    const req = {
+      id: 'r1',
+      codigo: 'REQ-1',
+      nombre: 'x',
+      estado: 'borrador',
+      creadoPorId: 'u1',
+      proyectoId: 'p1',
+      proyecto: { id: 'p1', nombre: 'Obra', codigo: 'O1' },
+      items: [{ id: 'i1' }],
+      fechaEntregaRequerida: null,
+      ...extra,
+    };
+    const prisma = {
+      requerimiento: { findUnique: jest.fn().mockResolvedValue(req), update: jest.fn().mockResolvedValue(req) },
+      requerimientoHistorial: { create: jest.fn() },
+      $transaction: jest.fn().mockImplementation((cb: (tx: unknown) => Promise<unknown>) => cb(prisma)),
+    };
+    const service = new RequerimientosService(
+      prisma as unknown as PrismaService,
+      {} as StorageProvider,
+      { emit: jest.fn() } as unknown as EventEmitter2,
+    );
+    return { service, prisma };
+  }
+
+  it('rechaza enviar sin fecha requerida', async () => {
+    const { service, prisma } = servicioConRequerimiento({});
+    await expect(service.enviar('r1', 'u1', 'administrador')).rejects.toThrow(BadRequestException);
+    expect(prisma.requerimiento.update).not.toHaveBeenCalled();
+  });
+
+  it('envía cuando hay fecha requerida', async () => {
+    const { service, prisma } = servicioConRequerimiento({ fechaEntregaRequerida: new Date('2026-10-30') });
+    await service.enviar('r1', 'u1', 'administrador');
+    expect(prisma.requerimiento.update).toHaveBeenCalled();
   });
 });

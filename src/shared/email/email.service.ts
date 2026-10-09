@@ -8,6 +8,7 @@ export interface SendEmailInput {
   subject: string;
   html: string;
   text?: string;
+  attachments?: Array<{ filename: string; content: Buffer }>;
 }
 
 @Injectable()
@@ -49,6 +50,7 @@ export class EmailService {
       subject: input.subject,
       html: input.html,
       text: input.text,
+      attachments: input.attachments,
     };
 
     // Reintenta errores SMTP transitorios (4xx, p. ej. 421) con backoff.

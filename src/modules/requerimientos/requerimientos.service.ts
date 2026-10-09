@@ -15,6 +15,7 @@ import { RecepcionRequerimientoDto } from './dto/recepcion-requerimiento.dto.js'
 import { CancelarRequerimientoDto } from './dto/cancelar-requerimiento.dto.js';
 import type {
   EstadoRequerimiento,
+  PrioridadRequerimiento,
   Role,
   TipoRequerimiento,
 } from '../../prisma/types.js';
@@ -202,6 +203,27 @@ const SOLICITUD_SEGUIMIENTO_INCLUDE = {
   },
 } as const;
 
+/** Prioridad efectiva de un DTO: `prioridad` manda; `urgente` (cliente viejo) se traduce. */
+function resolverPrioridad(dto: {
+  prioridad?: PrioridadRequerimiento;
+  urgente?: boolean;
+}): PrioridadRequerimiento | undefined {
+  if (dto.prioridad) return dto.prioridad;
+  if (dto.urgente === undefined) return undefined;
+  return dto.urgente ? 'urgente' : 'normal';
+}
+
+/** Nombre cuando el formulario no lo pide: primer ítem (+N más), recortado a 80 caracteres. */
+export function nombreAutomatico(items: Array<{ descripcion: string }>): string {
+  const primero = items[0]?.descripcion.trim() ?? '';
+  if (!primero) return 'Requerimiento';
+  const resto = items.length - 1;
+  const sufijo = resto > 0 ? ` (+${resto} más)` : '';
+  const max = 80 - sufijo.length;
+  const base = primero.length > max ? `${primero.slice(0, max - 1).trimEnd()}…` : primero;
+  return `${base}${sufijo}`;
+}
+
 @Injectable()
 export class RequerimientosService {
   constructor(
@@ -255,7 +277,7 @@ export class RequerimientosService {
     const items = await this.prisma.requerimiento.findMany({
       where,
       include: INCLUDE_BASE,
-      orderBy: [{ urgente: 'desc' }, { creadoEn: 'desc' }],
+      orderBy: [{ prioridad: 'desc' }, { creadoEn: 'desc' }],
     });
 
     const tipoPrioritario = TIPO_PRIORITY_BY_ROLE[userRole];
@@ -321,14 +343,16 @@ export class RequerimientosService {
     );
 
     const codigo = await this.generateCodigo();
+    const prioridad = resolverPrioridad(dto) ?? 'normal';
     return this.prisma.requerimiento.create({
       data: {
         codigo,
-        nombre: dto.nombre,
+        nombre: dto.nombre?.trim() || nombreAutomatico(dto.items),
         proyectoId: dto.proyectoId,
         creadoPorId: userId,
         tipo: dto.tipo,
-        urgente: dto.urgente ?? false,
+        prioridad,
+        urgente: prioridad === 'urgente',
         nota: dto.nota,
         fechaEntregaRequerida: dto.fechaEntregaRequerida
           ? new Date(dto.fechaEntregaRequerida)
@@ -364,6 +388,7 @@ export class RequerimientosService {
       dto.nombre !== undefined ||
       dto.tipo !== undefined ||
       dto.urgente !== undefined ||
+      dto.prioridad !== undefined ||
       dto.nota !== undefined ||
       dto.fechaEntregaRequerida !== undefined ||
       dto.items !== undefined;
@@ -420,6 +445,7 @@ export class RequerimientosService {
       return r;
     }
 
+    const prioridadNueva = resolverPrioridad(dto);
     return this.prisma.$transaction(async (tx) => {
       let proyectoNuevo: {
         id: string;
@@ -509,7 +535,8 @@ export class RequerimientosService {
           proyectoId: cambiaProyecto ? proyectoNuevo!.id : undefined,
           nombre: dto.nombre,
           tipo: dto.tipo,
-          urgente: dto.urgente,
+          prioridad: prioridadNueva,
+          urgente: prioridadNueva === undefined ? undefined : prioridadNueva === 'urgente',
           nota: dto.nota,
           fechaEntregaRequerida: dto.fechaEntregaRequerida
             ? new Date(dto.fechaEntregaRequerida)
@@ -552,6 +579,10 @@ export class RequerimientosService {
     if (r.items.length === 0)
       throw new BadRequestException(
         'El requerimiento debe tener al menos un ítem',
+      );
+    if (!r.fechaEntregaRequerida)
+      throw new BadRequestException(
+        'Indica la fecha requerida antes de enviar el requerimiento',
       );
 
     // Todo requerimiento enviado debe pasar por una aprobación separada.

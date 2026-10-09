@@ -1,6 +1,6 @@
 import { NotificacionesService } from './notificaciones.service.js';
 import { NotificacionesListener } from './notificaciones.listener.js';
-import { buildActionEmail } from '../../shared/email/email-template.js';
+import { buildActionEmail, buildDocumentEmail } from '../../shared/email/email-template.js';
 import { EmailService } from '../../shared/email/email.service.js';
 import { hoyLima } from '../../shared/date/fecha.util.js';
 import { fn, prismaMock, type PrismaMock } from '../../testing/mocks.js';
@@ -226,6 +226,7 @@ describe('NotificacionesListener', () => {
   const service = {
     crearParaRoles: fn(() => Promise.resolve()),
     crearParaUsuarios: fn(() => Promise.resolve()),
+    enviarCorreosOrdenCompra: fn(() => Promise.resolve()),
   };
   const listener = new NotificacionesListener(service as never);
   beforeEach(() => {
@@ -410,5 +411,117 @@ describe('EmailService', () => {
     } finally {
       global.setTimeout = realSetTimeout;
     }
+  });
+});
+
+describe('buildDocumentEmail', () => {
+  const base = {
+    statusLabel: 'Orden emitida',
+    title: 'Orden de compra OC-1 · <b>X</b>',
+    amountLabel: 'MONTO TOTAL DE LA ORDEN',
+    amount: 'S/ 4,850.00',
+    amountNote: '(inc. IGV)',
+    details: [
+      { label: 'Proveedor', value: 'ACME & "Hijos"' },
+      { label: 'Prioridad', value: 'URGENTE', critical: true },
+    ],
+    attachments: ['Cotizacion.pdf'],
+    primaryAction: { label: 'Revisar orden de compra', url: 'https://app.dyc.pe/ordenes-compra/1' },
+    secondaryAction: { label: 'Ver pagos programados', url: 'https://app.dyc.pe/pagos' },
+  };
+
+  it('muestra monto, ficha, adjuntos y las dos acciones', () => {
+    const { html, text } = buildDocumentEmail(base);
+    expect(html).toContain('S/ 4,850.00');
+    expect(html).toContain('(inc. IGV)');
+    expect(html).toContain('Cotizacion.pdf');
+    expect(html).toContain('Revisar orden de compra');
+    expect(html).toContain('Ver pagos programados');
+    expect(text).toContain('MONTO TOTAL DE LA ORDEN: S/ 4,850.00 (inc. IGV)');
+    expect(text).toContain('Proveedor: ACME & "Hijos"');
+  });
+
+  it('escapa los datos de usuario en el HTML', () => {
+    const { html } = buildDocumentEmail(base);
+    expect(html).not.toContain('<b>X</b>');
+    expect(html).toContain('&lt;b&gt;X&lt;/b&gt;');
+    expect(html).toContain('ACME &amp; &quot;Hijos&quot;');
+  });
+
+  it('descarta enlaces que no sean http(s)', () => {
+    const { html } = buildDocumentEmail({
+      ...base,
+      primaryAction: { label: 'Malo', url: 'javascript:alert(1)' },
+    });
+    expect(html).not.toContain('javascript:');
+  });
+});
+
+describe('NotificacionesService.enviarCorreosOrdenCompra', () => {
+  const oc = (extra: object = {}) => ({
+    id: 'oc1',
+    numero: 'OC-2026-0099',
+    nombre: 'Insumos',
+    concepto: 'Insumos y EPPs',
+    montoTotal: 4110.17,
+    incluyeIgv: false,
+    proveedorId: 'p1',
+    proveedorNombreLibre: null,
+    proveedor: { razonSocial: 'GRUPO CONSTRUCTEK' },
+    proyecto: { codigo: '26-05-01', nombre: 'ADIDAS KIDS' },
+    creadoPor: { name: 'Logística' },
+    solicitud: {
+      requerimiento: { tipo: 'seguridad', prioridad: 'urgente', creadoPor: { name: 'Danfer Pérez' } },
+      cotizaciones: [{ proveedorId: 'p1', archivos: [{ nombre: 'cot.pdf', url: 'https://x/cot.pdf' }] }],
+    },
+    ...extra,
+  });
+
+  function preparar(ocData: unknown) {
+    const { service, prisma, email } = setup();
+    prisma.ordenCompra.findUnique.mockResolvedValue(ocData);
+    prisma.user.findMany.mockImplementation(async (args: any) => {
+      const roles: string[] = args.where.role.in;
+      return roles.includes('gerencia')
+        ? [{ email: 'gerencia@dyc.pe', correoContacto: null }]
+        : [{ email: 'logistica@dyc.pe', correoContacto: null }];
+    });
+    return { service, email };
+  }
+
+  it('manda el detalle a gerencia con asunto urgente y el aviso genérico al resto', async () => {
+    const { service, email } = preparar(oc());
+    await service.enviarCorreosOrdenCompra('oc1');
+    await flush();
+    const envios = email.send.mock.calls.map((c: any) => c[0]);
+    const aGerencia = envios.find((e: any) => e.to === 'gerencia@dyc.pe');
+    expect(aGerencia.subject).toBe('[URGENTE] Orden de compra OC-2026-0099 - S/ 4,850.00 - ADIDAS KIDS');
+    expect(aGerencia.html).toContain('Danfer Pérez');
+    expect(aGerencia.html).toContain('Ver pagos programados');
+    const generico = envios.find((e: any) => e.to === 'logistica@dyc.pe');
+    expect(generico.subject).toBe('Nueva orden de compra');
+    expect(generico.html).not.toContain('>OrdenCompra<');
+  });
+
+  it('sin prioridad no antepone [URGENTE]', async () => {
+    const { service, email } = preparar(
+      oc({ solicitud: { requerimiento: { tipo: 'civil', prioridad: 'normal', creadoPor: { name: 'A' } }, cotizaciones: [] } }),
+    );
+    await service.enviarCorreosOrdenCompra('oc1');
+    await flush();
+    const aGerencia = email.send.mock.calls.map((c: any) => c[0]).find((e: any) => e.to === 'gerencia@dyc.pe');
+    expect(aGerencia.subject.startsWith('[URGENTE]')).toBe(false);
+  });
+
+  it('un fallo al preparar el correo no lanza', async () => {
+    const { service, prisma } = setup();
+    prisma.ordenCompra.findUnique.mockRejectedValue(new Error('db caída'));
+    await expect(service.enviarCorreosOrdenCompra('oc1')).resolves.toBeUndefined();
+  });
+
+  it('una OC inexistente no envía nada', async () => {
+    const { service, email } = preparar(null);
+    await service.enviarCorreosOrdenCompra('nada');
+    expect(email.send).not.toHaveBeenCalled();
   });
 });
