@@ -522,10 +522,15 @@ export class CotizacionesService {
     return updated;
   }
 
+  /**
+   * Adjudica todos los ítems de una cotización recibida. Es el atajo de
+   * `adjudicarSolicitud` para un único proveedor: delega para mantener una sola
+   * regla de escritura (estados, rechazo de las demás, ítems seleccionados).
+   */
   async aprobarCotizacion(cotizacionId: string) {
     const cotizacion = await this.prisma.cotizacion.findUnique({
       where: { id: cotizacionId },
-      include: { solicitud: true },
+      include: { items: { select: { id: true, solicitudItemId: true } } },
     });
     if (!cotizacion)
       throw new NotFoundException(`Cotizacion ${cotizacionId} no encontrada`);
@@ -535,36 +540,12 @@ export class CotizacionesService {
       );
     }
 
-    // Aprobar esta, rechazar las demás de la misma solicitud
-    await this.prisma.$transaction([
-      this.prisma.cotizacion.update({
-        where: { id: cotizacionId },
-        data: { estado: 'aprobada' },
-      }),
-      this.prisma.cotizacion.updateMany({
-        where: {
-          solicitudId: cotizacion.solicitudId,
-          id: { not: cotizacionId },
-          estado: 'recibida',
-        },
-        data: { estado: 'rechazada' },
-      }),
-      // Marcar todos los ítems de la cotización ganadora como seleccionados
-      // (y desmarcar los de cualquier otra cotización de la misma solicitud),
-      // igual que hace adjudicarSolicitud() para el flujo de split-award.
-      this.prisma.cotizacionItem.updateMany({
-        where: { cotizacion: { solicitudId: cotizacion.solicitudId } },
-        data: { seleccionado: false },
-      }),
-      this.prisma.cotizacionItem.updateMany({
-        where: { cotizacionId },
-        data: { seleccionado: true },
-      }),
-      this.prisma.solicitudCotizacion.update({
-        where: { id: cotizacion.solicitudId },
-        data: { estado: 'seleccionada' },
-      }),
-    ]);
+    await this.adjudicarSolicitud(cotizacion.solicitudId, {
+      adjudicaciones: cotizacion.items.map((item) => ({
+        solicitudItemId: item.solicitudItemId ?? '',
+        cotizacionItemId: item.id,
+      })),
+    });
 
     return this.prisma.cotizacion.findUnique({
       where: { id: cotizacionId },

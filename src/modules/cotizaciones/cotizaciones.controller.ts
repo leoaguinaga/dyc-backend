@@ -183,6 +183,7 @@ export class CotizacionesController {
     });
   }
 
+  /** @deprecated El dashboard adjudica con `PATCH :id/adjudicar`; este atajo delega en él. */
   @Patch('cotizaciones/:cotizacionId/aprobar')
   @Roles('administrador', 'gerencia')
   approve(@Param('cotizacionId') cotizacionId: string) {

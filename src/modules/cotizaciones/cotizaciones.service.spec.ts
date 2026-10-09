@@ -360,22 +360,39 @@ describe('CotizacionesService — invitar y recibir', () => {
 });
 
 describe('CotizacionesService — aprobar y estados', () => {
-  it('aprobarCotizacion elige ganadora y marca la solicitud seleccionada', async () => {
+  it('aprobarCotizacion valida la cotización y delega en adjudicarSolicitud', async () => {
     const { service, prisma } = setup();
     await expect(service.aprobarCotizacion('x')).rejects.toBeInstanceOf(
       NotFoundException,
     );
     prisma.cotizacion.findUnique.mockResolvedValueOnce({ estado: 'pendiente' });
     await expect(service.aprobarCotizacion('c1')).rejects.toThrow(/recibidas/);
+
+    prisma.solicitudCotizacion.findUnique.mockResolvedValue(solicitud());
     prisma.cotizacion.findUnique.mockResolvedValueOnce({
       id: 'c1',
       estado: 'recibida',
       solicitudId: 's1',
+      items: [
+        { id: 'i1', solicitudItemId: 'si1' },
+        { id: 'i2', solicitudItemId: 'si2' },
+      ],
     });
     await service.aprobarCotizacion('c1');
-    expect(prisma.cotizacion.updateMany).toHaveBeenCalledWith(
-      expect.objectContaining({ data: { estado: 'rechazada' } }),
-    );
+
+    // Mismo resultado que adjudicar todos los ítems de c1: gana c1, c2 se rechaza.
+    const estados = prisma.cotizacion.update.mock.calls.map((c: any) => [
+      c[0].where.id,
+      c[0].data.estado,
+    ]);
+    expect(estados).toEqual([
+      ['c1', 'aprobada'],
+      ['c2', 'rechazada'],
+    ]);
+    expect(prisma.cotizacionItem.updateMany).toHaveBeenCalledWith({
+      where: { id: { in: ['i1', 'i2'] } },
+      data: { seleccionado: true },
+    });
     expect(prisma.solicitudCotizacion.update).toHaveBeenCalledWith({
       where: { id: 's1' },
       data: { estado: 'seleccionada' },
