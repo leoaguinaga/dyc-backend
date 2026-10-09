@@ -383,33 +383,62 @@ export class OrdenesCompraService {
       );
 
     try {
-      return await this.prisma.ordenCompra.update({
-        where: { id },
-        data: {
-          nombre: dto.nombre,
-          numero: dto.numero,
-          tipo: dto.tipo,
-          lugarEntrega: dto.lugarEntrega,
-          nota: dto.nota,
-          adelantoPorcentaje: dto.adelantoPorcentaje,
-          saldoPorcentaje: dto.saldoPorcentaje,
-          detraccionPorcentaje: dto.detraccionPorcentaje,
-          retencionPorcentaje: dto.retencionPorcentaje,
-          descuentoMonto: dto.descuentoMonto,
-          incluyeIgv: dto.incluyeIgv,
-          tipoCambio: dto.tipoCambio,
-          contactoProveedorNombre: dto.contactoProveedorNombre,
-          contactoProveedorTelefono: dto.contactoProveedorTelefono,
-          condicionPago: dto.condicionPago,
-          referencia: dto.referencia,
-          concepto: dto.concepto,
-          tiempoEntrega: dto.tiempoEntrega,
-          contactoDycNombre: dto.contactoDycNombre,
-          contactoDycArea: dto.contactoDycArea,
-          contactoDycCelular: dto.contactoDycCelular,
-          contactoDycTelefono: dto.contactoDycTelefono,
-        },
-        include: OC_INCLUDE,
+      return await this.prisma.$transaction(async (tx) => {
+        const actualizada = await tx.ordenCompra.update({
+          where: { id },
+          data: {
+            nombre: dto.nombre,
+            numero: dto.numero,
+            tipo: dto.tipo,
+            lugarEntrega: dto.lugarEntrega,
+            nota: dto.nota,
+            adelantoPorcentaje: dto.adelantoPorcentaje,
+            saldoPorcentaje: dto.saldoPorcentaje,
+            detraccionPorcentaje: dto.detraccionPorcentaje,
+            retencionPorcentaje: dto.retencionPorcentaje,
+            descuentoMonto: dto.descuentoMonto,
+            incluyeIgv: dto.incluyeIgv,
+            tipoCambio: dto.tipoCambio,
+            contactoProveedorNombre: dto.contactoProveedorNombre,
+            contactoProveedorTelefono: dto.contactoProveedorTelefono,
+            condicionPago: dto.condicionPago,
+            referencia: dto.referencia,
+            concepto: dto.concepto,
+            tiempoEntrega: dto.tiempoEntrega,
+            contactoDycNombre: dto.contactoDycNombre,
+            contactoDycArea: dto.contactoDycArea,
+            contactoDycCelular: dto.contactoDycCelular,
+            contactoDycTelefono: dto.contactoDycTelefono,
+          },
+          include: OC_INCLUDE,
+        });
+        // Si cambió "incluye IGV", las cuotas aún no pagadas se reparten sobre
+        // el nuevo monto final; si no, el plan de pagos queda con el IGV viejo.
+        if (dto.incluyeIgv !== undefined && dto.incluyeIgv !== oc.incluyeIgv) {
+          const montoFinal = montoConIgv(
+            Number(actualizada.montoTotal),
+            actualizada.incluyeIgv,
+          );
+          const pendientes = await tx.pago.findMany({
+            where: {
+              ordenCompraId: id,
+              estado: { in: ['pendiente', 'borrador'] },
+              porcentaje: { not: null },
+            },
+            select: { id: true, porcentaje: true },
+          });
+          for (const p of pendientes) {
+            await tx.pago.update({
+              where: { id: p.id },
+              data: { monto: (montoFinal * Number(p.porcentaje)) / 100 },
+            });
+          }
+          return tx.ordenCompra.findUniqueOrThrow({
+            where: { id },
+            include: OC_INCLUDE,
+          });
+        }
+        return actualizada;
       });
     } catch (err) {
       if (
@@ -503,10 +532,7 @@ export class OrdenesCompraService {
     return this.findOne(ordenId);
   }
 
-  async transicionEstado(
-    id: string,
-    nuevoEstado: EstadoOrdenCompra,
-  ) {
+  async transicionEstado(id: string, nuevoEstado: EstadoOrdenCompra) {
     const TRANSICIONES: Partial<
       Record<EstadoOrdenCompra, EstadoOrdenCompra[]>
     > = {
