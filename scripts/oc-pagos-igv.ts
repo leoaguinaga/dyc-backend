@@ -2,6 +2,7 @@
 // monto final esperado (montoTotal + IGV si !incluyeIgv).
 //   pnpm oc:pagos-igv            -> solo lista (no modifica nada)
 //   pnpm oc:pagos-igv --apply    -> recalcula cuotas pendiente/borrador con % definido
+//   pnpm oc:pagos-igv --apply OC-2026-0100 ...  -> idem, solo las OCs indicadas
 import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../prisma/generated/prisma/client.js';
@@ -13,6 +14,7 @@ if (!process.env.DATABASE_URL) {
 }
 
 const apply = process.argv.includes('--apply');
+const soloNumeros = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
 });
@@ -25,6 +27,7 @@ async function main() {
   });
 
   let afectadas = 0;
+  let corregidas = 0;
   for (const oc of ocs) {
     if (oc.pagos.length === 0) continue;
     const esperado = r2(montoConIgv(Number(oc.montoTotal), oc.incluyeIgv));
@@ -40,7 +43,8 @@ async function main() {
         (bloqueadas.length ? `  ⚠ ${bloqueadas.length} cuota(s) ya pagada(s)/en proceso: revisar a mano` : ''),
     );
 
-    if (!apply) continue;
+    if (!apply || (soloNumeros.length > 0 && !soloNumeros.includes(oc.numero))) continue;
+    corregidas++;
     for (const p of oc.pagos) {
       if (!['pendiente', 'borrador'].includes(p.estado) || p.porcentaje == null) continue;
       await prisma.pago.update({
@@ -49,7 +53,7 @@ async function main() {
       });
     }
   }
-  console.log(`\n${afectadas} OC afectada(s) de ${ocs.length}. ${apply ? 'Corregidas.' : 'Dry-run: nada modificado (usa --apply).'}`);
+  console.log(`\n${afectadas} OC afectada(s) de ${ocs.length}. ${apply ? `Corregidas: ${corregidas}.` : 'Dry-run: nada modificado (usa --apply).'}`);
 }
 
 main().finally(() => prisma.$disconnect());
