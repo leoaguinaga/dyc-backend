@@ -99,6 +99,12 @@ enum TipoRequerimiento {
   administrativo
 }
 
+enum PrioridadRequerimiento {
+  normal
+  alta
+  urgente
+}
+
 enum EstadoProyecto {
   planificacion
   ejecucion
@@ -965,6 +971,8 @@ model Requerimiento {
   estado                EstadoRequerimiento @default(borrador)
   tipo                  TipoRequerimiento   @default(civil)
   urgente               Boolean             @default(false)
+  // Reemplaza a `urgente`; éste se deriva de aquélla hasta que se retire la columna.
+  prioridad             PrioridadRequerimiento @default(normal)
   nota                  String?
   notaRevision          String?
   fechaEntregaRequerida DateTime?

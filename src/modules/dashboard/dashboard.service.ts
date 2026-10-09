@@ -173,11 +173,11 @@ export class DashboardService {
           codigo: true,
           nombre: true,
           estado: true,
-          urgente: true,
+          prioridad: true,
           fechaEntregaRequerida: true,
           notaRevision: true,
         },
-        orderBy: [{ urgente: 'desc' }, { actualizadoEn: 'asc' }],
+        orderBy: [{ prioridad: 'desc' }, { actualizadoEn: 'asc' }],
         take: 8,
       });
       for (const req of propios) {
@@ -186,7 +186,7 @@ export class DashboardService {
         tareas.push({
           id: `requerimiento-propio-${req.id}`,
           tipo: 'requerimiento',
-          prioridad: req.urgente || observado ? 'alta' : 'normal',
+          prioridad: req.prioridad !== 'normal' || observado ? 'alta' : 'normal',
           titulo: conformidad
             ? `Confirma la recepción de ${req.codigo}`
             : observado
@@ -260,18 +260,18 @@ export class DashboardService {
           id: true,
           codigo: true,
           nombre: true,
-          urgente: true,
+          prioridad: true,
           fechaEntregaRequerida: true,
           proyecto: { select: { codigo: true, nombre: true } },
         },
-        orderBy: [{ urgente: 'desc' }, { creadoEn: 'asc' }],
+        orderBy: [{ prioridad: 'desc' }, { creadoEn: 'asc' }],
         take: 8,
       });
       for (const req of porAprobar) {
         tareas.push({
           id: `requerimiento-aprobar-${req.id}`,
           tipo: 'aprobacion_requerimiento',
-          prioridad: req.urgente ? 'critica' : 'alta',
+          prioridad: req.prioridad === 'urgente' ? 'critica' : 'alta',
           titulo: `Revisa ${req.codigo}`,
           concepto: req.nombre,
           contexto: `${req.codigo} · ${req.proyecto.codigo ?? req.proyecto.nombre}`,
@@ -810,7 +810,7 @@ export class DashboardService {
         }),
         this.prisma.requerimiento.count({ where: { estado: 'enviado' } }),
         this.prisma.requerimiento.count({
-          where: { estado: 'enviado', urgente: true },
+          where: { estado: 'enviado', prioridad: 'urgente' },
         }),
       ]);
 

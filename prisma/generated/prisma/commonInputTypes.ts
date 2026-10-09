@@ -572,6 +572,13 @@ export type EnumTipoRequerimientoFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTipoRequerimientoFilter<$PrismaModel> | $Enums.TipoRequerimiento
 }
 
+export type EnumPrioridadRequerimientoFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadRequerimiento | Prisma.EnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadRequerimientoFilter<$PrismaModel> | $Enums.PrioridadRequerimiento
+}
+
 export type EnumEstadoRequerimientoWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoRequerimiento | Prisma.EnumEstadoRequerimientoFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoRequerimiento[] | Prisma.ListEnumEstadoRequerimientoFieldRefInput<$PrismaModel>
@@ -590,6 +597,16 @@ export type EnumTipoRequerimientoWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTipoRequerimientoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTipoRequerimientoFilter<$PrismaModel>
+}
+
+export type EnumPrioridadRequerimientoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadRequerimiento | Prisma.EnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadRequerimientoWithAggregatesFilter<$PrismaModel> | $Enums.PrioridadRequerimiento
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPrioridadRequerimientoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPrioridadRequerimientoFilter<$PrismaModel>
 }
 
 export type EnumTipoItemFilter<$PrismaModel = never> = {
@@ -1510,6 +1527,13 @@ export type NestedEnumTipoRequerimientoFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTipoRequerimientoFilter<$PrismaModel> | $Enums.TipoRequerimiento
 }
 
+export type NestedEnumPrioridadRequerimientoFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadRequerimiento | Prisma.EnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadRequerimientoFilter<$PrismaModel> | $Enums.PrioridadRequerimiento
+}
+
 export type NestedEnumEstadoRequerimientoWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoRequerimiento | Prisma.EnumEstadoRequerimientoFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoRequerimiento[] | Prisma.ListEnumEstadoRequerimientoFieldRefInput<$PrismaModel>
@@ -1528,6 +1552,16 @@ export type NestedEnumTipoRequerimientoWithAggregatesFilter<$PrismaModel = never
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTipoRequerimientoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTipoRequerimientoFilter<$PrismaModel>
+}
+
+export type NestedEnumPrioridadRequerimientoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadRequerimiento | Prisma.EnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadRequerimiento[] | Prisma.ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadRequerimientoWithAggregatesFilter<$PrismaModel> | $Enums.PrioridadRequerimiento
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPrioridadRequerimientoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPrioridadRequerimientoFilter<$PrismaModel>
 }
 
 export type NestedEnumTipoItemFilter<$PrismaModel = never> = {

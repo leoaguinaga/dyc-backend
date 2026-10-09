@@ -33,6 +33,7 @@ export type RequerimientoMinAggregateOutputType = {
   estado: $Enums.EstadoRequerimiento | null
   tipo: $Enums.TipoRequerimiento | null
   urgente: boolean | null
+  prioridad: $Enums.PrioridadRequerimiento | null
   nota: string | null
   notaRevision: string | null
   fechaEntregaRequerida: Date | null
@@ -53,6 +54,7 @@ export type RequerimientoMaxAggregateOutputType = {
   estado: $Enums.EstadoRequerimiento | null
   tipo: $Enums.TipoRequerimiento | null
   urgente: boolean | null
+  prioridad: $Enums.PrioridadRequerimiento | null
   nota: string | null
   notaRevision: string | null
   fechaEntregaRequerida: Date | null
@@ -73,6 +75,7 @@ export type RequerimientoCountAggregateOutputType = {
   estado: number
   tipo: number
   urgente: number
+  prioridad: number
   nota: number
   notaRevision: number
   fechaEntregaRequerida: number
@@ -95,6 +98,7 @@ export type RequerimientoMinAggregateInputType = {
   estado?: true
   tipo?: true
   urgente?: true
+  prioridad?: true
   nota?: true
   notaRevision?: true
   fechaEntregaRequerida?: true
@@ -115,6 +119,7 @@ export type RequerimientoMaxAggregateInputType = {
   estado?: true
   tipo?: true
   urgente?: true
+  prioridad?: true
   nota?: true
   notaRevision?: true
   fechaEntregaRequerida?: true
@@ -135,6 +140,7 @@ export type RequerimientoCountAggregateInputType = {
   estado?: true
   tipo?: true
   urgente?: true
+  prioridad?: true
   nota?: true
   notaRevision?: true
   fechaEntregaRequerida?: true
@@ -228,6 +234,7 @@ export type RequerimientoGroupByOutputType = {
   estado: $Enums.EstadoRequerimiento
   tipo: $Enums.TipoRequerimiento
   urgente: boolean
+  prioridad: $Enums.PrioridadRequerimiento
   nota: string | null
   notaRevision: string | null
   fechaEntregaRequerida: Date | null
@@ -269,6 +276,7 @@ export type RequerimientoWhereInput = {
   estado?: Prisma.EnumEstadoRequerimientoFilter<"Requerimiento"> | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFilter<"Requerimiento"> | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFilter<"Requerimiento"> | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFilter<"Requerimiento"> | $Enums.PrioridadRequerimiento
   nota?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   notaRevision?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   fechaEntregaRequerida?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
@@ -295,6 +303,7 @@ export type RequerimientoOrderByWithRelationInput = {
   estado?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   urgente?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   notaRevision?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaEntregaRequerida?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -324,6 +333,7 @@ export type RequerimientoWhereUniqueInput = Prisma.AtLeast<{
   estado?: Prisma.EnumEstadoRequerimientoFilter<"Requerimiento"> | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFilter<"Requerimiento"> | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFilter<"Requerimiento"> | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFilter<"Requerimiento"> | $Enums.PrioridadRequerimiento
   nota?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   notaRevision?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   fechaEntregaRequerida?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
@@ -350,6 +360,7 @@ export type RequerimientoOrderByWithAggregationInput = {
   estado?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   urgente?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   notaRevision?: Prisma.SortOrderInput | Prisma.SortOrder
   fechaEntregaRequerida?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -376,6 +387,7 @@ export type RequerimientoScalarWhereWithAggregatesInput = {
   estado?: Prisma.EnumEstadoRequerimientoWithAggregatesFilter<"Requerimiento"> | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoWithAggregatesFilter<"Requerimiento"> | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolWithAggregatesFilter<"Requerimiento"> | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoWithAggregatesFilter<"Requerimiento"> | $Enums.PrioridadRequerimiento
   nota?: Prisma.StringNullableWithAggregatesFilter<"Requerimiento"> | string | null
   notaRevision?: Prisma.StringNullableWithAggregatesFilter<"Requerimiento"> | string | null
   fechaEntregaRequerida?: Prisma.DateTimeNullableWithAggregatesFilter<"Requerimiento"> | Date | string | null
@@ -394,6 +406,7 @@ export type RequerimientoCreateInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -419,6 +432,7 @@ export type RequerimientoUncheckedCreateInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -440,6 +454,7 @@ export type RequerimientoUpdateInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -465,6 +480,7 @@ export type RequerimientoUncheckedUpdateInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -488,6 +504,7 @@ export type RequerimientoCreateManyInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -506,6 +523,7 @@ export type RequerimientoUpdateManyMutationInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -525,6 +543,7 @@ export type RequerimientoUncheckedUpdateManyInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -555,6 +574,7 @@ export type RequerimientoCountOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   urgente?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   notaRevision?: Prisma.SortOrder
   fechaEntregaRequerida?: Prisma.SortOrder
@@ -575,6 +595,7 @@ export type RequerimientoMaxOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   urgente?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   notaRevision?: Prisma.SortOrder
   fechaEntregaRequerida?: Prisma.SortOrder
@@ -595,6 +616,7 @@ export type RequerimientoMinOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   urgente?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   nota?: Prisma.SortOrder
   notaRevision?: Prisma.SortOrder
   fechaEntregaRequerida?: Prisma.SortOrder
@@ -750,6 +772,10 @@ export type EnumTipoRequerimientoFieldUpdateOperationsInput = {
   set?: $Enums.TipoRequerimiento
 }
 
+export type EnumPrioridadRequerimientoFieldUpdateOperationsInput = {
+  set?: $Enums.PrioridadRequerimiento
+}
+
 export type RequerimientoCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.RequerimientoCreateWithoutItemsInput, Prisma.RequerimientoUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.RequerimientoCreateOrConnectWithoutItemsInput
@@ -801,6 +827,7 @@ export type RequerimientoCreateWithoutCreadoPorInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -824,6 +851,7 @@ export type RequerimientoUncheckedCreateWithoutCreadoPorInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -855,6 +883,7 @@ export type RequerimientoCreateWithoutRecepcionPorInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -879,6 +908,7 @@ export type RequerimientoUncheckedCreateWithoutRecepcionPorInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -930,6 +960,7 @@ export type RequerimientoScalarWhereInput = {
   estado?: Prisma.EnumEstadoRequerimientoFilter<"Requerimiento"> | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFilter<"Requerimiento"> | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFilter<"Requerimiento"> | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFilter<"Requerimiento"> | $Enums.PrioridadRequerimiento
   nota?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   notaRevision?: Prisma.StringNullableFilter<"Requerimiento"> | string | null
   fechaEntregaRequerida?: Prisma.DateTimeNullableFilter<"Requerimiento"> | Date | string | null
@@ -964,6 +995,7 @@ export type RequerimientoCreateWithoutProyectoInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -987,6 +1019,7 @@ export type RequerimientoUncheckedCreateWithoutProyectoInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1034,6 +1067,7 @@ export type RequerimientoCreateWithoutItemsInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1058,6 +1092,7 @@ export type RequerimientoUncheckedCreateWithoutItemsInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1094,6 +1129,7 @@ export type RequerimientoUpdateWithoutItemsInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1118,6 +1154,7 @@ export type RequerimientoUncheckedUpdateWithoutItemsInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1138,6 +1175,7 @@ export type RequerimientoCreateWithoutHistorialInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1162,6 +1200,7 @@ export type RequerimientoUncheckedCreateWithoutHistorialInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1198,6 +1237,7 @@ export type RequerimientoUpdateWithoutHistorialInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1222,6 +1262,7 @@ export type RequerimientoUncheckedUpdateWithoutHistorialInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1242,6 +1283,7 @@ export type RequerimientoCreateWithoutSolicitudesInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1266,6 +1308,7 @@ export type RequerimientoUncheckedCreateWithoutSolicitudesInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1302,6 +1345,7 @@ export type RequerimientoUpdateWithoutSolicitudesInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1326,6 +1370,7 @@ export type RequerimientoUncheckedUpdateWithoutSolicitudesInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1347,6 +1392,7 @@ export type RequerimientoCreateManyCreadoPorInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1367,6 +1413,7 @@ export type RequerimientoCreateManyRecepcionPorInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1384,6 +1431,7 @@ export type RequerimientoUpdateWithoutCreadoPorInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1407,6 +1455,7 @@ export type RequerimientoUncheckedUpdateWithoutCreadoPorInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1429,6 +1478,7 @@ export type RequerimientoUncheckedUpdateManyWithoutCreadoPorInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1447,6 +1497,7 @@ export type RequerimientoUpdateWithoutRecepcionPorInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1471,6 +1522,7 @@ export type RequerimientoUncheckedUpdateWithoutRecepcionPorInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1493,6 +1545,7 @@ export type RequerimientoUncheckedUpdateManyWithoutRecepcionPorInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1511,6 +1564,7 @@ export type RequerimientoCreateManyProyectoInput = {
   estado?: $Enums.EstadoRequerimiento
   tipo?: $Enums.TipoRequerimiento
   urgente?: boolean
+  prioridad?: $Enums.PrioridadRequerimiento
   nota?: string | null
   notaRevision?: string | null
   fechaEntregaRequerida?: Date | string | null
@@ -1529,6 +1583,7 @@ export type RequerimientoUpdateWithoutProyectoInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1552,6 +1607,7 @@ export type RequerimientoUncheckedUpdateWithoutProyectoInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1574,6 +1630,7 @@ export type RequerimientoUncheckedUpdateManyWithoutProyectoInput = {
   estado?: Prisma.EnumEstadoRequerimientoFieldUpdateOperationsInput | $Enums.EstadoRequerimiento
   tipo?: Prisma.EnumTipoRequerimientoFieldUpdateOperationsInput | $Enums.TipoRequerimiento
   urgente?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  prioridad?: Prisma.EnumPrioridadRequerimientoFieldUpdateOperationsInput | $Enums.PrioridadRequerimiento
   nota?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notaRevision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fechaEntregaRequerida?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1643,6 +1700,7 @@ export type RequerimientoSelect<ExtArgs extends runtime.Types.Extensions.Interna
   estado?: boolean
   tipo?: boolean
   urgente?: boolean
+  prioridad?: boolean
   nota?: boolean
   notaRevision?: boolean
   fechaEntregaRequerida?: boolean
@@ -1670,6 +1728,7 @@ export type RequerimientoSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   estado?: boolean
   tipo?: boolean
   urgente?: boolean
+  prioridad?: boolean
   nota?: boolean
   notaRevision?: boolean
   fechaEntregaRequerida?: boolean
@@ -1693,6 +1752,7 @@ export type RequerimientoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   estado?: boolean
   tipo?: boolean
   urgente?: boolean
+  prioridad?: boolean
   nota?: boolean
   notaRevision?: boolean
   fechaEntregaRequerida?: boolean
@@ -1716,6 +1776,7 @@ export type RequerimientoSelectScalar = {
   estado?: boolean
   tipo?: boolean
   urgente?: boolean
+  prioridad?: boolean
   nota?: boolean
   notaRevision?: boolean
   fechaEntregaRequerida?: boolean
@@ -1727,7 +1788,7 @@ export type RequerimientoSelectScalar = {
   recepcionPorId?: boolean
 }
 
-export type RequerimientoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "proyectoId" | "creadoPorId" | "estado" | "tipo" | "urgente" | "nota" | "notaRevision" | "fechaEntregaRequerida" | "creadoEn" | "actualizadoEn" | "recepcionFotoUrl" | "recepcionComentario" | "recepcionEn" | "recepcionPorId", ExtArgs["result"]["requerimiento"]>
+export type RequerimientoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "nombre" | "proyectoId" | "creadoPorId" | "estado" | "tipo" | "urgente" | "prioridad" | "nota" | "notaRevision" | "fechaEntregaRequerida" | "creadoEn" | "actualizadoEn" | "recepcionFotoUrl" | "recepcionComentario" | "recepcionEn" | "recepcionPorId", ExtArgs["result"]["requerimiento"]>
 export type RequerimientoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   proyecto?: boolean | Prisma.ProyectoDefaultArgs<ExtArgs>
   creadoPor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1767,6 +1828,7 @@ export type $RequerimientoPayload<ExtArgs extends runtime.Types.Extensions.Inter
     estado: $Enums.EstadoRequerimiento
     tipo: $Enums.TipoRequerimiento
     urgente: boolean
+    prioridad: $Enums.PrioridadRequerimiento
     nota: string | null
     notaRevision: string | null
     fechaEntregaRequerida: Date | null
@@ -2213,6 +2275,7 @@ export interface RequerimientoFieldRefs {
   readonly estado: Prisma.FieldRef<"Requerimiento", 'EstadoRequerimiento'>
   readonly tipo: Prisma.FieldRef<"Requerimiento", 'TipoRequerimiento'>
   readonly urgente: Prisma.FieldRef<"Requerimiento", 'Boolean'>
+  readonly prioridad: Prisma.FieldRef<"Requerimiento", 'PrioridadRequerimiento'>
   readonly nota: Prisma.FieldRef<"Requerimiento", 'String'>
   readonly notaRevision: Prisma.FieldRef<"Requerimiento", 'String'>
   readonly fechaEntregaRequerida: Prisma.FieldRef<"Requerimiento", 'DateTime'>

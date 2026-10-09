@@ -4,6 +4,7 @@ import type {
   EstadoOrdenCompra,
   EstadoRequerimiento,
   EstadoSolicitud,
+  PrioridadRequerimiento,
   TipoOrdenCompra,
   TipoRequerimiento,
 } from '../../prisma/types.js';
@@ -52,6 +53,7 @@ export interface FlujoMacroSolicitud {
   requerimiento: {
     estado: EstadoRequerimiento;
     urgente: boolean;
+    prioridad: PrioridadRequerimiento;
     notaRevision: string | null;
     fechaEntregaRequerida: string | null;
     items: number;

@@ -47,6 +47,15 @@ export const TipoRequerimiento = {
 export type TipoRequerimiento = (typeof TipoRequerimiento)[keyof typeof TipoRequerimiento]
 
 
+export const PrioridadRequerimiento = {
+  normal: 'normal',
+  alta: 'alta',
+  urgente: 'urgente'
+} as const
+
+export type PrioridadRequerimiento = (typeof PrioridadRequerimiento)[keyof typeof PrioridadRequerimiento]
+
+
 export const EstadoProyecto = {
   planificacion: 'planificacion',
   ejecucion: 'ejecucion',

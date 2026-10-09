@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CreateRequerimientoItemDto } from './create-requerimiento.dto.js';
-import { TipoRequerimiento } from '../../../prisma/types.js';
+import { PrioridadRequerimiento, TipoRequerimiento } from '../../../prisma/types.js';
 
 export class UpdateRequerimientoDto {
   @IsOptional()
@@ -24,6 +24,11 @@ export class UpdateRequerimientoDto {
   @IsString()
   nombre?: string;
 
+  @IsOptional()
+  @IsEnum(PrioridadRequerimiento)
+  prioridad?: PrioridadRequerimiento;
+
+  /** @deprecated Usar `prioridad`. */
   @IsOptional()
   @IsBoolean()
   urgente?: boolean;

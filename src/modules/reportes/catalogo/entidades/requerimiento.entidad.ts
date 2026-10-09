@@ -1,4 +1,4 @@
-import { EstadoRequerimiento, TipoRequerimiento } from '../../../../prisma/types.js';
+import { EstadoRequerimiento, PrioridadRequerimiento, TipoRequerimiento } from '../../../../prisma/types.js';
 import type { ReporteEntidadMeta } from '../tipos.js';
 
 export const REQUERIMIENTO_META: ReporteEntidadMeta = {
@@ -25,6 +25,15 @@ export const REQUERIMIENTO_META: ReporteEntidadMeta = {
       tipo: 'enum',
       path: ['tipo'],
       enumValues: Object.values(TipoRequerimiento),
+      operadores: ['eq', 'neq', 'in'],
+      agrupable: true,
+    },
+    {
+      key: 'prioridad',
+      label: 'Prioridad',
+      tipo: 'enum',
+      path: ['prioridad'],
+      enumValues: Object.values(PrioridadRequerimiento),
       operadores: ['eq', 'neq', 'in'],
       agrupable: true,
     },

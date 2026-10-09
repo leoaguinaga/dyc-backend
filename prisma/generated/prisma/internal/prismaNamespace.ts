@@ -5176,6 +5176,7 @@ export const RequerimientoScalarFieldEnum = {
   estado: 'estado',
   tipo: 'tipo',
   urgente: 'urgente',
+  prioridad: 'prioridad',
   nota: 'nota',
   notaRevision: 'notaRevision',
   fechaEntregaRequerida: 'fechaEntregaRequerida',
@@ -6027,6 +6028,20 @@ export type EnumTipoRequerimientoFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'TipoRequerimiento[]'
  */
 export type ListEnumTipoRequerimientoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoRequerimiento[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PrioridadRequerimiento'
+ */
+export type EnumPrioridadRequerimientoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioridadRequerimiento'>
+    
+
+
+/**
+ * Reference to a field of type 'PrioridadRequerimiento[]'
+ */
+export type ListEnumPrioridadRequerimientoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioridadRequerimiento[]'>
     
 
 
