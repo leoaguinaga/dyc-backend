@@ -484,6 +484,8 @@ export class ComprasSimplesService {
             create: dto.grupos.map((grupo, i) => ({
               numero: numeros[i],
               origen: 'simple',
+              // Precotizadas: los precios ya incluyen IGV por defecto.
+              incluyeIgv: true,
               estado: 'borrador',
               estadoAprobacion: 'pendiente',
               proyectoId: dto.proyectoId,
